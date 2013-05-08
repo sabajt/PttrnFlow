@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="4" height="2" tilewidth="200" tileheight="200">
+ <tileset firstgid="1" name="pipeTilesetBase1" tilewidth="200" tileheight="200" spacing="1" margin="1">
+  <image source="../pipeTilesetBase1.png" width="1609" height="805"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="4" height="2">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAPAAAgAAE=
+  </data>
+ </layer>
+ <objectgroup name="Tick Responders" width="4" height="2">
+  <object name="tone" x="34" y="96" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="48"/>
+   </properties>
+  </object>
+  <object name="tone" x="41" y="290" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="49"/>
+   </properties>
+  </object>
+  <object name="tone" x="254" y="97" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="55"/>
+   </properties>
+  </object>
+  <object name="tone" x="643" y="243" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="52"/>
+   </properties>
+  </object>
+  <object name="tone" x="457" y="276" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="51"/>
+   </properties>
+  </object>
+  <object name="tone" x="660" y="75" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="53"/>
+   </properties>
+  </object>
+  <object name="tone" x="432" y="67" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="54"/>
+   </properties>
+  </object>
+  <object name="tone" x="257" y="287" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="50"/>
+   </properties>
+  </object>
+  <object name="arrow" x="660" y="56" width="83" height="83">
+   <properties>
+    <property name="direction" value="left"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object name="arrow" x="659" y="264" width="83" height="83">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object name="arrow" x="95" y="60" width="83" height="83">
+   <properties>
+    <property name="direction" value="right"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object name="sequence" x="53" y="-91" width="295" height="36">
+   <properties>
+    <property name="events" value="48,n;49,n;50;51;52,n;53,n;54,n;55"/>
+   </properties>
+  </object>
+  <object name="entry" x="17" y="34" width="125" height="121">
+   <properties>
+    <property name="direction" value="right"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object name="arrow" x="62" y="274" width="83" height="83">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object name="arrow" x="451" y="82" width="83" height="83">
+   <properties>
+    <property name="direction" value="down"/>
+   </properties>
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>
