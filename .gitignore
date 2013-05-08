@@ -16,3 +16,5 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+PttrnFlow/.DS_Store
+PttrnFlow/PttrnFlow/Resources/.DS_Store
