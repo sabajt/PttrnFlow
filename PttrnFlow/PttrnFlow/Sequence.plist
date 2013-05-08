@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>pattern</key>
+		<array>
+			<string>standard</string>
+			<string>no sound</string>
+			<string>standard</string>
+			<string>no sound</string>
+			<string>standard</string>
+			<string>no sound</string>
+			<string>standard</string>
+			<string>no sound</string>
+		</array>
+		<key>size</key>
+		<dict>
+			<key>x</key>
+			<integer>8</integer>
+			<key>y</key>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<dict>
+		<key>pattern</key>
+		<array>
+			<string>standard</string>
+			<string>robot</string>
+			<string>meaty</string>
+			<string>no sound</string>
+			<string>standard</string>
+			<string>robot</string>
+			<string>meaty</string>
+			<string>no sound</string>
+		</array>
+		<key>size</key>
+		<dict>
+			<key>x</key>
+			<integer>8</integer>
+			<key>y</key>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<dict>
+		<key>pattern</key>
+		<array>
+			<string>standard</string>
+			<string>standard</string>
+			<string>meaty</string>
+			<string>standard</string>
+			<string>standard</string>
+			<string>standard</string>
+			<string>meaty</string>
+			<string>alien</string>
+		</array>
+		<key>size</key>
+		<dict>
+			<key>x</key>
+			<integer>8</integer>
+			<key>y</key>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<dict>
+		<key>pattern</key>
+		<array>
+			<string>meaty</string>
+			<string>standard</string>
+			<string>meaty</string>
+			<string>alien</string>
+			<string>no sound</string>
+			<string>standard</string>
+			<string>alien</string>
+			<string>robot</string>
+		</array>
+		<key>size</key>
+		<dict>
+			<key>x</key>
+			<integer>8</integer>
+			<key>y</key>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<dict>
+		<key>pattern</key>
+		<array>
+			<string>standard</string>
+			<string>alien</string>
+			<string>meaty</string>
+			<string>alien</string>
+			<string>standard</string>
+			<string>standard</string>
+			<string>meaty</string>
+			<string>robot</string>
+		</array>
+		<key>size</key>
+		<dict>
+			<key>x</key>
+			<integer>8</integer>
+			<key>y</key>
+			<integer>4</integer>
+		</dict>
+	</dict>
+</array>
+</plist>
