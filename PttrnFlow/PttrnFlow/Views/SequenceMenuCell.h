@@ -10,7 +10,7 @@
 
 @interface SequenceMenuCell : UICollectionViewCell
 
-@property (strong, nonatomic) UILabel *sequenceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *levelLabel;
 
 - (void)configureWithIndexPath:(NSIndexPath *)indexPath;
 

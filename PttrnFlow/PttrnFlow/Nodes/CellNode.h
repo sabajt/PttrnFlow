@@ -31,6 +31,7 @@
 @property (weak, nonatomic) id<TransferResponder>transferResponder;
 
 - (CCSprite *)createAndCenterSpriteNamed:(NSString *)name; // returns sprite with image name, centered in content bounds
+- (void)alignSprite:(kDirection)direction;
 - (void)moveTo:(GridCoord)cell gridOrigin:(CGPoint)origin;
 - (BOOL)shouldBlockMovement;
 

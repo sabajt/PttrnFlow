@@ -10,4 +10,6 @@
 
 @interface EntryArrow : CellNode
 
+- (id)initWithEntry:(NSMutableDictionary *)entry tiledMap:(CCTMXTiledMap *)tiledMap puzzleOrigin:(CGPoint)origin;
+
 @end

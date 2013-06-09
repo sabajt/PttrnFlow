@@ -96,9 +96,6 @@ static CGFloat const kTickInterval = 0.5;
     // play sound in eventSequence
     NSLog(@"playing %@", [self.eventSequence objectForKey:@(index)]);
     NSArray *events = [self.eventSequence objectForKey:@(index)];
-    
-    
-    
     [self.mainSynth loadEvents:events];
 }
 

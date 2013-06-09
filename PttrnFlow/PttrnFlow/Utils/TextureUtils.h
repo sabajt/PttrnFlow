@@ -11,12 +11,6 @@
 @interface TextureUtils : NSObject
 
 // define image names
-FOUNDATION_EXPORT NSString *const kImageDynamicButtonDefault;
-FOUNDATION_EXPORT NSString *const kImageDynamicButtonSelected;
-FOUNDATION_EXPORT NSString *const kImageDynamicButtonComplete;
-FOUNDATION_EXPORT NSString *const kImageFinalButtonDefault;
-FOUNDATION_EXPORT NSString *const kImageFinalButtonSelected;
-
 FOUNDATION_EXPORT NSString *const kImageA_on;
 FOUNDATION_EXPORT NSString *const kImageA;
 FOUNDATION_EXPORT NSString *const kImageA_flat_on;
@@ -47,6 +41,8 @@ FOUNDATION_EXPORT NSString *const kImageF_sharp_on;
 FOUNDATION_EXPORT NSString *const kImageF_sharp;
 FOUNDATION_EXPORT NSString *const kImageG_on;
 FOUNDATION_EXPORT NSString *const kImageG;
+
+FOUNDATION_EXPORT NSString *const kImageStartArrow;
 
 + (void)loadTextures;
 

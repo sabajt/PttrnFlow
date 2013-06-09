@@ -44,7 +44,46 @@
     [self.transferResponder transferNode:self toCell:cell fromCell:moveFrom];
 }
 
+- (void)alignSprite:(kDirection)direction
+{
+    switch (direction) {
+        case kDirectionUp:
+            [self topAlignSprite];
+            break;
+        case kDirectionRight:
+            [self rightAlignSprite];
+            break;
+        case kDirectionDown:
+            [self bottomAlignSprite];
+            break;
+        case kDirectionLeft:
+            [self leftAlignSprite];
+            break;
+        default:
+            NSLog(@"warning: invalid direction, can't align sprite");
+            break;
+    }
+}
 
+- (void)leftAlignSprite
+{
+    self.sprite.position = CGPointMake(self.sprite.contentSize.width/2, self.contentSize.height/2);
+}
+
+- (void)rightAlignSprite
+{
+    self.sprite.position = CGPointMake(self.contentSize.width - self.sprite.contentSize.width/2, self.contentSize.height/2);
+}
+
+- (void)topAlignSprite
+{
+    self.sprite.position = CGPointMake(self.contentSize.width/2, self.contentSize.height - self.sprite.contentSize.height/2);
+}
+
+- (void)bottomAlignSprite
+{
+    self.sprite.position = CGPointMake(self.contentSize.width/2, self.sprite.contentSize.height/2);
+}
 #pragma mark - scene management
 
 - (void)onEnter

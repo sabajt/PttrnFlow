@@ -11,12 +11,6 @@
 
 @implementation TextureUtils
 
-NSString *const kImageDynamicButtonDefault = @"dynamicButtonDefault.png";
-NSString *const kImageDynamicButtonSelected = @"dynamicButtonSelected.png";
-NSString *const kImageDynamicButtonComplete = @"dynamicButtonComplete.png";
-NSString *const kImageFinalButtonDefault = @"finalButtonDefault.png";
-NSString *const kImageFinalButtonSelected = @"finalButtonSelected.png";
-
 NSString *const kImageA_on = @"A-on.png";
 NSString *const kImageA = @"A.png";
 NSString *const kImageA_flat_on = @"Aflat-on.png";
@@ -48,16 +42,12 @@ NSString *const kImageF_sharp = @"Fsharp.png";
 NSString *const kImageG_on = @"G-on.png";
 NSString *const kImageG = @"G.png";
 
+NSString *const kImageStartArrow = @"startArrow.png";
+
 
 // don't forget to load the images
 + (void)loadTextures
-{    
-    [[CCTextureCache sharedTextureCache] addImage:kImageDynamicButtonDefault];
-    [[CCTextureCache sharedTextureCache] addImage:kImageDynamicButtonSelected];
-    [[CCTextureCache sharedTextureCache] addImage:kImageDynamicButtonComplete];
-    [[CCTextureCache sharedTextureCache] addImage:kImageFinalButtonDefault];
-    [[CCTextureCache sharedTextureCache] addImage:kImageFinalButtonSelected];
-    
+{        
     [[CCTextureCache sharedTextureCache] addImage:kImageA_on];
     [[CCTextureCache sharedTextureCache] addImage:kImageA];
     [[CCTextureCache sharedTextureCache] addImage:kImageA_flat_on];
@@ -88,6 +78,9 @@ NSString *const kImageG = @"G.png";
     [[CCTextureCache sharedTextureCache] addImage:kImageF_sharp];
     [[CCTextureCache sharedTextureCache] addImage:kImageG_on];
     [[CCTextureCache sharedTextureCache] addImage:kImageG];
+    
+    [[CCTextureCache sharedTextureCache] addImage:kImageStartArrow];
+
 }
 
 

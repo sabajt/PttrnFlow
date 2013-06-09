@@ -20,31 +20,9 @@
 #import "SGTiledUtils.h"
 #import "Arrow.h"
 #import "MainSynth.h"
-
-static NSUInteger const kTotalPatternTicks = 8;
-static NSUInteger const kTotalHeartTypes = 4;
-
-static NSString *const kKeyStandard = @"standard";
-static NSString *const kKeyRobot = @"robot";
-static NSString *const kKeyMeaty = @"meaty";
-static NSString *const kKeyAlien = @"alien";
-static NSString *const kKeyNoSound = @"no sound";
-
-static NSString *const kSoundStandard = @"Heart 4.caf";
-static NSString *const kSoundRobot = @"Heart Robot 1.caf";
-static NSString *const kSoundMeaty = @"Heart Meaty 2.caf";
-static NSString *const kSoundAlien = @"Heart Alien New.caf";
+#import "EntryArrow.h"
 
 static CGFloat const kPatternDelay = 0.5;
-
-typedef enum
-{
-    kBeatTypeNone,
-    kBeatTypeStandard,
-    kBeatTypeRobot,
-    kBeatTypeMeaty,
-    kBeatTypeAlien
-}kBeatType;
 
 
 @implementation SequenceLayer
@@ -101,6 +79,10 @@ typedef enum
             [self.tickDispatcher registerTickResponder:arrowNode];
             [self addChild:arrowNode];
         }
+        
+        // entry arrow
+        EntryArrow *entryArrow = [[EntryArrow alloc] initWithEntry:entry tiledMap:self.tileMap puzzleOrigin:self.position];
+        [self addChild:entryArrow];
     }
     return self;
 }
@@ -157,68 +139,6 @@ typedef enum
     [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
 }
 
-#pragma mark - Tick Interface
-
-- (void)scheduleFinalPattern
-{
-    float delay = kPatternDelay; // Number of seconds between each call of myTimedMethod:
-    [self schedule:@selector(playFinalPatternItem:) interval:delay repeat:kTotalPatternTicks - 1 delay:0];
-}
-
-- (void)scheduleDynamicPattern
-{
-    float delay = kPatternDelay; // Number of seconds between each call of myTimedMethod:
-    [self schedule:@selector(playDynamicPatternItem:) interval:delay repeat:kTotalPatternTicks - 1 delay:0];  
-}
-
-//- (void)playFinalPatternItem:(ccTime)dt
-//{
-//    [self playPatternItem:self.finalPattern];
-//}
-//
-//- (void)playDynamicPatternItem:(ccTime)dt
-//{
-//    [self playPatternItem:self.dynamicPattern];
-//}
-
-
-//- (void)handleCellSelection:(GridCoord)cell key:(NSString *)key
-//{
-//    if ([[self.dynamicPattern objectAtIndex:cell.x - 1] isEqualToString:key]) {
-//        [self.dynamicPattern replaceObjectAtIndex:cell.x - 1 withObject:kKeyNoSound];        
-//        [self removeBeatSpriteFromCell:cell];
-//    }
-//    else {
-//        [self.dynamicPattern replaceObjectAtIndex:cell.x - 1 withObject:key];
-////        [self addBeatSpriteToCell:cell];
-//    }
-//}
-
-
-
-#pragma mark - access heart sprites
-
-//- (void)addBeatSpriteToCell:(GridCoord)cell
-//{
-//    NSString *keyString = [NSString stringWithFormat:@"%i%i", cell.x, cell.y];
-//    CCSprite *sprite = [self heartSpriteForBeatType:(kBeatType)cell.y];
-//    sprite.position = [GridUtils absoluteSpritePositionForGridCoord:cell unitSize:kSizeGridUnit origin:self.gridOrigin];
-//    [self.heartSprites setObject:sprite forKey:keyString];
-//    [self addChild:sprite];
-//}
-
-//- (void)removeBeatSpriteFromCell:(GridCoord)cell
-//{
-//    NSString *keyString = [NSString stringWithFormat:@"%i%i", cell.x, cell.y];
-//    CCSprite *sprite = [self.heartSprites objectForKey:keyString];
-//    
-//    if (sprite != nil) {
-//        [sprite removeFromParentAndCleanup:YES];
-//        [self.heartSprites removeObjectForKey:keyString];
-//    }
-//}
-
-
 # pragma mark - targeted touch delegate
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
@@ -239,19 +159,9 @@ typedef enum
             [self.tickDispatcher.mainSynth loadEvents:@[event]];
         }
     }
-
     
     return YES;
 }
-//
-//- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
-//{
-//    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-//
-//    if (self.draggingArrow != nil) {
-//        self.draggingArrow.position = touchPosition;
-//    }
-//}
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
@@ -260,71 +170,5 @@ typedef enum
         self.pressedTone = nil;
     }
 }
-
-//- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-//{
-//
-//    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-//
-//    // touch final pattern button to play final pattern
-//    if (CGRectContainsPoint(self.finalPatternButton.boundingBox, touchPosition)) {
-//        if (self.isAnySequencePlaying == NO) {
-//            self.isAnySequencePlaying = YES;
-//            [self scheduleFinalPattern];
-//            [SpriteUtils switchImageForSprite:self.finalPatternButton textureKey:kImageFinalButtonSelected];
-//            return YES;
-//        }
-//    }
-//    
-//    // touch dynamic pattern button to play dynamic pattern
-//    if (CGRectContainsPoint(self.dynamicPatternButton.boundingBox, touchPosition)) {
-//        if (self.isAnySequencePlaying == NO) {
-//            self.isAnySequencePlaying = YES;
-//            [self scheduleDynamicPattern];
-//            [SpriteUtils switchImageForSprite:self.dynamicPatternButton textureKey:kImageDynamicButtonSelected];            
-//            return YES;
-//        }
-//    }
-//    
-//    // touch previous button takes us to previous sequence, if there is one
-//    if (CGRectContainsPoint(self.previousButton.boundingBox, touchPosition)) {
-//        [self previousScene];
-//        return YES;
-//    }
-//    
-//    // touch next button takes us to next sequence, if there is one
-//    if (CGRectContainsPoint(self.nextButton.boundingBox, touchPosition)) {
-//        [self nextScene];
-//        return YES;
-//    }
-//
-//    // add heart beat to sequencer if touch on grid
-//    GridCoord cell = [GridUtils gridCoordForAbsolutePosition:touchPosition unitSize:kSizeGridUnit origin:self.gridOrigin];
-//    if ([self isValidCell:cell]) {
-//        
-//        // always remove whatever graphic is at the current dynamicPattern index -- we only support one beat per tick
-//        [self removeAllBeatSpritesFromTick:cell.x];
-//        
-//        if (cell.y == kBeatTypeStandard) {
-//            [self handleCellSelection:cell key:kKeyStandard];
-//        }
-//        else if (cell.y == kBeatTypeRobot) {
-//            [self handleCellSelection:cell key:kKeyRobot];
-//        }
-//        else if (cell.y == kBeatTypeMeaty) {
-//            [self handleCellSelection:cell key:kKeyMeaty];
-//        }
-//        else if (cell.y == kBeatTypeAlien) {
-//            [self handleCellSelection:cell key:kKeyAlien];
-//        }
-//        return YES;
-//    }
-//    
-//    return YES;
-//}
-
-
-
-
 
 @end

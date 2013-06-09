@@ -194,6 +194,9 @@
 		16284CA7173A072B00B058D2 /* seq2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 16284C92173A072B00B058D2 /* seq2.tmx */; };
 		16284CA8173A072B00B058D2 /* seq3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 16284C93173A072B00B058D2 /* seq3.tmx */; };
 		16284CA9173A072B00B058D2 /* synth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 16284C95173A072B00B058D2 /* synth.pd */; };
+		162B7F171754114D00E0CC0D /* startArrow-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 162B7F161754114D00E0CC0D /* startArrow-ipadhd.png */; };
+		162B7F1A1754116000E0CC0D /* startArrow-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 162B7F191754116000E0CC0D /* startArrow-ipad.png */; };
+		162B7F1D17541B0A00E0CC0D /* EntryArrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 162B7F1C17541B0A00E0CC0D /* EntryArrow.m */; };
 		165A418C1734D870005BFC32 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 165A418B1734D870005BFC32 /* Storyboard.storyboard */; };
 		165A41911734DB6A005BFC32 /* CCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 165A41901734DB6A005BFC32 /* CCViewController.m */; };
 		165A41A11734E7F8005BFC32 /* SequenceMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 165A419E1734E7F8005BFC32 /* SequenceMenuViewController.m */; };
@@ -221,14 +224,9 @@
 		169FC6BD1734A2E2008EC4C4 /* CellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 169FC6BC1734A2E1008EC4C4 /* CellNode.m */; };
 		16E2571D17377E8F00F45198 /* MainSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E2571C17377E8F00F45198 /* MainSynth.m */; };
 		3D11F3661735A54D00172154 /* TickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D11F3651735A54D00172154 /* TickerView.m */; };
-		D258C83F1735817E0056EE96 /* SequenceMenuCellLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = D258C83E1735817E0056EE96 /* SequenceMenuCellLabel.xib */; };
-		D258C842173582200056EE96 /* SAViewManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = D258C841173582200056EE96 /* SAViewManipulator.m */; };
 		D258C84917358D100056EE96 /* UIColor+i7HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = D258C84617358D100056EE96 /* UIColor+i7HexColor.m */; };
 		D258C84A17358D100056EE96 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = D258C84817358D100056EE96 /* UIView+Frame.m */; };
-		D258C84F17359B850056EE96 /* DropShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = D258C84D17359B850056EE96 /* DropShadow.png */; };
-		D258C85017359B850056EE96 /* DropShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D258C84E17359B850056EE96 /* DropShadow@2x.png */; };
 		D2B34DEB1735B34400199562 /* UIViewController+Overview.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B34DEA1735B34400199562 /* UIViewController+Overview.m */; };
-		D2B34DEE1735B52D00199562 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B34DED1735B52D00199562 /* InfoViewController.m */; };
 		D2B34DF11735C24500199562 /* UIViewController+ExpandTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B34DF01735C24500199562 /* UIViewController+ExpandTransition.m */; };
 		D2B34DF51735CFC700199562 /* NSObject+BlockAfterDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B34DF41735CFC700199562 /* NSObject+BlockAfterDelay.m */; };
 /* End PBXBuildFile section */
@@ -588,6 +586,10 @@
 		16284C93173A072B00B058D2 /* seq3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = seq3.tmx; sourceTree = "<group>"; };
 		16284C95173A072B00B058D2 /* synth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = synth.pd; sourceTree = "<group>"; };
 		16284CAA173A077600B058D2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
+		162B7F161754114D00E0CC0D /* startArrow-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startArrow-ipadhd.png"; sourceTree = "<group>"; };
+		162B7F191754116000E0CC0D /* startArrow-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startArrow-ipad.png"; sourceTree = "<group>"; };
+		162B7F1B17541B0A00E0CC0D /* EntryArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntryArrow.h; path = Nodes/EntryArrow.h; sourceTree = "<group>"; };
+		162B7F1C17541B0A00E0CC0D /* EntryArrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EntryArrow.m; path = Nodes/EntryArrow.m; sourceTree = "<group>"; };
 		165A418B1734D870005BFC32 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		165A418F1734DB6A005BFC32 /* CCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCViewController.h; sourceTree = "<group>"; };
 		165A41901734DB6A005BFC32 /* CCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCViewController.m; sourceTree = "<group>"; };
@@ -627,19 +629,12 @@
 		16E2571C17377E8F00F45198 /* MainSynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainSynth.m; path = PdUtils/MainSynth.m; sourceTree = "<group>"; };
 		3D11F3641735A54D00172154 /* TickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickerView.h; sourceTree = "<group>"; };
 		3D11F3651735A54D00172154 /* TickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickerView.m; sourceTree = "<group>"; };
-		D258C83E1735817E0056EE96 /* SequenceMenuCellLabel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SequenceMenuCellLabel.xib; sourceTree = "<group>"; };
-		D258C840173582200056EE96 /* SAViewManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAViewManipulator.h; path = ../Views/SAViewManipulator.h; sourceTree = "<group>"; };
-		D258C841173582200056EE96 /* SAViewManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SAViewManipulator.m; path = ../Views/SAViewManipulator.m; sourceTree = "<group>"; };
 		D258C84517358D100056EE96 /* UIColor+i7HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+i7HexColor.h"; sourceTree = "<group>"; };
 		D258C84617358D100056EE96 /* UIColor+i7HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+i7HexColor.m"; sourceTree = "<group>"; };
 		D258C84717358D100056EE96 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		D258C84817358D100056EE96 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
-		D258C84D17359B850056EE96 /* DropShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DropShadow.png; sourceTree = "<group>"; };
-		D258C84E17359B850056EE96 /* DropShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DropShadow@2x.png"; sourceTree = "<group>"; };
 		D2B34DE91735B34400199562 /* UIViewController+Overview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Overview.h"; sourceTree = "<group>"; };
 		D2B34DEA1735B34400199562 /* UIViewController+Overview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Overview.m"; sourceTree = "<group>"; };
-		D2B34DEC1735B52D00199562 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
-		D2B34DED1735B52D00199562 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		D2B34DEF1735C24500199562 /* UIViewController+ExpandTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ExpandTransition.h"; sourceTree = "<group>"; };
 		D2B34DF01735C24500199562 /* UIViewController+ExpandTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ExpandTransition.m"; sourceTree = "<group>"; };
 		D2B34DF31735CFC700199562 /* NSObject+BlockAfterDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BlockAfterDelay.h"; sourceTree = "<group>"; };
@@ -744,8 +739,6 @@
 				16284C8E173A072B00B058D2 /* maps */,
 				16284C94173A072B00B058D2 /* patches */,
 				16284C24173A065800B058D2 /* standard */,
-				D258C84D17359B850056EE96 /* DropShadow.png */,
-				D258C84E17359B850056EE96 /* DropShadow@2x.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1105,8 +1098,6 @@
 		1608086016B43CEF00039339 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				D258C840173582200056EE96 /* SAViewManipulator.h */,
-				D258C841173582200056EE96 /* SAViewManipulator.m */,
 				165A41A31734EA64005BFC32 /* SGTiledUtils.h */,
 				165A41A41734EA65005BFC32 /* SGTiledUtils.m */,
 				169FC6B7173475AE008EC4C4 /* CellObjectLibrary.h */,
@@ -1136,6 +1127,7 @@
 		160B50D4173A27EA00BFC014 /* retina */ = {
 			isa = PBXGroup;
 			children = (
+				162B7F161754114D00E0CC0D /* startArrow-ipadhd.png */,
 				160B50D5173A27EA00BFC014 /* A-ipadhd.png */,
 				160B50D6173A27EA00BFC014 /* A-on-ipadhd.png */,
 				160B50D7173A27EA00BFC014 /* Aflat-ipadhd.png */,
@@ -1174,6 +1166,7 @@
 		16284C24173A065800B058D2 /* standard */ = {
 			isa = PBXGroup;
 			children = (
+				162B7F191754116000E0CC0D /* startArrow-ipad.png */,
 				160B5098173A27D000BFC014 /* A-ipad.png */,
 				160B5099173A27D000BFC014 /* A-on-ipad.png */,
 				160B509A173A27D000BFC014 /* Aflat-ipad.png */,
@@ -1247,8 +1240,6 @@
 				165A419E1734E7F8005BFC32 /* SequenceMenuViewController.m */,
 				165A419F1734E7F8005BFC32 /* SequenceViewController.h */,
 				165A41A01734E7F8005BFC32 /* SequenceViewController.m */,
-				D2B34DEC1735B52D00199562 /* InfoViewController.h */,
-				D2B34DED1735B52D00199562 /* InfoViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1290,6 +1281,8 @@
 			children = (
 				169FC6BB1734A2E1008EC4C4 /* CellNode.h */,
 				169FC6BC1734A2E1008EC4C4 /* CellNode.m */,
+				162B7F1B17541B0A00E0CC0D /* EntryArrow.h */,
+				162B7F1C17541B0A00E0CC0D /* EntryArrow.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -1333,7 +1326,6 @@
 			children = (
 				165A41A61734EC6A005BFC32 /* SequenceMenuCell.h */,
 				165A41A71734EC6A005BFC32 /* SequenceMenuCell.m */,
-				D258C83E1735817E0056EE96 /* SequenceMenuCellLabel.xib */,
 			);
 			name = SequenceMenuCell;
 			sourceTree = "<group>";
@@ -1414,9 +1406,6 @@
 			files = (
 				1608082616B437AA00039339 /* ChangeLog in Resources */,
 				165A418C1734D870005BFC32 /* Storyboard.storyboard in Resources */,
-				D258C83F1735817E0056EE96 /* SequenceMenuCellLabel.xib in Resources */,
-				D258C84F17359B850056EE96 /* DropShadow.png in Resources */,
-				D258C85017359B850056EE96 /* DropShadow@2x.png in Resources */,
 				16284CA4173A072B00B058D2 /* pipeTilesetBase1.png in Resources */,
 				16284CA5173A072B00B058D2 /* seq0.tmx in Resources */,
 				16284CA6173A072B00B058D2 /* seq1.tmx in Resources */,
@@ -1496,6 +1485,8 @@
 				160B510E173A27EA00BFC014 /* Fsharp-on-ipadhd.png in Resources */,
 				160B510F173A27EA00BFC014 /* G-ipadhd.png in Resources */,
 				160B5110173A27EA00BFC014 /* G-on-ipadhd.png in Resources */,
+				162B7F171754114D00E0CC0D /* startArrow-ipadhd.png in Resources */,
+				162B7F1A1754116000E0CC0D /* startArrow-ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1626,16 +1617,15 @@
 				165A41A51734EA65005BFC32 /* SGTiledUtils.m in Sources */,
 				165A41A81734EC6A005BFC32 /* SequenceMenuCell.m in Sources */,
 				3D11F3661735A54D00172154 /* TickerView.m in Sources */,
-				D258C842173582200056EE96 /* SAViewManipulator.m in Sources */,
 				D258C84917358D100056EE96 /* UIColor+i7HexColor.m in Sources */,
 				D258C84A17358D100056EE96 /* UIView+Frame.m in Sources */,
 				169B8D8A1735A4AF0002FD60 /* Tone.m in Sources */,
 				169B8D8E1735A50B0002FD60 /* Arrow.m in Sources */,
 				D2B34DEB1735B34400199562 /* UIViewController+Overview.m in Sources */,
-				D2B34DEE1735B52D00199562 /* InfoViewController.m in Sources */,
 				D2B34DF11735C24500199562 /* UIViewController+ExpandTransition.m in Sources */,
 				D2B34DF51735CFC700199562 /* NSObject+BlockAfterDelay.m in Sources */,
 				16E2571D17377E8F00F45198 /* MainSynth.m in Sources */,
+				162B7F1D17541B0A00E0CC0D /* EntryArrow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
