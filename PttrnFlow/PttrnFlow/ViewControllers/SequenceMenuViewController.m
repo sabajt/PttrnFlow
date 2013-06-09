@@ -10,13 +10,6 @@
 #import "PathUtils.h"
 #import "SequenceMenuCell.h"
 
-// Categories
-#import "UIColor+i7HexColor.h"
-#import "UIView+Frame.h"
-#import "UIViewController+Overview.h"
-#import "UIViewController+ExpandTransition.h"
-
-
 @implementation SequenceMenuViewController
 
 - (void)viewDidLoad

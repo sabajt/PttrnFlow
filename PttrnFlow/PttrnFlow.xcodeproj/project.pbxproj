@@ -224,11 +224,6 @@
 		169FC6BD1734A2E2008EC4C4 /* CellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 169FC6BC1734A2E1008EC4C4 /* CellNode.m */; };
 		16E2571D17377E8F00F45198 /* MainSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E2571C17377E8F00F45198 /* MainSynth.m */; };
 		3D11F3661735A54D00172154 /* TickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D11F3651735A54D00172154 /* TickerView.m */; };
-		D258C84917358D100056EE96 /* UIColor+i7HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = D258C84617358D100056EE96 /* UIColor+i7HexColor.m */; };
-		D258C84A17358D100056EE96 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = D258C84817358D100056EE96 /* UIView+Frame.m */; };
-		D2B34DEB1735B34400199562 /* UIViewController+Overview.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B34DEA1735B34400199562 /* UIViewController+Overview.m */; };
-		D2B34DF11735C24500199562 /* UIViewController+ExpandTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B34DF01735C24500199562 /* UIViewController+ExpandTransition.m */; };
-		D2B34DF51735CFC700199562 /* NSObject+BlockAfterDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B34DF41735CFC700199562 /* NSObject+BlockAfterDelay.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -629,16 +624,6 @@
 		16E2571C17377E8F00F45198 /* MainSynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainSynth.m; path = PdUtils/MainSynth.m; sourceTree = "<group>"; };
 		3D11F3641735A54D00172154 /* TickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickerView.h; sourceTree = "<group>"; };
 		3D11F3651735A54D00172154 /* TickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickerView.m; sourceTree = "<group>"; };
-		D258C84517358D100056EE96 /* UIColor+i7HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+i7HexColor.h"; sourceTree = "<group>"; };
-		D258C84617358D100056EE96 /* UIColor+i7HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+i7HexColor.m"; sourceTree = "<group>"; };
-		D258C84717358D100056EE96 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
-		D258C84817358D100056EE96 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
-		D2B34DE91735B34400199562 /* UIViewController+Overview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Overview.h"; sourceTree = "<group>"; };
-		D2B34DEA1735B34400199562 /* UIViewController+Overview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Overview.m"; sourceTree = "<group>"; };
-		D2B34DEF1735C24500199562 /* UIViewController+ExpandTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ExpandTransition.h"; sourceTree = "<group>"; };
-		D2B34DF01735C24500199562 /* UIViewController+ExpandTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ExpandTransition.m"; sourceTree = "<group>"; };
-		D2B34DF31735CFC700199562 /* NSObject+BlockAfterDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BlockAfterDelay.h"; sourceTree = "<group>"; };
-		D2B34DF41735CFC700199562 /* NSObject+BlockAfterDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BlockAfterDelay.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -701,7 +686,6 @@
 			children = (
 				16B9C9ED1736F515006A591C /* PdUtils */,
 				169B8D8B1735A4B60002FD60 /* TickResponders */,
-				D258C84417358CF90056EE96 /* Categories */,
 				165A41921734DEA8005BFC32 /* ViewControllers */,
 				165A41971734DEA8005BFC32 /* Views */,
 				165A418E1734DB6A005BFC32 /* CCViewController */,
@@ -1304,23 +1288,6 @@
 			name = Storyboard;
 			sourceTree = "<group>";
 		};
-		D258C84417358CF90056EE96 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				D258C84517358D100056EE96 /* UIColor+i7HexColor.h */,
-				D258C84617358D100056EE96 /* UIColor+i7HexColor.m */,
-				D258C84717358D100056EE96 /* UIView+Frame.h */,
-				D258C84817358D100056EE96 /* UIView+Frame.m */,
-				D2B34DE91735B34400199562 /* UIViewController+Overview.h */,
-				D2B34DEA1735B34400199562 /* UIViewController+Overview.m */,
-				D2B34DEF1735C24500199562 /* UIViewController+ExpandTransition.h */,
-				D2B34DF01735C24500199562 /* UIViewController+ExpandTransition.m */,
-				D2B34DF31735CFC700199562 /* NSObject+BlockAfterDelay.h */,
-				D2B34DF41735CFC700199562 /* NSObject+BlockAfterDelay.m */,
-			);
-			name = Categories;
-			sourceTree = "<group>";
-		};
 		D258C84B173591B80056EE96 /* SequenceMenuCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1617,13 +1584,8 @@
 				165A41A51734EA65005BFC32 /* SGTiledUtils.m in Sources */,
 				165A41A81734EC6A005BFC32 /* SequenceMenuCell.m in Sources */,
 				3D11F3661735A54D00172154 /* TickerView.m in Sources */,
-				D258C84917358D100056EE96 /* UIColor+i7HexColor.m in Sources */,
-				D258C84A17358D100056EE96 /* UIView+Frame.m in Sources */,
 				169B8D8A1735A4AF0002FD60 /* Tone.m in Sources */,
 				169B8D8E1735A50B0002FD60 /* Arrow.m in Sources */,
-				D2B34DEB1735B34400199562 /* UIViewController+Overview.m in Sources */,
-				D2B34DF11735C24500199562 /* UIViewController+ExpandTransition.m in Sources */,
-				D2B34DF51735CFC700199562 /* NSObject+BlockAfterDelay.m in Sources */,
 				16E2571D17377E8F00F45198 /* MainSynth.m in Sources */,
 				162B7F1D17541B0A00E0CC0D /* EntryArrow.m in Sources */,
 			);
