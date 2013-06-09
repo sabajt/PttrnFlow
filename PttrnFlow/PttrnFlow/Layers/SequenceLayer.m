@@ -21,6 +21,7 @@
 #import "Arrow.h"
 #import "MainSynth.h"
 #import "EntryArrow.h"
+#import "TickerControl.h"
 
 static CGFloat const kPatternDelay = 0.5;
 
@@ -83,6 +84,12 @@ static CGFloat const kPatternDelay = 0.5;
         // entry arrow
         EntryArrow *entryArrow = [[EntryArrow alloc] initWithEntry:entry tiledMap:self.tileMap puzzleOrigin:self.position];
         [self addChild:entryArrow];
+        
+        // ticker control
+        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:8];
+        tickerControl.position = ccp(20, 500);
+        [self addChild:tickerControl];
+        
     }
     return self;
 }

@@ -202,7 +202,6 @@
 		165A41A11734E7F8005BFC32 /* SequenceMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 165A419E1734E7F8005BFC32 /* SequenceMenuViewController.m */; };
 		165A41A21734E7F8005BFC32 /* SequenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 165A41A01734E7F8005BFC32 /* SequenceViewController.m */; };
 		165A41A51734EA65005BFC32 /* SGTiledUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 165A41A41734EA65005BFC32 /* SGTiledUtils.m */; };
-		165A41A81734EC6A005BFC32 /* SequenceMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 165A41A71734EC6A005BFC32 /* SequenceMenuCell.m */; };
 		168CF7B017308009009683BF /* TickDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 168CF7AF17308009009683BF /* TickDispatcher.m */; };
 		168FA4E8173A08C7004C26AD /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 168FA4DB173A08C7004C26AD /* blank.png */; };
 		168FA4E9173A08C7004C26AD /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 168FA4DC173A08C7004C26AD /* Default-Landscape~ipad.png */; };
@@ -223,7 +222,9 @@
 		169FC6B9173475AE008EC4C4 /* CellObjectLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 169FC6B8173475AE008EC4C4 /* CellObjectLibrary.m */; };
 		169FC6BD1734A2E2008EC4C4 /* CellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 169FC6BC1734A2E1008EC4C4 /* CellNode.m */; };
 		16E2571D17377E8F00F45198 /* MainSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E2571C17377E8F00F45198 /* MainSynth.m */; };
-		3D11F3661735A54D00172154 /* TickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D11F3651735A54D00172154 /* TickerView.m */; };
+		16FFC90E1764DF0100320C6A /* SequenceMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FFC90D1764DF0100320C6A /* SequenceMenuCell.m */; };
+		16FFC9111764E05800320C6A /* TickerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FFC9101764E05800320C6A /* TickerControl.m */; };
+		16FFC9141764E9EA00320C6A /* CCNode+Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FFC9131764E9E900320C6A /* CCNode+Touch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -594,8 +595,6 @@
 		165A41A01734E7F8005BFC32 /* SequenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceViewController.m; sourceTree = "<group>"; };
 		165A41A31734EA64005BFC32 /* SGTiledUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGTiledUtils.h; sourceTree = "<group>"; };
 		165A41A41734EA65005BFC32 /* SGTiledUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGTiledUtils.m; sourceTree = "<group>"; };
-		165A41A61734EC6A005BFC32 /* SequenceMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceMenuCell.h; sourceTree = "<group>"; };
-		165A41A71734EC6A005BFC32 /* SequenceMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceMenuCell.m; sourceTree = "<group>"; };
 		168CF7AE17308009009683BF /* TickDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickDispatcher.h; sourceTree = "<group>"; };
 		168CF7AF17308009009683BF /* TickDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickDispatcher.m; sourceTree = "<group>"; };
 		168FA4DB173A08C7004C26AD /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blank.png; path = Resources/blank.png; sourceTree = "<group>"; };
@@ -622,8 +621,12 @@
 		169FC6BC1734A2E1008EC4C4 /* CellNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CellNode.m; path = Nodes/CellNode.m; sourceTree = "<group>"; };
 		16B9C9EA1736F31D006A591C /* MainSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainSynth.h; path = PdUtils/MainSynth.h; sourceTree = "<group>"; };
 		16E2571C17377E8F00F45198 /* MainSynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainSynth.m; path = PdUtils/MainSynth.m; sourceTree = "<group>"; };
-		3D11F3641735A54D00172154 /* TickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickerView.h; sourceTree = "<group>"; };
-		3D11F3651735A54D00172154 /* TickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickerView.m; sourceTree = "<group>"; };
+		16FFC90C1764DF0100320C6A /* SequenceMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceMenuCell.h; sourceTree = "<group>"; };
+		16FFC90D1764DF0100320C6A /* SequenceMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceMenuCell.m; sourceTree = "<group>"; };
+		16FFC90F1764E05800320C6A /* TickerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TickerControl.h; path = Nodes/TickerControl.h; sourceTree = "<group>"; };
+		16FFC9101764E05800320C6A /* TickerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TickerControl.m; path = Nodes/TickerControl.m; sourceTree = "<group>"; };
+		16FFC9121764E9E800320C6A /* CCNode+Touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+Touch.h"; sourceTree = "<group>"; };
+		16FFC9131764E9E900320C6A /* CCNode+Touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+Touch.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1104,6 +1107,8 @@
 				1608086A16B43CEF00039339 /* SpriteUtils.m */,
 				168CF7AE17308009009683BF /* TickDispatcher.h */,
 				168CF7AF17308009009683BF /* TickDispatcher.m */,
+				16FFC9121764E9E800320C6A /* CCNode+Touch.h */,
+				16FFC9131764E9E900320C6A /* CCNode+Touch.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1231,11 +1236,8 @@
 		165A41971734DEA8005BFC32 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				165A41A61734EC6A005BFC32 /* SequenceMenuCell.h */,
-				165A41A71734EC6A005BFC32 /* SequenceMenuCell.m */,
-				3D11F3641735A54D00172154 /* TickerView.h */,
-				3D11F3651735A54D00172154 /* TickerView.m */,
-				D258C84B173591B80056EE96 /* SequenceMenuCell */,
+				16FFC90C1764DF0100320C6A /* SequenceMenuCell.h */,
+				16FFC90D1764DF0100320C6A /* SequenceMenuCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1267,6 +1269,8 @@
 				169FC6BC1734A2E1008EC4C4 /* CellNode.m */,
 				162B7F1B17541B0A00E0CC0D /* EntryArrow.h */,
 				162B7F1C17541B0A00E0CC0D /* EntryArrow.m */,
+				16FFC90F1764E05800320C6A /* TickerControl.h */,
+				16FFC9101764E05800320C6A /* TickerControl.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -1286,15 +1290,6 @@
 				165A418B1734D870005BFC32 /* Storyboard.storyboard */,
 			);
 			name = Storyboard;
-			sourceTree = "<group>";
-		};
-		D258C84B173591B80056EE96 /* SequenceMenuCell */ = {
-			isa = PBXGroup;
-			children = (
-				165A41A61734EC6A005BFC32 /* SequenceMenuCell.h */,
-				165A41A71734EC6A005BFC32 /* SequenceMenuCell.m */,
-			);
-			name = SequenceMenuCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1582,12 +1577,13 @@
 				165A41A11734E7F8005BFC32 /* SequenceMenuViewController.m in Sources */,
 				165A41A21734E7F8005BFC32 /* SequenceViewController.m in Sources */,
 				165A41A51734EA65005BFC32 /* SGTiledUtils.m in Sources */,
-				165A41A81734EC6A005BFC32 /* SequenceMenuCell.m in Sources */,
-				3D11F3661735A54D00172154 /* TickerView.m in Sources */,
 				169B8D8A1735A4AF0002FD60 /* Tone.m in Sources */,
 				169B8D8E1735A50B0002FD60 /* Arrow.m in Sources */,
 				16E2571D17377E8F00F45198 /* MainSynth.m in Sources */,
 				162B7F1D17541B0A00E0CC0D /* EntryArrow.m in Sources */,
+				16FFC90E1764DF0100320C6A /* SequenceMenuCell.m in Sources */,
+				16FFC9111764E05800320C6A /* TickerControl.m in Sources */,
+				16FFC9141764E9EA00320C6A /* CCNode+Touch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

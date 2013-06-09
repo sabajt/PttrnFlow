@@ -11,5 +11,8 @@
 
 @interface ColorUtils : NSObject
 
++ (ccColor3B)ticker;
++ (ccColor3B)tickerBar;
+
 @end
 

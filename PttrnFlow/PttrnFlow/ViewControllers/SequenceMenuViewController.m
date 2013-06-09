@@ -18,8 +18,6 @@
     [self.collectionView registerClass:[SequenceMenuCell class] forCellWithReuseIdentifier:@"SequenceMenuCell"];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    
-    NSLog(@"collection view: %@", self.collectionView);
 }
 
 #pragma mark - UICollectionViewDataSource
