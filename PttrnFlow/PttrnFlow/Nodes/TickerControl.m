@@ -30,7 +30,7 @@ static CGFloat const kMarkerWidth = 10;
         self.contentSize = CGSizeMake(tickerBar.contentSize.width, kTickerHeight);
         tickerBar.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
         
-        _thumbSprite.position = ccp(0, self.contentSize.height/2);
+        [self positionThumb:0];
         
         [self addChild:tickerBar];
         
@@ -41,7 +41,6 @@ static CGFloat const kMarkerWidth = 10;
         }
         
         [self addChild:_thumbSprite];
-        
     }
     return self;
 }
@@ -49,6 +48,13 @@ static CGFloat const kMarkerWidth = 10;
 - (void)handleTouch:(UITouch *)touch
 {
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+    CGFloat index = (touchPosition.x + (kDistanceInterval / 2)) / kDistanceInterval;
+    [self positionThumb:index];
+}
+
+- (void)positionThumb:(int)index
+{
+    self.thumbSprite.position = ccp(index * kDistanceInterval, self.contentSize.height/2);
 }
 
 #pragma mark CCNode SceneManagement
