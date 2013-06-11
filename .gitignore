@@ -16,3 +16,10 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+*.xcuserstate
+
+*.xcuserstate
+
+PttrnFlow/PttrnFlow.xcodeproj/project.xcworkspace/xcuserdata/saba.xcuserdatad/UserInterfaceState.xcuserstate
+
+PttrnFlow/PttrnFlow.xcodeproj/project.xcworkspace/xcuserdata/saba.xcuserdatad/UserInterfaceState.xcuserstate
