@@ -117,7 +117,7 @@ static CGFloat const kTickInterval = 0.5;
     self.sequenceIndex++;
 }
 
-// moves the ticker along the grid
+// moves the ticker along the grid yo
 - (void)tick:(ccTime)dt
 {
     NSLog(@"current cell: %i, %i", self.currentCell.x, self.currentCell.y);
