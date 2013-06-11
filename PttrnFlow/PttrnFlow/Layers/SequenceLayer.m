@@ -56,9 +56,11 @@ static CGFloat const kPatternDelay = 0.5;
         // setup tick dispatcher with sequence and starting point
         NSMutableDictionary *seq = [self.tileMap objectNamed:kTLDObjectSequence groupNamed:kTLDGroupTickResponders];
         NSMutableDictionary *entry = [self.tileMap objectNamed:kTLDObjectEntry groupNamed:kTLDGroupTickResponders];
-        self.tickDispatcher = [[TickDispatcher alloc] initWithEventSequence:seq entry:entry tiledMap:self.tileMap];
+        
+        TickDispatcher *tickDispatcher = [[TickDispatcher alloc] initWithSequence:seq entry:entry tiledMap:self.tileMap];
+        self.tickDispatcher = tickDispatcher;
         [self addChild:self.tickDispatcher];
-
+        
         // tones
         self.tones = [NSMutableArray array];
         NSMutableArray *tones = [self.tileMap objectsWithName:kTLDObjectTone groupName:kTLDGroupTickResponders];
@@ -86,9 +88,12 @@ static CGFloat const kPatternDelay = 0.5;
         [self addChild:entryArrow];
         
         // ticker control
-        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:8];
+        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:tickDispatcher.sequenceLength];
+        tickerControl.delegate = tickDispatcher;
         tickerControl.position = ccp(20, 500);
         [self addChild:tickerControl];
+    
+        
         
     }
     return self;
@@ -101,6 +106,7 @@ static CGFloat const kPatternDelay = 0.5;
 
 - (void)playUserSequence
 {
+    NSLog(@"self.tickDispatcher: %@", self.tickDispatcher);
     [self.tickDispatcher start];
 }
 

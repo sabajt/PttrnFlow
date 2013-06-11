@@ -35,7 +35,7 @@ static CGFloat const kTickInterval = 0.5;
 
 @implementation TickDispatcher
 
-- (id)initWithEventSequence:(NSMutableDictionary *)sequence entry:(NSMutableDictionary *)entry tiledMap:(CCTMXTiledMap *)tiledMap
+- (id)initWithSequence:(NSMutableDictionary *)sequence entry:(NSMutableDictionary *)entry tiledMap:(CCTMXTiledMap *)tiledMap
 {
     self = [super init];
     if (self) {
@@ -63,7 +63,6 @@ static CGFloat const kTickInterval = 0.5;
     }
     return self;
 }
-
 
 - (void)registerTickResponder:(id<TickResponder>)responder
 {
@@ -104,7 +103,6 @@ static CGFloat const kTickInterval = 0.5;
 {
     self.sequenceIndex = 0;
     [self schedule:@selector(advanceSequence) interval:kTickInterval];
-    
 }
 
 // play an item from the stored sequence and progress
@@ -167,6 +165,13 @@ static CGFloat const kTickInterval = 0.5;
         return YES;
     }
     return NO;
+}
+
+#pragma mark - TickerControlDelegate
+
+- (void)tickerMovedToIndex:(int)index
+{
+    [self play:index];
 }
 
 

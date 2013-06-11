@@ -30,6 +30,7 @@ static CGFloat const kMarkerWidth = 10;
         self.contentSize = CGSizeMake(tickerBar.contentSize.width, kTickerHeight);
         tickerBar.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
         
+        self.currentIndex = 0;
         [self positionThumb:0];
         
         [self addChild:tickerBar];
@@ -45,11 +46,18 @@ static CGFloat const kMarkerWidth = 10;
     return self;
 }
 
-- (void)handleTouch:(UITouch *)touch
+- (int)nearestIndex:(UITouch *)touch
 {
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     CGFloat index = (touchPosition.x + (kDistanceInterval / 2)) / kDistanceInterval;
-    [self positionThumb:index];
+    return (int)index;
+}
+
+- (void)handleTouch:(UITouch *)touch
+{
+    self.currentIndex = [self nearestIndex:touch];
+    [self positionThumb:self.currentIndex];
+    [self.delegate tickerMovedToIndex:self.currentIndex];
 }
 
 - (void)positionThumb:(int)index
@@ -79,6 +87,13 @@ static CGFloat const kMarkerWidth = 10;
         return YES;
     }
     return NO;
+}
+
+- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if (self.currentIndex != [self nearestIndex:touch]) {
+        [self handleTouch:touch];
+    }
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event

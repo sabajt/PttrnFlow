@@ -20,19 +20,18 @@
 }
 
 
-@property (nonatomic, strong) CCTMXTiledMap *tileMap;
-@property (nonatomic, strong) CellObjectLibrary *cellObjectLibrary;
-@property (nonatomic, strong) TickDispatcher *tickDispatcher;
+@property (strong, nonatomic) CCTMXTiledMap *tileMap;
+@property (strong, nonatomic) CellObjectLibrary *cellObjectLibrary;
 
-@property (nonatomic, strong) NSMutableArray *tones;
-@property (nonatomic, strong) NSMutableArray *arrows;
+@property (weak, nonatomic) TickDispatcher *tickDispatcher;
+
+@property (strong, nonatomic) NSMutableArray *tones;
+@property (strong, nonatomic) NSMutableArray *arrows;
 
 @property (assign) GridCoord gridSize;
-@property (nonatomic, weak) Tone *pressedTone;
+@property (weak, nonatomic) Tone *pressedTone;
 
-//////////
 @property (assign) CGPoint gridOrigin;
-//////////
 
 + (CCScene *)sceneWithSequence:(int)sequence;
 + (CGPoint)sharedGridOrigin;

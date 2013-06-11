@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GridUtils.h"
 #import "MainSynth.h"
+#import "TickerControl.h"
 
 FOUNDATION_EXPORT NSInteger const kBPM;
 
@@ -28,15 +29,13 @@ typedef enum
 }kTickEvent;
 
 
-@interface TickDispatcher : CCNode
+@interface TickDispatcher : CCNode <TickerControlDelegate>
 
 @property (assign) int sequenceLength;
-@property (nonatomic, strong) NSMutableDictionary *eventSequence;
-
+@property (strong, nonatomic) NSMutableDictionary *eventSequence;
 @property (strong, nonatomic) MainSynth *mainSynth;
 
-
-- (id)initWithEventSequence:(NSMutableDictionary *)sequence entry:(NSMutableDictionary *)entry tiledMap:(CCTMXTiledMap *)tiledMap;
+- (id)initWithSequence:(NSMutableDictionary *)sequence entry:(NSMutableDictionary *)entry tiledMap:(CCTMXTiledMap *)tiledMap;
 - (void)registerTickResponder:(id<TickResponder>)responder;
 
 - (void)start;
