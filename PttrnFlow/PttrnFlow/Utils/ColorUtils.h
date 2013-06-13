@@ -11,6 +11,8 @@
 
 @interface ColorUtils : NSObject
 
++ (UIColor *)UIColorFor3B:(ccColor3B)color;
+
 + (ccColor3B)ticker;
 + (ccColor3B)tickerBar;
 + (ccColor3B)sequenceMenuCell;

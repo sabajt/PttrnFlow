@@ -18,8 +18,6 @@
 // switch out a sprite's current image 
 + (void)switchImageForSprite:(CCSprite *)sprite textureKey:(NSString *)key;
 
-+ (CCSprite *)rectSprite:(CGSize)size color3B:(ccColor3B)color3B;
-
 // texture key should be name of image file (see values in TextureUtils)
 // won't work unless images have been added to texture utils
 + (CCSprite *)spriteWithTextureKey:(NSString *)key;

@@ -11,6 +11,6 @@
 
 @interface CCSprite (Utils)
 
-+ (CCSprite *)spriteWithSize:(CGSize)size color:(UIColor *)color key:(NSString *)key;
++ (CCSprite *)spriteWithSize:(CGSize)size color:(ccColor3B)color key:(NSString *)key;
 
 @end

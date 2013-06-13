@@ -21,14 +21,14 @@
 
 -(id) initWithIndex:(int)index
 {
-    static CGFloat width = 50;
+    static CGFloat width = 200;
     static CGFloat height = 50;
 
     self = [super init];
     if (self) {
         self.contentSize = CGSizeMake(width, height);
         
-        CCSprite *sprite = [CCSprite spriteWithSize:CGSizeMake(width, height) color:[UIColor grayColor] key:@"rect"];
+        CCSprite *sprite = [CCSprite spriteWithSize:CGSizeMake(width, height) color:[ColorUtils sequenceMenuCell] key:@"sequenceMenuCell"];
         _sprite = sprite;
         _sprite.position = ccp(width/2, height/2);
         [self addChild:_sprite];

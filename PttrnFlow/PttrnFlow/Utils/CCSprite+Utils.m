@@ -8,13 +8,15 @@
 
 #import "CCSprite+Utils.h"
 #import "UIImage+Utils.h"
+#import "ColorUtils.h"
 
 @implementation CCSprite (Utils)
 
-+ (CCSprite *)spriteWithSize:(CGSize)size color:(UIColor *)color key:(NSString *)key
-{
-    UIImage *image = [UIImage imageWithColor:color size:size];
++ (CCSprite *)spriteWithSize:(CGSize)size color:(ccColor3B)color key:(NSString *)key
+{   
+    UIImage *image = [UIImage imageWithColor:[ColorUtils UIColorFor3B:color] size:size];
     return [CCSprite spriteWithCGImage:image.CGImage key:key];
 }
 
 @end
+    
