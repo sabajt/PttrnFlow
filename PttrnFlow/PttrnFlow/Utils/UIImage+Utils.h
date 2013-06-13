@@ -10,4 +10,6 @@
 
 @interface UIImage (Utils)
 
++(UIImage*) imageWithColor:(UIColor*)color size:(CGSize)size;
+
 @end

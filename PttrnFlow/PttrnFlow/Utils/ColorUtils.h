@@ -13,6 +13,8 @@
 
 + (ccColor3B)ticker;
 + (ccColor3B)tickerBar;
++ (ccColor3B)sequenceMenuCell;
++ (ccColor3B)sequenceMenuCellLabel;
 
 @end
 

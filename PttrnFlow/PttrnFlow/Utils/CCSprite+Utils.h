@@ -6,8 +6,11 @@
 //
 //
 
+#import <UIKit/UIKit.h>
 #import "CCSprite.h"
 
 @interface CCSprite (Utils)
+
++ (CCSprite *)spriteWithSize:(CGSize)size color:(UIColor *)color key:(NSString *)key;
 
 @end

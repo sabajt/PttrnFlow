@@ -41,4 +41,14 @@
     return [self gray];
 }
 
++ (ccColor3B)sequenceMenuCell
+{
+    return [self gray];
+}
+
++ (ccColor3B)sequenceMenuCellLabel
+{
+    return [self lime];
+}
+
 @end

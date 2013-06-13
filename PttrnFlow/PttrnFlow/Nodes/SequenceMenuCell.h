@@ -6,8 +6,10 @@
 //
 //
 
-#import "CCNode.h"
+#import "cocos2d.h"
 
 @interface SequenceMenuCell : CCNode
+
+-(id) initWithIndex:(int)index;
 
 @end

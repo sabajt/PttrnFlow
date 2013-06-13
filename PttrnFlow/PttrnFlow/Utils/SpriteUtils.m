@@ -7,6 +7,7 @@
 //
 
 #import "SpriteUtils.h"
+#import "UIImage+Utils.h"
 
 @implementation SpriteUtils
 

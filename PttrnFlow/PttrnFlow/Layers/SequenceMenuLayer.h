@@ -6,8 +6,12 @@
 //
 //
 
-#import "CCLayer.h"
+#import "cocos2d.h"
 
 @interface SequenceMenuLayer : CCLayer
+
+@property (strong, nonatomic) NSArray *mapNames;
+
++ (CCScene *)scene;
 
 @end
