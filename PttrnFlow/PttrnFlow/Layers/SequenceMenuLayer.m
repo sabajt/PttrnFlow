@@ -7,8 +7,8 @@
 //
 
 #import "SequenceMenuLayer.h"
-#import "SequenceMenuCell.h"
 #import "PathUtils.h"
+#import "SequenceLayer.h"
 
 @implementation SequenceMenuLayer
 
@@ -35,11 +35,19 @@
             SequenceMenuCell *cell = [[SequenceMenuCell alloc] initWithIndex:i];
             CGFloat yPosition = sideMargins.height + ((i * cell.contentSize.height) + (i * padding.height));
             cell.position = ccp(sideMargins.width, yPosition);
+            cell.delegate = self;
             [self addChild:cell];
             i++;
         }
     }
     return self;
+}
+
+#pragma mark SequenceMenuCellDelegate
+
+- (void)sequenceMenuCellTouchUpInside:(SequenceMenuCell *)cell index:(int)index
+{
+    [[CCDirector sharedDirector] replaceScene:[SequenceLayer sceneWithSequence:index]];
 }
 
 

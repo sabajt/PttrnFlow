@@ -23,6 +23,10 @@ static CGFloat const kMarkerWidth = 10;
 {
     self = [super init];
     if (self) {
+        if (numberOfTicks < 1) {
+            NSLog(@"warning: number of ticks for TickerControl should be > 1");
+        }
+        
         _numberOfTicks = numberOfTicks;
         _thumbSprite = [CCSprite spriteWithSize:CGSizeMake(kTickerWidth, kTickerHeight) color:[ColorUtils ticker] key:@"tickerThumb"];
         
@@ -71,7 +75,7 @@ static CGFloat const kMarkerWidth = 10;
 - (void)onEnter
 {
     [super onEnter];
-    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
 - (void)onExit

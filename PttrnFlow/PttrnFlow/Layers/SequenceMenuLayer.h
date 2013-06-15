@@ -7,8 +7,9 @@
 //
 
 #import "cocos2d.h"
+#import "SequenceMenuCell.h"
 
-@interface SequenceMenuLayer : CCLayer
+@interface SequenceMenuLayer : CCLayer <SequenceMenuCellDelegate>
 
 @property (strong, nonatomic) NSArray *mapNames;
 

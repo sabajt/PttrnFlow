@@ -6,9 +6,20 @@
 //
 //
 
-#import "cocos2d.h"
+#import "TouchNode.h"
 
-@interface SequenceMenuCell : CCNode
+@class SequenceMenuCell;
+
+@protocol SequenceMenuCellDelegate <NSObject>
+
+- (void)sequenceMenuCellTouchUpInside:(SequenceMenuCell *)cell index:(int)index;
+
+@end
+
+
+@interface SequenceMenuCell : TouchNode
+
+@property (weak, nonatomic) id<SequenceMenuCellDelegate> delegate;
 
 -(id) initWithIndex:(int)index;
 
