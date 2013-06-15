@@ -23,6 +23,7 @@
 #import "EntryArrow.h"
 #import "TickerControl.h"
 #import "ColorUtils.h"
+#import "PdDispatcher.h"
 
 static CGFloat const kPatternDelay = 0.5;
 
@@ -51,9 +52,10 @@ static CGFloat const kPatternDelay = 0.5;
     SequenceLayer *sequenceLayer = [[SequenceLayer alloc] initWithTiledMap:tiledMap];
     [scene addChild:sequenceLayer];
     
-    static CGFloat hudHeight = 100;
+    static CGFloat hudHeight = 80;
     SequenceHudLayer *hudLayer = [SequenceHudLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceHud]) width:sequenceLayer.contentSize.width height:hudHeight tickDispatcer:sequenceLayer.tickDispatcher tiledMap:tiledMap];
     hudLayer.position = ccp(0, sequenceLayer.contentSize.height - hudLayer.contentSize.height);
+    hudLayer.delegate = sequenceLayer;
     [scene addChild:hudLayer z:1];
 
     return scene;
@@ -183,6 +185,13 @@ static CGFloat const kPatternDelay = 0.5;
         [self.pressedTone deselectTone];
         self.pressedTone = nil;
     }
+}
+
+#pragma mark - SequenceHudLayerDelegate
+
+- (void)sequenceHudBackButtonPressed:(SequenceHudLayer *)hudLayer
+{
+    [[CCDirector sharedDirector] popScene];
 }
 
 @end

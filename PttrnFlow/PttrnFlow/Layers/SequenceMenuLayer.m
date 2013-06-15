@@ -47,7 +47,7 @@
 
 - (void)sequenceMenuCellTouchUpInside:(SequenceMenuCell *)cell index:(int)index
 {
-    [[CCDirector sharedDirector] replaceScene:[SequenceLayer sceneWithSequence:index]];
+    [[CCDirector sharedDirector] pushScene:[SequenceLayer sceneWithSequence:index]];
 }
 
 

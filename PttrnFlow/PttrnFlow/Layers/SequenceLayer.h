@@ -6,14 +6,12 @@
 //  Copyright 2013 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "GridUtils.h"
-#import "PdDispatcher.h"
+#import "SequenceHudLayer.h"
 
-@class CellObjectLibrary, TickDispatcher, Tone;
+@class CellObjectLibrary, TickDispatcher, Tone, PdDispatcher;
 
-@interface SequenceLayer : CCLayer
+@interface SequenceLayer : CCLayer <SequenceHudDelegate>
 {
     PdDispatcher *_dispatcher;
     void *_patch;
