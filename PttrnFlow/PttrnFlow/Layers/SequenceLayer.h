@@ -19,22 +19,9 @@
     void *_patch;
 }
 
-
-@property (strong, nonatomic) CCTMXTiledMap *tileMap;
-@property (strong, nonatomic) CellObjectLibrary *cellObjectLibrary;
-
 @property (weak, nonatomic) TickDispatcher *tickDispatcher;
 
-@property (strong, nonatomic) NSMutableArray *tones;
-@property (strong, nonatomic) NSMutableArray *arrows;
-
-@property (assign) GridCoord gridSize;
-@property (weak, nonatomic) Tone *pressedTone;
-
-@property (assign) CGPoint gridOrigin;
-
 + (CCScene *)sceneWithSequence:(int)sequence;
-+ (CGPoint)sharedGridOrigin;
 
 - (void)playUserSequence;
 - (void)playSolutionSequence;

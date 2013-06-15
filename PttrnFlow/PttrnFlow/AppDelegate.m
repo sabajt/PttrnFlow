@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "SequenceMenuLayer.h"
 #import "SimpleAudioEngine.h"
+#import "TextureUtils.h"
 
 @implementation AppController
 
@@ -73,6 +74,8 @@
     
     // ********************
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
+    [TextureUtils loadTextures];
+
 	[director_ pushScene: [SequenceMenuLayer scene]];
     
     _audioController = [[PdAudioController alloc] init];

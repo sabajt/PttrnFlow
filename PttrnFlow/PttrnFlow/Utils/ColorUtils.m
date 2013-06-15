@@ -39,6 +39,11 @@
 
 #pragma mark - colors named by object
 
++ (ccColor3B)sequenceHud
+{
+    return [self darkBlue];
+}
+
 + (ccColor3B)ticker
 {
     return [self lime];

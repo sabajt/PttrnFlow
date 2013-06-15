@@ -12,6 +12,7 @@ CGFloat const kSizeGridUnit = 200;
 
 @implementation GameConstants
 
+// 1024 / 768
 +(CGSize)landscapeScreenSize
 {
     CGSize portrait = [UIScreen mainScreen].bounds.size;

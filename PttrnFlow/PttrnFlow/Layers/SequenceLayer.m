@@ -7,13 +7,13 @@
 //
 
 #import "SequenceLayer.h"
+#import "SequenceHudLayer.h"
 #import "DataUtils.h"
 #import "GameConstants.h"
 #import "SimpleAudioEngine.h"
 #import "SpriteUtils.h"
 #import "CCTMXTiledMap+Utils.h"
 #import "SGTiledUtils.h"
-#import "TextureUtils.h"
 #import "CellObjectLibrary.h"
 #import "Tone.h"
 #import "TickDispatcher.h"
@@ -22,8 +22,21 @@
 #import "MainSynth.h"
 #import "EntryArrow.h"
 #import "TickerControl.h"
+#import "ColorUtils.h"
 
 static CGFloat const kPatternDelay = 0.5;
+
+@interface SequenceLayer ()
+
+@property (strong, nonatomic) CCTMXTiledMap *tileMap;
+@property (strong, nonatomic) CellObjectLibrary *cellObjectLibrary;
+@property (strong, nonatomic) NSMutableArray *tones;
+@property (strong, nonatomic) NSMutableArray *arrows;
+@property (assign) GridCoord gridSize;
+@property (weak, nonatomic) Tone *pressedTone;
+@property (assign) CGPoint gridOrigin;
+
+@end
 
 
 @implementation SequenceLayer
@@ -32,22 +45,26 @@ static CGFloat const kPatternDelay = 0.5;
 {
     CCScene *scene = [CCScene node];
     
-    SequenceLayer *sequenceLayer = [[SequenceLayer alloc] initWithSequence:sequence];
+    NSString *sequenceName = [NSString stringWithFormat:@"seq%i.tmx", sequence];
+    CCTMXTiledMap *tiledMap = [CCTMXTiledMap tiledMapWithTMXFile:sequenceName];
+    
+    SequenceLayer *sequenceLayer = [[SequenceLayer alloc] initWithTiledMap:tiledMap];
     [scene addChild:sequenceLayer];
     
+    static CGFloat hudHeight = 100;
+    SequenceHudLayer *hudLayer = [SequenceHudLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceHud]) width:sequenceLayer.contentSize.width height:hudHeight tickDispatcer:sequenceLayer.tickDispatcher tiledMap:tiledMap];
+    hudLayer.position = ccp(0, sequenceLayer.contentSize.height - hudLayer.contentSize.height);
+    [scene addChild:hudLayer z:1];
+
     return scene;
 }
 
-- (id)initWithSequence:(int)sequence
+- (id)initWithTiledMap:(CCTMXTiledMap *)tiledMap
 {
     self = [super init];
     if (self) {
         self.isTouchEnabled = YES;
-        
-        [TextureUtils loadTextures];
-        
-        NSString *sequenceName = [NSString stringWithFormat:@"seq%i.tmx", sequence];
-        self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:sequenceName];
+        self.tileMap = tiledMap;
         self.gridSize = [GridUtils gridCoordFromSize:self.tileMap.mapSize];
         
         // cell object library
@@ -86,27 +103,12 @@ static CGFloat const kPatternDelay = 0.5;
         // entry arrow
         EntryArrow *entryArrow = [[EntryArrow alloc] initWithEntry:entry tiledMap:self.tileMap puzzleOrigin:self.position];
         [self addChild:entryArrow];
-        
-        // ticker control
-        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:tickDispatcher.sequenceLength];
-        tickerControl.delegate = tickDispatcher;
-        tickerControl.position = ccp(20, 500);
-        [self addChild:tickerControl];
-    
-        
-        
     }
     return self;
 }
 
-+ (CGPoint)sharedGridOrigin
-{
-    return CGPointMake((1024 - 800)/2, 130);
-}
-
 - (void)playUserSequence
 {
-    NSLog(@"self.tickDispatcher: %@", self.tickDispatcher);
     [self.tickDispatcher start];
 }
 
@@ -126,7 +128,6 @@ static CGFloat const kPatternDelay = 0.5;
     _patch = [PdBase openFile:@"synth.pd" path:[[NSBundle mainBundle] resourcePath]];
     if (!_patch) {
         NSLog(@"Failed to open patch");
-        // handle failure
     }    
 }
 
