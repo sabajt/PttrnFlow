@@ -30,7 +30,8 @@ static CGFloat const kMarkerWidth = 10;
         _numberOfTicks = numberOfTicks;
         _thumbSprite = [CCSprite spriteWithSize:CGSizeMake(kTickerWidth, kTickerHeight) color:[ColorUtils ticker] key:@"tickerThumb"];
         
-        CCSprite *tickerBar = [CCSprite spriteWithSize:CGSizeMake((numberOfTicks - 1) * kDistanceInterval, kTickerHeight/2) color:[ColorUtils tickerBar] key:@"tickerBar"];
+        NSString *tickerBarKey = [NSString stringWithFormat:@"tickerBar%i", numberOfTicks];
+        CCSprite *tickerBar = [CCSprite spriteWithSize:CGSizeMake((numberOfTicks - 1) * kDistanceInterval, kTickerHeight/2) color:[ColorUtils tickerBar] key:tickerBarKey];
         
         self.contentSize = CGSizeMake(tickerBar.contentSize.width, kTickerHeight);
         tickerBar.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
