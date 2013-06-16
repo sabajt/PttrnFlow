@@ -21,20 +21,26 @@
 - (id)initWithColor:(ccColor4B)color width:(GLfloat)w  height:(GLfloat)h tickDispatcer:(TickDispatcher *)tickDispatcher tiledMap:(CCTMXTiledMap *)tiledMap
 {
     self = [super initWithColor:color width:w height:h];
-    if (self) {        
+    if (self) {
+        CGFloat yMid = self.contentSize.height/2;
+        
         // back button
         CCMenuItemSprite *backButton = [[CCMenuItemSprite alloc] initWithNormalSprite:[CCSprite spriteWithSize:CGSizeMake(50, self.contentSize.height) color:ccc3(0, 0, 180) key:@"sequenceHudBackButtonDefault"] selectedSprite:[CCSprite spriteWithSize:CGSizeMake(50, self.contentSize.height) color:ccc3(0, 0, 255) key:@"sequenceHudBackButtonSelected"] disabledSprite:nil target:self selector:@selector(backButtonPressed:)];
-        backButton.position = ccp(20, self.contentSize.height/2);
+        backButton.position = ccp(20, yMid);
+        
+        // match sequence button
+        CCMenuItemSprite *matchButton = [[CCMenuItemSprite alloc] initWithNormalSprite:[CCSprite spriteWithSize:CGSizeMake(50, self.contentSize.height) color:ccc3(0, 180, 0) key:@"sequenceHudMatchButtonDefault"] selectedSprite:[CCSprite spriteWithSize:CGSizeMake(50, self.contentSize.height) color:ccc3(0, 255, 0) key:@"sequenceHudMatchButtonSelected"] disabledSprite:nil target:self selector:@selector(matchButtonPressed:)];
+        matchButton.position = ccp(backButton.position.x + backButton.contentSize.width, yMid);
         
         // buttons must be added to a CCMenu to work
-        CCMenu *menu = [CCMenu menuWithItems:backButton, nil];
+        CCMenu *menu = [CCMenu menuWithItems:backButton, matchButton, nil];
         menu.position = ccp(0, 0);
         [self addChild:menu];
         
         // ticker control
         TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:tickDispatcher.sequenceLength];
         tickerControl.delegate = tickDispatcher;
-        tickerControl.position = ccp(100, 10);
+        tickerControl.position = ccp(matchButton.position.x + matchButton.contentSize.width, (self.contentSize.height - tickerControl.contentSize.height)/2);
         [self addChild:tickerControl];
     }
     return self;
@@ -43,6 +49,11 @@
 - (void)backButtonPressed:(id)sender
 {
     [self.delegate sequenceHudBackButtonPressed:self];
+}
+
+- (void)matchButtonPressed:(id)sender
+{
+    [self.delegate sequenceHudMatchButtonPressed:self];
 }
 
 

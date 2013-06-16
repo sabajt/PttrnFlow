@@ -13,6 +13,7 @@
 @protocol SequenceHudDelegate <NSObject>
 
 - (void)sequenceHudBackButtonPressed:(SequenceHudLayer *)hudLayer;
+- (void)sequenceHudMatchButtonPressed:(SequenceHudLayer *)hudLayer;
 
 @end
 

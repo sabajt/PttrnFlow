@@ -194,4 +194,9 @@ static CGFloat const kPatternDelay = 0.5;
     [[CCDirector sharedDirector] popScene];
 }
 
+- (void)sequenceHudMatchButtonPressed:(SequenceHudLayer *)hudLayer
+{
+    
+}
+
 @end
