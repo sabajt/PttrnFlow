@@ -11,6 +11,13 @@
 #import "TickDispatcher.h"
 #import "CCSprite+Utils.h"
 
+@interface SequenceHudLayer ()
+
+@property (weak, nonatomic) TickDispatcher *tickDispatcher;
+
+@end
+
+
 @implementation SequenceHudLayer
 
 + (id)layerWithColor:(ccColor4B)color width:(GLfloat)w height:(GLfloat)h tickDispatcer:(TickDispatcher *)tickDispatcher tiledMap:(CCTMXTiledMap *)tiledMap
@@ -23,6 +30,7 @@
     self = [super initWithColor:color width:w height:h];
     if (self) {
         CGFloat yMid = self.contentSize.height/2;
+        _tickDispatcher = tickDispatcher;
         
         // back button
         CCMenuItemSprite *backButton = [[CCMenuItemSprite alloc] initWithNormalSprite:[CCSprite spriteWithSize:CGSizeMake(50, self.contentSize.height) color:ccc3(0, 0, 180) key:@"sequenceHudBackButtonDefault"] selectedSprite:[CCSprite spriteWithSize:CGSizeMake(50, self.contentSize.height) color:ccc3(0, 0, 255) key:@"sequenceHudBackButtonSelected"] disabledSprite:nil target:self selector:@selector(backButtonPressed:)];
@@ -48,12 +56,12 @@
 
 - (void)backButtonPressed:(id)sender
 {
-    [self.delegate sequenceHudBackButtonPressed:self];
+    [[CCDirector sharedDirector] popScene];
 }
 
 - (void)matchButtonPressed:(id)sender
 {
-    [self.delegate sequenceHudMatchButtonPressed:self];
+    [self.tickDispatcher scheduleSequence];
 }
 
 

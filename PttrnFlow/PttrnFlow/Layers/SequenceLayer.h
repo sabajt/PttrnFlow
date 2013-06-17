@@ -7,21 +7,15 @@
 //
 
 #import "cocos2d.h"
-#import "SequenceHudLayer.h"
 
 @class CellObjectLibrary, TickDispatcher, Tone, PdDispatcher;
 
-@interface SequenceLayer : CCLayer <SequenceHudDelegate>
+@interface SequenceLayer : CCLayer
 {
     PdDispatcher *_dispatcher;
     void *_patch;
 }
 
-@property (weak, nonatomic) TickDispatcher *tickDispatcher;
-
 + (CCScene *)sceneWithSequence:(int)sequence;
-
-- (void)playUserSequence;
-- (void)playSolutionSequence;
 
 @end

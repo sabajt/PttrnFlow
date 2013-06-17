@@ -29,6 +29,7 @@ static CGFloat const kPatternDelay = 0.5;
 
 @interface SequenceLayer ()
 
+@property (weak, nonatomic) TickDispatcher *tickDispatcher;
 @property (strong, nonatomic) CCTMXTiledMap *tileMap;
 @property (strong, nonatomic) CellObjectLibrary *cellObjectLibrary;
 @property (strong, nonatomic) NSMutableArray *tones;
@@ -55,7 +56,6 @@ static CGFloat const kPatternDelay = 0.5;
     static CGFloat hudHeight = 80;
     SequenceHudLayer *hudLayer = [SequenceHudLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceHud]) width:sequenceLayer.contentSize.width height:hudHeight tickDispatcer:sequenceLayer.tickDispatcher tiledMap:tiledMap];
     hudLayer.position = ccp(0, sequenceLayer.contentSize.height - hudLayer.contentSize.height);
-    hudLayer.delegate = sequenceLayer;
     [scene addChild:hudLayer z:1];
 
     return scene;
@@ -107,16 +107,6 @@ static CGFloat const kPatternDelay = 0.5;
         [self addChild:entryArrow];
     }
     return self;
-}
-
-- (void)playUserSequence
-{
-    [self.tickDispatcher start];
-}
-
-- (void)playSolutionSequence
-{
-    [self.tickDispatcher scheduleSequence];
 }
 
 #pragma mark - scene management
@@ -185,18 +175,6 @@ static CGFloat const kPatternDelay = 0.5;
         [self.pressedTone deselectTone];
         self.pressedTone = nil;
     }
-}
-
-#pragma mark - SequenceHudLayerDelegate
-
-- (void)sequenceHudBackButtonPressed:(SequenceHudLayer *)hudLayer
-{
-    [[CCDirector sharedDirector] popScene];
-}
-
-- (void)sequenceHudMatchButtonPressed:(SequenceHudLayer *)hudLayer
-{
-    
 }
 
 @end

@@ -12,7 +12,8 @@
 #import "TickerControl.h"
 
 FOUNDATION_EXPORT NSInteger const kBPM;
-
+FOUNDATION_EXPORT NSString *const kNotificationAdvancedSequence;
+FOUNDATION_EXPORT NSString *const kKeySequenceIndex;
 
 @protocol TickResponder <NSObject>
 

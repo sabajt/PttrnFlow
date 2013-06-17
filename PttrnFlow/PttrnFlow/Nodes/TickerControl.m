@@ -11,6 +11,7 @@
 #import "CCSprite+Utils.h"
 #import "ColorUtils.h"
 #import "CCNode+Touch.h"
+#import "TickDispatcher.h"
 
 static CGFloat const kDistanceInterval = 75;
 static CGFloat const kTickerHeight = 50;
@@ -48,6 +49,8 @@ static CGFloat const kMarkerWidth = 10;
         }
         
         [self addChild:_thumbSprite];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAdvancedSequence:) name:kNotificationAdvancedSequence object:nil];
     }
     return self;
 }
@@ -73,6 +76,12 @@ static CGFloat const kMarkerWidth = 10;
     self.thumbSprite.position = ccp(index * kDistanceInterval, self.contentSize.height/2);
 }
 
+- (void)handleAdvancedSequence:(NSNotification *)notification
+{
+    NSNumber *sequenceIndex = notification.userInfo[kKeySequenceIndex];
+    [self positionThumb:[sequenceIndex intValue]];
+}
+
 #pragma mark CCNode SceneManagement
 
 - (void)onEnter
@@ -84,6 +93,7 @@ static CGFloat const kMarkerWidth = 10;
 - (void)onExit
 {
     [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super onExit];
 }
 

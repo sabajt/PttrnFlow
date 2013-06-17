@@ -14,9 +14,12 @@
 #import "CCTMXTiledMap+Utils.h"
 //#import "MainSynth.h"
 
-NSInteger const kBPM = 120;
-static CGFloat const kTickInterval = 0.5;
 
+NSInteger const kBPM = 120;
+NSString *const kNotificationAdvancedSequence = @"AdvanceSequence";
+NSString *const kKeySequenceIndex = @"SequenceIndex";
+
+static CGFloat const kTickInterval = 0.5;
 
 @interface TickDispatcher ()
 
@@ -112,6 +115,7 @@ static CGFloat const kTickInterval = 0.5;
         [self unschedule:@selector(advanceSequence)];
         return;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationAdvancedSequence object:nil userInfo:@{kKeySequenceIndex:@(self.sequenceIndex)}];
     [self play:self.sequenceIndex];
     self.sequenceIndex++;
 }
