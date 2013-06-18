@@ -69,6 +69,11 @@ static CGFloat const kPatternDelay = 0.5;
         self.tileMap = tiledMap;
         self.gridSize = [GridUtils gridCoordFromSize:self.tileMap.mapSize];
         
+        // pan zoom
+        self.mode = kCCLayerPanZoomModeSheet;
+        self.maxScale = 1;
+        self.minScale = 0.3;
+        
         // cell object library
         self.cellObjectLibrary = [[CellObjectLibrary alloc] initWithGridSize:_gridSize];
 
@@ -126,12 +131,9 @@ static CGFloat const kPatternDelay = 0.5;
 - (void)onEnterTransitionDidFinish
 {
     [super onEnterTransitionDidFinish];
-    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
 }
 - (void)onExit
-{
-    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
-    
+{    
     [PdBase closeFile:_patch];
     [PdBase setDelegate:nil];
 
@@ -145,32 +147,38 @@ static CGFloat const kPatternDelay = 0.5;
     [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
 }
 
-# pragma mark - targeted touch delegate
+# pragma mark - CCStandardTouchDelegate
 
-- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-
-    for (Tone *tone in self.tones) {
-        if (CGRectContainsPoint(tone.boundingBox, touchPosition)) {
-            NSString *event = [(id<TickResponder>)tone tick:kBPM];
-            [self.tickDispatcher.mainSynth loadEvents:@[event]];
-            self.pressedTone = tone;
-        }
-    }
-    for (Arrow *arrow in self.arrows) {
-        if (CGRectContainsPoint(arrow.boundingBox, touchPosition)) {
-            [arrow rotateClockwise];
-            NSString *event = [(id<TickResponder>)arrow tick:kBPM];
-            [self.tickDispatcher.mainSynth loadEvents:@[event]];
-        }
-    }
+    [super ccTouchesBegan:touches withEvent:event];
     
-    return YES;
+    if (touches.count == 1) {
+        UITouch *touch = [touches anyObject];
+        
+        CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+        
+        for (Tone *tone in self.tones) {
+            if (CGRectContainsPoint(tone.boundingBox, touchPosition)) {
+                NSString *event = [(id<TickResponder>)tone tick:kBPM];
+                [self.tickDispatcher.mainSynth loadEvents:@[event]];
+                self.pressedTone = tone;
+            }
+        }
+        for (Arrow *arrow in self.arrows) {
+            if (CGRectContainsPoint(arrow.boundingBox, touchPosition)) {
+                [arrow rotateClockwise];
+                NSString *event = [(id<TickResponder>)arrow tick:kBPM];
+                [self.tickDispatcher.mainSynth loadEvents:@[event]];
+            }
+        }
+    }
 }
 
-- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    [super ccTouchesEnded:touches withEvent:event];
+    
     if (self.pressedTone != nil) {
         [self.pressedTone deselectTone];
         self.pressedTone = nil;
