@@ -11,7 +11,7 @@
 #import "PdAudioController.h"
 
 
-@interface AppController : NSObject <UIApplicationDelegate, CCDirectorDelegate>
+@interface AppDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate>
 {
 	UIWindow *window_;
 	UINavigationController *navController_;
@@ -24,5 +24,6 @@
 @property (unsafe_unretained, readonly) CCDirectorIOS *director;
 
 @property (strong, nonatomic, readonly) PdAudioController *audioController;
+@property (assign) BOOL isRetinaEnabled;
 
 @end
