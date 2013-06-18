@@ -65,7 +65,7 @@ static CGFloat const kMarkerWidth = 10;
 - (void)handleTouch:(UITouch *)touch
 {
     self.currentIndex = [self nearestIndex:touch];
-    if (self.currentIndex < self.numberOfTicks) {
+    if ((self.currentIndex < self.numberOfTicks) && (self.currentIndex >= 0)) {
         [self positionThumb:self.currentIndex];
         [self.delegate tickerMovedToIndex:self.currentIndex];
     }

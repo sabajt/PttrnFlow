@@ -31,17 +31,22 @@
     if (self) {
         CGFloat yMid = self.contentSize.height/2;
         _tickDispatcher = tickDispatcher;
+        CGSize buttonSize = CGSizeMake(self.contentSize.height, self.contentSize.height);
         
         // back button
-        CCMenuItemSprite *backButton = [[CCMenuItemSprite alloc] initWithNormalSprite:[CCSprite spriteWithSize:CGSizeMake(50, self.contentSize.height) color:ccc3(0, 0, 180) key:@"sequenceHudBackButtonDefault"] selectedSprite:[CCSprite spriteWithSize:CGSizeMake(50, self.contentSize.height) color:ccc3(0, 0, 255) key:@"sequenceHudBackButtonSelected"] disabledSprite:nil target:self selector:@selector(backButtonPressed:)];
-        backButton.position = ccp(20, yMid);
+        CCMenuItemSprite *backButton = [[CCMenuItemSprite alloc] initWithNormalSprite:[CCSprite spriteWithSize:buttonSize color:ccc3(180, 0, 0) key:@"sequenceHudBackButtonDefault"] selectedSprite:[CCSprite spriteWithSize:buttonSize color:ccc3(255, 0, 0) key:@"sequenceHudBackButtonSelected"] disabledSprite:nil target:self selector:@selector(backButtonPressed:)];
+        backButton.position = ccp(buttonSize.width/2, yMid);
         
         // match sequence button
-        CCMenuItemSprite *matchButton = [[CCMenuItemSprite alloc] initWithNormalSprite:[CCSprite spriteWithSize:CGSizeMake(50, self.contentSize.height) color:ccc3(0, 180, 0) key:@"sequenceHudMatchButtonDefault"] selectedSprite:[CCSprite spriteWithSize:CGSizeMake(50, self.contentSize.height) color:ccc3(0, 255, 0) key:@"sequenceHudMatchButtonSelected"] disabledSprite:nil target:self selector:@selector(matchButtonPressed:)];
+        CCMenuItemSprite *matchButton = [[CCMenuItemSprite alloc] initWithNormalSprite:[CCSprite spriteWithSize:buttonSize color:ccc3(0, 180, 0) key:@"sequenceHudMatchButtonDefault"] selectedSprite:[CCSprite spriteWithSize:buttonSize color:ccc3(0, 255, 0) key:@"sequenceHudMatchButtonSelected"] disabledSprite:nil target:self selector:@selector(matchButtonPressed:)];
         matchButton.position = ccp(backButton.position.x + backButton.contentSize.width, yMid);
         
+        // run button
+        CCMenuItemSprite *runButton = [[CCMenuItemSprite alloc] initWithNormalSprite:[CCSprite spriteWithSize:buttonSize color:ccc3(180, 180, 0) key:@"sequenceHudRunButtonDefault"] selectedSprite:[CCSprite spriteWithSize:buttonSize color:ccc3(255, 255, 0) key:@"sequenceHudRunButtonSelected"] disabledSprite:nil target:self selector:@selector(runButtonPressed:)];
+        runButton.position = ccp(self.contentSize.width - buttonSize.width/2, yMid);
+        
         // buttons must be added to a CCMenu to work
-        CCMenu *menu = [CCMenu menuWithItems:backButton, matchButton, nil];
+        CCMenu *menu = [CCMenu menuWithItems:backButton, matchButton, runButton, nil];
         menu.position = ccp(0, 0);
         [self addChild:menu];
         
@@ -62,6 +67,11 @@
 - (void)matchButtonPressed:(id)sender
 {
     [self.tickDispatcher scheduleSequence];
+}
+
+- (void)runButtonPressed:(id)sender
+{
+    [self.tickDispatcher start];
 }
 
 
