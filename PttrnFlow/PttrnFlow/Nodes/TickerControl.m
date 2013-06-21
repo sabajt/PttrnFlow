@@ -84,28 +84,13 @@ static CGFloat const kMarkerWidth = 10;
 
 #pragma mark CCNode SceneManagement
 
-- (void)onEnter
-{
-    [super onEnter];
-    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
-}
-
 - (void)onExit
 {
-    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super onExit];
 }
 
 #pragma mark CCTargetedTouchDelegate
-
-- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    if ([self containsTouch:touch]) {
-        return YES;
-    }
-    return NO;
-}
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {

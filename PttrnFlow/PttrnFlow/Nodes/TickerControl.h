@@ -7,6 +7,7 @@
 //
 
 #import "cocos2d.h"
+#import "TouchNode.h"
 
 @protocol TickerControlDelegate <NSObject>
 
@@ -14,7 +15,8 @@
 
 @end
 
-@interface TickerControl : CCNode <CCTargetedTouchDelegate>
+//@interface TickerControl : CCNode <CCTargetedTouchDelegate>
+@interface TickerControl : TouchNode;
 
 @property (weak, nonatomic) id<TickerControlDelegate> delegate;
 @property (weak, nonatomic) CCSprite *thumbSprite;

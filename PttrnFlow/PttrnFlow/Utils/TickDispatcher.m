@@ -19,7 +19,7 @@ NSInteger const kBPM = 120;
 NSString *const kNotificationAdvancedSequence = @"AdvanceSequence";
 NSString *const kKeySequenceIndex = @"SequenceIndex";
 
-static CGFloat const kTickInterval = 0.5;
+static CGFloat const kTickInterval = 0.45;
 
 @interface TickDispatcher ()
 
@@ -120,7 +120,7 @@ static CGFloat const kTickInterval = 0.5;
     self.sequenceIndex++;
 }
 
-// moves the ticker along the grid yo
+// moves the ticker along the grid
 - (void)tick:(ccTime)dt
 {
     NSLog(@"current cell: %i, %i", self.currentCell.x, self.currentCell.y);
@@ -176,6 +176,5 @@ static CGFloat const kTickInterval = 0.5;
 {
     [self play:index];
 }
-
 
 @end
