@@ -11,28 +11,12 @@
 
 @class CellNode;
 
-@protocol TransferResponder <NSObject>
-
-// to pass along cell-change information to who ever owns the cell node library
--(void) transferNode:(CellNode *)node toCell:(GridCoord)moveTo fromCell:(GridCoord)moveFrom;
-
-@end
-
-
-@interface CellNode : CCNode <CCTargetedTouchDelegate>
-
-@property (copy, nonatomic) NSString *pgNotificationTouchBegan;
-@property (copy, nonatomic) NSString *pgNotificationTouchMoved;
-@property (copy, nonatomic) NSString *pgNotificationTouchEnded;
+@interface CellNode : CCNode 
 
 @property (strong, nonatomic) CCSprite *sprite;
 @property (assign) GridCoord cell;
 
-@property (weak, nonatomic) id<TransferResponder>transferResponder;
-
 - (CCSprite *)createAndCenterSpriteNamed:(NSString *)name; // returns sprite with image name, centered in content bounds
 - (void)alignSprite:(kDirection)direction;
-- (void)moveTo:(GridCoord)cell gridOrigin:(CGPoint)origin;
-- (BOOL)shouldBlockMovement;
 
 @end
