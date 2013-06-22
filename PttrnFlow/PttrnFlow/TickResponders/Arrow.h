@@ -6,15 +6,14 @@
 //
 //
 
-#import "CellNode.h"
-#import "GameConstants.h"
-#import "TickDispatcher.h"
 
-@interface Arrow : CellNode <TickResponder>
+#import "SynthCellNode.h"
+#import "TickResponder.h"
+
+@interface Arrow : SynthCellNode <TickResponder>
 
 @property (assign) kDirection facing;
 
-- (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap puzzleOrigin:(CGPoint)origin;
-- (void)rotateClockwise;
+- (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap puzzleOrigin:(CGPoint)origin synth:(id<SoundEventReceiver>)synth;
 
 @end

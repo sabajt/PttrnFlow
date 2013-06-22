@@ -29,6 +29,7 @@
     self = [super init];
     if (self) {
         self.contentSize = CGSizeMake(width, height);
+        self.swallowsTouches = YES;
         _index = index;
         
         CCSprite *sprite = [CCSprite spriteWithSize:CGSizeMake(width, height) color:[ColorUtils sequenceMenuCell] key:@"sequenceMenuCell"];

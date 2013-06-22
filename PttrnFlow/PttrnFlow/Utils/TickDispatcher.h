@@ -10,17 +10,12 @@
 #import "GridUtils.h"
 #import "MainSynth.h"
 #import "TickerControl.h"
+#import "TickResponder.h"
+
 
 FOUNDATION_EXPORT NSInteger const kBPM;
 FOUNDATION_EXPORT NSString *const kNotificationAdvancedSequence;
 FOUNDATION_EXPORT NSString *const kKeySequenceIndex;
-
-@protocol TickResponder <NSObject>
-
-- (NSString *)tick:(NSInteger)bpm;
-- (void)afterTick:(NSInteger)bpm; // in the future this could also return a value that could trigger more events
-- (GridCoord)responderCell;
-@end
 
 typedef enum
 {
@@ -29,14 +24,14 @@ typedef enum
     kTickEventWarp
 }kTickEvent;
 
-
 @interface TickDispatcher : CCNode <TickerControlDelegate>
 
 @property (assign) int sequenceLength;
 @property (strong, nonatomic) NSMutableDictionary *eventSequence;
-@property (strong, nonatomic) MainSynth *mainSynth;
 
-- (id)initWithSequence:(NSMutableDictionary *)sequence entry:(NSMutableDictionary *)entry tiledMap:(CCTMXTiledMap *)tiledMap;
+@property (weak, nonatomic) id<SoundEventReceiver> synth;
+
+- (id)initWithSequence:(NSMutableDictionary *)sequence tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth;
 - (void)registerTickResponder:(id<TickResponder>)responder;
 
 - (void)start;

@@ -11,13 +11,15 @@
 #import "SGTiledUtils.h"
 #import "TextureUtils.h"
 #import "SpriteUtils.h"
+#import "TickDispatcher.h"
 
 @implementation Tone
 
-- (id)initWithTone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap puzzleOrigin:(CGPoint)origin
+- (id)initWithTone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap puzzleOrigin:(CGPoint)origin synth:(id<SoundEventReceiver>)synth
 {
-    self = [super init];
+    self = [super initWithSynth:synth];
     if (self) {
+        self.swallowsTouches = YES;
         self.cell = [tiledMap gridCoordForObject:tone];
         self.midiValue = [[CCTMXTiledMap objectPropertyNamed:kTLDPropertyMidiValue object:tone] intValue];
         NSString *imageName = [self imageNameForMidiValue:self.midiValue on:NO];
@@ -26,6 +28,23 @@
         self.position = [GridUtils absolutePositionForGridCoord:self.cell unitSize:kSizeGridUnit origin:origin];
     }
     return self;
+}
+
+#pragma mark -
+
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if ([super ccTouchBegan:touch withEvent:event]) {
+        NSString *event = [self tick:kBPM];
+        [self.synth receiveEvents:@[event]];
+        return YES;
+    }
+    return NO;
+}
+
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    [self deselectTone];
 }
 
 #pragma mark - Tick Responder
@@ -38,7 +57,7 @@
 
 - (void)afterTick:(NSInteger)bpm
 {
-    [SpriteUtils switchImageForSprite:self.sprite textureKey:[self imageNameForMidiValue:self.midiValue on:NO]];
+    [self deselectTone];
 }
 
 - (GridCoord)responderCell

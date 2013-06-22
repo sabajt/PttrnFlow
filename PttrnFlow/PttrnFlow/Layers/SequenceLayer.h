@@ -9,7 +9,7 @@
 #import "cocos2d.h"
 #import "CCLayerPanZoom.h"
 
-@class CellObjectLibrary, TickDispatcher, Tone, PdDispatcher;
+@class PdDispatcher;
 
 @interface SequenceLayer : CCLayerPanZoom
 {

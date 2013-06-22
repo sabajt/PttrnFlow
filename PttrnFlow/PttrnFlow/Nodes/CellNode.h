@@ -6,12 +6,12 @@
 //
 //
 
-#import "cocos2d.h"
+#import "TouchNode.h"
 #import "GridUtils.h"
 
 @class CellNode;
 
-@interface CellNode : CCNode 
+@interface CellNode : TouchNode
 
 @property (strong, nonatomic) CCSprite *sprite;
 @property (assign) GridCoord cell;

@@ -12,8 +12,6 @@
 #import "Arrow.h"
 #import "SGTiledUtils.h"
 #import "CCTMXTiledMap+Utils.h"
-//#import "MainSynth.h"
-
 
 NSInteger const kBPM = 120;
 NSString *const kNotificationAdvancedSequence = @"AdvanceSequence";
@@ -38,7 +36,7 @@ static CGFloat const kTickInterval = 0.45;
 
 @implementation TickDispatcher
 
-- (id)initWithSequence:(NSMutableDictionary *)sequence entry:(NSMutableDictionary *)entry tiledMap:(CCTMXTiledMap *)tiledMap
+- (id)initWithSequence:(NSMutableDictionary *)sequence tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth
 {
     self = [super init];
     if (self) {
@@ -54,6 +52,7 @@ static CGFloat const kTickInterval = 0.45;
             i++;
         }
         
+        NSMutableDictionary *entry = [tiledMap objectNamed:kTLDObjectEntry groupNamed:kTLDGroupTickResponders];
         self.startingDirection = [SGTiledUtils directionNamed:[entry objectForKey:kTLDPropertyDirection]];
         self.startingCell = [tiledMap gridCoordForObject:entry];
         
@@ -62,7 +61,7 @@ static CGFloat const kTickInterval = 0.45;
         self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
         self.lastTickedResponders = [NSMutableArray array];
         
-        self.mainSynth = [[MainSynth alloc] init];
+        self.synth = synth;
     }
     return self;
 }
@@ -97,7 +96,7 @@ static CGFloat const kTickInterval = 0.45;
     
     // play sound in eventSequence
     NSArray *events = [self.eventSequence objectForKey:@(index)];
-    [self.mainSynth loadEvents:events];
+    [self.synth receiveEvents:events];
 }
 
 // schedule the stored sequence we want to solve for from the top
@@ -154,8 +153,8 @@ static CGFloat const kTickInterval = 0.45;
         }
     }
     
-    // send events to MainSynth which will talk to our PD patch
-    [self.mainSynth loadEvents:events];
+    // synth talks to our PD patch
+    [self.synth receiveEvents:events];
     
     // advance cell 
     self.currentCell = [GridUtils stepInDirection:self.currentDirection fromCell:self.currentCell];    

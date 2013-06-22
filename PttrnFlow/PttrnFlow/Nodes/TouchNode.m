@@ -9,14 +9,23 @@
 #import "TouchNode.h"
 #import "CCNode+Touch.h"
 
-@implementation TouchNode 
+@implementation TouchNode
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.swallowsTouches = NO;
+    }
+    return self;
+}
 
 #pragma mark CCNode SceneManagement
 
 - (void)onEnter
 {
     [super onEnter];
-    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:self.swallowsTouches];
 }
 
 - (void)onExit

@@ -17,10 +17,10 @@ static NSString *const kClear = @"clear";
 static NSString *const kTrigger = @"trigger";
 static NSString *const kMidiValue = @"midinote";
 
+
 @implementation MainSynth
 
-
-- (void)loadEvents:(NSArray *)events
+- (void)receiveEvents:(NSArray *)events
 {
     if ((events == nil) || (events.count < 1)) {
         NSLog(@"warning: no events sent to synth");

@@ -10,4 +10,6 @@
 
 @interface TouchNode : CCNode <CCTargetedTouchDelegate>
 
+@property (assign) BOOL swallowsTouches;
+
 @end

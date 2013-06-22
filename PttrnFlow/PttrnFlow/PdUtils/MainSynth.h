@@ -7,10 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class SequenceLayer;
 
-@interface MainSynth : NSObject
+@protocol SoundEventReceiver <NSObject>
 
-- (void)loadEvents:(NSArray *)events;
+- (void)receiveEvents:(NSArray *)events;
+
+@end
+
+
+@interface MainSynth : NSObject <SoundEventReceiver>
 
 @end

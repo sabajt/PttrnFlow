@@ -27,7 +27,7 @@ static CGFloat const kMarkerWidth = 10;
         if (numberOfTicks < 1) {
             NSLog(@"warning: number of ticks for TickerControl should be > 1");
         }
-        
+        self.swallowsTouches = YES;
         _numberOfTicks = numberOfTicks;
         _thumbSprite = [CCSprite spriteWithSize:CGSizeMake(kTickerWidth, kTickerHeight) color:[ColorUtils ticker] key:@"tickerThumb"];
         

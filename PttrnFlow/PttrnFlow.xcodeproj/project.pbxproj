@@ -226,6 +226,7 @@
 		16A42778176BD5E100BEF13F /* TouchNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A42777176BD5E100BEF13F /* TouchNode.m */; };
 		16A4277C176BF0A100BEF13F /* SequenceHudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4277B176BF0A100BEF13F /* SequenceHudLayer.m */; };
 		16E2571D17377E8F00F45198 /* MainSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E2571C17377E8F00F45198 /* MainSynth.m */; };
+		16FA7EC6177520DC00B17D9A /* SynthCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FA7EC5177520DC00B17D9A /* SynthCellNode.m */; };
 		16FFC9111764E05800320C6A /* TickerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FFC9101764E05800320C6A /* TickerControl.m */; };
 		16FFC9141764E9EA00320C6A /* CCNode+Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FFC9131764E9E900320C6A /* CCNode+Touch.m */; };
 /* End PBXBuildFile section */
@@ -632,6 +633,9 @@
 		16A4277B176BF0A100BEF13F /* SequenceHudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceHudLayer.m; sourceTree = "<group>"; };
 		16B9C9EA1736F31D006A591C /* MainSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainSynth.h; path = PdUtils/MainSynth.h; sourceTree = "<group>"; };
 		16E2571C17377E8F00F45198 /* MainSynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainSynth.m; path = PdUtils/MainSynth.m; sourceTree = "<group>"; };
+		16FA7EC4177520DC00B17D9A /* SynthCellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynthCellNode.h; path = TickResponders/SynthCellNode.h; sourceTree = "<group>"; };
+		16FA7EC5177520DC00B17D9A /* SynthCellNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SynthCellNode.m; path = TickResponders/SynthCellNode.m; sourceTree = "<group>"; };
+		16FA7EC71775213D00B17D9A /* TickResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TickResponder.h; path = TickResponders/TickResponder.h; sourceTree = "<group>"; };
 		16FFC90F1764E05800320C6A /* TickerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TickerControl.h; path = Nodes/TickerControl.h; sourceTree = "<group>"; };
 		16FFC9101764E05800320C6A /* TickerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TickerControl.m; path = Nodes/TickerControl.m; sourceTree = "<group>"; };
 		16FFC9121764E9E800320C6A /* CCNode+Touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+Touch.h"; sourceTree = "<group>"; };
@@ -1239,6 +1243,9 @@
 		169B8D8B1735A4B60002FD60 /* TickResponders */ = {
 			isa = PBXGroup;
 			children = (
+				16FA7EC71775213D00B17D9A /* TickResponder.h */,
+				16FA7EC4177520DC00B17D9A /* SynthCellNode.h */,
+				16FA7EC5177520DC00B17D9A /* SynthCellNode.m */,
 				169B8D881735A4AF0002FD60 /* Tone.h */,
 				169B8D891735A4AF0002FD60 /* Tone.m */,
 				169B8D8C1735A50B0002FD60 /* Arrow.h */,
@@ -1594,6 +1601,7 @@
 				16A42778176BD5E100BEF13F /* TouchNode.m in Sources */,
 				16A4277C176BF0A100BEF13F /* SequenceHudLayer.m in Sources */,
 				169F3D131770ADB2005F93B2 /* CCLayerPanZoom.m in Sources */,
+				16FA7EC6177520DC00B17D9A /* SynthCellNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

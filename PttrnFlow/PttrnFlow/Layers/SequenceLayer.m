@@ -14,7 +14,6 @@
 #import "SpriteUtils.h"
 #import "CCTMXTiledMap+Utils.h"
 #import "SGTiledUtils.h"
-#import "CellObjectLibrary.h"
 #import "Tone.h"
 #import "TickDispatcher.h"
 #import "SGTiledUtils.h"
@@ -25,18 +24,14 @@
 #import "ColorUtils.h"
 #import "PdDispatcher.h"
 
-static CGFloat const kPatternDelay = 0.5;
-
 @interface SequenceLayer ()
 
 @property (weak, nonatomic) TickDispatcher *tickDispatcher;
 @property (strong, nonatomic) CCTMXTiledMap *tileMap;
-@property (strong, nonatomic) CellObjectLibrary *cellObjectLibrary;
-@property (strong, nonatomic) NSMutableArray *tones;
-@property (strong, nonatomic) NSMutableArray *arrows;
 @property (assign) GridCoord gridSize;
 @property (weak, nonatomic) Tone *pressedTone;
 @property (assign) CGPoint gridOrigin;
+@property (strong, nonatomic) MainSynth *synth;
 
 @end
 
@@ -74,35 +69,27 @@ static CGFloat const kPatternDelay = 0.5;
         self.maxScale = 1;
         self.minScale = 0.3;
         
-        // cell object library
-        self.cellObjectLibrary = [[CellObjectLibrary alloc] initWithGridSize:_gridSize];
-
         // setup tick dispatcher with sequence and starting point
         NSMutableDictionary *seq = [self.tileMap objectNamed:kTLDObjectSequence groupNamed:kTLDGroupTickResponders];
         NSMutableDictionary *entry = [self.tileMap objectNamed:kTLDObjectEntry groupNamed:kTLDGroupTickResponders];
+        self.synth = [[MainSynth alloc] init];
         
-        TickDispatcher *tickDispatcher = [[TickDispatcher alloc] initWithSequence:seq entry:entry tiledMap:self.tileMap];
+        TickDispatcher *tickDispatcher = [[TickDispatcher alloc] initWithSequence:seq tiledMap:tiledMap synth:self.synth];
         self.tickDispatcher = tickDispatcher;
         [self addChild:self.tickDispatcher];
         
         // tones
-        self.tones = [NSMutableArray array];
         NSMutableArray *tones = [self.tileMap objectsWithName:kTLDObjectTone groupName:kTLDGroupTickResponders];
         for (NSMutableDictionary *tone in tones) {
-            Tone *toneNode = [[Tone alloc] initWithTone:tone tiledMap:self.tileMap puzzleOrigin:self.position];
-            [self.tones addObject:toneNode];
-            [self.cellObjectLibrary addNode:toneNode cell:toneNode.cell];
+            Tone *toneNode = [[Tone alloc] initWithTone:tone tiledMap:self.tileMap puzzleOrigin:self.position synth:self.synth];
             [self.tickDispatcher registerTickResponder:toneNode];
             [self addChild:toneNode];
         }
         
         // arrows
-        self.arrows = [NSMutableArray array];
         NSMutableArray *arrows = [self.tileMap objectsWithName:kTLDObjectArrow groupName:kTLDGroupTickResponders];
         for (NSMutableDictionary *arrow in arrows) {
-            Arrow *arrowNode = [[Arrow alloc] initWithArrow:arrow tiledMap:self.tileMap puzzleOrigin:self.position];
-            [self.arrows addObject:arrowNode];
-            [self.cellObjectLibrary addNode:arrowNode cell:arrowNode.cell];
+            Arrow *arrowNode = [[Arrow alloc] initWithArrow:arrow tiledMap:self.tileMap puzzleOrigin:self.position synth:self.synth];
             [self.tickDispatcher registerTickResponder:arrowNode];
             [self addChild:arrowNode];
         }
@@ -128,10 +115,6 @@ static CGFloat const kPatternDelay = 0.5;
     }    
 }
 
-- (void)onEnterTransitionDidFinish
-{
-    [super onEnterTransitionDidFinish];
-}
 - (void)onExit
 {    
     [PdBase closeFile:_patch];
@@ -148,41 +131,5 @@ static CGFloat const kPatternDelay = 0.5;
 }
 
 # pragma mark - CCStandardTouchDelegate
-
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super ccTouchesBegan:touches withEvent:event];
-    
-    if (touches.count == 1) {
-        UITouch *touch = [touches anyObject];
-        
-        CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-        
-        for (Tone *tone in self.tones) {
-            if (CGRectContainsPoint(tone.boundingBox, touchPosition)) {
-                NSString *event = [(id<TickResponder>)tone tick:kBPM];
-                [self.tickDispatcher.mainSynth loadEvents:@[event]];
-                self.pressedTone = tone;
-            }
-        }
-        for (Arrow *arrow in self.arrows) {
-            if (CGRectContainsPoint(arrow.boundingBox, touchPosition)) {
-                [arrow rotateClockwise];
-                NSString *event = [(id<TickResponder>)arrow tick:kBPM];
-                [self.tickDispatcher.mainSynth loadEvents:@[event]];
-            }
-        }
-    }
-}
-
-- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super ccTouchesEnded:touches withEvent:event];
-    
-    if (self.pressedTone != nil) {
-        [self.pressedTone deselectTone];
-        self.pressedTone = nil;
-    }
-}
 
 @end

@@ -6,14 +6,13 @@
 //
 //
 
-#import "CellNode.h"
-#import "TickDispatcher.h"
+#import "SynthCellNode.h"
+#import "TickResponder.h"
 
-@interface Tone : CellNode <TickResponder>
+@interface Tone : SynthCellNode <TickResponder>
 
 @property (assign) int midiValue;
 
-- (id)initWithTone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap puzzleOrigin:(CGPoint)origin;
-- (void)deselectTone;
+- (id)initWithTone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap puzzleOrigin:(CGPoint)origin synth:(id<SoundEventReceiver>)synth;
 
 @end

@@ -11,12 +11,13 @@
 #import "SGTiledUtils.h"
 #import "TextureUtils.h"
 #import "SpriteUtils.h"
+#import "TickDispatcher.h"
 
 @implementation Arrow
 
-- (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap puzzleOrigin:(CGPoint)origin
+- (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap puzzleOrigin:(CGPoint)origin synth:(id<SoundEventReceiver>)synth;
 {
-    self = [super init];
+    self = [super initWithSynth:synth];
     if (self) {
         self.cell = [tiledMap gridCoordForObject:arrow];
         NSString *facing = [CCTMXTiledMap objectPropertyNamed:kTLDPropertyDirection object:arrow];
@@ -66,7 +67,19 @@
     [SpriteUtils switchImageForSprite:self.sprite textureKey:imageName];
 }
 
-#pragma mark - Tick Responder
+#pragma mark - TouchNode
+
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if ([super ccTouchBegan:touch withEvent:event]) {
+        NSString *event = [self tick:kBPM];
+        [self.synth receiveEvents:@[event]];
+        [self rotateClockwise];
+    }
+    return NO;
+}
+
+#pragma mark - TickResponder
 
 - (NSString *)tick:(NSInteger)bpm
 {
