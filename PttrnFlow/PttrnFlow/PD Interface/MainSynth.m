@@ -13,9 +13,11 @@
 
 static NSString *const kActivateTone = @"activateTone";
 static NSString *const kActivateNoise = @"activateNoise";
+static NSString *const kActiviateDrum = @"activateDrum";
 static NSString *const kClear = @"clear";
 static NSString *const kTrigger = @"trigger";
 static NSString *const kMidiValue = @"midinote";
+static NSString *const kSelectDrum = @"selectDrum";
 
 
 @implementation MainSynth
@@ -55,7 +57,8 @@ static NSString *const kMidiValue = @"midinote";
         }
         
         if ([self isValidDrumPattern:event]) {
-            [PdBase sendBangToReceiver:event];
+            [PdBase sendSymbol:event toReceiver:kSelectDrum];
+            [PdBase sendBangToReceiver:kActiviateDrum];
         }
         
 //        if ([TickDispatcher isArrowEvent:event]) {
