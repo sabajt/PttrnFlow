@@ -213,6 +213,8 @@
 		16918DF9172CE6B000566A17 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16918DF4172CE66200566A17 /* libpd-ios.a */; };
 		1693C661177A0C9300FEB350 /* d1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C65F177A0C9300FEB350 /* d1.wav */; };
 		1693C662177A0C9300FEB350 /* d2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C660177A0C9300FEB350 /* d2.wav */; };
+		1693C665177A628300FEB350 /* d3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C663177A628200FEB350 /* d3.wav */; };
+		1693C666177A628300FEB350 /* d4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C664177A628200FEB350 /* d4.wav */; };
 		169F3D131770ADB2005F93B2 /* CCLayerPanZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 169F3D111770ADB2005F93B2 /* CCLayerPanZoom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		169F3D141770ADB2005F93B2 /* README-CCLayerPanZoom.md in Resources */ = {isa = PBXBuildFile; fileRef = 169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */; };
 		169FC6B9173475AE008EC4C4 /* CellObjectLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 169FC6B8173475AE008EC4C4 /* CellObjectLibrary.m */; };
@@ -626,6 +628,8 @@
 		16918DEE172CE66100566A17 /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = ../libpd/libpd.xcodeproj; sourceTree = "<group>"; };
 		1693C65F177A0C9300FEB350 /* d1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = d1.wav; sourceTree = "<group>"; };
 		1693C660177A0C9300FEB350 /* d2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = d2.wav; sourceTree = "<group>"; };
+		1693C663177A628200FEB350 /* d3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = d3.wav; sourceTree = "<group>"; };
+		1693C664177A628200FEB350 /* d4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = d4.wav; sourceTree = "<group>"; };
 		169F3D101770ADB2005F93B2 /* CCLayerPanZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLayerPanZoom.h; sourceTree = "<group>"; };
 		169F3D111770ADB2005F93B2 /* CCLayerPanZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLayerPanZoom.m; sourceTree = "<group>"; };
 		169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README-CCLayerPanZoom.md"; sourceTree = "<group>"; };
@@ -1274,6 +1278,8 @@
 		16284C94173A072B00B058D2 /* patches */ = {
 			isa = PBXGroup;
 			children = (
+				1693C663177A628200FEB350 /* d3.wav */,
+				1693C664177A628200FEB350 /* d4.wav */,
 				1693C65F177A0C9300FEB350 /* d1.wav */,
 				1693C660177A0C9300FEB350 /* d2.wav */,
 				16284C95173A072B00B058D2 /* synth.pd */,
@@ -1549,6 +1555,8 @@
 				16A942E61778C5A50052D5BD /* drum4on-ipad.png in Resources */,
 				1693C661177A0C9300FEB350 /* d1.wav in Resources */,
 				1693C662177A0C9300FEB350 /* d2.wav in Resources */,
+				1693C665177A628300FEB350 /* d3.wav in Resources */,
+				1693C666177A628300FEB350 /* d4.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,7 +18,7 @@ NSInteger const kBPM = 120;
 NSString *const kNotificationAdvancedSequence = @"AdvanceSequence";
 NSString *const kKeySequenceIndex = @"SequenceIndex";
 
-static CGFloat const kTickInterval = 0.45;
+static CGFloat const kTickInterval = 0.5;
 
 
 @interface TickDispatcher ()
