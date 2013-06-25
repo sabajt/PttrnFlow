@@ -12,10 +12,11 @@
 #import "SGTiledUtils.h"
 #import "CellObjectLibrary.h"
 #import "CCNode+Touch.h"
+#import "CCSprite+Utils.h"
 
 @implementation CellNode
 
--(id) init
+- (id)init
 {
     self = [super init];
     if (self) {
@@ -24,7 +25,7 @@
     return self;
 }
 
--(CCSprite *) createAndCenterSpriteNamed:(NSString *)name
+- (CCSprite *)createAndCenterSpriteNamed:(NSString *)name
 {
     CCSprite *sprite = [SpriteUtils spriteWithTextureKey:name];
     sprite.position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);

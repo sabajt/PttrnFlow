@@ -44,6 +44,15 @@ FOUNDATION_EXPORT NSString *const kImageG;
 
 FOUNDATION_EXPORT NSString *const kImageStartArrow;
 
+FOUNDATION_EXPORT NSString *const kImageDrum1;
+FOUNDATION_EXPORT NSString *const kImageDrum1_on;
+FOUNDATION_EXPORT NSString *const kImageDrum2;
+FOUNDATION_EXPORT NSString *const kImageDrum2_on;
+FOUNDATION_EXPORT NSString *const kImageDrum3;
+FOUNDATION_EXPORT NSString *const kImageDrum3_on;
+FOUNDATION_EXPORT NSString *const kImageDrum4;
+FOUNDATION_EXPORT NSString *const kImageDrum4_on;
+
 + (void)loadTextures;
 
 @end

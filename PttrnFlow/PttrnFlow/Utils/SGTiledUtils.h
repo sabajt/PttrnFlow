@@ -17,12 +17,16 @@ FOUNDATION_EXPORT NSString *const kTLDGroupTickResponders;
 FOUNDATION_EXPORT NSString *const kTLDObjectSequence;
 FOUNDATION_EXPORT NSString *const kTLDObjectEntry;
 FOUNDATION_EXPORT NSString *const kTLDObjectTone;
+FOUNDATION_EXPORT NSString *const kTLDObjectDrum;
 FOUNDATION_EXPORT NSString *const kTLDObjectArrow;
 
 // tiled object properties
 FOUNDATION_EXPORT NSString *const kTLDPropertyMidiValue;
+FOUNDATION_EXPORT NSString *const kTLDPropertyPattern;
 FOUNDATION_EXPORT NSString *const kTLDPropertyDirection;
 FOUNDATION_EXPORT NSString *const kTLDPropertyEvents;
+FOUNDATION_EXPORT NSString *const kTLDPropertyChannel;
+
 
 @interface SGTiledUtils : NSObject
 

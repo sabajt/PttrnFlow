@@ -30,47 +30,10 @@
     return self;
 }
 
-#pragma mark -
-
-- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    if ([super ccTouchBegan:touch withEvent:event]) {
-        NSString *event = [self tick:kBPM];
-        [self.synth receiveEvents:@[event]];
-        return YES;
-    }
-    return NO;
-}
-
-- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    [self deselectTone];
-}
-
-#pragma mark - Tick Responder
-
-- (NSString *)tick:(NSInteger)bpm
-{
-    [SpriteUtils switchImageForSprite:self.sprite textureKey:[self imageNameForMidiValue:self.midiValue on:YES]];
-    return [NSString stringWithFormat:@"%i", self.midiValue];
-}
-
-- (void)afterTick:(NSInteger)bpm
-{
-    [self deselectTone];
-}
-
-- (GridCoord)responderCell
-{
-    return self.cell;
-}
-
 - (void)deselectTone
 {
     [SpriteUtils switchImageForSprite:self.sprite textureKey:[self imageNameForMidiValue:self.midiValue on:NO]];
 }
-
-#pragma mark
 
 - (NSString *)imageNameForMidiValue:(int)midi on:(BOOL)on
 {
@@ -140,6 +103,41 @@
             NSLog(@"tone image not found for value: %i, returning empty string", midi);
             return @"";
     }
+}
+
+#pragma mark - CCTargetedTouchDelegate
+
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if ([super ccTouchBegan:touch withEvent:event]) {
+        NSString *event = [self tick:kBPM];
+        [self.synth receiveEvents:@[event]];
+        return YES;
+    }
+    return NO;
+}
+
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    [self deselectTone];
+}
+
+#pragma mark - Tick Responder
+
+- (NSString *)tick:(NSInteger)bpm
+{
+    [SpriteUtils switchImageForSprite:self.sprite textureKey:[self imageNameForMidiValue:self.midiValue on:YES]];
+    return [NSString stringWithFormat:@"%i", self.midiValue];
+}
+
+- (void)afterTick:(NSInteger)bpm
+{
+    [self deselectTone];
+}
+
+- (GridCoord)responderCell
+{
+    return self.cell;
 }
 
 @end

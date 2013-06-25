@@ -16,12 +16,15 @@ NSString *const kTLDGroupTickResponders = @"Tick Responders";
 NSString *const kTLDObjectSequence = @"sequence";
 NSString *const kTLDObjectEntry = @"entry";
 NSString *const kTLDObjectTone = @"tone";
+NSString *const kTLDObjectDrum = @"drum";
 NSString *const kTLDObjectArrow = @"arrow";
 
 // tiled object properties
 NSString *const kTLDPropertyMidiValue = @"midiValue";
+NSString *const kTLDPropertyPattern = @"pattern";
 NSString *const kTLDPropertyDirection = @"direction";
 NSString *const kTLDPropertyEvents = @"events";
+NSString *const kTLDPropertyChannel = @"channel";
 
 
 @implementation SGTiledUtils

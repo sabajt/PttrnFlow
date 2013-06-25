@@ -16,8 +16,6 @@ static NSString *const kTmx = @".tmx";
 
 }
 
-#pragma mark - data sources
-
 // array of strings for all .tmx files, strings formatted without the .tmx extensions
 + (NSArray *)tileMapNames
 {    

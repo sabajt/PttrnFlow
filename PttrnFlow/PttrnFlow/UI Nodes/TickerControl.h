@@ -15,7 +15,6 @@
 
 @end
 
-//@interface TickerControl : CCNode <CCTargetedTouchDelegate>
 @interface TickerControl : TouchNode;
 
 @property (weak, nonatomic) id<TickerControlDelegate> delegate;

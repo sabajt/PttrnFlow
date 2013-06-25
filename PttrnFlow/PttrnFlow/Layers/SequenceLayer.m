@@ -23,6 +23,7 @@
 #import "TickerControl.h"
 #import "ColorUtils.h"
 #import "PdDispatcher.h"
+#import "Drum.h"
 
 @interface SequenceLayer ()
 
@@ -61,42 +62,51 @@
     self = [super init];
     if (self) {
         self.isTouchEnabled = YES;
+        self.synth = [[MainSynth alloc] init];
         self.tileMap = tiledMap;
-        self.gridSize = [GridUtils gridCoordFromSize:self.tileMap.mapSize];
+        self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
         
-        // pan zoom
+        // CCLayerPanZoom
         self.mode = kCCLayerPanZoomModeSheet;
         self.maxScale = 1;
         self.minScale = 0.3;
         
-        // setup tick dispatcher with sequence and starting point
-        NSMutableDictionary *seq = [self.tileMap objectNamed:kTLDObjectSequence groupNamed:kTLDGroupTickResponders];
-        NSMutableDictionary *entry = [self.tileMap objectNamed:kTLDObjectEntry groupNamed:kTLDGroupTickResponders];
-        self.synth = [[MainSynth alloc] init];
-        
-        TickDispatcher *tickDispatcher = [[TickDispatcher alloc] initWithSequence:seq tiledMap:tiledMap synth:self.synth];
+        // tick dispatcher
+        NSMutableDictionary *sequence = [tiledMap objectNamed:kTLDObjectSequence groupNamed:kTLDGroupTickResponders];
+        TickDispatcher *tickDispatcher = [[TickDispatcher alloc] initWithSequence:sequence tiledMap:tiledMap synth:self.synth];
         self.tickDispatcher = tickDispatcher;
         [self addChild:self.tickDispatcher];
         
-        // tones
-        NSMutableArray *tones = [self.tileMap objectsWithName:kTLDObjectTone groupName:kTLDGroupTickResponders];
+        // tone blocks
+        NSMutableArray *tones = [tiledMap objectsWithName:kTLDObjectTone groupName:kTLDGroupTickResponders];
         for (NSMutableDictionary *tone in tones) {
-            Tone *toneNode = [[Tone alloc] initWithTone:tone tiledMap:self.tileMap puzzleOrigin:self.position synth:self.synth];
+            Tone *toneNode = [[Tone alloc] initWithTone:tone tiledMap:tiledMap puzzleOrigin:self.position synth:self.synth];
             [self.tickDispatcher registerTickResponder:toneNode];
             [self addChild:toneNode];
         }
         
-        // arrows
-        NSMutableArray *arrows = [self.tileMap objectsWithName:kTLDObjectArrow groupName:kTLDGroupTickResponders];
+        // drum blocks
+        NSMutableArray *drums = [tiledMap objectsWithName:kTLDObjectDrum groupName:kTLDGroupTickResponders];
+        for (NSMutableDictionary *drum in drums) {
+            Drum *drumNode = [[Drum alloc] initWithDrum:drum tiledMap:tiledMap puzzleOrigin:self.position synth:self.synth];
+            [self.tickDispatcher registerTickResponder:drumNode];
+            [self addChild:drumNode];
+        }
+        
+        // arrow blocks
+        NSMutableArray *arrows = [tiledMap objectsWithName:kTLDObjectArrow groupName:kTLDGroupTickResponders];
         for (NSMutableDictionary *arrow in arrows) {
-            Arrow *arrowNode = [[Arrow alloc] initWithArrow:arrow tiledMap:self.tileMap puzzleOrigin:self.position synth:self.synth];
+            Arrow *arrowNode = [[Arrow alloc] initWithArrow:arrow tiledMap:tiledMap puzzleOrigin:self.position synth:self.synth];
             [self.tickDispatcher registerTickResponder:arrowNode];
             [self addChild:arrowNode];
         }
         
         // entry arrow
-        EntryArrow *entryArrow = [[EntryArrow alloc] initWithEntry:entry tiledMap:self.tileMap puzzleOrigin:self.position];
-        [self addChild:entryArrow];
+        NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDObjectEntry];
+        for (NSMutableDictionary *entry in entries) {
+            EntryArrow *entryArrow = [[EntryArrow alloc] initWithEntry:entry tiledMap:tiledMap puzzleOrigin:self.position];
+            [self addChild:entryArrow];
+        }
     }
     return self;
 }
@@ -112,7 +122,7 @@
     _patch = [PdBase openFile:@"synth.pd" path:[[NSBundle mainBundle] resourcePath]];
     if (!_patch) {
         NSLog(@"Failed to open patch");
-    }    
+    }
 }
 
 - (void)onExit

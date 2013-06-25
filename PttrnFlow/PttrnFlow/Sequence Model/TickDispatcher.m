@@ -12,6 +12,7 @@
 #import "Arrow.h"
 #import "SGTiledUtils.h"
 #import "CCTMXTiledMap+Utils.h"
+#import "TickChannel.h"
 
 NSInteger const kBPM = 120;
 NSString *const kNotificationAdvancedSequence = @"AdvanceSequence";
@@ -19,17 +20,15 @@ NSString *const kKeySequenceIndex = @"SequenceIndex";
 
 static CGFloat const kTickInterval = 0.45;
 
+
 @interface TickDispatcher ()
 
 @property (strong, nonatomic) NSMutableArray *responders;
 @property (strong, nonatomic) NSMutableArray *lastTickedResponders;
-@property (assign) GridCoord startingCell;
-@property (assign) GridCoord currentCell;
-@property (assign) GridCoord nextCell;
-@property (assign) kDirection startingDirection;
-@property (assign) kDirection currentDirection;
 @property (assign) int sequenceIndex;
 @property (assign) GridCoord gridSize;
+@property (strong, nonatomic) NSMutableDictionary *eventSequence;
+@property (strong, nonatomic) NSMutableSet *channels;
 
 @end
 
@@ -40,30 +39,51 @@ static CGFloat const kTickInterval = 0.45;
 {
     self = [super init];
     if (self) {
+        
         NSString *rawEventSeq = [sequence objectForKey:kTLDPropertyEvents];
         NSArray *groupByTick = [rawEventSeq componentsSeparatedByString:@";"];
         self.sequenceLength = groupByTick.count;
+        self.eventSequence = [self constructEventSequence:groupByTick];
         
-        int i = 0;
-        self.eventSequence = [NSMutableDictionary dictionary];
-        for (NSString *event in groupByTick) {
-            NSArray *eventChain = [event componentsSeparatedByString:@","];
-            [self.eventSequence setObject:eventChain forKey:@(i)];
-            i++;
+        NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupTickResponders];
+        self.channels = [NSMutableSet set];
+        for (NSMutableDictionary *entry in entries) {
+            NSString *channel = [entry objectForKey:kTLDPropertyChannel];
+            GridCoord cell = [tiledMap gridCoordForObject:entry];
+            kDirection direction = [SGTiledUtils directionNamed:[entry objectForKey:kTLDPropertyDirection]];
+            TickChannel *tickChannel = [[TickChannel alloc] initWithChannel:[channel intValue] startingDirection:direction startingCell:cell];
+            [self.channels addObject:tickChannel];
         }
-        
-        NSMutableDictionary *entry = [tiledMap objectNamed:kTLDObjectEntry groupNamed:kTLDGroupTickResponders];
-        self.startingDirection = [SGTiledUtils directionNamed:[entry objectForKey:kTLDPropertyDirection]];
-        self.startingCell = [tiledMap gridCoordForObject:entry];
         
         self.sequenceIndex = 0;
         self.responders = [NSMutableArray array];
         self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
         self.lastTickedResponders = [NSMutableArray array];
-        
         self.synth = synth;
     }
     return self;
+}
+
+- (NSMutableDictionary *)constructEventSequence:(NSArray *)groupedByTick
+{
+    /* example:
+     
+     {
+        0 : [48-s, d1],
+        1 : [50-2, d2],
+        2 : [48-t, d1-x1]
+     }
+     
+     */
+    
+    int i = 0;
+    NSMutableDictionary *eventSequence = [NSMutableDictionary dictionary];
+    for (NSString *event in groupedByTick) {
+        NSArray *eventChain = [event componentsSeparatedByString:@","];
+        [eventSequence setObject:eventChain forKey:@(i)];
+        i++;
+    }
+    return eventSequence;
 }
 
 - (void)registerTickResponder:(id<TickResponder>)responder
@@ -75,8 +95,11 @@ static CGFloat const kTickInterval = 0.45;
 // public method to kick off the sequence
 - (void)start
 {
-    self.currentCell = self.startingCell;
-    self.currentDirection = self.startingDirection;
+    for (TickChannel *channel in self.channels) {
+        channel.currentCell = channel.startingCell;
+        channel.currentDirection = channel.startingDirection;
+    }
+    
     [self schedule:@selector(tick:) interval:kTickInterval];
 }
 
@@ -94,7 +117,6 @@ static CGFloat const kTickInterval = 0.45;
         return;
     }
     
-    // play sound in eventSequence
     NSArray *events = [self.eventSequence objectForKey:@(index)];
     [self.synth receiveEvents:events];
 }
@@ -121,45 +143,44 @@ static CGFloat const kTickInterval = 0.45;
 
 // moves the ticker along the grid
 - (void)tick:(ccTime)dt
-{
-    NSLog(@"current cell: %i, %i", self.currentCell.x, self.currentCell.y);
-    
+{    
     for (id<TickResponder> responder in self.lastTickedResponders) {
         [responder afterTick:kBPM];
     }
-
-    // stop if we are off the grid
-    if (![GridUtils isCellInBounds:self.currentCell gridSize:self.gridSize]) {
-        [self stop];
-        NSLog(@"out of bounds stopping tick");
-        return;
-    }
+    [self.lastTickedResponders removeAllObjects];
     
-    // tick and collect events
-    NSMutableArray *events = [NSMutableArray array];
-    for (id<TickResponder>responder in self.responders) {
-        if ([GridUtils isCell:[responder responderCell] equalToCell:self.currentCell]) {
-            [events addObject:[responder tick:kBPM]];
-            [self.lastTickedResponders addObject:responder];
+    NSMutableArray *combinedEvents = [NSMutableArray array];
+    for (TickChannel *tickChannel in self.channels) {
+        
+        // tick and collect events
+        NSMutableArray *events = [NSMutableArray array];
+        for (id<TickResponder> responder in self.responders) {
+            if ([GridUtils isCell:[responder responderCell] equalToCell:tickChannel.currentCell]) {
+                [events addObject:[responder tick:kBPM]];
+                [self.lastTickedResponders addObject:responder];
+            }
         }
-    }
-    
-    // handle events
-    for (NSString *event in events) {
-                
-        // change direction for arrows
-        if ([TickDispatcher isArrowEvent:event]) {
-            self.currentDirection = [GridUtils directionForString:event];
+        
+        // stop if we have no events
+        if (events.count < 1) {
+            NSLog(@"out of bounds stopping tick");
+            [self stop];
+            return;
         }
+        
+        [tickChannel update:events];
+        [combinedEvents addObjectsFromArray:events];
     }
     
     // synth talks to our PD patch
-    [self.synth receiveEvents:events];
+    [self.synth receiveEvents:combinedEvents];
     
-    // advance cell 
-    self.currentCell = [GridUtils stepInDirection:self.currentDirection fromCell:self.currentCell];    
+    // advance cells
+    for (TickChannel *tickChannel in self.channels) {
+        tickChannel.currentCell = [tickChannel nextCell];
+    }
 }
-             
+
 + (BOOL)isArrowEvent:(NSString *)event
 {
     if ([event isEqualToString:@"up"] || [event isEqualToString:@"down"] || [event isEqualToString:@"right"] || [event isEqualToString:@"left"] || [event isEqualToString:@"n"])

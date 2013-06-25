@@ -44,6 +44,15 @@ NSString *const kImageG = @"G.png";
 
 NSString *const kImageStartArrow = @"startArrow.png";
 
+NSString *const kImageDrum1 = @"drum1.png";
+NSString *const kImageDrum1_on = @"drum1on.png";
+NSString *const kImageDrum2 = @"drum2.png";
+NSString *const kImageDrum2_on = @"drum2on.png";
+NSString *const kImageDrum3 = @"drum3.png";
+NSString *const kImageDrum3_on = @"drum3on.png";
+NSString *const kImageDrum4 = @"drum4.png";
+NSString *const kImageDrum4_on = @"drum4on.png";
+
 
 // don't forget to load the images
 + (void)loadTextures
@@ -81,6 +90,14 @@ NSString *const kImageStartArrow = @"startArrow.png";
     
     [[CCTextureCache sharedTextureCache] addImage:kImageStartArrow];
 
+    [[CCTextureCache sharedTextureCache] addImage:kImageDrum1];
+    [[CCTextureCache sharedTextureCache] addImage:kImageDrum1_on];
+    [[CCTextureCache sharedTextureCache] addImage:kImageDrum2];
+    [[CCTextureCache sharedTextureCache] addImage:kImageDrum2_on];
+    [[CCTextureCache sharedTextureCache] addImage:kImageDrum3];
+    [[CCTextureCache sharedTextureCache] addImage:kImageDrum3_on];
+    [[CCTextureCache sharedTextureCache] addImage:kImageDrum4];
+    [[CCTextureCache sharedTextureCache] addImage:kImageDrum4_on];
 }
 
 

@@ -27,11 +27,10 @@ typedef enum
 @interface TickDispatcher : CCNode <TickerControlDelegate>
 
 @property (assign) int sequenceLength;
-@property (strong, nonatomic) NSMutableDictionary *eventSequence;
-
 @property (weak, nonatomic) id<SoundEventReceiver> synth;
 
 - (id)initWithSequence:(NSMutableDictionary *)sequence tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth;
+
 - (void)registerTickResponder:(id<TickResponder>)responder;
 
 - (void)start;
