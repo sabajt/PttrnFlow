@@ -215,6 +215,7 @@
 		1693C662177A0C9300FEB350 /* d2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C660177A0C9300FEB350 /* d2.wav */; };
 		1693C665177A628300FEB350 /* d3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C663177A628200FEB350 /* d3.wav */; };
 		1693C666177A628300FEB350 /* d4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C664177A628200FEB350 /* d4.wav */; };
+		1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */; };
 		169F3D131770ADB2005F93B2 /* CCLayerPanZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 169F3D111770ADB2005F93B2 /* CCLayerPanZoom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		169F3D141770ADB2005F93B2 /* README-CCLayerPanZoom.md in Resources */ = {isa = PBXBuildFile; fileRef = 169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */; };
 		169FC6B9173475AE008EC4C4 /* CellObjectLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 169FC6B8173475AE008EC4C4 /* CellObjectLibrary.m */; };
@@ -630,6 +631,8 @@
 		1693C660177A0C9300FEB350 /* d2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = d2.wav; sourceTree = "<group>"; };
 		1693C663177A628200FEB350 /* d3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = d3.wav; sourceTree = "<group>"; };
 		1693C664177A628200FEB350 /* d4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = d4.wav; sourceTree = "<group>"; };
+		1693C66A177B5C7E00FEB350 /* NSArray+CompareStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CompareStrings.h"; sourceTree = "<group>"; };
+		1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CompareStrings.m"; sourceTree = "<group>"; };
 		169F3D101770ADB2005F93B2 /* CCLayerPanZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLayerPanZoom.h; sourceTree = "<group>"; };
 		169F3D111770ADB2005F93B2 /* CCLayerPanZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLayerPanZoom.m; sourceTree = "<group>"; };
 		169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README-CCLayerPanZoom.md"; sourceTree = "<group>"; };
@@ -1167,6 +1170,8 @@
 				163DBE071769325400FCB89C /* UIImage+Utils.m */,
 				163DBE091769329C00FCB89C /* CCSprite+Utils.h */,
 				163DBE0A1769329C00FCB89C /* CCSprite+Utils.m */,
+				1693C66A177B5C7E00FEB350 /* NSArray+CompareStrings.h */,
+				1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1698,6 +1703,7 @@
 				16A942BF1777AADF0052D5BD /* TickChannel.m in Sources */,
 				16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */,
 				16A942C61777ABFA0052D5BD /* TickerControl.m in Sources */,
+				1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

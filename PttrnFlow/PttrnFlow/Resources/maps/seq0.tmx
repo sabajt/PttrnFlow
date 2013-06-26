@@ -15,7 +15,7 @@
    </properties>
    <ellipse/>
   </object>
-  <object name="drum" x="664" y="655" width="66" height="64">
+  <object name="drum" x="449" y="664" width="66" height="64">
    <properties>
     <property name="pattern" value="d2"/>
    </properties>
@@ -32,7 +32,7 @@
    </properties>
    <ellipse/>
   </object>
-  <object name="drum" x="466" y="665" width="66" height="64">
+  <object name="drum" x="279" y="661" width="66" height="64">
    <properties>
     <property name="pattern" value="d1"/>
    </properties>
@@ -48,7 +48,7 @@
    </properties>
    <ellipse/>
   </object>
-  <object name="arrow" x="428" y="688" width="83" height="83">
+  <object name="arrow" x="454" y="679" width="83" height="83">
    <properties>
     <property name="direction" value="right"/>
    </properties>
@@ -70,12 +70,45 @@
    </properties>
    <ellipse/>
   </object>
-  <object name="entry" x="412" y="626" width="125" height="121">
+  <object name="entry" x="208" y="628" width="125" height="121">
    <properties>
     <property name="channel" value="2"/>
     <property name="direction" value="right"/>
    </properties>
    <ellipse/>
+  </object>
+  <object name="tone" x="458" y="89" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="52"/>
+   </properties>
+  </object>
+  <object name="tone" x="671" y="89" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="52"/>
+   </properties>
+  </object>
+  <object name="arrow" x="646" y="49" width="83" height="83">
+   <properties>
+    <property name="direction" value="down"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object name="arrow" x="427" y="53" width="83" height="83">
+   <properties>
+    <property name="direction" value="right"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object name="arrow" x="476" y="289" width="83" height="83">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object name="drum" x="656" y="665" width="66" height="64">
+   <properties>
+    <property name="pattern" value="d2"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

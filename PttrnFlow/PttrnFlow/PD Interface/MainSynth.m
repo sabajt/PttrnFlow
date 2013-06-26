@@ -26,7 +26,7 @@ static NSString *const kSelectDrum = @"selectDrum";
 {
     NSMutableArray *filtered = [NSMutableArray array];
     for (NSString *event in rawEvents) {
-        if ([MainSynth isValidMidiValue:event] || [MainSynth isValidDrumPattern:event]) {
+        if ([MainSynth isValidMidiValue:event] || [MainSynth isValidDrumPattern:event] || [event isEqualToString:kExitEvent]) {
             [filtered addObject:event];
         }
     }
@@ -61,6 +61,10 @@ static NSString *const kSelectDrum = @"selectDrum";
     [PdBase sendBangToReceiver:kClear];
     
     for (NSString *event in events) {
+        
+        if ([event isEqualToString:kExitEvent]) {
+            [PdBase sendBangToReceiver:kActivateNoise];
+        }
         
         if ([MainSynth isValidMidiValue:event]) {
             [PdBase sendBangToReceiver:kActivateTone];

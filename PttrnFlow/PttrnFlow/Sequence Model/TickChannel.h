@@ -18,9 +18,12 @@
 @property (assign) kDirection currentDirection;
 @property (assign) GridCoord startingCell;
 @property (assign) GridCoord currentCell;
+@property (assign) BOOL hasStopped;
 
 - (id)initWithChannel:(int)channel startingDirection:(kDirection)direction startingCell:(GridCoord)cell;
+
 - (GridCoord)nextCell;
 - (void)update:(NSMutableArray *)events;
+- (void)reset;
 
 @end

@@ -13,10 +13,12 @@
 #import "SGTiledUtils.h"
 #import "CCTMXTiledMap+Utils.h"
 #import "TickChannel.h"
+#import "NSArray+CompareStrings.h"
 
 NSInteger const kBPM = 120;
 NSString *const kNotificationAdvancedSequence = @"AdvanceSequence";
 NSString *const kKeySequenceIndex = @"SequenceIndex";
+NSString *const kExitEvent = @"exit";
 
 static CGFloat const kTickInterval = 0.5;
 
@@ -62,7 +64,6 @@ static CGFloat const kTickInterval = 0.5;
         self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
         self.lastTickedResponders = [NSMutableArray array];
         self.synth = synth;
-        self.hits = [NSMutableArray array];
     }
     return self;
 }
@@ -89,10 +90,10 @@ static CGFloat const kTickInterval = 0.5;
 - (void)start
 {
     self.tickCounter = 0;
+    self.hits = [NSMutableArray array];
     
     for (TickChannel *channel in self.channels) {
-        channel.currentCell = channel.startingCell;
-        channel.currentDirection = channel.startingDirection;
+        [channel reset];
     }
     
     [self schedule:@selector(tick:) interval:kTickInterval];
@@ -147,6 +148,11 @@ static CGFloat const kTickInterval = 0.5;
     NSMutableArray *combinedEvents = [NSMutableArray array];
     for (TickChannel *tickChannel in self.channels) {
         
+        // skip if tick channel has stopped
+        if (tickChannel.hasStopped) {
+            continue;
+        }
+        
         // tick and collect events
         NSMutableArray *events = [NSMutableArray array];
         for (id<TickResponder> responder in self.responders) {
@@ -156,27 +162,36 @@ static CGFloat const kTickInterval = 0.5;
             }
         }
         
-        // stop if we have no events
-        if (events.count < 1) {
-            NSLog(@"out of bounds stopping tick");
-            [self stop];
-            return;
+        // the first time we have no event, this means we hit no blocks -- this is an 'exit' event
+        if (events.count == 0) {
+            NSLog(@"exit channel %i", tickChannel.channel);
+            [events addObject:kExitEvent];
         }
         
         [tickChannel update:events];
         [combinedEvents addObjectsFromArray:events];
     }
     
+    // stop if we have no combined events
+    if (combinedEvents.count == 0) {
+        NSLog(@"out of bounds stopping tick");
+        [self stop];
+        return;
+    }
+    
     // check for correct hits
     NSMutableArray *filtered = [MainSynth filterSoundEvents:combinedEvents];
     if ([self testHit:filtered tick:self.tickCounter]) {
         NSLog(@"HIT");
+        [self.hits addObject:@(YES)];
     }
     else {
         NSLog(@"MISS");
+        [self.hits addObject:@(NO)];
     }
     
     // synth talks to our PD patch
+    // TODO: this should probably be filtered events, unless synth has some reason to care about non-synth events?
     [self.synth receiveEvents:combinedEvents];
     
     // advance cells, tick counter
@@ -184,6 +199,12 @@ static CGFloat const kTickInterval = 0.5;
         tickChannel.currentCell = [tickChannel nextCell];
     }
     self.tickCounter++;
+    
+    // stop if we have reached the tick limit
+    if (self.tickCounter > self.eventSequence.count) {
+        [self stop];
+        return;
+    }
 }
 
 - (BOOL)testHit:(NSMutableArray *)hit tick:(int)tick
@@ -191,26 +212,8 @@ static CGFloat const kTickInterval = 0.5;
     if (tick >= self.eventSequence.count) {
         return NO;
     }
-    
-    // cross check that the events at this tick contain exactly the same events in our hit
     NSArray *events = [self.eventSequence objectAtIndex:tick];
-    for (NSString *event in events) {
-        NSUInteger index = [hit indexOfObjectPassingTest:^BOOL(NSString *evt, NSUInteger idx, BOOL *stop) {
-            return [evt isEqualToString:event];
-        }];
-        if (index == NSNotFound) {
-            return NO;
-        }
-    }
-    for (NSString *event in hit) {
-        NSUInteger index = [events indexOfObjectPassingTest:^BOOL(NSString *evt, NSUInteger idx, BOOL *stop) {
-            return [evt isEqualToString:event];
-        }];
-        if (index == NSNotFound) {
-            return NO;
-        }
-    }
-    return YES;
+    return [events containsSameStrings:hit];
 }
 
 #pragma mark - TickerControlDelegate
