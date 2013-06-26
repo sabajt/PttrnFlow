@@ -22,7 +22,18 @@ static NSString *const kSelectDrum = @"selectDrum";
 
 @implementation MainSynth
 
-- (BOOL)isValidMidiValue:(NSString *)midiString
++ (NSMutableArray *)filterSoundEvents:(NSMutableArray *)rawEvents
+{
+    NSMutableArray *filtered = [NSMutableArray array];
+    for (NSString *event in rawEvents) {
+        if ([MainSynth isValidMidiValue:event] || [MainSynth isValidDrumPattern:event]) {
+            [filtered addObject:event];
+        }
+    }
+    return filtered;
+}
+
++ (BOOL)isValidMidiValue:(NSString *)midiString
 {
     if ([midiString isEqualToString:@"48"] || [midiString isEqualToString:@"49"] || [midiString isEqualToString:@"50"] || [midiString isEqualToString:@"51"] || [midiString isEqualToString:@"52"] || [midiString isEqualToString:@"53"] || [midiString isEqualToString:@"54"] ||  [midiString isEqualToString:@"55"] || [midiString isEqualToString:@"56"] || [midiString isEqualToString:@"57"] || [midiString isEqualToString:@"58"] || [midiString isEqualToString:@"59"])
     {
@@ -31,7 +42,7 @@ static NSString *const kSelectDrum = @"selectDrum";
     return NO;
 }
 
-- (BOOL)isValidDrumPattern:(NSString *)drumPattern
++ (BOOL)isValidDrumPattern:(NSString *)drumPattern
 {
     if ([drumPattern isEqualToString:@"d1"] || [drumPattern isEqualToString:@"d2"]) {
         return YES;
@@ -51,12 +62,12 @@ static NSString *const kSelectDrum = @"selectDrum";
     
     for (NSString *event in events) {
         
-        if ([self isValidMidiValue:event]) {
+        if ([MainSynth isValidMidiValue:event]) {
             [PdBase sendBangToReceiver:kActivateTone];
             [PdBase sendFloat:[event intValue] toReceiver:kMidiValue];
         }
         
-        if ([self isValidDrumPattern:event]) {
+        if ([MainSynth isValidDrumPattern:event]) {
             [PdBase sendSymbol:event toReceiver:kSelectDrum];
             [PdBase sendBangToReceiver:kActiviateDrum];
         }

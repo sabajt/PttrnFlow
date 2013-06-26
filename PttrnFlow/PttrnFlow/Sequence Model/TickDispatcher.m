@@ -27,8 +27,10 @@ static CGFloat const kTickInterval = 0.5;
 @property (strong, nonatomic) NSMutableArray *lastTickedResponders;
 @property (assign) int sequenceIndex;
 @property (assign) GridCoord gridSize;
-@property (strong, nonatomic) NSMutableDictionary *eventSequence;
+@property (strong, nonatomic) NSMutableArray *eventSequence;
 @property (strong, nonatomic) NSMutableSet *channels;
+@property (strong, nonatomic) NSMutableArray *hits;
+@property (assign) int tickCounter;
 
 @end
 
@@ -60,28 +62,19 @@ static CGFloat const kTickInterval = 0.5;
         self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
         self.lastTickedResponders = [NSMutableArray array];
         self.synth = synth;
+        self.hits = [NSMutableArray array];
     }
     return self;
 }
 
-- (NSMutableDictionary *)constructEventSequence:(NSArray *)groupedByTick
+- (NSMutableArray *)constructEventSequence:(NSArray *)groupedByTick
 {
-    /* example:
-     
-     {
-        0 : [48-s, d1],
-        1 : [50-2, d2],
-        2 : [48-t, d1-x1]
-     }
-     
-     */
+    // example: [[@"48-s", @"d1"], [@"50-2", @"d2"], [@"48-t", @"d1-x1"]]
     
-    int i = 0;
-    NSMutableDictionary *eventSequence = [NSMutableDictionary dictionary];
+    NSMutableArray *eventSequence = [NSMutableArray array];
     for (NSString *event in groupedByTick) {
         NSArray *eventChain = [event componentsSeparatedByString:@","];
-        [eventSequence setObject:eventChain forKey:@(i)];
-        i++;
+        [eventSequence addObject:eventChain];
     }
     return eventSequence;
 }
@@ -95,6 +88,8 @@ static CGFloat const kTickInterval = 0.5;
 // public method to kick off the sequence
 - (void)start
 {
+    self.tickCounter = 0;
+    
     for (TickChannel *channel in self.channels) {
         channel.currentCell = channel.startingCell;
         channel.currentDirection = channel.startingDirection;
@@ -117,7 +112,7 @@ static CGFloat const kTickInterval = 0.5;
         return;
     }
     
-    NSArray *events = [self.eventSequence objectForKey:@(index)];
+    NSArray *events = [self.eventSequence objectAtIndex:index];
     [self.synth receiveEvents:events];
 }
 
@@ -172,14 +167,60 @@ static CGFloat const kTickInterval = 0.5;
         [combinedEvents addObjectsFromArray:events];
     }
     
+    // check for correct hits
+    NSMutableArray *filtered = [MainSynth filterSoundEvents:combinedEvents];
+    if ([self testHit:filtered tick:self.tickCounter]) {
+        NSLog(@"HIT");
+    }
+    else {
+        NSLog(@"MISS");
+    }
+    
     // synth talks to our PD patch
     [self.synth receiveEvents:combinedEvents];
     
-    // advance cells
+    // advance cells, tick counter
     for (TickChannel *tickChannel in self.channels) {
         tickChannel.currentCell = [tickChannel nextCell];
     }
+    self.tickCounter++;
 }
+
+- (BOOL)testHit:(NSMutableArray *)hit tick:(int)tick
+{
+    if (tick >= self.eventSequence.count) {
+        return NO;
+    }
+    
+    // cross check that the events at this tick contain exactly the same events in our hit
+    NSArray *events = [self.eventSequence objectAtIndex:tick];
+    for (NSString *event in events) {
+        NSUInteger index = [hit indexOfObjectPassingTest:^BOOL(NSString *evt, NSUInteger idx, BOOL *stop) {
+            return [evt isEqualToString:event];
+        }];
+        if (index == NSNotFound) {
+            return NO;
+        }
+    }
+    for (NSString *event in hit) {
+        NSUInteger index = [events indexOfObjectPassingTest:^BOOL(NSString *evt, NSUInteger idx, BOOL *stop) {
+            return [evt isEqualToString:event];
+        }];
+        if (index == NSNotFound) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+#pragma mark - TickerControlDelegate
+
+- (void)tickerMovedToIndex:(int)index
+{
+    [self play:index];
+}
+
+#pragma mark - 
 
 + (BOOL)isArrowEvent:(NSString *)event
 {
@@ -188,13 +229,6 @@ static CGFloat const kTickInterval = 0.5;
         return YES;
     }
     return NO;
-}
-
-#pragma mark - TickerControlDelegate
-
-- (void)tickerMovedToIndex:(int)index
-{
-    [self play:index];
 }
 
 @end

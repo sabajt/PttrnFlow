@@ -19,4 +19,6 @@
 
 @interface MainSynth : NSObject <SoundEventReceiver>
 
++ (NSMutableArray *)filterSoundEvents:(NSMutableArray *)rawEvents;
+
 @end
