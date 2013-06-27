@@ -166,6 +166,7 @@ static CGFloat const kTickInterval = 0.5;
         if (events.count == 0) {
             NSLog(@"exit channel %i", tickChannel.channel);
             [events addObject:kExitEvent];
+            [self.delegate tickExit:tickChannel.currentCell];
         }
         
         [tickChannel update:events];

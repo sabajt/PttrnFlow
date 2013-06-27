@@ -13,6 +13,6 @@
 
 @property (assign) int midiValue;
 
-- (id)initWithTone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap puzzleOrigin:(CGPoint)origin synth:(id<SoundEventReceiver>)synth;
+- (id)initWithTone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth;
 
 @end

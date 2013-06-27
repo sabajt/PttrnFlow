@@ -11,6 +11,6 @@
 
 @interface Drum : SynthCellNode <TickResponder>
 
-- (id)initWithDrum:(NSMutableDictionary *)drum tiledMap:(CCTMXTiledMap *)tiledMap puzzleOrigin:(CGPoint)origin synth:(id<SoundEventReceiver>)synth;
+- (id)initWithDrum:(NSMutableDictionary *)drum tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth;
 
 @end

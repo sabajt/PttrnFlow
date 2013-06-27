@@ -15,7 +15,6 @@
 #import "CCTMXTiledMap+Utils.h"
 #import "SGTiledUtils.h"
 #import "Tone.h"
-#import "TickDispatcher.h"
 #import "SGTiledUtils.h"
 #import "Arrow.h"
 #import "MainSynth.h"
@@ -24,6 +23,9 @@
 #import "ColorUtils.h"
 #import "PdDispatcher.h"
 #import "Drum.h"
+#import "BlockFader.h"
+#import "ColorUtils.h"
+#import "CCLayer+Positioning.h"
 
 @interface SequenceLayer ()
 
@@ -75,12 +77,13 @@
         NSMutableDictionary *sequence = [tiledMap objectNamed:kTLDObjectSequence groupNamed:kTLDGroupTickResponders];
         TickDispatcher *tickDispatcher = [[TickDispatcher alloc] initWithSequence:sequence tiledMap:tiledMap synth:self.synth];
         self.tickDispatcher = tickDispatcher;
+        self.tickDispatcher.delegate = self;
         [self addChild:self.tickDispatcher];
         
         // tone blocks
         NSMutableArray *tones = [tiledMap objectsWithName:kTLDObjectTone groupName:kTLDGroupTickResponders];
         for (NSMutableDictionary *tone in tones) {
-            Tone *toneNode = [[Tone alloc] initWithTone:tone tiledMap:tiledMap puzzleOrigin:self.position synth:self.synth];
+            Tone *toneNode = [[Tone alloc] initWithTone:tone tiledMap:tiledMap synth:self.synth];
             [self.tickDispatcher registerTickResponder:toneNode];
             [self addChild:toneNode];
         }
@@ -88,7 +91,7 @@
         // drum blocks
         NSMutableArray *drums = [tiledMap objectsWithName:kTLDObjectDrum groupName:kTLDGroupTickResponders];
         for (NSMutableDictionary *drum in drums) {
-            Drum *drumNode = [[Drum alloc] initWithDrum:drum tiledMap:tiledMap puzzleOrigin:self.position synth:self.synth];
+            Drum *drumNode = [[Drum alloc] initWithDrum:drum tiledMap:tiledMap synth:self.synth];
             [self.tickDispatcher registerTickResponder:drumNode];
             [self addChild:drumNode];
         }
@@ -96,7 +99,7 @@
         // arrow blocks
         NSMutableArray *arrows = [tiledMap objectsWithName:kTLDObjectArrow groupName:kTLDGroupTickResponders];
         for (NSMutableDictionary *arrow in arrows) {
-            Arrow *arrowNode = [[Arrow alloc] initWithArrow:arrow tiledMap:tiledMap puzzleOrigin:self.position synth:self.synth];
+            Arrow *arrowNode = [[Arrow alloc] initWithArrow:arrow tiledMap:tiledMap synth:self.synth];
             [self.tickDispatcher registerTickResponder:arrowNode];
             [self addChild:arrowNode];
         }
@@ -104,7 +107,7 @@
         // entry arrow
         NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDObjectEntry];
         for (NSMutableDictionary *entry in entries) {
-            EntryArrow *entryArrow = [[EntryArrow alloc] initWithEntry:entry tiledMap:tiledMap puzzleOrigin:self.position];
+            EntryArrow *entryArrow = [[EntryArrow alloc] initWithEntry:entry tiledMap:tiledMap];
             [self addChild:entryArrow];
         }
     }
@@ -140,6 +143,28 @@
     [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
 }
 
-# pragma mark - CCStandardTouchDelegate
+# pragma mark - TickDispatcherDelegate
+
+- (void)tickExit:(GridCoord)cell
+{
+    // create the exit animation
+    BlockFader *fader = [BlockFader blockFaderWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) color:[ColorUtils exitFaderBlock] cell:cell];
+    [self addChild:fader];
+}
+
+#pragma mark -
+
+- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super ccTouchesMoved:touches withEvent:event];
+    
+    NSLog(@"\n\nvvvvvv\n");
+    
+    NSLog(@"position: %@", NSStringFromCGPoint(self.position));
+    NSLog(@"content size: %@", NSStringFromCGSize(self.contentSize));
+    NSLog(@"anchor point: %@", NSStringFromCGPoint(self.anchorPoint));
+    
+    NSLog(@"\n^^^^^^\n\n");
+}
 
 @end

@@ -15,7 +15,7 @@
 
 @implementation Tone
 
-- (id)initWithTone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap puzzleOrigin:(CGPoint)origin synth:(id<SoundEventReceiver>)synth
+- (id)initWithTone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth
 {
     self = [super initWithSynth:synth];
     if (self) {
@@ -25,7 +25,7 @@
         NSString *imageName = [self imageNameForMidiValue:self.midiValue on:NO];
         self.sprite = [self createAndCenterSpriteNamed:imageName];
         [self addChild:self.sprite];
-        self.position = [GridUtils absolutePositionForGridCoord:self.cell unitSize:kSizeGridUnit origin:origin];
+        self.position = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
     }
     return self;
 }

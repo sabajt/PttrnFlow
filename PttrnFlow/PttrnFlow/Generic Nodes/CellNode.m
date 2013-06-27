@@ -14,6 +14,13 @@
 #import "CCNode+Touch.h"
 #import "CCSprite+Utils.h"
 
+@interface CellNode ()
+
+@property (assign) BOOL implementsTouch;
+
+@end
+
+
 @implementation CellNode
 
 - (id)init
@@ -21,9 +28,21 @@
     self = [super init];
     if (self) {
         self.contentSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
+        self.implementsTouch = YES;
     }
     return self;
 }
+
+- (id)initWithTargetedTouch:(BOOL)useTouch
+{
+    self = [super init];
+    if (self) {
+        self.contentSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
+        self.implementsTouch = useTouch;
+    }
+    return self;
+}
+
 
 - (CCSprite *)createAndCenterSpriteNamed:(NSString *)name
 {
@@ -72,5 +91,22 @@
 {
     self.sprite.position = CGPointMake(self.contentSize.width/2, self.sprite.contentSize.height/2);
 }
+
+#pragma mark CCNode SceneManagement
+
+- (void)onEnter
+{
+    if (self.implementsTouch) {
+        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:self.swallowsTouches];
+    }
+}
+
+- (void)onExit
+{
+    if (self.implementsTouch) {
+        [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    }
+}
+
 
 @end

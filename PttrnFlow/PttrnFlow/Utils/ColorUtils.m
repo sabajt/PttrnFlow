@@ -64,4 +64,9 @@
     return [self darkBlue];
 }
 
++ (ccColor3B)exitFaderBlock
+{
+    return [self gray];
+}
+
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "TextureUtils.h"
-#import "cocos2d.h"
 
 @implementation TextureUtils
 
@@ -98,6 +97,14 @@ NSString *const kImageDrum4_on = @"drum4on.png";
     [[CCTextureCache sharedTextureCache] addImage:kImageDrum3_on];
     [[CCTextureCache sharedTextureCache] addImage:kImageDrum4];
     [[CCTextureCache sharedTextureCache] addImage:kImageDrum4_on];
+}
+
+// generate a unique texture key using components of primative image size and color
++ (NSString *)keyForPrimativeWithSize:(CGSize)size color:(ccColor3B)color
+{
+    NSString *key = [NSString stringWithFormat:@"%f%f%c%c%c", size.width, size.height, color.r, color.b, color.g];
+    NSLog(@"key: %@", key);
+    return key;
 }
 
 

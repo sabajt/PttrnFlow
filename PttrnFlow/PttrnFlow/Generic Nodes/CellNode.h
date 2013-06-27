@@ -13,8 +13,11 @@
 
 @interface CellNode : TouchNode
 
+// TODO: should this be a weak ref as we always will always add as a child?
 @property (strong, nonatomic) CCSprite *sprite;
 @property (assign) GridCoord cell;
+
+- (id)initWithTargetedTouch:(BOOL)useTouch;
 
 - (CCSprite *)createAndCenterSpriteNamed:(NSString *)name; // returns sprite with image name, centered in content bounds
 - (void)alignSprite:(kDirection)direction;

@@ -15,7 +15,7 @@
 
 @implementation EntryArrow
 
-- (id)initWithEntry:(NSMutableDictionary *)entry tiledMap:(CCTMXTiledMap *)tiledMap puzzleOrigin:(CGPoint)origin
+- (id)initWithEntry:(NSMutableDictionary *)entry tiledMap:(CCTMXTiledMap *)tiledMap
 {
     self = [super init];
     if (self) {
@@ -29,7 +29,7 @@
         [self alignSprite:[GridUtils oppositeDirection:direction]];
         [self addChild:self.sprite];
         
-        self.position = [GridUtils absolutePositionForGridCoord:self.cell unitSize:kSizeGridUnit origin:origin];
+        self.position = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
     }
     return self;
 }

@@ -26,8 +26,16 @@ typedef enum
     kTickEventWarp
 }kTickEvent;
 
+@protocol TickDispatcherDelegate <NSObject>
+
+- (void)tickExit:(GridCoord)cell;
+
+@end
+
+
 @interface TickDispatcher : CCNode <TickerControlDelegate>
 
+@property (weak, nonatomic) id<TickDispatcherDelegate> delegate;
 @property (assign) int sequenceLength;
 @property (weak, nonatomic) id<SoundEventReceiver> synth;
 

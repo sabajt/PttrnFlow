@@ -8,10 +8,11 @@
 
 #import "cocos2d.h"
 #import "CCLayerPanZoom.h"
+#import "TickDispatcher.h"
 
 @class PdDispatcher;
 
-@interface SequenceLayer : CCLayerPanZoom
+@interface SequenceLayer : CCLayerPanZoom <TickDispatcherDelegate>
 {
     PdDispatcher *_dispatcher;
     void *_patch;

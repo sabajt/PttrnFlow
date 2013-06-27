@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
 
 @interface TextureUtils : NSObject
 
@@ -54,5 +55,8 @@ FOUNDATION_EXPORT NSString *const kImageDrum4;
 FOUNDATION_EXPORT NSString *const kImageDrum4_on;
 
 + (void)loadTextures;
+
+// generate a unique texture key using components of primative image size and color
++ (NSString *)keyForPrimativeWithSize:(CGSize)size color:(ccColor3B)color;
 
 @end

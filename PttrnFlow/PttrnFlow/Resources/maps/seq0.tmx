@@ -110,5 +110,11 @@
     <property name="pattern" value="d2"/>
    </properties>
   </object>
+  <object name="arrow" x="232" y="673" width="83" height="83">
+   <properties>
+    <property name="direction" value="right"/>
+   </properties>
+   <ellipse/>
+  </object>
  </objectgroup>
 </map>
