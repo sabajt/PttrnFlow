@@ -10,6 +10,6 @@
 
 @interface BlockFader : PrimativeCellActor
 
-+ (id)blockFaderWithSize:(CGSize)size color:(ccColor3B)color cell:(GridCoord)cell;
++ (id)blockFaderWithSize:(CGSize)size color:(ccColor3B)color cell:(GridCoord)cell duration:(ccTime)duration;
 
 @end

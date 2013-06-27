@@ -148,23 +148,8 @@
 - (void)tickExit:(GridCoord)cell
 {
     // create the exit animation
-    BlockFader *fader = [BlockFader blockFaderWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) color:[ColorUtils exitFaderBlock] cell:cell];
+    BlockFader *fader = [BlockFader blockFaderWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) color:[ColorUtils exitFaderBlock] cell:cell duration:kTickInterval];
     [self addChild:fader];
-}
-
-#pragma mark -
-
-- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super ccTouchesMoved:touches withEvent:event];
-    
-    NSLog(@"\n\nvvvvvv\n");
-    
-    NSLog(@"position: %@", NSStringFromCGPoint(self.position));
-    NSLog(@"content size: %@", NSStringFromCGSize(self.contentSize));
-    NSLog(@"anchor point: %@", NSStringFromCGPoint(self.anchorPoint));
-    
-    NSLog(@"\n^^^^^^\n\n");
 }
 
 @end

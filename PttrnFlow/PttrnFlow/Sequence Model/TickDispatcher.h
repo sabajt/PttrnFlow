@@ -19,6 +19,9 @@ FOUNDATION_EXPORT NSString *const kKeySequenceIndex;
 
 FOUNDATION_EXPORT NSString *const kExitEvent;
 
+FOUNDATION_EXPORT CGFloat const kTickInterval;
+
+
 typedef enum
 {
     kTickEventNote = 0,

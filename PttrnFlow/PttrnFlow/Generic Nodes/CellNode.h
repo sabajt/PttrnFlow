@@ -17,8 +17,6 @@
 @property (strong, nonatomic) CCSprite *sprite;
 @property (assign) GridCoord cell;
 
-- (id)initWithTargetedTouch:(BOOL)useTouch;
-
 - (CCSprite *)createAndCenterSpriteNamed:(NSString *)name; // returns sprite with image name, centered in content bounds
 - (void)alignSprite:(kDirection)direction;
 

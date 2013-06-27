@@ -20,7 +20,7 @@ NSString *const kNotificationAdvancedSequence = @"AdvanceSequence";
 NSString *const kKeySequenceIndex = @"SequenceIndex";
 NSString *const kExitEvent = @"exit";
 
-static CGFloat const kTickInterval = 0.5;
+CGFloat const kTickInterval = 0.5;
 
 
 @interface TickDispatcher ()

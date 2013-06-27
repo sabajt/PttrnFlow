@@ -14,7 +14,7 @@
 
 - (id)initWithSize:(CGSize)size color:(ccColor3B)color cell:(GridCoord)cell textureKey:(NSString *)key touch:(BOOL)usesTouch
 {
-    self = [super initWithTargetedTouch:usesTouch];
+    self = [super init];
     if (self) {
         self.cell = cell;
         self.position = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
