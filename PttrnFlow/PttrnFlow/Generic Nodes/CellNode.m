@@ -10,7 +10,6 @@
 #import "GameConstants.h"
 #import "SpriteUtils.h"
 #import "SGTiledUtils.h"
-#import "CellObjectLibrary.h"
 #import "CCNode+Touch.h"
 #import "CCSprite+Utils.h"
 

@@ -223,7 +223,6 @@
 		1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */; };
 		169F3D131770ADB2005F93B2 /* CCLayerPanZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 169F3D111770ADB2005F93B2 /* CCLayerPanZoom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		169F3D141770ADB2005F93B2 /* README-CCLayerPanZoom.md in Resources */ = {isa = PBXBuildFile; fileRef = 169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */; };
-		169FC6B9173475AE008EC4C4 /* CellObjectLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 169FC6B8173475AE008EC4C4 /* CellObjectLibrary.m */; };
 		16A4277C176BF0A100BEF13F /* SequenceHudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4277B176BF0A100BEF13F /* SequenceHudLayer.m */; };
 		16A942B21777A2260052D5BD /* CellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942991777A2250052D5BD /* CellNode.m */; };
 		16A942B31777A2260052D5BD /* EntryArrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A9429B1777A2250052D5BD /* EntryArrow.m */; };
@@ -651,8 +650,6 @@
 		169F3D101770ADB2005F93B2 /* CCLayerPanZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLayerPanZoom.h; sourceTree = "<group>"; };
 		169F3D111770ADB2005F93B2 /* CCLayerPanZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLayerPanZoom.m; sourceTree = "<group>"; };
 		169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README-CCLayerPanZoom.md"; sourceTree = "<group>"; };
-		169FC6B7173475AE008EC4C4 /* CellObjectLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellObjectLibrary.h; sourceTree = "<group>"; };
-		169FC6B8173475AE008EC4C4 /* CellObjectLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellObjectLibrary.m; sourceTree = "<group>"; };
 		16A4277A176BF0A100BEF13F /* SequenceHudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceHudLayer.h; sourceTree = "<group>"; };
 		16A4277B176BF0A100BEF13F /* SequenceHudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceHudLayer.m; sourceTree = "<group>"; };
 		16A942981777A2250052D5BD /* CellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellNode.h; sourceTree = "<group>"; };
@@ -1163,8 +1160,6 @@
 			children = (
 				165A41A31734EA64005BFC32 /* SGTiledUtils.h */,
 				165A41A41734EA65005BFC32 /* SGTiledUtils.m */,
-				169FC6B7173475AE008EC4C4 /* CellObjectLibrary.h */,
-				169FC6B8173475AE008EC4C4 /* CellObjectLibrary.m */,
 				1624D1E81733822A00851B45 /* ColorUtils.h */,
 				1624D1E91733822B00851B45 /* ColorUtils.m */,
 				1624D1E51733807100851B45 /* PathUtils.h */,
@@ -1708,7 +1703,6 @@
 				1624D1E317337FBE00851B45 /* CCTMXTiledMap+Utils.m in Sources */,
 				1624D1E71733807300851B45 /* PathUtils.m in Sources */,
 				1624D1EA1733822C00851B45 /* ColorUtils.m in Sources */,
-				169FC6B9173475AE008EC4C4 /* CellObjectLibrary.m in Sources */,
 				165A41A51734EA65005BFC32 /* SGTiledUtils.m in Sources */,
 				16FFC9141764E9EA00320C6A /* CCNode+Touch.m in Sources */,
 				163DBE0117692C3100FCB89C /* SequenceMenuLayer.m in Sources */,
