@@ -59,6 +59,11 @@
     return scene;
 }
 
++ (BlockFader *)exitFader:(GridCoord)cell
+{
+    return [BlockFader blockFaderWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) color:[ColorUtils exitFaderBlock] cell:cell duration:kTickInterval];
+}
+
 - (id)initWithTiledMap:(CCTMXTiledMap *)tiledMap
 {
     self = [super init];
@@ -114,6 +119,13 @@
     return self;
 }
 
+- (void)draw
+{
+    // grid
+    ccDrawColor4F(0.5f, 0.5f, 0.5f, 1.0f);
+    [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
+}
+
 #pragma mark - scene management
 
 - (void)onEnter
@@ -136,20 +148,29 @@
     [super onExit];
 }
 
-- (void)draw
-{
-    // grid
-    ccDrawColor4F(0.5f, 0.5f, 0.5f, 1.0f);
-    [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
-}
-
 # pragma mark - TickDispatcherDelegate
 
 - (void)tickExit:(GridCoord)cell
 {
-    // create the exit animation
-    BlockFader *fader = [BlockFader blockFaderWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) color:[ColorUtils exitFaderBlock] cell:cell duration:kTickInterval];
-    [self addChild:fader];
+    // create the exit animation -- don't send an event to synth, TickDispatcher handles in this case
+    [self addChild:[SequenceLayer exitFader:cell]];
+}
+
+#pragma mark - CCStandardTouchDelegate
+
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super ccTouchesBegan:touches withEvent:event];
+    
+    if (touches.count == 1) {
+        UITouch *touch = [touches anyObject];
+        CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+        GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
+        
+        // create the exit animation and send event to synth
+        [self addChild:[SequenceLayer exitFader:cell]];
+        [self.synth receiveEvents:@[kExitEvent]];
+    }
 }
 
 @end

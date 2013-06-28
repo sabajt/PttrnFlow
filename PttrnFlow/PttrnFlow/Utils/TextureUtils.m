@@ -102,9 +102,7 @@ NSString *const kImageDrum4_on = @"drum4on.png";
 // generate a unique texture key using components of primative image size and color
 + (NSString *)keyForPrimativeWithSize:(CGSize)size color:(ccColor3B)color
 {
-    NSString *key = [NSString stringWithFormat:@"%i%i%i%i%i", (int)size.width, (int)size.height, color.r, color.b, color.g];
-    NSLog(@"key: %@", key);
-    return key;
+    return [NSString stringWithFormat:@"%i%i%i%i%i", (int)size.width, (int)size.height, color.r, color.b, color.g];
 }
 
 

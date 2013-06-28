@@ -42,7 +42,7 @@ GridCoordMake(const int x, const int y)
 + (GridCoord) gridCoordForAbsolutePosition:(CGPoint)position unitSize:(CGFloat)unitSize origin:(CGPoint)origin;
 
 // grid coordinate for relative position on a grid
-+ (GridCoord)gridCoordForRelativePosition:(CGPoint)position unitSize:(CGFloat)unitSize origin:(CGPoint)origin;
++ (GridCoord)gridCoordForRelativePosition:(CGPoint)position unitSize:(CGFloat)unitSize;
 
 // absolute position made for sprite (anchor point middle) on a grid for grid coordinate
 + (CGPoint) absoluteSpritePositionForGridCoord:(GridCoord)coord unitSize:(CGFloat)unitSize origin:(CGPoint)origin;

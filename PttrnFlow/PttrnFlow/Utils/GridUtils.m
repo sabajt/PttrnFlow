@@ -42,7 +42,7 @@
 }
 
 // grid coordinate for relative position on a grid
-+ (GridCoord)gridCoordForRelativePosition:(CGPoint)position unitSize:(CGFloat)unitSize origin:(CGPoint)origin;
++ (GridCoord)gridCoordForRelativePosition:(CGPoint)position unitSize:(CGFloat)unitSize
 {
     int x = floorf(position.x / unitSize) + 1;
     int y = floorf(position.y / unitSize) + 1;
