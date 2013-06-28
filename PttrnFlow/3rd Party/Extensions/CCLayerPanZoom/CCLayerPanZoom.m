@@ -283,35 +283,41 @@ typedef enum
         // Don't click with multitouch
 		self.touchDistance = INFINITY;
 	}
-	else
-	{	        
-        // Get the single touch and it's previous & current position.
-        UITouch *touch = [self.touches objectAtIndex: 0];
-        CGPoint curTouchPosition = [[CCDirector sharedDirector] convertToGL: [touch locationInView: [touch view]]];
-        CGPoint prevTouchPosition = [[CCDirector sharedDirector] convertToGL: [touch previousLocationInView: [touch view]]];
-        
-        // Always scroll in sheet mode.
-        if (self.mode == kCCLayerPanZoomModeSheet)
-        {
-            // Set new position of the layer.
-            self.position = ccp(self.position.x + curTouchPosition.x - prevTouchPosition.x,
-                                self.position.y + curTouchPosition.y - prevTouchPosition.y);
-        }
-        
-        // Accumulate touch distance for all modes.
-        self.touchDistance += ccpDistance(curTouchPosition, prevTouchPosition);
-        
-        // Inform delegate about starting updating touch position, if click isn't possible.
-        if (self.mode == kCCLayerPanZoomModeFrame)
-        {
-            if (self.touchDistance > self.maxTouchDistanceToClick && !_touchMoveBegan)
-            {
-                [self.delegate layerPanZoom: self 
-                   touchMoveBeganAtPosition: [self convertToNodeSpace: prevTouchPosition]];
-                _touchMoveBegan = YES;
-            }
-        }
-    }	
+    
+    // ----------------------------------------------------
+    // PttrnFlow modification: disable single touch panning
+    
+//	else
+//	{	        
+//        // Get the single touch and it's previous & current position.
+//        UITouch *touch = [self.touches objectAtIndex: 0];
+//        CGPoint curTouchPosition = [[CCDirector sharedDirector] convertToGL: [touch locationInView: [touch view]]];
+//        CGPoint prevTouchPosition = [[CCDirector sharedDirector] convertToGL: [touch previousLocationInView: [touch view]]];
+//        
+//        // Always scroll in sheet mode.
+//        if (self.mode == kCCLayerPanZoomModeSheet)
+//        {
+//            // Set new position of the layer.
+//            self.position = ccp(self.position.x + curTouchPosition.x - prevTouchPosition.x,
+//                                self.position.y + curTouchPosition.y - prevTouchPosition.y);
+//        }
+//        
+//        // Accumulate touch distance for all modes.
+//        self.touchDistance += ccpDistance(curTouchPosition, prevTouchPosition);
+//        
+//        // Inform delegate about starting updating touch position, if click isn't possible.
+//        if (self.mode == kCCLayerPanZoomModeFrame)
+//        {
+//            if (self.touchDistance > self.maxTouchDistanceToClick && !_touchMoveBegan)
+//            {
+//                [self.delegate layerPanZoom: self 
+//                   touchMoveBeganAtPosition: [self convertToNodeSpace: prevTouchPosition]];
+//                _touchMoveBegan = YES;
+//            }
+//        }
+//    }
+    
+    // ----------------------------------------------------
 }
 
 - (void) ccTouchesEnded: (NSSet *) touches 
