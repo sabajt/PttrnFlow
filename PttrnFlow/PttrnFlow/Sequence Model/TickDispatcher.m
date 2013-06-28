@@ -166,10 +166,7 @@ CGFloat const kTickInterval = 0.5;
     if (self.tickCounter >= self.eventSequence.count) {
         [self stop];
         if ([self didWin]) {
-            NSLog(@"--------WIN!");
-        }
-        else {
-            NSLog(@"--------LOSE");
+            [self.delegate win];
         }
         return;
     }

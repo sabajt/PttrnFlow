@@ -24,6 +24,7 @@ static inline ccColor4B ccc4BFromccc3B(ccColor3B c)
 + (ccColor3B)sequenceMenuCell;
 + (ccColor3B)sequenceMenuCellLabel;
 + (ccColor3B)exitFaderBlock;
++ (ccColor3B)winningBackground;
 
 @end
 

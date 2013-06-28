@@ -37,7 +37,12 @@
     return ccc3(30, 255, 40);
 }
 
-#pragma mark - colors named by object
++ (ccColor3B)orange
+{
+    return ccc3(255, 180, 50);
+}
+
+#pragma mark - public colors by context
 
 + (ccColor3B)sequenceHud
 {
@@ -67,6 +72,11 @@
 + (ccColor3B)exitFaderBlock
 {
     return [self gray];
+}
+
++ (ccColor3B)winningBackground
+{
+    return [self orange];
 }
 
 @end

@@ -32,6 +32,7 @@ typedef enum
 @protocol TickDispatcherDelegate <NSObject>
 
 - (void)tickExit:(GridCoord)cell;
+- (void)win;
 
 @end
 

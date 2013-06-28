@@ -36,6 +36,7 @@
 @property (weak, nonatomic) Tone *pressedTone;
 @property (assign) CGPoint gridOrigin;
 @property (strong, nonatomic) MainSynth *synth;
+@property (weak, nonatomic) BackgroundLayer *backgroundLayer;
 
 @end
 
@@ -52,7 +53,7 @@
     NSString *sequenceName = [NSString stringWithFormat:@"seq%i.tmx", sequence];
     CCTMXTiledMap *tiledMap = [CCTMXTiledMap tiledMapWithTMXFile:sequenceName];
     
-    SequenceLayer *sequenceLayer = [[SequenceLayer alloc] initWithTiledMap:tiledMap];
+    SequenceLayer *sequenceLayer = [[SequenceLayer alloc] initWithTiledMap:tiledMap background:background];
     [scene addChild:sequenceLayer];
     
     static CGFloat hudHeight = 80;
@@ -68,11 +69,12 @@
     return [BlockFader blockFaderWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) color:[ColorUtils exitFaderBlock] cell:cell duration:kTickInterval];
 }
 
-- (id)initWithTiledMap:(CCTMXTiledMap *)tiledMap
+- (id)initWithTiledMap:(CCTMXTiledMap *)tiledMap background:(BackgroundLayer *)backgroundLayer;
 {
     self = [super init];
     if (self) {
         self.isTouchEnabled = YES;
+        self.backgroundLayer = backgroundLayer;
         self.synth = [[MainSynth alloc] init];
         self.tileMap = tiledMap;
         self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
@@ -158,6 +160,11 @@
 {
     // create the exit animation -- don't send an event to synth, TickDispatcher handles in this case
     [self addChild:[SequenceLayer exitFader:cell]];
+}
+
+- (void)win
+{
+    [self.backgroundLayer tintToColor:[ColorUtils winningBackground] duration:kTickInterval];
 }
 
 #pragma mark - CCStandardTouchDelegate
