@@ -116,7 +116,7 @@
         }
         
         // entry arrow
-        NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDObjectEntry];
+        NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupTickResponders];
         for (NSMutableDictionary *entry in entries) {
             EntryArrow *entryArrow = [[EntryArrow alloc] initWithEntry:entry tiledMap:tiledMap];
             [self addChild:entryArrow];
