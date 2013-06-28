@@ -197,6 +197,7 @@
 		163091E7177CBC20003155BB /* CCNode+Content.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091E6177CBC20003155BB /* CCNode+Content.m */; };
 		163091EA177CC176003155BB /* BlockFader.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091E9177CC175003155BB /* BlockFader.m */; };
 		163091ED177CD5A2003155BB /* CCLayer+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091EC177CD5A1003155BB /* CCLayer+Positioning.m */; };
+		163091F0177DEDA9003155BB /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091EF177DEDA9003155BB /* BackgroundLayer.m */; };
 		163DBE0117692C3100FCB89C /* SequenceMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 163DBE0017692C3100FCB89C /* SequenceMenuLayer.m */; };
 		163DBE081769325400FCB89C /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 163DBE071769325400FCB89C /* UIImage+Utils.m */; };
 		163DBE0B1769329C00FCB89C /* CCSprite+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 163DBE0A1769329C00FCB89C /* CCSprite+Utils.m */; };
@@ -617,6 +618,8 @@
 		163091E9177CC175003155BB /* BlockFader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockFader.m; sourceTree = "<group>"; };
 		163091EB177CD5A1003155BB /* CCLayer+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCLayer+Positioning.h"; sourceTree = "<group>"; };
 		163091EC177CD5A1003155BB /* CCLayer+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCLayer+Positioning.m"; sourceTree = "<group>"; };
+		163091EE177DEDA9003155BB /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
+		163091EF177DEDA9003155BB /* BackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundLayer.m; sourceTree = "<group>"; };
 		163DBDFF17692C3000FCB89C /* SequenceMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceMenuLayer.h; sourceTree = "<group>"; };
 		163DBE0017692C3100FCB89C /* SequenceMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceMenuLayer.m; sourceTree = "<group>"; };
 		163DBE061769325400FCB89C /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
@@ -1149,6 +1152,8 @@
 				163DBE0017692C3100FCB89C /* SequenceMenuLayer.m */,
 				16A4277A176BF0A100BEF13F /* SequenceHudLayer.h */,
 				16A4277B176BF0A100BEF13F /* SequenceHudLayer.m */,
+				163091EE177DEDA9003155BB /* BackgroundLayer.h */,
+				163091EF177DEDA9003155BB /* BackgroundLayer.m */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -1728,6 +1733,7 @@
 				163091E7177CBC20003155BB /* CCNode+Content.m in Sources */,
 				163091EA177CC176003155BB /* BlockFader.m in Sources */,
 				163091ED177CD5A2003155BB /* CCLayer+Positioning.m in Sources */,
+				163091F0177DEDA9003155BB /* BackgroundLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

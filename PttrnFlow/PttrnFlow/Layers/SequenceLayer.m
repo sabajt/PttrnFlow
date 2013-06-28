@@ -26,6 +26,7 @@
 #import "BlockFader.h"
 #import "ColorUtils.h"
 #import "CCLayer+Positioning.h"
+#import "BackgroundLayer.h"
 
 @interface SequenceLayer ()
 
@@ -45,6 +46,9 @@
 {
     CCScene *scene = [CCScene node];
     
+    BackgroundLayer *background = [BackgroundLayer layerWithColor:ccc4(255, 255, 255, 255)];
+    [scene addChild:background];
+
     NSString *sequenceName = [NSString stringWithFormat:@"seq%i.tmx", sequence];
     CCTMXTiledMap *tiledMap = [CCTMXTiledMap tiledMapWithTMXFile:sequenceName];
     
