@@ -202,7 +202,7 @@ CGFloat const kTickInterval = 0.5;
     self.tickCounter++;
     
     // stop if we have reached the tick limit
-    if (self.tickCounter > self.eventSequence.count) {
+    if (self.tickCounter >= self.eventSequence.count) {
         [self stop];
         return;
     }
