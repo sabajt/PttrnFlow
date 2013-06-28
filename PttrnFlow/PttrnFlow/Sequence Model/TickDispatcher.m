@@ -90,7 +90,12 @@ CGFloat const kTickInterval = 0.5;
 - (void)start
 {
     self.tickCounter = 0;
-    self.hits = [NSMutableArray array];
+    if (self.hits == nil) {
+        self.hits = [NSMutableArray array];
+    }
+    else {
+        [self.hits removeAllObjects];
+    }
     
     for (TickChannel *channel in self.channels) {
         [channel reset];
@@ -137,6 +142,17 @@ CGFloat const kTickInterval = 0.5;
     self.sequenceIndex++;
 }
 
+// did we hit correct patterns after ticking thru sequence?
+- (BOOL)didWin
+{
+    for (NSNumber *hit in self.hits) {
+        if (![hit boolValue]) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 // moves the ticker along the grid
 - (void)tick:(ccTime)dt
 {
@@ -146,9 +162,15 @@ CGFloat const kTickInterval = 0.5;
     }
     [self.lastTickedResponders removeAllObjects];
     
-    // stop if we have reached the tick limit
+    // stop and check for winning conditions if we have reached the tick limit
     if (self.tickCounter >= self.eventSequence.count) {
         [self stop];
+        if ([self didWin]) {
+            NSLog(@"--------WIN!");
+        }
+        else {
+            NSLog(@"--------LOSE");
+        }
         return;
     }
     
@@ -171,7 +193,6 @@ CGFloat const kTickInterval = 0.5;
         
         // the first time we have no event, this means we hit no blocks -- this is an 'exit' event
         if (events.count == 0) {
-            NSLog(@"exit channel %i", tickChannel.channel);
             [events addObject:kExitEvent];
             [self.delegate tickExit:tickChannel.currentCell];
         }
@@ -182,7 +203,6 @@ CGFloat const kTickInterval = 0.5;
     
     // stop if we have no combined events
     if (combinedEvents.count == 0) {
-        NSLog(@"out of bounds stopping tick");
         [self stop];
         return;
     }
