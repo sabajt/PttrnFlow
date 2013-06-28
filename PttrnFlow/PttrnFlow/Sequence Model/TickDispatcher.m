@@ -139,11 +139,18 @@ CGFloat const kTickInterval = 0.5;
 
 // moves the ticker along the grid
 - (void)tick:(ccTime)dt
-{    
+{
+    // handle 'after tick'
     for (id<TickResponder> responder in self.lastTickedResponders) {
         [responder afterTick:kBPM];
     }
     [self.lastTickedResponders removeAllObjects];
+    
+    // stop if we have reached the tick limit
+    if (self.tickCounter >= self.eventSequence.count) {
+        [self stop];
+        return;
+    }
     
     NSMutableArray *combinedEvents = [NSMutableArray array];
     for (TickChannel *tickChannel in self.channels) {
@@ -200,12 +207,6 @@ CGFloat const kTickInterval = 0.5;
         tickChannel.currentCell = [tickChannel nextCell];
     }
     self.tickCounter++;
-    
-    // stop if we have reached the tick limit
-    if (self.tickCounter >= self.eventSequence.count) {
-        [self stop];
-        return;
-    }
 }
 
 - (BOOL)testHit:(NSMutableArray *)hit tick:(int)tick
