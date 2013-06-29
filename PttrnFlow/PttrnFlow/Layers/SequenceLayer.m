@@ -7,7 +7,7 @@
 //
 
 #import "SequenceLayer.h"
-#import "SequenceHudLayer.h"
+#import "SequenceControlBarLayer.h"
 #import "DataUtils.h"
 #import "GameConstants.h"
 #import "SimpleAudioEngine.h"
@@ -57,7 +57,7 @@
     [scene addChild:sequenceLayer];
     
     static CGFloat hudHeight = 80;
-    SequenceHudLayer *hudLayer = [SequenceHudLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceHud]) width:sequenceLayer.contentSize.width height:hudHeight tickDispatcer:sequenceLayer.tickDispatcher tiledMap:tiledMap];
+    SequenceControlBarLayer *hudLayer = [SequenceControlBarLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceHud]) width:sequenceLayer.contentSize.width height:hudHeight tickDispatcer:sequenceLayer.tickDispatcher tiledMap:tiledMap];
     hudLayer.position = ccp(0, sequenceLayer.contentSize.height - hudLayer.contentSize.height);
     [scene addChild:hudLayer z:1];
 

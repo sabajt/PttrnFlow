@@ -223,7 +223,7 @@
 		1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */; };
 		169F3D131770ADB2005F93B2 /* CCLayerPanZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 169F3D111770ADB2005F93B2 /* CCLayerPanZoom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		169F3D141770ADB2005F93B2 /* README-CCLayerPanZoom.md in Resources */ = {isa = PBXBuildFile; fileRef = 169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */; };
-		16A4277C176BF0A100BEF13F /* SequenceHudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4277B176BF0A100BEF13F /* SequenceHudLayer.m */; };
+		16A4277C176BF0A100BEF13F /* SequenceControlBarLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4277B176BF0A100BEF13F /* SequenceControlBarLayer.m */; };
 		16A942B21777A2260052D5BD /* CellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942991777A2250052D5BD /* CellNode.m */; };
 		16A942B31777A2260052D5BD /* EntryArrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A9429B1777A2250052D5BD /* EntryArrow.m */; };
 		16A942B61777A2260052D5BD /* TouchNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A11777A2250052D5BD /* TouchNode.m */; };
@@ -650,8 +650,8 @@
 		169F3D101770ADB2005F93B2 /* CCLayerPanZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLayerPanZoom.h; sourceTree = "<group>"; };
 		169F3D111770ADB2005F93B2 /* CCLayerPanZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLayerPanZoom.m; sourceTree = "<group>"; };
 		169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README-CCLayerPanZoom.md"; sourceTree = "<group>"; };
-		16A4277A176BF0A100BEF13F /* SequenceHudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceHudLayer.h; sourceTree = "<group>"; };
-		16A4277B176BF0A100BEF13F /* SequenceHudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceHudLayer.m; sourceTree = "<group>"; };
+		16A4277A176BF0A100BEF13F /* SequenceControlBarLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceControlBarLayer.h; sourceTree = "<group>"; };
+		16A4277B176BF0A100BEF13F /* SequenceControlBarLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceControlBarLayer.m; sourceTree = "<group>"; };
 		16A942981777A2250052D5BD /* CellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellNode.h; sourceTree = "<group>"; };
 		16A942991777A2250052D5BD /* CellNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellNode.m; sourceTree = "<group>"; };
 		16A9429A1777A2250052D5BD /* EntryArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryArrow.h; sourceTree = "<group>"; };
@@ -1147,8 +1147,8 @@
 				1608088216B4416000039339 /* SequenceLayer.m */,
 				163DBDFF17692C3000FCB89C /* SequenceMenuLayer.h */,
 				163DBE0017692C3100FCB89C /* SequenceMenuLayer.m */,
-				16A4277A176BF0A100BEF13F /* SequenceHudLayer.h */,
-				16A4277B176BF0A100BEF13F /* SequenceHudLayer.m */,
+				16A4277A176BF0A100BEF13F /* SequenceControlBarLayer.h */,
+				16A4277B176BF0A100BEF13F /* SequenceControlBarLayer.m */,
 				163091EE177DEDA9003155BB /* BackgroundLayer.h */,
 				163091EF177DEDA9003155BB /* BackgroundLayer.m */,
 			);
@@ -1708,7 +1708,7 @@
 				163DBE0117692C3100FCB89C /* SequenceMenuLayer.m in Sources */,
 				163DBE081769325400FCB89C /* UIImage+Utils.m in Sources */,
 				163DBE0B1769329C00FCB89C /* CCSprite+Utils.m in Sources */,
-				16A4277C176BF0A100BEF13F /* SequenceHudLayer.m in Sources */,
+				16A4277C176BF0A100BEF13F /* SequenceControlBarLayer.m in Sources */,
 				169F3D131770ADB2005F93B2 /* CCLayerPanZoom.m in Sources */,
 				16A942B21777A2260052D5BD /* CellNode.m in Sources */,
 				16A942B31777A2260052D5BD /* EntryArrow.m in Sources */,

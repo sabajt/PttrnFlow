@@ -1,28 +1,28 @@
 //
-//  SequenceHudLayer.m
+//  SequenceControlBarLayer.m
 //  PttrnFlow
 //
 //  Created by John Saba on 6/14/13.
 //
 //
 
-#import "SequenceHudLayer.h"
+#import "SequenceControlBarLayer.h"
 #import "TickerControl.h"
 #import "TickDispatcher.h"
 #import "CCSprite+Utils.h"
 
-@interface SequenceHudLayer ()
+@interface SequenceControlBarLayer ()
 
 @property (weak, nonatomic) TickDispatcher *tickDispatcher;
 
 @end
 
 
-@implementation SequenceHudLayer
+@implementation SequenceControlBarLayer
 
 + (id)layerWithColor:(ccColor4B)color width:(GLfloat)w height:(GLfloat)h tickDispatcer:(TickDispatcher *)tickDispatcher tiledMap:(CCTMXTiledMap *)tiledMap
 {
-    return [[SequenceHudLayer alloc] initWithColor:color width:w height:h tickDispatcer:tickDispatcher tiledMap:tiledMap];
+    return [[SequenceControlBarLayer alloc] initWithColor:color width:w height:h tickDispatcer:tickDispatcher tiledMap:tiledMap];
 }
 
 - (id)initWithColor:(ccColor4B)color width:(GLfloat)w  height:(GLfloat)h tickDispatcer:(TickDispatcher *)tickDispatcher tiledMap:(CCTMXTiledMap *)tiledMap
