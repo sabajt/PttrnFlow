@@ -8,29 +8,29 @@
 
 #import "SequenceItemLayer.h"
 #import "TextureUtils.h"
-#import "DragButton.h"
+#import "SpriteUtils.h"
 
 static CGFloat const kHandleHeight = 40;
 
-NSString *const kSequenceItemArrow = @"arrow";
-NSString *const kSequenceItemWarp = @"warp";
-NSString *const kSequenceItemSplitter = @"splitter";
 
 @implementation SequenceItemLayer
 
-+ (id)layerWithColor:(ccColor4B)color width:(GLfloat)w items:(NSArray *)items
+// height is determined by number of items.
+// items should be an array of NSNumbers from range in kDragItem.
+// type kDragItem should define types of object the delegate will know how to create.
++ (id)layerWithColor:(ccColor4B)color width:(GLfloat)w items:(NSArray *)items dragButtonDelegate:(id<DragButtonDelegate>)delegate
 {
-    return [[SequenceItemLayer alloc] initWithColor:color width:w height:(w * items.count) + kHandleHeight items:items];
+    return [[SequenceItemLayer alloc] initWithColor:color width:w height:(w * items.count) + kHandleHeight items:items dragButtonDelegate:delegate];
 }
 
-- (id)initWithColor:(ccColor4B)color width:(GLfloat)w height:(GLfloat)h items:(NSArray *)items
+- (id)initWithColor:(ccColor4B)color width:(GLfloat)w height:(GLfloat)h items:(NSArray *)items dragButtonDelegate:(id<DragButtonDelegate>)delegate
 {
     self = [super initWithColor:color width:w height:h];
     if (self) {
-        
         int i = 0;
-        for (NSString *item in items) {
-            DragButton *button = [self sequenceItemButton:item];
+        for (NSNumber *item in items) {
+            kDragItem itemType = [item intValue];
+            DragButton *button = [self dragItemButton:itemType delegate:delegate];
             button.position = ccp(0, (button.contentSize.height * i) + kHandleHeight);
             [self addChild:button];
             i++;
@@ -39,24 +39,18 @@ NSString *const kSequenceItemSplitter = @"splitter";
     return self;
 }
 
-// creates a menu item with selector generated from itemType + ItemSelected:, example: arrowItemSelected:
-- (DragButton *)sequenceItemButton:(NSString *)itemType
+- (DragButton *)dragItemButton:(kDragItem)itemType delegate:(id<DragButtonDelegate>)delegate
 {
-    NSString *defaultName;
-    NSString *selectedName;
-    if ([itemType isEqualToString:kSequenceItemArrow]) {
-        defaultName = kImageArrowButton_off;
-        selectedName = kImageArrowButton_on;
-    }
+    CCSprite *defaultSprite;
+    CCSprite *selectedSprite;
+    CCSprite *dragSprite;
     
-    return [DragButton buttonWithDefaultImage:defaultName selectedImage:selectedName dragItem:nil];
-}
-
-#pragma mark - item selectors 
-
-- (void)arrowItemSelected:(id)sender
-{
-    NSLog(@"arrow item selected needs implementation");
+    if (itemType == kDragItemArrow) {
+        defaultSprite = [SpriteUtils spriteWithTextureKey:kImageArrowButton_off];
+        selectedSprite = [SpriteUtils spriteWithTextureKey:kImageArrowButton_on];
+        dragSprite = [SpriteUtils spriteWithTextureKey:kImageArrowUp];
+    }
+    return [DragButton buttonWithItemType:itemType defaultSprite:defaultSprite selectedSprite:selectedSprite dragItemSprite:dragSprite delegate:delegate];
 }
 
 @end

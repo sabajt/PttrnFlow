@@ -7,15 +7,10 @@
 //
 
 #import "CCLayer.h"
-
-
-FOUNDATION_EXPORT NSString *const kSequenceItemArrow;
-FOUNDATION_EXPORT NSString *const kSequenceItemWarp;
-FOUNDATION_EXPORT NSString *const kSequenceItemSplitter;
-
+#import "DragButton.h"
 
 @interface SequenceItemLayer : CCLayerColor
 
-+ (id)layerWithColor:(ccColor4B)color width:(GLfloat)w items:(NSArray *)items;
++ (id)layerWithColor:(ccColor4B)color width:(GLfloat)w items:(NSArray *)items dragButtonDelegate:(id<DragButtonDelegate>)delegate;
 
 @end

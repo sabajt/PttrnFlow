@@ -60,14 +60,15 @@
     SequenceLayer *sequenceLayer = [[SequenceLayer alloc] initWithTiledMap:tiledMap background:background];
     [scene addChild:sequenceLayer];
     
-    // hud layers
+    // hud layer -- top control bar
     static CGFloat controlBarHeight = 80;
     SequenceControlBarLayer *hudLayer = [SequenceControlBarLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceHud]) width:sequenceLayer.contentSize.width height:controlBarHeight tickDispatcer:sequenceLayer.tickDispatcher];
     hudLayer.position = ccp(0, sequenceLayer.contentSize.height - hudLayer.contentSize.height);
     [scene addChild:hudLayer z:1];
     
+    // hud layer -- right hand item menu
     static CGFloat itemBarWidth = 80;
-    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[kSequenceItemArrow, kSequenceItemArrow, kSequenceItemArrow]];
+    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[@(kDragItemArrow), @(kDragItemArrow), @(kDragItemArrow)] dragButtonDelegate:sequenceLayer];
     itemLayer.position = ccp(sequenceLayer.contentSize.width - itemLayer.contentSize.width, sequenceLayer.contentSize.height - hudLayer.contentSize.height - itemLayer.contentSize.height);
     [scene addChild:itemLayer z:1];
     
@@ -164,7 +165,19 @@
     [super onExit];
 }
 
-# pragma mark - TickDispatcherDelegate
+#pragma mark - DragButtonDelegate
+
+- (void)dragItemDropped:(kDragItem)itemType touch:(UITouch *)touch
+{
+    NSLog(@"item type: %i", itemType);
+    
+    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+    GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
+    NSLog(@"touch cell: %i, %i", cell.x, cell.y);
+    
+}
+
+#pragma mark - TickDispatcherDelegate
 
 - (void)tickExit:(GridCoord)cell
 {

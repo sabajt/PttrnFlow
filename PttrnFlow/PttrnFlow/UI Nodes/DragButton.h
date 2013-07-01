@@ -8,8 +8,24 @@
 
 #import "TouchNode.h"
 
+typedef enum
+{
+    kDragItemArrow = 0,
+    kDragItemWarp,
+    kDragItemSplitter,
+} kDragItem;
+
+@protocol DragButtonDelegate <NSObject>
+
+- (void)dragItemDropped:(kDragItem)itemType touch:(UITouch *)touch;
+
+@end
+
+
 @interface DragButton : TouchNode
 
-+ (DragButton *)buttonWithDefaultImage:(NSString *)defaultName selectedImage:(NSString *)selectedName dragItem:(CCSprite *)item;
+@property (weak, nonatomic) id<DragButtonDelegate> delegate;
+
++ (DragButton *)buttonWithItemType:(kDragItem)itemType defaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)itemSprite delegate:(id<DragButtonDelegate>)delegate;
 
 @end

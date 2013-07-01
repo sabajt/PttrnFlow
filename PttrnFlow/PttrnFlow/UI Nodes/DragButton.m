@@ -12,32 +12,41 @@
 
 @interface DragButton ()
 
-@property (weak, nonatomic) CCSprite *sprite;
-@property (copy, nonatomic) NSString *defaultImageName;
-@property (copy, nonatomic) NSString *selectedImageName;
+@property (assign) kDragItem itemType;
+@property (weak, nonatomic) CCSprite *defaultSprite;
+@property (weak, nonatomic) CCSprite *selectedSprite;
+@property (weak, nonatomic) CCSprite *dragSprite;
 
 @end
 
 
 @implementation DragButton
 
-+ (DragButton *)buttonWithDefaultImage:(NSString *)defaultName selectedImage:(NSString *)selectedName dragItem:(CCSprite *)item
++ (DragButton *)buttonWithItemType:(kDragItem)itemType defaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)itemSprite delegate:(id<DragButtonDelegate>)delegate
 {
-    return [[DragButton alloc] initWithDefaultImage:defaultName selectedImage:selectedName dragItem:item];
+    return [[DragButton alloc] initWithItemType:itemType DefaultSprite:defaultSprite selectedSprite:selectedSprite dragItemSprite:itemSprite delegate:delegate];
 }
 
-- (id)initWithDefaultImage:(NSString *)defaultName selectedImage:(NSString *)selectedName dragItem:(CCSprite *)item
+- (id)initWithItemType:(kDragItem)itemType DefaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)dragSprite delegate:(id<DragButtonDelegate>)delegate
 {
     self = [super init];
     if (self) {
-        self.defaultImageName = defaultName;
-        self.selectedImageName = selectedName;
+        defaultSprite.position = ccp(defaultSprite.contentSize.width/2, defaultSprite.contentSize.height/2);
+        selectedSprite.position = defaultSprite.position;
+        selectedSprite.visible = NO;
+        dragSprite.visible = NO;
         
-        CCSprite *sprite = [SpriteUtils spriteWithTextureKey:defaultName];
-        self.sprite = sprite;        
-        self.contentSize = sprite.contentSize;
-        self.sprite.position = ccp(sprite.contentSize.width/2, sprite.contentSize.height/2);
-        [self addChild:sprite];
+        self.swallowsTouches = YES;
+        self.delegate = delegate;
+        self.itemType = itemType;
+        self.defaultSprite = defaultSprite;
+        self.selectedSprite = selectedSprite;
+        self.contentSize = defaultSprite.contentSize;
+        self.dragSprite = dragSprite;
+        
+        [self addChild:defaultSprite];
+        [self addChild:selectedSprite];
+        [self addChild:dragSprite];
     }
     return self;
 }
@@ -47,15 +56,31 @@
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     if ([super ccTouchBegan:touch withEvent:event]) {
-        [SpriteUtils switchImageForSprite:self.sprite textureKey:self.selectedImageName];
+        self.defaultSprite.visible = NO;
+        self.selectedSprite.visible = YES;
+        
+        CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+        self.dragSprite.position = touchPosition;
+        self.dragSprite.visible = YES;
+        
         return YES;
     }
     return NO;
 };
 
+- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+    self.dragSprite.position = touchPosition;
+}
+
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    [SpriteUtils switchImageForSprite:self.sprite textureKey:self.defaultImageName];
+    self.defaultSprite.visible = YES;
+    self.selectedSprite.visible = NO;
+    
+    self.dragSprite.visible = NO;
+    [self.delegate dragItemDropped:self.itemType touch:touch];
 }
 
 
