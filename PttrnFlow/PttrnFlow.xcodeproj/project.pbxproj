@@ -221,6 +221,7 @@
 		168FA4F3173A08C7004C26AD /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 168FA4E6173A08C7004C26AD /* Icon@2x.png */; };
 		168FA4F4173A08C7004C26AD /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 168FA4E7173A08C7004C26AD /* iTunesArtwork */; };
 		16918DF9172CE6B000566A17 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16918DF4172CE66200566A17 /* libpd-ios.a */; };
+		1692D28D1781CF900058448B /* DragButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1692D28C1781CF900058448B /* DragButton.m */; };
 		1693C661177A0C9300FEB350 /* d1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C65F177A0C9300FEB350 /* d1.wav */; };
 		1693C662177A0C9300FEB350 /* d2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C660177A0C9300FEB350 /* d2.wav */; };
 		1693C665177A628300FEB350 /* d3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C663177A628200FEB350 /* d3.wav */; };
@@ -652,6 +653,8 @@
 		168FA4E6173A08C7004C26AD /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/Icon@2x.png"; sourceTree = "<group>"; };
 		168FA4E7173A08C7004C26AD /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Resources/iTunesArtwork; sourceTree = "<group>"; };
 		16918DEE172CE66100566A17 /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = ../libpd/libpd.xcodeproj; sourceTree = "<group>"; };
+		1692D28B1781CF900058448B /* DragButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragButton.h; sourceTree = "<group>"; };
+		1692D28C1781CF900058448B /* DragButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragButton.m; sourceTree = "<group>"; };
 		1693C65F177A0C9300FEB350 /* d1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = d1.wav; sourceTree = "<group>"; };
 		1693C660177A0C9300FEB350 /* d2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = d2.wav; sourceTree = "<group>"; };
 		1693C663177A628200FEB350 /* d3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = d3.wav; sourceTree = "<group>"; };
@@ -1421,6 +1424,8 @@
 				16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */,
 				16A942C31777ABFA0052D5BD /* TickerControl.h */,
 				16A942C41777ABFA0052D5BD /* TickerControl.m */,
+				1692D28B1781CF900058448B /* DragButton.h */,
+				1692D28C1781CF900058448B /* DragButton.m */,
 			);
 			path = "UI Nodes";
 			sourceTree = "<group>";
@@ -1750,6 +1755,7 @@
 				163091ED177CD5A2003155BB /* CCLayer+Positioning.m in Sources */,
 				163091F0177DEDA9003155BB /* BackgroundLayer.m in Sources */,
 				163091F4177F732E003155BB /* SequenceItemLayer.m in Sources */,
+				1692D28D1781CF900058448B /* DragButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

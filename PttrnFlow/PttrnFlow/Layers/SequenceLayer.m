@@ -67,7 +67,7 @@
     [scene addChild:hudLayer z:1];
     
     static CGFloat itemBarWidth = 80;
-    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[kSequenceItemArrow]];
+    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[kSequenceItemArrow, kSequenceItemArrow, kSequenceItemArrow]];
     itemLayer.position = ccp(sequenceLayer.contentSize.width - itemLayer.contentSize.width, sequenceLayer.contentSize.height - hudLayer.contentSize.height - itemLayer.contentSize.height);
     [scene addChild:itemLayer z:1];
     

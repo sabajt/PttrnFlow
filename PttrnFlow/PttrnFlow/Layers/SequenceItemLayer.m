@@ -8,7 +8,7 @@
 
 #import "SequenceItemLayer.h"
 #import "TextureUtils.h"
-#import "SpriteUtils.h"
+#import "DragButton.h"
 
 static CGFloat const kHandleHeight = 40;
 
@@ -28,35 +28,28 @@ NSString *const kSequenceItemSplitter = @"splitter";
     self = [super initWithColor:color width:w height:h];
     if (self) {
         
-        NSMutableArray *buttons = [NSMutableArray array];
         int i = 0;
         for (NSString *item in items) {
-            CCMenuItemSprite *button = [self sequenceItemButton:item];
-            button.position = ccp(button.contentSize.width/2, button.contentSize.height/2 + (button.contentSize.height * i) + kHandleHeight);
-            [buttons addObject:button];
+            DragButton *button = [self sequenceItemButton:item];
+            button.position = ccp(0, (button.contentSize.height * i) + kHandleHeight);
+            [self addChild:button];
             i++;
         }
-        CCMenu *menu = [CCMenu menuWithArray:buttons];
-        menu.position = ccp(0, 0);
-        [self addChild:menu];
     }
     return self;
 }
 
 // creates a menu item with selector generated from itemType + ItemSelected:, example: arrowItemSelected:
-- (CCMenuItemSprite *)sequenceItemButton:(NSString *)itemType
+- (DragButton *)sequenceItemButton:(NSString *)itemType
 {
-    CCSprite *normalSprite;
-    CCSprite *selectedSprite;
+    NSString *defaultName;
+    NSString *selectedName;
     if ([itemType isEqualToString:kSequenceItemArrow]) {
-        normalSprite = [SpriteUtils spriteWithTextureKey:kImageArrowButton_off];
-        selectedSprite = [SpriteUtils spriteWithTextureKey:kImageArrowButton_on];
+        defaultName = kImageArrowButton_off;
+        selectedName = kImageArrowButton_on;
     }
     
-    NSString *selectorName = [NSString stringWithFormat:@"%@ItemSelected:", itemType];
-    SEL selector = NSSelectorFromString(selectorName);
-
-    return [[CCMenuItemSprite alloc] initWithNormalSprite:normalSprite selectedSprite:selectedSprite disabledSprite:nil target:self selector:selector];
+    return [DragButton buttonWithDefaultImage:defaultName selectedImage:selectedName dragItem:nil];
 }
 
 #pragma mark - item selectors 
