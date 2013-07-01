@@ -8,6 +8,7 @@
 
 #import "TouchNode.h"
 
+// types of game objects that the delegate should know how to create
 typedef enum
 {
     kDragItemArrow = 0,
@@ -17,6 +18,7 @@ typedef enum
 
 @protocol DragButtonDelegate <NSObject>
 
+- (void)dragItemMoved:(kDragItem)itemType touch:(UITouch *)touch;
 - (void)dragItemDropped:(kDragItem)itemType touch:(UITouch *)touch;
 
 @end

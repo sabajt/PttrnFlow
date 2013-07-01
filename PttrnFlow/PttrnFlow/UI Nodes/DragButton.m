@@ -72,6 +72,7 @@
 {
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     self.dragSprite.position = touchPosition;
+    [self.delegate dragItemMoved:self.itemType touch:touch];
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event

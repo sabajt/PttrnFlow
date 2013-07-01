@@ -28,6 +28,7 @@
 #import "CCLayer+Positioning.h"
 #import "BackgroundLayer.h"
 #import "SequenceItemLayer.h"
+#import "CCSprite+Utils.h"
 
 @interface SequenceLayer ()
 
@@ -38,6 +39,7 @@
 @property (assign) CGPoint gridOrigin;
 @property (strong, nonatomic) MainSynth *synth;
 @property (weak, nonatomic) BackgroundLayer *backgroundLayer;
+@property (weak, nonatomic) PrimativeCellActor *selectionBox;
 
 @end
 
@@ -167,14 +169,29 @@
 
 #pragma mark - DragButtonDelegate
 
-- (void)dragItemDropped:(kDragItem)itemType touch:(UITouch *)touch
+- (void)dragItemMoved:(kDragItem)itemType touch:(UITouch *)touch
 {
-    NSLog(@"item type: %i", itemType);
+    self.selectionBox.visible = YES;
     
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
-    NSLog(@"touch cell: %i, %i", cell.x, cell.y);
+
+    if (self.selectionBox == nil) {
+        PrimativeCellActor *selectionBox = [[PrimativeCellActor alloc] initWithRectSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:20 color:[ColorUtils winningBackground] cell:cell touch:NO];
+        self.selectionBox = selectionBox;
+        [self addChild:selectionBox];
+    }
+    else {
+        [self.selectionBox positionAtCell:cell];
+    }
+}
+
+- (void)dragItemDropped:(kDragItem)itemType touch:(UITouch *)touch
+{
+    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+    GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
     
+    self.selectionBox.visible = NO;
 }
 
 #pragma mark - TickDispatcherDelegate

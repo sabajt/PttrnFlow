@@ -10,6 +10,8 @@
 
 @interface PrimativeCellActor : CellNode
 
-- (id)initWithSize:(CGSize)size color:(ccColor3B)color cell:(GridCoord)cell textureKey:(NSString *)key touch:(BOOL)usesTouch;
+- (id)initWithRectSize:(CGSize)size color:(ccColor3B)color cell:(GridCoord)cell touch:(BOOL)usesTouch;
+- (id)initWithRectSize:(CGSize)size edgeLength:(CGFloat)edge color:(ccColor3B)color cell:(GridCoord)cell touch:(BOOL)usesTouch;
+- (void)positionAtCell:(GridCoord)cell;
 
 @end

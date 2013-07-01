@@ -10,18 +10,58 @@
 #import "UIImage+Utils.h"
 #import "ColorUtils.h"
 #import "AppDelegate.h"
+#import "SizeUtils.h"
+#import "TextureUtils.h"
 
 @implementation CCSprite (Utils)
 
-+ (CCSprite *)spriteWithSize:(CGSize)size color:(ccColor3B)color key:(NSString *)key
+// solid rectangle sprite
++ (CCSprite *)rectSpriteWithSize:(CGSize)size color:(ccColor3B)color
 {
-    CGSize correctedSize  = size;
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (appDelegate.isRetinaEnabled) {
-        correctedSize = CGSizeMake(size.width * 2, size.height * 2);
-    }
+    // we need to correct the size for retina ourselves because we are drawing into graphics context
+    CGSize correctedSize = [SizeUtils correctedSize:size];
+    NSString *key = [TextureUtils keyForPrimativeWithSize:correctedSize color:color];
     UIImage *image = [UIImage imageWithColor:[ColorUtils UIColorFor3B:color] size:correctedSize];
     return [CCSprite spriteWithCGImage:image.CGImage key:key];
+}
+
+// rectangle sprite with defined edges and clear center
++ (CCSprite *)rectSpriteWithSize:(CGSize)size edgeLength:(CGFloat)edge color:(ccColor3B)color 
+{
+    UIColor *uiColor = [ColorUtils UIColorFor3B:color];
+    
+    // we need to correct sizes for retina ourselves because we are drawing into graphics context
+    CGSize correctedSize = [SizeUtils correctedSize:size];
+    CGFloat correctedEdge = [SizeUtils correctedFloat:edge];
+    
+    // create sides
+    CGSize verticalSize = CGSizeMake(correctedEdge, correctedSize.height);
+    CGSize horizontalSize = CGSizeMake(correctedSize.width, correctedEdge);
+    
+    NSString *verticalKey = [TextureUtils keyForPrimativeWithSize:verticalSize color:color];
+    NSString *horizontalKey = [TextureUtils keyForPrimativeWithSize:horizontalSize color:color];
+
+    UIImage *verticalImage = [UIImage imageWithColor:uiColor size:verticalSize];
+    UIImage *horizontalImage = [UIImage imageWithColor:uiColor size:horizontalSize];
+    
+    CCSprite *leftSprite = [CCSprite spriteWithCGImage:verticalImage.CGImage key:verticalKey];
+    CCSprite *rightSprite = [CCSprite spriteWithCGImage:verticalImage.CGImage key:verticalKey];
+    CCSprite *topSprite = [CCSprite spriteWithCGImage:horizontalImage.CGImage key:horizontalKey];
+    CCSprite *bottomSprite = [CCSprite spriteWithCGImage:horizontalImage.CGImage key:horizontalKey];
+    
+    CCSprite *container = [[CCSprite alloc] init];
+    container.contentSize = size;
+    leftSprite.position = ccp(leftSprite.contentSize.width/2, container.contentSize.height/2);
+    rightSprite.position = ccp(container.contentSize.width - rightSprite.contentSize.width/2, container.contentSize.height/2);
+    topSprite.position = ccp(container.contentSize.width/2, container.contentSize.height - topSprite.contentSize.height/2);
+    bottomSprite.position = ccp(container.contentSize.width/2, bottomSprite.contentSize.height/2);
+    
+    [container addChild:leftSprite];
+    [container addChild:rightSprite];
+    [container addChild:topSprite];
+    [container addChild:bottomSprite];
+    
+    return container;
 }
 
 @end

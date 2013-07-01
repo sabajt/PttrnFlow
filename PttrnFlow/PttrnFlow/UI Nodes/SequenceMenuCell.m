@@ -32,7 +32,7 @@
         self.swallowsTouches = YES;
         _index = index;
         
-        CCSprite *sprite = [CCSprite spriteWithSize:CGSizeMake(width, height) color:[ColorUtils sequenceMenuCell] key:@"sequenceMenuCell"];
+        CCSprite *sprite = [CCSprite rectSpriteWithSize:CGSizeMake(width, height) color:[ColorUtils sequenceMenuCell]];
         _sprite = sprite;
         _sprite.position = ccp(width/2, height/2);
         [self addChild:_sprite];

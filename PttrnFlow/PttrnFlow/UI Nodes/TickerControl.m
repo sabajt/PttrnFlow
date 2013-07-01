@@ -29,10 +29,10 @@ static CGFloat const kMarkerWidth = 10;
         }
         self.swallowsTouches = YES;
         _numberOfTicks = numberOfTicks;
-        _thumbSprite = [CCSprite spriteWithSize:CGSizeMake(kTickerWidth, kTickerHeight) color:[ColorUtils ticker] key:@"tickerThumb"];
+        _thumbSprite = [CCSprite rectSpriteWithSize:CGSizeMake(kTickerWidth, kTickerHeight) color:[ColorUtils ticker]];
         
-        NSString *tickerBarKey = [NSString stringWithFormat:@"tickerBar%i", numberOfTicks];
-        CCSprite *tickerBar = [CCSprite spriteWithSize:CGSizeMake((numberOfTicks - 1) * kDistanceInterval, kTickerHeight/2) color:[ColorUtils tickerBar] key:tickerBarKey];
+//        NSString *tickerBarKey = [NSString stringWithFormat:@"tickerBar%i", numberOfTicks];
+        CCSprite *tickerBar = [CCSprite rectSpriteWithSize:CGSizeMake((numberOfTicks - 1) * kDistanceInterval, kTickerHeight/2) color:[ColorUtils tickerBar]];
         
         self.contentSize = CGSizeMake(tickerBar.contentSize.width, kTickerHeight);
         tickerBar.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
@@ -43,7 +43,7 @@ static CGFloat const kMarkerWidth = 10;
         [self addChild:tickerBar];
         
         for (int i = 0; i < numberOfTicks; i++) {
-            CCSprite *marker = [CCSprite spriteWithSize:CGSizeMake(kMarkerWidth, kTickerHeight) color:[ColorUtils tickerBar] key:@"tickerMarker"];
+            CCSprite *marker = [CCSprite rectSpriteWithSize:CGSizeMake(kMarkerWidth, kTickerHeight) color:[ColorUtils tickerBar]];
             marker.position = ccp(i * kDistanceInterval,self.contentSize.height/2);
             [self addChild:marker];
         }

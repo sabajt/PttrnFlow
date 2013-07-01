@@ -12,17 +12,33 @@
 
 @implementation PrimativeCellActor
 
-- (id)initWithSize:(CGSize)size color:(ccColor3B)color cell:(GridCoord)cell textureKey:(NSString *)key touch:(BOOL)usesTouch
+- (id)initWithRectSize:(CGSize)size color:(ccColor3B)color cell:(GridCoord)cell touch:(BOOL)usesTouch
+{
+    return [self initWithRectSize:size edgeLength:0 color:color cell:cell touch:usesTouch];
+}
+
+- (id)initWithRectSize:(CGSize)size edgeLength:(CGFloat)edge color:(ccColor3B)color cell:(GridCoord)cell touch:(BOOL)usesTouch
 {
     self = [super init];
     if (self) {
         self.cell = cell;
         self.position = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
-        self.sprite = [CCSprite spriteWithSize:size color:color key:key];
+        if (edge == 0) {
+            self.sprite = [CCSprite rectSpriteWithSize:size color:color];
+        }
+        else {
+            self.sprite = [CCSprite rectSpriteWithSize:size edgeLength:edge color:color];
+        }
         self.sprite.position = self.contentCenter;
         [self addChild:self.sprite];
     }
     return self;
+}
+
+- (void)positionAtCell:(GridCoord)cell
+{
+    self.cell = cell;
+    self.position = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
 }
 
 @end

@@ -34,15 +34,15 @@
         CGSize buttonSize = CGSizeMake(self.contentSize.height, self.contentSize.height);
         
         // back button
-        CCMenuItemSprite *backButton = [[CCMenuItemSprite alloc] initWithNormalSprite:[CCSprite spriteWithSize:buttonSize color:ccc3(180, 0, 0) key:@"sequenceHudBackButtonDefault"] selectedSprite:[CCSprite spriteWithSize:buttonSize color:ccc3(255, 0, 0) key:@"sequenceHudBackButtonSelected"] disabledSprite:nil target:self selector:@selector(backButtonPressed:)];
+        CCMenuItemSprite *backButton = [[CCMenuItemSprite alloc] initWithNormalSprite:[CCSprite rectSpriteWithSize:buttonSize color:ccc3(180, 0, 0)] selectedSprite:[CCSprite rectSpriteWithSize:buttonSize color:ccc3(255, 0, 0)] disabledSprite:nil target:self selector:@selector(backButtonPressed:)];
         backButton.position = ccp(buttonSize.width/2, yMid);
         
         // match sequence button
-        CCMenuItemSprite *matchButton = [[CCMenuItemSprite alloc] initWithNormalSprite:[CCSprite spriteWithSize:buttonSize color:ccc3(0, 180, 0) key:@"sequenceHudMatchButtonDefault"] selectedSprite:[CCSprite spriteWithSize:buttonSize color:ccc3(0, 255, 0) key:@"sequenceHudMatchButtonSelected"] disabledSprite:nil target:self selector:@selector(matchButtonPressed:)];
+        CCMenuItemSprite *matchButton = [[CCMenuItemSprite alloc] initWithNormalSprite:[CCSprite rectSpriteWithSize:buttonSize color:ccc3(0, 180, 0)] selectedSprite:[CCSprite rectSpriteWithSize:buttonSize color:ccc3(0, 255, 0)] disabledSprite:nil target:self selector:@selector(matchButtonPressed:)];
         matchButton.position = ccp(backButton.position.x + backButton.contentSize.width, yMid);
         
         // run button
-        CCMenuItemSprite *runButton = [[CCMenuItemSprite alloc] initWithNormalSprite:[CCSprite spriteWithSize:buttonSize color:ccc3(180, 180, 0) key:@"sequenceHudRunButtonDefault"] selectedSprite:[CCSprite spriteWithSize:buttonSize color:ccc3(255, 255, 0) key:@"sequenceHudRunButtonSelected"] disabledSprite:nil target:self selector:@selector(runButtonPressed:)];
+        CCMenuItemSprite *runButton = [[CCMenuItemSprite alloc] initWithNormalSprite:[CCSprite rectSpriteWithSize:buttonSize color:ccc3(180, 180, 0)] selectedSprite:[CCSprite rectSpriteWithSize:buttonSize color:ccc3(255, 255, 0)] disabledSprite:nil target:self selector:@selector(runButtonPressed:)];
         runButton.position = ccp(self.contentSize.width - buttonSize.width/2, yMid);
         
         // buttons must be added to a CCMenu to work
