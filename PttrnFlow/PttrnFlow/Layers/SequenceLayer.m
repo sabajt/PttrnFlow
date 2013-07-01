@@ -27,6 +27,7 @@
 #import "ColorUtils.h"
 #import "CCLayer+Positioning.h"
 #import "BackgroundLayer.h"
+#import "SequenceItemLayer.h"
 
 @interface SequenceLayer ()
 
@@ -47,20 +48,29 @@
 {
     CCScene *scene = [CCScene node];
     
-    BackgroundLayer *background = [BackgroundLayer layerWithColor:ccc4(255, 255, 255, 255)];
-    [scene addChild:background];
-
+    // contstruct a tiled map from our sequence
     NSString *sequenceName = [NSString stringWithFormat:@"seq%i.tmx", sequence];
     CCTMXTiledMap *tiledMap = [CCTMXTiledMap tiledMapWithTMXFile:sequenceName];
     
+    // background
+    BackgroundLayer *background = [BackgroundLayer layerWithColor:ccc4(255, 255, 255, 255)];
+    [scene addChild:background];
+    
+    // gameplay layer
     SequenceLayer *sequenceLayer = [[SequenceLayer alloc] initWithTiledMap:tiledMap background:background];
     [scene addChild:sequenceLayer];
     
-    static CGFloat hudHeight = 80;
-    SequenceControlBarLayer *hudLayer = [SequenceControlBarLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceHud]) width:sequenceLayer.contentSize.width height:hudHeight tickDispatcer:sequenceLayer.tickDispatcher tiledMap:tiledMap];
+    // hud layers
+    static CGFloat controlBarHeight = 80;
+    SequenceControlBarLayer *hudLayer = [SequenceControlBarLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceHud]) width:sequenceLayer.contentSize.width height:controlBarHeight tickDispatcer:sequenceLayer.tickDispatcher];
     hudLayer.position = ccp(0, sequenceLayer.contentSize.height - hudLayer.contentSize.height);
     [scene addChild:hudLayer z:1];
-
+    
+    static CGFloat itemBarWidth = 80;
+    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[kSequenceItemArrow]];
+    itemLayer.position = ccp(sequenceLayer.contentSize.width - itemLayer.contentSize.width, sequenceLayer.contentSize.height - hudLayer.contentSize.height - itemLayer.contentSize.height);
+    [scene addChild:itemLayer z:1];
+    
     return scene;
 }
 

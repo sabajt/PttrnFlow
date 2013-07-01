@@ -54,6 +54,9 @@ FOUNDATION_EXPORT NSString *const kImageDrum3_on;
 FOUNDATION_EXPORT NSString *const kImageDrum4;
 FOUNDATION_EXPORT NSString *const kImageDrum4_on;
 
+FOUNDATION_EXPORT NSString *const kImageArrowButton_off;
+FOUNDATION_EXPORT NSString *const kImageArrowButton_on;
+
 + (void)loadTextures;
 
 // generate a unique texture key using components of primative image size and color

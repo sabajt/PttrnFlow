@@ -198,6 +198,11 @@
 		163091EA177CC176003155BB /* BlockFader.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091E9177CC175003155BB /* BlockFader.m */; };
 		163091ED177CD5A2003155BB /* CCLayer+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091EC177CD5A1003155BB /* CCLayer+Positioning.m */; };
 		163091F0177DEDA9003155BB /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091EF177DEDA9003155BB /* BackgroundLayer.m */; };
+		163091F4177F732E003155BB /* SequenceItemLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091F3177F732E003155BB /* SequenceItemLayer.m */; };
+		163091F8177F7B02003155BB /* itemButtonArrowOff-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 163091F6177F7B02003155BB /* itemButtonArrowOff-ipadhd.png */; };
+		163091F9177F7B02003155BB /* itemButtonArrowOn-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 163091F7177F7B02003155BB /* itemButtonArrowOn-ipadhd.png */; };
+		163091FC177F7B14003155BB /* itemButtonArrowOff-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 163091FA177F7B14003155BB /* itemButtonArrowOff-ipad.png */; };
+		163091FD177F7B14003155BB /* itemButtonArrowOn-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 163091FB177F7B14003155BB /* itemButtonArrowOn-ipad.png */; };
 		163DBE0117692C3100FCB89C /* SequenceMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 163DBE0017692C3100FCB89C /* SequenceMenuLayer.m */; };
 		163DBE081769325400FCB89C /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 163DBE071769325400FCB89C /* UIImage+Utils.m */; };
 		163DBE0B1769329C00FCB89C /* CCSprite+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 163DBE0A1769329C00FCB89C /* CCSprite+Utils.m */; };
@@ -619,6 +624,12 @@
 		163091EC177CD5A1003155BB /* CCLayer+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCLayer+Positioning.m"; sourceTree = "<group>"; };
 		163091EE177DEDA9003155BB /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
 		163091EF177DEDA9003155BB /* BackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundLayer.m; sourceTree = "<group>"; };
+		163091F2177F732E003155BB /* SequenceItemLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceItemLayer.h; sourceTree = "<group>"; };
+		163091F3177F732E003155BB /* SequenceItemLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceItemLayer.m; sourceTree = "<group>"; };
+		163091F6177F7B02003155BB /* itemButtonArrowOff-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonArrowOff-ipadhd.png"; sourceTree = "<group>"; };
+		163091F7177F7B02003155BB /* itemButtonArrowOn-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonArrowOn-ipadhd.png"; sourceTree = "<group>"; };
+		163091FA177F7B14003155BB /* itemButtonArrowOff-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonArrowOff-ipad.png"; sourceTree = "<group>"; };
+		163091FB177F7B14003155BB /* itemButtonArrowOn-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonArrowOn-ipad.png"; sourceTree = "<group>"; };
 		163DBDFF17692C3000FCB89C /* SequenceMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceMenuLayer.h; sourceTree = "<group>"; };
 		163DBE0017692C3100FCB89C /* SequenceMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceMenuLayer.m; sourceTree = "<group>"; };
 		163DBE061769325400FCB89C /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
@@ -1151,6 +1162,8 @@
 				16A4277B176BF0A100BEF13F /* SequenceControlBarLayer.m */,
 				163091EE177DEDA9003155BB /* BackgroundLayer.h */,
 				163091EF177DEDA9003155BB /* BackgroundLayer.m */,
+				163091F2177F732E003155BB /* SequenceItemLayer.h */,
+				163091F3177F732E003155BB /* SequenceItemLayer.m */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -1195,6 +1208,8 @@
 		160B50D4173A27EA00BFC014 /* retina */ = {
 			isa = PBXGroup;
 			children = (
+				163091F6177F7B02003155BB /* itemButtonArrowOff-ipadhd.png */,
+				163091F7177F7B02003155BB /* itemButtonArrowOn-ipadhd.png */,
 				16A942C71778C58E0052D5BD /* drum1-ipadhd.png */,
 				16A942C81778C58E0052D5BD /* drum1on-ipadhd.png */,
 				16A942C91778C58E0052D5BD /* drum2-ipadhd.png */,
@@ -1242,6 +1257,8 @@
 		16284C24173A065800B058D2 /* standard */ = {
 			isa = PBXGroup;
 			children = (
+				163091FA177F7B14003155BB /* itemButtonArrowOff-ipad.png */,
+				163091FB177F7B14003155BB /* itemButtonArrowOn-ipad.png */,
 				16A942D71778C5A50052D5BD /* drum1-ipad.png */,
 				16A942D81778C5A50052D5BD /* drum1on-ipad.png */,
 				16A942D91778C5A50052D5BD /* drum2-ipad.png */,
@@ -1582,6 +1599,10 @@
 				1693C662177A0C9300FEB350 /* d2.wav in Resources */,
 				1693C665177A628300FEB350 /* d3.wav in Resources */,
 				1693C666177A628300FEB350 /* d4.wav in Resources */,
+				163091F8177F7B02003155BB /* itemButtonArrowOff-ipadhd.png in Resources */,
+				163091F9177F7B02003155BB /* itemButtonArrowOn-ipadhd.png in Resources */,
+				163091FC177F7B14003155BB /* itemButtonArrowOff-ipad.png in Resources */,
+				163091FD177F7B14003155BB /* itemButtonArrowOn-ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1728,6 +1749,7 @@
 				163091EA177CC176003155BB /* BlockFader.m in Sources */,
 				163091ED177CD5A2003155BB /* CCLayer+Positioning.m in Sources */,
 				163091F0177DEDA9003155BB /* BackgroundLayer.m in Sources */,
+				163091F4177F732E003155BB /* SequenceItemLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

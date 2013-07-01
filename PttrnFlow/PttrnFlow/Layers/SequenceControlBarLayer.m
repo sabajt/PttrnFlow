@@ -20,12 +20,12 @@
 
 @implementation SequenceControlBarLayer
 
-+ (id)layerWithColor:(ccColor4B)color width:(GLfloat)w height:(GLfloat)h tickDispatcer:(TickDispatcher *)tickDispatcher tiledMap:(CCTMXTiledMap *)tiledMap
++ (id)layerWithColor:(ccColor4B)color width:(GLfloat)w height:(GLfloat)h tickDispatcer:(TickDispatcher *)tickDispatcher
 {
-    return [[SequenceControlBarLayer alloc] initWithColor:color width:w height:h tickDispatcer:tickDispatcher tiledMap:tiledMap];
+    return [[SequenceControlBarLayer alloc] initWithColor:color width:w height:h tickDispatcer:tickDispatcher];
 }
 
-- (id)initWithColor:(ccColor4B)color width:(GLfloat)w  height:(GLfloat)h tickDispatcer:(TickDispatcher *)tickDispatcher tiledMap:(CCTMXTiledMap *)tiledMap
+- (id)initWithColor:(ccColor4B)color width:(GLfloat)w  height:(GLfloat)h tickDispatcer:(TickDispatcher *)tickDispatcher
 {
     self = [super initWithColor:color width:w height:h];
     if (self) {

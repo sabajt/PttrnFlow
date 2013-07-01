@@ -52,6 +52,8 @@ NSString *const kImageDrum3_on = @"drum3on.png";
 NSString *const kImageDrum4 = @"drum4.png";
 NSString *const kImageDrum4_on = @"drum4on.png";
 
+NSString *const kImageArrowButton_off = @"itemButtonArrowOff.png";
+NSString *const kImageArrowButton_on = @"itemButtonArrowOn.png";
 
 // don't forget to load the images
 + (void)loadTextures
@@ -97,6 +99,9 @@ NSString *const kImageDrum4_on = @"drum4on.png";
     [[CCTextureCache sharedTextureCache] addImage:kImageDrum3_on];
     [[CCTextureCache sharedTextureCache] addImage:kImageDrum4];
     [[CCTextureCache sharedTextureCache] addImage:kImageDrum4_on];
+    
+    [[CCTextureCache sharedTextureCache] addImage:kImageArrowButton_off];
+    [[CCTextureCache sharedTextureCache] addImage:kImageArrowButton_on];
 }
 
 // generate a unique texture key using components of primative image size and color

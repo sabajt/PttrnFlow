@@ -49,6 +49,11 @@
     return [self darkBlue];
 }
 
++ (ccColor3B)sequenceItemBar
+{
+    return [self gray];
+}
+
 + (ccColor3B)ticker
 {
     return [self lime];
