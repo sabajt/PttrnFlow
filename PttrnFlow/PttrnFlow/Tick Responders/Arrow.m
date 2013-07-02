@@ -17,15 +17,20 @@
 
 - (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth
 {
+    GridCoord cell = [tiledMap gridCoordForObject:arrow];
+    kDirection facing = [SGTiledUtils directionNamed:[CCTMXTiledMap objectPropertyNamed:kTLDPropertyDirection object:arrow]];
+    return [self initWithSynth:synth cell:cell facing:facing];
+}
+
+- (id)initWithSynth:(id<SoundEventReceiver>)synth cell:(GridCoord)cell facing:(kDirection)facing
+{
     self = [super initWithSynth:synth];
     if (self) {
-        self.cell = [tiledMap gridCoordForObject:arrow];
-        NSString *facing = [CCTMXTiledMap objectPropertyNamed:kTLDPropertyDirection object:arrow];
-        self.facing = [SGTiledUtils directionNamed:facing];
-        NSString *imageName = [self imageNameForFacing:self.facing on:NO];
-        self.sprite = [self createAndCenterSpriteNamed:imageName];
+        self.cell = cell;
+        self.facing = facing;
+        self.sprite = [self createAndCenterSpriteNamed:[self imageNameForFacing:facing on:NO]];
+        self.position = [GridUtils relativePositionForGridCoord:cell unitSize:kSizeGridUnit];
         [self addChild:self.sprite];
-        self.position = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
     }
     return self;
 }

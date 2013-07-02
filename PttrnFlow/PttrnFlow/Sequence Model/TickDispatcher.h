@@ -43,14 +43,19 @@ typedef enum
 @property (assign) int sequenceLength;
 @property (weak, nonatomic) id<SoundEventReceiver> synth;
 
+// setup
 - (id)initWithSequence:(NSMutableDictionary *)sequence tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth;
-
 - (void)registerTickResponder:(id<TickResponder>)responder;
 
+// control
 - (void)start;
 - (void)stop;
 - (void)play:(int)index;
 - (void)scheduleSequence;
+
+// queries
+- (NSArray *)tickRespondersAtCell:(GridCoord)cell;
+- (NSArray *)tickRespondersAtCell:(GridCoord)cell class:(Class)class;
 
 + (BOOL)isArrowEvent:(NSString *)event;
 

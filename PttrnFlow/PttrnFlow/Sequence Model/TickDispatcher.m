@@ -235,6 +235,31 @@ CGFloat const kTickInterval = 0.5;
     return [events containsSameStrings:hit];
 }
 
+#pragma mark - public queries
+
+- (NSArray *)tickRespondersAtCell:(GridCoord)cell
+{
+    NSMutableArray *results = [NSMutableArray array];
+    for (id<TickResponder> responder in self.responders) {
+        if ([GridUtils isCell:cell equalToCell:[responder responderCell]]) {
+            [results addObject:responder];
+        }
+    }
+    return [NSArray arrayWithArray:results];
+}
+
+- (NSArray *)tickRespondersAtCell:(GridCoord)cell class:(Class)class
+{
+    NSMutableArray *results= [NSMutableArray array];
+    for (id<TickResponder> responder in self.responders) {
+        if ([GridUtils isCell:cell equalToCell:[responder responderCell]] &&
+            [responder isKindOfClass:class]) {
+            [results addObject:responder];
+        }
+    }
+    return [NSArray arrayWithArray:results];
+}
+
 #pragma mark - TickerControlDelegate
 
 - (void)tickerMovedToIndex:(int)index

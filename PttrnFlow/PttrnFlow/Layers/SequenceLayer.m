@@ -32,12 +32,15 @@
 
 @interface SequenceLayer ()
 
-@property (weak, nonatomic) TickDispatcher *tickDispatcher;
-@property (strong, nonatomic) CCTMXTiledMap *tileMap;
 @property (assign) GridCoord gridSize;
-@property (weak, nonatomic) Tone *pressedTone;
-@property (assign) CGPoint gridOrigin;
+@property (assign) CGPoint gridOrigin; // TODO: using grid origin except for drawing debug grid?
+@property (assign) GridCoord lastDraggedItemCell;
+
+@property (strong, nonatomic) CCTMXTiledMap *tileMap;
 @property (strong, nonatomic) MainSynth *synth;
+
+@property (weak, nonatomic) TickDispatcher *tickDispatcher;
+@property (weak, nonatomic) Tone *pressedTone;
 @property (weak, nonatomic) BackgroundLayer *backgroundLayer;
 @property (weak, nonatomic) PrimativeCellActor *selectionBox;
 
@@ -70,7 +73,7 @@
     
     // hud layer -- right hand item menu
     static CGFloat itemBarWidth = 80;
-    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[@(kDragItemArrow), @(kDragItemArrow), @(kDragItemArrow)] dragButtonDelegate:sequenceLayer];
+    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[@(kDragItemArrow)] dragButtonDelegate:sequenceLayer];
     itemLayer.position = ccp(sequenceLayer.contentSize.width - itemLayer.contentSize.width, sequenceLayer.contentSize.height - hudLayer.contentSize.height - itemLayer.contentSize.height);
     [scene addChild:itemLayer z:1];
     
@@ -120,13 +123,13 @@
             [self addChild:drumNode];
         }
         
-        // arrow blocks
-        NSMutableArray *arrows = [tiledMap objectsWithName:kTLDObjectArrow groupName:kTLDGroupTickResponders];
-        for (NSMutableDictionary *arrow in arrows) {
-            Arrow *arrowNode = [[Arrow alloc] initWithArrow:arrow tiledMap:tiledMap synth:self.synth];
-            [self.tickDispatcher registerTickResponder:arrowNode];
-            [self addChild:arrowNode];
-        }
+//        // arrow blocks
+//        NSMutableArray *arrows = [tiledMap objectsWithName:kTLDObjectArrow groupName:kTLDGroupTickResponders];
+//        for (NSMutableDictionary *arrow in arrows) {
+//            Arrow *arrowNode = [[Arrow alloc] initWithArrow:arrow tiledMap:tiledMap synth:self.synth];
+//            [self.tickDispatcher registerTickResponder:arrowNode];
+//            [self addChild:arrowNode];
+//        }
         
         // entry arrow
         NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupTickResponders];
@@ -171,27 +174,61 @@
 
 - (void)dragItemMoved:(kDragItem)itemType touch:(UITouch *)touch
 {
-    self.selectionBox.visible = YES;
-    
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
-
-    if (self.selectionBox == nil) {
-        PrimativeCellActor *selectionBox = [[PrimativeCellActor alloc] initWithRectSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:20 color:[ColorUtils winningBackground] cell:cell touch:NO];
-        self.selectionBox = selectionBox;
-        [self addChild:selectionBox];
-    }
-    else {
-        [self.selectionBox positionAtCell:cell];
+    
+    if (![GridUtils isCell:cell equalToCell:self.lastDraggedItemCell]) {
+        self.lastDraggedItemCell = cell;
+        
+        NSArray *tickResponders = [self.tickDispatcher tickRespondersAtCell:cell];
+        BOOL legalPlacement = YES;
+        
+        // check arrows
+        if (itemType == kDragItemArrow) {
+            if (tickResponders.count == 0) {
+                legalPlacement = NO;
+            }
+            else {
+                for (id responder in tickResponders) {
+                    if ([responder isKindOfClass:[Arrow class]]) {
+                        legalPlacement = NO;
+                    }
+                }
+            }
+        }
+        
+        // check other types...
+        else {
+            legalPlacement = NO;
+        }
+        
+        // highlight if legal for placement
+        if (legalPlacement) {
+            if (self.selectionBox == nil) {
+                PrimativeCellActor *selectionBox = [[PrimativeCellActor alloc] initWithRectSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:20 color:[ColorUtils winningBackground] cell:cell touch:NO];
+                self.selectionBox = selectionBox;
+                [self addChild:selectionBox];
+            }
+            else {
+                [self.selectionBox positionAtCell:cell];
+            }
+            self.selectionBox.visible = YES;
+        }
     }
 }
 
 - (void)dragItemDropped:(kDragItem)itemType touch:(UITouch *)touch
 {
-    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
-    
-    self.selectionBox.visible = NO;
+    if (self.selectionBox.visible) {
+        
+        if (itemType == kDragItemArrow) {
+            Arrow *arrow = [[Arrow alloc] initWithSynth:self.synth cell:self.lastDraggedItemCell facing:kDirectionUp];
+            [self.tickDispatcher registerTickResponder:arrow];
+            [self addChild:arrow];
+        }
+        
+        self.selectionBox.visible = NO;
+    }
 }
 
 #pragma mark - TickDispatcherDelegate
