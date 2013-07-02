@@ -9,6 +9,7 @@
 #import "TouchNode.h"
 #import "CCNode+Touch.h"
 
+
 @implementation TouchNode
 
 - (id)init
@@ -16,8 +17,14 @@
     self = [super init];
     if (self) {
         self.swallowsTouches = NO;
+        self.longPressDelay = 0;
     }
     return self;
+}
+
+- (void)longPress:(ccTime)deltaTime
+{
+    NSLog(@"long press needs implementation");
 }
 
 #pragma mark CCNode SceneManagement
@@ -37,11 +44,21 @@
 #pragma mark CCTargetedTouchDelegate
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-{
+{    
     if ([self containsTouch:touch]) {
+        if (self.longPressDelay > 0) {
+            [self scheduleOnce:@selector(longPress:) delay:self.longPressDelay];
+        }
         return YES;
     }
     return NO;
+}
+
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if (self.longPressDelay > 0) {
+        [self unschedule:@selector(longPress:)];
+    }
 }
 
 @end

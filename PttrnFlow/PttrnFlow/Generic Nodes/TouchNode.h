@@ -11,5 +11,8 @@
 @interface TouchNode : CCNode <CCTargetedTouchDelegate>
 
 @property (assign) BOOL swallowsTouches;
+@property (assign) CGFloat longPressDelay;
+
+- (void)longPress:(ccTime)deltaTime;
 
 @end

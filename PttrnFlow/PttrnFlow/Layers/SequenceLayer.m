@@ -172,7 +172,7 @@
 
 #pragma mark - DragButtonDelegate
 
-- (void)dragItemMoved:(kDragItem)itemType touch:(UITouch *)touch
+- (void)dragItemMoved:(kDragItem)itemType touch:(UITouch *)touch button:(DragButton *)button
 {
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
@@ -217,12 +217,12 @@
     }
 }
 
-- (void)dragItemDropped:(kDragItem)itemType touch:(UITouch *)touch
+- (void)dragItemDropped:(kDragItem)itemType touch:(UITouch *)touch button:(DragButton *)button
 {
     if (self.selectionBox.visible) {
         
         if (itemType == kDragItemArrow) {
-            Arrow *arrow = [[Arrow alloc] initWithSynth:self.synth cell:self.lastDraggedItemCell facing:kDirectionUp];
+            Arrow *arrow = [[Arrow alloc] initWithSynth:self.synth cell:self.lastDraggedItemCell facing:kDirectionUp dragProxy:button];
             [self.tickDispatcher registerTickResponder:arrow];
             [self addChild:arrow];
         }

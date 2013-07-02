@@ -16,18 +16,19 @@
 @property (weak, nonatomic) CCSprite *defaultSprite;
 @property (weak, nonatomic) CCSprite *selectedSprite;
 @property (weak, nonatomic) CCSprite *dragSprite;
+@property (assign) BOOL forceTouchBegin;
 
 @end
 
 
 @implementation DragButton
 
-+ (DragButton *)buttonWithItemType:(kDragItem)itemType defaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)itemSprite delegate:(id<DragButtonDelegate>)delegate
++ (DragButton *)buttonWithItemType:(kDragItem)itemType defaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)itemSprite delegate:(id<DragItemDelegate>)delegate
 {
     return [[DragButton alloc] initWithItemType:itemType DefaultSprite:defaultSprite selectedSprite:selectedSprite dragItemSprite:itemSprite delegate:delegate];
 }
 
-- (id)initWithItemType:(kDragItem)itemType DefaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)dragSprite delegate:(id<DragButtonDelegate>)delegate
+- (id)initWithItemType:(kDragItem)itemType DefaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)dragSprite delegate:(id<DragItemDelegate>)delegate
 {
     self = [super init];
     if (self) {
@@ -43,6 +44,7 @@
         self.selectedSprite = selectedSprite;
         self.contentSize = defaultSprite.contentSize;
         self.dragSprite = dragSprite;
+        self.forceTouchBegin = NO;
         
         [self addChild:defaultSprite];
         [self addChild:selectedSprite];
@@ -51,11 +53,13 @@
     return self;
 }
 
-# pragma mark - CCTargetedTouchDelegate
+#pragma mark - CCTargetedTouchDelegate
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if ([super ccTouchBegan:touch withEvent:event]) {
+    if ([super ccTouchBegan:touch withEvent:event] || self.forceTouchBegin) {
+        self.forceTouchBegin = NO;
+        
         self.defaultSprite.visible = NO;
         self.selectedSprite.visible = YES;
         
@@ -72,7 +76,7 @@
 {
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     self.dragSprite.position = touchPosition;
-    [self.delegate dragItemMoved:self.itemType touch:touch];
+    [self.delegate dragItemMoved:self.itemType touch:touch button:self];
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
@@ -81,8 +85,25 @@
     self.selectedSprite.visible = NO;
     
     self.dragSprite.visible = NO;
-    [self.delegate dragItemDropped:self.itemType touch:touch];
+    [self.delegate dragItemDropped:self.itemType touch:touch button:self];
 }
 
+#pragma mark - DragButtonTouchForwarding 
+
+- (void)forwardDragTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    self.forceTouchBegin = YES;
+    [self ccTouchBegan:touch withEvent:event];
+}
+
+- (void)forwardDragTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    [self ccTouchMoved:touch withEvent:event];
+}
+
+- (void)forwardDragTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    [self ccTouchEnded:touch withEvent:event];
+}
 
 @end

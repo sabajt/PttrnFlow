@@ -194,6 +194,7 @@
 		162B7F171754114D00E0CC0D /* startArrow-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 162B7F161754114D00E0CC0D /* startArrow-ipadhd.png */; };
 		162B7F1A1754116000E0CC0D /* startArrow-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 162B7F191754116000E0CC0D /* startArrow-ipad.png */; };
 		162C291017821E0200CE480C /* SizeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C290F17821E0200CE480C /* SizeUtils.m */; };
+		162C291417828A9300CE480C /* SynthCellDragNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C291317828A9300CE480C /* SynthCellDragNode.m */; };
 		163091E4177CBA1D003155BB /* PrimativeCellActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091E3177CBA1D003155BB /* PrimativeCellActor.m */; };
 		163091E7177CBC20003155BB /* CCNode+Content.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091E6177CBC20003155BB /* CCNode+Content.m */; };
 		163091EA177CC176003155BB /* BlockFader.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091E9177CC175003155BB /* BlockFader.m */; };
@@ -618,6 +619,8 @@
 		162B7F191754116000E0CC0D /* startArrow-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startArrow-ipad.png"; sourceTree = "<group>"; };
 		162C290E17821E0200CE480C /* SizeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeUtils.h; sourceTree = "<group>"; };
 		162C290F17821E0200CE480C /* SizeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SizeUtils.m; sourceTree = "<group>"; };
+		162C291217828A9200CE480C /* SynthCellDragNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthCellDragNode.h; sourceTree = "<group>"; };
+		162C291317828A9300CE480C /* SynthCellDragNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynthCellDragNode.m; sourceTree = "<group>"; };
 		163091E2177CBA1D003155BB /* PrimativeCellActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimativeCellActor.h; sourceTree = "<group>"; };
 		163091E3177CBA1D003155BB /* PrimativeCellActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimativeCellActor.m; sourceTree = "<group>"; };
 		163091E5177CBC20003155BB /* CCNode+Content.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+Content.h"; sourceTree = "<group>"; };
@@ -1418,6 +1421,8 @@
 				16A942AF1777A2260052D5BD /* TickResponder.h */,
 				16A942B01777A2260052D5BD /* Tone.h */,
 				16A942B11777A2260052D5BD /* Tone.m */,
+				162C291217828A9200CE480C /* SynthCellDragNode.h */,
+				162C291317828A9300CE480C /* SynthCellDragNode.m */,
 			);
 			path = "Tick Responders";
 			sourceTree = "<group>";
@@ -1762,6 +1767,7 @@
 				163091F4177F732E003155BB /* SequenceItemLayer.m in Sources */,
 				1692D28D1781CF900058448B /* DragButton.m in Sources */,
 				162C291017821E0200CE480C /* SizeUtils.m in Sources */,
+				162C291417828A9300CE480C /* SynthCellDragNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

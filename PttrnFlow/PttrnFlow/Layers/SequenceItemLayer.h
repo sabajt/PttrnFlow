@@ -11,6 +11,6 @@
 
 @interface SequenceItemLayer : CCLayerColor
 
-+ (id)layerWithColor:(ccColor4B)color width:(GLfloat)w items:(NSArray *)items dragButtonDelegate:(id<DragButtonDelegate>)delegate;
++ (id)layerWithColor:(ccColor4B)color width:(GLfloat)w items:(NSArray *)items dragButtonDelegate:(id<DragItemDelegate>)delegate;
 
 @end

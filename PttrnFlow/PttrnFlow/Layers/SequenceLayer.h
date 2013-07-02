@@ -13,7 +13,7 @@
 
 @class PdDispatcher;
 
-@interface SequenceLayer : CCLayerPanZoom <TickDispatcherDelegate, DragButtonDelegate>
+@interface SequenceLayer : CCLayerPanZoom <TickDispatcherDelegate, DragItemDelegate>
 {
     PdDispatcher *_dispatcher;
     void *_patch;

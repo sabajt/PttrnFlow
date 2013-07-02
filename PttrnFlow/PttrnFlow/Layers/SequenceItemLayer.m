@@ -18,12 +18,12 @@ static CGFloat const kHandleHeight = 40;
 // height is determined by number of items.
 // items should be an array of NSNumbers from range in kDragItem.
 // type kDragItem should define types of object the delegate will know how to create.
-+ (id)layerWithColor:(ccColor4B)color width:(GLfloat)w items:(NSArray *)items dragButtonDelegate:(id<DragButtonDelegate>)delegate
++ (id)layerWithColor:(ccColor4B)color width:(GLfloat)w items:(NSArray *)items dragButtonDelegate:(id<DragItemDelegate>)delegate
 {
     return [[SequenceItemLayer alloc] initWithColor:color width:w height:(w * items.count) + kHandleHeight items:items dragButtonDelegate:delegate];
 }
 
-- (id)initWithColor:(ccColor4B)color width:(GLfloat)w height:(GLfloat)h items:(NSArray *)items dragButtonDelegate:(id<DragButtonDelegate>)delegate
+- (id)initWithColor:(ccColor4B)color width:(GLfloat)w height:(GLfloat)h items:(NSArray *)items dragButtonDelegate:(id<DragItemDelegate>)delegate
 {
     self = [super initWithColor:color width:w height:h];
     if (self) {
@@ -39,7 +39,7 @@ static CGFloat const kHandleHeight = 40;
     return self;
 }
 
-- (DragButton *)dragItemButton:(kDragItem)itemType delegate:(id<DragButtonDelegate>)delegate
+- (DragButton *)dragItemButton:(kDragItem)itemType delegate:(id<DragItemDelegate>)delegate
 {
     CCSprite *defaultSprite;
     CCSprite *selectedSprite;

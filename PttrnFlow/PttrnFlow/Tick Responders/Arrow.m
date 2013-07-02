@@ -12,19 +12,21 @@
 #import "TextureUtils.h"
 #import "SpriteUtils.h"
 #import "TickDispatcher.h"
+#import "DragButton.h"
+
 
 @implementation Arrow
 
-- (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth
+- (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth dragProxy:(id<DragButtonTouchProxy>)dragProxy
 {
     GridCoord cell = [tiledMap gridCoordForObject:arrow];
     kDirection facing = [SGTiledUtils directionNamed:[CCTMXTiledMap objectPropertyNamed:kTLDPropertyDirection object:arrow]];
-    return [self initWithSynth:synth cell:cell facing:facing];
+    return [self initWithSynth:synth cell:cell facing:facing dragProxy:dragProxy];
 }
 
-- (id)initWithSynth:(id<SoundEventReceiver>)synth cell:(GridCoord)cell facing:(kDirection)facing
+- (id)initWithSynth:(id<SoundEventReceiver>)synth cell:(GridCoord)cell facing:(kDirection)facing dragProxy:(id<DragButtonTouchProxy>)dragProxy
 {
-    self = [super initWithSynth:synth];
+    self = [super initWithSynth:synth dragProxy:dragProxy];
     if (self) {
         self.cell = cell;
         self.facing = facing;
@@ -72,7 +74,7 @@
     [SpriteUtils switchImageForSprite:self.sprite textureKey:imageName];
 }
 
-#pragma mark - TouchNode
+#pragma mark - CCTargetedTouchDelegate
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
@@ -80,6 +82,7 @@
         NSString *event = [self tick:kBPM];
         [self.synth receiveEvents:@[event]];
         [self rotateClockwise];
+        return YES;
     }
     return NO;
 }
@@ -100,6 +103,5 @@
 {
     return self.cell;
 }
-
 
 @end
