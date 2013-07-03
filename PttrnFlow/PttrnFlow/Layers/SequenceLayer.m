@@ -61,6 +61,11 @@
     
     // layer size reporting:
     // [self.scheduler scheduleSelector:@selector(reportSize:) forTarget:self interval:0.3 paused:NO repeat:kCCRepeatForever delay:0];
+    
+    // color the background
+    // CCSprite *cover = [CCSprite rectSpriteWithSize:self.contentSize edgeLength:30 color:ccBLACK];
+    // cover.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
+    // [self addChild:cover];
 }
 
 - (void)reportSize:(ccTime)deltaTime
@@ -98,11 +103,11 @@
     [scene addChild:background];
     
     // gameplay layer
-    SequenceLayer *sequenceLayer = [[SequenceLayer alloc] initWithTiledMap:tiledMap background:background];
+    static CGFloat controlBarHeight = 80;
+    SequenceLayer *sequenceLayer = [[SequenceLayer alloc] initWithTiledMap:tiledMap background:background topMargin:controlBarHeight];
     [scene addChild:sequenceLayer];
     
     // hud layer -- top control bar
-    static CGFloat controlBarHeight = 80;
     SequenceControlBarLayer *hudLayer = [SequenceControlBarLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceHud]) width:sequenceLayer.contentSize.width height:controlBarHeight tickDispatcer:sequenceLayer.tickDispatcher];
     hudLayer.position = ccp(0, sequenceLayer.contentSize.height - hudLayer.contentSize.height);
     [scene addChild:hudLayer z:1];
@@ -121,7 +126,7 @@
     return [BlockFader blockFaderWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) color:[ColorUtils exitFaderBlock] cell:cell duration:kTickInterval];
 }
 
-- (id)initWithTiledMap:(CCTMXTiledMap *)tiledMap background:(BackgroundLayer *)backgroundLayer;
+- (id)initWithTiledMap:(CCTMXTiledMap *)tiledMap background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
 {
     self = [super init];
     if (self) {        
@@ -131,11 +136,6 @@
         self.tileMap = tiledMap;
         self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
         self.absoluteGridSize = CGSizeMake(self.gridSize.x * kSizeGridUnit, self.gridSize.y * kSizeGridUnit);
-        
-        // color the background
-        CCSprite *cover = [CCSprite rectSpriteWithSize:self.contentSize edgeLength:30 color:ccBLACK];
-        cover.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
-        [self addChild:cover];
         
         // CCLayerPanZoom
         self.mode = kCCLayerPanZoomModeSheet;
@@ -181,7 +181,9 @@
         }
 
         // find optimal scale and position
-        self.position = [self positionAtBoundsOrigin];
+        CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
+        self.scale = [self scaleToFitArea:self.absoluteGridSize insideConstraintSize:activeWindow.size];
+        self.position = [self positionAtCenterOfGridSized:self.gridSize unitSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) constraintRect:activeWindow];
         
         [self setupDebug];
     }

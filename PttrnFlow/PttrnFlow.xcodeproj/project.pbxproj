@@ -196,6 +196,10 @@
 		162C291017821E0200CE480C /* SizeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C290F17821E0200CE480C /* SizeUtils.m */; };
 		162C291417828A9300CE480C /* SynthCellDragNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C291317828A9300CE480C /* SynthCellDragNode.m */; };
 		162C291717848A8800CE480C /* CCLayerPanZoom+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C291617848A8700CE480C /* CCLayerPanZoom+Utils.m */; };
+		162C291C1784CF5600CE480C /* seq1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 162C29181784CF5600CE480C /* seq1.tmx */; };
+		162C291D1784CF5600CE480C /* seq2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 162C29191784CF5600CE480C /* seq2.tmx */; };
+		162C291E1784CF5600CE480C /* seq3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 162C291A1784CF5600CE480C /* seq3.tmx */; };
+		162C291F1784CF5600CE480C /* seq4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 162C291B1784CF5600CE480C /* seq4.tmx */; };
 		163091E4177CBA1D003155BB /* PrimativeCellActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091E3177CBA1D003155BB /* PrimativeCellActor.m */; };
 		163091E7177CBC20003155BB /* CCNode+Content.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091E6177CBC20003155BB /* CCNode+Content.m */; };
 		163091EA177CC176003155BB /* BlockFader.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091E9177CC175003155BB /* BlockFader.m */; };
@@ -624,6 +628,10 @@
 		162C291317828A9300CE480C /* SynthCellDragNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynthCellDragNode.m; sourceTree = "<group>"; };
 		162C291517848A8600CE480C /* CCLayerPanZoom+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCLayerPanZoom+Utils.h"; sourceTree = "<group>"; };
 		162C291617848A8700CE480C /* CCLayerPanZoom+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCLayerPanZoom+Utils.m"; sourceTree = "<group>"; };
+		162C29181784CF5600CE480C /* seq1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = seq1.tmx; sourceTree = "<group>"; };
+		162C29191784CF5600CE480C /* seq2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = seq2.tmx; sourceTree = "<group>"; };
+		162C291A1784CF5600CE480C /* seq3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = seq3.tmx; sourceTree = "<group>"; };
+		162C291B1784CF5600CE480C /* seq4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = seq4.tmx; sourceTree = "<group>"; };
 		163091E2177CBA1D003155BB /* PrimativeCellActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimativeCellActor.h; sourceTree = "<group>"; };
 		163091E3177CBA1D003155BB /* PrimativeCellActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimativeCellActor.m; sourceTree = "<group>"; };
 		163091E5177CBC20003155BB /* CCNode+Content.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+Content.h"; sourceTree = "<group>"; };
@@ -1322,6 +1330,10 @@
 		16284C8E173A072B00B058D2 /* maps */ = {
 			isa = PBXGroup;
 			children = (
+				162C29181784CF5600CE480C /* seq1.tmx */,
+				162C29191784CF5600CE480C /* seq2.tmx */,
+				162C291A1784CF5600CE480C /* seq3.tmx */,
+				162C291B1784CF5600CE480C /* seq4.tmx */,
 				16284C8F173A072B00B058D2 /* pipeTilesetBase1.png */,
 				16284C90173A072B00B058D2 /* seq0.tmx */,
 			);
@@ -1623,6 +1635,10 @@
 				163091F9177F7B02003155BB /* itemButtonArrowOn-ipadhd.png in Resources */,
 				163091FC177F7B14003155BB /* itemButtonArrowOff-ipad.png in Resources */,
 				163091FD177F7B14003155BB /* itemButtonArrowOn-ipad.png in Resources */,
+				162C291C1784CF5600CE480C /* seq1.tmx in Resources */,
+				162C291D1784CF5600CE480C /* seq2.tmx in Resources */,
+				162C291E1784CF5600CE480C /* seq3.tmx in Resources */,
+				162C291F1784CF5600CE480C /* seq4.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
