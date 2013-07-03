@@ -7,13 +7,15 @@
 //
 
 #import "cocos2d.h"
-#import "CCLayerPanZoom.h"
+#import "CCLayerPanZoom+Utils.h"
 #import "TickDispatcher.h"
 #import "DragButton.h"
 
 @class PdDispatcher;
 
 @interface SequenceLayer : CCLayerPanZoom <TickDispatcherDelegate, DragItemDelegate>
+//@interface SequenceLayer : CCLayer <TickDispatcherDelegate, DragItemDelegate>
+
 {
     PdDispatcher *_dispatcher;
     void *_patch;

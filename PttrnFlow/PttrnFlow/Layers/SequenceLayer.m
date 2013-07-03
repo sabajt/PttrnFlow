@@ -33,8 +33,10 @@
 @interface SequenceLayer ()
 
 @property (assign) GridCoord gridSize;
+@property (assign) CGSize absoluteGridSize;
 @property (assign) CGPoint gridOrigin; // TODO: using grid origin except for drawing debug grid?
 @property (assign) GridCoord lastDraggedItemCell;
+@property (assign) BOOL shouldDrawGrid; // debugging
 
 @property (strong, nonatomic) CCTMXTiledMap *tileMap;
 @property (strong, nonatomic) MainSynth *synth;
@@ -47,7 +49,41 @@
 @end
 
 
-@implementation SequenceLayer
+@implementation SequenceLayer {}
+
+#pragma mark - debug methods
+
+// edit debugging options here
+- (void)setupDebug
+{
+    // draw grid as defined in our tile map -- does not neccesarily coordinate with gameplay
+    self.shouldDrawGrid = YES;
+    
+    // layer size reporting:
+    // [self.scheduler scheduleSelector:@selector(reportSize:) forTarget:self interval:0.3 paused:NO repeat:kCCRepeatForever delay:0];
+}
+
+- (void)reportSize:(ccTime)deltaTime
+{
+    if (self.boundingBox.origin.x > -10 && self.boundingBox.origin.y > -10 && self.boundingBox.origin.x < 10 && self.boundingBox.origin.y < 10)
+    {
+        NSLog(@"\n\n--debug------------------------");
+        NSLog(@"seq layer content size: %@", NSStringFromCGSize(self.contentSize));
+        NSLog(@"seq layer bounding box: %@", NSStringFromCGRect(self.boundingBox));
+        NSLog(@"seq layer position: %@", NSStringFromCGPoint(self.position));
+        NSLog(@"seq layer scale: %g", self.scale);
+        NSLog(@"--end debug------------------------\n");
+    }
+}
+
+- (void)draw
+{
+    // grid
+    ccDrawColor4F(0.5f, 0.5f, 0.5f, 1.0f);
+    [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
+}
+
+#pragma mark - setup
 
 + (CCScene *)sceneWithSequence:(int)sequence
 {
@@ -88,17 +124,23 @@
 - (id)initWithTiledMap:(CCTMXTiledMap *)tiledMap background:(BackgroundLayer *)backgroundLayer;
 {
     self = [super init];
-    if (self) {
+    if (self) {        
         self.isTouchEnabled = YES;
         self.backgroundLayer = backgroundLayer;
         self.synth = [[MainSynth alloc] init];
         self.tileMap = tiledMap;
         self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
+        self.absoluteGridSize = CGSizeMake(self.gridSize.x * kSizeGridUnit, self.gridSize.y * kSizeGridUnit);
+        
+        // color the background
+        CCSprite *cover = [CCSprite rectSpriteWithSize:self.contentSize edgeLength:30 color:ccBLACK];
+        cover.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
+        [self addChild:cover];
         
         // CCLayerPanZoom
         self.mode = kCCLayerPanZoomModeSheet;
         self.maxScale = 1;
-        self.minScale = 0.3;
+        self.minScale = .3;
         
         // tick dispatcher
         NSMutableDictionary *sequence = [tiledMap objectNamed:kTLDObjectSequence groupNamed:kTLDGroupTickResponders];
@@ -137,15 +179,13 @@
             EntryArrow *entryArrow = [[EntryArrow alloc] initWithEntry:entry tiledMap:tiledMap];
             [self addChild:entryArrow];
         }
+
+        // find optimal scale and position
+        self.position = [self positionAtBoundsOrigin];
+        
+        [self setupDebug];
     }
     return self;
-}
-
-- (void)draw
-{
-    // grid
-    ccDrawColor4F(0.5f, 0.5f, 0.5f, 1.0f);
-    [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
 }
 
 #pragma mark - scene management
