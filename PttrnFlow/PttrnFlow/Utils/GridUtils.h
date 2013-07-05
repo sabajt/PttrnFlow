@@ -31,6 +31,8 @@ GridCoordMake(const int x, const int y)
     
 }
 
++ (GridCoord)gridCoordNone;
+
 #pragma mark - conversions
 
 // absolute position on a grid for grid coordinate, bottom left

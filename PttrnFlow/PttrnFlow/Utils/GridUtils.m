@@ -15,6 +15,10 @@
     
 }
 
++ (GridCoord)gridCoordNone
+{
+    return GridCoordMake(INT32_MAX, INT32_MAX);
+}
 
 #pragma mark - conversions
 

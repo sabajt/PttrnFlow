@@ -10,13 +10,9 @@
 
 CGFloat const kSizeGridUnit = 200;
 
-@implementation GameConstants
+NSString *const kNotificationRemoveTickReponder = @"removeTickResponder";
 
-// 1024 / 768
-+(CGSize)landscapeScreenSize
-{
-    CGSize portrait = [UIScreen mainScreen].bounds.size;
-    return CGSizeMake(portrait.height, portrait.width);
-}
+
+@implementation GameConstants
 
 @end

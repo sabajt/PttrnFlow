@@ -16,7 +16,6 @@
 @property (weak, nonatomic) CCSprite *defaultSprite;
 @property (weak, nonatomic) CCSprite *selectedSprite;
 @property (weak, nonatomic) CCSprite *dragSprite;
-@property (assign) BOOL forceTouchBegin;
 
 @end
 
@@ -44,7 +43,6 @@
         self.selectedSprite = selectedSprite;
         self.contentSize = defaultSprite.contentSize;
         self.dragSprite = dragSprite;
-        self.forceTouchBegin = NO;
         
         [self addChild:defaultSprite];
         [self addChild:selectedSprite];
@@ -57,8 +55,7 @@
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if ([super ccTouchBegan:touch withEvent:event] || self.forceTouchBegin) {
-        self.forceTouchBegin = NO;
+    if ([super ccTouchBegan:touch withEvent:event]) {
         
         self.defaultSprite.visible = NO;
         self.selectedSprite.visible = YES;
@@ -76,7 +73,7 @@
 {
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     self.dragSprite.position = touchPosition;
-    [self.delegate dragItemMoved:self.itemType touch:touch button:self];
+    [self.delegate dragItemMoved:self.itemType touch:touch sender:self];
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
@@ -85,25 +82,7 @@
     self.selectedSprite.visible = NO;
     
     self.dragSprite.visible = NO;
-    [self.delegate dragItemDropped:self.itemType touch:touch button:self];
-}
-
-#pragma mark - DragButtonTouchForwarding 
-
-- (void)forwardDragTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    self.forceTouchBegin = YES;
-    [self ccTouchBegan:touch withEvent:event];
-}
-
-- (void)forwardDragTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    [self ccTouchMoved:touch withEvent:event];
-}
-
-- (void)forwardDragTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    [self ccTouchEnded:touch withEvent:event];
+    [self.delegate dragItemDropped:self.itemType touch:touch sender:self];
 }
 
 @end

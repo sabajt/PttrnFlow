@@ -64,6 +64,8 @@ CGFloat const kTickInterval = 0.5;
         self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
         self.lastTickedResponders = [NSMutableArray array];
         self.synth = synth;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoveResponder:) name:kNotificationRemoveTickReponder object:nil];
     }
     return self;
 }
@@ -78,6 +80,15 @@ CGFloat const kTickInterval = 0.5;
         [eventSequence addObject:eventChain];
     }
     return eventSequence;
+}
+
+- (void)handleRemoveResponder:(NSNotification *)notification
+{
+    id<TickResponder> responder =  notification.object;
+    if ([self.responders containsObject:responder]) {
+        [self.responders removeObject:responder];
+        NSLog(@"...responder removed...");
+    }
 }
 
 - (void)registerTickResponder:(id<TickResponder>)responder

@@ -7,13 +7,18 @@
 //
 
 #import "SynthCellDragNode.h"
+#import "CCNode+DragItem.h"
 
 @interface SynthCellDragNode ()
 
 @property (assign) BOOL hasStartedDrag;
-@property (weak, nonatomic) id<DragButtonTouchProxy> dragProxy;
+@property (assign) kDragItem dragItemType;
+
 @property (strong, nonatomic) UITouch *initialTouch;
 @property (strong, nonatomic) UIEvent *initialEvent;
+
+@property (weak, nonatomic) CCSprite *dragSprite;
+@property (weak, nonatomic) id<DragItemDelegate> dragItemDelegate;
 
 @end
 
@@ -22,15 +27,32 @@
 
 #pragma mark - SynthCellNode
 
-- (id)initWithSynth:(id<SoundEventReceiver>)synth dragProxy:(id<DragButtonTouchProxy>)dragProxy;
+- (id)initWithSynth:(id<SoundEventReceiver>)synth dragItemDelegate:(id<DragItemDelegate>)delegate dragSprite:(CCSprite *)dragSprite dragItemType:(kDragItem)dragItemType
 {
     self = [super initWithSynth:synth];
     if (self) {
         self.longPressDelay = 0.8;
         self.hasStartedDrag = NO;
-        self.dragProxy = dragProxy;
+        self.dragItemDelegate = delegate;
+        self.dragItemType = dragItemType;
+        self.dragSprite = dragSprite;
+        
+        dragSprite.visible = NO;
+        [self addChild:dragSprite];
+
     }
     return self;
+}
+
+- (void)styleForDragging:(BOOL)shouldStyleForDragging
+{
+    self.sprite.visible = YES;
+    if (shouldStyleForDragging) {
+        self.sprite.opacity = 100.0f;
+    }
+    else {
+        self.sprite.opacity = 255.0f;
+    }
 }
 
 #pragma mark - TouchNode
@@ -38,8 +60,9 @@
 - (void)longPress:(ccTime)deltaTime
 {
     self.hasStartedDrag = YES;
-    [self.dragProxy forwardDragTouchBegan:self.initialTouch withEvent:self.initialEvent];
-    self.visible = NO;
+    [self dragTouchBegan:self.initialTouch dragSprite:self.dragSprite];
+    
+    [self.dragItemDelegate dragItemBegan:self.initialTouch];
 }
 
 #pragma mark - CCTargetedTouchDelegate
@@ -52,12 +75,12 @@
         return YES;
     }
     return NO;
-}
+};
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
     if (self.hasStartedDrag) {
-        [self.dragProxy forwardDragTouchMoved:touch withEvent:event];
+        [self dragTouchMoved:touch dragSprite:self.dragSprite dragItemDelegate:self.dragItemDelegate itemType:self.dragItemType sender:self];
     }
 }
 
@@ -66,10 +89,12 @@
     [super ccTouchEnded:touch withEvent:event];
     
     if (self.hasStartedDrag) {
-        self.hasStartedDrag = NO;
-        [self.dragProxy forwardDragTouchEnded:touch withEvent:event];
+        [self dragTouchEnded:touch dragSprite:self.dragSprite dragItemDelegate:self.dragItemDelegate itemType:self.dragItemType sender:self];
+        
+        // remove
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRemoveTickReponder object:self];
         [self removeFromParentAndCleanup:YES];
-    }
+    }    
 }
 
 @end

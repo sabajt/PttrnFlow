@@ -7,10 +7,11 @@
 //
 
 #import "SynthCellNode.h"
-#import "DragButton.h"
+#import "DragItemDelegate.h"
+
 
 @interface SynthCellDragNode : SynthCellNode
 
-- (id)initWithSynth:(id<SoundEventReceiver>)synth dragProxy:(id<DragButtonTouchProxy>)dragProxy;
+- (id)initWithSynth:(id<SoundEventReceiver>)synth dragItemDelegate:(id<DragItemDelegate>)delegate dragSprite:(CCSprite *)dragSprite dragItemType:(kDragItem)dragItemType;
 
 @end

@@ -17,16 +17,17 @@
 
 @implementation Arrow
 
-- (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth dragProxy:(id<DragButtonTouchProxy>)dragProxy
+- (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth dragItemDelegate:(id<DragItemDelegate>)delegate
 {
     GridCoord cell = [tiledMap gridCoordForObject:arrow];
     kDirection facing = [SGTiledUtils directionNamed:[CCTMXTiledMap objectPropertyNamed:kTLDPropertyDirection object:arrow]];
-    return [self initWithSynth:synth cell:cell facing:facing dragProxy:dragProxy];
+    return [self initWithSynth:synth cell:cell facing:facing dragItemDelegate:delegate];
 }
 
-- (id)initWithSynth:(id<SoundEventReceiver>)synth cell:(GridCoord)cell facing:(kDirection)facing dragProxy:(id<DragButtonTouchProxy>)dragProxy
+- (id)initWithSynth:(id<SoundEventReceiver>)synth cell:(GridCoord)cell facing:(kDirection)facing dragItemDelegate:(id<DragItemDelegate>)delegate
 {
-    self = [super initWithSynth:synth dragProxy:dragProxy];
+    CCSprite *dragSprite = [SpriteUtils spriteWithTextureKey:kImageArrowUp];
+    self = [super initWithSynth:synth dragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemArrow];
     if (self) {
         self.cell = cell;
         self.facing = facing;

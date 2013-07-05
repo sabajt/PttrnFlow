@@ -36,6 +36,7 @@
 @property (assign) CGSize absoluteGridSize;
 @property (assign) CGPoint gridOrigin; // TODO: using grid origin except for drawing debug grid?
 @property (assign) GridCoord lastDraggedItemCell;
+@property (assign) GridCoord draggedItemSourceCell;
 @property (assign) BOOL shouldDrawGrid; // debugging
 
 @property (strong, nonatomic) CCTMXTiledMap *tileMap;
@@ -136,6 +137,7 @@
         self.tileMap = tiledMap;
         self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
         self.absoluteGridSize = CGSizeMake(self.gridSize.x * kSizeGridUnit, self.gridSize.y * kSizeGridUnit);
+        self.draggedItemSourceCell = [GridUtils gridCoordNone];
         
         // CCLayerPanZoom
         self.mode = kCCLayerPanZoomModeSheet;
@@ -214,7 +216,13 @@
 
 #pragma mark - DragButtonDelegate
 
-- (void)dragItemMoved:(kDragItem)itemType touch:(UITouch *)touch button:(DragButton *)button
+- (void)dragItemBegan:(UITouch *)touch
+{
+    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+    self.draggedItemSourceCell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
+}
+
+- (void)dragItemMoved:(kDragItem)itemType touch:(UITouch *)touch sender:(id)sender
 {
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
@@ -227,12 +235,16 @@
         
         // check arrows
         if (itemType == kDragItemArrow) {
+            
+            // only place on top of a block
             if (tickResponders.count == 0) {
                 legalPlacement = NO;
             }
             else {
                 for (id responder in tickResponders) {
-                    if ([responder isKindOfClass:[Arrow class]]) {
+                    
+                    // can't place on top of another arrow unless it's the source cell
+                    if ([responder isKindOfClass:[Arrow class]] && ![GridUtils isCell:cell equalToCell:self.draggedItemSourceCell]) {
                         legalPlacement = NO;
                     }
                 }
@@ -256,21 +268,27 @@
             }
             self.selectionBox.visible = YES;
         }
+        else {
+            self.selectionBox.visible = NO;
+        }
     }
 }
 
-- (void)dragItemDropped:(kDragItem)itemType touch:(UITouch *)touch button:(DragButton *)button
-{
+- (void)dragItemDropped:(kDragItem)itemType touch:(UITouch *)touch sender:(id)sender
+{    
     if (self.selectionBox.visible) {
         
         if (itemType == kDragItemArrow) {
-            Arrow *arrow = [[Arrow alloc] initWithSynth:self.synth cell:self.lastDraggedItemCell facing:kDirectionUp dragProxy:button];
+            Arrow *arrow = [[Arrow alloc] initWithSynth:self.synth cell:self.lastDraggedItemCell facing:kDirectionUp dragItemDelegate:self];
             [self.tickDispatcher registerTickResponder:arrow];
             [self addChild:arrow];
         }
         
         self.selectionBox.visible = NO;
     }
+    
+    self.draggedItemSourceCell = [GridUtils gridCoordNone];
+    self.lastDraggedItemCell = [GridUtils gridCoordNone];
 }
 
 #pragma mark - TickDispatcherDelegate

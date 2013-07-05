@@ -14,7 +14,15 @@
 
 @property (assign) kDirection facing;
 
-- (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth dragProxy:(id<DragButtonTouchProxy>)dragProxy;
-- (id)initWithSynth:(id<SoundEventReceiver>)synth cell:(GridCoord)cell facing:(kDirection)facing dragProxy:(id<DragButtonTouchProxy>)dragProxy;
+- (id)initWithArrow:(NSMutableDictionary *)arrow
+           tiledMap:(CCTMXTiledMap *)tiledMap
+              synth:(id<SoundEventReceiver>)synth
+   dragItemDelegate:(id<DragItemDelegate>)delegate;
+
+- (id)initWithSynth:(id<SoundEventReceiver>)synth
+               cell:(GridCoord)cell
+             facing:(kDirection)facing
+   dragItemDelegate:(id<DragItemDelegate>)delegate;
+
 
 @end

@@ -20,9 +20,10 @@ typedef enum
 
 FOUNDATION_EXPORT CGFloat const kSizeGridUnit;
 
-@interface GameConstants : NSObject
+FOUNDATION_EXPORT NSString *const kNotificationRemoveTickReponder;
 
-+(CGSize)landscapeScreenSize;
+
+@interface GameConstants : NSObject
 
 @end
 
