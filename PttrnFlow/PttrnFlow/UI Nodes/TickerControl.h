@@ -22,6 +22,6 @@
 @property (assign) int numberOfTicks;
 @property (assign) int currentIndex;
 
-- (id)initWithNumberOfTicks:(int)numberOfTicks;
+- (id)initWithNumberOfTicks:(int)numberOfTicks distanceInterval:(CGFloat)distanceInterval;
 
 @end

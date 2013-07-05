@@ -27,7 +27,7 @@
             self.sprite = [CCSprite rectSpriteWithSize:size color:color];
         }
         else {
-            self.sprite = [CCSprite rectSpriteWithSize:size edgeLength:edge color:color];
+            self.sprite = [CCSprite rectSpriteWithSize:size edgeLength:edge edgeColor:color];
         }
         self.sprite.position = self.contentCenter;
         [self addChild:self.sprite];

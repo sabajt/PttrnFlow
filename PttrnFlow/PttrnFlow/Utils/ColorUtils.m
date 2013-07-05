@@ -42,6 +42,16 @@
     return ccc3(255, 180, 50);
 }
 
++ (ccColor3B)red
+{
+    return ccc3(255, 0, 0);
+}
+
++ (ccColor3B)black
+{
+    return ccc3(0, 0, 0);
+}
+
 #pragma mark - public colors by context
 
 + (ccColor3B)sequenceHud
@@ -82,6 +92,26 @@
 + (ccColor3B)winningBackground
 {
     return [self orange];
+}
+
++ (ccColor3B)hitDefault
+{
+    return [self gray];
+}
+
++ (ccColor3B)hitSuccess
+{
+    return [self lime];
+}
+
++ (ccColor3B)hitFailure
+{
+    return [self red];
+}
+
++ (ccColor3B)hitCellEdge
+{
+    return [self black];
 }
 
 @end

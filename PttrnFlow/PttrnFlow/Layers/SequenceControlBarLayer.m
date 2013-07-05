@@ -8,8 +8,12 @@
 
 #import "SequenceControlBarLayer.h"
 #import "TickerControl.h"
+#import "TickHitChart.h"
 #import "TickDispatcher.h"
 #import "CCSprite+Utils.h"
+
+CGFloat const kTickScrubberDistanceInterval = 50;
+
 
 @interface SequenceControlBarLayer ()
 
@@ -51,10 +55,15 @@
         [self addChild:menu];
         
         // ticker control
-        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:tickDispatcher.sequenceLength];
+        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:tickDispatcher.sequenceLength distanceInterval:kTickScrubberDistanceInterval];
         tickerControl.delegate = tickDispatcher;
         tickerControl.position = ccp(matchButton.position.x + matchButton.contentSize.width, self.contentSize.height - tickerControl.contentSize.height);
         [self addChild:tickerControl];
+        
+        // tick hit chart
+        TickHitChart *hitChart = [[TickHitChart alloc] initWithNumberOfTicks:tickDispatcher.sequenceLength distanceInterval:kTickScrubberDistanceInterval];
+        hitChart.position = ccp(tickerControl.position.x, tickerControl.position.y - hitChart.contentSize.height);
+        [self addChild:hitChart];
     }
     return self;
 }

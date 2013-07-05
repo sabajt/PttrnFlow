@@ -10,6 +10,9 @@
 
 @class SequenceControlBarLayer, TickDispatcher;
 
+FOUNDATION_EXPORT CGFloat const kTickScrubberDistanceInterval;
+
+
 @interface SequenceControlBarLayer : CCLayerColor
 
 + (id)layerWithColor:(ccColor4B)color width:(GLfloat)w height:(GLfloat)h tickDispatcer:(TickDispatcher *)tickDispatcher;
