@@ -82,12 +82,12 @@
     }
 }
 
-- (void)draw
-{
-    // grid
-    ccDrawColor4F(0.5f, 0.5f, 0.5f, 1.0f);
-    [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
-}
+//- (void)draw
+//{
+//    // grid
+//    ccDrawColor4F(0.5f, 0.5f, 0.5f, 1.0f);
+//    [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
+//}
 
 #pragma mark - setup
 
@@ -216,10 +216,15 @@
 
 #pragma mark - DragButtonDelegate
 
-- (void)dragItemBegan:(UITouch *)touch
-{
-    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    self.draggedItemSourceCell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
+- (void)dragItemBegan:(kDragItem)itemType touch:(UITouch *)touch sender:(id)sender
+{    
+    CellNode *cellNode = (CellNode *)sender;
+    self.draggedItemSourceCell = cellNode.cell;
+    
+    if (itemType == kDragItemArrow) {
+        [self.selectionBox positionAtCell:self.draggedItemSourceCell];
+        self.selectionBox.visible = YES;
+    }
 }
 
 - (void)dragItemMoved:(kDragItem)itemType touch:(UITouch *)touch sender:(id)sender

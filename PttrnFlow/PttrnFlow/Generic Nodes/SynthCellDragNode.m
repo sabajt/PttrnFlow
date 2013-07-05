@@ -61,8 +61,7 @@
 {
     self.hasStartedDrag = YES;
     [self dragTouchBegan:self.initialTouch dragSprite:self.dragSprite];
-    
-    [self.dragItemDelegate dragItemBegan:self.initialTouch];
+    [self.dragItemDelegate dragItemBegan:self.dragItemType touch:self.initialTouch sender:self];
 }
 
 #pragma mark - CCTargetedTouchDelegate

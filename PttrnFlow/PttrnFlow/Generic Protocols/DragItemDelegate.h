@@ -23,6 +23,6 @@ typedef enum
 
 @optional
 
-- (void)dragItemBegan:(UITouch *)touch;
+- (void)dragItemBegan:(kDragItem)itemType touch:(UITouch *)touch sender:(id)sender;
 
 @end
