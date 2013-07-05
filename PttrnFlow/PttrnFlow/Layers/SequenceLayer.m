@@ -82,12 +82,12 @@
     }
 }
 
-//- (void)draw
-//{
-//    // grid
-//    ccDrawColor4F(0.5f, 0.5f, 0.5f, 1.0f);
-//    [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
-//}
+- (void)draw
+{
+    // grid
+    ccDrawColor4F(0.5f, 0.5f, 0.5f, 1.0f);
+    [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
+}
 
 #pragma mark - setup
 

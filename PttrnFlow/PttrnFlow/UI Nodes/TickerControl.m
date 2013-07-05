@@ -13,10 +13,13 @@
 #import "CCNode+Touch.h"
 #import "TickDispatcher.h"
 
-static CGFloat const kDistanceInterval = 75;
-static CGFloat const kTickerHeight = 50;
-static CGFloat const kTickerWidth = 20;
-static CGFloat const kMarkerWidth = 10;
+static CGFloat const kDistanceInterval = 50;
+static CGFloat const kTickerHeight = 16;
+static CGFloat const kTickerWidth = 16;
+static CGFloat const kMarkerWidth = 6;
+static CGFloat const kMarkerHeight = 16;
+static CGFloat const kTickerBarHeight = 6;
+static CGFloat const kTickerControlHeight = 50;
 
 @implementation TickerControl
 
@@ -31,10 +34,11 @@ static CGFloat const kMarkerWidth = 10;
         _numberOfTicks = numberOfTicks;
         _thumbSprite = [CCSprite rectSpriteWithSize:CGSizeMake(kTickerWidth, kTickerHeight) color:[ColorUtils ticker]];
         
-        CCSprite *tickerBar = [CCSprite rectSpriteWithSize:CGSizeMake((numberOfTicks - 1) * kDistanceInterval, kTickerHeight/2) color:[ColorUtils tickerBar]];
+        CCSprite *tickerBar = [CCSprite rectSpriteWithSize:CGSizeMake(numberOfTicks * kDistanceInterval, kTickerBarHeight) color:[ColorUtils tickerBar]];
         
-        self.contentSize = CGSizeMake(tickerBar.contentSize.width, kTickerHeight);
-        tickerBar.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
+        self.contentSize = CGSizeMake(tickerBar.contentSize.width, kTickerControlHeight);
+        CGFloat tickerBarCenterY = self.contentSize.height / 4;
+        tickerBar.position = ccp(self.contentSize.width / 2, tickerBarCenterY);
         
         self.currentIndex = 0;
         [self positionThumb:0];
@@ -43,7 +47,7 @@ static CGFloat const kMarkerWidth = 10;
         
         for (int i = 0; i < numberOfTicks; i++) {
             CCSprite *marker = [CCSprite rectSpriteWithSize:CGSizeMake(kMarkerWidth, kTickerHeight) color:[ColorUtils tickerBar]];
-            marker.position = ccp(i * kDistanceInterval,self.contentSize.height/2);
+            marker.position = ccp((i * kDistanceInterval) + (kDistanceInterval / 2), tickerBarCenterY + (kTickerBarHeight / 2));
             [self addChild:marker];
         }
         
@@ -57,7 +61,7 @@ static CGFloat const kMarkerWidth = 10;
 - (int)nearestIndex:(UITouch *)touch
 {
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    CGFloat index = (touchPosition.x + (kDistanceInterval / 2)) / kDistanceInterval;
+    CGFloat index = touchPosition.x / kDistanceInterval;
     return (int)index;
 }
 
@@ -72,7 +76,7 @@ static CGFloat const kMarkerWidth = 10;
 
 - (void)positionThumb:(int)index
 {
-    self.thumbSprite.position = ccp(index * kDistanceInterval, self.contentSize.height/2);
+    self.thumbSprite.position = ccp(index * kDistanceInterval + (kDistanceInterval / 2), (3 * self.contentSize.height) / 4);
 }
 
 - (void)handleAdvancedSequence:(NSNotification *)notification

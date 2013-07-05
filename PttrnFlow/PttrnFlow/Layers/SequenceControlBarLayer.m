@@ -53,7 +53,7 @@
         // ticker control
         TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:tickDispatcher.sequenceLength];
         tickerControl.delegate = tickDispatcher;
-        tickerControl.position = ccp(matchButton.position.x + matchButton.contentSize.width, (self.contentSize.height - tickerControl.contentSize.height)/2);
+        tickerControl.position = ccp(matchButton.position.x + matchButton.contentSize.width, self.contentSize.height - tickerControl.contentSize.height);
         [self addChild:tickerControl];
     }
     return self;
