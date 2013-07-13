@@ -18,6 +18,6 @@ typedef enum
 @interface TickHitChart : CCNode
 
 - (id)initWithNumberOfTicks:(int)numberOfTicks distanceInterval:(CGFloat)distanceInterval;
-- (void)update:(int)index status:(kHitStatus)status;
+- (void)resetCells;
 
 @end

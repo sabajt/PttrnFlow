@@ -13,5 +13,6 @@
 - (id)initWithSprites:(NSArray *)sprites;
 - (int)numberOfSprites;
 - (void)pickSprite:(int)index;
+- (CCSprite *)spriteAtIndex:(int)index;
 
 @end

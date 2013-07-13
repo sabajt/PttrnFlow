@@ -18,6 +18,7 @@ CGFloat const kTickScrubberDistanceInterval = 50;
 @interface SequenceControlBarLayer ()
 
 @property (weak, nonatomic) TickDispatcher *tickDispatcher;
+@property (weak, nonatomic) TickHitChart *hitChart;
 
 @end
 
@@ -64,6 +65,7 @@ CGFloat const kTickScrubberDistanceInterval = 50;
         TickHitChart *hitChart = [[TickHitChart alloc] initWithNumberOfTicks:tickDispatcher.sequenceLength distanceInterval:kTickScrubberDistanceInterval];
         hitChart.position = ccp(tickerControl.position.x, tickerControl.position.y - hitChart.contentSize.height);
         [self addChild:hitChart];
+        _hitChart = hitChart;
     }
     return self;
 }
@@ -80,6 +82,7 @@ CGFloat const kTickScrubberDistanceInterval = 50;
 
 - (void)runButtonPressed:(id)sender
 {
+    [self.hitChart resetCells];
     [self.tickDispatcher start];
 }
 

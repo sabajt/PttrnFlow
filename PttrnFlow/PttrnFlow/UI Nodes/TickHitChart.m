@@ -10,12 +10,14 @@
 #import "ColorUtils.h"
 #import "CCSprite+Utils.h"
 #import "TickDispatcher.h"
+#import "SpritePicker.h"
 
 static CGFloat const kHitCellEdge = 2;
+static CGFloat const kHitChartHeight = 24;
+
 
 @interface TickHitChart ()
 
-@property (assign) CGFloat distanceInterval;
 @property (strong, nonatomic) NSMutableArray *hitCells;
 
 @end
@@ -30,16 +32,19 @@ static CGFloat const kHitCellEdge = 2;
         if (numberOfTicks < 1) {
             NSLog(@"warning: number of ticks for TickerControl should be > 1");
         }
-        
-        self.distanceInterval = distanceInterval;
-        
-        static CGFloat const kHitChartHeight = 24;
         self.contentSize = CGSizeMake(numberOfTicks * distanceInterval, kHitChartHeight);
         
         self.hitCells = [NSMutableArray array];
         for (int i = 0; i < numberOfTicks; i++) {
-            CCSprite *hitCell = [self hitCell:kHitStatusDefault];
-            hitCell.position = ccp((i * distanceInterval) + distanceInterval / 2, self.contentSize.height / 2);
+            CCSprite *cellDefault = [self hitCell:kHitStatusDefault width:distanceInterval];
+            CCSprite *cellSuccess = [self hitCell:kHitStatusSuccess width:distanceInterval];
+            CCSprite *cellFailure = [self hitCell:kHitStatusFailure width:distanceInterval];
+            
+            SpritePicker *hitCell = [[SpritePicker alloc] initWithSprites:@[cellDefault, cellSuccess, cellFailure]];
+            hitCell.contentSize = cellDefault.contentSize;
+            hitCell.position = ccp(i * distanceInterval, 0);
+            [hitCell pickSprite:kHitStatusDefault];
+            
             [self.hitCells addObject:hitCell];
             [self addChild:hitCell];
         }
@@ -49,7 +54,7 @@ static CGFloat const kHitCellEdge = 2;
     return self;
 }
 
-- (CCSprite *)hitCell:(kHitStatus)status
+- (CCSprite *)hitCell:(kHitStatus)status width:(CGFloat)width
 {
     ccColor3B color;
     if (status == kHitStatusDefault) {
@@ -59,17 +64,7 @@ static CGFloat const kHitCellEdge = 2;
     } else if (status == kHitStatusFailure) {
         color = [ColorUtils hitFailure];
     }
-    return [CCSprite rectSpriteWithSize:CGSizeMake(self.distanceInterval, self.contentSize.height) edgeLength:kHitCellEdge edgeColor:[ColorUtils hitCellEdge] centerColor:color];
-}
-
-- (void)update:(int)index status:(kHitStatus)status
-{
-    CCSprite *hitCell = [self hitCell:status];
-    CCSprite *oldCell = self.hitCells[index];
-    hitCell.position = oldCell.position;
-    [self addChild:hitCell];
-    [oldCell removeFromParentAndCleanup:YES];
-    [self.hitCells replaceObjectAtIndex:index withObject:hitCell];
+    return [CCSprite rectSpriteWithSize:CGSizeMake(width, self.contentSize.height) edgeLength:kHitCellEdge edgeColor:[ColorUtils hitCellEdge] centerColor:color];
 }
 
 - (void)handleTickHit:(NSNotification *)notification
@@ -77,6 +72,7 @@ static CGFloat const kHitCellEdge = 2;
     NSMutableArray *hits = notification.userInfo[kKeyHits];
     int tickIndex = hits.count - 1;
     NSNumber *hitSuccess = hits[tickIndex];
+    
     kHitStatus status;
     if ([hitSuccess boolValue]) {
         status = kHitStatusSuccess;
@@ -84,7 +80,16 @@ static CGFloat const kHitCellEdge = 2;
     else {
         status = kHitStatusFailure;
     }
-    [self update:tickIndex status:status];
+    
+    SpritePicker *hitCell = self.hitCells[tickIndex];
+    [hitCell pickSprite:status];
+}
+
+- (void)resetCells
+{
+    for (SpritePicker *cell in self.hitCells) {
+        [cell pickSprite:kHitStatusDefault];
+    }
 }
 
 #pragma mark - CCNode SceneManagement
