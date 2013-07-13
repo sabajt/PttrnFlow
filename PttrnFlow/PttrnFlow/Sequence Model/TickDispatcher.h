@@ -14,8 +14,12 @@
 
 
 FOUNDATION_EXPORT NSInteger const kBPM;
+
 FOUNDATION_EXPORT NSString *const kNotificationAdvancedSequence;
+FOUNDATION_EXPORT NSString *const kNotificationTickHit;
+
 FOUNDATION_EXPORT NSString *const kKeySequenceIndex;
+FOUNDATION_EXPORT NSString *const kKeyHits;
 
 FOUNDATION_EXPORT NSString *const kExitEvent;
 

@@ -10,13 +10,14 @@
 
 typedef enum
 {
-    kHitCellDefault = 0,
-    kHitCellSuccess,
-    kHitCellFailure,
-} kHitCell;
+    kHitStatusDefault = 0,
+    kHitStatusSuccess,
+    kHitStatusFailure,
+} kHitStatus;
 
 @interface TickHitChart : CCNode
 
 - (id)initWithNumberOfTicks:(int)numberOfTicks distanceInterval:(CGFloat)distanceInterval;
+- (void)update:(int)index status:(kHitStatus)status;
 
 @end

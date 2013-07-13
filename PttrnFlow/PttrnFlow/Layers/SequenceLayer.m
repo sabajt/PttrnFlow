@@ -57,6 +57,9 @@
 // edit debugging options here
 - (void)setupDebug
 {
+    // mute PD
+    [self.synth mute:YES];
+    
     // draw grid as defined in our tile map -- does not neccesarily coordinate with gameplay
     self.shouldDrawGrid = YES;
     

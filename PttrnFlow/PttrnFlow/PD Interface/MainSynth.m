@@ -50,6 +50,15 @@ static NSString *const kSelectDrum = @"selectDrum";
     return NO;
 }
 
+- (void)mute:(BOOL)mute
+{
+    float dsp = 1;
+    if (mute) {
+        dsp = 0;
+    }
+    [PdBase sendFloat:dsp toReceiver:@"toggleDsp"];
+}
+
 #pragma mark - SoundEventReveiver
 
 - (void)receiveEvents:(NSArray *)events

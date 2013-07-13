@@ -16,8 +16,13 @@
 #import "NSArray+CompareStrings.h"
 
 NSInteger const kBPM = 120;
-NSString *const kNotificationAdvancedSequence = @"AdvanceSequence";
-NSString *const kKeySequenceIndex = @"SequenceIndex";
+
+NSString *const kNotificationAdvancedSequence = @"advanceSequence";
+NSString *const kNotificationTickHit = @"tickHit";
+
+NSString *const kKeySequenceIndex = @"sequenceIndex";
+NSString *const kKeyHits = @"hits";
+
 NSString *const kExitEvent = @"exit";
 
 CGFloat const kTickInterval = 0.5;
@@ -220,11 +225,13 @@ CGFloat const kTickInterval = 0.5;
     if ([self testHit:filtered tick:self.tickCounter]) {
         NSLog(@"HIT");
         [self.hits addObject:@(YES)];
+        
     }
     else {
         NSLog(@"MISS");
         [self.hits addObject:@(NO)];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationTickHit object:nil userInfo:@{kKeyHits : self.hits}];
     
     // synth talks to our PD patch
     // TODO: this should probably be filtered events, unless synth has some reason to care about non-synth events?
