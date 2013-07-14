@@ -58,7 +58,7 @@
 - (void)setupDebug
 {
     // mute PD
-    [self.synth mute:YES];
+    [self.synth mute:NO];
     
     // draw grid as defined in our tile map -- does not neccesarily coordinate with gameplay
     self.shouldDrawGrid = YES;
@@ -88,8 +88,10 @@
 - (void)draw
 {
     // grid
-    ccDrawColor4F(0.5f, 0.5f, 0.5f, 1.0f);
-    [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
+    if (self.shouldDrawGrid) {
+        ccDrawColor4F(0.5f, 0.5f, 0.5f, 1.0f);
+        [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
+    }
 }
 
 #pragma mark - setup
@@ -189,8 +191,6 @@
         CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
         self.scale = [self scaleToFitArea:self.absoluteGridSize insideConstraintSize:activeWindow.size];
         self.position = [self positionAtCenterOfGridSized:self.gridSize unitSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) constraintRect:activeWindow];
-        
-        [self setupDebug];
     }
     return self;
 }
@@ -207,6 +207,8 @@
     if (!_patch) {
         NSLog(@"Failed to open patch");
     }
+    
+    [self setupDebug];
 }
 
 - (void)onExit

@@ -17,6 +17,7 @@
 
 @implementation Arrow
 
+// use this method to initialize via tiled map
 - (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth dragItemDelegate:(id<DragItemDelegate>)delegate
 {
     GridCoord cell = [tiledMap gridCoordForObject:arrow];
@@ -24,6 +25,7 @@
     return [self initWithSynth:synth cell:cell facing:facing dragItemDelegate:delegate];
 }
 
+// use this method to initialize dynamically
 - (id)initWithSynth:(id<SoundEventReceiver>)synth cell:(GridCoord)cell facing:(kDirection)facing dragItemDelegate:(id<DragItemDelegate>)delegate
 {
     CCSprite *dragSprite = [SpriteUtils spriteWithTextureKey:kImageArrowUp];

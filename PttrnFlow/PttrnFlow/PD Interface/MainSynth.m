@@ -18,6 +18,7 @@ static NSString *const kClear = @"clear";
 static NSString *const kTrigger = @"trigger";
 static NSString *const kMidiValue = @"midinote";
 static NSString *const kSelectDrum = @"selectDrum";
+static NSString *const kMute = @"mute";
 
 
 @implementation MainSynth
@@ -52,11 +53,11 @@ static NSString *const kSelectDrum = @"selectDrum";
 
 - (void)mute:(BOOL)mute
 {
-    float dsp = 1;
+    float muteVal = 1.0;
     if (mute) {
-        dsp = 0;
+        muteVal = 0.0;
     }
-    [PdBase sendFloat:dsp toReceiver:@"toggleDsp"];
+    [PdBase sendFloat:muteVal toReceiver:kMute];
 }
 
 #pragma mark - SoundEventReveiver
