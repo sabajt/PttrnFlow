@@ -219,7 +219,7 @@
     [super onExit];
 }
 
-#pragma mark - DragButtonDelegate
+#pragma mark - DragItemDelegate
 
 - (void)dragItemBegan:(kDragItem)itemType touch:(UITouch *)touch sender:(id)sender
 {    
@@ -299,6 +299,11 @@
     
     self.draggedItemSourceCell = [GridUtils gridCoordNone];
     self.lastDraggedItemCell = [GridUtils gridCoordNone];
+}
+
+- (CGFloat)dragItemScaleFactor
+{
+    return self.scale;
 }
 
 #pragma mark - TickDispatcherDelegate

@@ -64,6 +64,10 @@
         self.dragSprite.position = touchPosition;
         self.dragSprite.visible = YES;
         
+        if ([self.delegate respondsToSelector:@selector(dragItemScaleFactor)]) {
+            self.dragSprite.scale = [self.delegate dragItemScaleFactor];
+        }
+        
         return YES;
     }
     return NO;
