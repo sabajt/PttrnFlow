@@ -14,10 +14,6 @@ NSString *const kImageA_on = @"A-on.png";
 NSString *const kImageA = @"A.png";
 NSString *const kImageA_flat_on = @"Aflat-on.png";
 NSString *const kImageA_flat = @"Aflat.png";
-NSString *const kImageArrowDown = @"arrow-down.png";
-NSString *const kImageArrowLeft = @"arrow-left.png";
-NSString *const kImageArrowRight = @"arrow-right.png";
-NSString *const kImageArrowUp = @"arrow-up.png";
 NSString *const kImageB_on = @"B-on.png";
 NSString *const kImageB = @"B.png";
 NSString *const kImageB_flat_on = @"Bflat-on.png";
@@ -52,8 +48,18 @@ NSString *const kImageDrum3_on = @"drum3on.png";
 NSString *const kImageDrum4 = @"drum4.png";
 NSString *const kImageDrum4_on = @"drum4on.png";
 
+NSString *const kImageArrowDown = @"arrow-down.png";
+NSString *const kImageArrowLeft = @"arrow-left.png";
+NSString *const kImageArrowRight = @"arrow-right.png";
+NSString *const kImageArrowUp = @"arrow-up.png";
+NSString *const kImageWarpDefault = @"warp.png";
+NSString *const kImageWarpConnected = @"warpConnected.png";
+
 NSString *const kImageArrowButton_off = @"itemButtonArrowOff.png";
 NSString *const kImageArrowButton_on = @"itemButtonArrowOn.png";
+NSString *const kImageWarpButton_off = @"itemButtonWarpOff.png";
+NSString *const kImageWarpButton_on = @"itemButtonWarpOn.png";
+
 
 // don't forget to load the images
 + (void)loadTextures
@@ -102,6 +108,10 @@ NSString *const kImageArrowButton_on = @"itemButtonArrowOn.png";
     
     [[CCTextureCache sharedTextureCache] addImage:kImageArrowButton_off];
     [[CCTextureCache sharedTextureCache] addImage:kImageArrowButton_on];
+    
+    [[CCTextureCache sharedTextureCache] addImage:kImageWarpDefault];
+    [[CCTextureCache sharedTextureCache] addImage:kImageWarpButton_off];
+    [[CCTextureCache sharedTextureCache] addImage:kImageWarpButton_on];
 }
 
 // generate a unique texture key using components of primative image size and color

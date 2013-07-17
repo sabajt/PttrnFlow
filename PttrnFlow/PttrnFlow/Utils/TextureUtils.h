@@ -16,10 +16,6 @@ FOUNDATION_EXPORT NSString *const kImageA_on;
 FOUNDATION_EXPORT NSString *const kImageA;
 FOUNDATION_EXPORT NSString *const kImageA_flat_on;
 FOUNDATION_EXPORT NSString *const kImageA_flat;
-FOUNDATION_EXPORT NSString *const kImageArrowDown;
-FOUNDATION_EXPORT NSString *const kImageArrowLeft;
-FOUNDATION_EXPORT NSString *const kImageArrowRight;
-FOUNDATION_EXPORT NSString *const kImageArrowUp;
 FOUNDATION_EXPORT NSString *const kImageB_on;
 FOUNDATION_EXPORT NSString *const kImageB;
 FOUNDATION_EXPORT NSString *const kImageB_flat_on;
@@ -54,8 +50,18 @@ FOUNDATION_EXPORT NSString *const kImageDrum3_on;
 FOUNDATION_EXPORT NSString *const kImageDrum4;
 FOUNDATION_EXPORT NSString *const kImageDrum4_on;
 
+FOUNDATION_EXPORT NSString *const kImageArrowDown;
+FOUNDATION_EXPORT NSString *const kImageArrowLeft;
+FOUNDATION_EXPORT NSString *const kImageArrowRight;
+FOUNDATION_EXPORT NSString *const kImageArrowUp;
+
+FOUNDATION_EXPORT NSString *const kImageWarpDefault;
+FOUNDATION_EXPORT NSString *const kImageWarpConnected;
+
 FOUNDATION_EXPORT NSString *const kImageArrowButton_off;
 FOUNDATION_EXPORT NSString *const kImageArrowButton_on;
+FOUNDATION_EXPORT NSString *const kImageWarpButton_off;
+FOUNDATION_EXPORT NSString *const kImageWarpButton_on;
 
 + (void)loadTextures;
 

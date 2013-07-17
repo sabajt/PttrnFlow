@@ -50,6 +50,14 @@ static CGFloat const kHandleHeight = 40;
         selectedSprite = [SpriteUtils spriteWithTextureKey:kImageArrowButton_on];
         dragSprite = [SpriteUtils spriteWithTextureKey:kImageArrowUp];
     }
+    else if (itemType == kDragItemWarp) {
+        defaultSprite = [SpriteUtils spriteWithTextureKey:kImageWarpButton_off];
+        selectedSprite = [SpriteUtils spriteWithTextureKey:kImageWarpButton_on];
+        dragSprite = [SpriteUtils spriteWithTextureKey:kImageWarpDefault];
+    }
+    else {
+        NSLog(@"warning: unsupported kDragItem type, enum %i", itemType);
+    }
     return [DragButton buttonWithItemType:itemType defaultSprite:defaultSprite selectedSprite:selectedSprite dragItemSprite:dragSprite delegate:delegate];
 }
 

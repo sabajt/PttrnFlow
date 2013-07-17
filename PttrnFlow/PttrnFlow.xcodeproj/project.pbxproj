@@ -269,6 +269,13 @@
 		16A942E51778C5A50052D5BD /* drum4-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DD1778C5A50052D5BD /* drum4-ipad.png */; };
 		16A942E61778C5A50052D5BD /* drum4on-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DE1778C5A50052D5BD /* drum4on-ipad.png */; };
 		16FFC9141764E9EA00320C6A /* CCNode+Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FFC9131764E9E900320C6A /* CCNode+Touch.m */; };
+		334E7206179617F200EFECC1 /* Warp.m in Sources */ = {isa = PBXBuildFile; fileRef = 334E7205179617F200EFECC1 /* Warp.m */; };
+		334E725E17961FCF00EFECC1 /* warp-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E725D17961FCF00EFECC1 /* warp-ipadhd.png */; };
+		334E726017961FE400EFECC1 /* warp-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E725F17961FE400EFECC1 /* warp-ipad.png */; };
+		334E7263179625F400EFECC1 /* itemButtonWarpOff-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E7261179625F400EFECC1 /* itemButtonWarpOff-ipadhd.png */; };
+		334E7264179625F400EFECC1 /* itemButtonWarpOn-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E7262179625F400EFECC1 /* itemButtonWarpOn-ipadhd.png */; };
+		334E72671796260700EFECC1 /* itemButtonWarpOff-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E72651796260700EFECC1 /* itemButtonWarpOff-ipad.png */; };
+		334E72681796260700EFECC1 /* itemButtonWarpOn-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E72661796260700EFECC1 /* itemButtonWarpOn-ipad.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -736,6 +743,14 @@
 		16A942DE1778C5A50052D5BD /* drum4on-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drum4on-ipad.png"; sourceTree = "<group>"; };
 		16FFC9121764E9E800320C6A /* CCNode+Touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+Touch.h"; sourceTree = "<group>"; };
 		16FFC9131764E9E900320C6A /* CCNode+Touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+Touch.m"; sourceTree = "<group>"; };
+		334E7204179617F200EFECC1 /* Warp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warp.h; sourceTree = "<group>"; };
+		334E7205179617F200EFECC1 /* Warp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Warp.m; sourceTree = "<group>"; };
+		334E725D17961FCF00EFECC1 /* warp-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warp-ipadhd.png"; sourceTree = "<group>"; };
+		334E725F17961FE400EFECC1 /* warp-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warp-ipad.png"; sourceTree = "<group>"; };
+		334E7261179625F400EFECC1 /* itemButtonWarpOff-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonWarpOff-ipadhd.png"; sourceTree = "<group>"; };
+		334E7262179625F400EFECC1 /* itemButtonWarpOn-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonWarpOn-ipadhd.png"; sourceTree = "<group>"; };
+		334E72651796260700EFECC1 /* itemButtonWarpOff-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonWarpOff-ipad.png"; sourceTree = "<group>"; };
+		334E72661796260700EFECC1 /* itemButtonWarpOn-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonWarpOn-ipad.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1243,6 +1258,9 @@
 		160B50D4173A27EA00BFC014 /* retina */ = {
 			isa = PBXGroup;
 			children = (
+				334E7261179625F400EFECC1 /* itemButtonWarpOff-ipadhd.png */,
+				334E7262179625F400EFECC1 /* itemButtonWarpOn-ipadhd.png */,
+				334E725D17961FCF00EFECC1 /* warp-ipadhd.png */,
 				163091F6177F7B02003155BB /* itemButtonArrowOff-ipadhd.png */,
 				163091F7177F7B02003155BB /* itemButtonArrowOn-ipadhd.png */,
 				16A942C71778C58E0052D5BD /* drum1-ipadhd.png */,
@@ -1292,6 +1310,9 @@
 		16284C24173A065800B058D2 /* standard */ = {
 			isa = PBXGroup;
 			children = (
+				334E72651796260700EFECC1 /* itemButtonWarpOff-ipad.png */,
+				334E72661796260700EFECC1 /* itemButtonWarpOn-ipad.png */,
+				334E725F17961FE400EFECC1 /* warp-ipad.png */,
 				163091FA177F7B14003155BB /* itemButtonArrowOff-ipad.png */,
 				163091FB177F7B14003155BB /* itemButtonArrowOn-ipad.png */,
 				16A942D71778C5A50052D5BD /* drum1-ipad.png */,
@@ -1463,6 +1484,8 @@
 				16A942AC1777A2260052D5BD /* Drum.m */,
 				16A942B01777A2260052D5BD /* Tone.h */,
 				16A942B11777A2260052D5BD /* Tone.m */,
+				334E7204179617F200EFECC1 /* Warp.h */,
+				334E7205179617F200EFECC1 /* Warp.m */,
 			);
 			path = "Tick Responders";
 			sourceTree = "<group>";
@@ -1560,6 +1583,7 @@
 				16284CA4173A072B00B058D2 /* pipeTilesetBase1.png in Resources */,
 				16284CA5173A072B00B058D2 /* seq0.tmx in Resources */,
 				16284CA9173A072B00B058D2 /* synth.pd in Resources */,
+				334E72671796260700EFECC1 /* itemButtonWarpOff-ipad.png in Resources */,
 				168FA4E8173A08C7004C26AD /* blank.png in Resources */,
 				168FA4E9173A08C7004C26AD /* Default-Landscape~ipad.png in Resources */,
 				168FA4EA173A08C7004C26AD /* Default.png in Resources */,
@@ -1586,6 +1610,7 @@
 				160B50C0173A27D000BFC014 /* Bflat-ipad.png in Resources */,
 				160B50C1173A27D000BFC014 /* Bflat-on-ipad.png in Resources */,
 				160B50C2173A27D000BFC014 /* blank-ipad.png in Resources */,
+				334E7263179625F400EFECC1 /* itemButtonWarpOff-ipadhd.png in Resources */,
 				160B50C3173A27D000BFC014 /* blank-on-ipad.png in Resources */,
 				160B50C4173A27D000BFC014 /* C-ipad.png in Resources */,
 				160B50C5173A27D000BFC014 /* C-on-ipad.png in Resources */,
@@ -1625,6 +1650,7 @@
 				160B5106173A27EA00BFC014 /* D-on-ipadhd.png in Resources */,
 				160B5107173A27EA00BFC014 /* E-ipadhd.png in Resources */,
 				160B5108173A27EA00BFC014 /* E-on-ipadhd.png in Resources */,
+				334E726017961FE400EFECC1 /* warp-ipad.png in Resources */,
 				160B5109173A27EA00BFC014 /* Eflat-ipadhd.png in Resources */,
 				160B510A173A27EA00BFC014 /* Eflat-on-ipadhd.png in Resources */,
 				160B510B173A27EA00BFC014 /* F-ipadhd.png in Resources */,
@@ -1632,6 +1658,7 @@
 				160B510D173A27EA00BFC014 /* Fsharp-ipadhd.png in Resources */,
 				160B510E173A27EA00BFC014 /* Fsharp-on-ipadhd.png in Resources */,
 				160B510F173A27EA00BFC014 /* G-ipadhd.png in Resources */,
+				334E72681796260700EFECC1 /* itemButtonWarpOn-ipad.png in Resources */,
 				160B5110173A27EA00BFC014 /* G-on-ipadhd.png in Resources */,
 				162B7F171754114D00E0CC0D /* startArrow-ipadhd.png in Resources */,
 				162B7F1A1754116000E0CC0D /* startArrow-ipad.png in Resources */,
@@ -1652,10 +1679,12 @@
 				16A942E41778C5A50052D5BD /* drum3on-ipad.png in Resources */,
 				16A942E51778C5A50052D5BD /* drum4-ipad.png in Resources */,
 				16A942E61778C5A50052D5BD /* drum4on-ipad.png in Resources */,
+				334E725E17961FCF00EFECC1 /* warp-ipadhd.png in Resources */,
 				1693C661177A0C9300FEB350 /* d1.wav in Resources */,
 				1693C662177A0C9300FEB350 /* d2.wav in Resources */,
 				1693C665177A628300FEB350 /* d3.wav in Resources */,
 				1693C666177A628300FEB350 /* d4.wav in Resources */,
+				334E7264179625F400EFECC1 /* itemButtonWarpOn-ipadhd.png in Resources */,
 				163091F8177F7B02003155BB /* itemButtonArrowOff-ipadhd.png in Resources */,
 				163091F9177F7B02003155BB /* itemButtonArrowOn-ipadhd.png in Resources */,
 				163091FC177F7B14003155BB /* itemButtonArrowOff-ipad.png in Resources */,
@@ -1809,6 +1838,7 @@
 				163091EA177CC176003155BB /* BlockFader.m in Sources */,
 				163091ED177CD5A2003155BB /* CCLayer+Positioning.m in Sources */,
 				163091F0177DEDA9003155BB /* BackgroundLayer.m in Sources */,
+				334E7206179617F200EFECC1 /* Warp.m in Sources */,
 				163091F4177F732E003155BB /* SequenceItemLayer.m in Sources */,
 				1692D28D1781CF900058448B /* DragButton.m in Sources */,
 				162C291017821E0200CE480C /* SizeUtils.m in Sources */,
