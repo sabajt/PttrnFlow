@@ -19,7 +19,7 @@
     if (self) {
         self.cell = cell;
         
-        self.sprite = sprite;
+        self.sprite = [SpriteUtils spriteWithTextureKey:kImageWarpDefault];
         self.sprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
         [self addChild:self.sprite];
         

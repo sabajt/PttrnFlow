@@ -29,6 +29,7 @@
 #import "BackgroundLayer.h"
 #import "SequenceItemLayer.h"
 #import "CCSprite+Utils.h"
+#import "Warp.h"
 
 @interface SequenceLayer ()
 
@@ -195,6 +196,26 @@
     return self;
 }
 
+// general rule for legal placement of drag items
+- (BOOL)isLegalItemPlacement:(GridCoord)cell itemType:(kDragItem)itemType sender:(id)sender
+{
+    NSArray *tickResponders = [self.tickDispatcher tickRespondersAtCell:cell];
+    
+    // only place on top of a block
+    if (tickResponders.count == 0) {
+        return NO;
+    }
+    // can't place on top of another object of same type unless it's the source cell
+    else {
+        for (id responder in tickResponders) {
+            if ([responder isKindOfClass:[sender class]] && ![GridUtils isCell:cell equalToCell:self.draggedItemSourceCell]) {
+                return NO;
+            }
+        }
+    }
+    return YES;
+}
+
 #pragma mark - scene management
 
 - (void)onEnter
@@ -240,33 +261,8 @@
     if (![GridUtils isCell:cell equalToCell:self.lastDraggedItemCell]) {
         self.lastDraggedItemCell = cell;
         
-        NSArray *tickResponders = [self.tickDispatcher tickRespondersAtCell:cell];
-        BOOL legalPlacement = YES;
-        
-        // check arrows
-        if (itemType == kDragItemArrow) {
-            
-            // only place on top of a block
-            if (tickResponders.count == 0) {
-                legalPlacement = NO;
-            }
-            else {
-                for (id responder in tickResponders) {
-                    
-                    // can't place on top of another arrow unless it's the source cell
-                    if ([responder isKindOfClass:[Arrow class]] && ![GridUtils isCell:cell equalToCell:self.draggedItemSourceCell]) {
-                        legalPlacement = NO;
-                    }
-                }
-            }
-        }
-        
-        // check other types...
-        else {
-            legalPlacement = NO;
-        }
-        
         // highlight if legal for placement
+        BOOL legalPlacement = [self isLegalItemPlacement:cell itemType:itemType sender:sender];
         if (legalPlacement) {
             if (self.selectionBox == nil) {
                 PrimativeCellActor *selectionBox = [[PrimativeCellActor alloc] initWithRectSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:20 color:[ColorUtils winningBackground] cell:cell touch:NO];
@@ -288,10 +284,17 @@
 {    
     if (self.selectionBox.visible) {
         
+        // instantiate drag items here -- will just be easiest to hard code each case
+        
         if (itemType == kDragItemArrow) {
             Arrow *arrow = [[Arrow alloc] initWithSynth:self.synth cell:self.lastDraggedItemCell facing:kDirectionUp dragItemDelegate:self];
             [self.tickDispatcher registerTickResponder:arrow];
             [self addChild:arrow];
+        }
+        else if (itemType == kDragItemWarp) {
+            Warp *warp = [[Warp alloc] initWithSynth:self.synth dragItemDelegate:self cell:self.lastDraggedItemCell];
+            [self.tickDispatcher registerTickResponder:warp];
+            [self addChild:warp];
         }
         
         self.selectionBox.visible = NO;
