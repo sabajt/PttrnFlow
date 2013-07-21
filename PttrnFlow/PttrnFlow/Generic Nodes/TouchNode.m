@@ -16,8 +16,9 @@
 {
     self = [super init];
     if (self) {
-        self.swallowsTouches = NO;
-        self.longPressDelay = 0;
+        _swallowsTouches = NO;
+        _longPressDelay = 0;
+        _isReceivingTouch = NO;
     }
     return self;
 }
@@ -37,7 +38,7 @@
 
 - (void)onExit
 {
-    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];    
 	[super onExit];
 }
 
@@ -46,6 +47,7 @@
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {    
     if ([self containsTouch:touch]) {
+        self.isReceivingTouch = YES;
         if (self.longPressDelay > 0) {
             [self scheduleOnce:@selector(longPress:) delay:self.longPressDelay];
         }
@@ -54,11 +56,23 @@
     return NO;
 }
 
+- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if (![self containsTouch:touch] && (self.longPressDelay > 0)) {
+        [self unschedule:@selector(longPress:)];
+    }
+    
+}
+
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     if (self.longPressDelay > 0) {
         [self unschedule:@selector(longPress:)];
     }
+    self.isReceivingTouch = NO;
 }
+
+
+
 
 @end

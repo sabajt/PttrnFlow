@@ -12,6 +12,8 @@
 
 @interface SynthCellDragNode : SynthCellNode
 
+@property (assign) BOOL cancelTouch;
+
 - (id)initWithSynth:(id<SoundEventReceiver>)synth dragItemDelegate:(id<DragItemDelegate>)delegate dragSprite:(CCSprite *)dragSprite dragItemType:(kDragItem)dragItemType;
 
 @end

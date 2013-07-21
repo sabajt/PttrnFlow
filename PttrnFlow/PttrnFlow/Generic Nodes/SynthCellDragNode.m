@@ -31,11 +31,12 @@
 {
     self = [super initWithSynth:synth];
     if (self) {
-        self.longPressDelay = 0.8;
+        self.longPressDelay = 0.5;
         self.hasStartedDrag = NO;
         self.dragItemDelegate = delegate;
         self.dragItemType = dragItemType;
         self.dragSprite = dragSprite;
+        _cancelTouch = NO;
         
         dragSprite.visible = NO;
         [self addChild:dragSprite];
@@ -62,6 +63,8 @@
     self.hasStartedDrag = YES;
     [self dragTouchBegan:self.initialTouch dragSprite:self.dragSprite];
     [self.dragItemDelegate dragItemBegan:self.dragItemType touch:self.initialTouch sender:self];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLockPan object:nil];
 }
 
 #pragma mark - CCTargetedTouchDelegate
@@ -69,6 +72,7 @@
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     if ([super ccTouchBegan:touch withEvent:event]) {
+        self.cancelTouch = NO;
         self.initialTouch = touch;
         self.initialEvent = event;
         return YES;
@@ -78,6 +82,8 @@
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    [super ccTouchMoved:touch withEvent:event];
+    
     if (self.hasStartedDrag) {
         [self dragTouchMoved:touch dragSprite:self.dragSprite dragItemDelegate:self.dragItemDelegate itemType:self.dragItemType sender:self];
     }
@@ -86,6 +92,7 @@
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [super ccTouchEnded:touch withEvent:event];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationUnlockPan object:nil];
     
     if (self.hasStartedDrag) {
         [self dragTouchEnded:touch dragSprite:self.dragSprite dragItemDelegate:self.dragItemDelegate itemType:self.dragItemType sender:self];

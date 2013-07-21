@@ -92,7 +92,6 @@ CGFloat const kTickInterval = 0.5;
     id<TickResponder> responder =  notification.object;
     if ([self.responders containsObject:responder]) {
         [self.responders removeObject:responder];
-        NSLog(@"...responder removed...");
     }
 }
 
@@ -270,12 +269,21 @@ CGFloat const kTickInterval = 0.5;
 {
     NSMutableArray *results= [NSMutableArray array];
     for (id<TickResponder> responder in self.responders) {
-        if ([GridUtils isCell:cell equalToCell:[responder responderCell]] &&
-            [responder isKindOfClass:class]) {
+        if ([GridUtils isCell:cell equalToCell:[responder responderCell]] && [responder isKindOfClass:class]) {
             [results addObject:responder];
         }
     }
     return [NSArray arrayWithArray:results];
+}
+
+- (BOOL)isAnyTickResponderAtCell:(GridCoord)cell
+{
+    for (id<TickResponder> responder in self.responders) {
+        if ([GridUtils isCell:cell equalToCell:[responder responderCell]]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 #pragma mark - TickerControlDelegate

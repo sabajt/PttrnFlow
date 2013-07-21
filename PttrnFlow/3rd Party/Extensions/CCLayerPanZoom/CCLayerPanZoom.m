@@ -29,7 +29,7 @@
 
 
 #import "CCLayerPanZoom.h"
-
+#import "GameConstants.h" // PttrnFlow modification
 
 #ifdef DEBUG
 
@@ -105,6 +105,9 @@ typedef enum
 @property (readwrite, retain) NSMutableArray *touches;
 @property (readwrite, assign) CGFloat touchDistance;
 @property (readwrite, retain) CCScheduler *scheduler;
+
+@property (assign) BOOL panLocked; // PttrnFlow modification
+
 // Return minimum possible scale for the layer considering panBoundsRect and enablePanBounds
 - (CGFloat) minPossibleScale;
 // Return edge in which current point located
@@ -211,7 +214,9 @@ typedef enum
         self.rubberEffectRecoveryTime = 0.2f;
         _rubberEffectRecovering = NO;
         _rubberEffectZooming = NO;
-	}	
+        
+        _panLocked = NO; // PttrnFlow Modification
+	}
 	return self;
 }
 
@@ -238,6 +243,10 @@ typedef enum
 - (void) ccTouchesMoved: (NSSet *) touches 
 			  withEvent: (UIEvent *) event
 {
+    if (self.panLocked) { // PttrnFlow modification
+        return;
+    }
+    
 	BOOL multitouch = [self.touches count] > 1;
 	if (multitouch)
 	{
@@ -284,40 +293,44 @@ typedef enum
 		self.touchDistance = INFINITY;
 	}
     
-    // ----------------------------------------------------
-    // PttrnFlow modification: disable single touch panning
-    
-//	else
-//	{	        
-//        // Get the single touch and it's previous & current position.
-//        UITouch *touch = [self.touches objectAtIndex: 0];
-//        CGPoint curTouchPosition = [[CCDirector sharedDirector] convertToGL: [touch locationInView: [touch view]]];
-//        CGPoint prevTouchPosition = [[CCDirector sharedDirector] convertToGL: [touch previousLocationInView: [touch view]]];
-//        
-//        // Always scroll in sheet mode.
-//        if (self.mode == kCCLayerPanZoomModeSheet)
-//        {
-//            // Set new position of the layer.
-//            self.position = ccp(self.position.x + curTouchPosition.x - prevTouchPosition.x,
-//                                self.position.y + curTouchPosition.y - prevTouchPosition.y);
-//        }
-//        
-//        // Accumulate touch distance for all modes.
-//        self.touchDistance += ccpDistance(curTouchPosition, prevTouchPosition);
-//        
-//        // Inform delegate about starting updating touch position, if click isn't possible.
-//        if (self.mode == kCCLayerPanZoomModeFrame)
-//        {
-//            if (self.touchDistance > self.maxTouchDistanceToClick && !_touchMoveBegan)
-//            {
-//                [self.delegate layerPanZoom: self 
-//                   touchMoveBeganAtPosition: [self convertToNodeSpace: prevTouchPosition]];
-//                _touchMoveBegan = YES;
-//            }
-//        }
-//    }
-    
-    // ----------------------------------------------------
+	else {
+        // Get the single touch and it's previous & current position.
+        UITouch *touch = [self.touches objectAtIndex: 0];
+        CGPoint curTouchPosition = [[CCDirector sharedDirector] convertToGL: [touch locationInView: [touch view]]];
+        CGPoint prevTouchPosition = [[CCDirector sharedDirector] convertToGL: [touch previousLocationInView: [touch view]]];
+         
+        //////////////////////////////////////////////////////////////
+        // PttrnFlow modification: use maxTouchDistanceToClick with kCCLayerPanZoomModeSheet
+        
+        // Accumulate touch distance for all modes.
+        self.touchDistance += ccpDistance(curTouchPosition, prevTouchPosition); // PttrnFlow modification -- moved from (*1)
+        
+        if (self.mode == kCCLayerPanZoomModeSheet)
+        {
+            if (self.touchDistance > self.maxTouchDistanceToClick && !_touchMoveBegan) { // PttrnFlow modification -- check max touch distance for sheet mode
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStartPan object:nil];
+
+                // Set new position of the layer.
+                self.position = ccp(self.position.x + curTouchPosition.x - prevTouchPosition.x,
+                                    self.position.y + curTouchPosition.y - prevTouchPosition.y);
+                
+            }
+        }
+        
+        // (*1)
+        
+        // Inform delegate about starting updating touch position, if click isn't possible.
+        if (self.mode == kCCLayerPanZoomModeFrame)
+        {
+            if (self.touchDistance > self.maxTouchDistanceToClick && !_touchMoveBegan)
+            {
+                [self.delegate layerPanZoom: self 
+                   touchMoveBeganAtPosition: [self convertToNodeSpace: prevTouchPosition]];
+                _touchMoveBegan = YES;
+            }
+        }
+    }
 }
 
 - (void) ccTouchesEnded: (NSSet *) touches 
@@ -416,6 +429,9 @@ typedef enum
 #endif               
                 
     [scheduler scheduleUpdateForTarget: self priority: 0 paused: NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLockPan) name:kNotificationLockPan object:nil]; // PttrnFlow modification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUnlockPan) name:kNotificationUnlockPan object:nil]; // PttrnFlow modification
 }
 
 - (void) onExit
@@ -427,6 +443,9 @@ typedef enum
 #endif 
     
     [scheduler unscheduleAllSelectorsForTarget: self];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self]; // PttrnFlow modification
+    
     [super onExit];
 }
 
@@ -810,6 +829,18 @@ typedef enum
 	self.touches = nil;
 	self.delegate = nil;
 	[super dealloc];
+}
+
+#pragma mark - PttrnFlow modication methods
+
+- (void)handleLockPan
+{
+    self.panLocked = YES;
+}
+
+- (void)handleUnlockPan
+{
+    self.panLocked = NO;
 }
 
 @end

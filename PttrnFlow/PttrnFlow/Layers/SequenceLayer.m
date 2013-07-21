@@ -19,7 +19,7 @@
 #import "Arrow.h"
 #import "MainSynth.h"
 #import "EntryArrow.h"
-#import "TickerControl.h"
+#import "TickerControl.h"x
 #import "ColorUtils.h"
 #import "PdDispatcher.h"
 #import "Drum.h"
@@ -149,6 +149,7 @@
         self.mode = kCCLayerPanZoomModeSheet;
         self.maxScale = 1;
         self.minScale = .3;
+        self.maxTouchDistanceToClick = 50;
         
         // tick dispatcher
         NSMutableDictionary *sequence = [tiledMap objectNamed:kTLDObjectSequence groupNamed:kTLDGroupTickResponders];
@@ -327,15 +328,17 @@
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super ccTouchesBegan:touches withEvent:event];
-    
+
     if (touches.count == 1) {
         UITouch *touch = [touches anyObject];
         CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
         GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
         
-        // create the exit animation and send event to synth
-        [self addChild:[SequenceLayer exitFader:cell]];
-        [self.synth receiveEvents:@[kExitEvent]];
+        // create the exit animation and send event to synth if we aren't touching a synth node
+        if (![self.tickDispatcher isAnyTickResponderAtCell:cell]) {
+            [self addChild:[SequenceLayer exitFader:cell]];
+            [self.synth receiveEvents:@[kExitEvent]];
+        }
     }
 }
 

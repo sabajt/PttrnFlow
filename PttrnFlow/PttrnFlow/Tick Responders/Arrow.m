@@ -77,6 +77,14 @@
     [SpriteUtils switchImageForSprite:self.sprite textureKey:imageName];
 }
 
+#pragma mark - SynthCellNode
+
+- (void)cancelTouchForPan
+{
+    [super cancelTouchForPan];
+    [self afterTick:kBPM];
+}
+
 #pragma mark - CCTargetedTouchDelegate
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event

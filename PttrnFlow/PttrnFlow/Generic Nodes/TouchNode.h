@@ -12,6 +12,7 @@
 
 @property (assign) BOOL swallowsTouches;
 @property (assign) CGFloat longPressDelay;
+@property (assign) BOOL isReceivingTouch;
 
 - (void)longPress:(ccTime)deltaTime;
 

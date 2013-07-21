@@ -60,6 +60,7 @@ typedef enum
 // queries
 - (NSArray *)tickRespondersAtCell:(GridCoord)cell;
 - (NSArray *)tickRespondersAtCell:(GridCoord)cell class:(Class)class;
+- (BOOL)isAnyTickResponderAtCell:(GridCoord)cell;
 
 + (BOOL)isArrowEvent:(NSString *)event;
 

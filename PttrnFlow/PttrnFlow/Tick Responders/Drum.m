@@ -27,7 +27,6 @@
 {
     self = [super initWithSynth:synth];
     if (self) {
-        self.swallowsTouches = YES;
         self.cell = [tiledMap gridCoordForObject:drum];
         self.pattern = [CCTMXTiledMap objectPropertyNamed:kTLDPropertyPattern object:drum];
         NSString *imageName = [self imageNameForPattern:self.pattern on:NO];
@@ -71,6 +70,14 @@
 - (void)deselect
 {
     [SpriteUtils switchImageForSprite:self.sprite textureKey:[self imageNameForPattern:self.pattern on:NO]];
+}
+
+#pragma mark - SynthCellNode
+
+- (void)cancelTouchForPan
+{
+    [super cancelTouchForPan];
+    [self afterTick:kBPM];
 }
 
 #pragma mark - CCTargetedTouchDelegate

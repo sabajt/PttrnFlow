@@ -11,7 +11,9 @@
 CGFloat const kSizeGridUnit = 200;
 
 NSString *const kNotificationRemoveTickReponder = @"removeTickResponder";
-
+NSString *const kNotificationStartPan = @"startPan";
+NSString *const kNotificationLockPan = @"lockPan";
+NSString *const kNotificationUnlockPan = @"unlockPan";
 
 @implementation GameConstants
 

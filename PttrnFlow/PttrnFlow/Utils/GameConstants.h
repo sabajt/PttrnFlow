@@ -21,6 +21,9 @@ typedef enum
 FOUNDATION_EXPORT CGFloat const kSizeGridUnit;
 
 FOUNDATION_EXPORT NSString *const kNotificationRemoveTickReponder;
+FOUNDATION_EXPORT NSString *const kNotificationStartPan;
+FOUNDATION_EXPORT NSString *const kNotificationLockPan;
+FOUNDATION_EXPORT NSString *const kNotificationUnlockPan;
 
 
 @interface GameConstants : NSObject

@@ -15,4 +15,7 @@
 
 - (id)initWithSynth:(id<SoundEventReceiver>)synth;
 
+// subclasses should override and call super to handle any 'deselection behavior' triggered by pan start
+- (void)cancelTouchForPan;
+
 @end

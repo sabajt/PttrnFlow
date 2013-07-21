@@ -12,6 +12,14 @@
 #import "TextureUtils.h"
 #import "SpriteUtils.h"
 #import "TickDispatcher.h"
+#import "CCNode+Touch.h"
+
+@interface Tone ()
+
+@property (assign) BOOL selected;
+
+@end
+
 
 @implementation Tone
 
@@ -19,13 +27,13 @@
 {
     self = [super initWithSynth:synth];
     if (self) {
-        self.swallowsTouches = YES;
         self.cell = [tiledMap gridCoordForObject:tone];
         self.midiValue = [[CCTMXTiledMap objectPropertyNamed:kTLDPropertyMidiValue object:tone] intValue];
         NSString *imageName = [self imageNameForMidiValue:self.midiValue on:NO];
         self.sprite = [self createAndCenterSpriteNamed:imageName];
         [self addChild:self.sprite];
         self.position = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
+        _selected = NO;
     }
     return self;
 }
@@ -105,6 +113,14 @@
     }
 }
 
+#pragma mark - SynthCellNode
+
+- (void)cancelTouchForPan
+{
+    [super cancelTouchForPan];
+    [self afterTick:kBPM];
+}
+
 #pragma mark - CCTargetedTouchDelegate
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
@@ -119,19 +135,22 @@
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    [self deselectTone];
+    [super ccTouchEnded:touch withEvent:event];
+    [self afterTick:kBPM];
 }
 
 #pragma mark - Tick Responder
 
 - (NSString *)tick:(NSInteger)bpm
 {
+    self.selected = YES;
     [SpriteUtils switchImageForSprite:self.sprite textureKey:[self imageNameForMidiValue:self.midiValue on:YES]];
     return [NSString stringWithFormat:@"%i", self.midiValue];
 }
 
 - (void)afterTick:(NSInteger)bpm
 {
+    self.selected = NO;
     [self deselectTone];
 }
 
