@@ -100,7 +100,7 @@
         // remove
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRemoveTickReponder object:self];
         [self removeFromParentAndCleanup:YES];
-    }    
+    }
 }
 
 @end

@@ -69,8 +69,6 @@ CGFloat const kTickInterval = 0.5;
         self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
         self.lastTickedResponders = [NSMutableArray array];
         self.synth = synth;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoveResponder:) name:kNotificationRemoveTickReponder object:nil];
     }
     return self;
 }
@@ -284,6 +282,20 @@ CGFloat const kTickInterval = 0.5;
         }
     }
     return NO;
+}
+
+#pragma mark - scene management
+
+- (void)onEnter
+{
+    [super onEnter];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoveResponder:) name:kNotificationRemoveTickReponder object:nil];
+}
+
+- (void)onExit
+{
+    [super onExit];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - TickerControlDelegate
