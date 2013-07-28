@@ -276,6 +276,7 @@
 		334E7264179625F400EFECC1 /* itemButtonWarpOn-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E7262179625F400EFECC1 /* itemButtonWarpOn-ipadhd.png */; };
 		334E72671796260700EFECC1 /* itemButtonWarpOff-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E72651796260700EFECC1 /* itemButtonWarpOff-ipad.png */; };
 		334E72681796260700EFECC1 /* itemButtonWarpOn-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E72661796260700EFECC1 /* itemButtonWarpOn-ipad.png */; };
+		338EE1A617A5DD69005E98B1 /* PdArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1A517A5DD69005E98B1 /* PdArray.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -751,6 +752,8 @@
 		334E7262179625F400EFECC1 /* itemButtonWarpOn-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonWarpOn-ipadhd.png"; sourceTree = "<group>"; };
 		334E72651796260700EFECC1 /* itemButtonWarpOff-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonWarpOff-ipad.png"; sourceTree = "<group>"; };
 		334E72661796260700EFECC1 /* itemButtonWarpOn-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonWarpOn-ipad.png"; sourceTree = "<group>"; };
+		338EE1A417A5DD69005E98B1 /* PdArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdArray.h; sourceTree = "<group>"; };
+		338EE1A517A5DD69005E98B1 /* PdArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdArray.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1415,6 +1418,7 @@
 		169F3D0E1770ADB2005F93B2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				338EE1A317A5DD69005E98B1 /* PdArray */,
 				169F3D0F1770ADB2005F93B2 /* CCLayerPanZoom */,
 			);
 			path = Extensions;
@@ -1503,6 +1507,15 @@
 				162C29371787699900CE480C /* TickHitChart.m */,
 			);
 			path = "UI Nodes";
+			sourceTree = "<group>";
+		};
+		338EE1A317A5DD69005E98B1 /* PdArray */ = {
+			isa = PBXGroup;
+			children = (
+				338EE1A417A5DD69005E98B1 /* PdArray.h */,
+				338EE1A517A5DD69005E98B1 /* PdArray.m */,
+			);
+			path = PdArray;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1738,6 +1751,7 @@
 				1608074F16B437A800039339 /* CCNode+Debug.m in Sources */,
 				1608075216B437A800039339 /* CCNode.m in Sources */,
 				1608075516B437A800039339 /* CCParallaxNode.m in Sources */,
+				338EE1A617A5DD69005E98B1 /* PdArray.m in Sources */,
 				1608075816B437A800039339 /* CCParticleBatchNode.m in Sources */,
 				1608075B16B437A800039339 /* CCParticleExamples.m in Sources */,
 				1608075E16B437A800039339 /* CCParticleSystem.m in Sources */,
