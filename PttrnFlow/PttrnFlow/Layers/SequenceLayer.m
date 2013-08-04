@@ -19,7 +19,7 @@
 #import "Arrow.h"
 #import "MainSynth.h"
 #import "EntryArrow.h"
-#import "TickerControl.h"x
+#import "TickerControl.h"
 #import "ColorUtils.h"
 #import "PdDispatcher.h"
 #import "Drum.h"
@@ -30,6 +30,7 @@
 #import "SequenceItemLayer.h"
 #import "CCSprite+Utils.h"
 #import "Warp.h"
+#import "WaveTable.h"
 
 @interface SequenceLayer ()
 
@@ -75,15 +76,12 @@
 
 - (void)reportSize:(ccTime)deltaTime
 {
-    if (self.boundingBox.origin.x > -10 && self.boundingBox.origin.y > -10 && self.boundingBox.origin.x < 10 && self.boundingBox.origin.y < 10)
-    {
-        NSLog(@"\n\n--debug------------------------");
-        NSLog(@"seq layer content size: %@", NSStringFromCGSize(self.contentSize));
-        NSLog(@"seq layer bounding box: %@", NSStringFromCGRect(self.boundingBox));
-        NSLog(@"seq layer position: %@", NSStringFromCGPoint(self.position));
-        NSLog(@"seq layer scale: %g", self.scale);
-        NSLog(@"--end debug------------------------\n");
-    }
+    NSLog(@"\n\n--debug------------------------");
+    NSLog(@"seq layer content size: %@", NSStringFromCGSize(self.contentSize));
+    NSLog(@"seq layer bounding box: %@", NSStringFromCGRect(self.boundingBox));
+    NSLog(@"seq layer position: %@", NSStringFromCGPoint(self.position));
+    NSLog(@"seq layer scale: %g", self.scale);
+    NSLog(@"--end debug------------------------\n");
 }
 
 - (void)draw
@@ -136,7 +134,14 @@
 - (id)initWithTiledMap:(CCTMXTiledMap *)tiledMap background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
 {
     self = [super init];
-    if (self) {        
+    if (self) {
+        _dispatcher = [[PdDispatcher alloc] init];
+        [PdBase setDelegate:_dispatcher];
+        _patch = [PdBase openFile:@"synth.pd" path:[[NSBundle mainBundle] resourcePath]];
+        if (!_patch) {
+            NSLog(@"Failed to open patch");
+        }
+
         self.isTouchEnabled = YES;
         self.backgroundLayer = backgroundLayer;
         self.synth = [[MainSynth alloc] init];
@@ -223,14 +228,15 @@
 {
     [super onEnter];
     
-    _dispatcher = [[PdDispatcher alloc] init];
-    [PdBase setDelegate:_dispatcher];
-    _patch = [PdBase openFile:@"synth.pd" path:[[NSBundle mainBundle] resourcePath]];
-    if (!_patch) {
-        NSLog(@"Failed to open patch");
-    }
+//    _dispatcher = [[PdDispatcher alloc] init];
+//    [PdBase setDelegate:_dispatcher];
+//    _patch = [PdBase openFile:@"synth.pd" path:[[NSBundle mainBundle] resourcePath]];
+//    if (!_patch) {
+//        NSLog(@"Failed to open patch");
+//    }
     
     [self setupDebug];
+    
 }
 
 - (void)onExit
