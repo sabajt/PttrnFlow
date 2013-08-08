@@ -51,7 +51,7 @@ static NSString *const kMute = @"mute";
     return NO;
 }
 
-- (void)mute:(BOOL)mute
++ (void)mute:(BOOL)mute
 {
     float muteVal = 1.0;
     if (mute) {

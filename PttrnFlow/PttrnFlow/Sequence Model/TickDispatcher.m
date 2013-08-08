@@ -123,7 +123,7 @@ CGFloat const kTickInterval = 0.5;
     [self unschedule:@selector(tick:)];
 }
 
-// play the sound from the stored sequence an index
+// play the sound from the stored sequence at an index
 - (void)play:(int)index
 {
     if ((index >= self.sequenceLength) || (index < 0)) {

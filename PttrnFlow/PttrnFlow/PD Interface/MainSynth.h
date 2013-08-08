@@ -20,6 +20,6 @@
 @interface MainSynth : NSObject <SoundEventReceiver>
 
 + (NSMutableArray *)filterSoundEvents:(NSMutableArray *)rawEvents;
-- (void)mute:(BOOL)mute;
++ (void)mute:(BOOL)mute;
 
 @end
