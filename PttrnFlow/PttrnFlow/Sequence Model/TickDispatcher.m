@@ -76,6 +76,7 @@ CGFloat const kTickInterval = 0.5;
         
         self.lastLinkedEvents = [NSMutableDictionary dictionary];
     }
+    //
     return self;
 }
 
