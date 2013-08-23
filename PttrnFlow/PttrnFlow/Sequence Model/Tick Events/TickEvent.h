@@ -16,6 +16,7 @@ FOUNDATION_EXPORT int const kChannelNone;
 @property (strong, nonatomic) TickEvent *lastLinkedEvent;
 
 - (id)initWithChannel:(int)channel lastLinkedEvent:(TickEvent *)lastLinkedEvent fragments:(NSArray *)fragments;
+- (BOOL)isEqualToEvent:(TickEvent *)event checkLastLinkedEvent:(BOOL)checkLastLinkedEvent;
 
 #pragma mark - Creation Utils
 + (NSArray *)eventsFromFragments:(NSArray *)fragments channel:(int)channel lastLinkedEvents:(NSDictionary *)lastLinkedEvents;

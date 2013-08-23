@@ -243,6 +243,9 @@ CGFloat const kTickInterval = 0.5;
         return;
     }
     
+#pragma mark - LEFT OFF HERE
+    // TODO: event comparison function just finished -- work on method to compare combined events and solution events
+    
     // check for correct hits
     NSMutableArray *filtered = [MainSynth filterSoundEvents:combinedEvents];
     if ([self testHit:filtered tick:self.tickCounter]) {

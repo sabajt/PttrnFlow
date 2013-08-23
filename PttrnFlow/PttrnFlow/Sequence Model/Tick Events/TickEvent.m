@@ -156,13 +156,29 @@ int const kChannelNone = -1;
 
 #pragma mark - Comparison
 
-- (BOOL)isEqualToEvent:(TickEvent *)event
+- (BOOL)isEqualToEvent:(TickEvent *)event checkLastLinkedEvent:(BOOL)checkLastLinkedEvent
 {
-    // same events are of same class, and contain either 0 fragments or contain all the same fragment
+    // must share same class
     if ([self isKindOfClass:[event class]]) {
+        
+        // must share all fragments types and count (or none at all)
         BOOL containsNoFragments = (self.fragments == nil) && (event.fragments == nil);
         if (containsNoFragments || [self.fragments hasSameNumberOfSameStrings:event.fragments]) {
-            return YES;
+            
+            // our linked events must share class and same fragments (or none at all)
+            if (checkLastLinkedEvent) {
+                BOOL containsNoLinkedEvent = (self.lastLinkedEvent == nil) && (event.lastLinkedEvent == nil);
+
+                // recursive call is only ever 1 deep (for comparing to linked event)
+                BOOL sameLastLinkedEvent = [self.lastLinkedEvent isEqualToEvent:event.lastLinkedEvent checkLastLinkedEvent:NO];
+                if (containsNoLinkedEvent || sameLastLinkedEvent) {
+                    return YES;
+                }
+            }
+            // we haven't requested to check last linked (so probably an internal call)
+            else {
+                return YES;
+            }
         }
     }
     return NO;
