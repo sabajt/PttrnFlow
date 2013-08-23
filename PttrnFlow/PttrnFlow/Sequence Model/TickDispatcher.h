@@ -12,26 +12,13 @@
 #import "TickerControl.h"
 #import "TickResponder.h"
 
-
 FOUNDATION_EXPORT NSInteger const kBPM;
-
 FOUNDATION_EXPORT NSString *const kNotificationAdvancedSequence;
 FOUNDATION_EXPORT NSString *const kNotificationTickHit;
-
 FOUNDATION_EXPORT NSString *const kKeySequenceIndex;
 FOUNDATION_EXPORT NSString *const kKeyHits;
-
 FOUNDATION_EXPORT NSString *const kExitEvent;
-
 FOUNDATION_EXPORT CGFloat const kTickInterval;
-
-
-typedef enum
-{
-    kTickEventNote = 0,
-    kTickEventArrow,
-    kTickEventWarp
-}kTickEvent;
 
 @protocol TickDispatcherDelegate <NSObject>
 
@@ -61,8 +48,5 @@ typedef enum
 - (NSArray *)tickRespondersAtCell:(GridCoord)cell;
 - (NSArray *)tickRespondersAtCell:(GridCoord)cell class:(Class)class;
 - (BOOL)isAnyTickResponderAtCell:(GridCoord)cell;
-
-+ (BOOL)isArrowEvent:(NSString *)event;
-
 
 @end

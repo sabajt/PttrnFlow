@@ -13,7 +13,7 @@
 #import "SpriteUtils.h"
 #import "TickDispatcher.h"
 #import "DragButton.h"
-
+#import "TickEvent.h"
 
 @implementation Arrow
 
@@ -100,7 +100,7 @@
 
 #pragma mark - TickResponder
 
-- (NSString *)tick:(NSInteger)bpm
+- (TickEvent *)tick:(NSInteger)bpm
 {
     return [GridUtils directionStringForDirection:self.facing];
 }

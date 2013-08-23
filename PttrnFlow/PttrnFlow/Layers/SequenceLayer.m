@@ -8,7 +8,6 @@
 
 #import "SequenceLayer.h"
 #import "SequenceControlBarLayer.h"
-#import "DataUtils.h"
 #import "GameConstants.h"
 #import "SimpleAudioEngine.h"
 #import "SpriteUtils.h"
@@ -52,7 +51,7 @@
 @end
 
 
-@implementation SequenceLayer {}
+@implementation SequenceLayer
 
 #pragma mark - debug methods
 

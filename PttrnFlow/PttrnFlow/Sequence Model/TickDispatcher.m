@@ -8,25 +8,22 @@
 
 #import "TickDispatcher.h"
 #import "GameConstants.h"
-#import "Tone.h"
 #import "Arrow.h"
 #import "SGTiledUtils.h"
 #import "CCTMXTiledMap+Utils.h"
 #import "TickChannel.h"
 #import "NSArray+CompareStrings.h"
+#import "TickEvent.h"
+#import "ExitEvent.h"
+
 
 NSInteger const kBPM = 120;
-
 NSString *const kNotificationAdvancedSequence = @"advanceSequence";
 NSString *const kNotificationTickHit = @"tickHit";
-
 NSString *const kKeySequenceIndex = @"sequenceIndex";
 NSString *const kKeyHits = @"hits";
 
-NSString *const kExitEvent = @"exit";
-
 CGFloat const kTickInterval = 0.5;
-
 
 @interface TickDispatcher ()
 
@@ -35,9 +32,14 @@ CGFloat const kTickInterval = 0.5;
 @property (assign) int sequenceIndex;
 @property (assign) GridCoord gridSize;
 @property (strong, nonatomic) NSMutableArray *eventSequence;
-@property (strong, nonatomic) NSMutableSet *channels;
+@property (strong, nonatomic) NSSet *channels;
+@property (strong, nonatomic) NSMutableSet *dynamicChannels;
+
 @property (strong, nonatomic) NSMutableArray *hits;
-@property (assign) int tickCounter;
+@property (assign) int currentQuarterTick;
+
+// for each channel, track most recent synth related events so we can compare with solution
+@property (strong, nonatomic) NSMutableDictionary *lastLinkedEvents;
 
 @end
 
@@ -48,31 +50,38 @@ CGFloat const kTickInterval = 0.5;
 {
     self = [super init];
     if (self) {
-        
+
         NSString *rawEventSeq = [sequence objectForKey:kTLDPropertyEvents];
         NSArray *groupByTick = [rawEventSeq componentsSeparatedByString:@";"];
         self.sequenceLength = groupByTick.count;
         self.eventSequence = [self constructEventSequence:groupByTick];
         
         NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupTickResponders];
-        self.channels = [NSMutableSet set];
+        NSMutableSet *channels = [NSMutableSet set];
         for (NSMutableDictionary *entry in entries) {
             NSString *channel = [entry objectForKey:kTLDPropertyChannel];
             GridCoord cell = [tiledMap gridCoordForObject:entry];
             kDirection direction = [SGTiledUtils directionNamed:[entry objectForKey:kTLDPropertyDirection]];
             TickChannel *tickChannel = [[TickChannel alloc] initWithChannel:[channel intValue] startingDirection:direction startingCell:cell];
-            [self.channels addObject:tickChannel];
+            [channels addObject:tickChannel];
         }
+        self.channels = [NSSet setWithSet:channels];
         
         self.sequenceIndex = 0;
         self.responders = [NSMutableArray array];
         self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
         self.lastTickedResponders = [NSMutableArray array];
+        self.hits = [NSMutableArray array];
         self.synth = synth;
+        
+        self.lastLinkedEvents = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
+#pragma mark - setup
+
+// TODO: change to use TickEvent
 - (NSMutableArray *)constructEventSequence:(NSArray *)groupedByTick
 {
     // example: [[@"48-s", @"d1"], [@"50-2", @"d2"], [@"48-t", @"d1-x1"]]
@@ -84,6 +93,13 @@ CGFloat const kTickInterval = 0.5;
     }
     return eventSequence;
 }
+
+- (void)addDynamicChannel:(int)channel startingCell:(GridCoord)cell startingDirection:(kDirection)direction
+{
+    TickChannel *ch = [[TickChannel alloc] initWithChannel:channel startingDirection:direction startingCell:cell];
+    [self.dynamicChannels addObject:ch];
+}
+
 
 - (void)handleRemoveResponder:(NSNotification *)notification
 {
@@ -99,16 +115,15 @@ CGFloat const kTickInterval = 0.5;
     [self.responders addObject:responder];
 }
 
+#pragma mark - control
+
 // public method to kick off the sequence
 - (void)start
 {
-    self.tickCounter = 0;
-    if (self.hits == nil) {
-        self.hits = [NSMutableArray array];
-    }
-    else {
-        [self.hits removeAllObjects];
-    }
+    self.currentQuarterTick = 0;
+
+    [self.dynamicChannels removeAllObjects];
+    [self.hits removeAllObjects];
     
     for (TickChannel *channel in self.channels) {
         [channel reset];
@@ -123,6 +138,7 @@ CGFloat const kTickInterval = 0.5;
     [self unschedule:@selector(tick:)];
 }
 
+// TODO: change to use TickEvent
 // play the sound from the stored sequence at an index
 - (void)play:(int)index
 {
@@ -155,18 +171,7 @@ CGFloat const kTickInterval = 0.5;
     self.sequenceIndex++;
 }
 
-// did we hit correct patterns after ticking thru sequence?
-- (BOOL)didWin
-{
-    for (NSNumber *hit in self.hits) {
-        if (![hit boolValue]) {
-            return NO;
-        }
-    }
-    return YES;
-}
-
-// moves the ticker along the grid
+// moves all tickers along the grid
 - (void)tick:(ccTime)dt
 {
     // handle 'after tick'
@@ -176,7 +181,7 @@ CGFloat const kTickInterval = 0.5;
     [self.lastTickedResponders removeAllObjects];
     
     // stop and check for winning conditions if we have reached the tick limit
-    if (self.tickCounter >= self.eventSequence.count) {
+    if (self.currentQuarterTick >= self.eventSequence.count) {
         [self stop];
         if ([self didWin]) {
             [self.delegate win];
@@ -184,34 +189,54 @@ CGFloat const kTickInterval = 0.5;
         return;
     }
     
+    // collect events for tick on each channel
     NSMutableArray *combinedEvents = [NSMutableArray array];
-    for (TickChannel *tickChannel in self.channels) {
+    NSSet *channels = [self.channels setByAddingObjectsFromSet:self.dynamicChannels];
+    for (TickChannel *tickChannel in channels) {
         
         // skip if tick channel has stopped
         if (tickChannel.hasStopped) {
             continue;
         }
         
-        // tick and collect events
-        NSMutableArray *events = [NSMutableArray array];
+        // tick and collect event fragments for all responders at current cell
+        NSMutableArray *fragments = [NSMutableArray array];
         for (id<TickResponder> responder in self.responders) {
             if ([GridUtils isCell:[responder responderCell] equalToCell:tickChannel.currentCell]) {
-                [events addObject:[responder tick:kBPM]];
+                [fragments addObject:[responder tick:kBPM]];
                 [self.lastTickedResponders addObject:responder];
             }
         }
         
-        // the first time we have no event, this means we hit no blocks -- this is an 'exit' event
+        // construct events that synths can understand from fragments
+        // multiple fragments on a cell may create one or many events...
+        NSArray *events = [TickEvent eventsFromFragments:fragments channel:tickChannel.channel lastLinkedEvents:self.lastLinkedEvents];
+        
+        // refresh last linked events for each channel.
+        // current supports only one linked event at a time per channel
+        for (TickEvent *event in events) {
+            if (event.lastLinkedEvent != nil) {
+                if ([self.lastLinkedEvents objectForKey:@(tickChannel.channel)] == nil) {
+                    [self.lastLinkedEvents setObject:event forKey:@(tickChannel.channel)];
+                    break;
+                }
+            }
+        }
+        
+        // if we have no event, we've hit no blocks -- this is an exit event
         if (events.count == 0) {
-            [events addObject:kExitEvent];
+            events = @[[[ExitEvent alloc] initWithChannel:tickChannel.channel lastLinkedEvent:nil fragments:nil]];
             [self.delegate tickExit:tickChannel.currentCell];
         }
         
+        // tick events may affect spacial / game logic of tick channels
         [tickChannel update:events];
+        
+        // tick events collected in combined events will also be sent to pd synth to create sound
         [combinedEvents addObjectsFromArray:events];
     }
     
-    // stop if we have no combined events
+    // stop if we have no events from any channel
     if (combinedEvents.count == 0) {
         [self stop];
         return;
@@ -228,6 +253,8 @@ CGFloat const kTickInterval = 0.5;
         NSLog(@"MISS");
         [self.hits addObject:@(NO)];
     }
+    
+    [self.hits addObject:@(NO)];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationTickHit object:nil userInfo:@{kKeyHits : self.hits}];
     
     // synth talks to our PD patch
@@ -238,7 +265,7 @@ CGFloat const kTickInterval = 0.5;
     for (TickChannel *tickChannel in self.channels) {
         tickChannel.currentCell = [tickChannel nextCell];
     }
-    self.tickCounter++;
+    self.currentQuarterTick++;
 }
 
 - (BOOL)testHit:(NSMutableArray *)hit tick:(int)tick
@@ -248,6 +275,17 @@ CGFloat const kTickInterval = 0.5;
     }
     NSArray *events = [self.eventSequence objectAtIndex:tick];
     return [events containsSameStrings:hit];
+}
+
+// did we hit correct patterns after ticking thru sequence?
+- (BOOL)didWin
+{
+    for (NSNumber *hit in self.hits) {
+        if (![hit boolValue]) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 #pragma mark - public queries
@@ -303,17 +341,6 @@ CGFloat const kTickInterval = 0.5;
 - (void)tickerMovedToIndex:(int)index
 {
     [self play:index];
-}
-
-#pragma mark - 
-
-+ (BOOL)isArrowEvent:(NSString *)event
-{
-    if ([event isEqualToString:@"up"] || [event isEqualToString:@"down"] || [event isEqualToString:@"right"] || [event isEqualToString:@"left"] || [event isEqualToString:@"n"])
-    {
-        return YES;
-    }
-    return NO;
 }
 
 @end

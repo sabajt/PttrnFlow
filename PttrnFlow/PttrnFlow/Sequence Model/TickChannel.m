@@ -8,6 +8,9 @@
 
 #import "TickChannel.h"
 #import "TickDispatcher.h"
+#import "TickEvent.h"
+#import "ExitEvent.h"
+#import "DirectionEvent.h"
 
 @implementation TickChannel
 
@@ -28,17 +31,19 @@
     return [GridUtils stepInDirection:self.currentDirection fromCell:self.currentCell];
 }
 
-- (void)update:(NSMutableArray *)events
+// some events cause changes in channel state
+- (void)update:(NSArray *)events
 {
-    for (NSString *event in events) {
+    for (TickEvent *event in events) {
         
-        // stop for exit event
-        if ([event isEqualToString:kExitEvent]) {
+        // stop if exit event
+        if ([event isKindOfClass:[ExitEvent class]]) {
             self.hasStopped = YES;
         }
-        // change direction for arrows
-        if ([TickDispatcher isArrowEvent:event]) {
-            self.currentDirection = [GridUtils directionForString:event];
+        // change direction if direction event
+        if ([event isKindOfClass:[DirectionEvent class]]) {
+            DirectionEvent *directionEvent = (DirectionEvent *)event;
+            self.currentDirection = [GridUtils directionForString:directionEvent.direction];
         }
     }
 }

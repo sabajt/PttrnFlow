@@ -21,9 +21,8 @@
 @property (assign) BOOL hasStopped;
 
 - (id)initWithChannel:(int)channel startingDirection:(kDirection)direction startingCell:(GridCoord)cell;
-
 - (GridCoord)nextCell;
-- (void)update:(NSMutableArray *)events;
+- (void)update:(NSArray *)events;
 - (void)reset;
 
 @end
