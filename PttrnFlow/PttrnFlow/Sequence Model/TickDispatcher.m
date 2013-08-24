@@ -15,6 +15,7 @@
 #import "NSArray+CompareStrings.h"
 #import "TickEvent.h"
 #import "ExitEvent.h"
+#import "SolutionSequence.h"
 
 
 NSInteger const kBPM = 120;
@@ -22,6 +23,7 @@ NSString *const kNotificationAdvancedSequence = @"advanceSequence";
 NSString *const kNotificationTickHit = @"tickHit";
 NSString *const kKeySequenceIndex = @"sequenceIndex";
 NSString *const kKeyHits = @"hits";
+NSString *const kExitEvent = @"ExitEvent";
 
 CGFloat const kTickInterval = 0.5;
 
@@ -29,14 +31,15 @@ CGFloat const kTickInterval = 0.5;
 
 @property (strong, nonatomic) NSMutableArray *responders;
 @property (strong, nonatomic) NSMutableArray *lastTickedResponders;
-@property (assign) int sequenceIndex;
-@property (assign) GridCoord gridSize;
-@property (strong, nonatomic) NSMutableArray *eventSequence;
-@property (strong, nonatomic) NSSet *channels;
-@property (strong, nonatomic) NSMutableSet *dynamicChannels;
-
 @property (strong, nonatomic) NSMutableArray *hits;
-@property (assign) int currentQuarterTick;
+@property (strong, nonatomic) NSMutableSet *dynamicChannels;
+@property (strong, nonatomic) NSSet *channels;
+@property (strong, nonatomic) SolutionSequence *solutionSequence;
+
+@property (assign) int sequenceIndex;
+@property (assign) int currentTick;
+@property (assign) GridCoord gridSize;
+
 
 // for each channel, track most recent synth related events so we can compare with solution
 @property (strong, nonatomic) NSMutableDictionary *lastLinkedEvents;
@@ -46,16 +49,15 @@ CGFloat const kTickInterval = 0.5;
 
 @implementation TickDispatcher
 
-- (id)initWithSequence:(NSMutableDictionary *)sequence tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth
+- (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth
 {
     self = [super init];
     if (self) {
-
-        NSString *rawEventSeq = [sequence objectForKey:kTLDPropertyEvents];
-        NSArray *groupByTick = [rawEventSeq componentsSeparatedByString:@";"];
-        self.sequenceLength = groupByTick.count;
-        self.eventSequence = [self constructEventSequence:groupByTick];
         
+        // new event sequence
+        self.solutionSequence = [[SolutionSequence alloc] initWithSolution:[NSString stringWithFormat:@"solution%i", sequence]];
+        
+        // create initial channels
         NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupTickResponders];
         NSMutableSet *channels = [NSMutableSet set];
         for (NSMutableDictionary *entry in entries) {
@@ -67,16 +69,15 @@ CGFloat const kTickInterval = 0.5;
         }
         self.channels = [NSSet setWithSet:channels];
         
+        // other setup
         self.sequenceIndex = 0;
         self.responders = [NSMutableArray array];
         self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
         self.lastTickedResponders = [NSMutableArray array];
         self.hits = [NSMutableArray array];
         self.synth = synth;
-        
         self.lastLinkedEvents = [NSMutableDictionary dictionary];
     }
-    //
     return self;
 }
 
@@ -121,7 +122,7 @@ CGFloat const kTickInterval = 0.5;
 // public method to kick off the sequence
 - (void)start
 {
-    self.currentQuarterTick = 0;
+    self.currentTick = 0;
 
     [self.dynamicChannels removeAllObjects];
     [self.hits removeAllObjects];
@@ -139,17 +140,16 @@ CGFloat const kTickInterval = 0.5;
     [self unschedule:@selector(tick:)];
 }
 
-// TODO: change to use TickEvent
 // play the sound from the stored sequence at an index
 - (void)play:(int)index
 {
-    if ((index >= self.sequenceLength) || (index < 0)) {
+    if ((index >= self.solutionSequence.sequence.count) || (index < 0)) {
         NSLog(@"warning: index out of TickDispatcher range");
         return;
     }
     
-    NSArray *events = [self.eventSequence objectAtIndex:index];
-    [self.synth receiveEvents:events];
+    NSArray *audioEvents = [self.solutionSequence.sequence objectAtIndex:index];
+    [self.synth receiveEvents:audioEvents];
 }
 
 // schedule the stored sequence we want to solve for from the top
@@ -182,7 +182,7 @@ CGFloat const kTickInterval = 0.5;
     [self.lastTickedResponders removeAllObjects];
     
     // stop and check for winning conditions if we have reached the tick limit
-    if (self.currentQuarterTick >= self.eventSequence.count) {
+    if (self.currentTick >= self.solutionSequence.sequence.count) {
         [self stop];
         if ([self didWin]) {
             [self.delegate win];
@@ -226,7 +226,7 @@ CGFloat const kTickInterval = 0.5;
         
         // if we have no event, we've hit no blocks -- this is an exit event
         if (events.count == 0) {
-            events = @[[[ExitEvent alloc] initWithChannel:tickChannel.channel lastLinkedEvent:nil fragments:nil]];
+            events = @[[[ExitEvent alloc] initWithChannel:tickChannel.channel isAudioEvent:YES lastLinkedEvent:nil fragments:nil]];
             [self.delegate tickExit:tickChannel.currentCell];
         }
         
@@ -243,42 +243,27 @@ CGFloat const kTickInterval = 0.5;
         return;
     }
     
-#pragma mark - LEFT OFF HERE
-    // TODO: event comparison function just finished -- work on method to compare combined events and solution events
-    
-    // check for correct hits
-    NSMutableArray *filtered = [MainSynth filterSoundEvents:combinedEvents];
-    if ([self testHit:filtered tick:self.tickCounter]) {
+    // check for a hit (collected audio events for this tick match solution events for this tick)
+    if ([self.solutionSequence tick:self.currentTick doesMatchAudioEventsInGroup:combinedEvents]) {
         NSLog(@"HIT");
         [self.hits addObject:@(YES)];
-        
     }
     else {
         NSLog(@"MISS");
         [self.hits addObject:@(NO)];
     }
     
-    [self.hits addObject:@(NO)];
+    // notify UI elements of our hits status
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationTickHit object:nil userInfo:@{kKeyHits : self.hits}];
-    
-    // synth talks to our PD patch
-    // TODO: this should probably be filtered events, unless synth has some reason to care about non-synth events?
-    [self.synth receiveEvents:combinedEvents];
+
+    // hand over audio events to synth class which talks to PD patch
+    [self.synth receiveEvents:[combinedEvents audioEvents]];
     
     // advance cells, tick counter
     for (TickChannel *tickChannel in self.channels) {
         tickChannel.currentCell = [tickChannel nextCell];
     }
-    self.currentQuarterTick++;
-}
-
-- (BOOL)testHit:(NSMutableArray *)hit tick:(int)tick
-{
-    if (tick >= self.eventSequence.count) {
-        return NO;
-    }
-    NSArray *events = [self.eventSequence objectAtIndex:tick];
-    return [events containsSameStrings:hit];
+    self.currentTick++;
 }
 
 // did we hit correct patterns after ticking thru sequence?

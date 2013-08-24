@@ -20,13 +20,6 @@ int const kChannelNone = -1;
 // organized by association with a certain sound or game action.
 // The idea is to have a flexible way to construct TickEvents on the fly.
 
-@interface NSString (Fragment)
-
-- (BOOL)isMidiValue;
-- (BOOL)isSynthType;
-
-@end
-
 @implementation NSString (Fragment)
 
 - (BOOL)isMidiValue
@@ -64,8 +57,57 @@ int const kChannelNone = -1;
 
 @end
 
+#pragma mark - NSArray (TickEvents)
 
-#pragma mark - TickEventxs
+@implementation NSArray (TickEvents)
+
+- (BOOL)hasSameNumberOfSameEvents:(NSArray *)events
+{
+    // base case: we have succesfully matched every occurance of every string
+    if (self.count == 0 && events.count == 0) {
+        return YES;
+    }
+    
+    // pick one of our events to check
+    TickEvent *targetEvent = [self firstObject];
+    if (![targetEvent isKindOfClass:[TickEvent class]]) {
+        return NO;
+    }
+    
+    // find index of matching event if there is one
+    NSUInteger targetIndex = [events indexOfObjectPassingTest:^BOOL(TickEvent *event, NSUInteger idx, BOOL *stop) {
+        return ([event isKindOfClass:[TickEvent class]] && [event isEqualToEvent:targetEvent checkLastLinkedEvent:YES]);
+    }];
+    
+    // no match
+    if (targetIndex == NSNotFound) {
+        return NO;
+    }
+    
+    // if we've found a match, remove matches in mutable copies of both arrays
+    NSMutableArray *mutableSelf = [NSMutableArray arrayWithArray:self];
+    NSMutableArray *mutableEvents = [NSMutableArray arrayWithArray:events];
+    [mutableSelf removeObjectAtIndex:0];
+    [mutableEvents removeObjectAtIndex:targetIndex];
+    
+    // recursive call to new, shortened arrays
+    return [mutableSelf hasSameNumberOfSameEvents:mutableEvents];
+}
+
+- (NSArray *)audioEvents
+{
+    NSMutableArray *filtered = [NSMutableArray array];
+    for (TickEvent *event in self) {
+        if ([event isKindOfClass:[TickEvent class]] && event.isAudioEvent) {
+            [filtered addObject:event];
+        }
+    }
+    return [NSArray arrayWithArray:filtered];
+}
+
+@end
+
+#pragma mark - TickEvents
 // TickEvents store relevant parameters that we will send in to our PD patches.
 // Events may be constructed in different ways:
 //  - directly from a pre-constructed datasource (solution sequences are collections of events constructed from a JSON file)
@@ -82,13 +124,14 @@ int const kChannelNone = -1;
 
 @implementation TickEvent
 
-- (id)initWithChannel:(int)channel lastLinkedEvent:(TickEvent *)lastLinkedEvent fragments:(NSArray *)fragments
+- (id)initWithChannel:(int)channel isAudioEvent:(BOOL)isAudioEvent lastLinkedEvent:(TickEvent *)lastLinkedEvent fragments:(NSArray *)fragments
 {
     self = [super init];
     if (self) {
         _channel = channel;
-        _fragments = fragments;
+        _isAudioEvent = isAudioEvent;
         _lastLinkedEvent = lastLinkedEvent;
+        _fragments = fragments;
     }
     return self;
 }
@@ -147,7 +190,7 @@ int const kChannelNone = -1;
     // audio stop events
     if (audioStop != nil) {
         TickEvent *lastEvent = [lastLinkedEvents objectForKey:@(channel)];
-        AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel lastLinkedEvent:lastEvent fragments:nil];
+        AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES lastLinkedEvent:lastEvent fragments:nil];
         [events addObject:audioStop];
     }
     

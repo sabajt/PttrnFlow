@@ -12,7 +12,7 @@
 
 - (id)initWithChannel:(int)channel sampleName:(NSString *)name
 {
-    self = [super initWithChannel:channel lastLinkedEvent:nil fragments:@[name]];
+    self = [super initWithChannel:channel isAudioEvent:YES lastLinkedEvent:nil fragments:@[name]];
     if (self) {
         _fileName = name;
     }

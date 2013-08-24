@@ -14,7 +14,7 @@ NSString *const kDefaultSynthType = @"osc";
 
 - (id)initWithChannel:(int)channel lastLinkedEvent:(TickEvent *)lastEvent midiValue:(NSString *)midiValue synthType:(NSString *)synthType
 {
-    self = [super initWithChannel:channel lastLinkedEvent:lastEvent fragments:@[midiValue, synthType]];
+    self = [super initWithChannel:channel isAudioEvent:YES lastLinkedEvent:lastEvent fragments:@[midiValue, synthType]];
     if (self) {
         _midiValue = midiValue;
         _synthType = synthType;

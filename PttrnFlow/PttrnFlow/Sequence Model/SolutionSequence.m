@@ -10,10 +10,10 @@
 #import "SynthEvent.h"
 #import "SampleEvent.h"
 #import "AudioStopEvent.h"
+#import "TickEvent.h"
 
 @interface SolutionSequence ()
 
-@property (strong, nonatomic) NSArray *sequence;
 @property (strong, nonatomic) NSMutableDictionary *trackedEvents;
 
 @end
@@ -87,7 +87,7 @@
         
         // audio stop may share uid with synth and samples so also needs to track last event
         TickEvent *lastEvent = self.trackedEvents[uid];
-        AudioStopEvent *event = [[AudioStopEvent alloc] initWithChannel:kChannelNone lastLinkedEvent:lastEvent fragments:nil];
+        AudioStopEvent *event = [[AudioStopEvent alloc] initWithChannel:kChannelNone isAudioEvent:YES lastLinkedEvent:lastEvent fragments:nil];
         self.trackedEvents[uid] = event;
         
         return event;
@@ -98,6 +98,13 @@
         return [[SampleEvent alloc] initWithChannel:kChannelNone sampleName:fileName];
     }
     return nil;
+}
+
+- (BOOL)tick:(int)tick doesMatchAudioEventsInGroup:(NSArray *)events
+{
+    NSArray *incomingAudioEvents = [events audioEvents];
+    NSArray *solutionEvents = self.sequence[tick];
+    return [incomingAudioEvents hasSameNumberOfSameEvents:solutionEvents];
 }
 
 @end

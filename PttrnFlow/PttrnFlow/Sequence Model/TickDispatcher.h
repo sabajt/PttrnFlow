@@ -35,7 +35,7 @@ FOUNDATION_EXPORT CGFloat const kTickInterval;
 @property (weak, nonatomic) id<SoundEventReceiver> synth;
 
 // setup
-- (id)initWithSequence:(NSMutableDictionary *)sequence tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth;
+- (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth;
 - (void)registerTickResponder:(id<TickResponder>)responder;
 
 // control

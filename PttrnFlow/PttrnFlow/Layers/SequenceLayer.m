@@ -108,7 +108,7 @@
     
     // gameplay layer
     static CGFloat controlBarHeight = 80;
-    SequenceLayer *sequenceLayer = [[SequenceLayer alloc] initWithTiledMap:tiledMap background:background topMargin:controlBarHeight];
+    SequenceLayer *sequenceLayer = [[SequenceLayer alloc] initWithSequence:sequence tiledMap:tiledMap background:background topMargin:controlBarHeight];
     [scene addChild:sequenceLayer];
     
     // hud layer -- top control bar
@@ -130,7 +130,7 @@
     return [BlockFader blockFaderWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) color:[ColorUtils exitFaderBlock] cell:cell duration:kTickInterval];
 }
 
-- (id)initWithTiledMap:(CCTMXTiledMap *)tiledMap background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
+- (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
 {
     self = [super init];
     if (self) {
@@ -156,8 +156,8 @@
         self.maxTouchDistanceToClick = 50;
         
         // tick dispatcher
-        NSMutableDictionary *sequence = [tiledMap objectNamed:kTLDObjectSequence groupNamed:kTLDGroupTickResponders];
         TickDispatcher *tickDispatcher = [[TickDispatcher alloc] initWithSequence:sequence tiledMap:tiledMap synth:self.synth];
+        
         self.tickDispatcher = tickDispatcher;
         self.tickDispatcher.delegate = self;
         [self addChild:self.tickDispatcher];
@@ -222,20 +222,13 @@
 }
 
 #pragma mark - scene management
+// TODO: opening and closing pd patch not matched with onEnter / onExit would cause pd patch to not be opened if
+// TODO: leaving scene but keeping sequence layer around then coming back to seq layer
 
 - (void)onEnter
 {
     [super onEnter];
-    
-//    _dispatcher = [[PdDispatcher alloc] init];
-//    [PdBase setDelegate:_dispatcher];
-//    _patch = [PdBase openFile:@"synth.pd" path:[[NSBundle mainBundle] resourcePath]];
-//    if (!_patch) {
-//        NSLog(@"Failed to open patch");
-//    }
-    
     [self setupDebug];
-    
 }
 
 - (void)onExit
