@@ -30,8 +30,10 @@
         self.cell = [tiledMap gridCoordForObject:tone];
         self.midiValue = [[CCTMXTiledMap objectPropertyNamed:kTLDPropertyMidiValue object:tone] intValue];
         NSString *imageName = [self imageNameForMidiValue:self.midiValue on:NO];
+        
         self.sprite = [self createAndCenterSpriteNamed:imageName];
         [self addChild:self.sprite];
+        
         self.position = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
         _selected = NO;
     }

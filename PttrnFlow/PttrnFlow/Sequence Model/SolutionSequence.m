@@ -68,12 +68,12 @@
     NSString *eventType = [eventData objectForKey:@"event_type"];
     
     if ([eventType isEqualToString:@"synth"]) {
-        NSNumber *uid = [eventData objectForKey:@"uid"];
+        NSNumber *uid = [eventData objectForKey:@"group_id"];
         NSString *midiValue = [eventData objectForKey:@"midi_value"];
         NSString *synthType = [eventData objectForKey:@"synth_type"];
         
         // a synth needs to know its last event to check for correct sequence.
-        // our solution json uniques synths by 'uid' instead of channel: outside of running a dynamic sequence, channel is arbitrary.
+        // our solution json uniques synths by group_id instead of channel: outside of running a dynamic sequence, channel is arbitrary.
         // to check one series of events against another, we only want to know that
         // the sequence of notes, stops etc are on the same synth, regardless of channel.
         TickEvent *lastEvent = self.trackedEvents[uid];
@@ -83,7 +83,7 @@
         return event;
     }
     else if ([eventType isEqualToString:@"audio_stop"]) {
-        NSNumber *uid = [eventData objectForKey:@"uid"];
+        NSNumber *uid = [eventData objectForKey:@"group_id"];
         
         // audio stop may share uid with synth and samples so also needs to track last event
         TickEvent *lastEvent = self.trackedEvents[uid];
