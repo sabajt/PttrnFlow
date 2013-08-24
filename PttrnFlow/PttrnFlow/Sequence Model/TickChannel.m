@@ -14,7 +14,7 @@
 
 @implementation TickChannel
 
-- (id)initWithChannel:(int)channel startingDirection:(kDirection)direction startingCell:(GridCoord)cell
+- (id)initWithChannel:(NSString *)channel startingDirection:(kDirection)direction startingCell:(GridCoord)cell
 {
     self = [super init];
     if (self) {

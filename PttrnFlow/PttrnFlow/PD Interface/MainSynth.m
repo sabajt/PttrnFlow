@@ -24,37 +24,6 @@ static NSString *const kMute = @"mute";
 
 @implementation MainSynth
 
-// TODO: change to use TickEvent or rename for fragment
-+ (NSMutableArray *)filterSoundEvents:(NSMutableArray *)rawEvents
-{
-    NSMutableArray *filtered = [NSMutableArray array];
-    for (NSString *event in rawEvents) {
-        if ([MainSynth isValidMidiValue:event] || [MainSynth isValidDrumPattern:event] || [event isEqualToString:kExitEvent]) {
-            [filtered addObject:event];
-        }
-    }
-    return filtered;
-}
-
-// TODO: change to use TickEvent or rename for fragment
-+ (BOOL)isValidMidiValue:(NSString *)midiString
-{
-    if ([midiString isEqualToString:@"48"] || [midiString isEqualToString:@"49"] || [midiString isEqualToString:@"50"] || [midiString isEqualToString:@"51"] || [midiString isEqualToString:@"52"] || [midiString isEqualToString:@"53"] || [midiString isEqualToString:@"54"] ||  [midiString isEqualToString:@"55"] || [midiString isEqualToString:@"56"] || [midiString isEqualToString:@"57"] || [midiString isEqualToString:@"58"] || [midiString isEqualToString:@"59"])
-    {
-        return YES;
-    }
-    return NO;
-}
-
-// TODO: change to use TickEvent or rename for fragment
-+ (BOOL)isValidDrumPattern:(NSString *)drumPattern
-{
-    if ([drumPattern isEqualToString:@"d1"] || [drumPattern isEqualToString:@"d2"]) {
-        return YES;
-    }
-    return NO;
-}
-
 + (void)mute:(BOOL)mute
 {
     float muteVal = 1.0;
@@ -66,17 +35,16 @@ static NSString *const kMute = @"mute";
 
 #pragma mark - SoundEventReveiver
 
-//// TODO: change to use TickEvent or rename for fragment
-//- (void)receiveEvents:(NSArray *)events
-//{
-//    if ((events == nil) || (events.count < 1)) {
-//        NSLog(@"warning: no events sent to synth");
-//        return;
-//    }    
-//    [PdBase sendBangToReceiver:kClear];
-//    
-//    for (TickEvent *event in events) {
-//        
++ (void)receiveEvents:(NSArray *)events
+{
+    if ((events == nil) || (events.count < 1)) {
+        NSLog(@"warning: no events sent to synth");
+        return;
+    }    
+    [PdBase sendBangToReceiver:kClear];
+    
+    for (TickEvent *event in events) {
+        
 //        if ([event isEqualToString:kExitEvent]) {
 //            [PdBase sendBangToReceiver:kActivateNoise];
 //        }
@@ -94,9 +62,9 @@ static NSString *const kMute = @"mute";
 ////        if ([TickDispatcher isArrowEvent:event]) {
 ////            [PdBase sendBangToReceiver:kActivateNoise];
 ////        }
-//    }
-//    
-//    [PdBase sendBangToReceiver:kTrigger];
-//}
+    }
+    
+    [PdBase sendBangToReceiver:kTrigger];
+}
 
 @end

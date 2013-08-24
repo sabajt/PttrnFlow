@@ -49,7 +49,7 @@ CGFloat const kTickInterval = 0.5;
 
 @implementation TickDispatcher
 
-- (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth
+- (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap
 {
     self = [super init];
     if (self) {
@@ -64,7 +64,7 @@ CGFloat const kTickInterval = 0.5;
             NSString *channel = [entry objectForKey:kTLDPropertyChannel];
             GridCoord cell = [tiledMap gridCoordForObject:entry];
             kDirection direction = [SGTiledUtils directionNamed:[entry objectForKey:kTLDPropertyDirection]];
-            TickChannel *tickChannel = [[TickChannel alloc] initWithChannel:[channel intValue] startingDirection:direction startingCell:cell];
+            TickChannel *tickChannel = [[TickChannel alloc] initWithChannel:channel startingDirection:direction startingCell:cell];
             [channels addObject:tickChannel];
         }
         self.channels = [NSSet setWithSet:channels];
@@ -75,7 +75,6 @@ CGFloat const kTickInterval = 0.5;
         self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
         self.lastTickedResponders = [NSMutableArray array];
         self.hits = [NSMutableArray array];
-        self.synth = synth;
         self.lastLinkedEvents = [NSMutableDictionary dictionary];
     }
     return self;
@@ -83,20 +82,7 @@ CGFloat const kTickInterval = 0.5;
 
 #pragma mark - setup
 
-// TODO: change to use TickEvent
-- (NSMutableArray *)constructEventSequence:(NSArray *)groupedByTick
-{
-    // example: [[@"48-s", @"d1"], [@"50-2", @"d2"], [@"48-t", @"d1-x1"]]
-    
-    NSMutableArray *eventSequence = [NSMutableArray array];
-    for (NSString *event in groupedByTick) {
-        NSArray *eventChain = [event componentsSeparatedByString:@","];
-        [eventSequence addObject:eventChain];
-    }
-    return eventSequence;
-}
-
-- (void)addDynamicChannel:(int)channel startingCell:(GridCoord)cell startingDirection:(kDirection)direction
+- (void)addDynamicChannel:(NSString *)channel startingCell:(GridCoord)cell startingDirection:(kDirection)direction
 {
     TickChannel *ch = [[TickChannel alloc] initWithChannel:channel startingDirection:direction startingCell:cell];
     [self.dynamicChannels addObject:ch];
@@ -149,7 +135,7 @@ CGFloat const kTickInterval = 0.5;
     }
     
     NSArray *audioEvents = [self.solutionSequence.sequence objectAtIndex:index];
-    [self.synth receiveEvents:audioEvents];
+    [MainSynth receiveEvents:audioEvents];
 }
 
 // schedule the stored sequence we want to solve for from the top
@@ -217,8 +203,8 @@ CGFloat const kTickInterval = 0.5;
         // current supports only one linked event at a time per channel
         for (TickEvent *event in events) {
             if (event.lastLinkedEvent != nil) {
-                if ([self.lastLinkedEvents objectForKey:@(tickChannel.channel)] == nil) {
-                    [self.lastLinkedEvents setObject:event forKey:@(tickChannel.channel)];
+                if ([self.lastLinkedEvents objectForKey:tickChannel.channel] == nil) {
+                    [self.lastLinkedEvents setObject:event forKey:tickChannel.channel];
                     break;
                 }
             }
@@ -226,7 +212,7 @@ CGFloat const kTickInterval = 0.5;
         
         // if we have no event, we've hit no blocks -- this is an exit event
         if (events.count == 0) {
-            events = @[[[ExitEvent alloc] initWithChannel:tickChannel.channel isAudioEvent:YES lastLinkedEvent:nil fragments:nil]];
+            events = @[[[ExitEvent alloc] initWithChannel:tickChannel.channel isAudioEvent:YES isLinkedEvent:NO lastLinkedEvent:nil fragments:nil]];
             [self.delegate tickExit:tickChannel.currentCell];
         }
         
@@ -257,7 +243,7 @@ CGFloat const kTickInterval = 0.5;
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationTickHit object:nil userInfo:@{kKeyHits : self.hits}];
 
     // hand over audio events to synth class which talks to PD patch
-    [self.synth receiveEvents:[combinedEvents audioEvents]];
+    [MainSynth receiveEvents:[combinedEvents audioEvents]];
     
     // advance cells, tick counter
     for (TickChannel *tickChannel in self.channels) {

@@ -6,11 +6,11 @@
 //
 //
 
-#import "SynthCellNode.h"
+#import "CellNode.h"
 #import "TickResponder.h"
 
-@interface Drum : SynthCellNode <TickResponder>
+@interface Drum : CellNode <TickResponder>
 
-- (id)initWithDrum:(NSMutableDictionary *)drum tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth;
+- (id)initWithDrum:(NSMutableDictionary *)drum tiledMap:(CCTMXTiledMap *)tiledMap;
 
 @end

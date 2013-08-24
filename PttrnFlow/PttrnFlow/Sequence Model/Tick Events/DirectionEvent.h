@@ -12,6 +12,6 @@
 
 @property (copy, nonatomic) NSString *direction;
 
-- (id)initWithChannel:(int)channel direction:(NSString *)direction;
+- (id)initWithChannel:(NSString *)channel direction:(NSString *)direction;
 
 @end

@@ -197,8 +197,7 @@
 		162C291D1784CF5600CE480C /* seq2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 162C29191784CF5600CE480C /* seq2.tmx */; };
 		162C291E1784CF5600CE480C /* seq3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 162C291A1784CF5600CE480C /* seq3.tmx */; };
 		162C291F1784CF5600CE480C /* seq4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 162C291B1784CF5600CE480C /* seq4.tmx */; };
-		162C2926178501CA00CE480C /* SynthCellDragNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C2923178501C700CE480C /* SynthCellDragNode.m */; };
-		162C2927178501CA00CE480C /* SynthCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C2925178501C900CE480C /* SynthCellNode.m */; };
+		162C2926178501CA00CE480C /* DragCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C2923178501C700CE480C /* DragCellNode.m */; };
 		162C293517871F2600CE480C /* CCNode+DragItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C293417871F2500CE480C /* CCNode+DragItem.m */; };
 		162C29381787699A00CE480C /* TickHitChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C29371787699900CE480C /* TickHitChart.m */; };
 		163091E4177CBA1D003155BB /* PrimativeCellActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091E3177CBA1D003155BB /* PrimativeCellActor.m */; };
@@ -285,6 +284,7 @@
 		33B4F25E17C72600004D4C13 /* SampleEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25617C72600004D4C13 /* SampleEvent.m */; };
 		33B4F25F17C72600004D4C13 /* SynthEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25817C72600004D4C13 /* SynthEvent.m */; };
 		33B4F26017C72600004D4C13 /* TickEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25A17C72600004D4C13 /* TickEvent.m */; };
+		33EE317017C92C3C004CC016 /* AudioTouchDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */; };
 		33F8A31217B9F104003B33E5 /* pf-synth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 33F8A31017B9F104003B33E5 /* pf-synth.pd */; };
 		33F8A31317B9F104003B33E5 /* pf-main.pd in Resources */ = {isa = PBXBuildFile; fileRef = 33F8A31117B9F104003B33E5 /* pf-main.pd */; };
 /* End PBXBuildFile section */
@@ -648,10 +648,8 @@
 		162C29191784CF5600CE480C /* seq2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = seq2.tmx; sourceTree = "<group>"; };
 		162C291A1784CF5600CE480C /* seq3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = seq3.tmx; sourceTree = "<group>"; };
 		162C291B1784CF5600CE480C /* seq4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = seq4.tmx; sourceTree = "<group>"; };
-		162C2922178501C700CE480C /* SynthCellDragNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthCellDragNode.h; sourceTree = "<group>"; };
-		162C2923178501C700CE480C /* SynthCellDragNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynthCellDragNode.m; sourceTree = "<group>"; };
-		162C2924178501C800CE480C /* SynthCellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthCellNode.h; sourceTree = "<group>"; };
-		162C2925178501C900CE480C /* SynthCellNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynthCellNode.m; sourceTree = "<group>"; };
+		162C2922178501C700CE480C /* DragCellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragCellNode.h; sourceTree = "<group>"; };
+		162C2923178501C700CE480C /* DragCellNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragCellNode.m; sourceTree = "<group>"; };
 		162C29281785BE0B00CE480C /* DragItemDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DragItemDelegate.h; path = "Generic Protocols/DragItemDelegate.h"; sourceTree = "<group>"; };
 		162C293217871F1600CE480C /* TickResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TickResponder.h; path = "Generic Protocols/TickResponder.h"; sourceTree = "<group>"; };
 		162C293317871F2500CE480C /* CCNode+DragItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+DragItem.h"; sourceTree = "<group>"; };
@@ -780,6 +778,8 @@
 		33B4F25817C72600004D4C13 /* SynthEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynthEvent.m; sourceTree = "<group>"; };
 		33B4F25917C72600004D4C13 /* TickEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickEvent.h; sourceTree = "<group>"; };
 		33B4F25A17C72600004D4C13 /* TickEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickEvent.m; sourceTree = "<group>"; };
+		33EE316E17C92C3C004CC016 /* AudioTouchDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTouchDispatcher.h; sourceTree = "<group>"; };
+		33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioTouchDispatcher.m; sourceTree = "<group>"; };
 		33F8A31017B9F104003B33E5 /* pf-synth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-synth.pd"; sourceTree = "<group>"; };
 		33F8A31117B9F104003B33E5 /* pf-main.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-main.pd"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1467,20 +1467,18 @@
 		16A942971777A2250052D5BD /* Generic Nodes */ = {
 			isa = PBXGroup;
 			children = (
-				162C293317871F2500CE480C /* CCNode+DragItem.h */,
-				162C293417871F2500CE480C /* CCNode+DragItem.m */,
-				162C2922178501C700CE480C /* SynthCellDragNode.h */,
-				162C2923178501C700CE480C /* SynthCellDragNode.m */,
-				162C2924178501C800CE480C /* SynthCellNode.h */,
-				162C2925178501C900CE480C /* SynthCellNode.m */,
-				16A942981777A2250052D5BD /* CellNode.h */,
-				16A942991777A2250052D5BD /* CellNode.m */,
-				16A9429A1777A2250052D5BD /* EntryArrow.h */,
-				16A9429B1777A2250052D5BD /* EntryArrow.m */,
 				16A942A01777A2250052D5BD /* TouchNode.h */,
 				16A942A11777A2250052D5BD /* TouchNode.m */,
+				16A942981777A2250052D5BD /* CellNode.h */,
+				16A942991777A2250052D5BD /* CellNode.m */,
+				162C293317871F2500CE480C /* CCNode+DragItem.h */,
+				162C293417871F2500CE480C /* CCNode+DragItem.m */,
+				162C2922178501C700CE480C /* DragCellNode.h */,
+				162C2923178501C700CE480C /* DragCellNode.m */,
 				163091E2177CBA1D003155BB /* PrimativeCellActor.h */,
 				163091E3177CBA1D003155BB /* PrimativeCellActor.m */,
+				16A9429A1777A2250052D5BD /* EntryArrow.h */,
+				16A9429B1777A2250052D5BD /* EntryArrow.m */,
 				163091E8177CC175003155BB /* BlockFader.h */,
 				163091E9177CC175003155BB /* BlockFader.m */,
 				169258851788896A00B90DFE /* SpritePicker.h */,
@@ -1510,6 +1508,8 @@
 				16A942BE1777AADF0052D5BD /* TickChannel.m */,
 				3338A9CA17C307D80037DFE2 /* SolutionSequence.h */,
 				3338A9CB17C307D80037DFE2 /* SolutionSequence.m */,
+				33EE316E17C92C3C004CC016 /* AudioTouchDispatcher.h */,
+				33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */,
 			);
 			path = "Sequence Model";
 			sourceTree = "<group>";
@@ -1907,6 +1907,7 @@
 				338EE1AE17A5EAFC005E98B1 /* PdArray.m in Sources */,
 				16A4277C176BF0A100BEF13F /* SequenceControlBarLayer.m in Sources */,
 				169F3D131770ADB2005F93B2 /* CCLayerPanZoom.m in Sources */,
+				33EE317017C92C3C004CC016 /* AudioTouchDispatcher.m in Sources */,
 				16A942B21777A2260052D5BD /* CellNode.m in Sources */,
 				33B4F25B17C72600004D4C13 /* AudioStopEvent.m in Sources */,
 				16A942B31777A2260052D5BD /* EntryArrow.m in Sources */,
@@ -1931,8 +1932,7 @@
 				162C291017821E0200CE480C /* SizeUtils.m in Sources */,
 				33B4F25F17C72600004D4C13 /* SynthEvent.m in Sources */,
 				162C291717848A8800CE480C /* CCLayerPanZoom+Utils.m in Sources */,
-				162C2926178501CA00CE480C /* SynthCellDragNode.m in Sources */,
-				162C2927178501CA00CE480C /* SynthCellNode.m in Sources */,
+				162C2926178501CA00CE480C /* DragCellNode.m in Sources */,
 				162C293517871F2600CE480C /* CCNode+DragItem.m in Sources */,
 				162C29381787699A00CE480C /* TickHitChart.m in Sources */,
 				169258871788896A00B90DFE /* SpritePicker.m in Sources */,

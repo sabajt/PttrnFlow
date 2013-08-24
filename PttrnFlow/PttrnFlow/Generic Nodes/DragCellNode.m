@@ -1,15 +1,15 @@
 //
-//  SynthCellDragNode.m
+//  DragCellNode.m
 //  PttrnFlow
 //
 //  Created by John Saba on 7/1/13.
 //
 //
 
-#import "SynthCellDragNode.h"
+#import "DragCellNode.h"
 #import "CCNode+DragItem.h"
 
-@interface SynthCellDragNode ()
+@interface DragCellNode ()
 
 @property (assign) BOOL hasStartedDrag;
 @property (assign) kDragItem dragItemType;
@@ -23,13 +23,11 @@
 @end
 
 
-@implementation SynthCellDragNode
+@implementation DragCellNode
 
-#pragma mark - SynthCellNode
-
-- (id)initWithSynth:(id<SoundEventReceiver>)synth dragItemDelegate:(id<DragItemDelegate>)delegate dragSprite:(CCSprite *)dragSprite dragItemType:(kDragItem)dragItemType
+- (id)initWithDragItemDelegate:(id<DragItemDelegate>)delegate dragSprite:(CCSprite *)dragSprite dragItemType:(kDragItem)dragItemType
 {
-    self = [super initWithSynth:synth];
+    self = [super init];
     if (self) {
         self.longPressDelay = 0.5;
         self.hasStartedDrag = NO;
@@ -40,7 +38,6 @@
         
         dragSprite.visible = NO;
         [self addChild:dragSprite];
-
     }
     return self;
 }

@@ -156,7 +156,7 @@
         self.maxTouchDistanceToClick = 50;
         
         // tick dispatcher
-        TickDispatcher *tickDispatcher = [[TickDispatcher alloc] initWithSequence:sequence tiledMap:tiledMap synth:self.synth];
+        TickDispatcher *tickDispatcher = [[TickDispatcher alloc] initWithSequence:sequence tiledMap:tiledMap];
         
         self.tickDispatcher = tickDispatcher;
         self.tickDispatcher.delegate = self;
@@ -165,7 +165,7 @@
         // tone blocks
         NSMutableArray *tones = [tiledMap objectsWithName:kTLDObjectTone groupName:kTLDGroupTickResponders];
         for (NSMutableDictionary *tone in tones) {
-            Tone *toneNode = [[Tone alloc] initWithTone:tone tiledMap:tiledMap synth:self.synth];
+            Tone *toneNode = [[Tone alloc] initWithTone:tone tiledMap:tiledMap];
             [self.tickDispatcher registerTickResponder:toneNode];
             [self addChild:toneNode];
         }
@@ -173,7 +173,7 @@
         // drum blocks
         NSMutableArray *drums = [tiledMap objectsWithName:kTLDObjectDrum groupName:kTLDGroupTickResponders];
         for (NSMutableDictionary *drum in drums) {
-            Drum *drumNode = [[Drum alloc] initWithDrum:drum tiledMap:tiledMap synth:self.synth];
+            Drum *drumNode = [[Drum alloc] initWithDrum:drum tiledMap:tiledMap];
             [self.tickDispatcher registerTickResponder:drumNode];
             [self addChild:drumNode];
         }
@@ -286,12 +286,12 @@
         // instantiate drag items here -- will just be easiest to hard code each case
         
         if (itemType == kDragItemArrow) {
-            Arrow *arrow = [[Arrow alloc] initWithSynth:self.synth cell:self.lastDraggedItemCell facing:kDirectionUp dragItemDelegate:self];
+            Arrow *arrow = [[Arrow alloc] initWithCell:self.lastDraggedItemCell facing:kDirectionUp dragItemDelegate:self];
             [self.tickDispatcher registerTickResponder:arrow];
             [self addChild:arrow];
         }
         else if (itemType == kDragItemWarp) {
-            Warp *warp = [[Warp alloc] initWithSynth:self.synth dragItemDelegate:self cell:self.lastDraggedItemCell];
+            Warp *warp = [[Warp alloc] initWithDragItemDelegate:self cell:self.lastDraggedItemCell];
             [self.tickDispatcher registerTickResponder:warp];
             [self addChild:warp];
         }
@@ -335,7 +335,7 @@
         // create the exit animation and send event to synth if we aren't touching a synth node
         if (![self.tickDispatcher isAnyTickResponderAtCell:cell]) {
             [self addChild:[SequenceLayer exitFader:cell]];
-            [self.synth receiveEvents:@[kExitEvent]];
+            [MainSynth receiveEvents:@[kExitEvent]];
         }
     }
 }

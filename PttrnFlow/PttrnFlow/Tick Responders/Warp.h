@@ -6,11 +6,11 @@
 //
 //
 
-#import "SynthCellDragNode.h"
+#import "DragCellNode.h"
 #import "TickResponder.h"
 
-@interface Warp : SynthCellDragNode <TickResponder>
+@interface Warp : DragCellNode <TickResponder>
 
-- (id)initWithSynth:(id<SoundEventReceiver>)synth dragItemDelegate:(id<DragItemDelegate>)delegate cell:(GridCoord)cell;
+- (id)initWithDragItemDelegate:(id<DragItemDelegate>)delegate cell:(GridCoord)cell;
 
 @end

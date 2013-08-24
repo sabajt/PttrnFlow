@@ -11,21 +11,9 @@
 
 @interface CCNode (DragItem)
 
-- (void)dragTouchBegan:(UITouch *)touch
-            dragSprite:(CCSprite *)dragSprite;
-
-- (void)dragTouchMoved:(UITouch *)touch
-            dragSprite:(CCSprite *)dragSprite
-      dragItemDelegate:(id<DragItemDelegate>)delegate
-              itemType:(kDragItem)itemType
-                sender:(id)sender;
-
-- (void)dragTouchEnded:(UITouch *)touch
-            dragSprite:(CCSprite *)dragSprite
-      dragItemDelegate:(id<DragItemDelegate>)delegate
-              itemType:(kDragItem)itemType
-                sender:(id)sender;
-
+- (void)dragTouchBegan:(UITouch *)touch dragSprite:(CCSprite *)dragSprite;
+- (void)dragTouchMoved:(UITouch *)touch dragSprite:(CCSprite *)dragSprite dragItemDelegate:(id<DragItemDelegate>)delegate itemType:(kDragItem)itemType sender:(id)sender;
+- (void)dragTouchEnded:(UITouch *)touch dragSprite:(CCSprite *)dragSprite dragItemDelegate:(id<DragItemDelegate>)delegate itemType:(kDragItem)itemType sender:(id)sender;
 - (void)styleForDragging:(BOOL)shouldStyleForDragging;
 
 @end

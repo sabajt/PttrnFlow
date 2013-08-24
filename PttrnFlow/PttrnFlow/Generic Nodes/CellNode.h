@@ -20,4 +20,7 @@
 - (CCSprite *)createAndCenterSpriteNamed:(NSString *)name; // returns sprite with image name, centered in content bounds
 - (void)alignSprite:(kDirection)direction;
 
+// subclasses should override and call super to handle any 'deselection behavior' triggered by pan start
+- (void)cancelTouchForPan;
+
 @end

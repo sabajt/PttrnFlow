@@ -23,9 +23,9 @@
 
 @implementation Tone
 
-- (id)initWithTone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth
+- (id)initWithTone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap
 {
-    self = [super initWithSynth:synth];
+    self = [super init];
     if (self) {
         self.cell = [tiledMap gridCoordForObject:tone];
         self.midiValue = [[CCTMXTiledMap objectPropertyNamed:kTLDPropertyMidiValue object:tone] intValue];
@@ -129,7 +129,7 @@
 {
     if ([super ccTouchBegan:touch withEvent:event]) {
         NSString *event = [self tick:kBPM];
-        [self.synth receiveEvents:@[event]];
+        [MainSynth receiveEvents:@[event]];
         return YES;
     }
     return NO;

@@ -10,9 +10,9 @@
 
 @implementation DirectionEvent
 
-- (id)initWithChannel:(int)channel direction:(NSString *)direction
+- (id)initWithChannel:(NSString *)channel direction:(NSString *)direction
 {
-    self = [super initWithChannel:channel isAudioEvent:NO lastLinkedEvent:nil fragments:@[direction]];
+    self = [super initWithChannel:channel isAudioEvent:NO isLinkedEvent:NO lastLinkedEvent:nil fragments:@[direction]];
     if (self) {
         _direction = direction;
     }

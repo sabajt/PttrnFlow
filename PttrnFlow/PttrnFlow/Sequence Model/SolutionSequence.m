@@ -68,34 +68,35 @@
     NSString *eventType = [eventData objectForKey:@"event_type"];
     
     if ([eventType isEqualToString:@"synth"]) {
-        NSNumber *uid = [eventData objectForKey:@"group_id"];
+        NSString *channel = [eventData objectForKey:@"channel"];
         NSString *midiValue = [eventData objectForKey:@"midi_value"];
         NSString *synthType = [eventData objectForKey:@"synth_type"];
         
-        // a synth needs to know its last event to check for correct sequence.
-        // our solution json uniques synths by group_id instead of channel: outside of running a dynamic sequence, channel is arbitrary.
-        // to check one series of events against another, we only want to know that
-        // the sequence of notes, stops etc are on the same synth, regardless of channel.
-        TickEvent *lastEvent = self.trackedEvents[uid];
-        SynthEvent *event = [[SynthEvent alloc] initWithChannel:kChannelNone lastLinkedEvent:lastEvent midiValue:midiValue synthType:synthType];
-        self.trackedEvents[uid] = event;
+        // synths are uniqued by channel so they can be sent to the unique instances in the pd patch,
+        // but for solution checking, the channel itself is arbitrary: channel is how the applicaiton
+        // keeps track of last linked events, which is how we check if the solution is correct.
+        TickEvent *lastLinkedEvent = self.trackedEvents[channel];
+        SynthEvent *event = [[SynthEvent alloc] initWithChannel:channel lastLinkedEvent:lastLinkedEvent midiValue:midiValue synthType:synthType];
+        self.trackedEvents[channel] = event;
         
         return event;
     }
     else if ([eventType isEqualToString:@"audio_stop"]) {
-        NSNumber *uid = [eventData objectForKey:@"group_id"];
+        NSString *channel = [eventData objectForKey:@"channel"];
         
-        // audio stop may share uid with synth and samples so also needs to track last event
-        TickEvent *lastEvent = self.trackedEvents[uid];
-        AudioStopEvent *event = [[AudioStopEvent alloc] initWithChannel:kChannelNone isAudioEvent:YES lastLinkedEvent:lastEvent fragments:nil];
-        self.trackedEvents[uid] = event;
+        // audio stop may share channel with synth and samples so also needs to track last event
+        TickEvent *lastLinkedEvent = self.trackedEvents[channel];
+        AudioStopEvent *event = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES isLinkedEvent:YES lastLinkedEvent:lastLinkedEvent fragments:nil];
+        self.trackedEvents[channel] = event;
         
         return event;
     }
+    // TODO: add last linked event
     else if ([eventType isEqualToString:@"sample"]) {
+        NSString *channel = [eventData objectForKey:@"channel"];
         NSString *fileName = [eventData objectForKey:@"file_name"];
         
-        return [[SampleEvent alloc] initWithChannel:kChannelNone sampleName:fileName];
+        return [[SampleEvent alloc] initWithChannel:channel sampleName:fileName];
     }
     return nil;
 }

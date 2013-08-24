@@ -7,22 +7,14 @@
 //
 
 
-#import "SynthCellDragNode.h"
+#import "DragCellNode.h"
 #import "TickResponder.h"
 
-@interface Arrow : SynthCellDragNode <TickResponder>
+@interface Arrow : DragCellNode <TickResponder>
 
 @property (assign) kDirection facing;
 
-- (id)initWithArrow:(NSMutableDictionary *)arrow
-           tiledMap:(CCTMXTiledMap *)tiledMap
-              synth:(id<SoundEventReceiver>)synth
-   dragItemDelegate:(id<DragItemDelegate>)delegate;
-
-- (id)initWithSynth:(id<SoundEventReceiver>)synth
-               cell:(GridCoord)cell
-             facing:(kDirection)facing
-   dragItemDelegate:(id<DragItemDelegate>)delegate;
-
+- (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap dragItemDelegate:(id<DragItemDelegate>)delegate;
+- (id)initWithCell:(GridCoord)cell facing:(kDirection)facing dragItemDelegate:(id<DragItemDelegate>)delegate;
 
 @end

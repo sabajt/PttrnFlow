@@ -5,7 +5,7 @@
 			"event_type" : "synth",
 			"synth_type" : "osc",
 			"midi_value" : "50",
-			"group_id" : "0",
+			"channel" : "0",
 		},
 	],
 	"sub_2" : [],
@@ -18,7 +18,7 @@
 			"event_type" : "synth",
 			"synth_type" : "osc",
 			"midi_value" : "52",
-			"group_id" : "0",
+			"channel" : "0",
 		},
 	],
 	"sub_2" : [],
@@ -31,7 +31,7 @@
 			"event_type" : "synth",
 			"synth_type" : "osc",
 			"midi_value" : "54",
-			"group_id" : "0"
+			"channel" : "0"
 		},
 	],
 	"sub_2" : [],
@@ -42,7 +42,7 @@
 	"sub_1" : [ 
 		{
 			"event_type" : "audio_stop",
-			"group_id" : "0"
+			"channel" : "0"
 		},
 	],
 	"sub_2" : [],
@@ -55,7 +55,7 @@
 			"event_type" : "synth",
 			"synth_type" : "osc",
 			"midi_value" : "54",
-			"group_id" : "0",
+			"channel" : "0",
 		},
 	],
 	"sub_2" : [],
@@ -66,7 +66,7 @@
 	"sub_1" : [ 
 		{
 			"event_type" : "audio_stop",
-			"group_id" : "0",
+			"channel" : "0",
 		},
 	],
 	"sub_2" : [],
@@ -79,7 +79,7 @@
 			"event_type" : "synth",
 			"synth_type" : "osc",
 			"midi_value" : "52",
-			"group_id" : "0"
+			"channel" : "0"
 		},
 	],
 	"sub_2" : [],
@@ -92,7 +92,7 @@
 			"event_type" : "synth",
 			"synth_type" : "osc",
 			"midi_value" : "50",
-			"group_id" : "0"
+			"channel" : "0"
 		},
 	],
 	"sub_2" : [],

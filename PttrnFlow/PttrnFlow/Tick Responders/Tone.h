@@ -6,13 +6,13 @@
 //
 //
 
-#import "SynthCellNode.h"
+#import "CellNode.h"
 #import "TickResponder.h"
 
-@interface Tone : SynthCellNode <TickResponder>
+@interface Tone : CellNode <TickResponder>
 
 @property (assign) int midiValue;
 
-- (id)initWithTone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth;
+- (id)initWithTone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap;
 
 @end

@@ -18,18 +18,18 @@
 @implementation Arrow
 
 // use this method to initialize via tiled map
-- (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth dragItemDelegate:(id<DragItemDelegate>)delegate
+- (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap dragItemDelegate:(id<DragItemDelegate>)delegate
 {
     GridCoord cell = [tiledMap gridCoordForObject:arrow];
     kDirection facing = [SGTiledUtils directionNamed:[CCTMXTiledMap objectPropertyNamed:kTLDPropertyDirection object:arrow]];
-    return [self initWithSynth:synth cell:cell facing:facing dragItemDelegate:delegate];
+    return [self initWithCell:cell facing:facing dragItemDelegate:delegate];
 }
 
 // use this method to initialize dynamically
-- (id)initWithSynth:(id<SoundEventReceiver>)synth cell:(GridCoord)cell facing:(kDirection)facing dragItemDelegate:(id<DragItemDelegate>)delegate
+- (id)initWithCell:(GridCoord)cell facing:(kDirection)facing dragItemDelegate:(id<DragItemDelegate>)delegate;
 {
     CCSprite *dragSprite = [SpriteUtils spriteWithTextureKey:kImageArrowUp];
-    self = [super initWithSynth:synth dragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemArrow];
+    self = [super initWithDragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemArrow];
     if (self) {
         self.cell = cell;
         self.facing = facing;
@@ -91,7 +91,7 @@
 {
     if ([super ccTouchBegan:touch withEvent:event]) {
         NSString *event = [self tick:kBPM];
-        [self.synth receiveEvents:@[event]];
+        [MainSynth receiveEvents:@[event]];
         [self rotateClockwise];
         return YES;
     }

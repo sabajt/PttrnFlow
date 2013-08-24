@@ -13,14 +13,14 @@
 
 @interface TickChannel : NSObject
 
-@property (assign) int channel;
+@property (copy, nonatomic) NSString *channel;
 @property (assign) kDirection startingDirection;
 @property (assign) kDirection currentDirection;
 @property (assign) GridCoord startingCell;
 @property (assign) GridCoord currentCell;
 @property (assign) BOOL hasStopped;
 
-- (id)initWithChannel:(int)channel startingDirection:(kDirection)direction startingCell:(GridCoord)cell;
+- (id)initWithChannel:(NSString *)channel startingDirection:(kDirection)direction startingCell:(GridCoord)cell;
 - (GridCoord)nextCell;
 - (void)update:(NSArray *)events;
 - (void)reset;

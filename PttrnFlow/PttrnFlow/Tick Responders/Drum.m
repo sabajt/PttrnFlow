@@ -23,9 +23,9 @@
 
 @implementation Drum
 
-- (id)initWithDrum:(NSMutableDictionary *)drum tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth
+- (id)initWithDrum:(NSMutableDictionary *)drum tiledMap:(CCTMXTiledMap *)tiledMap
 {
-    self = [super initWithSynth:synth];
+    self = [super init];
     if (self) {
         self.cell = [tiledMap gridCoordForObject:drum];
         self.pattern = [CCTMXTiledMap objectPropertyNamed:kTLDPropertyPattern object:drum];
@@ -86,7 +86,7 @@
 {
     if ([super ccTouchBegan:touch withEvent:event]) {
         NSString *event = [self tick:kBPM];
-        [self.synth receiveEvents:@[event]];
+        [MainSynth receiveEvents:@[event]];
         return YES;
     }
     return NO;

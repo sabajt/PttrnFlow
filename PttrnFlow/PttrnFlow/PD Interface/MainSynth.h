@@ -8,18 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class SequenceLayer;
+@interface MainSynth : NSObject
 
-@protocol SoundEventReceiver <NSObject>
-
-- (void)receiveEvents:(NSArray *)events;
-
-@end
-
-
-@interface MainSynth : NSObject <SoundEventReceiver>
-
-+ (NSMutableArray *)filterSoundEvents:(NSMutableArray *)rawEvents;
++ (void)receiveEvents:(NSArray *)events;
 + (void)mute:(BOOL)mute;
 
 @end

@@ -32,10 +32,9 @@ FOUNDATION_EXPORT CGFloat const kTickInterval;
 
 @property (weak, nonatomic) id<TickDispatcherDelegate> delegate;
 @property (assign) int sequenceLength;
-@property (weak, nonatomic) id<SoundEventReceiver> synth;
 
 // setup
-- (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap synth:(id<SoundEventReceiver>)synth;
+- (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap;
 - (void)registerTickResponder:(id<TickResponder>)responder;
 
 // control

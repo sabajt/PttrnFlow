@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-FOUNDATION_EXPORT int const kChannelNone;
+FOUNDATION_EXPORT NSString *const kChannelNone;
 
 @interface NSArray (TickEvents)
 
@@ -19,14 +19,15 @@ FOUNDATION_EXPORT int const kChannelNone;
 
 @interface TickEvent : NSObject
 
-@property (assign) int channel;
+@property (copy, nonatomic) NSString *channel;
 @property (assign) BOOL isAudioEvent;
+@property (assign) BOOL isLinkedEvent;
 @property (strong, nonatomic) TickEvent *lastLinkedEvent;
 
-- (id)initWithChannel:(int)channel isAudioEvent:(BOOL)isAudioEvent lastLinkedEvent:(TickEvent *)lastLinkedEvent fragments:(NSArray *)fragments;
+- (id)initWithChannel:(NSString *)channel isAudioEvent:(BOOL)isAudioEvent isLinkedEvent:(BOOL)isLinkedEvent lastLinkedEvent:(TickEvent *)lastLinkedEvent fragments:(NSArray *)fragments;
 - (BOOL)isEqualToEvent:(TickEvent *)event checkLastLinkedEvent:(BOOL)checkLastLinkedEvent;
 
 #pragma mark - Creation Utils
-+ (NSArray *)eventsFromFragments:(NSArray *)fragments channel:(int)channel lastLinkedEvents:(NSDictionary *)lastLinkedEvents;
++ (NSArray *)eventsFromFragments:(NSArray *)fragments channel:(NSString *)channel lastLinkedEvents:(NSDictionary *)lastLinkedEvents;
 
 @end

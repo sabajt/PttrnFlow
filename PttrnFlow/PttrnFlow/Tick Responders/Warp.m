@@ -12,10 +12,10 @@
 
 @implementation Warp
 
-- (id)initWithSynth:(id<SoundEventReceiver>)synth dragItemDelegate:(id<DragItemDelegate>)delegate cell:(GridCoord)cell
+- (id)initWithDragItemDelegate:(id<DragItemDelegate>)delegate cell:(GridCoord)cell
 {
     CCSprite *sprite = [SpriteUtils spriteWithTextureKey:kImageWarpDefault];
-    self = [super initWithSynth:synth dragItemDelegate:delegate dragSprite:sprite dragItemType:kDragItemWarp];
+    self = [super initWithDragItemDelegate:delegate dragSprite:sprite dragItemType:kDragItemWarp];
     if (self) {
         self.cell = cell;
         

@@ -13,7 +13,7 @@
 #import "DirectionEvent.h"
 #import "AudioStopEvent.h"
 
-int const kChannelNone = -1;
+NSString *const kChannelNone = @"ChannelNone";
 
 #pragma mark - NSString (Fragment)
 // Fragments are just strings with known values returned from game objects,
@@ -124,7 +124,7 @@ int const kChannelNone = -1;
 
 @implementation TickEvent
 
-- (id)initWithChannel:(int)channel isAudioEvent:(BOOL)isAudioEvent lastLinkedEvent:(TickEvent *)lastLinkedEvent fragments:(NSArray *)fragments
+- (id)initWithChannel:(NSString *)channel isAudioEvent:(BOOL)isAudioEvent isLinkedEvent:(BOOL)isLinkedEvent lastLinkedEvent:(TickEvent *)lastLinkedEvent fragments:(NSArray *)fragments
 {
     self = [super init];
     if (self) {
@@ -134,67 +134,6 @@ int const kChannelNone = -1;
         _fragments = fragments;
     }
     return self;
-}
-
-#pragma mark - Creation Utils
-
-+ (NSArray *)eventsFromFragments:(NSArray *)fragments channel:(int)channel lastLinkedEvents:(NSDictionary *)lastLinkedEvents
-{
-    // take stock of all possible fragment types
-    // for now we do not expect any duplicates but probably will want to handle in the future (fx with cumulative qualities)
-    
-    NSString *midiValue;
-    NSString *synthType;
-    NSString *sampleName;
-    NSString *direction;
-    NSString *audioStop;
-    
-    for (NSString *f in fragments) {
-        if ([f isMidiValue]) {
-            midiValue = f;
-        }
-        if ([f isSynthType]) {
-            synthType = f;
-        }
-        if ([f isSampleName]) {
-            sampleName = f;
-        }
-        if ([f isDirection]) {
-            direction = f;
-        }
-    }
-    
-    // construct events from fragments
-    NSMutableArray *events = [NSMutableArray array];
-
-    // synth events
-    if (midiValue != nil) {
-        if (synthType == nil) {
-            synthType = kDefaultSynthType;
-        }
-        TickEvent *lastEvent = [lastLinkedEvents objectForKey:@(channel)];
-        SynthEvent *synth = [[SynthEvent alloc] initWithChannel:channel lastLinkedEvent:lastEvent midiValue:midiValue synthType:synthType];
-        [events addObject:synth];
-    }
-    
-    // sample events
-    if (sampleName != nil) {
-        [events addObject:[[SampleEvent alloc] initWithChannel:channel sampleName:sampleName]];
-    }
-    
-    // direction events
-    if (direction != nil) {
-        [events addObject:[[DirectionEvent alloc] initWithChannel:channel direction:direction]];
-    }
-    
-    // audio stop events
-    if (audioStop != nil) {
-        TickEvent *lastEvent = [lastLinkedEvents objectForKey:@(channel)];
-        AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES lastLinkedEvent:lastEvent fragments:nil];
-        [events addObject:audioStop];
-    }
-    
-    return [NSArray arrayWithArray:events];
 }
 
 #pragma mark - Comparison
@@ -226,5 +165,67 @@ int const kChannelNone = -1;
     }
     return NO;
 }
+
+#pragma mark - Creation Utils
+
++ (NSArray *)eventsFromFragments:(NSArray *)fragments channel:(NSString *)channel lastLinkedEvents:(NSDictionary *)lastLinkedEvents
+{
+    // take stock of all possible fragment types
+    // for now we do not expect any duplicates but probably will want to handle in the future (fx with cumulative qualities)
+    
+    NSString *midiValue;
+    NSString *synthType;
+    NSString *sampleName;
+    NSString *direction;
+    NSString *audioStop;
+    
+    for (NSString *f in fragments) {
+        if ([f isMidiValue]) {
+            midiValue = f;
+        }
+        if ([f isSynthType]) {
+            synthType = f;
+        }
+        if ([f isSampleName]) {
+            sampleName = f;
+        }
+        if ([f isDirection]) {
+            direction = f;
+        }
+    }
+    
+    // construct events from fragments
+    NSMutableArray *events = [NSMutableArray array];
+    
+    // synth events
+    if (midiValue != nil) {
+        if (synthType == nil) {
+            synthType = kDefaultSynthType;
+        }
+        TickEvent *lastEvent = [lastLinkedEvents objectForKey:channel];
+        SynthEvent *synth = [[SynthEvent alloc] initWithChannel:channel lastLinkedEvent:lastEvent midiValue:midiValue synthType:synthType];
+        [events addObject:synth];
+    }
+    
+    // sample events
+    if (sampleName != nil) {
+        [events addObject:[[SampleEvent alloc] initWithChannel:channel sampleName:sampleName]];
+    }
+    
+    // direction events
+    if (direction != nil) {
+        [events addObject:[[DirectionEvent alloc] initWithChannel:channel direction:direction]];
+    }
+    
+    // audio stop events
+    if (audioStop != nil) {
+        TickEvent *lastEvent = [lastLinkedEvents objectForKey:channel];
+        AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES isLinkedEvent:YES lastLinkedEvent:lastEvent fragments:nil];
+        [events addObject:audioStop];
+    }
+    
+    return [NSArray arrayWithArray:events];
+}
+
 
 @end
