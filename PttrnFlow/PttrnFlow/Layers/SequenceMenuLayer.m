@@ -10,6 +10,8 @@
 #import "PathUtils.h"
 #import "SequenceLayer.h"
 
+#import "AudioTouchDispatcher.h"
+
 @implementation SequenceMenuLayer
 
 + (CCScene *)scene
@@ -39,7 +41,7 @@
             [self addChild:cell];
             i++;
         }
-    }
+    };
     return self;
 }
 

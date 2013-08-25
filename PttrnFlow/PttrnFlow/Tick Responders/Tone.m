@@ -13,6 +13,8 @@
 #import "SpriteUtils.h"
 #import "TickDispatcher.h"
 #import "CCNode+Touch.h"
+#import "TickEvent.h"
+#import "AudioTouchDispatcher.h"
 
 @interface Tone ()
 
@@ -28,7 +30,7 @@
     self = [super init];
     if (self) {
         self.cell = [tiledMap gridCoordForObject:tone];
-        self.midiValue = [[CCTMXTiledMap objectPropertyNamed:kTLDPropertyMidiValue object:tone] intValue];
+        self.midiValue = [CCTMXTiledMap objectPropertyNamed:kTLDPropertyMidiValue object:tone];
         NSString *imageName = [self imageNameForMidiValue:self.midiValue on:NO];
         
         self.sprite = [self createAndCenterSpriteNamed:imageName];
@@ -45,9 +47,50 @@
     [SpriteUtils switchImageForSprite:self.sprite textureKey:[self imageNameForMidiValue:self.midiValue on:NO]];
 }
 
-- (NSString *)imageNameForMidiValue:(int)midi on:(BOOL)on
+#pragma mark - CellNode
+
+- (void)cancelTouchForPan
 {
-    switch (midi) {
+    [super cancelTouchForPan];
+    [self afterTick:kBPM];
+}
+
+#pragma mark - CCTargetedTouchDelegate
+
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    [super ccTouchEnded:touch withEvent:event];
+    [self afterTick:kBPM];
+}
+
+#pragma mark - Tick Responder
+
+- (NSArray *)tick:(NSInteger)bpm
+{
+    // select and highlight
+    self.selected = YES;
+    [SpriteUtils switchImageForSprite:self.sprite textureKey:[self imageNameForMidiValue:self.midiValue on:YES]];
+
+    // return fragments
+    return @[self.midiValue];
+}
+
+- (void)afterTick:(NSInteger)bpm
+{
+    self.selected = NO;
+    [self deselectTone];
+}
+
+- (GridCoord)responderCell
+{
+    return self.cell;
+}
+
+#pragma mark - Images
+
+- (NSString *)imageNameForMidiValue:(NSString *)midi on:(BOOL)on
+{
+    switch ([midi intValue]) {
         case 48:
             if (on) {
                 return kImageC_on;
@@ -110,55 +153,10 @@
             return kImageB;;
             
         default:
-            NSLog(@"tone image not found for value: %i, returning empty string", midi);
+            NSLog(@"tone image not found for value: %@, returning empty string", midi);
             return @"";
     }
 }
 
-#pragma mark - SynthCellNode
-
-- (void)cancelTouchForPan
-{
-    [super cancelTouchForPan];
-    [self afterTick:kBPM];
-}
-
-#pragma mark - CCTargetedTouchDelegate
-
-- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    if ([super ccTouchBegan:touch withEvent:event]) {
-        NSString *event = [self tick:kBPM];
-        [MainSynth receiveEvents:@[event]];
-        return YES;
-    }
-    return NO;
-}
-
-- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    [super ccTouchEnded:touch withEvent:event];
-    [self afterTick:kBPM];
-}
-
-#pragma mark - Tick Responder
-
-- (NSString *)tick:(NSInteger)bpm
-{
-    self.selected = YES;
-    [SpriteUtils switchImageForSprite:self.sprite textureKey:[self imageNameForMidiValue:self.midiValue on:YES]];
-    return [NSString stringWithFormat:@"%i", self.midiValue];
-}
-
-- (void)afterTick:(NSInteger)bpm
-{
-    self.selected = NO;
-    [self deselectTone];
-}
-
-- (GridCoord)responderCell
-{
-    return self.cell;
-}
 
 @end

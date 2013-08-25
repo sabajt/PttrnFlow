@@ -277,7 +277,7 @@
 		338EE1AA17A5DF35005E98B1 /* WaveTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1A917A5DF35005E98B1 /* WaveTable.m */; };
 		338EE1AE17A5EAFC005E98B1 /* PdArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1AD17A5EAFC005E98B1 /* PdArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */; };
-		33B4F24717C6E104004D4C13 /* solution1.json in Resources */ = {isa = PBXBuildFile; fileRef = 33B4F24617C6E104004D4C13 /* solution1.json */; };
+		33B4F24717C6E104004D4C13 /* solution0.json in Resources */ = {isa = PBXBuildFile; fileRef = 33B4F24617C6E104004D4C13 /* solution0.json */; };
 		33B4F25B17C72600004D4C13 /* AudioStopEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25017C72600004D4C13 /* AudioStopEvent.m */; };
 		33B4F25C17C72600004D4C13 /* DirectionEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25217C72600004D4C13 /* DirectionEvent.m */; };
 		33B4F25D17C72600004D4C13 /* ExitEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25417C72600004D4C13 /* ExitEvent.m */; };
@@ -765,7 +765,7 @@
 		338EE1AD17A5EAFC005E98B1 /* PdArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdArray.m; sourceTree = "<group>"; };
 		338EE1B217A5F1D2005E98B1 /* NSArray+CompareNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CompareNumbers.h"; sourceTree = "<group>"; };
 		338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CompareNumbers.m"; sourceTree = "<group>"; };
-		33B4F24617C6E104004D4C13 /* solution1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = solution1.json; sourceTree = "<group>"; };
+		33B4F24617C6E104004D4C13 /* solution0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = solution0.json; sourceTree = "<group>"; };
 		33B4F24F17C72600004D4C13 /* AudioStopEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStopEvent.h; sourceTree = "<group>"; };
 		33B4F25017C72600004D4C13 /* AudioStopEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStopEvent.m; sourceTree = "<group>"; };
 		33B4F25117C72600004D4C13 /* DirectionEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionEvent.h; sourceTree = "<group>"; };
@@ -1576,7 +1576,7 @@
 		33BCC67F17BCADB40008ED26 /* solutions */ = {
 			isa = PBXGroup;
 			children = (
-				33B4F24617C6E104004D4C13 /* solution1.json */,
+				33B4F24617C6E104004D4C13 /* solution0.json */,
 			);
 			name = solutions;
 			path = Resources/solutions;
@@ -1744,7 +1744,7 @@
 				16A942D01778C58E0052D5BD /* drum1on-ipadhd.png in Resources */,
 				16A942D11778C58E0052D5BD /* drum2-ipadhd.png in Resources */,
 				16A942D21778C58E0052D5BD /* drum2on-ipadhd.png in Resources */,
-				33B4F24717C6E104004D4C13 /* solution1.json in Resources */,
+				33B4F24717C6E104004D4C13 /* solution0.json in Resources */,
 				16A942D31778C58E0052D5BD /* drum3-ipadhd.png in Resources */,
 				16A942D41778C58E0052D5BD /* drum3on-ipadhd.png in Resources */,
 				16A942D51778C58E0052D5BD /* drum4-ipadhd.png in Resources */,

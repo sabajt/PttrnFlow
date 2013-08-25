@@ -13,8 +13,12 @@
 
 @protocol TickResponder <NSObject>
 
-- (TickEvent *)tick:(NSInteger)bpm;
-- (void)afterTick:(NSInteger)bpm; // this could also return a value that could trigger more events
+// responder should return an array of fragments (often this will be just 1 fragment)
+- (NSArray *)tick:(NSInteger)bpm;
+
+// TODO: this could also return a value that could trigger more events
+- (void)afterTick:(NSInteger)bpm;
+
 - (GridCoord)responderCell;
 
 @end

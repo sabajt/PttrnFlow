@@ -30,6 +30,7 @@
 #import "CCSprite+Utils.h"
 #import "Warp.h"
 #import "WaveTable.h"
+#import "AudioTouchDispatcher.h"
 
 @interface SequenceLayer ()
 
@@ -44,6 +45,8 @@
 @property (strong, nonatomic) MainSynth *synth;
 
 @property (weak, nonatomic) TickDispatcher *tickDispatcher;
+@property (weak, nonatomic) AudioTouchDispatcher *audioTouchDispatcher;
+
 @property (weak, nonatomic) Tone *pressedTone;
 @property (weak, nonatomic) BackgroundLayer *backgroundLayer;
 @property (weak, nonatomic) PrimativeCellActor *selectionBox;
@@ -162,43 +165,55 @@
         self.tickDispatcher.delegate = self;
         [self addChild:self.tickDispatcher];
         
-        // tone blocks
-        NSMutableArray *tones = [tiledMap objectsWithName:kTLDObjectTone groupName:kTLDGroupTickResponders];
-        for (NSMutableDictionary *tone in tones) {
-            Tone *toneNode = [[Tone alloc] initWithTone:tone tiledMap:tiledMap];
-            [self.tickDispatcher registerTickResponder:toneNode];
-            [self addChild:toneNode];
-        }
+        // audio touch dispatcher
+        AudioTouchDispatcher *audioTouchDispatcher = [[AudioTouchDispatcher alloc] init];
+        self.audioTouchDispatcher = audioTouchDispatcher;
+        [self addChild:self.audioTouchDispatcher];
         
-        // drum blocks
-        NSMutableArray *drums = [tiledMap objectsWithName:kTLDObjectDrum groupName:kTLDGroupTickResponders];
-        for (NSMutableDictionary *drum in drums) {
-            Drum *drumNode = [[Drum alloc] initWithDrum:drum tiledMap:tiledMap];
-            [self.tickDispatcher registerTickResponder:drumNode];
-            [self addChild:drumNode];
-        }
-        
-//        // arrow blocks
-//        NSMutableArray *arrows = [tiledMap objectsWithName:kTLDObjectArrow groupName:kTLDGroupTickResponders];
-//        for (NSMutableDictionary *arrow in arrows) {
-//            Arrow *arrowNode = [[Arrow alloc] initWithArrow:arrow tiledMap:tiledMap synth:self.synth];
-//            [self.tickDispatcher registerTickResponder:arrowNode];
-//            [self addChild:arrowNode];
-//        }
-        
-        // entry arrow
-        NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupTickResponders];
-        for (NSMutableDictionary *entry in entries) {
-            EntryArrow *entryArrow = [[EntryArrow alloc] initWithEntry:entry tiledMap:tiledMap];
-            [self addChild:entryArrow];
-        }
+        // create puzzle objects
+//        [self createPuzzleObjects:tiledMap];
 
         // find optimal scale and position
         CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
         self.scale = [self scaleToFitArea:self.absoluteGridSize insideConstraintSize:activeWindow.size];
         self.position = [self positionAtCenterOfGridSized:self.gridSize unitSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) constraintRect:activeWindow];
+        
     }
     return self;
+}
+
+- (void)createPuzzleObjects:(CCTMXTiledMap *)tiledMap
+{
+    // tone blocks
+    NSMutableArray *tones = [tiledMap objectsWithName:kTLDObjectTone groupName:kTLDGroupTickResponders];
+    for (NSMutableDictionary *tone in tones) {
+        Tone *toneNode = [[Tone alloc] initWithTone:tone tiledMap:tiledMap];
+        [self.tickDispatcher registerTickResponder:toneNode];
+        [self addChild:toneNode];
+    }
+    
+    // drum blocks
+    NSMutableArray *drums = [tiledMap objectsWithName:kTLDObjectDrum groupName:kTLDGroupTickResponders];
+    for (NSMutableDictionary *drum in drums) {
+        Drum *drumNode = [[Drum alloc] initWithDrum:drum tiledMap:tiledMap];
+        [self.tickDispatcher registerTickResponder:drumNode];
+        [self addChild:drumNode];
+    }
+    
+    //        // arrow blocks
+    //        NSMutableArray *arrows = [tiledMap objectsWithName:kTLDObjectArrow groupName:kTLDGroupTickResponders];
+    //        for (NSMutableDictionary *arrow in arrows) {
+    //            Arrow *arrowNode = [[Arrow alloc] initWithArrow:arrow tiledMap:tiledMap synth:self.synth];
+    //            [self.tickDispatcher registerTickResponder:arrowNode];
+    //            [self addChild:arrowNode];
+    //        }
+    
+    // entry arrow
+    NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupTickResponders];
+    for (NSMutableDictionary *entry in entries) {
+        EntryArrow *entryArrow = [[EntryArrow alloc] initWithEntry:entry tiledMap:tiledMap];
+        [self addChild:entryArrow];
+    }
 }
 
 // general rule for legal placement of drag items

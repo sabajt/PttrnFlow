@@ -11,7 +11,7 @@
 
 @interface Tone : CellNode <TickResponder>
 
-@property (assign) int midiValue;
+@property (copy, nonatomic) NSString *midiValue;
 
 - (id)initWithTone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap;
 

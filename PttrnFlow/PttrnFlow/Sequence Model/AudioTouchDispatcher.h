@@ -6,11 +6,15 @@
 //
 //
 
-#import <Foundation/Foundation.h>
+#import "TouchNode.h"
+#import "TickResponder.h"
 
-@interface AudioTouchDispatcher : NSObject
+@interface AudioTouchDispatcher : TouchNode
 
+- (void)addResponder:(id<TickResponder>)responder;
+- (void)clearResponders;
 - (void)addFragments:(NSArray *)fragments channel:(NSString *)channel;
+- (void)clearFragments;
 - (void)sendAudio:(NSString *)channel;
 
 @end

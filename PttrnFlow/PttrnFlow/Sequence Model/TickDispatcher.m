@@ -56,6 +56,7 @@ CGFloat const kTickInterval = 0.5;
         
         // new event sequence
         self.solutionSequence = [[SolutionSequence alloc] initWithSolution:[NSString stringWithFormat:@"solution%i", sequence]];
+        self.sequenceLength = self.solutionSequence.sequence.count;
         
         // create initial channels
         NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupTickResponders];
@@ -202,11 +203,9 @@ CGFloat const kTickInterval = 0.5;
         // refresh last linked events for each channel.
         // current supports only one linked event at a time per channel
         for (TickEvent *event in events) {
-            if (event.lastLinkedEvent != nil) {
-                if ([self.lastLinkedEvents objectForKey:tickChannel.channel] == nil) {
-                    [self.lastLinkedEvents setObject:event forKey:tickChannel.channel];
-                    break;
-                }
+            if (event.isLinkedEvent) {
+                [self.lastLinkedEvents setObject:event forKey:tickChannel.channel];
+                break;
             }
         }
         
