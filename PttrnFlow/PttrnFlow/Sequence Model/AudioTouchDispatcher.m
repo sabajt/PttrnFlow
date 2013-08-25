@@ -42,9 +42,20 @@
     self.responders = nil;
 }
 
-- (void)processFragments:(NSArray *)fragments channel:(NSString *)channel
+- (void)processFragmentsForCell:(GridCoord)cell channel:(NSString *)channel
 {
+    // collect fragments for the responders at the cell we touched
+    NSMutableArray *fragments = [NSMutableArray array];
+    for (id<TickResponder> responder in self.responders) {
+        if ([GridUtils isCell:[responder responderCell] equalToCell:cell]) {
+            [fragments addObject:[responder tick:kBPM]];
+        }
+    }
+    
+    // crunch fragments into events and send to pd
     NSArray *events = [TickEvent eventsFromFragments:fragments channel:channel lastLinkedEvents:nil];
+    [MainSynth receiveEvents:events];
+    
     // send events to pd
 }
 
@@ -65,17 +76,7 @@
     NSMutableDictionary *mutableTouchInfo = [NSMutableDictionary dictionaryWithDictionary:touchInfo];
     CFDictionaryAddValue(self.currentChannelsByTouches, (__bridge void *)(touch), (__bridge void *)(mutableTouchInfo));
     
-    // collect fragments for the responders at the cell we touched
-    NSMutableArray *fragments = [NSMutableArray array];
-    for (id<TickResponder> responder in self.responders) {
-        if ([GridUtils isCell:[responder responderCell] equalToCell:cell]) {
-            [fragments addObject:[responder tick:kBPM]];
-        }
-    }
-    
-    // make events from fragments and send to pd patch
-    [self processFragments:[NSArray arrayWithArray:fragments] channel:channel];
-    
+    [self processFragmentsForCell:cell channel:channel];
     
     NSLog(@"<)))))))) audio touch dispatcher TOUCH BEGAN : channel [ %@ ] : cell [ %i , %i ]", channel, cell.x, cell.y);
     NSLog(@"\n\n");
@@ -104,7 +105,7 @@
         [touchInfo setObject:@(cell.y) forKey:@"y"];
         CFDictionaryReplaceValue(self.currentChannelsByTouches, (__bridge void *)(touch), (__bridge void *)(touchInfo));
         
-        
+        [self processFragmentsForCell:cell channel:channel];
         
         NSLog(@"<)))))))) audio touch dispatcher TOUCH MOVED : channel [ %@ ] : cell [ %i , %i ]", channel, cell.x, cell.y);
         NSLog(@"\n\n");
