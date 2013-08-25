@@ -293,44 +293,44 @@ typedef enum
 		self.touchDistance = INFINITY;
 	}
     
-	else {
-        // Get the single touch and it's previous & current position.
-        UITouch *touch = [self.touches objectAtIndex: 0];
-        CGPoint curTouchPosition = [[CCDirector sharedDirector] convertToGL: [touch locationInView: [touch view]]];
-        CGPoint prevTouchPosition = [[CCDirector sharedDirector] convertToGL: [touch previousLocationInView: [touch view]]];
-         
-        //////////////////////////////////////////////////////////////
-        // PttrnFlow modification: use maxTouchDistanceToClick with kCCLayerPanZoomModeSheet
-        
-        // Accumulate touch distance for all modes.
-        self.touchDistance += ccpDistance(curTouchPosition, prevTouchPosition); // PttrnFlow modification -- moved from (*1)
-        
-        if (self.mode == kCCLayerPanZoomModeSheet)
-        {
-            if (self.touchDistance > self.maxTouchDistanceToClick && !_touchMoveBegan) { // PttrnFlow modification -- check max touch distance for sheet mode
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStartPan object:nil];
-
-                // Set new position of the layer.
-                self.position = ccp(self.position.x + curTouchPosition.x - prevTouchPosition.x,
-                                    self.position.y + curTouchPosition.y - prevTouchPosition.y);
-                
-            }
-        }
-        
-        // (*1)
-        
-        // Inform delegate about starting updating touch position, if click isn't possible.
-        if (self.mode == kCCLayerPanZoomModeFrame)
-        {
-            if (self.touchDistance > self.maxTouchDistanceToClick && !_touchMoveBegan)
-            {
-                [self.delegate layerPanZoom: self 
-                   touchMoveBeganAtPosition: [self convertToNodeSpace: prevTouchPosition]];
-                _touchMoveBegan = YES;
-            }
-        }
-    }
+//	else {
+//        // Get the single touch and it's previous & current position.
+//        UITouch *touch = [self.touches objectAtIndex: 0];
+//        CGPoint curTouchPosition = [[CCDirector sharedDirector] convertToGL: [touch locationInView: [touch view]]];
+//        CGPoint prevTouchPosition = [[CCDirector sharedDirector] convertToGL: [touch previousLocationInView: [touch view]]];
+//         
+//        //////////////////////////////////////////////////////////////
+//        // PttrnFlow modification: use maxTouchDistanceToClick with kCCLayerPanZoomModeSheet
+//        
+//        // Accumulate touch distance for all modes.
+//        self.touchDistance += ccpDistance(curTouchPosition, prevTouchPosition); // PttrnFlow modification -- moved from (*1)
+//        
+//        if (self.mode == kCCLayerPanZoomModeSheet)
+//        {
+//            if (self.touchDistance > self.maxTouchDistanceToClick && !_touchMoveBegan) { // PttrnFlow modification -- check max touch distance for sheet mode
+//                
+//                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStartPan object:nil];
+//
+//                // Set new position of the layer.
+//                self.position = ccp(self.position.x + curTouchPosition.x - prevTouchPosition.x,
+//                                    self.position.y + curTouchPosition.y - prevTouchPosition.y);
+//                
+//            }
+//        }
+//        
+//        // (*1)
+//        
+//        // Inform delegate about starting updating touch position, if click isn't possible.
+//        if (self.mode == kCCLayerPanZoomModeFrame)
+//        {
+//            if (self.touchDistance > self.maxTouchDistanceToClick && !_touchMoveBegan)
+//            {
+//                [self.delegate layerPanZoom: self 
+//                   touchMoveBeganAtPosition: [self convertToNodeSpace: prevTouchPosition]];
+//                _touchMoveBegan = YES;
+//            }
+//        }
+//    }
 }
 
 - (void) ccTouchesEnded: (NSSet *) touches 

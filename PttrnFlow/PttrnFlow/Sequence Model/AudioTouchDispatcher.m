@@ -10,11 +10,13 @@
 #import "TickEvent.h"
 #import "MainSynth.h"
 #import "GridUtils.h"
+#import "TickDispatcher.h"
 
 @interface AudioTouchDispatcher ()
 
-@property (strong, nonatomic) NSMutableDictionary *currentFragments;
 @property (strong, nonatomic) NSMutableArray *responders;
+@property (assign) CFMutableDictionaryRef currentChannelsByTouches;
+
 
 @end
 
@@ -24,7 +26,8 @@
 {
     self = [super init];
     if (self) {
-        _currentFragments = [NSMutableDictionary dictionary];
+        _responders = [NSMutableArray array];
+        _currentChannelsByTouches = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
     }
     return self;
 }
@@ -39,29 +42,10 @@
     self.responders = nil;
 }
 
-- (void)addFragments:(NSArray *)fragments channel:(NSString *)channel
+- (void)processFragments:(NSArray *)fragments channel:(NSString *)channel
 {
-    NSMutableArray *storedFragments = [self.currentFragments objectForKey:channel];
-    if (storedFragments == nil) {
-        storedFragments = [NSMutableArray array];
-    }
-    [storedFragments addObjectsFromArray:fragments];
-    [self.currentFragments setObject:storedFragments forKey:channel];
-}
-
-- (void)clearFragments
-{
-    self.currentFragments = nil;
-}
-
-- (void)sendAudio:(NSString *)channel
-{
-    NSArray *fragments = [self.currentFragments objectForKey:channel];
-    NSArray *events = [TickEvent eventsFromFragments:self.currentFragments[channel] channel:channel lastLinkedEvents:nil];
-    
+    NSArray *events = [TickEvent eventsFromFragments:fragments channel:channel lastLinkedEvents:nil];
     // send events to pd
-    
-    [self clearFragments];
 }
 
 #pragma mark CCTargetedTouchDelegate
@@ -73,23 +57,72 @@
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
-    NSLog(@"cell: %i, %i", cell.x, cell.y);
     
-    // get the responders at the cell we touched
+    // track touch so we know which fragments / cell to associate
+    CFIndex count = CFDictionaryGetCount(self.currentChannelsByTouches);
+    NSString *channel = [NSString stringWithFormat:@"%ld", count];
+    NSDictionary *touchInfo = @{@"channel" : channel, @"x" : @(cell.x), @"y" : @(cell.y)};
+    NSMutableDictionary *mutableTouchInfo = [NSMutableDictionary dictionaryWithDictionary:touchInfo];
+    CFDictionaryAddValue(self.currentChannelsByTouches, (__bridge void *)(touch), (__bridge void *)(mutableTouchInfo));
     
-    // collect events
+    // collect fragments for the responders at the cell we touched
+    NSMutableArray *fragments = [NSMutableArray array];
+    for (id<TickResponder> responder in self.responders) {
+        if ([GridUtils isCell:[responder responderCell] equalToCell:cell]) {
+            [fragments addObject:[responder tick:kBPM]];
+        }
+    }
     
-    // send to pd patch
+    // make events from fragments and send to pd patch
+    [self processFragments:[NSArray arrayWithArray:fragments] channel:channel];
+    
+    
+    NSLog(@"<)))))))) audio touch dispatcher TOUCH BEGAN : channel [ %@ ] : cell [ %i , %i ]", channel, cell.x, cell.y);
+    NSLog(@"\n\n");
+    
+    return YES;
 }
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [super ccTouchMoved:touch withEvent:event];
+    
+    // get grid cell of touch
+    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+    GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
+    
+    // get channel and last touched cell of this specific touch
+    NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.currentChannelsByTouches, (__bridge void *)touch);
+    NSString *channel = [touchInfo objectForKey:@"channel"];
+    NSNumber *x = [touchInfo objectForKey:@"x"];
+    NSNumber *y = [touchInfo objectForKey:@"y"];
+    GridCoord lastCell = GridCoordMake([x intValue], [y intValue]);
+    
+    // if touch moved to a new cell, update info
+    if (![GridUtils isCell:cell equalToCell:lastCell]) {
+        [touchInfo setObject:@(cell.x) forKey:@"x"];
+        [touchInfo setObject:@(cell.y) forKey:@"y"];
+        CFDictionaryReplaceValue(self.currentChannelsByTouches, (__bridge void *)(touch), (__bridge void *)(touchInfo));
+        
+        
+        
+        NSLog(@"<)))))))) audio touch dispatcher TOUCH MOVED : channel [ %@ ] : cell [ %i , %i ]", channel, cell.x, cell.y);
+        NSLog(@"\n\n");
+    }
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [super ccTouchEnded:touch withEvent:event];
+    
+    CFDictionaryRemoveValue(self.currentChannelsByTouches, (__bridge void *)touch);
+}
+
+- (void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    [super ccTouchEnded:touch withEvent:event];
+    
+    CFDictionaryRemoveValue(self.currentChannelsByTouches, (__bridge void *)touch);
 }
 
 

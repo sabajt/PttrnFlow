@@ -47,6 +47,9 @@
 @property (weak, nonatomic) TickDispatcher *tickDispatcher;
 @property (weak, nonatomic) AudioTouchDispatcher *audioTouchDispatcher;
 
+// TODO: prob remove
+@property (strong, nonatomic) NSMutableArray *audioTouchDispatchers;
+
 @property (weak, nonatomic) Tone *pressedTone;
 @property (weak, nonatomic) BackgroundLayer *backgroundLayer;
 @property (weak, nonatomic) PrimativeCellActor *selectionBox;
