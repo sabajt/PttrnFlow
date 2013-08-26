@@ -14,6 +14,7 @@ FOUNDATION_EXPORT CGFloat const kTickScrubberDistanceInterval;
 @protocol TickerControlDelegate <NSObject>
 
 - (void)tickerMovedToIndex:(int)index;
+- (void)tickerControlTouchUp;
 
 @end
 

@@ -146,6 +146,8 @@ CGFloat const kTickInterval = 0.12;
     [MainSynth receiveEvents:combined ignoreAudioPad:YES];
 }
 
+
+
 // play the sound from the stored sequence at an index
 - (void)play:(int)index
 {
@@ -340,6 +342,11 @@ CGFloat const kTickInterval = 0.12;
 - (void)tickerMovedToIndex:(int)index
 {
     [self play:index];
+}
+
+- (void)tickerControlTouchUp
+{
+    [self stopAudioForChannels:self.solutionChannels];
 }
 
 @end

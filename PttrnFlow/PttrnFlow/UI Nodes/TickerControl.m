@@ -96,6 +96,14 @@ static CGFloat const kTickerControlHeight = 50;
     [self positionThumb:self.currentIndex];
 }
 
+//#pragma mark Touch
+//
+//- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+//{
+//    [super ccTouchEnded:touch withEvent:event];
+//    [self.delegate tickerControlTouchUp];
+//}
+
 #pragma mark CCNode SceneManagement
 
 - (void)onExit
@@ -106,8 +114,19 @@ static CGFloat const kTickerControlHeight = 50;
 
 #pragma mark CCTargetedTouchDelegate
 
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if ([super ccTouchBegan:touch withEvent:event]) {
+        [self handleTouch:touch];
+        return YES;
+    }
+    return NO;
+}
+
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    [super ccTouchMoved:touch withEvent:event];
+    
     if (self.currentIndex != [self nearestIndex:touch]) {
         [self handleTouch:touch];
     }
@@ -115,7 +134,11 @@ static CGFloat const kTickerControlHeight = 50;
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    [self handleTouch:touch];
+//    [self handleTouch:touch];
+    
+    [super ccTouchEnded:touch withEvent:event];
+    [self.delegate tickerControlTouchUp];
+
 }
 
 @end
