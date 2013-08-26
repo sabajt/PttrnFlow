@@ -11,6 +11,7 @@
 #import "MainSynth.h"
 #import "GridUtils.h"
 #import "TickDispatcher.h"
+#import "AudioStopEvent.h"
 
 @interface AudioTouchDispatcher ()
 
@@ -110,6 +111,12 @@
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [super ccTouchEnded:touch withEvent:event];
+    
+    // get channel
+    NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.currentChannelsByTouches, (__bridge void *)touch);
+    NSString *channel = [touchInfo objectForKey:@"channel"];
+    AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES];
+    [MainSynth receiveEvents:@[audioStop] ignoreAudioPad:YES];
     
     CFDictionaryRemoveValue(self.currentChannelsByTouches, (__bridge void *)touch);
 }
