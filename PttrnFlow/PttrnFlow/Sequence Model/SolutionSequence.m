@@ -32,9 +32,7 @@
         if (error != nil) {
             NSLog(@"solution sequence error parsing json: %@", error.description);
         }
-        
-        NSLog(@"json sequence: %@", json);
-        
+                
         self.trackedEvents = [NSMutableDictionary dictionary];
         NSMutableArray *tempSequence = [NSMutableArray array];
         

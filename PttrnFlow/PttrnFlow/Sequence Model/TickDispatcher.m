@@ -16,6 +16,7 @@
 #import "TickEvent.h"
 #import "ExitEvent.h"
 #import "SolutionSequence.h"
+#import "AudioStopEvent.h"
 
 
 NSInteger const kBPM = 120;
@@ -35,6 +36,7 @@ CGFloat const kTickInterval = 0.12;
 @property (strong, nonatomic) NSMutableSet *dynamicChannels;
 @property (strong, nonatomic) NSSet *channels;
 @property (strong, nonatomic) SolutionSequence *solutionSequence;
+@property (strong, nonatomic) NSMutableSet *solutionChannels;
 
 @property (assign) int sequenceIndex;
 @property (assign) int currentTick;
@@ -77,6 +79,7 @@ CGFloat const kTickInterval = 0.12;
         self.lastTickedResponders = [NSMutableArray array];
         self.hits = [NSMutableArray array];
         self.lastLinkedEvents = [NSMutableDictionary dictionary];
+        self.solutionChannels = [NSMutableSet set];
     }
     return self;
 }
@@ -125,6 +128,22 @@ CGFloat const kTickInterval = 0.12;
 - (void)stop
 {
     [self unschedule:@selector(tick:)];
+    NSMutableSet *channels = [NSMutableSet set];
+    NSSet *tickChannels = [self.channels setByAddingObjectsFromSet:self.dynamicChannels];
+    for (TickChannel *ch in tickChannels) {
+        [channels addObject:ch.channel];
+    }
+    [self stopAudioForChannels:channels];
+}
+
+- (void)stopAudioForChannels:(NSSet *)channels
+{
+    NSMutableArray *combined = [NSMutableArray array];
+    for (NSString *channel in channels) {
+        AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES];
+        [combined addObject:audioStop];
+    }
+    [MainSynth receiveEvents:combined ignoreAudioPad:YES];
 }
 
 // play the sound from the stored sequence at an index
@@ -137,12 +156,17 @@ CGFloat const kTickInterval = 0.12;
     
     NSArray *events = [self.solutionSequence.sequence objectAtIndex:index];
     [MainSynth receiveEvents:events ignoreAudioPad:YES];
+    
+    for (TickEvent *event in events) {
+        [self.solutionChannels addObject:event.channel];
+    }
 }
 
 // schedule the stored sequence we want to solve for from the top
 - (void)scheduleSequence
 {
     self.sequenceIndex = 0;
+    [self.solutionChannels removeAllObjects];
     [self schedule:@selector(advanceSequence) interval:kTickInterval];
 }
 
@@ -150,8 +174,8 @@ CGFloat const kTickInterval = 0.12;
 - (void)advanceSequence
 {
     if (self.sequenceIndex >= self.sequenceLength) {
-        NSLog(@"finished ticking");
         [self unschedule:@selector(advanceSequence)];
+        [self stopAudioForChannels:self.solutionChannels];
         return;
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationAdvancedSequence object:nil userInfo:@{kKeySequenceIndex:@(self.sequenceIndex)}];
