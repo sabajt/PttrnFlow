@@ -11,6 +11,32 @@
 
 @interface TextureUtils : NSObject
 
+FOUNDATION_EXPORT NSString *const kImageNote1;
+FOUNDATION_EXPORT NSString *const kImageNote2;
+FOUNDATION_EXPORT NSString *const kImageNote3;
+FOUNDATION_EXPORT NSString *const kImageNote4;
+FOUNDATION_EXPORT NSString *const kImageNote5;
+FOUNDATION_EXPORT NSString *const kImageNote6;
+FOUNDATION_EXPORT NSString *const kImageNote7;
+FOUNDATION_EXPORT NSString *const kImageNote8;
+FOUNDATION_EXPORT NSString *const kImageNote9;
+FOUNDATION_EXPORT NSString *const kImageNote10;
+FOUNDATION_EXPORT NSString *const kImageNote11;
+FOUNDATION_EXPORT NSString *const kImageNote12;
+FOUNDATION_EXPORT NSString *const kImageNote1on;
+FOUNDATION_EXPORT NSString *const kImageNote2on;
+FOUNDATION_EXPORT NSString *const kImageNote3on;
+FOUNDATION_EXPORT NSString *const kImageNote4on;
+FOUNDATION_EXPORT NSString *const kImageNote5on;
+FOUNDATION_EXPORT NSString *const kImageNote6on;
+FOUNDATION_EXPORT NSString *const kImageNote7on;
+FOUNDATION_EXPORT NSString *const kImageNote8on;
+FOUNDATION_EXPORT NSString *const kImageNote9on;
+FOUNDATION_EXPORT NSString *const kImageNote10on;
+FOUNDATION_EXPORT NSString *const kImageNote11on;
+FOUNDATION_EXPORT NSString *const kImageNote12on;
+
+
 // define image names
 FOUNDATION_EXPORT NSString *const kImageA_on;
 FOUNDATION_EXPORT NSString *const kImageA;

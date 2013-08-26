@@ -31,5 +31,11 @@ static inline ccColor4B ccc4BFromccc3B(ccColor3B c)
 + (ccColor3B)hitFailure;
 + (ccColor3B)hitCellEdge;
 
++ (ccColor3B)lightGray;
++ (ccColor3B)darkGray;
++ (ccColor3B)white;
++ (ccColor3B)orange;
+
+
 @end
 

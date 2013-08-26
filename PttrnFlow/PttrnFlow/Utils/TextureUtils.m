@@ -10,6 +10,31 @@
 
 @implementation TextureUtils
 
+NSString *const kImageNote1 = @"note-1.png";
+NSString *const kImageNote2 = @"note-2.png";
+NSString *const kImageNote3 = @"note-3.png";
+NSString *const kImageNote4 = @"note-4.png";
+NSString *const kImageNote5 = @"note-5.png";
+NSString *const kImageNote6 = @"note-6.png";
+NSString *const kImageNote7 = @"note-7.png";
+NSString *const kImageNote8 = @"note-8.png";
+NSString *const kImageNote9 = @"note-9.png";
+NSString *const kImageNote10 = @"note-10.png";
+NSString *const kImageNote11 = @"note-11.png";
+NSString *const kImageNote12 = @"note-12.png";
+NSString *const kImageNote1on = @"note-1-on.png";
+NSString *const kImageNote2on = @"note-2-on.png";
+NSString *const kImageNote3on = @"note-3-on.png";
+NSString *const kImageNote4on = @"note-4-on.png";
+NSString *const kImageNote5on = @"note-5-on.png";
+NSString *const kImageNote6on = @"note-6-on.png";
+NSString *const kImageNote7on = @"note-7-on.png";
+NSString *const kImageNote8on = @"note-8-on.png";
+NSString *const kImageNote9on = @"note-9-on.png";
+NSString *const kImageNote10on = @"note-10-on.png";
+NSString *const kImageNote11on = @"note-11-on.png";
+NSString *const kImageNote12on = @"note-12-on.png";
+
 NSString *const kImageA_on = @"A-on.png";
 NSString *const kImageA = @"A.png";
 NSString *const kImageA_flat_on = @"Aflat-on.png";
@@ -116,6 +141,62 @@ NSString *const kImageAudioPad= @"audio-pad.png";
     [[CCTextureCache sharedTextureCache] addImage:kImageWarpButton_off];
     [[CCTextureCache sharedTextureCache] addImage:kImageWarpButton_on];
     [[CCTextureCache sharedTextureCache] addImage:kImageAudioPad];
+    
+
+    
+    
+    
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote1];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote2];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote3];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote4];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote5];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote6];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote7];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote8];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote9];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote10];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote11];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote12];
+    
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote1on];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote2on];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote3on];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote4on];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote5on];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote6on];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote7on];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote8on];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote9on];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote10on];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote11on];
+    [[CCTextureCache sharedTextureCache] addImage:kImageNote12on];
+
+    
+//    NSString *const kImageNote1;
+//    NSString *const kImageNote2;
+//    NSString *const kImageNote3;
+//    NSString *const kImageNote4;
+//    NSString *const kImageNote5;
+//    NSString *const kImageNote6;
+//    NSString *const kImageNote7;
+//    NSString *const kImageNote8;
+//    NSString *const kImageNote9;
+//    NSString *const kImageNote10;
+//    NSString *const kImageNote11;
+//    NSString *const kImageNote12;
+//    NSString *const kImageNote1on;
+//    NSString *const kImageNote2on;
+//    NSString *const kImageNote3on;
+//    NSString *const kImageNote4on;
+//    NSString *const kImageNote5on;
+//    NSString *const kImageNote6on;
+//    NSString *const kImageNote7on;
+//    NSString *const kImageNote8on;
+//    NSString *const kImageNote9on;
+//    NSString *const kImageNote10on;
+//    NSString *const kImageNote11on;
+//    NSString *const kImageNote12on;
 }
 
 // generate a unique texture key using components of primative image size and color

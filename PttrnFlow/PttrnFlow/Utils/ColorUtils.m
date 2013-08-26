@@ -32,6 +32,28 @@
     return ccc3(150, 150, 150);
 }
 
+
+
+
++ (ccColor3B)lightGray
+{
+    return ccc3(54, 55, 50);
+}
+
++ (ccColor3B)darkGray
+{
+    return ccc3(39, 40, 34);
+}
+
++ (ccColor3B)white
+{
+    return ccc3(236, 247, 238);
+}
+
+
+
+
+
 + (ccColor3B)lime
 {
     return ccc3(30, 255, 40);
@@ -39,7 +61,7 @@
 
 + (ccColor3B)orange
 {
-    return ccc3(255, 180, 50);
+    return ccc3(252, 151, 31);
 }
 
 + (ccColor3B)red

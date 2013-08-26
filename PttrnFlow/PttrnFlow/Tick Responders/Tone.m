@@ -93,64 +93,64 @@
     switch ([midi intValue]) {
         case 48:
             if (on) {
-                return kImageC_on;
+                return kImageNote1on;
             }
-            return kImageC;
+            return kImageNote1;
         case 49:
             if (on) {
-                return kImageC_sharp_on;
+                return kImageNote2on;
             }
-            return kImageC_sharp;
+            return kImageNote2;
         case 50:
             if (on) {
-                return kImageD_on;
+                return kImageNote3on;
             }
-            return kImageD;
+            return kImageNote3;
         case 51:
             if (on) {
-                return kImageE_flat_on;
+                return kImageNote4on;
             }
-            return kImageE_flat;
+            return kImageNote4;
         case 52:
             if (on) {
-                return kImageE_on;
+                return kImageNote5on;
             }
-            return kImageE;
+            return kImageNote5;
         case 53:
             if (on) {
-                return kImageF_on;
+                return kImageNote6on;
             }
-            return kImageF;
+            return kImageNote6;
         case 54:
             if (on) {
-                return kImageF_sharp_on;
+                return kImageNote7on;
             }
-            return kImageF_sharp;
+            return kImageNote7;
         case 55:
             if (on) {
-                return kImageG_on;
+                return kImageNote8on;
             }
-            return kImageG;
+            return kImageNote8;
         case 56:
             if (on) {
-                return kImageA_flat_on;
+                return kImageNote9on;
             }
-            return kImageA_flat;
+            return kImageNote9;
         case 57:
             if (on) {
-                return kImageA_on;
+                return kImageNote10on;
             }
-            return kImageA;
+            return kImageNote10;
         case 58:
             if (on) {
-                return kImageB_flat_on;
+                return kImageNote11on;
             }
-            return kImageB_flat;
+            return kImageNote11;
         case 59:
             if (on) {
-                return kImageB_on;
+                return kImageNote12on;
             }
-            return kImageB;;
+            return kImageNote12;
             
         default:
             NSLog(@"tone image not found for value: %@, returning empty string", midi);
