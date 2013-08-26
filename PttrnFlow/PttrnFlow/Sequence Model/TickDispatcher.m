@@ -195,21 +195,21 @@ CGFloat const kTickInterval = 0.12;
     // figure out which responders need an after tick / removal based on decay value (given by channel speed when they were ticked)
     NSMutableArray *removeResponders = [NSMutableArray array];
     for (CellNode<TickResponder> *responder in self.lastTickedResponders) {
-        if (sub == 2) {
-            if (([responder.decaySpeed isEqualToString:@"4X"] || [responder.decaySpeed isEqualToString:@"2X"])) {
+        
+        if (sub == 0) {
+            if ([@[@"1X", @"2X", @"4X"] hasString:responder.decaySpeed]) {
+                [responder afterTick:kBPM];
+                [removeResponders addObject:responder];
+            }
+        }
+        else if (sub == 2) {
+            if ([@[@"2X", @"4X"] hasString:responder.decaySpeed]) {
                 [responder afterTick:kBPM];
                 [removeResponders addObject:responder];
             }
         }
         else if (sub == 1 || sub == 3) {
-            if (([responder.decaySpeed isEqualToString:@"4X"])) {
-                [responder afterTick:kBPM];
-                [removeResponders addObject:responder];
-            }
-        }
-        // sub == 0 is start of new tick
-        else if (sub == 0) {
-            if ([responder.decaySpeed isEqualToString:@"1X"]) {
+            if ([@"4X" isEqualToString:responder.decaySpeed]) {
                 [responder afterTick:kBPM];
                 [removeResponders addObject:responder];
             }

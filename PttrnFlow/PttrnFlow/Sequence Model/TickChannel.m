@@ -11,6 +11,7 @@
 #import "TickEvent.h"
 #import "ExitEvent.h"
 #import "DirectionEvent.h"
+#import "SpeedChangeEvent.h"
 
 @implementation TickChannel
 
@@ -46,6 +47,11 @@
             DirectionEvent *directionEvent = (DirectionEvent *)event;
             self.currentDirection = [GridUtils directionForString:directionEvent.direction];
         }
+        // change speed
+        if ([event isKindOfClass:[SpeedChangeEvent class]]) {
+            SpeedChangeEvent *speedChangeEvent = (SpeedChangeEvent *)event;
+            self.speed = speedChangeEvent.speed;
+        }
     }
 }
 
@@ -54,6 +60,7 @@
     self.currentCell = self.startingCell;
     self.currentDirection = self.startingDirection;
     self.hasStopped = NO;
+    self.speed = @"1X";
 }
 
 @end

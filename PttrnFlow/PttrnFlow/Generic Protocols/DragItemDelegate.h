@@ -15,6 +15,7 @@ typedef enum
     kDragItemWarp,
     kDragItemSplitter,
     kDragItemAudioStop,
+    kDragItemSpeedChange,
 } kDragItem;
 
 @protocol DragItemDelegate <NSObject>

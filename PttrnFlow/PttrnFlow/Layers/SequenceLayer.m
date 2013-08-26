@@ -33,6 +33,7 @@
 #import "AudioTouchDispatcher.h"
 #import "AudioPad.h"
 #import "AudioStop.h"
+#import "SpeedChange.h"
 
 @interface SequenceLayer ()
 
@@ -126,7 +127,7 @@
     
     // hud layer -- right hand item menu
     static CGFloat itemBarWidth = 80;
-    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[@(kDragItemArrow), @(kDragItemAudioStop)] dragButtonDelegate:sequenceLayer];
+    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[@(kDragItemArrow), @(kDragItemSpeedChange)] dragButtonDelegate:sequenceLayer];
     itemLayer.position = ccp(sequenceLayer.contentSize.width - itemLayer.contentSize.width, sequenceLayer.contentSize.height - hudLayer.contentSize.height - itemLayer.contentSize.height);
     [scene addChild:itemLayer z:1];
     
@@ -355,6 +356,11 @@
             [self.tickDispatcher registerTickResponderCellNode:audioStop];
             [self.audioTouchDispatcher addResponder:audioStop];
             [self addChild:audioStop];
+        }
+        else if (itemType == kDragItemSpeedChange) {
+            SpeedChange *speedChange = [[SpeedChange alloc] initWithCell:self.lastDraggedItemCell dragItemDelegate:self speed:@"2X"];
+            [self.tickDispatcher registerTickResponderCellNode:speedChange];
+            [self addChild:speedChange];
         }
         
         self.selectionBox.visible = NO;

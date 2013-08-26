@@ -14,6 +14,7 @@
 #import "AudioStopEvent.h"
 #import "AudioPad.h"
 #import "AudioPadEvent.h"
+#import "SpeedChangeEvent.h"
 
 NSString *const kChannelNone = @"ChannelNone";
 
@@ -63,6 +64,11 @@ NSString *const kChannelNone = @"ChannelNone";
 - (BOOL)isAudioPad
 {
     return [self isEqualToString:@"audio_pad"];
+}
+
+- (BOOL)isSpeedChange
+{
+    return [@[@"1X", @"2X", @"4X"] hasString:self];
 }
 
 @end
@@ -193,6 +199,7 @@ NSString *const kChannelNone = @"ChannelNone";
     NSString *direction;
     NSString *audioStop;
     NSString *audioPad;
+    NSString *speedChange;
     
     for (NSString *f in fragments) {
         if ([f isMidiValue]) {
@@ -212,6 +219,9 @@ NSString *const kChannelNone = @"ChannelNone";
         }
         if ([f isAudioPad]) {
             audioPad = f;
+        }
+        if ([f isSpeedChange]) {
+            speedChange = f;
         }
     }
     
@@ -241,14 +251,20 @@ NSString *const kChannelNone = @"ChannelNone";
     // audio stop events
     if (audioStop != nil) {
         TickEvent *lastEvent = [lastLinkedEvents objectForKey:channel];
-        AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES isLinkedEvent:YES lastLinkedEvent:lastEvent fragments:nil];
-        [events addObject:audioStop];
+        AudioStopEvent *audioStopEvent = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES isLinkedEvent:YES lastLinkedEvent:lastEvent fragments:nil];
+        [events addObject:audioStopEvent];
     }
     
     // audio pad events
     if (audioPad != nil) {
-        AudioPadEvent *audioPad = [[AudioPadEvent alloc] initWithChannel:kChannelNone isAudioEvent:NO];
-        [events addObject:audioPad];
+        AudioPadEvent *audioPadEvent = [[AudioPadEvent alloc] initWithChannel:kChannelNone isAudioEvent:NO];
+        [events addObject:audioPadEvent];
+    }
+    
+    // speed change events
+    if (speedChange != nil) {
+        SpeedChangeEvent *speedChangeEvent = [[SpeedChangeEvent alloc] initWithChannel:channel speed:speedChange];
+        [events addObject:speedChangeEvent];
     }
     
     return [NSArray arrayWithArray:events];
