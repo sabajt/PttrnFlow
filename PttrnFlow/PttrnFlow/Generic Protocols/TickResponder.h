@@ -19,6 +19,7 @@
 // TODO: this could also return a value that could trigger more events
 - (void)afterTick:(NSInteger)bpm;
 
+// tick responder must have a cell
 - (GridCoord)responderCell;
 
 @end

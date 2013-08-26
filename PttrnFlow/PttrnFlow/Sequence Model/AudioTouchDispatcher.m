@@ -61,6 +61,15 @@
     // send events to pd
 }
 
+- (void)afterTickForCell:(GridCoord)cell channel:(NSString *)channel
+{
+    for (id<TickResponder> responder in self.responders) {
+        if ([GridUtils isCell:[responder responderCell] equalToCell:cell]) {
+            [responder afterTick:kBPM];
+        }
+    }
+}
+
 #pragma mark CCTargetedTouchDelegate
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
@@ -100,10 +109,12 @@
     
     // if touch moved to a new cell, update info
     if (![GridUtils isCell:cell equalToCell:lastCell]) {
+        
         [touchInfo setObject:@(cell.x) forKey:@"x"];
         [touchInfo setObject:@(cell.y) forKey:@"y"];
         CFDictionaryReplaceValue(self.currentChannelsByTouches, (__bridge void *)(touch), (__bridge void *)(touchInfo));
         
+        [self afterTickForCell:lastCell channel:channel];
         [self processFragmentsForCell:cell channel:channel];
     }
 }
@@ -118,12 +129,28 @@
     AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES];
     [MainSynth receiveEvents:@[audioStop] ignoreAudioPad:YES];
     
+    // get grid cell of touch
+    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+    GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
+    [self afterTickForCell:cell channel:channel];
+    
     CFDictionaryRemoveValue(self.currentChannelsByTouches, (__bridge void *)touch);
 }
 
 - (void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    [super ccTouchEnded:touch withEvent:event];
+    [super ccTouchCancelled:touch withEvent:event];
+    
+    // get channel
+    NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.currentChannelsByTouches, (__bridge void *)touch);
+    NSString *channel = [touchInfo objectForKey:@"channel"];
+    AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES];
+    [MainSynth receiveEvents:@[audioStop] ignoreAudioPad:YES];
+    
+    // get grid cell of touch
+    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+    GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
+    [self afterTickForCell:cell channel:channel];
     
     CFDictionaryRemoveValue(self.currentChannelsByTouches, (__bridge void *)touch);
 }

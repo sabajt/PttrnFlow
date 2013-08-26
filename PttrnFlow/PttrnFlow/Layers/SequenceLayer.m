@@ -203,7 +203,7 @@
             for (int r = 0; r <= row; r++) {
                 GridCoord cell = GridCoordMake(padChunkOrigin.x + c, padChunkOrigin.y + r);
                 AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
-                [self.tickDispatcher registerTickResponder:audioPad];
+                [self.tickDispatcher registerTickResponderCellNode:audioPad];
                 [self.audioTouchDispatcher addResponder:audioPad];
                 [self addChild:audioPad];
             }
@@ -214,7 +214,7 @@
     NSMutableArray *tones = [tiledMap objectsWithName:kTLDObjectTone groupName:kTLDGroupTickResponders];
     for (NSMutableDictionary *tone in tones) {
         Tone *toneNode = [[Tone alloc] initWithTone:tone tiledMap:tiledMap];
-        [self.tickDispatcher registerTickResponder:toneNode];
+        [self.tickDispatcher registerTickResponderCellNode:toneNode];
         [self.audioTouchDispatcher addResponder:toneNode];
         [self addChild:toneNode];
     }
@@ -223,7 +223,7 @@
     NSMutableArray *drums = [tiledMap objectsWithName:kTLDObjectDrum groupName:kTLDGroupTickResponders];
     for (NSMutableDictionary *drum in drums) {
         Drum *drumNode = [[Drum alloc] initWithDrum:drum tiledMap:tiledMap];
-        [self.tickDispatcher registerTickResponder:drumNode];
+        [self.tickDispatcher registerTickResponderCellNode:drumNode];
         [self.audioTouchDispatcher addResponder:drumNode];
         [self addChild:drumNode];
     }
@@ -330,12 +330,12 @@
         
         if (itemType == kDragItemArrow) {
             Arrow *arrow = [[Arrow alloc] initWithCell:self.lastDraggedItemCell facing:kDirectionUp dragItemDelegate:self];
-            [self.tickDispatcher registerTickResponder:arrow];
+            [self.tickDispatcher registerTickResponderCellNode:arrow];
             [self addChild:arrow];
         }
         else if (itemType == kDragItemWarp) {
             Warp *warp = [[Warp alloc] initWithDragItemDelegate:self cell:self.lastDraggedItemCell];
-            [self.tickDispatcher registerTickResponder:warp];
+            [self.tickDispatcher registerTickResponderCellNode:warp];
             [self addChild:warp];
         }
         

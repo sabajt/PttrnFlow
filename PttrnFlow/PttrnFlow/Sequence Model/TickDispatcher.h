@@ -35,7 +35,7 @@ FOUNDATION_EXPORT CGFloat const kTickInterval;
 
 // setup
 - (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap;
-- (void)registerTickResponder:(id<TickResponder>)responder;
+- (void)registerTickResponderCellNode:(id<TickResponder>)responder;
 
 // control
 - (void)start;

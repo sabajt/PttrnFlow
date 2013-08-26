@@ -101,9 +101,10 @@ CGFloat const kTickInterval = 0.12;
     }
 }
 
-- (void)registerTickResponder:(id<TickResponder>)responder
+- (void)registerTickResponderCellNode:(id<TickResponder>)responder
 {
     NSAssert([responder conformsToProtocol:@protocol(TickResponder)], @"registered tick responders much conform to TickResponder protocol");
+    NSAssert([responder isKindOfClass:[CellNode class]], @"registered tick responders for TickDispatcher must be CellNode");
     [self.responders addObject:responder];
 }
 
@@ -188,11 +189,33 @@ CGFloat const kTickInterval = 0.12;
 // moves all tickers along the grid
 - (void)tick:(ccTime)dt
 {
-    // handle 'after tick'
-    for (id<TickResponder> responder in self.lastTickedResponders) {
-        [responder afterTick:kBPM];
+    // find out what 'beat; we are on (0, 1, 2, 3)
+    int sub = (self.currentTick % 4);
+
+    // figure out which responders need an after tick / removal based on decay value (given by channel speed when they were ticked)
+    NSMutableArray *removeResponders = [NSMutableArray array];
+    for (CellNode<TickResponder> *responder in self.lastTickedResponders) {
+        if (sub == 2) {
+            if (([responder.decaySpeed isEqualToString:@"4X"] || [responder.decaySpeed isEqualToString:@"2X"])) {
+                [responder afterTick:kBPM];
+                [removeResponders addObject:responder];
+            }
+        }
+        else if (sub == 1 || sub == 3) {
+            if (([responder.decaySpeed isEqualToString:@"4X"])) {
+                [responder afterTick:kBPM];
+                [removeResponders addObject:responder];
+            }
+        }
+        // sub == 0 is start of new tick
+        else if (sub == 0) {
+            if ([responder.decaySpeed isEqualToString:@"1X"]) {
+                [responder afterTick:kBPM];
+                [removeResponders addObject:responder];
+            }
+        }
     }
-    [self.lastTickedResponders removeAllObjects];
+    [self.lastTickedResponders removeObjectsInArray:removeResponders];
     
     // stop and check for winning conditions if we have reached the tick limit
     if (self.currentTick >= self.solutionSequence.sequence.count) {
@@ -212,10 +235,7 @@ CGFloat const kTickInterval = 0.12;
         if (tickChannel.hasStopped) {
             continue;
         }
-        
-        // skip if we are on a subtick and are not at a fast enough speed
-        int sub = (self.currentTick % 4);
-        NSLog(@"sub: %i", sub);
+
         if (sub == 2) {
             if (!([tickChannel.speed isEqualToString:@"4X"] || [tickChannel.speed isEqualToString:@"2X"])) {
                 continue;
@@ -228,12 +248,15 @@ CGFloat const kTickInterval = 0.12;
         }
         
         // tick and collect event fragments for all responders at current cell
+        NSMutableArray *currentLastTickedResponders = [NSMutableArray array];
         NSMutableArray *fragments = [NSMutableArray array];
         for (id<TickResponder> responder in self.responders) {
             if ([GridUtils isCell:[responder responderCell] equalToCell:tickChannel.currentCell]) {
                 NSArray *responderFragmnets = [responder tick:kBPM];
                 [fragments addObjectsFromArray:responderFragmnets];
-                [self.lastTickedResponders addObject:responder];
+                
+                // remember last responders
+                [currentLastTickedResponders addObject:responder];
             }
         }
         
@@ -257,6 +280,13 @@ CGFloat const kTickInterval = 0.12;
         
         // tick events may affect spacial / game logic of tick channels
         [tickChannel update:events];
+        
+        // our speed will now be updated, so give current last ticked responders correct decay
+        for (CellNode *node in self.lastTickedResponders) {
+            node.decaySpeed = tickChannel.speed;
+        }
+        [self.lastTickedResponders addObjectsFromArray:currentLastTickedResponders];
+        
         
         // tick events collected in combined events will also be sent to pd synth to create sound
         [combinedEvents addObjectsFromArray:events];
