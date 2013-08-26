@@ -43,54 +43,23 @@ static NSString *const kSynthEvent = @"synthEvent";
     if ((events == nil) || (events.count < 1)) {
         NSLog(@"warning: no events sent to synth");
         return;
-    }    
+    }
+    
+    // clearing blocks input for various pd components / channels unless we recieve an event for it below
     [PdBase sendBangToReceiver:kClear];
     
+    // send events (setup information) in
     for (TickEvent *event in events) {
         
         if ([event isKindOfClass:[SynthEvent class]]) {
-            
             SynthEvent *synthEvent = (SynthEvent *)event;
-            NSLog(@"synth type: %@, midi: %@, channel: %@", synthEvent.synthType, synthEvent.midiValue, synthEvent.channel);
-            
-            NSNumber *midiVal = [NSNumber numberWithInt:[synthEvent.midiValue intValue]];
+            NSNumber *midiValue = [NSNumber numberWithInt:[synthEvent.midiValue intValue]];
             NSNumber *channel = [NSNumber numberWithInt:[synthEvent.channel intValue]];
-            
-            NSLog(@"pd midi val: %@, pd channel: %@", midiVal, channel);
-            
-            int error = [PdBase sendList:@[synthEvent.synthType, midiVal, channel] toReceiver:kSynthEvent];
-            
-            NSLog(@"error: %i", error);
-            
-            
-//            [PdBase sendList:@[[NSNumber numberWithInt:[synthEvent.channel intValue]],
-//                               [NSNumber numberWithInt:[synthEvent.midiValue intValue]],
-//                               synthEvent.synthType ]
-//                  toReceiver:kSynthEvent];
-
+            [PdBase sendList:@[synthEvent.synthType, midiValue, channel] toReceiver:kSynthEvent];
         }
-        
-        
-        
-//        if ([event isEqualToString:kExitEvent]) {
-//            [PdBase sendBangToReceiver:kActivateNoise];
-//        }
-//        
-//        if ([MainSynth isValidMidiValue:event]) {
-//            [PdBase sendBangToReceiver:kActivateTone];
-//            [PdBase sendFloat:[event intValue] toReceiver:kMidiValue];
-//        }
-//        
-//        if ([MainSynth isValidDrumPattern:event]) {
-//            [PdBase sendSymbol:event toReceiver:kSelectDrum];
-//            [PdBase sendBangToReceiver:kActiviateDrum];
-//        }
-//        
-////        if ([TickDispatcher isArrowEvent:event]) {
-////            [PdBase sendBangToReceiver:kActivateNoise];
-////        }
     }
     
+    // play the synth with everything setup the way we want
     [PdBase sendBangToReceiver:kTrigger];
 }
 
