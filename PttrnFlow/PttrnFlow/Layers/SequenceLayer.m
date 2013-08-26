@@ -174,7 +174,7 @@
         [self addChild:self.audioTouchDispatcher];
         
         // create puzzle objects
-//        [self createPuzzleObjects:tiledMap];
+        [self createPuzzleObjects:tiledMap];
 
         // find optimal scale and position
         CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
@@ -192,6 +192,7 @@
     for (NSMutableDictionary *tone in tones) {
         Tone *toneNode = [[Tone alloc] initWithTone:tone tiledMap:tiledMap];
         [self.tickDispatcher registerTickResponder:toneNode];
+        [self.audioTouchDispatcher addResponder:toneNode];
         [self addChild:toneNode];
     }
     
@@ -200,6 +201,7 @@
     for (NSMutableDictionary *drum in drums) {
         Drum *drumNode = [[Drum alloc] initWithDrum:drum tiledMap:tiledMap];
         [self.tickDispatcher registerTickResponder:drumNode];
+        [self.audioTouchDispatcher addResponder:drumNode];
         [self addChild:drumNode];
     }
     

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="4" height="4" tilewidth="200" tileheight="200">
  <tileset firstgid="1" name="pipeTilesetBase1" tilewidth="200" tileheight="200" spacing="1" margin="1">
-  <image source="PttrnFlow/PttrnFlow/PttrnFlow/Resources/maps/pipeTilesetBase1.png" width="1609" height="805"/>
+  <image source="pipeTilesetBase1.png" width="1609" height="805"/>
  </tileset>
  <layer name="Tile Layer 1" width="4" height="4">
   <data encoding="base64" compression="zlib">
@@ -9,112 +9,72 @@
   </data>
  </layer>
  <objectgroup name="Tick Responders" width="4" height="4">
-  <object name="arrow" x="216" y="284" width="83" height="83">
-   <properties>
-    <property name="direction" value="right"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object name="drum" x="449" y="664" width="66" height="64">
-   <properties>
-    <property name="pattern" value="d2"/>
-   </properties>
-  </object>
-  <object name="sequence" x="79" y="37" width="295" height="36">
-   <properties>
-    <property name="events" value="48,d1;52,d2;48,d1;52,d2"/>
-   </properties>
-  </object>
-  <object name="entry" x="235" y="222" width="125" height="121">
+  <object name="entry" x="14" y="26" width="125" height="121">
    <properties>
     <property name="channel" value="1"/>
     <property name="direction" value="right"/>
    </properties>
    <ellipse/>
   </object>
-  <object name="drum" x="279" y="661" width="66" height="64">
-   <properties>
-    <property name="pattern" value="d1"/>
-   </properties>
-  </object>
-  <object name="tone" x="452" y="268" width="66" height="64">
+  <object name="tone" x="317" y="714" width="66" height="64">
    <properties>
     <property name="midiValue" value="52"/>
    </properties>
   </object>
-  <object name="arrow" x="696" y="233" width="83" height="83">
+  <object name="tone" x="311" y="118" width="66" height="64">
    <properties>
-    <property name="direction" value="left"/>
+    <property name="midiValue" value="52"/>
    </properties>
-   <ellipse/>
   </object>
-  <object name="arrow" x="454" y="679" width="83" height="83">
+  <object name="tone" x="521" y="322" width="66" height="64">
    <properties>
-    <property name="direction" value="right"/>
+    <property name="midiValue" value="52"/>
    </properties>
-   <ellipse/>
   </object>
-  <object name="tone" x="260" y="268" width="66" height="64">
+  <object name="tone" x="113" y="118" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="50"/>
+   </properties>
+  </object>
+  <object name="tone" x="312" y="317" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="54"/>
+   </properties>
+  </object>
+  <object name="tone" x="711" y="122" width="66" height="64">
    <properties>
     <property name="midiValue" value="48"/>
    </properties>
   </object>
-  <object name="tone" x="680" y="276" width="66" height="64">
+  <object name="tone" x="508" y="116" width="66" height="64">
    <properties>
     <property name="midiValue" value="48"/>
    </properties>
   </object>
-  <object name="arrow" x="686" y="682" width="83" height="83">
+  <object name="tone" x="516" y="506" width="66" height="64">
    <properties>
-    <property name="direction" value="left"/>
+    <property name="midiValue" value="56"/>
    </properties>
-   <ellipse/>
   </object>
-  <object name="entry" x="208" y="628" width="125" height="121">
-   <properties>
-    <property name="channel" value="2"/>
-    <property name="direction" value="right"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object name="tone" x="458" y="89" width="66" height="64">
+  <object name="tone" x="719" y="320" width="66" height="64">
    <properties>
     <property name="midiValue" value="52"/>
    </properties>
   </object>
-  <object name="tone" x="671" y="89" width="66" height="64">
+  <object name="tone" x="120" y="713" width="66" height="64">
    <properties>
     <property name="midiValue" value="52"/>
    </properties>
   </object>
-  <object name="arrow" x="646" y="49" width="83" height="83">
+  <object name="tone" x="704" y="718" width="66" height="64">
    <properties>
-    <property name="direction" value="down"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object name="arrow" x="427" y="53" width="83" height="83">
-   <properties>
-    <property name="direction" value="right"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object name="arrow" x="476" y="289" width="83" height="83">
-   <properties>
-    <property name="direction" value="up"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object name="drum" x="656" y="665" width="66" height="64">
-   <properties>
-    <property name="pattern" value="d2"/>
+    <property name="midiValue" value="52"/>
    </properties>
   </object>
-  <object name="arrow" x="232" y="673" width="83" height="83">
+  <object name="tone" x="515" y="718" width="66" height="64">
    <properties>
-    <property name="direction" value="right"/>
+    <property name="midiValue" value="58"/>
    </properties>
-   <ellipse/>
   </object>
  </objectgroup>
 </map>

@@ -191,7 +191,8 @@ CGFloat const kTickInterval = 0.5;
         NSMutableArray *fragments = [NSMutableArray array];
         for (id<TickResponder> responder in self.responders) {
             if ([GridUtils isCell:[responder responderCell] equalToCell:tickChannel.currentCell]) {
-                [fragments addObject:[responder tick:kBPM]];
+                NSArray *responderFragmnets = [responder tick:kBPM];
+                [fragments addObjectsFromArray:responderFragmnets];
                 [self.lastTickedResponders addObject:responder];
             }
         }

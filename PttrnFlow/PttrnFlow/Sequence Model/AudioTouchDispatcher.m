@@ -48,7 +48,8 @@
     NSMutableArray *fragments = [NSMutableArray array];
     for (id<TickResponder> responder in self.responders) {
         if ([GridUtils isCell:[responder responderCell] equalToCell:cell]) {
-            [fragments addObject:[responder tick:kBPM]];
+            NSArray *responderFragmnets = [responder tick:kBPM];
+            [fragments addObjectsFromArray:responderFragmnets];
         }
     }
     

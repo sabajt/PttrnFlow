@@ -56,8 +56,6 @@
             }
         }
         
-        NSLog(@"event sequence: %@", tempSequence);
-        
         self.sequence = [NSArray arrayWithArray:tempSequence];
     }
     return self;

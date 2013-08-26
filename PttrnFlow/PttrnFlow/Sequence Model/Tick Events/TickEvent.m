@@ -42,6 +42,9 @@ NSString *const kChannelNone = @"ChannelNone";
 
 - (BOOL)isSampleName
 {
+    if (self.length < @"sample".length) {
+        return NO;
+    }
     return [[self substringToIndex:@"sample".length - 1] isEqualToString:@"sample"];
 }
 
