@@ -14,6 +14,8 @@
 #import "SynthEvent.h"
 #import "AudioStopEvent.h"
 #import "AudioPadEvent.h"
+#import "ExitEvent.h"
+#import "SampleEvent.h"
 
 static NSString *const kActivateNoise = @"activateNoise";
 static NSString *const kActiviateDrum = @"activateDrum";
@@ -65,10 +67,28 @@ static NSString *const kAudioStop = @"audioStop";
             NSNumber *channel = [NSNumber numberWithInt:[synth.channel intValue]];
             [PdBase sendList:@[synth.synthType, midiValue, channel] toReceiver:kSynthEvent];
         }
+        if ([event isKindOfClass:[SampleEvent class]]) {
+            SampleEvent *sample = (SampleEvent *)event;
+            [PdBase sendSymbol:sample.fileName toReceiver:kSelectDrum];
+            [PdBase sendBangToReceiver:kActiviateDrum];
+        }
         
         if ([event isKindOfClass:[AudioStopEvent class]]) {
             AudioStopEvent *audioStop = (AudioStopEvent *)event;
             [PdBase sendFloat:[audioStop.channel floatValue] toReceiver:kAudioStop];
+        }
+        
+        if ([event isKindOfClass:[ExitEvent class]]) {
+            // first stop audio
+            AudioStopEvent *audioStop = (AudioStopEvent *)event;
+            [PdBase sendFloat:[audioStop.channel floatValue] toReceiver:kAudioStop];
+            
+            // noise for exit event (currently channel independendant)
+            ExitEvent *exitEvent = (ExitEvent *)exitEvent;
+            [PdBase sendBangToReceiver:kActivateNoise];
+            
+            // also set onAudioPad so we'll trigger these events
+            onAudioPad = YES;
         }
     }
     

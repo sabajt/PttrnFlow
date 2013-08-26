@@ -47,7 +47,7 @@ NSString *const kChannelNone = @"ChannelNone";
     if (self.length < @"sample".length) {
         return NO;
     }
-    return [[self substringToIndex:@"sample".length - 1] isEqualToString:@"sample"];
+    return [[self substringToIndex:@"sample".length] isEqualToString:@"sample"];
 }
 
 - (BOOL)isDirection

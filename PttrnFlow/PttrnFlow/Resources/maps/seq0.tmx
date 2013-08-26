@@ -11,14 +11,14 @@
  <objectgroup name="Tick Responders" width="4" height="4">
   <object name="entry" x="68" y="71" width="125" height="121">
    <properties>
-    <property name="channel" value="1"/>
+    <property name="channel" value="0"/>
     <property name="direction" value="right"/>
    </properties>
    <ellipse/>
   </object>
-  <object name="tone" x="317" y="714" width="66" height="64">
+  <object name="drum" x="317" y="714" width="66" height="64">
    <properties>
-    <property name="midiValue" value="53"/>
+    <property name="pattern" value="sample_d2"/>
    </properties>
   </object>
   <object name="tone" x="521" y="322" width="66" height="64">
@@ -41,24 +41,37 @@
     <property name="midiValue" value="54"/>
    </properties>
   </object>
-  <object name="tone" x="120" y="713" width="66" height="64">
+  <object name="drum" x="120" y="713" width="66" height="64">
    <properties>
-    <property name="midiValue" value="52"/>
+    <property name="pattern" value="sample_d1"/>
    </properties>
   </object>
-  <object name="tone" x="704" y="718" width="66" height="64">
+  <object name="drum" x="704" y="718" width="66" height="64">
    <properties>
-    <property name="midiValue" value="54"/>
+    <property name="pattern" value="sample_d4"/>
    </properties>
   </object>
-  <object name="tone" x="515" y="718" width="66" height="64">
+  <object name="drum" x="515" y="718" width="66" height="64">
    <properties>
-    <property name="midiValue" value="54"/>
+    <property name="pattern" value="sample_d3"/>
    </properties>
   </object>
   <object name="audio pad" x="13" y="629" width="761" height="154"/>
   <object name="audio pad" x="207" y="234" width="565" height="140"/>
   <object name="audio pad" x="19" y="25" width="761" height="154"/>
-  <object name="audio pad" x="411" y="416" width="175" height="178"/>
+  <object name="entry" x="27" y="654" width="125" height="121">
+   <properties>
+    <property name="channel" value="1"/>
+    <property name="direction" value="right"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object name="entry" x="646" y="248" width="125" height="121">
+   <properties>
+    <property name="channel" value="2"/>
+    <property name="direction" value="left"/>
+   </properties>
+   <ellipse/>
+  </object>
  </objectgroup>
 </map>

@@ -39,25 +39,25 @@
 
 - (NSString *)imageNameForPattern:(NSString *)pattern on:(BOOL)on
 {
-    if ([pattern isEqualToString:@"d1"]) {
+    if ([pattern isEqualToString:@"sample_d1"]) {
         if (on) {
             return kImageDrum1_on;
         }
         return kImageDrum1;
     }
-    else if ([pattern isEqualToString:@"d2"]) {
+    else if ([pattern isEqualToString:@"sample_d2"]) {
         if (on) {
             return kImageDrum2_on;
         }
         return kImageDrum2;
     }
-    else if ([pattern isEqualToString:@"d3"]) {
+    else if ([pattern isEqualToString:@"sample_d3"]) {
         if (on) {
             return kImageDrum3_on;
         }
         return kImageDrum3;
     }
-    else if ([pattern isEqualToString:@"d4"]) {
+    else if ([pattern isEqualToString:@"sample_d4"]) {
         if (on) {
             return kImageDrum4_on;
         }
@@ -97,13 +97,12 @@
     [self deselect];
 }
 
-
 #pragma mark - Tick Responder
 
-- (NSString *)tick:(NSInteger)bpm
+- (NSArray *)tick:(NSInteger)bpm
 {
     [SpriteUtils switchImageForSprite:self.sprite textureKey:[self imageNameForPattern:self.pattern on:YES]];
-    return self.pattern;
+    return @[self.pattern];
 }
 
 - (void)afterTick:(NSInteger)bpm

@@ -230,10 +230,10 @@
 		16918DF9172CE6B000566A17 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16918DF4172CE66200566A17 /* libpd-ios.a */; };
 		169258871788896A00B90DFE /* SpritePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 169258861788896A00B90DFE /* SpritePicker.m */; };
 		1692D28D1781CF900058448B /* DragButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1692D28C1781CF900058448B /* DragButton.m */; };
-		1693C661177A0C9300FEB350 /* d1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C65F177A0C9300FEB350 /* d1.wav */; };
-		1693C662177A0C9300FEB350 /* d2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C660177A0C9300FEB350 /* d2.wav */; };
-		1693C665177A628300FEB350 /* d3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C663177A628200FEB350 /* d3.wav */; };
-		1693C666177A628300FEB350 /* d4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C664177A628200FEB350 /* d4.wav */; };
+		1693C661177A0C9300FEB350 /* sample_d1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C65F177A0C9300FEB350 /* sample_d1.wav */; };
+		1693C662177A0C9300FEB350 /* sample_d2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C660177A0C9300FEB350 /* sample_d2.wav */; };
+		1693C665177A628300FEB350 /* sample_d3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C663177A628200FEB350 /* sample_d3.wav */; };
+		1693C666177A628300FEB350 /* sample_d4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C664177A628200FEB350 /* sample_d4.wav */; };
 		1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */; };
 		169F3D131770ADB2005F93B2 /* CCLayerPanZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 169F3D111770ADB2005F93B2 /* CCLayerPanZoom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		169F3D141770ADB2005F93B2 /* README-CCLayerPanZoom.md in Resources */ = {isa = PBXBuildFile; fileRef = 169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */; };
@@ -701,10 +701,10 @@
 		169258861788896A00B90DFE /* SpritePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpritePicker.m; sourceTree = "<group>"; };
 		1692D28B1781CF900058448B /* DragButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragButton.h; sourceTree = "<group>"; };
 		1692D28C1781CF900058448B /* DragButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragButton.m; sourceTree = "<group>"; };
-		1693C65F177A0C9300FEB350 /* d1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = d1.wav; sourceTree = "<group>"; };
-		1693C660177A0C9300FEB350 /* d2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = d2.wav; sourceTree = "<group>"; };
-		1693C663177A628200FEB350 /* d3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = d3.wav; sourceTree = "<group>"; };
-		1693C664177A628200FEB350 /* d4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = d4.wav; sourceTree = "<group>"; };
+		1693C65F177A0C9300FEB350 /* sample_d1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample_d1.wav; sourceTree = "<group>"; };
+		1693C660177A0C9300FEB350 /* sample_d2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample_d2.wav; sourceTree = "<group>"; };
+		1693C663177A628200FEB350 /* sample_d3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample_d3.wav; sourceTree = "<group>"; };
+		1693C664177A628200FEB350 /* sample_d4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample_d4.wav; sourceTree = "<group>"; };
 		1693C66A177B5C7E00FEB350 /* NSArray+CompareStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CompareStrings.h"; sourceTree = "<group>"; };
 		1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CompareStrings.m"; sourceTree = "<group>"; };
 		169F3D101770ADB2005F93B2 /* CCLayerPanZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLayerPanZoom.h; sourceTree = "<group>"; };
@@ -1419,10 +1419,10 @@
 			children = (
 				33F8A31017B9F104003B33E5 /* pf-synth.pd */,
 				33F8A31117B9F104003B33E5 /* pf-main.pd */,
-				1693C663177A628200FEB350 /* d3.wav */,
-				1693C664177A628200FEB350 /* d4.wav */,
-				1693C65F177A0C9300FEB350 /* d1.wav */,
-				1693C660177A0C9300FEB350 /* d2.wav */,
+				1693C663177A628200FEB350 /* sample_d3.wav */,
+				1693C664177A628200FEB350 /* sample_d4.wav */,
+				1693C65F177A0C9300FEB350 /* sample_d1.wav */,
+				1693C660177A0C9300FEB350 /* sample_d2.wav */,
 			);
 			name = patches;
 			path = Resources/patches;
@@ -1772,10 +1772,10 @@
 				16A942E51778C5A50052D5BD /* drum4-ipad.png in Resources */,
 				16A942E61778C5A50052D5BD /* drum4on-ipad.png in Resources */,
 				334E725E17961FCF00EFECC1 /* warp-ipadhd.png in Resources */,
-				1693C661177A0C9300FEB350 /* d1.wav in Resources */,
-				1693C662177A0C9300FEB350 /* d2.wav in Resources */,
-				1693C665177A628300FEB350 /* d3.wav in Resources */,
-				1693C666177A628300FEB350 /* d4.wav in Resources */,
+				1693C661177A0C9300FEB350 /* sample_d1.wav in Resources */,
+				1693C662177A0C9300FEB350 /* sample_d2.wav in Resources */,
+				1693C665177A628300FEB350 /* sample_d3.wav in Resources */,
+				1693C666177A628300FEB350 /* sample_d4.wav in Resources */,
 				334E7264179625F400EFECC1 /* itemButtonWarpOn-ipadhd.png in Resources */,
 				163091F8177F7B02003155BB /* itemButtonArrowOff-ipadhd.png in Resources */,
 				163091F9177F7B02003155BB /* itemButtonArrowOn-ipadhd.png in Resources */,

@@ -264,7 +264,6 @@ CGFloat const kTickInterval = 0.12;
         // advance cell
         tickChannel.currentCell = [tickChannel nextCell];
     }
-    NSLog(@"combined events: %@", combinedEvents);
     
 //    // stop if we have no events from any channel
 //    if (combinedEvents.count == 0) {
@@ -288,10 +287,6 @@ CGFloat const kTickInterval = 0.12;
     // hand over events to synth class which talks to PD patch
     [MainSynth receiveEvents:combinedEvents ignoreAudioPad:NO];
     
-//    // advance cells, tick counter
-//    for (TickChannel *tickChannel in self.channels) {
-//        tickChannel.currentCell = [tickChannel nextCell];
-//    }
     // advance tick counter (subs)
     self.currentTick++;
 }
