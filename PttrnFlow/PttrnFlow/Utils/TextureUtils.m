@@ -60,6 +60,9 @@ NSString *const kImageArrowButton_on = @"itemButtonArrowOn.png";
 NSString *const kImageWarpButton_off = @"itemButtonWarpOff.png";
 NSString *const kImageWarpButton_on = @"itemButtonWarpOn.png";
 
+NSString *const kImageAudioPad= @"audio-pad.png";
+
+
 
 // don't forget to load the images
 + (void)loadTextures
@@ -112,6 +115,7 @@ NSString *const kImageWarpButton_on = @"itemButtonWarpOn.png";
     [[CCTextureCache sharedTextureCache] addImage:kImageWarpDefault];
     [[CCTextureCache sharedTextureCache] addImage:kImageWarpButton_off];
     [[CCTextureCache sharedTextureCache] addImage:kImageWarpButton_on];
+    [[CCTextureCache sharedTextureCache] addImage:kImageAudioPad];
 }
 
 // generate a unique texture key using components of primative image size and color

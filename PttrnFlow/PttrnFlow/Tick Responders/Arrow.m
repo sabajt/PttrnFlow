@@ -90,8 +90,6 @@
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     if ([super ccTouchBegan:touch withEvent:event]) {
-        
-        [MainSynth receiveEvents:@[event]];
         [self rotateClockwise];
         return YES;
     }
@@ -102,6 +100,7 @@
 
 - (NSArray *)tick:(NSInteger)bpm
 {
+    // TODO: FIX MEEEE
     return @[[GridUtils directionStringForDirection:self.facing]];
 }
 

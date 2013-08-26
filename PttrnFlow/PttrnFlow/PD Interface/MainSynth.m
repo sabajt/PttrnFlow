@@ -13,6 +13,7 @@
 #import "TickEvent.h"
 #import "SynthEvent.h"
 #import "AudioStopEvent.h"
+#import "AudioPadEvent.h"
 
 static NSString *const kActivateNoise = @"activateNoise";
 static NSString *const kActiviateDrum = @"activateDrum";
@@ -38,7 +39,7 @@ static NSString *const kAudioStop = @"audioStop";
 
 #pragma mark - SoundEventReveiver
 
-+ (void)receiveEvents:(NSArray *)events
++ (void)receiveEvents:(NSArray *)events ignoreAudioPad:(BOOL)ignoreAudioPad
 {
     if ((events == nil) || (events.count < 1)) {
         NSLog(@"no events sent to synth");
@@ -48,8 +49,15 @@ static NSString *const kAudioStop = @"audioStop";
     // clearing blocks input for various pd components / channels unless we recieve an event for it below
     [PdBase sendBangToReceiver:kClear];
     
+    // audio pad is the 'island surface' where blocks live.  we ignore this for playing solution seq
+    BOOL onAudioPad = ignoreAudioPad;
+    
     // send events (setup information) in
     for (TickEvent *event in events) {
+        
+        if ([event isKindOfClass:[AudioPadEvent class]]) {
+            onAudioPad = YES;
+        }
         
         if ([event isKindOfClass:[SynthEvent class]]) {
             SynthEvent *synth = (SynthEvent *)event;
@@ -64,8 +72,10 @@ static NSString *const kAudioStop = @"audioStop";
         }
     }
     
-    // play the synth with everything setup the way we want
-    [PdBase sendBangToReceiver:kTrigger];
+    // play the synth with everything setup the way we want if we are on an audio pad
+    if (onAudioPad) {
+        [PdBase sendBangToReceiver:kTrigger];
+    }
 }
 
 @end

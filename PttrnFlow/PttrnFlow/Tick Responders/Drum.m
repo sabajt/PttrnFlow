@@ -82,15 +82,15 @@
 
 #pragma mark - CCTargetedTouchDelegate
 
-- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    if ([super ccTouchBegan:touch withEvent:event]) {
-        NSString *event = [self tick:kBPM];
-        [MainSynth receiveEvents:@[event]];
-        return YES;
-    }
-    return NO;
-}
+//- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+//{
+//    if ([super ccTouchBegan:touch withEvent:event]) {
+//        NSString *event = [self tick:kBPM];
+//        [MainSynth receiveEvents:@[event]];
+//        return YES;
+//    }
+//    return NO;
+//}
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {

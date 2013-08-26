@@ -19,6 +19,8 @@ FOUNDATION_EXPORT NSString *const kTLDObjectEntry;
 FOUNDATION_EXPORT NSString *const kTLDObjectTone;
 FOUNDATION_EXPORT NSString *const kTLDObjectDrum;
 FOUNDATION_EXPORT NSString *const kTLDObjectArrow;
+FOUNDATION_EXPORT NSString *const kTLDObjectAudioPad;
+
 
 // tiled object properties
 FOUNDATION_EXPORT NSString *const kTLDPropertyMidiValue;

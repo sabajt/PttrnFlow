@@ -55,7 +55,7 @@
         [self addChild:menu];
         
         // ticker control
-        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:tickDispatcher.sequenceLength distanceInterval:kTickScrubberDistanceInterval];
+        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:(tickDispatcher.sequenceLength / 4) distanceInterval:kTickScrubberDistanceInterval];
         tickerControl.delegate = tickDispatcher;
         tickerControl.position = ccp(matchButton.position.x + matchButton.contentSize.width, self.contentSize.height - tickerControl.contentSize.height);
         [self addChild:tickerControl];

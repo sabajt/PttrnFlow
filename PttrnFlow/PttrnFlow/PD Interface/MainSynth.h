@@ -10,7 +10,7 @@
 
 @interface MainSynth : NSObject
 
-+ (void)receiveEvents:(NSArray *)events;
++ (void)receiveEvents:(NSArray *)events ignoreAudioPad:(BOOL)ignoreAudioPad;
 + (void)mute:(BOOL)mute;
 
 @end

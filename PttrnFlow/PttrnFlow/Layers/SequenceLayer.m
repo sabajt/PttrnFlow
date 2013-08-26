@@ -31,6 +31,7 @@
 #import "Warp.h"
 #import "WaveTable.h"
 #import "AudioTouchDispatcher.h"
+#import "AudioPad.h"
 
 @interface SequenceLayer ()
 
@@ -187,6 +188,28 @@
 
 - (void)createPuzzleObjects:(CCTMXTiledMap *)tiledMap
 {
+    // audio pads
+    NSMutableArray *pads = [tiledMap objectsWithName:kTLDObjectAudioPad groupName:kTLDGroupTickResponders];
+    
+    for (NSMutableDictionary *pad in pads) {
+        
+        GridCoord padChunkOrigin = [tiledMap gridCoordForObject:pad];
+        NSNumber *width = [pad objectForKey:@"width"];
+        NSNumber *height = [pad objectForKey:@"height"];
+        int column = ([width intValue] / kSizeGridUnit);
+        int row = ([height intValue] / kSizeGridUnit);
+        
+        for (int c = 0; c <= column; c++) {
+            for (int r = 0; r <= row; r++) {
+                GridCoord cell = GridCoordMake(padChunkOrigin.x + c, padChunkOrigin.y + r);
+                AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
+                [self.tickDispatcher registerTickResponder:audioPad];
+                [self.audioTouchDispatcher addResponder:audioPad];
+                [self addChild:audioPad];
+            }
+        }
+    }
+    
     // tone blocks
     NSMutableArray *tones = [tiledMap objectsWithName:kTLDObjectTone groupName:kTLDGroupTickResponders];
     for (NSMutableDictionary *tone in tones) {
@@ -355,7 +378,7 @@
         // create the exit animation and send event to synth if we aren't touching a synth node
         if (![self.tickDispatcher isAnyTickResponderAtCell:cell]) {
             [self addChild:[SequenceLayer exitFader:cell]];
-            [MainSynth receiveEvents:@[kExitEvent]];
+//            [MainSynth receiveEvents:@[kExitEvent]];
         }
     }
 }

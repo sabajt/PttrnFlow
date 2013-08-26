@@ -12,6 +12,8 @@
 #import "SampleEvent.h"
 #import "DirectionEvent.h"
 #import "AudioStopEvent.h"
+#import "AudioPad.h"
+#import "AudioPadEvent.h"
 
 NSString *const kChannelNone = @"ChannelNone";
 
@@ -56,6 +58,11 @@ NSString *const kChannelNone = @"ChannelNone";
 - (BOOL)isAudioStop
 {
     return [self isEqualToString:@"audio_stop"];
+}
+
+- (BOOL)isAudioPad
+{
+    return [self isEqualToString:@"audio_pad"];
 }
 
 @end
@@ -185,6 +192,7 @@ NSString *const kChannelNone = @"ChannelNone";
     NSString *sampleName;
     NSString *direction;
     NSString *audioStop;
+    NSString *audioPad;
     
     for (NSString *f in fragments) {
         if ([f isMidiValue]) {
@@ -198,6 +206,12 @@ NSString *const kChannelNone = @"ChannelNone";
         }
         if ([f isDirection]) {
             direction = f;
+        }
+        if ([f isAudioStop]) {
+            audioStop = f;
+        }
+        if ([f isAudioPad]) {
+            audioPad = f;
         }
     }
     
@@ -229,6 +243,12 @@ NSString *const kChannelNone = @"ChannelNone";
         TickEvent *lastEvent = [lastLinkedEvents objectForKey:channel];
         AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES isLinkedEvent:YES lastLinkedEvent:lastEvent fragments:nil];
         [events addObject:audioStop];
+    }
+    
+    // audio pad events
+    if (audioPad != nil) {
+        AudioPadEvent *audioPad = [[AudioPadEvent alloc] initWithChannel:kChannelNone isAudioEvent:NO];
+        [events addObject:audioPad];
     }
     
     return [NSArray arrayWithArray:events];

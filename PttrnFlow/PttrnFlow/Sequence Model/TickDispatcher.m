@@ -135,8 +135,8 @@ CGFloat const kTickInterval = 0.12;
         return;
     }
     
-    NSArray *audioEvents = [self.solutionSequence.sequence objectAtIndex:index];
-    [MainSynth receiveEvents:audioEvents];
+    NSArray *events = [self.solutionSequence.sequence objectAtIndex:index];
+    [MainSynth receiveEvents:events ignoreAudioPad:YES];
 }
 
 // schedule the stored sequence we want to solve for from the top
@@ -242,8 +242,8 @@ CGFloat const kTickInterval = 0.12;
     // notify UI elements of our hits status
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationTickHit object:nil userInfo:@{kKeyHits : self.hits}];
 
-    // hand over audio events to synth class which talks to PD patch
-    [MainSynth receiveEvents:[combinedEvents audioEvents]];
+    // hand over events to synth class which talks to PD patch
+    [MainSynth receiveEvents:combinedEvents ignoreAudioPad:NO];
     
     // advance cells, tick counter
     for (TickChannel *tickChannel in self.channels) {

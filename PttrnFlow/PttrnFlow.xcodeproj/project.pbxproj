@@ -277,6 +277,9 @@
 		338EE1AA17A5DF35005E98B1 /* WaveTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1A917A5DF35005E98B1 /* WaveTable.m */; };
 		338EE1AE17A5EAFC005E98B1 /* PdArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1AD17A5EAFC005E98B1 /* PdArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */; };
+		33AF255717CB069700643CB2 /* AudioPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255617CB069700643CB2 /* AudioPad.m */; };
+		33AF255E17CB0B3F00643CB2 /* AudioPadEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255D17CB0B3F00643CB2 /* AudioPadEvent.m */; };
+		33AF256017CB158B00643CB2 /* audio-pad-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AF255F17CB158B00643CB2 /* audio-pad-ipadhd.png */; };
 		33B4F24717C6E104004D4C13 /* solution0.json in Resources */ = {isa = PBXBuildFile; fileRef = 33B4F24617C6E104004D4C13 /* solution0.json */; };
 		33B4F25B17C72600004D4C13 /* AudioStopEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25017C72600004D4C13 /* AudioStopEvent.m */; };
 		33B4F25C17C72600004D4C13 /* DirectionEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25217C72600004D4C13 /* DirectionEvent.m */; };
@@ -765,6 +768,11 @@
 		338EE1AD17A5EAFC005E98B1 /* PdArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdArray.m; sourceTree = "<group>"; };
 		338EE1B217A5F1D2005E98B1 /* NSArray+CompareNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CompareNumbers.h"; sourceTree = "<group>"; };
 		338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CompareNumbers.m"; sourceTree = "<group>"; };
+		33AF255517CB069700643CB2 /* AudioPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPad.h; sourceTree = "<group>"; };
+		33AF255617CB069700643CB2 /* AudioPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPad.m; sourceTree = "<group>"; };
+		33AF255C17CB0B3F00643CB2 /* AudioPadEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPadEvent.h; sourceTree = "<group>"; };
+		33AF255D17CB0B3F00643CB2 /* AudioPadEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPadEvent.m; sourceTree = "<group>"; };
+		33AF255F17CB158B00643CB2 /* audio-pad-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio-pad-ipadhd.png"; sourceTree = "<group>"; };
 		33B4F24617C6E104004D4C13 /* solution0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = solution0.json; sourceTree = "<group>"; };
 		33B4F24F17C72600004D4C13 /* AudioStopEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStopEvent.h; sourceTree = "<group>"; };
 		33B4F25017C72600004D4C13 /* AudioStopEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStopEvent.m; sourceTree = "<group>"; };
@@ -1290,6 +1298,7 @@
 		160B50D4173A27EA00BFC014 /* retina */ = {
 			isa = PBXGroup;
 			children = (
+				33AF255F17CB158B00643CB2 /* audio-pad-ipadhd.png */,
 				334E7261179625F400EFECC1 /* itemButtonWarpOff-ipadhd.png */,
 				334E7262179625F400EFECC1 /* itemButtonWarpOn-ipadhd.png */,
 				334E725D17961FCF00EFECC1 /* warp-ipadhd.png */,
@@ -1525,6 +1534,8 @@
 				16A942B11777A2260052D5BD /* Tone.m */,
 				334E7204179617F200EFECC1 /* Warp.h */,
 				334E7205179617F200EFECC1 /* Warp.m */,
+				33AF255517CB069700643CB2 /* AudioPad.h */,
+				33AF255617CB069700643CB2 /* AudioPad.m */,
 			);
 			path = "Tick Responders";
 			sourceTree = "<group>";
@@ -1569,6 +1580,8 @@
 				33B4F25417C72600004D4C13 /* ExitEvent.m */,
 				33B4F24F17C72600004D4C13 /* AudioStopEvent.h */,
 				33B4F25017C72600004D4C13 /* AudioStopEvent.m */,
+				33AF255C17CB0B3F00643CB2 /* AudioPadEvent.h */,
+				33AF255D17CB0B3F00643CB2 /* AudioPadEvent.m */,
 			);
 			path = "Tick Events";
 			sourceTree = "<group>";
@@ -1685,6 +1698,7 @@
 				160B50BF173A27D000BFC014 /* B-on-ipad.png in Resources */,
 				160B50C0173A27D000BFC014 /* Bflat-ipad.png in Resources */,
 				160B50C1173A27D000BFC014 /* Bflat-on-ipad.png in Resources */,
+				33AF256017CB158B00643CB2 /* audio-pad-ipadhd.png in Resources */,
 				160B50C2173A27D000BFC014 /* blank-ipad.png in Resources */,
 				334E7263179625F400EFECC1 /* itemButtonWarpOff-ipadhd.png in Resources */,
 				160B50C3173A27D000BFC014 /* blank-on-ipad.png in Resources */,
@@ -1809,6 +1823,7 @@
 				1608073016B437A800039339 /* ccGLStateCache.m in Sources */,
 				1608073316B437A800039339 /* CCGrabber.m in Sources */,
 				1608073616B437A800039339 /* CCGrid.m in Sources */,
+				33AF255E17CB0B3F00643CB2 /* AudioPadEvent.m in Sources */,
 				1608073916B437A800039339 /* CCLabelAtlas.m in Sources */,
 				1608073C16B437A800039339 /* CCLabelBMFont.m in Sources */,
 				1608073F16B437A800039339 /* CCLabelTTF.m in Sources */,
@@ -1833,6 +1848,7 @@
 				1608078416B437A900039339 /* CCSprite.m in Sources */,
 				1608078716B437A900039339 /* CCSpriteBatchNode.m in Sources */,
 				1608078A16B437A900039339 /* CCSpriteFrame.m in Sources */,
+				33AF255717CB069700643CB2 /* AudioPad.m in Sources */,
 				1608078D16B437A900039339 /* CCSpriteFrameCache.m in Sources */,
 				1608079016B437A900039339 /* CCTexture2D.m in Sources */,
 				1608079316B437A900039339 /* CCTextureAtlas.m in Sources */,

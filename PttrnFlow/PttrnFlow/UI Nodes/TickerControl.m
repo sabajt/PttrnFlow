@@ -13,7 +13,7 @@
 #import "CCNode+Touch.h"
 #import "TickDispatcher.h"
 
-CGFloat const kTickScrubberDistanceInterval = 20;
+CGFloat const kTickScrubberDistanceInterval = 40;
 
 static CGFloat const kTickerHeight = 16;
 static CGFloat const kTickerWidth = 8;
@@ -79,7 +79,7 @@ static CGFloat const kTickerControlHeight = 50;
     self.currentIndex = [self nearestIndex:touch];
     if ((self.currentIndex < self.numberOfTicks) && (self.currentIndex >= 0)) {
         [self positionThumb:self.currentIndex];
-        [self.delegate tickerMovedToIndex:self.currentIndex];
+        [self.delegate tickerMovedToIndex:(self.currentIndex * 4)];
     }
 }
 
@@ -90,8 +90,10 @@ static CGFloat const kTickerControlHeight = 50;
 
 - (void)handleAdvancedSequence:(NSNotification *)notification
 {
-    NSNumber *sequenceIndex = notification.userInfo[kKeySequenceIndex];
-    [self positionThumb:[sequenceIndex intValue]];
+    NSNumber *subIndex = notification.userInfo[kKeySequenceIndex];
+    self.currentIndex = ([subIndex intValue] / 4);
+    NSLog(@"current index: %i", self.currentIndex);
+    [self positionThumb:self.currentIndex];
 }
 
 #pragma mark CCNode SceneManagement

@@ -55,7 +55,7 @@
     
     // crunch fragments into events and send to pd
     NSArray *events = [TickEvent eventsFromFragments:fragments channel:channel lastLinkedEvents:nil];
-    [MainSynth receiveEvents:events];
+    [MainSynth receiveEvents:events ignoreAudioPad:NO];
     
     // send events to pd
 }
@@ -78,9 +78,6 @@
     CFDictionaryAddValue(self.currentChannelsByTouches, (__bridge void *)(touch), (__bridge void *)(mutableTouchInfo));
     
     [self processFragmentsForCell:cell channel:channel];
-    
-    NSLog(@"<)))))))) audio touch dispatcher TOUCH BEGAN : channel [ %@ ] : cell [ %i , %i ]", channel, cell.x, cell.y);
-    NSLog(@"\n\n");
     
     return YES;
 }
@@ -107,9 +104,6 @@
         CFDictionaryReplaceValue(self.currentChannelsByTouches, (__bridge void *)(touch), (__bridge void *)(touchInfo));
         
         [self processFragmentsForCell:cell channel:channel];
-        
-        NSLog(@"<)))))))) audio touch dispatcher TOUCH MOVED : channel [ %@ ] : cell [ %i , %i ]", channel, cell.x, cell.y);
-        NSLog(@"\n\n");
     }
 }
 

@@ -18,6 +18,7 @@ NSString *const kTLDObjectEntry = @"entry";
 NSString *const kTLDObjectTone = @"tone";
 NSString *const kTLDObjectDrum = @"drum";
 NSString *const kTLDObjectArrow = @"arrow";
+NSString *const kTLDObjectAudioPad = @"audio pad";
 
 // tiled object properties
 NSString *const kTLDPropertyMidiValue = @"midiValue";
