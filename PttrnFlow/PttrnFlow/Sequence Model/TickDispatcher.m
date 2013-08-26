@@ -213,6 +213,20 @@ CGFloat const kTickInterval = 0.12;
             continue;
         }
         
+        // skip if we are on a subtick and are not at a fast enough speed
+        int sub = (self.currentTick % 4);
+        NSLog(@"sub: %i", sub);
+        if (sub == 2) {
+            if (!([tickChannel.speed isEqualToString:@"4X"] || [tickChannel.speed isEqualToString:@"2X"])) {
+                continue;
+            }
+        }
+        else if (sub == 1 || sub == 3) {
+            if (!([tickChannel.speed isEqualToString:@"4X"])) {
+                continue;
+            }
+        }
+        
         // tick and collect event fragments for all responders at current cell
         NSMutableArray *fragments = [NSMutableArray array];
         for (id<TickResponder> responder in self.responders) {
@@ -232,7 +246,6 @@ CGFloat const kTickInterval = 0.12;
         for (TickEvent *event in events) {
             if (event.isLinkedEvent) {
                 [self.lastLinkedEvents setObject:event forKey:tickChannel.channel];
-                break;
             }
         }
         
@@ -247,13 +260,17 @@ CGFloat const kTickInterval = 0.12;
         
         // tick events collected in combined events will also be sent to pd synth to create sound
         [combinedEvents addObjectsFromArray:events];
+        
+        // advance cell
+        tickChannel.currentCell = [tickChannel nextCell];
     }
+    NSLog(@"combined events: %@", combinedEvents);
     
-    // stop if we have no events from any channel
-    if (combinedEvents.count == 0) {
-        [self stop];
-        return;
-    }
+//    // stop if we have no events from any channel
+//    if (combinedEvents.count == 0) {
+//        [self stop];
+//        return;
+//    }
     
     // check for a hit (collected audio events for this tick match solution events for this tick)
     if ([self.solutionSequence tick:self.currentTick doesMatchAudioEventsInGroup:combinedEvents]) {
@@ -271,10 +288,11 @@ CGFloat const kTickInterval = 0.12;
     // hand over events to synth class which talks to PD patch
     [MainSynth receiveEvents:combinedEvents ignoreAudioPad:NO];
     
-    // advance cells, tick counter
-    for (TickChannel *tickChannel in self.channels) {
-        tickChannel.currentCell = [tickChannel nextCell];
-    }
+//    // advance cells, tick counter
+//    for (TickChannel *tickChannel in self.channels) {
+//        tickChannel.currentCell = [tickChannel nextCell];
+//    }
+    // advance tick counter (subs)
     self.currentTick++;
 }
 

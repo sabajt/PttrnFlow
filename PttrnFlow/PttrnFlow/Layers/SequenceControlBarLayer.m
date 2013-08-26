@@ -61,7 +61,7 @@
         [self addChild:tickerControl];
         
         // tick hit chart
-        TickHitChart *hitChart = [[TickHitChart alloc] initWithNumberOfTicks:tickDispatcher.sequenceLength distanceInterval:kTickScrubberDistanceInterval];
+        TickHitChart *hitChart = [[TickHitChart alloc] initWithNumberOfTicks:tickDispatcher.sequenceLength distanceInterval:(kTickScrubberDistanceInterval / 4)];
         hitChart.position = ccp(tickerControl.position.x, tickerControl.position.y - hitChart.contentSize.height);
         [self addChild:hitChart];
         _hitChart = hitChart;

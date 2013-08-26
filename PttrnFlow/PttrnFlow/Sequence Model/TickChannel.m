@@ -22,6 +22,7 @@
         self.startingDirection = direction;
         self.startingCell = cell;
         self.hasStopped = NO;
+        self.speed = @"1X";
     }
     return self;
 }

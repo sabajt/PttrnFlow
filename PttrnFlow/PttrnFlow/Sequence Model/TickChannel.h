@@ -19,6 +19,7 @@
 @property (assign) GridCoord startingCell;
 @property (assign) GridCoord currentCell;
 @property (assign) BOOL hasStopped;
+@property (copy, nonatomic) NSString *speed;
 
 - (id)initWithChannel:(NSString *)channel startingDirection:(kDirection)direction startingCell:(GridCoord)cell;
 - (GridCoord)nextCell;

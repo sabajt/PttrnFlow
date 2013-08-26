@@ -96,14 +96,6 @@ static CGFloat const kTickerControlHeight = 50;
     [self positionThumb:self.currentIndex];
 }
 
-//#pragma mark Touch
-//
-//- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-//{
-//    [super ccTouchEnded:touch withEvent:event];
-//    [self.delegate tickerControlTouchUp];
-//}
-
 #pragma mark CCNode SceneManagement
 
 - (void)onExit
