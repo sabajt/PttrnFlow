@@ -55,6 +55,11 @@ static CGFloat const kHandleHeight = 40;
         selectedSprite = [SpriteUtils spriteWithTextureKey:kImageWarpButton_on];
         dragSprite = [SpriteUtils spriteWithTextureKey:kImageWarpDefault];
     }
+    else if (itemType == kDragItemAudioStop) {
+        defaultSprite = [SpriteUtils spriteWithTextureKey:kImageWarpButton_off];
+        selectedSprite = [SpriteUtils spriteWithTextureKey:kImageWarpButton_on];
+        dragSprite = [SpriteUtils spriteWithTextureKey:kImageWarpDefault];
+    }
     else {
         NSLog(@"warning: unsupported kDragItem type, enum %i", itemType);
     }

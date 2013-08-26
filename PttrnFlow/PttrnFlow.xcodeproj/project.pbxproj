@@ -311,6 +311,7 @@
 		33B4F25E17C72600004D4C13 /* SampleEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25617C72600004D4C13 /* SampleEvent.m */; };
 		33B4F25F17C72600004D4C13 /* SynthEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25817C72600004D4C13 /* SynthEvent.m */; };
 		33B4F26017C72600004D4C13 /* TickEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25A17C72600004D4C13 /* TickEvent.m */; };
+		33BF709217CBA7A5003E0A5F /* AudioStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BF709117CBA7A5003E0A5F /* AudioStop.m */; };
 		33EE317017C92C3C004CC016 /* AudioTouchDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */; };
 		33F8A31217B9F104003B33E5 /* pf-synth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 33F8A31017B9F104003B33E5 /* pf-synth.pd */; };
 		33F8A31317B9F104003B33E5 /* pf-main.pd in Resources */ = {isa = PBXBuildFile; fileRef = 33F8A31117B9F104003B33E5 /* pf-main.pd */; };
@@ -834,6 +835,8 @@
 		33B4F25817C72600004D4C13 /* SynthEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynthEvent.m; sourceTree = "<group>"; };
 		33B4F25917C72600004D4C13 /* TickEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickEvent.h; sourceTree = "<group>"; };
 		33B4F25A17C72600004D4C13 /* TickEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickEvent.m; sourceTree = "<group>"; };
+		33BF709017CBA7A5003E0A5F /* AudioStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStop.h; sourceTree = "<group>"; };
+		33BF709117CBA7A5003E0A5F /* AudioStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStop.m; sourceTree = "<group>"; };
 		33EE316E17C92C3C004CC016 /* AudioTouchDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTouchDispatcher.h; sourceTree = "<group>"; };
 		33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioTouchDispatcher.m; sourceTree = "<group>"; };
 		33F8A31017B9F104003B33E5 /* pf-synth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-synth.pd"; sourceTree = "<group>"; };
@@ -1585,6 +1588,8 @@
 				334E7205179617F200EFECC1 /* Warp.m */,
 				33AF255517CB069700643CB2 /* AudioPad.h */,
 				33AF255617CB069700643CB2 /* AudioPad.m */,
+				33BF709017CBA7A5003E0A5F /* AudioStop.h */,
+				33BF709117CBA7A5003E0A5F /* AudioStop.m */,
 			);
 			path = "Tick Responders";
 			sourceTree = "<group>";
@@ -2006,6 +2011,7 @@
 				1608083A16B437AA00039339 /* utility.c in Sources */,
 				1608083C16B437AA00039339 /* vec2.c in Sources */,
 				1608083E16B437AA00039339 /* vec3.c in Sources */,
+				33BF709217CBA7A5003E0A5F /* AudioStop.m in Sources */,
 				1608084016B437AA00039339 /* vec4.c in Sources */,
 				1608084516B437AA00039339 /* main.m in Sources */,
 				1608086D16B43CEF00039339 /* GameConstants.m in Sources */,

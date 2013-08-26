@@ -32,6 +32,7 @@
 #import "WaveTable.h"
 #import "AudioTouchDispatcher.h"
 #import "AudioPad.h"
+#import "AudioStop.h"
 
 @interface SequenceLayer ()
 
@@ -125,7 +126,7 @@
     
     // hud layer -- right hand item menu
     static CGFloat itemBarWidth = 80;
-    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[@(kDragItemArrow), @(kDragItemWarp)] dragButtonDelegate:sequenceLayer];
+    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[@(kDragItemArrow), @(kDragItemAudioStop)] dragButtonDelegate:sequenceLayer];
     itemLayer.position = ccp(sequenceLayer.contentSize.width - itemLayer.contentSize.width, sequenceLayer.contentSize.height - hudLayer.contentSize.height - itemLayer.contentSize.height);
     [scene addChild:itemLayer z:1];
     
@@ -249,7 +250,18 @@
 {
     NSArray *tickResponders = [self.tickDispatcher tickRespondersAtCell:cell];
     
-    // only place on top of a block
+    // a stop item can only be placed on an empty audio pad
+    if (itemType == kDragItemAudioStop) {
+        if (tickResponders.count == 1) {
+            id responder = [tickResponders lastObject];
+            return [responder isKindOfClass:[AudioPad class]];
+        }
+        else {
+            return NO;
+        }
+    }
+    
+    // otherwise only place on top of a block
     if (tickResponders.count == 0) {
         return NO;
     }
@@ -337,6 +349,12 @@
             Warp *warp = [[Warp alloc] initWithDragItemDelegate:self cell:self.lastDraggedItemCell];
             [self.tickDispatcher registerTickResponderCellNode:warp];
             [self addChild:warp];
+        }
+        else if (itemType == kDragItemAudioStop) {
+            AudioStop *audioStop = [[AudioStop alloc] initWithCell:self.lastDraggedItemCell dragItemDelegate:self];
+            [self.tickDispatcher registerTickResponderCellNode:audioStop];
+            [self.audioTouchDispatcher addResponder:audioStop];
+            [self addChild:audioStop];
         }
         
         self.selectionBox.visible = NO;
