@@ -12,8 +12,8 @@
 #import "TickDispatcher.h"
 #import "TickEvent.h"
 #import "SynthEvent.h"
+#import "AudioStopEvent.h"
 
-static NSString *const kActivateTone = @"activateTone";
 static NSString *const kActivateNoise = @"activateNoise";
 static NSString *const kActiviateDrum = @"activateDrum";
 static NSString *const kClear = @"clear";
@@ -21,8 +21,8 @@ static NSString *const kTrigger = @"trigger";
 static NSString *const kMidiValue = @"midinote";
 static NSString *const kSelectDrum = @"selectDrum";
 static NSString *const kMute = @"mute";
-
-static NSString *const kSynthEvent = @"synthEvent";
+static NSString *const kSynthEvent = @"prepareSynth";
+static NSString *const kAudioStop = @"audioStop";
 
 
 @implementation MainSynth
@@ -41,7 +41,7 @@ static NSString *const kSynthEvent = @"synthEvent";
 + (void)receiveEvents:(NSArray *)events
 {
     if ((events == nil) || (events.count < 1)) {
-        NSLog(@"warning: no events sent to synth");
+        NSLog(@"no events sent to synth");
         return;
     }
     
@@ -52,10 +52,15 @@ static NSString *const kSynthEvent = @"synthEvent";
     for (TickEvent *event in events) {
         
         if ([event isKindOfClass:[SynthEvent class]]) {
-            SynthEvent *synthEvent = (SynthEvent *)event;
-            NSNumber *midiValue = [NSNumber numberWithInt:[synthEvent.midiValue intValue]];
-            NSNumber *channel = [NSNumber numberWithInt:[synthEvent.channel intValue]];
-            [PdBase sendList:@[synthEvent.synthType, midiValue, channel] toReceiver:kSynthEvent];
+            SynthEvent *synth = (SynthEvent *)event;
+            NSNumber *midiValue = [NSNumber numberWithInt:[synth.midiValue intValue]];
+            NSNumber *channel = [NSNumber numberWithInt:[synth.channel intValue]];
+            [PdBase sendList:@[synth.synthType, midiValue, channel] toReceiver:kSynthEvent];
+        }
+        
+        if ([event isKindOfClass:[AudioStopEvent class]]) {
+            AudioStopEvent *audioStop = (AudioStopEvent *)event;
+            [PdBase sendFloat:[audioStop.channel floatValue] toReceiver:kAudioStop];
         }
     }
     

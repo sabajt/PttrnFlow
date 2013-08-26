@@ -139,6 +139,10 @@ NSString *const kChannelNone = @"ChannelNone";
     return self;
 }
 
+- (id)initWithChannel:(NSString *)channel isAudioEvent:(BOOL)isAudioEvent
+{
+    return [self initWithChannel:channel isAudioEvent:isAudioEvent isLinkedEvent:NO lastLinkedEvent:nil fragments:nil];
+}
 #pragma mark - Comparison
 
 - (BOOL)isEqualToEvent:(TickEvent *)event checkLastLinkedEvent:(BOOL)checkLastLinkedEvent

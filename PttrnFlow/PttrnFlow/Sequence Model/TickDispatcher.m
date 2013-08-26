@@ -25,7 +25,7 @@ NSString *const kKeySequenceIndex = @"sequenceIndex";
 NSString *const kKeyHits = @"hits";
 NSString *const kExitEvent = @"ExitEvent";
 
-CGFloat const kTickInterval = 0.5;
+CGFloat const kTickInterval = 0.12;
 
 @interface TickDispatcher ()
 

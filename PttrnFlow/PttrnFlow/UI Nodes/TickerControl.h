@@ -9,6 +9,8 @@
 #import "cocos2d.h"
 #import "TouchNode.h"
 
+FOUNDATION_EXPORT CGFloat const kTickScrubberDistanceInterval;
+
 @protocol TickerControlDelegate <NSObject>
 
 - (void)tickerMovedToIndex:(int)index;

@@ -12,7 +12,6 @@
 #import "TickDispatcher.h"
 #import "CCSprite+Utils.h"
 
-CGFloat const kTickScrubberDistanceInterval = 50;
 
 
 @interface SequenceControlBarLayer ()

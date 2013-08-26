@@ -13,11 +13,13 @@
 #import "CCNode+Touch.h"
 #import "TickDispatcher.h"
 
+CGFloat const kTickScrubberDistanceInterval = 20;
+
 static CGFloat const kTickerHeight = 16;
-static CGFloat const kTickerWidth = 16;
-static CGFloat const kMarkerWidth = 6;
+static CGFloat const kTickerWidth = 8;
+static CGFloat const kMarkerWidth = 2;
 static CGFloat const kMarkerHeight = 16;
-static CGFloat const kTickerBarHeight = 6;
+static CGFloat const kTickerBarHeight = 2;
 static CGFloat const kTickerControlHeight = 50;
 
 @interface TickerControl ()
