@@ -11,6 +11,7 @@
 #import "SequenceLayer.h"
 #import "TickDispatcher.h"
 #import "TickEvent.h"
+#import "SynthEvent.h"
 
 static NSString *const kActivateTone = @"activateTone";
 static NSString *const kActivateNoise = @"activateNoise";
@@ -20,6 +21,8 @@ static NSString *const kTrigger = @"trigger";
 static NSString *const kMidiValue = @"midinote";
 static NSString *const kSelectDrum = @"selectDrum";
 static NSString *const kMute = @"mute";
+
+static NSString *const kSynthEvent = @"synthEvent";
 
 
 @implementation MainSynth
@@ -44,6 +47,30 @@ static NSString *const kMute = @"mute";
     [PdBase sendBangToReceiver:kClear];
     
     for (TickEvent *event in events) {
+        
+        if ([event isKindOfClass:[SynthEvent class]]) {
+            
+            SynthEvent *synthEvent = (SynthEvent *)event;
+            NSLog(@"synth type: %@, midi: %@, channel: %@", synthEvent.synthType, synthEvent.midiValue, synthEvent.channel);
+            
+            NSNumber *midiVal = [NSNumber numberWithInt:[synthEvent.midiValue intValue]];
+            NSNumber *channel = [NSNumber numberWithInt:[synthEvent.channel intValue]];
+            
+            NSLog(@"pd midi val: %@, pd channel: %@", midiVal, channel);
+            
+            int error = [PdBase sendList:@[synthEvent.synthType, midiVal, channel] toReceiver:kSynthEvent];
+            
+            NSLog(@"error: %i", error);
+            
+            
+//            [PdBase sendList:@[[NSNumber numberWithInt:[synthEvent.channel intValue]],
+//                               [NSNumber numberWithInt:[synthEvent.midiValue intValue]],
+//                               synthEvent.synthType ]
+//                  toReceiver:kSynthEvent];
+
+        }
+        
+        
         
 //        if ([event isEqualToString:kExitEvent]) {
 //            [PdBase sendBangToReceiver:kActivateNoise];

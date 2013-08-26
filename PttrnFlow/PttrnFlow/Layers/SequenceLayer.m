@@ -142,7 +142,7 @@
     if (self) {
         _dispatcher = [[PdDispatcher alloc] init];
         [PdBase setDelegate:_dispatcher];
-        _patch = [PdBase openFile:@"synth.pd" path:[[NSBundle mainBundle] resourcePath]];
+        _patch = [PdBase openFile:@"pf-main.pd" path:[[NSBundle mainBundle] resourcePath]];
         if (!_patch) {
             NSLog(@"Failed to open patch");
         }
