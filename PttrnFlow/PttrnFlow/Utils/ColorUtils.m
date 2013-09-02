@@ -113,7 +113,7 @@
 
 + (ccColor3B)winningBackground
 {
-    return [self orange];
+    return [self red];
 }
 
 + (ccColor3B)hitDefault

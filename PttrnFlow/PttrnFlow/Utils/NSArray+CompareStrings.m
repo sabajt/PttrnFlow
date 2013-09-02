@@ -37,7 +37,7 @@
         return NO;
     }
     
-    NSString *targetString = [self firstObject];
+    NSString *targetString = [self lastObject];
     NSUInteger targetIndex = [incoming indexOfObjectPassingTest:^BOOL(NSString *str, NSUInteger idx, BOOL *stop) {
         return [str isEqualToString:targetString];
     }];

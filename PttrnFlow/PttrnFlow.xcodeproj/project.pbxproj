@@ -314,6 +314,13 @@
 		33BF709217CBA7A5003E0A5F /* AudioStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BF709117CBA7A5003E0A5F /* AudioStop.m */; };
 		33BF709617CBB2BB003E0A5F /* SpeedChangeEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BF709517CBB2BB003E0A5F /* SpeedChangeEvent.m */; };
 		33BF709917CBB588003E0A5F /* SpeedChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BF709817CBB588003E0A5F /* SpeedChange.m */; };
+		33BF709C17CC0D61003E0A5F /* audio-stop-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 33BF709B17CC0D61003E0A5F /* audio-stop-ipadhd.png */; };
+		33BF709F17CC0D7D003E0A5F /* speed-double-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 33BF709E17CC0D7D003E0A5F /* speed-double-ipadhd.png */; };
+		33BF70A417CC1092003E0A5F /* itemButtonAudioStopOff-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 33BF70A017CC1092003E0A5F /* itemButtonAudioStopOff-ipadhd.png */; };
+		33BF70A517CC1092003E0A5F /* itemButtonAudioStopOn-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 33BF70A117CC1092003E0A5F /* itemButtonAudioStopOn-ipadhd.png */; };
+		33BF70A617CC1092003E0A5F /* itemButtonSpeedDoubleOff-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 33BF70A217CC1092003E0A5F /* itemButtonSpeedDoubleOff-ipadhd.png */; };
+		33BF70A717CC1092003E0A5F /* itemButtonSpeedDoubleOn-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 33BF70A317CC1092003E0A5F /* itemButtonSpeedDoubleOn-ipadhd.png */; };
+		33BF70A917CC24EC003E0A5F /* solution1.json in Resources */ = {isa = PBXBuildFile; fileRef = 33BF70A817CC24EC003E0A5F /* solution1.json */; };
 		33EE317017C92C3C004CC016 /* AudioTouchDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */; };
 		33F8A31217B9F104003B33E5 /* pf-synth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 33F8A31017B9F104003B33E5 /* pf-synth.pd */; };
 		33F8A31317B9F104003B33E5 /* pf-main.pd in Resources */ = {isa = PBXBuildFile; fileRef = 33F8A31117B9F104003B33E5 /* pf-main.pd */; };
@@ -843,6 +850,13 @@
 		33BF709517CBB2BB003E0A5F /* SpeedChangeEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedChangeEvent.m; sourceTree = "<group>"; };
 		33BF709717CBB588003E0A5F /* SpeedChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedChange.h; sourceTree = "<group>"; };
 		33BF709817CBB588003E0A5F /* SpeedChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedChange.m; sourceTree = "<group>"; };
+		33BF709B17CC0D61003E0A5F /* audio-stop-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "audio-stop-ipadhd.png"; path = "PttrnFlow/Resources/retina/audio-stop-ipadhd.png"; sourceTree = SOURCE_ROOT; };
+		33BF709E17CC0D7D003E0A5F /* speed-double-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "speed-double-ipadhd.png"; path = "PttrnFlow/Resources/retina/speed-double-ipadhd.png"; sourceTree = SOURCE_ROOT; };
+		33BF70A017CC1092003E0A5F /* itemButtonAudioStopOff-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonAudioStopOff-ipadhd.png"; sourceTree = "<group>"; };
+		33BF70A117CC1092003E0A5F /* itemButtonAudioStopOn-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonAudioStopOn-ipadhd.png"; sourceTree = "<group>"; };
+		33BF70A217CC1092003E0A5F /* itemButtonSpeedDoubleOff-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonSpeedDoubleOff-ipadhd.png"; sourceTree = "<group>"; };
+		33BF70A317CC1092003E0A5F /* itemButtonSpeedDoubleOn-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonSpeedDoubleOn-ipadhd.png"; sourceTree = "<group>"; };
+		33BF70A817CC24EC003E0A5F /* solution1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = solution1.json; sourceTree = "<group>"; };
 		33EE316E17C92C3C004CC016 /* AudioTouchDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTouchDispatcher.h; sourceTree = "<group>"; };
 		33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioTouchDispatcher.m; sourceTree = "<group>"; };
 		33F8A31017B9F104003B33E5 /* pf-synth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-synth.pd"; sourceTree = "<group>"; };
@@ -1355,6 +1369,10 @@
 		160B50D4173A27EA00BFC014 /* retina */ = {
 			isa = PBXGroup;
 			children = (
+				33BF70A017CC1092003E0A5F /* itemButtonAudioStopOff-ipadhd.png */,
+				33BF70A117CC1092003E0A5F /* itemButtonAudioStopOn-ipadhd.png */,
+				33BF70A217CC1092003E0A5F /* itemButtonSpeedDoubleOff-ipadhd.png */,
+				33BF70A317CC1092003E0A5F /* itemButtonSpeedDoubleOn-ipadhd.png */,
 				3326DFE517CB51D3001CA532 /* new */,
 				33AF255F17CB158B00643CB2 /* audio-pad-ipadhd.png */,
 				334E7261179625F400EFECC1 /* itemButtonWarpOff-ipadhd.png */,
@@ -1620,6 +1638,8 @@
 		3326DFE517CB51D3001CA532 /* new */ = {
 			isa = PBXGroup;
 			children = (
+				33BF709E17CC0D7D003E0A5F /* speed-double-ipadhd.png */,
+				33BF709B17CC0D61003E0A5F /* audio-stop-ipadhd.png */,
 				3326DFE617CB51D3001CA532 /* note-1-ipadhd.png */,
 				3326DFE717CB51D3001CA532 /* note-1-on-ipadhd.png */,
 				3326DFE817CB51D3001CA532 /* note-10-ipadhd.png */,
@@ -1684,6 +1704,7 @@
 		33BCC67F17BCADB40008ED26 /* solutions */ = {
 			isa = PBXGroup;
 			children = (
+				33BF70A817CC24EC003E0A5F /* solution1.json */,
 				33B4F24617C6E104004D4C13 /* solution0.json */,
 			);
 			name = solutions;
@@ -1768,6 +1789,7 @@
 				1608082616B437AA00039339 /* ChangeLog in Resources */,
 				16284CA4173A072B00B058D2 /* pipeTilesetBase1.png in Resources */,
 				16284CA5173A072B00B058D2 /* seq0.tmx in Resources */,
+				33BF709F17CC0D7D003E0A5F /* speed-double-ipadhd.png in Resources */,
 				334E72671796260700EFECC1 /* itemButtonWarpOff-ipad.png in Resources */,
 				168FA4E8173A08C7004C26AD /* blank.png in Resources */,
 				168FA4E9173A08C7004C26AD /* Default-Landscape~ipad.png in Resources */,
@@ -1812,6 +1834,7 @@
 				160B50C8173A27D000BFC014 /* D-ipad.png in Resources */,
 				160B50C9173A27D000BFC014 /* D-on-ipad.png in Resources */,
 				160B50CA173A27D000BFC014 /* E-ipad.png in Resources */,
+				33BF70A617CC1092003E0A5F /* itemButtonSpeedDoubleOff-ipadhd.png in Resources */,
 				160B50CB173A27D000BFC014 /* E-on-ipad.png in Resources */,
 				160B50CC173A27D000BFC014 /* Eflat-ipad.png in Resources */,
 				3326E00D17CB51D3001CA532 /* note-5-on-ipadhd.png in Resources */,
@@ -1854,8 +1877,10 @@
 				160B510A173A27EA00BFC014 /* Eflat-on-ipadhd.png in Resources */,
 				160B510B173A27EA00BFC014 /* F-ipadhd.png in Resources */,
 				3326E00E17CB51D3001CA532 /* note-6-ipadhd.png in Resources */,
+				33BF70A417CC1092003E0A5F /* itemButtonAudioStopOff-ipadhd.png in Resources */,
 				160B510C173A27EA00BFC014 /* F-on-ipadhd.png in Resources */,
 				3326E00A17CB51D3001CA532 /* note-4-ipadhd.png in Resources */,
+				33BF70A717CC1092003E0A5F /* itemButtonSpeedDoubleOn-ipadhd.png in Resources */,
 				160B510D173A27EA00BFC014 /* Fsharp-ipadhd.png in Resources */,
 				160B510E173A27EA00BFC014 /* Fsharp-on-ipadhd.png in Resources */,
 				160B510F173A27EA00BFC014 /* G-ipadhd.png in Resources */,
@@ -1876,6 +1901,7 @@
 				16A942DF1778C5A50052D5BD /* drum1-ipad.png in Resources */,
 				16A942E01778C5A50052D5BD /* drum1on-ipad.png in Resources */,
 				16A942E11778C5A50052D5BD /* drum2-ipad.png in Resources */,
+				33BF70A517CC1092003E0A5F /* itemButtonAudioStopOn-ipadhd.png in Resources */,
 				16A942E21778C5A50052D5BD /* drum2on-ipad.png in Resources */,
 				3326E01017CB51D3001CA532 /* note-7-ipadhd.png in Resources */,
 				16A942E31778C5A50052D5BD /* drum3-ipad.png in Resources */,
@@ -1883,6 +1909,7 @@
 				3326E00117CB51D3001CA532 /* note-10-on-ipadhd.png in Resources */,
 				3326E00217CB51D3001CA532 /* note-11-ipadhd.png in Resources */,
 				16A942E41778C5A50052D5BD /* drum3on-ipad.png in Resources */,
+				33BF70A917CC24EC003E0A5F /* solution1.json in Resources */,
 				16A942E51778C5A50052D5BD /* drum4-ipad.png in Resources */,
 				3326DFFE17CB51D3001CA532 /* note-1-ipadhd.png in Resources */,
 				16A942E61778C5A50052D5BD /* drum4on-ipad.png in Resources */,
@@ -1892,6 +1919,7 @@
 				1693C665177A628300FEB350 /* sample_d3.wav in Resources */,
 				1693C666177A628300FEB350 /* sample_d4.wav in Resources */,
 				334E7264179625F400EFECC1 /* itemButtonWarpOn-ipadhd.png in Resources */,
+				33BF709C17CC0D61003E0A5F /* audio-stop-ipadhd.png in Resources */,
 				163091F8177F7B02003155BB /* itemButtonArrowOff-ipadhd.png in Resources */,
 				163091F9177F7B02003155BB /* itemButtonArrowOn-ipadhd.png in Resources */,
 				163091FC177F7B14003155BB /* itemButtonArrowOff-ipad.png in Resources */,

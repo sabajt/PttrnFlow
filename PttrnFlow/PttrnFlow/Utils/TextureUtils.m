@@ -86,8 +86,13 @@ NSString *const kImageWarpButton_off = @"itemButtonWarpOff.png";
 NSString *const kImageWarpButton_on = @"itemButtonWarpOn.png";
 
 NSString *const kImageAudioPad= @"audio-pad.png";
+NSString *const kImageSpeedDouble = @"speed-double.png";
+NSString *const kImageAudioStop = @"audio-stop.png";
 
-
+NSString *const kImageItemButtonAudioStopOff = @"itemButtonAudioStopOff.png";
+NSString *const kImageItemButtonAudioStopOn = @"itemButtonAudioStopOn.png";
+NSString *const kImageItemButtonSpeedDoubleOff = @"itemButtonSpeedDoubleOff.png";
+NSString *const kImageItemButtonSpeedDoubleOn = @"itemButtonSpeedDoubleOn.png";
 
 // don't forget to load the images
 + (void)loadTextures
@@ -142,10 +147,6 @@ NSString *const kImageAudioPad= @"audio-pad.png";
     [[CCTextureCache sharedTextureCache] addImage:kImageWarpButton_on];
     [[CCTextureCache sharedTextureCache] addImage:kImageAudioPad];
     
-
-    
-    
-    
     [[CCTextureCache sharedTextureCache] addImage:kImageNote1];
     [[CCTextureCache sharedTextureCache] addImage:kImageNote2];
     [[CCTextureCache sharedTextureCache] addImage:kImageNote3];
@@ -172,31 +173,13 @@ NSString *const kImageAudioPad= @"audio-pad.png";
     [[CCTextureCache sharedTextureCache] addImage:kImageNote11on];
     [[CCTextureCache sharedTextureCache] addImage:kImageNote12on];
 
+    [[CCTextureCache sharedTextureCache] addImage:kImageSpeedDouble];
+    [[CCTextureCache sharedTextureCache] addImage:kImageAudioStop];
     
-//    NSString *const kImageNote1;
-//    NSString *const kImageNote2;
-//    NSString *const kImageNote3;
-//    NSString *const kImageNote4;
-//    NSString *const kImageNote5;
-//    NSString *const kImageNote6;
-//    NSString *const kImageNote7;
-//    NSString *const kImageNote8;
-//    NSString *const kImageNote9;
-//    NSString *const kImageNote10;
-//    NSString *const kImageNote11;
-//    NSString *const kImageNote12;
-//    NSString *const kImageNote1on;
-//    NSString *const kImageNote2on;
-//    NSString *const kImageNote3on;
-//    NSString *const kImageNote4on;
-//    NSString *const kImageNote5on;
-//    NSString *const kImageNote6on;
-//    NSString *const kImageNote7on;
-//    NSString *const kImageNote8on;
-//    NSString *const kImageNote9on;
-//    NSString *const kImageNote10on;
-//    NSString *const kImageNote11on;
-//    NSString *const kImageNote12on;
+    [[CCTextureCache sharedTextureCache] addImage:kImageItemButtonAudioStopOff];
+    [[CCTextureCache sharedTextureCache] addImage:kImageItemButtonAudioStopOn];
+    [[CCTextureCache sharedTextureCache] addImage:kImageItemButtonSpeedDoubleOff];
+    [[CCTextureCache sharedTextureCache] addImage:kImageItemButtonSpeedDoubleOn];
 }
 
 // generate a unique texture key using components of primative image size and color

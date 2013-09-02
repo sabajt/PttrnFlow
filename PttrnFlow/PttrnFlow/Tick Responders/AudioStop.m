@@ -16,11 +16,11 @@
 // use this method to initialize dynamically
 - (id)initWithCell:(GridCoord)cell dragItemDelegate:(id<DragItemDelegate>)delegate;
 {
-    CCSprite *dragSprite = [SpriteUtils spriteWithTextureKey:kImageWarpDefault];;
+    CCSprite *dragSprite = [SpriteUtils spriteWithTextureKey:kImageAudioStop];;
     self = [super initWithDragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemAudioStop];
     if (self) {
         self.cell = cell;
-        self.sprite = [self createAndCenterSpriteNamed:kImageWarpDefault];
+        self.sprite = [self createAndCenterSpriteNamed:kImageAudioStop];
         self.position = [GridUtils relativePositionForGridCoord:cell unitSize:kSizeGridUnit];
         [self addChild:self.sprite];
     }

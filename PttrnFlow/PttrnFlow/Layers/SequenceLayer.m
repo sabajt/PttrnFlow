@@ -127,7 +127,7 @@
     
     // hud layer -- right hand item menu
     static CGFloat itemBarWidth = 80;
-    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[@(kDragItemArrow), @(kDragItemSpeedChange)] dragButtonDelegate:sequenceLayer];
+    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[@(kDragItemArrow), @(kDragItemAudioStop), @(kDragItemSpeedChange)] dragButtonDelegate:sequenceLayer];
     itemLayer.position = ccp(sequenceLayer.contentSize.width - itemLayer.contentSize.width, sequenceLayer.contentSize.height - hudLayer.contentSize.height - itemLayer.contentSize.height);
     [scene addChild:itemLayer z:1];
     
@@ -360,6 +360,7 @@
         else if (itemType == kDragItemSpeedChange) {
             SpeedChange *speedChange = [[SpeedChange alloc] initWithCell:self.lastDraggedItemCell dragItemDelegate:self speed:@"2X"];
             [self.tickDispatcher registerTickResponderCellNode:speedChange];
+            [self.audioTouchDispatcher addResponder:speedChange]; // not actually an audio event, but we need to track touches for highlighting
             [self addChild:speedChange];
         }
         

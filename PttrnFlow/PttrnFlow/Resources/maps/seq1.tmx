@@ -1,35 +1,260 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="2" height="2" tilewidth="200" tileheight="200">
+<map version="1.0" orientation="orthogonal" width="12" height="12" tilewidth="200" tileheight="200">
  <tileset firstgid="1" name="pipeTilesetBase1" tilewidth="200" tileheight="200" spacing="1" margin="1">
-  <image source="PttrnFlow/PttrnFlow/PttrnFlow/Resources/maps/pipeTilesetBase1.png" width="1609" height="805"/>
+  <image source="pipeTilesetBase1.png" width="1609" height="805"/>
  </tileset>
- <layer name="Tile Layer 1" width="2" height="2">
+ <layer name="Tile Layer 1" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjYEAFAAAQAAE=
+   eJxjYBgFo4B8AAACQAAB
   </data>
  </layer>
- <objectgroup name="Tick Responders" width="2" height="2">
-  <object name="arrow" x="216" y="284" width="83" height="83">
+ <objectgroup name="Tick Responders" width="12" height="12">
+  <object name="entry" x="11" y="30" width="125" height="121">
    <properties>
+    <property name="channel" value="0"/>
     <property name="direction" value="right"/>
    </properties>
    <ellipse/>
   </object>
-  <object name="sequence" x="79" y="37" width="295" height="36">
+  <object name="drum" x="474" y="1478" width="66" height="64">
    <properties>
-    <property name="events" value="48,d1;52,d2;48,d1;52,d2"/>
+    <property name="pattern" value="sample_d2"/>
    </properties>
   </object>
-  <object name="entry" x="235" y="222" width="125" height="121">
+  <object name="tone" x="1869" y="74" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="57"/>
+   </properties>
+  </object>
+  <object name="tone" x="1049" y="473" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="52"/>
+   </properties>
+  </object>
+  <object name="tone" x="1456" y="53" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="55"/>
+   </properties>
+  </object>
+  <object name="tone" x="1245" y="81" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="54"/>
+   </properties>
+  </object>
+  <object name="drum" x="76" y="1484" width="66" height="64">
+   <properties>
+    <property name="pattern" value="sample_d1"/>
+   </properties>
+  </object>
+  <object name="drum" x="60" y="1868" width="66" height="64">
+   <properties>
+    <property name="pattern" value="sample_d3"/>
+   </properties>
+  </object>
+  <object name="audio pad" x="33" y="81" width="2291" height="694"/>
+  <object name="entry" x="2219" y="1876" width="125" height="121">
+   <properties>
+    <property name="channel" value="1"/>
+    <property name="direction" value="left"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object name="entry" x="37" y="1454" width="125" height="121">
+   <properties>
+    <property name="channel" value="2"/>
+    <property name="direction" value="down"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object name="tone" x="46" y="74" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="48"/>
+   </properties>
+  </object>
+  <object name="tone" x="248" y="54" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="49"/>
+   </properties>
+  </object>
+  <object name="tone" x="653" y="51" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="51"/>
+   </properties>
+  </object>
+  <object name="tone" x="854" y="51" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="52"/>
+   </properties>
+  </object>
+  <object name="tone" x="1047" y="63" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="53"/>
+   </properties>
+  </object>
+  <object name="tone" x="1657" y="60" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="56"/>
+   </properties>
+  </object>
+  <object name="tone" x="2294" y="78" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="59"/>
+   </properties>
+  </object>
+  <object name="tone" x="2051" y="56" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="58"/>
+   </properties>
+  </object>
+  <object name="tone" x="461" y="54" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="50"/>
+   </properties>
+  </object>
+  <object name="tone" x="1461" y="496" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="56"/>
+   </properties>
+  </object>
+  <object name="tone" x="2274" y="480" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="56"/>
+   </properties>
+  </object>
+  <object name="tone" x="1872" y="1287" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="50"/>
+   </properties>
+  </object>
+  <object name="tone" x="1874" y="491" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="52"/>
+   </properties>
+  </object>
+  <object name="tone" x="272" y="477" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="52"/>
+   </properties>
+  </object>
+  <object name="tone" x="681" y="457" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="56"/>
+   </properties>
+  </object>
+  <object name="tone" x="75" y="655" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="50"/>
+   </properties>
+  </object>
+  <object name="tone" x="2083" y="1271" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="50"/>
+   </properties>
+  </object>
+  <object name="tone" x="1888" y="1438" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="50"/>
+   </properties>
+  </object>
+  <object name="tone" x="2094" y="1431" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="50"/>
+   </properties>
+  </object>
+  <object name="tone" x="1292" y="647" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="54"/>
+   </properties>
+  </object>
+  <object name="tone" x="832" y="640" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="50"/>
+   </properties>
+  </object>
+  <object name="tone" x="431" y="647" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="54"/>
+   </properties>
+  </object>
+  <object name="tone" x="2087" y="673" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="54"/>
+   </properties>
+  </object>
+  <object name="tone" x="1678" y="647" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="50"/>
+   </properties>
+  </object>
+  <object name="tone" x="1470" y="1865" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="52"/>
+   </properties>
+  </object>
+  <object name="tone" x="1455" y="1048" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="50"/>
+   </properties>
+  </object>
+  <object name="tone" x="1020" y="1032" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="48"/>
+   </properties>
+  </object>
+  <object name="tone" x="2254" y="1876" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="54"/>
+   </properties>
+  </object>
+  <object name="tone" x="2268" y="2255" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="56"/>
+   </properties>
+  </object>
+  <object name="drum" x="468" y="1858" width="66" height="64">
+   <properties>
+    <property name="pattern" value="sample_d4"/>
+   </properties>
+  </object>
+  <object name="drum" x="263" y="1684" width="66" height="64">
+   <properties>
+    <property name="pattern" value="sample_d3"/>
+   </properties>
+  </object>
+  <object name="drum" x="63" y="2294" width="66" height="64">
+   <properties>
+    <property name="pattern" value="sample_d3"/>
+   </properties>
+  </object>
+  <object name="drum" x="461" y="2290" width="66" height="64">
+   <properties>
+    <property name="pattern" value="sample_d1"/>
+   </properties>
+  </object>
+  <object name="drum" x="262" y="2078" width="66" height="64">
+   <properties>
+    <property name="pattern" value="sample_d2"/>
+   </properties>
+  </object>
+  <object name="audio pad" x="38" y="1452" width="530" height="901"/>
+  <object name="audio pad" x="1042" y="1061" width="530" height="1321"/>
+  <object name="audio pad" x="1617" y="1832" width="761" height="548"/>
+  <object name="entry" x="1837" y="1025" width="125" height="121">
    <properties>
     <property name="channel" value="1"/>
     <property name="direction" value="right"/>
    </properties>
    <ellipse/>
   </object>
-  <object name="tone" x="260" y="268" width="66" height="64">
+  <object name="audio pad" x="1835" y="1055" width="524" height="532"/>
+  <object name="tone" x="2270" y="1457" width="66" height="64">
    <properties>
-    <property name="midiValue" value="48"/>
+    <property name="midiValue" value="50"/>
+   </properties>
+  </object>
+  <object name="tone" x="2248" y="1251" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="50"/>
    </properties>
   </object>
  </objectgroup>

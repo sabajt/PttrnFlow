@@ -15,6 +15,7 @@
 #import "AudioPad.h"
 #import "AudioPadEvent.h"
 #import "SpeedChangeEvent.h"
+#import "NSArray+CompareStrings.h"
 
 NSString *const kChannelNone = @"ChannelNone";
 
@@ -85,7 +86,7 @@ NSString *const kChannelNone = @"ChannelNone";
     }
     
     // pick one of our events to check
-    TickEvent *targetEvent = [self firstObject];
+    TickEvent *targetEvent = [self lastObject];
     if (![targetEvent isKindOfClass:[TickEvent class]]) {
         return NO;
     }

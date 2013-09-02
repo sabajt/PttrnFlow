@@ -90,6 +90,13 @@ FOUNDATION_EXPORT NSString *const kImageWarpButton_off;
 FOUNDATION_EXPORT NSString *const kImageWarpButton_on;
 
 FOUNDATION_EXPORT NSString *const kImageAudioPad;
+FOUNDATION_EXPORT NSString *const kImageSpeedDouble;
+FOUNDATION_EXPORT NSString *const kImageAudioStop;
+FOUNDATION_EXPORT NSString *const kImageItemButtonAudioStopOff;
+FOUNDATION_EXPORT NSString *const kImageItemButtonAudioStopOn;
+FOUNDATION_EXPORT NSString *const kImageItemButtonSpeedDoubleOff;
+FOUNDATION_EXPORT NSString *const kImageItemButtonSpeedDoubleOn;
+
 
 + (void)loadTextures;
 
