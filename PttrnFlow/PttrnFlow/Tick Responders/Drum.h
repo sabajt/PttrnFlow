@@ -11,6 +11,6 @@
 
 @interface Drum : CellNode <TickResponder>
 
-- (id)initWithDrum:(NSMutableDictionary *)drum tiledMap:(CCTMXTiledMap *)tiledMap;
+- (id)initWithDrum:(NSMutableDictionary *)drum batchNode:(CCSpriteBatchNode *)batchNode tiledMap:(CCTMXTiledMap *)tiledMap;
 
 @end

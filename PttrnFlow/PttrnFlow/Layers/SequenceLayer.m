@@ -34,6 +34,7 @@
 #import "AudioPad.h"
 #import "AudioStop.h"
 #import "SpeedChange.h"
+#import "TextureUtils.h"
 
 @interface SequenceLayer ()
 
@@ -222,9 +223,12 @@
     }
     
     // drum blocks
+    CCSpriteBatchNode *sampleSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeySamplePads stringByAppendingString:@".png"]];
+    [self addChild:sampleSpriteSheet];
+    
     NSMutableArray *drums = [tiledMap objectsWithName:kTLDObjectDrum groupName:kTLDGroupTickResponders];
     for (NSMutableDictionary *drum in drums) {
-        Drum *drumNode = [[Drum alloc] initWithDrum:drum tiledMap:tiledMap];
+        Drum *drumNode = [[Drum alloc] initWithDrum:drum batchNode:sampleSpriteSheet tiledMap:tiledMap];
         [self.tickDispatcher registerTickResponderCellNode:drumNode];
         [self.audioTouchDispatcher addResponder:drumNode];
         [self addChild:drumNode];

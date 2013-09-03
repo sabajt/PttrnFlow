@@ -25,6 +25,30 @@
     return self;
 }
 
+// holds batch node as weak ref, so make sure someone else owns batch node first
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode
+{
+    self = [super init];
+    if (self) {
+        self.contentSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
+        _batchNode = batchNode;
+    }
+    return self;
+}
+
+// replace current sprite we point to in batch node with new sprite created from frame catch
+- (void)switchSpriteForFrameName:(NSString *)name
+{
+    [self.sprite removeFromParentAndCleanup:YES];
+    CCSprite *sprite = [CCSprite spriteWithSpriteFrameName:name];
+    CGPoint relativeOrigin = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
+    sprite.position = ccp(relativeOrigin.x + self.contentSize.width/2, relativeOrigin.y + self.contentSize.height/2);
+    [self.batchNode addChild:sprite];
+    self.sprite = sprite;
+}
+
+
+//TODO: old should delete
 - (CCSprite *)createAndCenterSpriteNamed:(NSString *)name
 {
     CCSprite *sprite = [SpriteUtils spriteWithTextureKey:name];

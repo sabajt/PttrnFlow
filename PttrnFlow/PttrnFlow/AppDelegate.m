@@ -76,7 +76,11 @@
     
     // ********************
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
+    
+    // load textures (old method)
     [TextureUtils loadTextures];
+    // load sprite sheets (new method)
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeySamplePads stringByAppendingString:@".plist"]];
 
 	[director_ pushScene: [SequenceMenuLayer scene]];
     

@@ -72,7 +72,12 @@
     self.isReceivingTouch = NO;
 }
 
-
-
+- (void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if (self.longPressDelay > 0) {
+        [self unschedule:@selector(longPress:)];
+    }
+    self.isReceivingTouch = NO;
+}
 
 @end

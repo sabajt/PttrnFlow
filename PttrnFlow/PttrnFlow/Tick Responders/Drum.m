@@ -23,54 +23,30 @@
 
 @implementation Drum
 
-- (id)initWithDrum:(NSMutableDictionary *)drum tiledMap:(CCTMXTiledMap *)tiledMap
+- (id)initWithDrum:(NSMutableDictionary *)drum batchNode:(CCSpriteBatchNode *)batchNode tiledMap:(CCTMXTiledMap *)tiledMap
 {
-    self = [super init];
+    self = [super initWithBatchNode:batchNode];
     if (self) {
         self.cell = [tiledMap gridCoordForObject:drum];
         self.pattern = [CCTMXTiledMap objectPropertyNamed:kTLDPropertyPattern object:drum];
-        NSString *imageName = [self imageNameForPattern:self.pattern on:NO];
-        self.sprite = [self createAndCenterSpriteNamed:imageName];
-        [self addChild:self.sprite];
-        self.position = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
+        [self switchSpriteForFrameName:[self frameNameForPattern:self.pattern on:NO]];
     }
     return self;
 }
 
-- (NSString *)imageNameForPattern:(NSString *)pattern on:(BOOL)on
+- (NSString *)frameNameForPattern:(NSString *)pattern on:(BOOL)on
 {
-    if ([pattern isEqualToString:@"sample_d1"]) {
-        if (on) {
-            return kImageDrum1_on;
-        }
-        return kImageDrum1;
+    if (on) {
+        return [NSString stringWithFormat:@"%@on.png", pattern];
     }
-    else if ([pattern isEqualToString:@"sample_d2"]) {
-        if (on) {
-            return kImageDrum2_on;
-        }
-        return kImageDrum2;
-    }
-    else if ([pattern isEqualToString:@"sample_d3"]) {
-        if (on) {
-            return kImageDrum3_on;
-        }
-        return kImageDrum3;
-    }
-    else if ([pattern isEqualToString:@"sample_d4"]) {
-        if (on) {
-            return kImageDrum4_on;
-        }
-        return kImageDrum4;
-    }
-    NSLog(@"WARNING: drum image name for pattern '%@' not found", pattern);
-    return nil;
+    return [NSString stringWithFormat:@"%@.png", pattern];
 }
 
 - (void)deselect
 {
-    [SpriteUtils switchImageForSprite:self.sprite textureKey:[self imageNameForPattern:self.pattern on:NO]];
+    [self switchSpriteForFrameName:[self frameNameForPattern:self.pattern on:NO]];
 }
+
 
 #pragma mark - SynthCellNode
 
@@ -82,18 +58,9 @@
 
 #pragma mark - CCTargetedTouchDelegate
 
-//- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-//{
-//    if ([super ccTouchBegan:touch withEvent:event]) {
-//        NSString *event = [self tick:kBPM];
-//        [MainSynth receiveEvents:@[event]];
-//        return YES;
-//    }
-//    return NO;
-//}
-
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    [super ccTouchEnded:touch withEvent:event];
     [self deselect];
 }
 
@@ -101,8 +68,8 @@
 
 - (NSArray *)tick:(NSInteger)bpm
 {
-    [SpriteUtils switchImageForSprite:self.sprite textureKey:[self imageNameForPattern:self.pattern on:YES]];
-    return @[self.pattern];
+    [self switchSpriteForFrameName:[self frameNameForPattern:self.pattern on:YES]];
+    return @[[NSString stringWithFormat:@"sample_%@", self.pattern]];
 }
 
 - (void)afterTick:(NSInteger)bpm

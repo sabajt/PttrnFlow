@@ -11,6 +11,12 @@
 
 @interface TextureUtils : NSObject
 
+#pragma mark - Sprite sheet keys
+
+FOUNDATION_EXPORT NSString *const kTextureKeySamplePads;
+
+#pragma mark - Old
+
 FOUNDATION_EXPORT NSString *const kImageNote1;
 FOUNDATION_EXPORT NSString *const kImageNote2;
 FOUNDATION_EXPORT NSString *const kImageNote3;
@@ -67,14 +73,14 @@ FOUNDATION_EXPORT NSString *const kImageNote12on;
 
 FOUNDATION_EXPORT NSString *const kImageStartArrow;
 
-FOUNDATION_EXPORT NSString *const kImageDrum1;
-FOUNDATION_EXPORT NSString *const kImageDrum1_on;
-FOUNDATION_EXPORT NSString *const kImageDrum2;
-FOUNDATION_EXPORT NSString *const kImageDrum2_on;
-FOUNDATION_EXPORT NSString *const kImageDrum3;
-FOUNDATION_EXPORT NSString *const kImageDrum3_on;
-FOUNDATION_EXPORT NSString *const kImageDrum4;
-FOUNDATION_EXPORT NSString *const kImageDrum4_on;
+//FOUNDATION_EXPORT NSString *const kImageDrum1;
+//FOUNDATION_EXPORT NSString *const kImageDrum1_on;
+//FOUNDATION_EXPORT NSString *const kImageDrum2;
+//FOUNDATION_EXPORT NSString *const kImageDrum2_on;
+//FOUNDATION_EXPORT NSString *const kImageDrum3;
+//FOUNDATION_EXPORT NSString *const kImageDrum3_on;
+//FOUNDATION_EXPORT NSString *const kImageDrum4;
+//FOUNDATION_EXPORT NSString *const kImageDrum4_on;
 
 FOUNDATION_EXPORT NSString *const kImageArrowDown;
 FOUNDATION_EXPORT NSString *const kImageArrowLeft;
