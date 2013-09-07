@@ -14,15 +14,13 @@
 @implementation AudioStop
 
 // use this method to initialize dynamically
-- (id)initWithCell:(GridCoord)cell dragItemDelegate:(id<DragItemDelegate>)delegate;
+//- (id)initWithCell:(GridCoord)cell dragItemDelegate:(id<DragItemDelegate>)delegate;
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode cell:(GridCoord)cell dragItemDelegate:(id<DragItemDelegate>)delegate
 {
-    CCSprite *dragSprite = [SpriteUtils spriteWithTextureKey:kImageAudioStop];;
-    self = [super initWithDragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemAudioStop];
+    CCSprite *dragSprite = [CCSprite spriteWithSpriteFrameName:kImageAudioStop];
+    self = [super initWithBatchNode:batchNode cell:cell dragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemAudioStop];
     if (self) {
-        self.cell = cell;
-        self.sprite = [self createAndCenterSpriteNamed:kImageAudioStop];
-        self.position = [GridUtils relativePositionForGridCoord:cell unitSize:kSizeGridUnit];
-        [self addChild:self.sprite];
+        [self setSpriteForFrameName:kImageAudioStop];
     }
     return self;
 }

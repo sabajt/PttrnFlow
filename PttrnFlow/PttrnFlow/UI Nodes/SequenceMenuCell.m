@@ -9,7 +9,6 @@
 #import "SequenceMenuCell.h"
 #import "CCSprite+Utils.h"
 #import "ColorUtils.h"
-#import "CCNode+Touch.h"
 
 @interface SequenceMenuCell ()
 
@@ -28,6 +27,8 @@
 
     self = [super init];
     if (self) {
+        self.touchNodeDelegate = self;
+        
         self.contentSize = CGSizeMake(width, height);
         self.swallowsTouches = YES;
         _index = index;
@@ -46,12 +47,23 @@
     return self;
 }
 
+#pragma mark - TouchNodeDelegate
+
+- (BOOL)containsTouch:(UITouch *)touch
+{
+    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+    CGRect rect = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
+    return (CGRectContainsPoint(rect, touchPosition));
+}
+
 #pragma mark CCTargetedTouchDelegate
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if ([self containsTouch:touch]) {
-        [self.delegate sequenceMenuCellTouchUpInside:self index:self.index];
+    [super ccTouchEnded:touch withEvent:event];
+    
+    if ([self.touchNodeDelegate containsTouch:touch]) {
+        [self.menuCellDelegate sequenceMenuCellTouchUpInside:self index:self.index];
     }
 }
 

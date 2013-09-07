@@ -11,6 +11,7 @@
 
 @interface AudioPad : CellNode <TickResponder>
 
-- (id)initWithCell:(GridCoord)cell;
+// TODO: audio pad doesn't actually use batch node, but it probably should, - rendering the sprite creation is probably expensive
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode cell:(GridCoord)cell;
 
 @end

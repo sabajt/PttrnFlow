@@ -17,9 +17,9 @@
 @end
 
 
-@interface SequenceMenuCell : TouchNode
+@interface SequenceMenuCell : TouchNode <TouchNodeDelegate>
 
-@property (weak, nonatomic) id<SequenceMenuCellDelegate> delegate;
+@property (weak, nonatomic) id<SequenceMenuCellDelegate> menuCellDelegate;
 
 -(id) initWithIndex:(int)index;
 

@@ -37,7 +37,7 @@
             SequenceMenuCell *cell = [[SequenceMenuCell alloc] initWithIndex:i];
             CGFloat yPosition = sideMargins.height + ((i * cell.contentSize.height) + (i * padding.height));
             cell.position = ccp(sideMargins.width, yPosition);
-            cell.delegate = self;
+            cell.menuCellDelegate = self;
             [self addChild:cell];
             i++;
         }

@@ -12,7 +12,6 @@
 #import "TextureUtils.h"
 #import "SpriteUtils.h"
 #import "TickDispatcher.h"
-#import "CCNode+Touch.h"
 #import "TickEvent.h"
 #import "AudioTouchDispatcher.h"
 
@@ -20,31 +19,26 @@
 
 @property (assign) BOOL selected;
 
-@end
+@end 
 
 
 @implementation Tone
 
-- (id)initWithTone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode tone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap
 {
-    self = [super init];
+    GridCoord cell = [tiledMap gridCoordForObject:tone];
+    self = [super initWithBatchNode:batchNode cell:cell];
     if (self) {
-        self.cell = [tiledMap gridCoordForObject:tone];
-        self.midiValue = [CCTMXTiledMap objectPropertyNamed:kTLDPropertyMidiValue object:tone];
-        NSString *imageName = [self imageNameForMidiValue:self.midiValue on:NO];
-        
-        self.sprite = [self createAndCenterSpriteNamed:imageName];
-        [self addChild:self.sprite];
-        
-        self.position = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
+        _midiValue = [CCTMXTiledMap objectPropertyNamed:kTLDPropertyMidiValue object:tone];
         _selected = NO;
+        [self setSpriteForFrameName:[self frameNameForMidiValue:self.midiValue on:NO]];
     }
     return self;
 }
 
 - (void)deselectTone
 {
-    [SpriteUtils switchImageForSprite:self.sprite textureKey:[self imageNameForMidiValue:self.midiValue on:NO]];
+    [self setSpriteForFrameName:[self frameNameForMidiValue:self.midiValue on:NO]];
 }
 
 #pragma mark - CellNode
@@ -69,7 +63,7 @@
 {
     // select and highlight
     self.selected = YES;
-    [SpriteUtils switchImageForSprite:self.sprite textureKey:[self imageNameForMidiValue:self.midiValue on:YES]];
+    [self setSpriteForFrameName:[self frameNameForMidiValue:self.midiValue on:YES]];
 
     // return fragments
     return @[self.midiValue];
@@ -88,7 +82,8 @@
 
 #pragma mark - Images
 
-- (NSString *)imageNameForMidiValue:(NSString *)midi on:(BOOL)on
+// TODO: we're using convention based names so change this to just put together the string
+- (NSString *)frameNameForMidiValue:(NSString *)midi on:(BOOL)on
 {
     switch ([midi intValue]) {
         case 48:

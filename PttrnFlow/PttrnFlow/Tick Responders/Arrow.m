@@ -18,29 +18,27 @@
 @implementation Arrow
 
 // use this method to initialize via tiled map
-- (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap dragItemDelegate:(id<DragItemDelegate>)delegate
+- (id)initWithArrow:(NSMutableDictionary *)arrow batchNode:(CCSpriteBatchNode *)batchNode tiledMap:(CCTMXTiledMap *)tiledMap dragItemDelegate:(id<DragItemDelegate>)delegate
 {
     GridCoord cell = [tiledMap gridCoordForObject:arrow];
     kDirection facing = [SGTiledUtils directionNamed:[CCTMXTiledMap objectPropertyNamed:kTLDPropertyDirection object:arrow]];
-    return [self initWithCell:cell facing:facing dragItemDelegate:delegate];
+    return [self initWithCell:cell batchNode:batchNode facing:facing dragItemDelegate:delegate];
 }
 
 // use this method to initialize dynamically
-- (id)initWithCell:(GridCoord)cell facing:(kDirection)facing dragItemDelegate:(id<DragItemDelegate>)delegate;
+- (id)initWithCell:(GridCoord)cell batchNode:(CCSpriteBatchNode *)batchNode facing:(kDirection)facing dragItemDelegate:(id<DragItemDelegate>)delegate;
 {
     CCSprite *dragSprite = [SpriteUtils spriteWithTextureKey:kImageArrowUp];
-    self = [super initWithDragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemArrow];
+    self = [super initWithBatchNode:batchNode cell:cell dragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemArrow];
     if (self) {
         self.cell = cell;
         self.facing = facing;
-        self.sprite = [self createAndCenterSpriteNamed:[self imageNameForFacing:facing on:NO]];
-        self.position = [GridUtils relativePositionForGridCoord:cell unitSize:kSizeGridUnit];
-        [self addChild:self.sprite];
+        [self setSpriteForFrameName:[self frameNameForFacing:self.facing]];
     }
     return self;
 }
 
-- (NSString *)imageNameForFacing:(kDirection)facing on:(BOOL)on
+- (NSString *)frameNameForFacing:(kDirection)facing
 {
     switch (facing) {
         case kDirectionDown:
@@ -72,9 +70,8 @@
     else if (self.facing == kDirectionLeft) {
         self.facing = kDirectionUp;
     }
-    
-    NSString *imageName = [self imageNameForFacing:self.facing on:NO];
-    [SpriteUtils switchImageForSprite:self.sprite textureKey:imageName];
+
+    [self setSpriteForFrameName:[self frameNameForFacing:self.facing]];
 }
 
 #pragma mark - SynthCellNode

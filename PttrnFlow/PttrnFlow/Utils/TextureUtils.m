@@ -10,9 +10,11 @@
 
 @implementation TextureUtils
 
-#pragma mark - Sprite sheet keyse
+#pragma mark - Sprite sheet keys
 
 NSString *const kTextureKeySamplePads = @"samplePads";
+NSString *const kTextureKeySynthPads = @"synthPads";
+NSString *const kTextureKeyOther = @"other";
 
 #pragma mark - Old images
 
@@ -107,10 +109,12 @@ NSString *const kImageItemButtonSpeedDoubleOn = @"itemButtonSpeedDoubleOn.png";
 //    [[CCTextureCache sharedTextureCache] addImage:kImageA];
 //    [[CCTextureCache sharedTextureCache] addImage:kImageA_flat_on];
 //    [[CCTextureCache sharedTextureCache] addImage:kImageA_flat];
-    [[CCTextureCache sharedTextureCache] addImage:kImageArrowDown];
-    [[CCTextureCache sharedTextureCache] addImage:kImageArrowLeft];
-    [[CCTextureCache sharedTextureCache] addImage:kImageArrowRight];
-    [[CCTextureCache sharedTextureCache] addImage:kImageArrowUp];
+    
+//    [[CCTextureCache sharedTextureCache] addImage:kImageArrowDown];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageArrowLeft];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageArrowRight];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageArrowUp];
+    
 //    [[CCTextureCache sharedTextureCache] addImage:kImageB_on];
 //    [[CCTextureCache sharedTextureCache] addImage:kImageB];
 //    [[CCTextureCache sharedTextureCache] addImage:kImageB_flat_on];
@@ -134,7 +138,7 @@ NSString *const kImageItemButtonSpeedDoubleOn = @"itemButtonSpeedDoubleOn.png";
 //    [[CCTextureCache sharedTextureCache] addImage:kImageG_on];
 //    [[CCTextureCache sharedTextureCache] addImage:kImageG];
     
-    [[CCTextureCache sharedTextureCache] addImage:kImageStartArrow];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageStartArrow];
 
 //    [[CCTextureCache sharedTextureCache] addImage:kImageDrum1];
 //    [[CCTextureCache sharedTextureCache] addImage:kImageDrum1_on];
@@ -145,47 +149,47 @@ NSString *const kImageItemButtonSpeedDoubleOn = @"itemButtonSpeedDoubleOn.png";
 //    [[CCTextureCache sharedTextureCache] addImage:kImageDrum4];
 //    [[CCTextureCache sharedTextureCache] addImage:kImageDrum4_on];
     
-    [[CCTextureCache sharedTextureCache] addImage:kImageArrowButton_off];
-    [[CCTextureCache sharedTextureCache] addImage:kImageArrowButton_on];
-    
-    [[CCTextureCache sharedTextureCache] addImage:kImageWarpDefault];
-    [[CCTextureCache sharedTextureCache] addImage:kImageWarpButton_off];
-    [[CCTextureCache sharedTextureCache] addImage:kImageWarpButton_on];
-    [[CCTextureCache sharedTextureCache] addImage:kImageAudioPad];
-    
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote1];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote2];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote3];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote4];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote5];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote6];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote7];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote8];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote9];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote10];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote11];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote12];
-    
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote1on];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote2on];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote3on];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote4on];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote5on];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote6on];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote7on];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote8on];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote9on];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote10on];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote11on];
-    [[CCTextureCache sharedTextureCache] addImage:kImageNote12on];
-
-    [[CCTextureCache sharedTextureCache] addImage:kImageSpeedDouble];
-    [[CCTextureCache sharedTextureCache] addImage:kImageAudioStop];
-    
-    [[CCTextureCache sharedTextureCache] addImage:kImageItemButtonAudioStopOff];
-    [[CCTextureCache sharedTextureCache] addImage:kImageItemButtonAudioStopOn];
-    [[CCTextureCache sharedTextureCache] addImage:kImageItemButtonSpeedDoubleOff];
-    [[CCTextureCache sharedTextureCache] addImage:kImageItemButtonSpeedDoubleOn];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageArrowButton_off];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageArrowButton_on];
+//    
+//    [[CCTextureCache sharedTextureCache] addImage:kImageWarpDefault];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageWarpButton_off];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageWarpButton_on];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageAudioPad];
+//    
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote1];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote2];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote3];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote4];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote5];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote6];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote7];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote8];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote9];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote10];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote11];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote12];
+//    
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote1on];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote2on];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote3on];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote4on];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote5on];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote6on];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote7on];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote8on];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote9on];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote10on];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote11on];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageNote12on];
+//
+//    [[CCTextureCache sharedTextureCache] addImage:kImageSpeedDouble];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageAudioStop];
+//    
+//    [[CCTextureCache sharedTextureCache] addImage:kImageItemButtonAudioStopOff];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageItemButtonAudioStopOn];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageItemButtonSpeedDoubleOff];
+//    [[CCTextureCache sharedTextureCache] addImage:kImageItemButtonSpeedDoubleOn];
 }
 
 // generate a unique texture key using components of primative image size and color

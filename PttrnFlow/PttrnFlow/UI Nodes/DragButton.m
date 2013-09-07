@@ -22,33 +22,52 @@
 
 @implementation DragButton
 
-+ (DragButton *)buttonWithItemType:(kDragItem)itemType defaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)itemSprite delegate:(id<DragItemDelegate>)delegate
+
++ (DragButton *)buttonWithBatchNode:(CCSpriteBatchNode *)batchNode itemType:(kDragItem)itemType defaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)itemSprite delegate:(id<DragItemDelegate>)delegate
 {
-    return [[DragButton alloc] initWithItemType:itemType DefaultSprite:defaultSprite selectedSprite:selectedSprite dragItemSprite:itemSprite delegate:delegate];
+    return [[DragButton alloc] initWithBatchNode:batchNode itemType:itemType defaultSprite:defaultSprite selectedSprite:selectedSprite dragItemSprite:itemSprite delegate:delegate];
 }
 
-- (id)initWithItemType:(kDragItem)itemType DefaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)dragSprite delegate:(id<DragItemDelegate>)delegate
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode itemType:(kDragItem)itemType defaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)dragSprite delegate:(id<DragItemDelegate>)delegate
 {
     self = [super init];
     if (self) {
+        self.touchNodeDelegate = self;
+        
         defaultSprite.position = ccp(defaultSprite.contentSize.width/2, defaultSprite.contentSize.height/2);
         selectedSprite.position = defaultSprite.position;
         selectedSprite.visible = NO;
         dragSprite.visible = NO;
         
         self.swallowsTouches = YES;
-        self.delegate = delegate;
+        self.dragItemDelegate = delegate;
         self.itemType = itemType;
         self.defaultSprite = defaultSprite;
         self.selectedSprite = selectedSprite;
         self.contentSize = defaultSprite.contentSize;
         self.dragSprite = dragSprite;
         
-        [self addChild:defaultSprite];
-        [self addChild:selectedSprite];
-        [self addChild:dragSprite];
+        [batchNode addChild:defaultSprite];
+        [batchNode addChild:selectedSprite];
+        [batchNode addChild:dragSprite];
     }
     return self;
+}
+
+- (void)setPosition:(CGPoint)position
+{
+    [super setPosition:position];
+    
+    self.defaultSprite.position = position_;
+    self.selectedSprite.position = position_;
+}
+
+#pragma mark - TouchNodeDelegate
+
+- (BOOL)containsTouch:(UITouch *)touch
+{
+    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+    return (CGRectContainsPoint(self.defaultSprite.boundingBox, touchPosition));
 }
 
 #pragma mark - CCTargetedTouchDelegate
@@ -64,8 +83,8 @@
         self.dragSprite.position = touchPosition;
         self.dragSprite.visible = YES;
         
-        if ([self.delegate respondsToSelector:@selector(dragItemScaleFactor)]) {
-            self.dragSprite.scale = [self.delegate dragItemScaleFactor];
+        if ([self.dragItemDelegate respondsToSelector:@selector(dragItemScaleFactor)]) {
+            self.dragSprite.scale = [self.dragItemDelegate dragItemScaleFactor];
         }
         
         return YES;
@@ -75,18 +94,22 @@
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    [super ccTouchMoved:touch withEvent:event];
+    
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     self.dragSprite.position = touchPosition;
-    [self.delegate dragItemMoved:self.itemType touch:touch sender:self];
+    [self.dragItemDelegate dragItemMoved:self.itemType touch:touch sender:self];
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    [super ccTouchEnded:touch withEvent:event];
+    
     self.defaultSprite.visible = YES;
     self.selectedSprite.visible = NO;
     
     self.dragSprite.visible = NO;
-    [self.delegate dragItemDropped:self.itemType touch:touch sender:self];
+    [self.dragItemDelegate dragItemDropped:self.itemType touch:touch sender:self];
 }
 
 @end

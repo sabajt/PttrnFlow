@@ -23,17 +23,14 @@
 
 @implementation AudioPad
 
-- (id)initWithCell:(GridCoord)cell
+// TODO: audio pad doesn't actually use batch node, but it probably should, - rendering the sprite creation is probably expensive
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode cell:(GridCoord)cell
 {
-    self = [super init];
+    self = [super initWithBatchNode:batchNode cell:cell];
     if (self) {
-        self.cell = cell;
-        
         self.sprite = [self defaultSprite];
-        self.sprite.position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
+        self.sprite.position = [self relativeMidpoint];
         [self addChild:self.sprite];
-        
-        self.position = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
     }
     return self;
 }
@@ -62,7 +59,7 @@
 {
     [self.sprite removeFromParentAndCleanup:YES];
     self.sprite = [self highlightSprite];
-    self.sprite.position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
+    self.sprite.position = [self relativeMidpoint];
     [self addChild:self.sprite];
     
     return @[@"audio_pad"];
@@ -72,7 +69,7 @@
 {
     [self.sprite removeFromParentAndCleanup:YES];
     self.sprite = [self defaultSprite];
-    self.sprite.position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
+    self.sprite.position = [self relativeMidpoint];
     [self addChild:self.sprite];
 }
 

@@ -11,7 +11,7 @@
 
 @interface SpeedChange : DragCellNode <TickResponder>
 
-- (id)initWithCell:(GridCoord)cell dragItemDelegate:(id<DragItemDelegate>)delegate speed:(NSString *)speed;
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode Cell:(GridCoord)cell dragItemDelegate:(id<DragItemDelegate>)delegate speed:(NSString *)speed;
 
 @property (copy, nonatomic) NSString *speed;
 

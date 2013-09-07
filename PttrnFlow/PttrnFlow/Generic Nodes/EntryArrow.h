@@ -10,6 +10,6 @@
 
 @interface EntryArrow : CellNode
 
-- (id)initWithEntry:(NSMutableDictionary *)entry tiledMap:(CCTMXTiledMap *)tiledMap;
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode entry:(NSMutableDictionary *)entry tiledMap:(CCTMXTiledMap *)tiledMap;
 
 @end

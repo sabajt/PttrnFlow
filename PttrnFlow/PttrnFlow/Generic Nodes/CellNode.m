@@ -10,12 +10,12 @@
 #import "GameConstants.h"
 #import "SpriteUtils.h"
 #import "SGTiledUtils.h"
-#import "CCNode+Touch.h"
 #import "CCSprite+Utils.h"
 
 
 @implementation CellNode
 
+// TODO: replace with method below
 - (id)init
 {
     self = [super init];
@@ -26,34 +26,49 @@
 }
 
 // holds batch node as weak ref, so make sure someone else owns batch node first
-- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode cell:(GridCoord)cell
 {
     self = [super init];
     if (self) {
-        self.contentSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
+        self.touchNodeDelegate = self;
         _batchNode = batchNode;
+        _cell = cell;
+        _cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
     }
     return self;
 }
 
+- (CGPoint)relativeMidpoint
+{
+    CGPoint relativeOrigin = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
+    return ccp(relativeOrigin.x + self.cellSize.width/2, relativeOrigin.y + self.cellSize.height/2);
+}
+
+#pragma mark - Sprite helpers
+
 // replace current sprite we point to in batch node with new sprite created from frame catch
-- (void)switchSpriteForFrameName:(NSString *)name
+- (void)setSpriteForFrameName:(NSString *)name
 {
     [self.sprite removeFromParentAndCleanup:YES];
+    
     CCSprite *sprite = [CCSprite spriteWithSpriteFrameName:name];
-    CGPoint relativeOrigin = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
-    sprite.position = ccp(relativeOrigin.x + self.contentSize.width/2, relativeOrigin.y + self.contentSize.height/2);
+    sprite.position = [self relativeMidpoint];
+    
+    if (self.batchNode == nil) {
+        NSLog(@"warning: batch node not set on cell node");
+    }
     [self.batchNode addChild:sprite];
     self.sprite = sprite;
 }
 
-
-//TODO: old should delete
-- (CCSprite *)createAndCenterSpriteNamed:(NSString *)name
+- (CGFloat)spriteWidth
 {
-    CCSprite *sprite = [SpriteUtils spriteWithTextureKey:name];
-    sprite.position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
-    return sprite;
+    return self.sprite.boundingBox.size.width;
+}
+
+- (CGFloat)spriteHeight
+{
+    return self.sprite.boundingBox.size.height;
 }
 
 - (void)alignSprite:(kDirection)direction
@@ -77,38 +92,32 @@
     }
 }
 
+// TODO: need to change these to not use content size
 - (void)leftAlignSprite
 {
-    self.sprite.position = CGPointMake(self.sprite.contentSize.width/2, self.contentSize.height/2);
+    CGPoint relativeOrigin = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
+    self.sprite.position = CGPointMake(relativeOrigin.x + ([self spriteWidth] / 2), relativeOrigin.y + (self.cellSize.height / 2));
 }
 
 - (void)rightAlignSprite
 {
-    self.sprite.position = CGPointMake(self.contentSize.width - self.sprite.contentSize.width/2, self.contentSize.height/2);
+    CGPoint relativeOrigin = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
+    self.sprite.position = CGPointMake((relativeOrigin.x + self.cellSize.width) - ([self spriteWidth] / 2), relativeOrigin.y + (self.cellSize.height / 2));
 }
 
 - (void)topAlignSprite
 {
-    self.sprite.position = CGPointMake(self.contentSize.width/2, self.contentSize.height - self.sprite.contentSize.height/2);
+    CGPoint relativeOrigin = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
+    self.sprite.position = CGPointMake(relativeOrigin.x + (self.cellSize.width / 2), relativeOrigin.y + (self.cellSize.height - ([self spriteHeight] / 2)));
 }
 
 - (void)bottomAlignSprite
 {
-    self.sprite.position = CGPointMake(self.contentSize.width/2, self.sprite.contentSize.height/2);
+    CGPoint relativeOrigin = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
+    self.sprite.position = CGPointMake(relativeOrigin.x + (self.cellSize.width / 2), relativeOrigin.y + ([self spriteHeight] / 2));
 }
 
-- (void)onEnter
-{
-    [super onEnter];
-    // modified version of CCLayerPanZoom sends this notification when we start panning -- drag distance buffer specified by a layer's maxTouchDistanceToClick property
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStartPan) name:kNotificationStartPan object:nil];
-}
-
-- (void)onExit
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super onExit];
-}
+#pragma mark - Handle panning
 
 - (void)handleStartPan
 {
@@ -123,5 +132,30 @@
     }
 }
 
+#pragma mark CCNode SceneManagement
+
+- (void)onEnter
+{
+    [super onEnter];
+    
+    // modified version of CCLayerPanZoom sends this notification when we start panning,
+    // drag distance buffer specified by a layer's maxTouchDistanceToClick property
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStartPan) name:kNotificationStartPan object:nil];
+}
+
+- (void)onExit
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [super onExit];
+}
+
+#pragma mark - TouchNodeDelegate
+
+- (BOOL)containsTouch:(UITouch *)touch
+{
+    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+    return (CGRectContainsPoint(self.sprite.boundingBox, touchPosition));
+}
 
 @end

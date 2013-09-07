@@ -11,6 +11,6 @@
 
 @interface Warp : DragCellNode <TickResponder>
 
-- (id)initWithDragItemDelegate:(id<DragItemDelegate>)delegate cell:(GridCoord)cell;
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode dragItemDelegate:(id<DragItemDelegate>)delegate cell:(GridCoord)cell;
 
 @end

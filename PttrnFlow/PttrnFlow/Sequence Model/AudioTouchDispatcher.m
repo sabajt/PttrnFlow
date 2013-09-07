@@ -70,12 +70,24 @@
     }
 }
 
+#pragma mark CCNode SceneManagement
+
+- (void)onEnter
+{
+    [super onEnter];
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
+}
+
+- (void)onExit
+{
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+	[super onExit];
+}
+
 #pragma mark CCTargetedTouchDelegate
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    [super ccTouchBegan:touch withEvent:event];
-    
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
@@ -94,8 +106,6 @@
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    [super ccTouchMoved:touch withEvent:event];
-    
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
@@ -121,8 +131,6 @@
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    [super ccTouchEnded:touch withEvent:event];
-    
     // get channel
     NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.currentChannelsByTouches, (__bridge void *)touch);
     NSString *channel = [touchInfo objectForKey:@"channel"];
@@ -139,8 +147,6 @@
 
 - (void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    [super ccTouchCancelled:touch withEvent:event];
-    
     // get channel
     NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.currentChannelsByTouches, (__bridge void *)touch);
     NSString *channel = [touchInfo objectForKey:@"channel"];

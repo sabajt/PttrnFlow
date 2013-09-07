@@ -19,6 +19,10 @@
     void *_patch;
 }
 
+@property (weak, nonatomic) CCSpriteBatchNode *samplesBatchNode;
+@property (weak, nonatomic) CCSpriteBatchNode *synthBatchNode;
+@property (weak, nonatomic) CCSpriteBatchNode *othersBatchNode;
+
 + (CCScene *)sceneWithSequence:(int)sequence;
 
 @end

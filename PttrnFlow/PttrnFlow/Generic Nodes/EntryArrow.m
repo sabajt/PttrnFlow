@@ -15,21 +15,16 @@
 
 @implementation EntryArrow
 
-- (id)initWithEntry:(NSMutableDictionary *)entry tiledMap:(CCTMXTiledMap *)tiledMap
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode entry:(NSMutableDictionary *)entry tiledMap:(CCTMXTiledMap *)tiledMap
 {
-    self = [super init];
+    GridCoord cell = [tiledMap gridCoordForObject:entry];
+    self = [super initWithBatchNode:batchNode cell:cell];
     if (self) {
-        self.cell = [tiledMap gridCoordForObject:entry];
+        [self setSpriteForFrameName:kImageStartArrow];
         
-        self.sprite = [SpriteUtils spriteWithTextureKey:kImageStartArrow];
         NSString *directionName = [CCTMXTiledMap objectPropertyNamed:@"direction" object:entry];
         kDirection direction = [SGTiledUtils directionNamed:directionName];
-        
         self.sprite.rotation = [SpriteUtils degreesForDirection:direction];
-        [self alignSprite:[GridUtils oppositeDirection:direction]];
-        [self addChild:self.sprite];
-        
-        self.position = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
     }
     return self;
 }

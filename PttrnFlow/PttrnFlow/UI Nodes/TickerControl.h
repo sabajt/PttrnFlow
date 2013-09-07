@@ -18,8 +18,9 @@ FOUNDATION_EXPORT CGFloat const kTickScrubberDistanceInterval;
 
 @end
 
-@interface TickerControl : TouchNode;
+@interface TickerControl : TouchNode <TouchNodeDelegate>;
 
+// TODO: rename this to tickerControlDelegate
 @property (weak, nonatomic) id<TickerControlDelegate> delegate;
 @property (weak, nonatomic) CCSprite *thumbSprite;
 @property (assign) int numberOfTicks;

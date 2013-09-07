@@ -14,6 +14,8 @@
 #pragma mark - Sprite sheet keys
 
 FOUNDATION_EXPORT NSString *const kTextureKeySamplePads;
+FOUNDATION_EXPORT NSString *const kTextureKeySynthPads;
+FOUNDATION_EXPORT NSString *const kTextureKeyOther;
 
 #pragma mark - Old
 

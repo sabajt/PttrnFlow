@@ -7,8 +7,6 @@
 //
 
 #import "TouchNode.h"
-#import "CCNode+Touch.h"
-
 
 @implementation TouchNode
 
@@ -46,7 +44,7 @@
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {    
-    if ([self containsTouch:touch]) {
+    if ([self.touchNodeDelegate containsTouch:touch]) {
         self.isReceivingTouch = YES;
         if (self.longPressDelay > 0) {
             [self scheduleOnce:@selector(longPress:) delay:self.longPressDelay];
@@ -58,10 +56,9 @@
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if (![self containsTouch:touch] && (self.longPressDelay > 0)) {
+    if (![self.touchNodeDelegate containsTouch:touch] && (self.longPressDelay > 0)) {
         [self unschedule:@selector(longPress:)];
     }
-    
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event

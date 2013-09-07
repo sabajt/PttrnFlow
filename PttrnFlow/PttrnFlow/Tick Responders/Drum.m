@@ -25,11 +25,11 @@
 
 - (id)initWithDrum:(NSMutableDictionary *)drum batchNode:(CCSpriteBatchNode *)batchNode tiledMap:(CCTMXTiledMap *)tiledMap
 {
-    self = [super initWithBatchNode:batchNode];
+    GridCoord cell = [tiledMap gridCoordForObject:drum];
+    self = [super initWithBatchNode:batchNode cell:cell];
     if (self) {
-        self.cell = [tiledMap gridCoordForObject:drum];
         self.pattern = [CCTMXTiledMap objectPropertyNamed:kTLDPropertyPattern object:drum];
-        [self switchSpriteForFrameName:[self frameNameForPattern:self.pattern on:NO]];
+        [self setSpriteForFrameName:[self frameNameForPattern:self.pattern on:NO]];
     }
     return self;
 }
@@ -44,7 +44,7 @@
 
 - (void)deselect
 {
-    [self switchSpriteForFrameName:[self frameNameForPattern:self.pattern on:NO]];
+    [self setSpriteForFrameName:[self frameNameForPattern:self.pattern on:NO]];
 }
 
 
@@ -68,7 +68,7 @@
 
 - (NSArray *)tick:(NSInteger)bpm
 {
-    [self switchSpriteForFrameName:[self frameNameForPattern:self.pattern on:YES]];
+    [self setSpriteForFrameName:[self frameNameForPattern:self.pattern on:YES]];
     return @[[NSString stringWithFormat:@"sample_%@", self.pattern]];
 }
 

@@ -128,7 +128,7 @@
     
     // hud layer -- right hand item menu
     static CGFloat itemBarWidth = 80;
-    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[@(kDragItemArrow), @(kDragItemAudioStop), @(kDragItemSpeedChange)] dragButtonDelegate:sequenceLayer];
+    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithBatchNode:sequenceLayer.othersBatchNode color:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[@(kDragItemArrow), @(kDragItemAudioStop), @(kDragItemSpeedChange)] dragButtonDelegate:sequenceLayer];
     itemLayer.position = ccp(sequenceLayer.contentSize.width - itemLayer.contentSize.width, sequenceLayer.contentSize.height - hudLayer.contentSize.height - itemLayer.contentSize.height);
     [scene addChild:itemLayer z:1];
     
@@ -144,13 +144,29 @@
 {
     self = [super init];
     if (self) {
+        
+        // Initialize Pure Data stuff
         _dispatcher = [[PdDispatcher alloc] init];
         [PdBase setDelegate:_dispatcher];
         _patch = [PdBase openFile:@"pf-main.pd" path:[[NSBundle mainBundle] resourcePath]];
         if (!_patch) {
             NSLog(@"Failed to open patch");
         }
+        
+        // Sprite sheet batch nodes
+        CCSpriteBatchNode *samplesBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeySamplePads stringByAppendingString:@".png"]];
+        [self addChild:samplesBatch];
+        self.samplesBatchNode = samplesBatch;
+        
+        CCSpriteBatchNode *synthBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeySynthPads stringByAppendingString:@".png"]];
+        [self addChild:synthBatch];
+        self.synthBatchNode = synthBatch;
+        
+        CCSpriteBatchNode *othersBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyOther stringByAppendingString:@".png"]];
+        [self addChild:othersBatch];
+        self.othersBatchNode = othersBatch;
 
+        // Setup
         self.isTouchEnabled = YES;
         self.backgroundLayer = backgroundLayer;
         self.synth = [[MainSynth alloc] init];
@@ -192,8 +208,8 @@
 - (void)createPuzzleObjects:(CCTMXTiledMap *)tiledMap
 {
     // audio pads
-    NSMutableArray *pads = [tiledMap objectsWithName:kTLDObjectAudioPad groupName:kTLDGroupTickResponders];
     
+    NSMutableArray *pads = [tiledMap objectsWithName:kTLDObjectAudioPad groupName:kTLDGroupTickResponders];
     for (NSMutableDictionary *pad in pads) {
         
         GridCoord padChunkOrigin = [tiledMap gridCoordForObject:pad];
@@ -205,7 +221,7 @@
         for (int c = 0; c <= column; c++) {
             for (int r = 0; r <= row; r++) {
                 GridCoord cell = GridCoordMake(padChunkOrigin.x + c, padChunkOrigin.y + r);
-                AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
+                AudioPad *audioPad = [[AudioPad alloc] initWithBatchNode:nil cell:cell];
                 [self.tickDispatcher registerTickResponderCellNode:audioPad];
                 [self.audioTouchDispatcher addResponder:audioPad];
                 [self addChild:audioPad];
@@ -216,19 +232,17 @@
     // tone blocks
     NSMutableArray *tones = [tiledMap objectsWithName:kTLDObjectTone groupName:kTLDGroupTickResponders];
     for (NSMutableDictionary *tone in tones) {
-        Tone *toneNode = [[Tone alloc] initWithTone:tone tiledMap:tiledMap];
+        
+        Tone *toneNode = [[Tone alloc] initWithBatchNode:self.synthBatchNode tone:tone tiledMap:tiledMap];
         [self.tickDispatcher registerTickResponderCellNode:toneNode];
         [self.audioTouchDispatcher addResponder:toneNode];
         [self addChild:toneNode];
     }
     
     // drum blocks
-    CCSpriteBatchNode *sampleSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeySamplePads stringByAppendingString:@".png"]];
-    [self addChild:sampleSpriteSheet];
-    
     NSMutableArray *drums = [tiledMap objectsWithName:kTLDObjectDrum groupName:kTLDGroupTickResponders];
     for (NSMutableDictionary *drum in drums) {
-        Drum *drumNode = [[Drum alloc] initWithDrum:drum batchNode:sampleSpriteSheet tiledMap:tiledMap];
+        Drum *drumNode = [[Drum alloc] initWithDrum:drum batchNode:self.samplesBatchNode tiledMap:tiledMap];
         [self.tickDispatcher registerTickResponderCellNode:drumNode];
         [self.audioTouchDispatcher addResponder:drumNode];
         [self addChild:drumNode];
@@ -245,7 +259,7 @@
     // entry arrow
     NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupTickResponders];
     for (NSMutableDictionary *entry in entries) {
-        EntryArrow *entryArrow = [[EntryArrow alloc] initWithEntry:entry tiledMap:tiledMap];
+        EntryArrow *entryArrow = [[EntryArrow alloc] initWithBatchNode:self.othersBatchNode entry:entry tiledMap:tiledMap];
         [self addChild:entryArrow];
     }
 }
@@ -346,23 +360,23 @@
         // instantiate drag items here -- will just be easiest to hard code each case
         
         if (itemType == kDragItemArrow) {
-            Arrow *arrow = [[Arrow alloc] initWithCell:self.lastDraggedItemCell facing:kDirectionUp dragItemDelegate:self];
+            Arrow *arrow = [[Arrow alloc] initWithCell:self.lastDraggedItemCell batchNode:self.othersBatchNode facing:kDirectionUp dragItemDelegate:self];
             [self.tickDispatcher registerTickResponderCellNode:arrow];
             [self addChild:arrow];
         }
         else if (itemType == kDragItemWarp) {
-            Warp *warp = [[Warp alloc] initWithDragItemDelegate:self cell:self.lastDraggedItemCell];
+            Warp *warp = [[Warp alloc] initWithBatchNode:self.othersBatchNode dragItemDelegate:self cell:self.lastDraggedItemCell];
             [self.tickDispatcher registerTickResponderCellNode:warp];
             [self addChild:warp];
         }
         else if (itemType == kDragItemAudioStop) {
-            AudioStop *audioStop = [[AudioStop alloc] initWithCell:self.lastDraggedItemCell dragItemDelegate:self];
+            AudioStop *audioStop = [[AudioStop alloc] initWithBatchNode:self.othersBatchNode cell:self.lastDraggedItemCell dragItemDelegate:self];
             [self.tickDispatcher registerTickResponderCellNode:audioStop];
             [self.audioTouchDispatcher addResponder:audioStop];
             [self addChild:audioStop];
         }
         else if (itemType == kDragItemSpeedChange) {
-            SpeedChange *speedChange = [[SpeedChange alloc] initWithCell:self.lastDraggedItemCell dragItemDelegate:self speed:@"2X"];
+            SpeedChange *speedChange = [[SpeedChange alloc] initWithBatchNode:self.othersBatchNode Cell:self.lastDraggedItemCell dragItemDelegate:self speed:@"2X"];
             [self.tickDispatcher registerTickResponderCellNode:speedChange];
             [self.audioTouchDispatcher addResponder:speedChange]; // not actually an audio event, but we need to track touches for highlighting
             [self addChild:speedChange];

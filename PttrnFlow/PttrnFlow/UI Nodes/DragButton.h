@@ -10,10 +10,10 @@
 #import "DragItemDelegate.h"
 
 
-@interface DragButton : TouchNode 
+@interface DragButton : TouchNode <TouchNodeDelegate>
 
-@property (weak, nonatomic) id<DragItemDelegate> delegate;
+@property (weak, nonatomic) id<DragItemDelegate> dragItemDelegate;
 
-+ (DragButton *)buttonWithItemType:(kDragItem)itemType defaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)itemSprite delegate:(id<DragItemDelegate>)delegate;
++ (DragButton *)buttonWithBatchNode:(CCSpriteBatchNode *)batchNode itemType:(kDragItem)itemType defaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)itemSprite delegate:(id<DragItemDelegate>)delegate;
 
 @end

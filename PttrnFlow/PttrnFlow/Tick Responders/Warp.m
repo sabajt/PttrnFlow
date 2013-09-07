@@ -12,18 +12,12 @@
 
 @implementation Warp
 
-- (id)initWithDragItemDelegate:(id<DragItemDelegate>)delegate cell:(GridCoord)cell
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode dragItemDelegate:(id<DragItemDelegate>)delegate cell:(GridCoord)cell
 {
-    CCSprite *sprite = [SpriteUtils spriteWithTextureKey:kImageWarpDefault];
-    self = [super initWithDragItemDelegate:delegate dragSprite:sprite dragItemType:kDragItemWarp];
+    CCSprite *dragSprite = [SpriteUtils spriteWithTextureKey:kImageWarpDefault];
+    self = [super initWithBatchNode:batchNode cell:cell dragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemWarp];
     if (self) {
-        self.cell = cell;
-        
-        self.sprite = [SpriteUtils spriteWithTextureKey:kImageWarpDefault];
-        self.sprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
-        [self addChild:self.sprite];
-        
-        self.position = [GridUtils relativePositionForGridCoord:cell unitSize:kSizeGridUnit];
+        [self setSpriteForFrameName:kImageWarpDefault];
     }
     return self;
 }

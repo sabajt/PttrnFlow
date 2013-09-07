@@ -14,16 +14,13 @@
 @implementation SpeedChange
 
 // use this method to initialize dynamically
-- (id)initWithCell:(GridCoord)cell dragItemDelegate:(id<DragItemDelegate>)delegate speed:(NSString *)speed;
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode Cell:(GridCoord)cell dragItemDelegate:(id<DragItemDelegate>)delegate speed:(NSString *)speed
 {
-    CCSprite *dragSprite = [SpriteUtils spriteWithTextureKey:kImageSpeedDouble];;
-    self = [super initWithDragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemSpeedChange];
+    CCSprite *dragSprite = [SpriteUtils spriteWithTextureKey:kImageSpeedDouble];
+    self = [super initWithBatchNode:batchNode cell:cell dragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemSpeedChange];
     if (self) {
-        self.cell = cell;
         self.speed = speed;
-        self.sprite = [self createAndCenterSpriteNamed:kImageSpeedDouble];
-        self.position = [GridUtils relativePositionForGridCoord:cell unitSize:kSizeGridUnit];
-        [self addChild:self.sprite];
+        [self setSpriteForFrameName:kImageSpeedDouble];
     }
     return self;
 }

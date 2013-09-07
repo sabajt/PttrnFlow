@@ -11,6 +11,6 @@
 
 @interface AudioStop : DragCellNode <TickResponder>
 
-- (id)initWithCell:(GridCoord)cell dragItemDelegate:(id<DragItemDelegate>)delegate;
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode cell:(GridCoord)cell dragItemDelegate:(id<DragItemDelegate>)delegate;
 
 @end

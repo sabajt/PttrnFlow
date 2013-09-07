@@ -6,10 +6,9 @@
 //
 //
 
-#import "TouchNode.h"
 #import "TickResponder.h"
 
-@interface AudioTouchDispatcher : TouchNode
+@interface AudioTouchDispatcher : CCNode <CCTargetedTouchDelegate>
 
 - (void)addResponder:(id<TickResponder>)responder;
 - (void)clearResponders;

@@ -14,7 +14,7 @@
 
 @property (assign) kDirection facing;
 
-- (id)initWithArrow:(NSMutableDictionary *)arrow tiledMap:(CCTMXTiledMap *)tiledMap dragItemDelegate:(id<DragItemDelegate>)delegate;
-- (id)initWithCell:(GridCoord)cell facing:(kDirection)facing dragItemDelegate:(id<DragItemDelegate>)delegate;
+- (id)initWithArrow:(NSMutableDictionary *)arrow batchNode:(CCSpriteBatchNode *)batchNode tiledMap:(CCTMXTiledMap *)tiledMap dragItemDelegate:(id<DragItemDelegate>)delegate;
+- (id)initWithCell:(GridCoord)cell batchNode:(CCSpriteBatchNode *)batchNode  facing:(kDirection)facing dragItemDelegate:(id<DragItemDelegate>)delegate;
 
 @end

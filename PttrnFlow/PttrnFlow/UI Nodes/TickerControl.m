@@ -10,7 +10,6 @@
 #import "SpriteUtils.h"
 #import "CCSprite+Utils.h"
 #import "ColorUtils.h"
-#import "CCNode+Touch.h"
 #import "TickDispatcher.h"
 
 CGFloat const kTickScrubberDistanceInterval = 40;
@@ -38,6 +37,8 @@ static CGFloat const kTickerControlHeight = 50;
         if (numberOfTicks < 1) {
             NSLog(@"warning: number of ticks for TickerControl should be > 1");
         }
+        self.touchNodeDelegate = self;
+        
         self.swallowsTouches = YES;
         self.distanceInterval = distanceInterval;
         _numberOfTicks = numberOfTicks;
@@ -94,6 +95,15 @@ static CGFloat const kTickerControlHeight = 50;
     self.currentIndex = ([subIndex intValue] / 4);
     NSLog(@"current index: %i", self.currentIndex);
     [self positionThumb:self.currentIndex];
+}
+
+#pragma mark - TouchNodeDelegate
+
+- (BOOL)containsTouch:(UITouch *)touch
+{
+    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+    CGRect rect = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
+    return (CGRectContainsPoint(rect, touchPosition));
 }
 
 #pragma mark CCNode SceneManagement
