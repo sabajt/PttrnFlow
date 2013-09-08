@@ -23,14 +23,15 @@
 
 @implementation AudioPad
 
-// TODO: audio pad doesn't actually use batch node, but it probably should, - rendering the sprite creation is probably expensive
+// TODO: audio pad doesn't actually use batch node, but it probably should, - rendering the sprite creatioxn is probably expensive
 - (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode cell:(GridCoord)cell
 {
     self = [super initWithBatchNode:batchNode cell:cell];
     if (self) {
-        self.sprite = [self defaultSprite];
-        self.sprite.position = [self relativeMidpoint];
-        [self addChild:self.sprite];
+//        self.sprite = [self defaultSprite];
+//        self.sprite.position = [self relativeMidpoint];
+//        [self addChild:self.sprite];
+        [self setSpriteForFrameName:@"rectBorderBlue.png"];
     }
     return self;
 }

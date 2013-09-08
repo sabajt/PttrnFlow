@@ -139,9 +139,6 @@
 		162C291017821E0200CE480C /* SizeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C290F17821E0200CE480C /* SizeUtils.m */; };
 		162C291717848A8800CE480C /* CCLayerPanZoom+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C291617848A8700CE480C /* CCLayerPanZoom+Utils.m */; };
 		162C291C1784CF5600CE480C /* seq1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 162C29181784CF5600CE480C /* seq1.tmx */; };
-		162C291D1784CF5600CE480C /* seq2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 162C29191784CF5600CE480C /* seq2.tmx */; };
-		162C291E1784CF5600CE480C /* seq3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 162C291A1784CF5600CE480C /* seq3.tmx */; };
-		162C291F1784CF5600CE480C /* seq4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 162C291B1784CF5600CE480C /* seq4.tmx */; };
 		162C2926178501CA00CE480C /* DragCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C2923178501C700CE480C /* DragCellNode.m */; };
 		162C293517871F2600CE480C /* CCNode+DragItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C293417871F2500CE480C /* CCNode+DragItem.m */; };
 		162C29381787699A00CE480C /* TickHitChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C29371787699900CE480C /* TickHitChart.m */; };
@@ -545,9 +542,6 @@
 		162C291517848A8600CE480C /* CCLayerPanZoom+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCLayerPanZoom+Utils.h"; sourceTree = "<group>"; };
 		162C291617848A8700CE480C /* CCLayerPanZoom+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCLayerPanZoom+Utils.m"; sourceTree = "<group>"; };
 		162C29181784CF5600CE480C /* seq1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = seq1.tmx; sourceTree = "<group>"; };
-		162C29191784CF5600CE480C /* seq2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = seq2.tmx; sourceTree = "<group>"; };
-		162C291A1784CF5600CE480C /* seq3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = seq3.tmx; sourceTree = "<group>"; };
-		162C291B1784CF5600CE480C /* seq4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = seq4.tmx; sourceTree = "<group>"; };
 		162C2922178501C700CE480C /* DragCellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragCellNode.h; sourceTree = "<group>"; };
 		162C2923178501C700CE480C /* DragCellNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragCellNode.m; sourceTree = "<group>"; };
 		162C29281785BE0B00CE480C /* DragItemDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DragItemDelegate.h; path = "Generic Protocols/DragItemDelegate.h"; sourceTree = "<group>"; };
@@ -1218,9 +1212,6 @@
 			isa = PBXGroup;
 			children = (
 				162C29181784CF5600CE480C /* seq1.tmx */,
-				162C29191784CF5600CE480C /* seq2.tmx */,
-				162C291A1784CF5600CE480C /* seq3.tmx */,
-				162C291B1784CF5600CE480C /* seq4.tmx */,
 				16284C8F173A072B00B058D2 /* pipeTilesetBase1.png */,
 				16284C90173A072B00B058D2 /* seq0.tmx */,
 			);
@@ -1624,10 +1615,7 @@
 				163091FC177F7B14003155BB /* itemButtonArrowOff-ipad.png in Resources */,
 				163091FD177F7B14003155BB /* itemButtonArrowOn-ipad.png in Resources */,
 				162C291C1784CF5600CE480C /* seq1.tmx in Resources */,
-				162C291D1784CF5600CE480C /* seq2.tmx in Resources */,
 				33F8A31317B9F104003B33E5 /* pf-main.pd in Resources */,
-				162C291E1784CF5600CE480C /* seq3.tmx in Resources */,
-				162C291F1784CF5600CE480C /* seq4.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

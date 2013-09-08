@@ -59,7 +59,7 @@
             <key>audio-pad.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{204,204},{200,200}}</string>
+                <string>{{2,406},{200,200}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +72,7 @@
             <key>audio-stop.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{146,406},{136,120}}</string>
+                <string>{{348,422},{136,120}}</string>
                 <key>offset</key>
                 <string>{8,5}</string>
                 <key>rotated</key>
@@ -85,7 +85,7 @@
             <key>blank-on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,204},{200,200}}</string>
+                <string>{{204,204},{200,200}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +98,7 @@
             <key>blank.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{204,2},{200,200}}</string>
+                <string>{{2,204},{200,200}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +111,7 @@
             <key>itemButtonArrowOff.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{84,528},{80,80}}</string>
+                <string>{{84,608},{80,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +124,7 @@
             <key>itemButtonArrowOn.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{366,504},{80,80}}</string>
+                <string>{{2,608},{80,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +137,7 @@
             <key>itemButtonAudioStopOff.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,474},{80,80}}</string>
+                <string>{{368,544},{80,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,7 +150,7 @@
             <key>itemButtonAudioStopOn.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{284,488},{80,80}}</string>
+                <string>{{204,556},{80,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -163,7 +163,7 @@
             <key>itemButtonSpeedDoubleOff.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{393,422},{80,80}}</string>
+                <string>{{286,544},{80,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -176,7 +176,7 @@
             <key>itemButtonSpeedDoubleOn.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{284,406},{80,80}}</string>
+                <string>{{204,474},{80,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -212,10 +212,23 @@
                 <key>sourceSize</key>
                 <string>{80,80}</string>
             </dict>
+            <key>rectBorderBlue.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{204,2},{200,200}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{200,200}}</string>
+                <key>sourceSize</key>
+                <string>{200,200}</string>
+            </dict>
             <key>speed-double.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,406},{142,66}}</string>
+                <string>{{204,406},{142,66}}</string>
                 <key>offset</key>
                 <string>{-20,27}</string>
                 <key>rotated</key>
@@ -228,7 +241,7 @@
             <key>startArrow.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{366,406},{25,25}}</string>
+                <string>{{286,474},{25,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -261,7 +274,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:42d4d13e7e19f1ac22480f070d4e134a:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:15be6a39ff86b6e023b8ed2eb47076e6:1/1$</string>
             <key>textureFileName</key>
             <string>other-hd.png</string>
         </dict>

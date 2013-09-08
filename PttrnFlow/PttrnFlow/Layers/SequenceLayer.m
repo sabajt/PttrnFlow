@@ -221,7 +221,7 @@
         for (int c = 0; c <= column; c++) {
             for (int r = 0; r <= row; r++) {
                 GridCoord cell = GridCoordMake(padChunkOrigin.x + c, padChunkOrigin.y + r);
-                AudioPad *audioPad = [[AudioPad alloc] initWithBatchNode:nil cell:cell];
+                AudioPad *audioPad = [[AudioPad alloc] initWithBatchNode:self.othersBatchNode cell:cell];
                 [self.tickDispatcher registerTickResponderCellNode:audioPad];
                 [self.audioTouchDispatcher addResponder:audioPad];
                 [self addChild:audioPad];
