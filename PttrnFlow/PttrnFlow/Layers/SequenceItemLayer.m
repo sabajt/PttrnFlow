@@ -41,35 +41,36 @@ static CGFloat const kHandleHeight = 40;
 
 - (DragButton *)dragItemButtonWithBatchNode:(CCSpriteBatchNode *)batchNode itemType:(kDragItem)itemType delegate:(id<DragItemDelegate>)delegate
 {
-    CCSprite *defaultSprite;
-    CCSprite *selectedSprite;
-    CCSprite *dragSprite;
+    NSString *defaultFrameName;
+    NSString *selectedFrameName;
+    NSString *dragFrameName;
     
     if (itemType == kDragItemArrow) {
-        selectedSprite = [CCSprite spriteWithSpriteFrameName:kImageArrowButton_on];
-        dragSprite = [CCSprite spriteWithSpriteFrameName:kImageArrowUp];
-        defaultSprite = [CCSprite spriteWithSpriteFrameName:kImageArrowButton_off];
+        defaultFrameName = kImageArrowButton_off;
+        selectedFrameName = kImageArrowButton_on;
+        dragFrameName = kImageArrowUp;
     }
     else if (itemType == kDragItemWarp) {
-        defaultSprite = [CCSprite spriteWithSpriteFrameName:kImageWarpButton_off];
-        selectedSprite = [CCSprite spriteWithSpriteFrameName:kImageWarpButton_on];
-        dragSprite = [CCSprite spriteWithSpriteFrameName:kImageWarpDefault];
+        defaultFrameName = kImageWarpButton_off;
+        selectedFrameName = kImageWarpButton_on;
+        dragFrameName = kImageWarpDefault;
     }
     else if (itemType == kDragItemAudioStop) {
-        defaultSprite = [CCSprite spriteWithSpriteFrameName:kImageItemButtonAudioStopOff];
-        selectedSprite = [CCSprite spriteWithSpriteFrameName:kImageItemButtonAudioStopOn];
-        dragSprite = [CCSprite spriteWithSpriteFrameName:kImageAudioStop];
+        defaultFrameName = kImageItemButtonAudioStopOff;
+        selectedFrameName = kImageItemButtonAudioStopOn;
+        dragFrameName = kImageAudioStop;
     }
     else if (itemType == kDragItemSpeedChange) {
-        defaultSprite = [CCSprite spriteWithSpriteFrameName:kImageItemButtonSpeedDoubleOff];
-        selectedSprite = [CCSprite spriteWithSpriteFrameName:kImageItemButtonSpeedDoubleOn];
-        dragSprite = [CCSprite spriteWithSpriteFrameName:kImageSpeedDouble];
+        defaultFrameName = kImageItemButtonSpeedDoubleOff;
+        selectedFrameName = kImageItemButtonSpeedDoubleOn;
+        dragFrameName = kImageSpeedDouble;
     }
     else {
         NSLog(@"warning: unsupported kDragItem type, enum %i", itemType);
     }
     
-    return [DragButton buttonWithBatchNode:batchNode itemType:itemType defaultSprite:defaultSprite selectedSprite:selectedSprite dragItemSprite:dragSprite delegate:delegate];
+//    return [[DragButton alloc] initWithItemType:<#(kDragItem)#> defaultFrameName:<#(NSString *)#> selectedFrameName:<#(NSString *)#> dragFrameName:<#(NSString *)#> delegate:<#(id<DragItemDelegate>)#>]
+//    return [DragButton buttonWithItemType:itemType defaultSprite:defaultSprite selectedSprite:selectedSprite dragItemSprite:dragSprite delegate:delegate];
 }
 
 @end

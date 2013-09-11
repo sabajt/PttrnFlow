@@ -16,6 +16,7 @@
 FOUNDATION_EXPORT NSString *const kTextureKeySamplePads;
 FOUNDATION_EXPORT NSString *const kTextureKeySynthPads;
 FOUNDATION_EXPORT NSString *const kTextureKeyOther;
+FOUNDATION_EXPORT NSString *const kTextureKeyUILayer;
 
 #pragma mark - Old
 

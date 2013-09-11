@@ -15,6 +15,7 @@
 NSString *const kTextureKeySamplePads = @"samplePads";
 NSString *const kTextureKeySynthPads = @"synthPads";
 NSString *const kTextureKeyOther = @"other";
+NSString *const kTextureKeyUILayer = @"uilayer";
 
 #pragma mark - Old images
 

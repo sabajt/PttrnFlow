@@ -22,19 +22,55 @@
 
 @implementation DragButton
 
-
-+ (DragButton *)buttonWithBatchNode:(CCSpriteBatchNode *)batchNode itemType:(kDragItem)itemType defaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)itemSprite delegate:(id<DragItemDelegate>)delegate
-{
-    return [[DragButton alloc] initWithBatchNode:batchNode itemType:itemType defaultSprite:defaultSprite selectedSprite:selectedSprite dragItemSprite:itemSprite delegate:delegate];
-}
-
-- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode itemType:(kDragItem)itemType defaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)dragSprite delegate:(id<DragItemDelegate>)delegate
+- (id)initWithItemType:(kDragItem)itemType delegate:(id<DragItemDelegate>)delegate
 {
     self = [super init];
     if (self) {
         self.touchNodeDelegate = self;
         
-        defaultSprite.position = ccp(defaultSprite.contentSize.width/2, defaultSprite.contentSize.height/2);
+        NSString *defaultFrameName;
+        NSString *selectedFrameName;
+        NSString *dragFrameName;
+        
+        if (itemType == kDragItemArrow) {
+            defaultFrameName = kImageArrowButton_off;
+            selectedFrameName = kImageArrowButton_on;
+            dragFrameName = kImageArrowUp;
+        }
+        else if (itemType == kDragItemWarp) {
+            defaultFrameName = kImageWarpButton_off;
+            selectedFrameName = kImageWarpButton_on;
+            dragFrameName = kImageWarpDefault;
+        }
+        else if (itemType == kDragItemAudioStop) {
+            defaultFrameName = kImageItemButtonAudioStopOff;
+            selectedFrameName = kImageItemButtonAudioStopOn;
+            dragFrameName = kImageAudioStop;
+        }
+        else if (itemType == kDragItemSpeedChange) {
+            defaultFrameName = kImageItemButtonSpeedDoubleOff;
+            selectedFrameName = kImageItemButtonSpeedDoubleOn;
+            dragFrameName = kImageSpeedDouble;
+        }
+        else {
+            NSLog(@"warning: unsupported kDragItem type, enum %i", itemType);
+        }
+
+        CCSprite *defaultSprite = [CCSprite spriteWithSpriteFrameName:defaultFrameName];
+        self.defaultSprite = defaultSprite;
+        [self addChild:defaultSprite];
+
+        CCSprite *selectedSprite = [CCSprite spriteWithSpriteFrameName:selectedFrameName];
+        self.selectedSprite = selectedSprite;
+        [self addChild:selectedSprite];
+
+        CCSprite *dragSprite = [CCSprite spriteWithSpriteFrameName:dragFrameName];
+        self.dragSprite = dragSprite;
+        [self addChild:dragSprite];
+
+        self.contentSize = defaultSprite.contentSize;
+
+        defaultSprite.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
         selectedSprite.position = defaultSprite.position;
         selectedSprite.visible = NO;
         dragSprite.visible = NO;
@@ -42,24 +78,13 @@
         self.swallowsTouches = YES;
         self.dragItemDelegate = delegate;
         self.itemType = itemType;
-        self.defaultSprite = defaultSprite;
-        self.selectedSprite = selectedSprite;
-        self.contentSize = defaultSprite.contentSize;
-        self.dragSprite = dragSprite;
-        
-        [batchNode addChild:defaultSprite];
-        [batchNode addChild:selectedSprite];
-        [batchNode addChild:dragSprite];
     }
     return self;
 }
 
-- (void)setPosition:(CGPoint)position
+- (CGFloat)buttonWidth
 {
-    [super setPosition:position];
-    
-    self.defaultSprite.position = position_;
-    self.selectedSprite.position = position_;
+    return self.defaultSprite.contentSize.width;
 }
 
 #pragma mark - TouchNodeDelegate

@@ -177,7 +177,7 @@
 		1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */; };
 		169F3D131770ADB2005F93B2 /* CCLayerPanZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 169F3D111770ADB2005F93B2 /* CCLayerPanZoom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		169F3D141770ADB2005F93B2 /* README-CCLayerPanZoom.md in Resources */ = {isa = PBXBuildFile; fileRef = 169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */; };
-		16A4277C176BF0A100BEF13F /* SequenceControlBarLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4277B176BF0A100BEF13F /* SequenceControlBarLayer.m */; };
+		16A4277C176BF0A100BEF13F /* SequenceUILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4277B176BF0A100BEF13F /* SequenceUILayer.m */; };
 		16A942B21777A2260052D5BD /* CellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942991777A2250052D5BD /* CellNode.m */; };
 		16A942B31777A2260052D5BD /* EntryArrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A9429B1777A2250052D5BD /* EntryArrow.m */; };
 		16A942B61777A2260052D5BD /* TouchNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A11777A2250052D5BD /* TouchNode.m */; };
@@ -197,6 +197,13 @@
 		16A942E41778C5A50052D5BD /* drum3on-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DC1778C5A50052D5BD /* drum3on-ipad.png */; };
 		16A942E51778C5A50052D5BD /* drum4-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DD1778C5A50052D5BD /* drum4-ipad.png */; };
 		16A942E61778C5A50052D5BD /* drum4on-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DE1778C5A50052D5BD /* drum4on-ipad.png */; };
+		3315797D17DCEE7100B9CFF2 /* uilayer-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3315797717DCEE7100B9CFF2 /* uilayer-hd.plist */; };
+		3315797E17DCEE7100B9CFF2 /* uilayer-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3315797817DCEE7100B9CFF2 /* uilayer-hd.png */; };
+		3315797F17DCEE7100B9CFF2 /* uilayer-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3315797917DCEE7100B9CFF2 /* uilayer-ipadhd.plist */; };
+		3315798017DCEE7100B9CFF2 /* uilayer-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3315797A17DCEE7100B9CFF2 /* uilayer-ipadhd.png */; };
+		3315798117DCEE7100B9CFF2 /* uilayer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3315797B17DCEE7100B9CFF2 /* uilayer.plist */; };
+		3315798217DCEE7100B9CFF2 /* uilayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3315797C17DCEE7100B9CFF2 /* uilayer.png */; };
+		3315798617DE9DDC00B9CFF2 /* TouchSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3315798517DE9DDC00B9CFF2 /* TouchSprite.m */; };
 		3338A9CC17C307D80037DFE2 /* SolutionSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3338A9CB17C307D80037DFE2 /* SolutionSequence.m */; };
 		334E7206179617F200EFECC1 /* Warp.m in Sources */ = {isa = PBXBuildFile; fileRef = 334E7205179617F200EFECC1 /* Warp.m */; };
 		334E726017961FE400EFECC1 /* warp-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E725F17961FE400EFECC1 /* warp-ipad.png */; };
@@ -599,8 +606,8 @@
 		169F3D101770ADB2005F93B2 /* CCLayerPanZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLayerPanZoom.h; sourceTree = "<group>"; };
 		169F3D111770ADB2005F93B2 /* CCLayerPanZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLayerPanZoom.m; sourceTree = "<group>"; };
 		169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README-CCLayerPanZoom.md"; sourceTree = "<group>"; };
-		16A4277A176BF0A100BEF13F /* SequenceControlBarLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceControlBarLayer.h; sourceTree = "<group>"; };
-		16A4277B176BF0A100BEF13F /* SequenceControlBarLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceControlBarLayer.m; sourceTree = "<group>"; };
+		16A4277A176BF0A100BEF13F /* SequenceUILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceUILayer.h; sourceTree = "<group>"; };
+		16A4277B176BF0A100BEF13F /* SequenceUILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceUILayer.m; sourceTree = "<group>"; };
 		16A942981777A2250052D5BD /* CellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellNode.h; sourceTree = "<group>"; };
 		16A942991777A2250052D5BD /* CellNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellNode.m; sourceTree = "<group>"; };
 		16A9429A1777A2250052D5BD /* EntryArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryArrow.h; sourceTree = "<group>"; };
@@ -631,6 +638,14 @@
 		16A942DC1778C5A50052D5BD /* drum3on-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drum3on-ipad.png"; sourceTree = "<group>"; };
 		16A942DD1778C5A50052D5BD /* drum4-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drum4-ipad.png"; sourceTree = "<group>"; };
 		16A942DE1778C5A50052D5BD /* drum4on-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drum4on-ipad.png"; sourceTree = "<group>"; };
+		3315797717DCEE7100B9CFF2 /* uilayer-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "uilayer-hd.plist"; sourceTree = "<group>"; };
+		3315797817DCEE7100B9CFF2 /* uilayer-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uilayer-hd.png"; sourceTree = "<group>"; };
+		3315797917DCEE7100B9CFF2 /* uilayer-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "uilayer-ipadhd.plist"; sourceTree = "<group>"; };
+		3315797A17DCEE7100B9CFF2 /* uilayer-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uilayer-ipadhd.png"; sourceTree = "<group>"; };
+		3315797B17DCEE7100B9CFF2 /* uilayer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = uilayer.plist; sourceTree = "<group>"; };
+		3315797C17DCEE7100B9CFF2 /* uilayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uilayer.png; sourceTree = "<group>"; };
+		3315798417DE9DDC00B9CFF2 /* TouchSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchSprite.h; sourceTree = "<group>"; };
+		3315798517DE9DDC00B9CFF2 /* TouchSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSprite.m; sourceTree = "<group>"; };
 		3338A9CA17C307D80037DFE2 /* SolutionSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolutionSequence.h; sourceTree = "<group>"; };
 		3338A9CB17C307D80037DFE2 /* SolutionSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionSequence.m; sourceTree = "<group>"; };
 		334E7204179617F200EFECC1 /* Warp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warp.h; sourceTree = "<group>"; };
@@ -1131,8 +1146,8 @@
 				1608088216B4416000039339 /* SequenceLayer.m */,
 				163DBDFF17692C3000FCB89C /* SequenceMenuLayer.h */,
 				163DBE0017692C3100FCB89C /* SequenceMenuLayer.m */,
-				16A4277A176BF0A100BEF13F /* SequenceControlBarLayer.h */,
-				16A4277B176BF0A100BEF13F /* SequenceControlBarLayer.m */,
+				16A4277A176BF0A100BEF13F /* SequenceUILayer.h */,
+				16A4277B176BF0A100BEF13F /* SequenceUILayer.m */,
 				163091EE177DEDA9003155BB /* BackgroundLayer.h */,
 				163091EF177DEDA9003155BB /* BackgroundLayer.m */,
 				163091F2177F732E003155BB /* SequenceItemLayer.h */,
@@ -1299,6 +1314,8 @@
 				169258861788896A00B90DFE /* SpritePicker.m */,
 				338EE1A817A5DF35005E98B1 /* WaveTable.h */,
 				338EE1A917A5DF35005E98B1 /* WaveTable.m */,
+				3315798417DE9DDC00B9CFF2 /* TouchSprite.h */,
+				3315798517DE9DDC00B9CFF2 /* TouchSprite.m */,
 			);
 			path = "Generic Nodes";
 			sourceTree = "<group>";
@@ -1364,6 +1381,19 @@
 			path = "UI Nodes";
 			sourceTree = "<group>";
 		};
+		3315797617DCEE7100B9CFF2 /* uilayer */ = {
+			isa = PBXGroup;
+			children = (
+				3315797717DCEE7100B9CFF2 /* uilayer-hd.plist */,
+				3315797817DCEE7100B9CFF2 /* uilayer-hd.png */,
+				3315797917DCEE7100B9CFF2 /* uilayer-ipadhd.plist */,
+				3315797A17DCEE7100B9CFF2 /* uilayer-ipadhd.png */,
+				3315797B17DCEE7100B9CFF2 /* uilayer.plist */,
+				3315797C17DCEE7100B9CFF2 /* uilayer.png */,
+			);
+			path = uilayer;
+			sourceTree = "<group>";
+		};
 		337D820717D75EC1002A6E8A /* other */ = {
 			isa = PBXGroup;
 			children = (
@@ -1424,6 +1454,7 @@
 		33ACE3BC17D5065C00B9F4AC /* retina */ = {
 			isa = PBXGroup;
 			children = (
+				3315797617DCEE7100B9CFF2 /* uilayer */,
 				337D820717D75EC1002A6E8A /* other */,
 				337D820E17D75EC1002A6E8A /* synthPads */,
 				33ACE43317D5301200B9F4AC /* samplePads */,
@@ -1561,15 +1592,19 @@
 				33ACE43E17D5301200B9F4AC /* samplePads.plist in Resources */,
 				168FA4E8173A08C7004C26AD /* blank.png in Resources */,
 				168FA4E9173A08C7004C26AD /* Default-Landscape~ipad.png in Resources */,
+				3315797E17DCEE7100B9CFF2 /* uilayer-hd.png in Resources */,
 				337D821717D75EC1002A6E8A /* other-ipadhd.plist in Resources */,
 				337D821E17D75EC1002A6E8A /* synthPads-ipadhd.png in Resources */,
 				33ACE43C17D5301200B9F4AC /* samplePads-ipadhd.plist in Resources */,
 				168FA4EA173A08C7004C26AD /* Default.png in Resources */,
 				168FA4EB173A08C7004C26AD /* fps_images-hd.png in Resources */,
+				3315798117DCEE7100B9CFF2 /* uilayer.plist in Resources */,
 				337D821A17D75EC1002A6E8A /* other.png in Resources */,
 				168FA4EC173A08C7004C26AD /* fps_images-ipadhd.png in Resources */,
 				168FA4ED173A08C7004C26AD /* fps_images.png in Resources */,
+				3315798217DCEE7100B9CFF2 /* uilayer.png in Resources */,
 				168FA4EE173A08C7004C26AD /* Icon-72.png in Resources */,
+				3315798017DCEE7100B9CFF2 /* uilayer-ipadhd.png in Resources */,
 				168FA4EF173A08C7004C26AD /* Icon-Small-50.png in Resources */,
 				168FA4F0173A08C7004C26AD /* Icon-Small.png in Resources */,
 				168FA4F1173A08C7004C26AD /* Icon-Small@2x.png in Resources */,
@@ -1586,6 +1621,7 @@
 				33F8A31217B9F104003B33E5 /* pf-synth.pd in Resources */,
 				337D821517D75EC1002A6E8A /* other-hd.plist in Resources */,
 				334E726017961FE400EFECC1 /* warp-ipad.png in Resources */,
+				3315797F17DCEE7100B9CFF2 /* uilayer-ipadhd.plist in Resources */,
 				337D821B17D75EC1002A6E8A /* synthPads-hd.plist in Resources */,
 				334E72681796260700EFECC1 /* itemButtonWarpOn-ipad.png in Resources */,
 				162B7F1A1754116000E0CC0D /* startArrow-ipad.png in Resources */,
@@ -1600,6 +1636,7 @@
 				16A942E31778C5A50052D5BD /* drum3-ipad.png in Resources */,
 				33ACE43D17D5301200B9F4AC /* samplePads-ipadhd.png in Resources */,
 				16A942E41778C5A50052D5BD /* drum3on-ipad.png in Resources */,
+				3315797D17DCEE7100B9CFF2 /* uilayer-hd.plist in Resources */,
 				337D821917D75EC1002A6E8A /* other.plist in Resources */,
 				33BF70A917CC24EC003E0A5F /* solution1.json in Resources */,
 				16A942E51778C5A50052D5BD /* drum4-ipad.png in Resources */,
@@ -1752,7 +1789,7 @@
 				163DBE081769325400FCB89C /* UIImage+Utils.m in Sources */,
 				163DBE0B1769329C00FCB89C /* CCSprite+Utils.m in Sources */,
 				338EE1AE17A5EAFC005E98B1 /* PdArray.m in Sources */,
-				16A4277C176BF0A100BEF13F /* SequenceControlBarLayer.m in Sources */,
+				16A4277C176BF0A100BEF13F /* SequenceUILayer.m in Sources */,
 				169F3D131770ADB2005F93B2 /* CCLayerPanZoom.m in Sources */,
 				33EE317017C92C3C004CC016 /* AudioTouchDispatcher.m in Sources */,
 				16A942B21777A2260052D5BD /* CellNode.m in Sources */,
@@ -1765,6 +1802,7 @@
 				16A942BA1777A2260052D5BD /* Drum.m in Sources */,
 				16A942BC1777A2260052D5BD /* Tone.m in Sources */,
 				16A942BF1777AADF0052D5BD /* TickChannel.m in Sources */,
+				3315798617DE9DDC00B9CFF2 /* TouchSprite.m in Sources */,
 				16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */,
 				16A942C61777ABFA0052D5BD /* TickerControl.m in Sources */,
 				1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */,

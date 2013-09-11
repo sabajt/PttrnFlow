@@ -7,7 +7,7 @@
 //
 
 #import "SequenceLayer.h"
-#import "SequenceControlBarLayer.h"
+#import "SequenceUILayer.h"
 #import "GameConstants.h"
 #import "SimpleAudioEngine.h"
 #import "SpriteUtils.h"
@@ -72,7 +72,8 @@
     [MainSynth mute:NO];
     
     // draw grid as defined in our tile map -- does not neccesarily coordinate with gameplay
-    self.shouldDrawGrid = YES;
+    // warning: enabling makes many calls to draw cycle -- large maps will lag
+    self.shouldDrawGrid = NO;
     
     // layer size reporting:
     // [self.scheduler scheduleSelector:@selector(reportSize:) forTarget:self interval:0.3 paused:NO repeat:kCCRepeatForever delay:0];
@@ -122,15 +123,15 @@
     [scene addChild:sequenceLayer];
     
     // hud layer -- top control bar
-    SequenceControlBarLayer *hudLayer = [SequenceControlBarLayer layerWithColor:ccc4BFromccc3B([ColorUtils sequenceHud]) width:sequenceLayer.contentSize.width height:controlBarHeight tickDispatcer:sequenceLayer.tickDispatcher];
-    hudLayer.position = ccp(0, sequenceLayer.contentSize.height - hudLayer.contentSize.height);
-    [scene addChild:hudLayer z:1];
+    SequenceUILayer *uiLayer = [[SequenceUILayer alloc] initWithTickDispatcher:sequenceLayer.tickDispatcher dragItems:@[@(kDragItemArrow), @(kDragItemAudioStop), @(kDragItemSpeedChange)] dragItemDelegate:sequenceLayer];
     
-    // hud layer -- right hand item menu
-    static CGFloat itemBarWidth = 80;
-    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithBatchNode:sequenceLayer.othersBatchNode color:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[@(kDragItemArrow), @(kDragItemAudioStop), @(kDragItemSpeedChange)] dragButtonDelegate:sequenceLayer];
-    itemLayer.position = ccp(sequenceLayer.contentSize.width - itemLayer.contentSize.width, sequenceLayer.contentSize.height - hudLayer.contentSize.height - itemLayer.contentSize.height);
-    [scene addChild:itemLayer z:1];
+    [scene addChild:uiLayer z:1];
+    
+//    // hud layer -- right hand item menu
+//    static CGFloat itemBarWidth = 80;
+//    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithBatchNode:sequenceLayer.othersBatchNode color:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[@(kDragItemArrow), @(kDragItemAudioStop), @(kDragItemSpeedChange)] dragButtonDelegate:sequenceLayer];
+//    itemLayer.position = ccp(sequenceLayer.contentSize.width - itemLayer.contentSize.width, sequenceLayer.contentSize.height - uiLayer.contentSize.height - itemLayer.contentSize.height);
+//    [scene addChild:itemLayer z:1];
     
     return scene;
 }
@@ -208,7 +209,6 @@
 - (void)createPuzzleObjects:(CCTMXTiledMap *)tiledMap
 {
     // audio pads
-    
     NSMutableArray *pads = [tiledMap objectsWithName:kTLDObjectAudioPad groupName:kTLDGroupTickResponders];
     for (NSMutableDictionary *pad in pads) {
         

@@ -72,7 +72,7 @@
             <key>audio-stop.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{348,422},{136,120}}</string>
+                <string>{{204,406},{136,120}}</string>
                 <key>offset</key>
                 <string>{8,5}</string>
                 <key>rotated</key>
@@ -108,110 +108,6 @@
                 <key>sourceSize</key>
                 <string>{200,200}</string>
             </dict>
-            <key>itemButtonArrowOff.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{84,608},{80,80}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{80,80}}</string>
-                <key>sourceSize</key>
-                <string>{80,80}</string>
-            </dict>
-            <key>itemButtonArrowOn.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,608},{80,80}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{80,80}}</string>
-                <key>sourceSize</key>
-                <string>{80,80}</string>
-            </dict>
-            <key>itemButtonAudioStopOff.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{368,544},{80,80}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{80,80}}</string>
-                <key>sourceSize</key>
-                <string>{80,80}</string>
-            </dict>
-            <key>itemButtonAudioStopOn.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{204,556},{80,80}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{80,80}}</string>
-                <key>sourceSize</key>
-                <string>{80,80}</string>
-            </dict>
-            <key>itemButtonSpeedDoubleOff.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{286,544},{80,80}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{80,80}}</string>
-                <key>sourceSize</key>
-                <string>{80,80}</string>
-            </dict>
-            <key>itemButtonSpeedDoubleOn.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{204,474},{80,80}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{80,80}}</string>
-                <key>sourceSize</key>
-                <string>{80,80}</string>
-            </dict>
-            <key>itemButtonWarpOff.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{406,340},{80,80}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{80,80}}</string>
-                <key>sourceSize</key>
-                <string>{80,80}</string>
-            </dict>
-            <key>itemButtonWarpOn.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{406,258},{80,80}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{80,80}}</string>
-                <key>sourceSize</key>
-                <string>{80,80}</string>
-            </dict>
             <key>rectBorderBlue.png</key>
             <dict>
                 <key>frame</key>
@@ -228,11 +124,11 @@
             <key>speed-double.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{204,406},{142,66}}</string>
+                <string>{{406,258},{142,66}}</string>
                 <key>offset</key>
                 <string>{-20,27}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{9,40},{142,66}}</string>
                 <key>sourceSize</key>
@@ -241,7 +137,7 @@
             <key>startArrow.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{286,474},{25,25}}</string>
+                <string>{{474,258},{25,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -274,7 +170,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:15be6a39ff86b6e023b8ed2eb47076e6:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:14fe00f7769a108d6f9a03d2c5597534:1/1$</string>
             <key>textureFileName</key>
             <string>other-hd.png</string>
         </dict>

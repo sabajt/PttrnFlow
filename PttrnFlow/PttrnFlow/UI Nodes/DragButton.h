@@ -14,6 +14,9 @@
 
 @property (weak, nonatomic) id<DragItemDelegate> dragItemDelegate;
 
-+ (DragButton *)buttonWithBatchNode:(CCSpriteBatchNode *)batchNode itemType:(kDragItem)itemType defaultSprite:(CCSprite *)defaultSprite selectedSprite:(CCSprite *)selectedSprite dragItemSprite:(CCSprite *)itemSprite delegate:(id<DragItemDelegate>)delegate;
+- (id)initWithItemType:(kDragItem)itemType delegate:(id<DragItemDelegate>)delegate;
+
+- (CGFloat)buttonWidth;
+
 
 @end
