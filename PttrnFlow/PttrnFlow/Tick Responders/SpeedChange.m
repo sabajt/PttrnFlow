@@ -16,7 +16,7 @@
 // use this method to initialize dynamically
 - (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode Cell:(GridCoord)cell dragItemDelegate:(id<DragItemDelegate>)delegate speed:(NSString *)speed
 {
-    CCSprite *dragSprite = [SpriteUtils spriteWithTextureKey:kImageSpeedDouble];
+    CCSprite *dragSprite = [CCSprite spriteWithSpriteFrameName:kImageSpeedDouble];
     self = [super initWithBatchNode:batchNode cell:cell dragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemSpeedChange];
     if (self) {
         self.speed = speed;

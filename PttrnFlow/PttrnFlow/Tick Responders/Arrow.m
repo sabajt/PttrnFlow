@@ -28,7 +28,7 @@
 // use this method to initialize dynamically
 - (id)initWithCell:(GridCoord)cell batchNode:(CCSpriteBatchNode *)batchNode facing:(kDirection)facing dragItemDelegate:(id<DragItemDelegate>)delegate;
 {
-    CCSprite *dragSprite = [SpriteUtils spriteWithTextureKey:kImageArrowUp];
+    CCSprite *dragSprite = [CCSprite spriteWithSpriteFrameName:kImageArrowUp];
     self = [super initWithBatchNode:batchNode cell:cell dragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemArrow];
     if (self) {
         self.cell = cell;

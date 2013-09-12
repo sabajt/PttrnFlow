@@ -114,13 +114,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>uilayer-ipad..png</string>
+            <string>uilayer-ipad.png</string>
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:06f4b562de1704263b45c10bfdfc5197:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:b4594b220c78a60fd97eb1c19e5786a0:1/1$</string>
             <key>textureFileName</key>
-            <string>uilayer-ipad..png</string>
+            <string>uilayer-ipad.png</string>
         </dict>
     </dict>
 </plist>
