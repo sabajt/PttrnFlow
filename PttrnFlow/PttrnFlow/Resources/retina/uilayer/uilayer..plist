@@ -114,13 +114,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>uilayer.png</string>
+            <string>uilayer..png</string>
             <key>size</key>
             <string>{128,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:dd6becbad7090eeb307a904a7a9cd695:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:c6d97a1c4188d0c5e1027464f06d00c2:1/1$</string>
             <key>textureFileName</key>
-            <string>uilayer.png</string>
+            <string>uilayer..png</string>
         </dict>
     </dict>
 </plist>
