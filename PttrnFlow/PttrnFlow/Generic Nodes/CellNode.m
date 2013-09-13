@@ -146,7 +146,7 @@
 - (void)onExit
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
+    [self.sprite removeFromParentAndCleanup:YES];
     [super onExit];
 }
 
