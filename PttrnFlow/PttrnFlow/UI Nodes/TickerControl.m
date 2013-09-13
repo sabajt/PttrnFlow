@@ -42,7 +42,8 @@ static CGFloat const kTickerControlHeight = 50;
         self.swallowsTouches = YES;
         self.distanceInterval = distanceInterval;
         _numberOfTicks = numberOfTicks;
-        _thumbSprite = [CCSprite rectSpriteWithSize:CGSizeMake(kTickerWidth, kTickerHeight) color:[ColorUtils ticker]];
+        _thumbSprite = [CCSprite spriteWithSpriteFrameName:@"scrubHandle.png"];
+        [self addChild:_thumbSprite];
         
         CCSprite *tickerBar = [CCSprite rectSpriteWithSize:CGSizeMake(numberOfTicks * distanceInterval, kTickerBarHeight) color:[ColorUtils tickerBar]];
         
@@ -60,8 +61,6 @@ static CGFloat const kTickerControlHeight = 50;
             marker.position = ccp((i * distanceInterval) + (distanceInterval / 2), tickerBarCenterY + (kTickerBarHeight / 2));
             [self addChild:marker];
         }
-        
-        [self addChild:_thumbSprite];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAdvancedSequence:) name:kNotificationAdvancedSequence object:nil];
     }
