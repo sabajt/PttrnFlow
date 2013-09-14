@@ -56,7 +56,7 @@
 {
     [self.sprite removeFromParentAndCleanup:YES];
     self.sprite = [self highlightSprite];
-    self.sprite.position = [self relativeMidpoint];
+    self.sprite.position = [GridUtils relativeMidpointForCell:self.cell unitSize:kSizeGridUnit];
     [self addChild:self.sprite];
     
     return @[@"audio_pad"];
@@ -66,7 +66,7 @@
 {
     [self.sprite removeFromParentAndCleanup:YES];
     self.sprite = [self defaultSprite];
-    self.sprite.position = [self relativeMidpoint];
+    self.sprite.position = [GridUtils relativeMidpointForCell:self.cell unitSize:kSizeGridUnit];
     [self addChild:self.sprite];
 }
 

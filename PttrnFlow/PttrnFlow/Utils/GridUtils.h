@@ -38,7 +38,10 @@ GridCoordMake(const int x, const int y)
 // absolute position on a grid for grid coordinate, bottom left
 + (CGPoint) absolutePositionForGridCoord:(GridCoord)coord unitSize:(CGFloat)unitSize origin:(CGPoint)origin;
 
-+ (CGPoint)relativePositionForGridCoord:(GridCoord)coord unitSize:(CGFloat)unitSize;   
++ (CGPoint)relativePositionForGridCoord:(GridCoord)coord unitSize:(CGFloat)unitSize;
+
++ (CGPoint)relativeMidpointForCell:(GridCoord)cell unitSize:(CGFloat)unitSize;
+
 
 // grid coordinate for absolute position on a grid
 + (GridCoord) gridCoordForAbsolutePosition:(CGPoint)position unitSize:(CGFloat)unitSize origin:(CGPoint)origin;

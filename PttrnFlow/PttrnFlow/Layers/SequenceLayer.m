@@ -320,9 +320,8 @@
     self.draggedItemSourceCell = gameNode.cell;
     
     if (itemType == kDragItemArrow) {
-//        [self.selectionBox positionAtCell:self.draggedItemSourceCell];
         self.selectionBox.cell = self.draggedItemSourceCell;
-        self.selectionBox.position = [self.selectionBox relativeMidpoint];
+        self.selectionBox.position = [GridUtils relativePositionForGridCoord:self.selectionBox.cell unitSize:kSizeGridUnit];
         self.selectionBox.visible = YES;
     }
 }
@@ -341,12 +340,12 @@
             if (self.selectionBox == nil) {
                 PrimativeCellActor *selectionBox = [[PrimativeCellActor alloc] initWithRectSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:20 color:[ColorUtils winningBackground] cell:cell];
                 self.selectionBox = selectionBox;
+                self.selectionBox.position = [GridUtils relativePositionForGridCoord:self.selectionBox.cell unitSize:kSizeGridUnit];
                 [self addChild:selectionBox];
             }
             else {
-//                [self.selectionBox positionAtCell:cell];
                 self.selectionBox.cell = cell;
-                self.selectionBox.position = [self.selectionBox relativeMidpoint];
+                self.selectionBox.position = [GridUtils relativePositionForGridCoord:self.selectionBox.cell unitSize:kSizeGridUnit];
             }
             self.selectionBox.visible = YES;
         }

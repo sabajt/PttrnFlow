@@ -125,14 +125,6 @@
     NSLog(@"long press needs implementation");
 }
 
-#pragma mark - Positioning
-
-- (CGPoint)relativeMidpoint
-{
-    CGPoint relativeOrigin = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
-    return ccp(relativeOrigin.x + self.cellSize.width/2, relativeOrigin.y + self.cellSize.height/2);
-}
-
 #pragma mark - Sprite helpers
 
 - (void)setSpriteForFrameName:(NSString *)name
@@ -140,7 +132,7 @@
     [self.sprite removeFromParentAndCleanup:YES];
     
     CCSprite *sprite = [CCSprite spriteWithSpriteFrameName:name];
-    sprite.position = [self relativeMidpoint];
+    sprite.position = [GridUtils relativeMidpointForCell:self.cell unitSize:kSizeGridUnit];
     self.sprite = sprite;
     
     if (self.batchNode == nil) {

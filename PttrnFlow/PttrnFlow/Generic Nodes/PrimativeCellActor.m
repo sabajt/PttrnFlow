@@ -21,26 +21,18 @@
 {
     self = [super initWithCell:cell];
     if (self) {
+        self.position = [GridUtils relativePositionForGridCoord:cell unitSize:kSizeGridUnit];
         
-//        self.cell = cell;
-//        self.position = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
         if (edge == 0) {
             self.sprite = [CCSprite rectSpriteWithSize:size color:color];
         }
         else {
             self.sprite = [CCSprite rectSpriteWithSize:size edgeLength:edge edgeColor:color];
         }
-//        self.sprite.position = self.contentCenter;
-//        
-//        [self addChild:self.sprite];
+        self.sprite.position = ccp(self.sprite.boundingBox.size.width/2, self.sprite.boundingBox.size.height/2);
+        [self addChild:self.sprite];
     }
     return self;
 }
-
-//- (void)positionAtCell:(GridCoord)cell
-//{
-//    self.cell = cell;
-//    self.position = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
-//}
 
 @end

@@ -12,6 +12,5 @@
 
 - (id)initWithRectSize:(CGSize)size color:(ccColor3B)color cell:(GridCoord)cell;
 - (id)initWithRectSize:(CGSize)size edgeLength:(CGFloat)edge color:(ccColor3B)color cell:(GridCoord)cell;
-//- (void)positionAtCell:(GridCoord)cell;
 
 @end

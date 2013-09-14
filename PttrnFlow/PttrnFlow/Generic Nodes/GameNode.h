@@ -39,9 +39,6 @@
 // supports instances with or without batch nodes
 - (void)setSpriteForFrameName:(NSString *)name;
 
-// relative mid point in cell on screen (use to position sprites or other nodes with mid anchor point)
-- (CGPoint)relativeMidpoint;
-
 // TODO: need to update to work with batch node system
 - (void)alignSprite:(kDirection)direction;
 

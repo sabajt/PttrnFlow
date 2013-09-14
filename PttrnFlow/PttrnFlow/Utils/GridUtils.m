@@ -37,6 +37,12 @@
     return CGPointMake(x, y);
 }
 
++(CGPoint)relativeMidpointForCell:(GridCoord)cell unitSize:(CGFloat)unitSize
+{
+    CGPoint origin = [GridUtils relativePositionForGridCoord:cell unitSize:unitSize];
+    return ccp(origin.x + unitSize/2, origin.y + unitSize/2);
+}
+
 // grid coordinate for absolute position on a grid
 + (GridCoord)gridCoordForAbsolutePosition:(CGPoint)position unitSize:(CGFloat)unitSize origin:(CGPoint)origin;
 {
