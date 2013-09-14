@@ -104,7 +104,7 @@ CGFloat const kTickInterval = 0.12;
 - (void)registerTickResponderCellNode:(id<TickResponder>)responder
 {
     NSAssert([responder conformsToProtocol:@protocol(TickResponder)], @"registered tick responders much conform to TickResponder protocol");
-    NSAssert([responder isKindOfClass:[CellNode class]], @"registered tick responders for TickDispatcher must be CellNode");
+    NSAssert([responder isKindOfClass:[GameNode class]], @"registered tick responders for TickDispatcher must be CellNode");
     [self.responders addObject:responder];
 }
 
@@ -194,7 +194,7 @@ CGFloat const kTickInterval = 0.12;
 
     // figure out which responders need an after tick / removal based on decay value (given by channel speed when they were ticked)
     NSMutableArray *removeResponders = [NSMutableArray array];
-    for (CellNode<TickResponder> *responder in self.lastTickedResponders) {
+    for (GameNode<TickResponder> *responder in self.lastTickedResponders) {
         
         if (sub == 0) {
             if ([@[@"1X", @"2X", @"4X"] hasString:responder.decaySpeed]) {
@@ -282,7 +282,7 @@ CGFloat const kTickInterval = 0.12;
         [tickChannel update:events];
         
         // our speed will now be updated, so give current last ticked responders correct decay
-        for (CellNode *node in self.lastTickedResponders) {
+        for (GameNode *node in self.lastTickedResponders) {
             node.decaySpeed = tickChannel.speed;
         }
         [self.lastTickedResponders addObjectsFromArray:currentLastTickedResponders];

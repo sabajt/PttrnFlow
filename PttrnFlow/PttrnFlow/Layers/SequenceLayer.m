@@ -29,7 +29,6 @@
 #import "SequenceItemLayer.h"
 #import "CCSprite+Utils.h"
 #import "Warp.h"
-#import "WaveTable.h"
 #import "AudioTouchDispatcher.h"
 #import "AudioPad.h"
 #import "AudioStop.h"
@@ -317,11 +316,13 @@
 
 - (void)dragItemBegan:(kDragItem)itemType touch:(UITouch *)touch sender:(id)sender
 {    
-    CellNode *cellNode = (CellNode *)sender;
-    self.draggedItemSourceCell = cellNode.cell;
+    GameNode *gameNode = (GameNode *)sender;
+    self.draggedItemSourceCell = gameNode.cell;
     
     if (itemType == kDragItemArrow) {
-        [self.selectionBox positionAtCell:self.draggedItemSourceCell];
+//        [self.selectionBox positionAtCell:self.draggedItemSourceCell];
+        self.selectionBox.cell = self.draggedItemSourceCell;
+        self.selectionBox.position = [self.selectionBox relativeMidpoint];
         self.selectionBox.visible = YES;
     }
 }
@@ -338,12 +339,14 @@
         BOOL legalPlacement = [self isLegalItemPlacement:cell itemType:itemType sender:sender];
         if (legalPlacement) {
             if (self.selectionBox == nil) {
-                PrimativeCellActor *selectionBox = [[PrimativeCellActor alloc] initWithRectSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:20 color:[ColorUtils winningBackground] cell:cell touch:NO];
+                PrimativeCellActor *selectionBox = [[PrimativeCellActor alloc] initWithRectSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:20 color:[ColorUtils winningBackground] cell:cell];
                 self.selectionBox = selectionBox;
                 [self addChild:selectionBox];
             }
             else {
-                [self.selectionBox positionAtCell:cell];
+//                [self.selectionBox positionAtCell:cell];
+                self.selectionBox.cell = cell;
+                self.selectionBox.position = [self.selectionBox relativeMidpoint];
             }
             self.selectionBox.visible = YES;
         }

@@ -6,10 +6,10 @@
 //
 //
 
-#import "CellNode.h"
+#import "GameNode.h"
 #import "TickResponder.h"
 
-@interface Drum : CellNode <TickResponder>
+@interface Drum : GameNode <TickResponder>
 
 - (id)initWithDrum:(NSMutableDictionary *)drum batchNode:(CCSpriteBatchNode *)batchNode tiledMap:(CCTMXTiledMap *)tiledMap;
 

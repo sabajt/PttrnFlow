@@ -1,42 +1,131 @@
 //
-//  CellNode.m
-//  FishSet
+//  GameNode.m
+//  PttrnFlow
 //
-//  Created by John Saba on 2/3/13.
+//  Created by John Saba on 9/14/13.
 //
 //
 
-#import "CellNode.h"
-#import "GameConstants.h"
-#import "SpriteUtils.h"
-#import "SGTiledUtils.h"
-#import "CCSprite+Utils.h"
+#import "GameNode.h"
 
+@implementation GameNode
 
-@implementation CellNode
-
-// TODO: replace with method below
 - (id)init
 {
     self = [super init];
     if (self) {
-        self.contentSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
+        _swallowsTouches = NO;
+        _longPressDelay = 0;
+        _isReceivingTouch = NO;
     }
     return self;
 }
 
 // holds batch node as weak ref, so make sure someone else owns batch node first
-- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode cell:(GridCoord)cell
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode
+{
+    self = [self init];
+    if (self) {
+        _batchNode = batchNode;
+    }
+    return self;
+}
+
+- (id)initWithCell:(GridCoord)cell
 {
     self = [super init];
     if (self) {
-        self.touchNodeDelegate = self;
-        _batchNode = batchNode;
         _cell = cell;
         _cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
     }
     return self;
 }
+
+// init with batch node and cell
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode cell:(GridCoord)cell
+{
+    self = [self initWithBatchNode:batchNode];
+    if (self) {
+        _cell = cell;
+        _cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
+    }
+    return self;
+}
+
+#pragma mark CCNode SceneManagement
+
+- (void)onEnter
+{
+    [super onEnter];
+    
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:self.swallowsTouches];
+    
+    // modified version of CCLayerPanZoom sends this notification when we start panning,
+    // drag distance buffer specified by a layer's maxTouchDistanceToClick property
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStartPan) name:kNotificationStartPan object:nil];
+}
+
+- (void)onExit
+{
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.sprite removeFromParentAndCleanup:YES];
+    
+    [super onExit];
+}
+
+#pragma mark CCTargetedTouchDelegate
+
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if ([self containsTouch:touch]) {
+        self.isReceivingTouch = YES;
+        if (self.longPressDelay > 0) {
+            [self scheduleOnce:@selector(longPress:) delay:self.longPressDelay];
+        }
+        return YES;
+    }
+    return NO;
+}
+
+- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if (![self containsTouch:touch] && (self.longPressDelay > 0)) {
+        [self unschedule:@selector(longPress:)];
+    }
+}
+
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if (self.longPressDelay > 0) {
+        [self unschedule:@selector(longPress:)];
+    }
+    self.isReceivingTouch = NO;
+}
+
+- (void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if (self.longPressDelay > 0) {
+        [self unschedule:@selector(longPress:)];
+    }
+    self.isReceivingTouch = NO;
+}
+
+#pragma mark - Extended touch handling
+
+- (BOOL)containsTouch:(UITouch *)touch
+{
+    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+    return (CGRectContainsPoint(self.sprite.boundingBox, touchPosition));
+}
+
+- (void)longPress:(ccTime)deltaTime
+{
+    NSLog(@"long press needs implementation");
+}
+
+#pragma mark - Positioning
 
 - (CGPoint)relativeMidpoint
 {
@@ -46,19 +135,20 @@
 
 #pragma mark - Sprite helpers
 
-// replace current sprite we point to in batch node with new sprite created from frame catch
 - (void)setSpriteForFrameName:(NSString *)name
 {
     [self.sprite removeFromParentAndCleanup:YES];
     
     CCSprite *sprite = [CCSprite spriteWithSpriteFrameName:name];
     sprite.position = [self relativeMidpoint];
+    self.sprite = sprite;
     
     if (self.batchNode == nil) {
-        NSLog(@"warning: batch node not set on cell node");
+        [self addChild:sprite];
     }
-    [self.batchNode addChild:sprite];
-    self.sprite = sprite;
+    else {
+        [self.batchNode addChild:sprite];
+    }
 }
 
 - (CGFloat)spriteWidth
@@ -92,7 +182,6 @@
     }
 }
 
-// TODO: need to change these to not use content size
 - (void)leftAlignSprite
 {
     CGPoint relativeOrigin = [GridUtils relativePositionForGridCoord:self.cell unitSize:kSizeGridUnit];
@@ -132,30 +221,6 @@
     }
 }
 
-#pragma mark CCNode SceneManagement
-
-- (void)onEnter
-{
-    [super onEnter];
-    
-    // modified version of CCLayerPanZoom sends this notification when we start panning,
-    // drag distance buffer specified by a layer's maxTouchDistanceToClick property
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStartPan) name:kNotificationStartPan object:nil];
-}
-
-- (void)onExit
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self.sprite removeFromParentAndCleanup:YES];
-    [super onExit];
-}
-
-#pragma mark - TouchNodeDelegate
-
-- (BOOL)containsTouch:(UITouch *)touch
-{
-    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    return (CGRectContainsPoint(self.sprite.boundingBox, touchPosition));
-}
 
 @end
+

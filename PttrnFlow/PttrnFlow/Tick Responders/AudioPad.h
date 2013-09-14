@@ -6,10 +6,10 @@
 //
 //
 
-#import "CellNode.h"
+#import "GameNode.h"
 #import "TickResponder.h"
 
-@interface AudioPad : CellNode <TickResponder>
+@interface AudioPad : GameNode <TickResponder>
 
 // TODO: audio pad doesn't actually use batch node, but it probably should, - rendering the sprite creation is probably expensive
 - (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode cell:(GridCoord)cell;

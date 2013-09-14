@@ -6,12 +6,12 @@
 //
 //
 
-#import "CellNode.h"
+#import "GameNode.h"
 
-@interface PrimativeCellActor : CellNode
+@interface PrimativeCellActor : GameNode
 
-- (id)initWithRectSize:(CGSize)size color:(ccColor3B)color cell:(GridCoord)cell touch:(BOOL)usesTouch;
-- (id)initWithRectSize:(CGSize)size edgeLength:(CGFloat)edge color:(ccColor3B)color cell:(GridCoord)cell touch:(BOOL)usesTouch;
-- (void)positionAtCell:(GridCoord)cell;
+- (id)initWithRectSize:(CGSize)size color:(ccColor3B)color cell:(GridCoord)cell;
+- (id)initWithRectSize:(CGSize)size edgeLength:(CGFloat)edge color:(ccColor3B)color cell:(GridCoord)cell;
+//- (void)positionAtCell:(GridCoord)cell;
 
 @end

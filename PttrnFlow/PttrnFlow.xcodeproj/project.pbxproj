@@ -178,7 +178,6 @@
 		169F3D131770ADB2005F93B2 /* CCLayerPanZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 169F3D111770ADB2005F93B2 /* CCLayerPanZoom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		169F3D141770ADB2005F93B2 /* README-CCLayerPanZoom.md in Resources */ = {isa = PBXBuildFile; fileRef = 169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */; };
 		16A4277C176BF0A100BEF13F /* SequenceUILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4277B176BF0A100BEF13F /* SequenceUILayer.m */; };
-		16A942B21777A2260052D5BD /* CellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942991777A2250052D5BD /* CellNode.m */; };
 		16A942B31777A2260052D5BD /* EntryArrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A9429B1777A2250052D5BD /* EntryArrow.m */; };
 		16A942B61777A2260052D5BD /* TouchNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A11777A2250052D5BD /* TouchNode.m */; };
 		16A942B71777A2260052D5BD /* MainSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A41777A2250052D5BD /* MainSynth.m */; };
@@ -229,13 +228,12 @@
 		3305108817E1F2620050A6D4 /* uilayer-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3305108017E1F2620050A6D4 /* uilayer-ipadhd.png */; };
 		3305108917E1F2620050A6D4 /* uilayer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3305108117E1F2620050A6D4 /* uilayer.plist */; };
 		3305108A17E1F2620050A6D4 /* uilayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3305108217E1F2620050A6D4 /* uilayer.png */; };
-		3315798617DE9DDC00B9CFF2 /* TouchSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3315798517DE9DDC00B9CFF2 /* TouchSprite.m */; };
 		3338A9CC17C307D80037DFE2 /* SolutionSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3338A9CB17C307D80037DFE2 /* SolutionSequence.m */; };
 		334E7206179617F200EFECC1 /* Warp.m in Sources */ = {isa = PBXBuildFile; fileRef = 334E7205179617F200EFECC1 /* Warp.m */; };
 		334E726017961FE400EFECC1 /* warp-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E725F17961FE400EFECC1 /* warp-ipad.png */; };
 		334E72671796260700EFECC1 /* itemButtonWarpOff-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E72651796260700EFECC1 /* itemButtonWarpOff-ipad.png */; };
 		334E72681796260700EFECC1 /* itemButtonWarpOn-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E72661796260700EFECC1 /* itemButtonWarpOn-ipad.png */; };
-		338EE1AA17A5DF35005E98B1 /* WaveTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1A917A5DF35005E98B1 /* WaveTable.m */; };
+		338B1D7117E4C11B00F25751 /* GameNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 338B1D7017E4C11B00F25751 /* GameNode.m */; };
 		338EE1AE17A5EAFC005E98B1 /* PdArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1AD17A5EAFC005E98B1 /* PdArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */; };
 		33AF255717CB069700643CB2 /* AudioPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255617CB069700643CB2 /* AudioPad.m */; };
@@ -616,8 +614,6 @@
 		169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README-CCLayerPanZoom.md"; sourceTree = "<group>"; };
 		16A4277A176BF0A100BEF13F /* SequenceUILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceUILayer.h; sourceTree = "<group>"; };
 		16A4277B176BF0A100BEF13F /* SequenceUILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceUILayer.m; sourceTree = "<group>"; };
-		16A942981777A2250052D5BD /* CellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellNode.h; sourceTree = "<group>"; };
-		16A942991777A2250052D5BD /* CellNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellNode.m; sourceTree = "<group>"; };
 		16A9429A1777A2250052D5BD /* EntryArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryArrow.h; sourceTree = "<group>"; };
 		16A9429B1777A2250052D5BD /* EntryArrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryArrow.m; sourceTree = "<group>"; };
 		16A942A01777A2250052D5BD /* TouchNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchNode.h; sourceTree = "<group>"; };
@@ -678,8 +674,6 @@
 		3305108017E1F2620050A6D4 /* uilayer-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uilayer-ipadhd.png"; sourceTree = "<group>"; };
 		3305108117E1F2620050A6D4 /* uilayer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = uilayer.plist; sourceTree = "<group>"; };
 		3305108217E1F2620050A6D4 /* uilayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uilayer.png; sourceTree = "<group>"; };
-		3315798417DE9DDC00B9CFF2 /* TouchSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchSprite.h; sourceTree = "<group>"; };
-		3315798517DE9DDC00B9CFF2 /* TouchSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSprite.m; sourceTree = "<group>"; };
 		3338A9CA17C307D80037DFE2 /* SolutionSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolutionSequence.h; sourceTree = "<group>"; };
 		3338A9CB17C307D80037DFE2 /* SolutionSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionSequence.m; sourceTree = "<group>"; };
 		334E7204179617F200EFECC1 /* Warp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warp.h; sourceTree = "<group>"; };
@@ -687,8 +681,8 @@
 		334E725F17961FE400EFECC1 /* warp-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warp-ipad.png"; sourceTree = "<group>"; };
 		334E72651796260700EFECC1 /* itemButtonWarpOff-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonWarpOff-ipad.png"; sourceTree = "<group>"; };
 		334E72661796260700EFECC1 /* itemButtonWarpOn-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonWarpOn-ipad.png"; sourceTree = "<group>"; };
-		338EE1A817A5DF35005E98B1 /* WaveTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveTable.h; sourceTree = "<group>"; };
-		338EE1A917A5DF35005E98B1 /* WaveTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveTable.m; sourceTree = "<group>"; };
+		338B1D6F17E4C11B00F25751 /* GameNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNode.h; sourceTree = "<group>"; };
+		338B1D7017E4C11B00F25751 /* GameNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameNode.m; sourceTree = "<group>"; };
 		338EE1AC17A5EAFC005E98B1 /* PdArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdArray.h; sourceTree = "<group>"; };
 		338EE1AD17A5EAFC005E98B1 /* PdArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdArray.m; sourceTree = "<group>"; };
 		338EE1B217A5F1D2005E98B1 /* NSArray+CompareNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CompareNumbers.h"; sourceTree = "<group>"; };
@@ -1314,8 +1308,6 @@
 			children = (
 				16A942A01777A2250052D5BD /* TouchNode.h */,
 				16A942A11777A2250052D5BD /* TouchNode.m */,
-				16A942991777A2250052D5BD /* CellNode.m */,
-				16A942981777A2250052D5BD /* CellNode.h */,
 				162C293317871F2500CE480C /* CCNode+DragItem.h */,
 				162C293417871F2500CE480C /* CCNode+DragItem.m */,
 				162C2922178501C700CE480C /* DragCellNode.h */,
@@ -1328,10 +1320,8 @@
 				163091E9177CC175003155BB /* BlockFader.m */,
 				169258851788896A00B90DFE /* SpritePicker.h */,
 				169258861788896A00B90DFE /* SpritePicker.m */,
-				338EE1A817A5DF35005E98B1 /* WaveTable.h */,
-				338EE1A917A5DF35005E98B1 /* WaveTable.m */,
-				3315798417DE9DDC00B9CFF2 /* TouchSprite.h */,
-				3315798517DE9DDC00B9CFF2 /* TouchSprite.m */,
+				338B1D6F17E4C11B00F25751 /* GameNode.h */,
+				338B1D7017E4C11B00F25751 /* GameNode.m */,
 			);
 			path = "Generic Nodes";
 			sourceTree = "<group>";
@@ -1761,7 +1751,6 @@
 				160807AB16B437A900039339 /* CCTransition.m in Sources */,
 				160807AE16B437A900039339 /* CCTransitionPageTurn.m in Sources */,
 				160807B116B437A900039339 /* CCTransitionProgress.m in Sources */,
-				338EE1AA17A5DF35005E98B1 /* WaveTable.m in Sources */,
 				160807B516B437A900039339 /* cocos2d.m in Sources */,
 				160807BC16B437A900039339 /* CCDirectorIOS.m in Sources */,
 				160807BF16B437A900039339 /* CCES2Renderer.m in Sources */,
@@ -1796,6 +1785,7 @@
 				1608083016B437AA00039339 /* mat4.c in Sources */,
 				1608083216B437AA00039339 /* neon_matrix_impl.c in Sources */,
 				1608083416B437AA00039339 /* plane.c in Sources */,
+				338B1D7117E4C11B00F25751 /* GameNode.m in Sources */,
 				1608083616B437AA00039339 /* quaternion.c in Sources */,
 				1608083816B437AA00039339 /* ray2.c in Sources */,
 				1608083A16B437AA00039339 /* utility.c in Sources */,
@@ -1824,7 +1814,6 @@
 				16A4277C176BF0A100BEF13F /* SequenceUILayer.m in Sources */,
 				169F3D131770ADB2005F93B2 /* CCLayerPanZoom.m in Sources */,
 				33EE317017C92C3C004CC016 /* AudioTouchDispatcher.m in Sources */,
-				16A942B21777A2260052D5BD /* CellNode.m in Sources */,
 				33B4F25B17C72600004D4C13 /* AudioStopEvent.m in Sources */,
 				16A942B31777A2260052D5BD /* EntryArrow.m in Sources */,
 				16A942B61777A2260052D5BD /* TouchNode.m in Sources */,
@@ -1834,7 +1823,6 @@
 				16A942BA1777A2260052D5BD /* Drum.m in Sources */,
 				16A942BC1777A2260052D5BD /* Tone.m in Sources */,
 				16A942BF1777AADF0052D5BD /* TickChannel.m in Sources */,
-				3315798617DE9DDC00B9CFF2 /* TouchSprite.m in Sources */,
 				16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */,
 				16A942C61777ABFA0052D5BD /* TickerControl.m in Sources */,
 				1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */,

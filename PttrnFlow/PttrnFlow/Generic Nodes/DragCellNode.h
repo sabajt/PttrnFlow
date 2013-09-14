@@ -6,11 +6,11 @@
 //
 //
 
-#import "CellNode.h"
+#import "GameNode.h"
 #import "DragItemDelegate.h"
 
 
-@interface DragCellNode : CellNode
+@interface DragCellNode : GameNode
 
 @property (assign) BOOL cancelTouch;
 

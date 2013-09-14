@@ -90,6 +90,7 @@
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [super ccTouchEnded:touch withEvent:event];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationUnlockPan object:nil];
     
     if (self.hasStartedDrag) {

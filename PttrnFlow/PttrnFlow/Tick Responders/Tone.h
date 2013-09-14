@@ -6,10 +6,10 @@
 //
 //
 
-#import "CellNode.h"
+#import "GameNode.h"
 #import "TickResponder.h"
 
-@interface Tone : CellNode <TickResponder>
+@interface Tone : GameNode <TickResponder>
 
 @property (copy, nonatomic) NSString *midiValue;
 

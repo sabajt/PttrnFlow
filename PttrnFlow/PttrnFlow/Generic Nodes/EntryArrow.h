@@ -6,9 +6,9 @@
 //
 //
 
-#import "CellNode.h"
+#import "GameNode.h"
 
-@interface EntryArrow : CellNode
+@interface EntryArrow : GameNode
 
 - (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode entry:(NSMutableDictionary *)entry tiledMap:(CCTMXTiledMap *)tiledMap;
 
