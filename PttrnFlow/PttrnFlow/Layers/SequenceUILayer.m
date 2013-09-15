@@ -45,20 +45,20 @@ static CGFloat const kHandleHeight = 40;
         _tickDispatcher = tickDispatcher;
         
         // back button
-        CCSprite *backDefault = [CCSprite rectSpriteWithSize:buttonSize color:ccc3(180, 0, 0)];
-        CCSprite *backSelected = [CCSprite rectSpriteWithSize:buttonSize color:ccc3(255, 0, 0)];
+        CCSprite *backDefault = [CCSprite spriteWithSpriteFrameName:@"back_arrow_off.png"];
+        CCSprite *backSelected = [CCSprite spriteWithSpriteFrameName:@"back_arrow_on.png"];
         CCMenuItemSprite *backButton = [[CCMenuItemSprite alloc] initWithNormalSprite:backDefault selectedSprite:backSelected disabledSprite:nil target:self selector:@selector(backButtonPressed:)];
         backButton.position = ccp(buttonSize.width/2, yMidTopBar);
         
         // match sequence button
-        CCSprite *matchDefault = [CCSprite rectSpriteWithSize:buttonSize color:ccc3(0, 180, 0)];
-        CCSprite *matchSelected = [CCSprite rectSpriteWithSize:buttonSize color:ccc3(0, 255, 0)];
+        CCSprite *matchDefault = [CCSprite spriteWithSpriteFrameName:@"speaker_off.png"];
+        CCSprite *matchSelected = [CCSprite spriteWithSpriteFrameName:@"speaker_on.png"];
         CCMenuItemSprite *matchButton = [[CCMenuItemSprite alloc] initWithNormalSprite:matchDefault selectedSprite:matchSelected disabledSprite:nil target:self selector:@selector(matchButtonPressed:)];
         matchButton.position = ccp(backButton.position.x + backButton.contentSize.width, yMidTopBar);
         
         // run button
-        CCSprite *runDefault = [CCSprite rectSpriteWithSize:buttonSize color:ccc3(180, 180, 0)];
-        CCSprite *runSelected = [CCSprite rectSpriteWithSize:buttonSize color:ccc3(255, 255, 0)];
+        CCSprite *runDefault = [CCSprite spriteWithSpriteFrameName:@"play_off.png"];
+        CCSprite *runSelected = [CCSprite spriteWithSpriteFrameName:@"play_on.png"];
         CCMenuItemSprite *runButton = [[CCMenuItemSprite alloc] initWithNormalSprite:runDefault selectedSprite:runSelected disabledSprite:nil target:self selector:@selector(runButtonPressed:)];
         runButton.position = ccp(self.contentSize.width - buttonSize.width/2, yMidTopBar);
         
