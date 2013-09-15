@@ -132,15 +132,17 @@
     [self.sprite removeFromParentAndCleanup:YES];
     
     CCSprite *sprite = [CCSprite spriteWithSpriteFrameName:name];
-    sprite.position = [GridUtils relativeMidpointForCell:self.cell unitSize:kSizeGridUnit];
     self.sprite = sprite;
     
     if (self.batchNode == nil) {
         [self addChild:sprite];
-    }
+    } 
     else {
         [self.batchNode addChild:sprite];
     }
+    
+    // positioning should be generalized or handled somewhere else
+    sprite.position = [GridUtils relativeMidpointForCell:self.cell unitSize:kSizeGridUnit];
 }
 
 - (CGFloat)spriteWidth
