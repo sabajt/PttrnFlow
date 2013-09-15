@@ -90,8 +90,6 @@ static CGFloat const kHandleHeight = 40;
             CGFloat yPos = self.contentSize.height - yOffset;
             button.position = ccp(self.contentSize.width - button.contentSize.width, yPos);
             
-            NSLog(@"button pos: %@", NSStringFromCGPoint(button.position));
-            
             [self addChild:button];
             i++;
         }

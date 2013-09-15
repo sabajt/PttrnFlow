@@ -147,7 +147,6 @@
 		163091EA177CC176003155BB /* BlockFader.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091E9177CC175003155BB /* BlockFader.m */; };
 		163091ED177CD5A2003155BB /* CCLayer+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091EC177CD5A1003155BB /* CCLayer+Positioning.m */; };
 		163091F0177DEDA9003155BB /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091EF177DEDA9003155BB /* BackgroundLayer.m */; };
-		163091F4177F732E003155BB /* SequenceItemLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091F3177F732E003155BB /* SequenceItemLayer.m */; };
 		163091FC177F7B14003155BB /* itemButtonArrowOff-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 163091FA177F7B14003155BB /* itemButtonArrowOff-ipad.png */; };
 		163091FD177F7B14003155BB /* itemButtonArrowOn-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 163091FB177F7B14003155BB /* itemButtonArrowOn-ipad.png */; };
 		163DBE0117692C3100FCB89C /* SequenceMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 163DBE0017692C3100FCB89C /* SequenceMenuLayer.m */; };
@@ -573,8 +572,6 @@
 		163091EC177CD5A1003155BB /* CCLayer+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCLayer+Positioning.m"; sourceTree = "<group>"; };
 		163091EE177DEDA9003155BB /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
 		163091EF177DEDA9003155BB /* BackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundLayer.m; sourceTree = "<group>"; };
-		163091F2177F732E003155BB /* SequenceItemLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceItemLayer.h; sourceTree = "<group>"; };
-		163091F3177F732E003155BB /* SequenceItemLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceItemLayer.m; sourceTree = "<group>"; };
 		163091FA177F7B14003155BB /* itemButtonArrowOff-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonArrowOff-ipad.png"; sourceTree = "<group>"; };
 		163091FB177F7B14003155BB /* itemButtonArrowOn-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonArrowOn-ipad.png"; sourceTree = "<group>"; };
 		163DBDFF17692C3000FCB89C /* SequenceMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceMenuLayer.h; sourceTree = "<group>"; };
@@ -1160,8 +1157,6 @@
 				16A4277B176BF0A100BEF13F /* SequenceUILayer.m */,
 				163091EE177DEDA9003155BB /* BackgroundLayer.h */,
 				163091EF177DEDA9003155BB /* BackgroundLayer.m */,
-				163091F2177F732E003155BB /* SequenceItemLayer.h */,
-				163091F3177F732E003155BB /* SequenceItemLayer.m */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -1833,7 +1828,6 @@
 				163091F0177DEDA9003155BB /* BackgroundLayer.m in Sources */,
 				334E7206179617F200EFECC1 /* Warp.m in Sources */,
 				33BF709617CBB2BB003E0A5F /* SpeedChangeEvent.m in Sources */,
-				163091F4177F732E003155BB /* SequenceItemLayer.m in Sources */,
 				1692D28D1781CF900058448B /* DragButton.m in Sources */,
 				162C291017821E0200CE480C /* SizeUtils.m in Sources */,
 				33B4F25F17C72600004D4C13 /* SynthEvent.m in Sources */,

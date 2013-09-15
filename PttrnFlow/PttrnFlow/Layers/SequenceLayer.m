@@ -26,7 +26,6 @@
 #import "ColorUtils.h"
 #import "CCLayer+Positioning.h"
 #import "BackgroundLayer.h"
-#import "SequenceItemLayer.h"
 #import "CCSprite+Utils.h"
 #import "Warp.h"
 #import "AudioTouchDispatcher.h"
@@ -123,14 +122,7 @@
     
     // hud layer -- top control bar
     SequenceUILayer *uiLayer = [[SequenceUILayer alloc] initWithTickDispatcher:sequenceLayer.tickDispatcher dragItems:@[@(kDragItemArrow), @(kDragItemAudioStop), @(kDragItemSpeedChange)] dragItemDelegate:sequenceLayer];
-    
     [scene addChild:uiLayer z:1];
-    
-//    // hud layer -- right hand item menu
-//    static CGFloat itemBarWidth = 80;
-//    SequenceItemLayer *itemLayer = [SequenceItemLayer layerWithBatchNode:sequenceLayer.othersBatchNode color:ccc4BFromccc3B([ColorUtils sequenceItemBar]) width:itemBarWidth items:@[@(kDragItemArrow), @(kDragItemAudioStop), @(kDragItemSpeedChange)] dragButtonDelegate:sequenceLayer];
-//    itemLayer.position = ccp(sequenceLayer.contentSize.width - itemLayer.contentSize.width, sequenceLayer.contentSize.height - uiLayer.contentSize.height - itemLayer.contentSize.height);
-//    [scene addChild:itemLayer z:1];
     
     return scene;
 }
