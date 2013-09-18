@@ -16,7 +16,7 @@
 
 
 @implementation SpritePicker
-//
+
 //- (id)initWithFrameNames:(NSArray *)frameNames batchNode:(CCSpriteBatchNode *)batchNode center:(CGPoint)center
 //{
 //    self = [super initWithBatchNode:batchNode];
@@ -32,7 +32,13 @@
 
 - (id)initWithFrameNames:(NSArray *)frameNames center:(CGPoint)center
 {
-    self = [super init];
+    return [self initWithFrameNames:frameNames center:center batchNode:nil];
+}
+
+
+- (id)initWithFrameNames:(NSArray *)frameNames center:(CGPoint)center batchNode:(CCSpriteBatchNode *)batchNode
+{
+    self = [super initWithBatchNode:batchNode];
     if (self) {
         self.handleTouches = NO;
         _frameNames = frameNames;

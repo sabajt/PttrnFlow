@@ -25,7 +25,7 @@ static CGFloat const kHitChartHeight = 24;
 
 @implementation TickHitChart
 
-- (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode
+- (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode origin:(CGPoint)origin
 {
     self = [super initWithBatchNode:batchNode];
     if (self) {
@@ -39,9 +39,9 @@ static CGFloat const kHitChartHeight = 24;
             
             CCSprite *spr = [CCSprite spriteWithSpriteFrameName:@"tick_chart_cell_default.png"];
             CGPoint relPoint = ccp(i * (spr.contentSize.width + padding), 0);
-            SpritePicker *hitCell = [[SpritePicker alloc] initWithFrameNames:frameNames center:relPoint];
+            CGPoint absPoint = ccp(relPoint.x + origin.x, relPoint.y + origin.y);
+            SpritePicker *hitCell = [[SpritePicker alloc] initWithFrameNames:frameNames center:absPoint batchNode:batchNode];
             [self.hitCells addObject:hitCell];
-            [self addChild:hitCell];
         }
         
         SpritePicker *lastCell = [self.hitCells lastObject];

@@ -17,7 +17,7 @@ typedef enum
 
 @interface TickHitChart : GameNode
 
-- (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode;
+- (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode origin:(CGPoint)origin;
 - (void)resetCells;
 
 @end

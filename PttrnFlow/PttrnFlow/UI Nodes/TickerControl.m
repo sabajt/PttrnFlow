@@ -12,8 +12,6 @@
 #import "ColorUtils.h"
 #import "TickDispatcher.h"
 
-CGFloat const kTickScrubberDistanceInterval = 40;
-
 static CGFloat const kTickerHeight = 16;
 static CGFloat const kTickerWidth = 8;
 static CGFloat const kMarkerWidth = 2;
@@ -23,6 +21,8 @@ static CGFloat const kTickerControlHeight = 50;
 
 @interface TickerControl ()
 
+@property (assign) CGFloat padding;
+
 @property (assign) CGFloat distanceInterval;
 
 @end
@@ -30,21 +30,20 @@ static CGFloat const kTickerControlHeight = 50;
 
 @implementation TickerControl
 
-- (id)initWithNumberOfTicks:(int)numberOfTicks distanceInterval:(CGFloat)distanceInterval
+- (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode
 {
     self = [super init];
     if (self) {
         if (numberOfTicks < 1) {
             NSLog(@"warning: number of ticks for TickerControl should be > 1");
         }
-        self.touchNodeDelegate = self;
         
-        self.swallowsTouches = YES;
-        self.distanceInterval = distanceInterval;
+        self.padding = padding;
         _numberOfTicks = numberOfTicks;
         _thumbSprite = [CCSprite spriteWithSpriteFrameName:@"scrubHandle.png"];
         [self addChild:_thumbSprite];
         
+        CGFloat distanceInterval = 1;
         CCSprite *tickerBar = [CCSprite rectSpriteWithSize:CGSizeMake(numberOfTicks * distanceInterval, kTickerBarHeight) color:[ColorUtils tickerBar]];
         
         self.contentSize = CGSizeMake(tickerBar.contentSize.width, kTickerControlHeight);

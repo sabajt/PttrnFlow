@@ -12,6 +12,8 @@
 
 //- (id)initWithFrameNames:(NSArray *)frameNames batchNode:(CCSpriteBatchNode *)batchNode center:(CGPoint)center;
 - (id)initWithFrameNames:(NSArray *)frameNames center:(CGPoint)center;
+- (id)initWithFrameNames:(NSArray *)frameNames center:(CGPoint)center batchNode:(CCSpriteBatchNode *)batchNode;
+
 
 - (int)numberOfSprites;
 - (void)pickSprite:(int)index;

@@ -68,16 +68,16 @@ static CGFloat const kHandleHeight = 40;
         [self addChild:menu];
         
         // tick hit chart
-        TickHitChart *hitChart = [[TickHitChart alloc] initWithNumberOfTicks:tickDispatcher.sequenceLength padding:2 batchNode:uiBatch];;
-        hitChart.position = ccp(matchButton.position.x + matchButton.contentSize.width, self.contentSize.height - topBarHeight);
+        CGPoint hitChartOrigin = ccp(matchButton.position.x + matchButton.contentSize.width, self.contentSize.height - topBarHeight);
+        TickHitChart *hitChart = [[TickHitChart alloc] initWithNumberOfTicks:tickDispatcher.sequenceLength padding:2 batchNode:uiBatch origin:hitChartOrigin];
         [self addChild:hitChart];
         _hitChart = hitChart;
         
-        // ticker control
-        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:(tickDispatcher.sequenceLength / 4) distanceInterval:kTickScrubberDistanceInterval];
-        tickerControl.delegate = tickDispatcher;
-        tickerControl.position = ccp(hitChart.position.x, hitChart.position.y + hitChart.contentSize.height + 2);
-        [self addChild:tickerControl];
+//        // ticker control
+//        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:(tickDispatcher.sequenceLength / 4) distanceInterval:kTickScrubberDistanceInterval];
+//        tickerControl.delegate = tickDispatcher;
+//        tickerControl.position = ccp(hitChart.position.x, hitChart.position.y + hitChart.contentSize.height + 2);
+//        [self addChild:tickerControl];
         
         // drag items
         int i = 0;

@@ -6,10 +6,7 @@
 //
 //
 
-#import "cocos2d.h"
-#import "TouchNode.h"
-
-FOUNDATION_EXPORT CGFloat const kTickScrubberDistanceInterval;
+#import "GameNode.h"
 
 @protocol TickerControlDelegate <NSObject>
 
@@ -18,7 +15,7 @@ FOUNDATION_EXPORT CGFloat const kTickScrubberDistanceInterval;
 
 @end
 
-@interface TickerControl : TouchNode <TouchNodeDelegate>;
+@interface TickerControl : GameNode;
 
 // TODO: rename this to tickerControlDelegate
 @property (weak, nonatomic) id<TickerControlDelegate> delegate;
@@ -26,6 +23,6 @@ FOUNDATION_EXPORT CGFloat const kTickScrubberDistanceInterval;
 @property (assign) int numberOfTicks;
 @property (assign) int currentIndex;
 
-- (id)initWithNumberOfTicks:(int)numberOfTicks distanceInterval:(CGFloat)distanceInterval;
+- (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode;
 
 @end
