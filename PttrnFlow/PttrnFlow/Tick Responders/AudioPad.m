@@ -27,7 +27,7 @@
 {
     self = [super initWithBatchNode:batchNode cell:cell];
     if (self) {
-        [self setSpriteForFrameName:@"rectBorderBlue.png"];
+        [self setSpriteForFrameName:@"rectBorderBlue.png" cell:cell];
     }
     return self;
 }

@@ -12,6 +12,7 @@
 
 @interface GameNode : CCNode <CCTargetedTouchDelegate>
 
+@property (assign) BOOL handleTouches;
 @property (assign) BOOL swallowsTouches;
 @property (assign) BOOL isReceivingTouch;
 @property (assign) CGFloat longPressDelay;
@@ -38,6 +39,8 @@
 // replace current sprite we point with new sprite created from frame catch
 // supports instances with or without batch nodes
 - (void)setSpriteForFrameName:(NSString *)name;
+- (void)setSpriteForFrameName:(NSString *)name cell:(GridCoord)cell;
+- (void)setSpriteForFrameName:(NSString *)name position:(CGPoint)position;
 
 // TODO: need to update to work with batch node system
 - (void)alignSprite:(kDirection)direction;

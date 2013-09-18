@@ -25,7 +25,6 @@
 
 @implementation DragCellNode
 
-// TODO: make drag cell node compatible with batch node
 - (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode cell:(GridCoord)cell dragItemDelegate:(id<DragItemDelegate>)delegate dragSprite:(CCSprite *)dragSprite dragItemType:(kDragItem)dragItemType
 {
     self = [super initWithBatchNode:batchNode cell:cell];

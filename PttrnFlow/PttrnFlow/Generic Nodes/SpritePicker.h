@@ -6,13 +6,15 @@
 //
 //
 
-#import "cocos2d.h"
+#import "GameNode.h"
 
-@interface SpritePicker : CCNode
+@interface SpritePicker : GameNode
 
-- (id)initWithSprites:(NSArray *)sprites;
+//- (id)initWithFrameNames:(NSArray *)frameNames batchNode:(CCSpriteBatchNode *)batchNode center:(CGPoint)center;
+- (id)initWithFrameNames:(NSArray *)frameNames center:(CGPoint)center;
+
 - (int)numberOfSprites;
 - (void)pickSprite:(int)index;
-- (CCSprite *)spriteAtIndex:(int)index;
+//- (CCSprite *)spriteAtIndex:(int)index;
 
 @end

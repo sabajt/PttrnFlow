@@ -29,7 +29,7 @@
     self = [super initWithBatchNode:batchNode cell:cell];
     if (self) {
         self.pattern = [CCTMXTiledMap objectPropertyNamed:kTLDPropertyPattern object:drum];
-        [self setSpriteForFrameName:[self frameNameForPattern:self.pattern on:NO]];
+        [self setSpriteForFrameName:[self frameNameForPattern:self.pattern on:NO] cell:cell];
     }
     return self;
 }
@@ -44,7 +44,7 @@
 
 - (void)deselect
 {
-    [self setSpriteForFrameName:[self frameNameForPattern:self.pattern on:NO]];
+    [self setSpriteForFrameName:[self frameNameForPattern:self.pattern on:NO] cell:self.cell];
 }
 
 
@@ -68,7 +68,7 @@
 
 - (NSArray *)tick:(NSInteger)bpm
 {
-    [self setSpriteForFrameName:[self frameNameForPattern:self.pattern on:YES]];
+    [self setSpriteForFrameName:[self frameNameForPattern:self.pattern on:YES] cell:self.cell];
     return @[[NSString stringWithFormat:@"sample_%@", self.pattern]];
 }
 

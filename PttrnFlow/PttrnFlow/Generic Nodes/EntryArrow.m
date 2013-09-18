@@ -20,7 +20,7 @@
     GridCoord cell = [tiledMap gridCoordForObject:entry];
     self = [super initWithBatchNode:batchNode cell:cell];
     if (self) {
-        [self setSpriteForFrameName:kImageStartArrow];
+        [self setSpriteForFrameName:kImageStartArrow cell:cell];
         
         NSString *directionName = [CCTMXTiledMap objectPropertyNamed:@"direction" object:entry];
         kDirection direction = [SGTiledUtils directionNamed:directionName];

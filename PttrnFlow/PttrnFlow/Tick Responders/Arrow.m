@@ -33,7 +33,8 @@
     if (self) {
         self.cell = cell;
         self.facing = facing;
-        [self setSpriteForFrameName:[self frameNameForFacing:self.facing]];
+        [self setSpriteForFrameName:[self frameNameForFacing:facing] cell:cell];
+        
     }
     return self;
 }
@@ -71,7 +72,7 @@
         self.facing = kDirectionUp;
     }
 
-    [self setSpriteForFrameName:[self frameNameForFacing:self.facing]];
+    [self setSpriteForFrameName:[self frameNameForFacing:self.facing] cell:self.cell];
 }
 
 #pragma mark - SynthCellNode

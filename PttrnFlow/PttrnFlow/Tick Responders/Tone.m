@@ -31,14 +31,14 @@
     if (self) {
         _midiValue = [CCTMXTiledMap objectPropertyNamed:kTLDPropertyMidiValue object:tone];
         _selected = NO;
-        [self setSpriteForFrameName:[self frameNameForMidiValue:self.midiValue on:NO]];
+        [self setSpriteForFrameName:[self frameNameForMidiValue:self.midiValue on:NO] cell:cell];
     }
     return self;
 }
 
 - (void)deselectTone
 {
-    [self setSpriteForFrameName:[self frameNameForMidiValue:self.midiValue on:NO]];
+    [self setSpriteForFrameName:[self frameNameForMidiValue:self.midiValue on:NO] cell:self.cell];
 }
 
 #pragma mark - CellNode
@@ -63,7 +63,7 @@
 {
     // select and highlight
     self.selected = YES;
-    [self setSpriteForFrameName:[self frameNameForMidiValue:self.midiValue on:YES]];
+    [self setSpriteForFrameName:[self frameNameForMidiValue:self.midiValue on:YES] cell:self.cell];
 
     // return fragments
     return @[self.midiValue];

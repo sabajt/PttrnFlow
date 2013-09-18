@@ -14,6 +14,7 @@
 {
     self = [super init];
     if (self) {
+        _handleTouches = YES;
         _swallowsTouches = NO;
         _longPressDelay = 0;
         _isReceivingTouch = NO;
@@ -33,7 +34,7 @@
 
 - (id)initWithCell:(GridCoord)cell
 {
-    self = [super init];
+    self = [self init];
     if (self) {
         _cell = cell;
         _cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
@@ -58,7 +59,9 @@
 {
     [super onEnter];
     
-    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:self.swallowsTouches];
+    if (self.handleTouches) {
+        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:self.swallowsTouches];
+    }
     
     // modified version of CCLayerPanZoom sends this notification when we start panning,
     // drag distance buffer specified by a layer's maxTouchDistanceToClick property
@@ -67,7 +70,9 @@
 
 - (void)onExit
 {
-    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    if (self.handleTouches) {
+        [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    }
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self.sprite removeFromParentAndCleanup:YES];
@@ -140,10 +145,20 @@
     else {
         [self.batchNode addChild:sprite];
     }
-    
-    // positioning should be generalized or handled somewhere else
-    sprite.position = [GridUtils relativeMidpointForCell:self.cell unitSize:kSizeGridUnit];
 }
+
+- (void)setSpriteForFrameName:(NSString *)name cell:(GridCoord)cell
+{
+    [self setSpriteForFrameName:name];
+    self.sprite.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
+}
+
+- (void)setSpriteForFrameName:(NSString *)name position:(CGPoint)position
+{
+    [self setSpriteForFrameName:name];
+    self.sprite.position = position;
+}
+
 
 - (CGFloat)spriteWidth
 {
@@ -155,6 +170,7 @@
     return self.sprite.boundingBox.size.height;
 }
 
+// TODO: generalize this to work without cells or move somewhere else
 - (void)alignSprite:(kDirection)direction
 {
     switch (direction) {

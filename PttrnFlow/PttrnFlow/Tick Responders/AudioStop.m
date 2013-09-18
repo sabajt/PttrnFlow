@@ -20,7 +20,7 @@
     CCSprite *dragSprite = [CCSprite spriteWithSpriteFrameName:kImageAudioStop];
     self = [super initWithBatchNode:batchNode cell:cell dragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemAudioStop];
     if (self) {
-        [self setSpriteForFrameName:kImageAudioStop];
+        [self setSpriteForFrameName:kImageAudioStop cell:cell];
     }
     return self;
 }

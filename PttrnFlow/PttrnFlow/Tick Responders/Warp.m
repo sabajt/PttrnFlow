@@ -17,7 +17,7 @@
     CCSprite *dragSprite = [SpriteUtils spriteWithTextureKey:kImageWarpDefault];
     self = [super initWithBatchNode:batchNode cell:cell dragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemWarp];
     if (self) {
-        [self setSpriteForFrameName:kImageWarpDefault];
+        [self setSpriteForFrameName:kImageWarpDefault cell:cell];
     }
     return self;
 }

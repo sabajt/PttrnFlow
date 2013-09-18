@@ -20,7 +20,7 @@
     self = [super initWithBatchNode:batchNode cell:cell dragItemDelegate:delegate dragSprite:dragSprite dragItemType:kDragItemSpeedChange];
     if (self) {
         self.speed = speed;
-        [self setSpriteForFrameName:kImageSpeedDouble];
+        [self setSpriteForFrameName:kImageSpeedDouble cell:cell];
     }
     return self;
 }
