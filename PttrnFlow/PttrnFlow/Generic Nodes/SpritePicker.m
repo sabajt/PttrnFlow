@@ -72,14 +72,4 @@
     }
 }
 
-
-//- (CCSprite *)spriteAtIndex:(int)index
-//{
-//    if (index >= [self numberOfSprites]) {
-//        NSLog(@"WARNING: tried to return sprite out of index");
-//        return nil;
-//    }
-//    return self.sprites[index];
-//}
-
 @end

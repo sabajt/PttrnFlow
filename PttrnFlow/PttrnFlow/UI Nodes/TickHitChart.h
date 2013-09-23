@@ -6,7 +6,7 @@
 //
 //
 
-#import "GameNode.h"
+#import "cocos2d.h"
 
 typedef enum
 {
@@ -15,7 +15,7 @@ typedef enum
     kHitStatusFailure,
 } kHitStatus;
 
-@interface TickHitChart : GameNode
+@interface TickHitChart : CCNode
 
 - (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode origin:(CGPoint)origin;
 - (void)resetCells;

@@ -73,11 +73,12 @@ static CGFloat const kHandleHeight = 40;
         [self addChild:hitChart];
         _hitChart = hitChart;
         
-//        // ticker control
-//        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:(tickDispatcher.sequenceLength / 4) distanceInterval:kTickScrubberDistanceInterval];
-//        tickerControl.delegate = tickDispatcher;
-//        tickerControl.position = ccp(hitChart.position.x, hitChart.position.y + hitChart.contentSize.height + 2);
-//        [self addChild:tickerControl];
+        // ticker control
+        CGPoint tickerControlOrigin = ccp(hitChartOrigin.x, hitChartOrigin.y + 40);
+        NSLog(@"tickerControlOrigin: %@", NSStringFromCGPoint(tickerControlOrigin));
+        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:(tickDispatcher.sequenceLength / 4) padding:2 batchNode:uiBatch origin:tickerControlOrigin];
+        tickerControl.delegate = tickDispatcher;
+        [self addChild:tickerControl];
         
         // drag items
         int i = 0;

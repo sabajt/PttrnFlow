@@ -27,18 +27,19 @@ static CGFloat const kHitChartHeight = 24;
 
 - (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode origin:(CGPoint)origin
 {
-    self = [super initWithBatchNode:batchNode];
+    self = [super init];
     if (self) {
         if (numberOfTicks < 1) {
             NSLog(@"warning: number of ticks for TickerControl should be > 1");
         }
         
         self.hitCells = [NSMutableArray array];
+        NSArray *frameNames = @[@"tick_chart_cell_default.png", @"tick_chart_cell_hit.png", @"tick_chart_cell_miss.png"];
+
         for (int i = 0; i < numberOfTicks; i++) {
-            NSArray *frameNames = @[@"tick_chart_cell_default.png", @"tick_chart_cell_hit.png", @"tick_chart_cell_miss.png"];
-            
             CCSprite *spr = [CCSprite spriteWithSpriteFrameName:@"tick_chart_cell_default.png"];
             CGPoint relPoint = ccp(i * (spr.contentSize.width + padding), 0);
+            relPoint = ccp(relPoint.x + (spr.contentSize.width / 2), relPoint.y + (spr.contentSize.height / 2));
             CGPoint absPoint = ccp(relPoint.x + origin.x, relPoint.y + origin.y);
             SpritePicker *hitCell = [[SpritePicker alloc] initWithFrameNames:frameNames center:absPoint batchNode:batchNode];
             [self.hitCells addObject:hitCell];
@@ -46,10 +47,6 @@ static CGFloat const kHitChartHeight = 24;
         
         SpritePicker *lastCell = [self.hitCells lastObject];
         self.contentSize = CGSizeMake(lastCell.position.x + lastCell.contentSize.width, lastCell.contentSize.height);
-        
-        for (SpritePicker *picker in self.hitCells) {
-            NSLog(@"cell pos: %@", NSStringFromCGPoint(picker.position));
-        }
     }
     return self;
 }

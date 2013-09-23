@@ -12,25 +12,16 @@
 #import "ColorUtils.h"
 #import "TickDispatcher.h"
 
-static CGFloat const kTickerHeight = 16;
-static CGFloat const kTickerWidth = 8;
-static CGFloat const kMarkerWidth = 2;
-static CGFloat const kMarkerHeight = 16;
-static CGFloat const kTickerBarHeight = 2;
-static CGFloat const kTickerControlHeight = 50;
-
 @interface TickerControl ()
 
 @property (assign) CGFloat padding;
-
-@property (assign) CGFloat distanceInterval;
+@property (assign) CGSize unitSize;
 
 @end
 
-
 @implementation TickerControl
 
-- (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode
+- (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode origin:(CGPoint)origin
 {
     self = [super init];
     if (self) {
@@ -38,28 +29,24 @@ static CGFloat const kTickerControlHeight = 50;
             NSLog(@"warning: number of ticks for TickerControl should be > 1");
         }
         
-        self.padding = padding;
+        self.swallowsTouches = YES;
+        self.position = origin;
+        
+        _padding = padding;
         _numberOfTicks = numberOfTicks;
-        _thumbSprite = [CCSprite spriteWithSpriteFrameName:@"scrubHandle.png"];
-        [self addChild:_thumbSprite];
-        
-        CGFloat distanceInterval = 1;
-        CCSprite *tickerBar = [CCSprite rectSpriteWithSize:CGSizeMake(numberOfTicks * distanceInterval, kTickerBarHeight) color:[ColorUtils tickerBar]];
-        
-        self.contentSize = CGSizeMake(tickerBar.contentSize.width, kTickerControlHeight);
-        CGFloat tickerBarCenterY = self.contentSize.height / 4;
-        tickerBar.position = ccp(self.contentSize.width / 2, tickerBarCenterY);
-        
-        self.currentIndex = 0;
-        [self positionThumb:0];
-        
-        [self addChild:tickerBar];
+        _currentIndex = 0;
         
         for (int i = 0; i < numberOfTicks; i++) {
-            CCSprite *marker = [CCSprite rectSpriteWithSize:CGSizeMake(kMarkerWidth, kTickerHeight) color:[ColorUtils tickerBar]];
-            marker.position = ccp((i * distanceInterval) + (distanceInterval / 2), tickerBarCenterY + (kTickerBarHeight / 2));
-            [self addChild:marker];
+            CCSprite *spr = [CCSprite spriteWithSpriteFrameName:@"tick_circle_off.png"];
+            _unitSize = spr.contentSize;
+            CGPoint relPoint = ccp((i * (spr.contentSize.width + padding) + (self.unitSize.width / 2)), self.unitSize.height / 2);
+            CGPoint absPoint = ccp(relPoint.x + origin.x, relPoint.y + origin.y);
+            spr.position = absPoint;
+            [batchNode addChild:spr];
         }
+        
+        CGFloat width = (self.unitSize.width + padding) * numberOfTicks;
+        self.contentSize = CGSizeMake(width, self.unitSize.height);
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAdvancedSequence:) name:kNotificationAdvancedSequence object:nil];
     }
@@ -69,7 +56,7 @@ static CGFloat const kTickerControlHeight = 50;
 - (int)nearestIndex:(UITouch *)touch
 {
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    CGFloat index = touchPosition.x / self.distanceInterval;
+    CGFloat index = touchPosition.x / (self.unitSize.width + self.padding);
     return (int)index;
 }
 
@@ -84,7 +71,7 @@ static CGFloat const kTickerControlHeight = 50;
 
 - (void)positionThumb:(int)index
 {
-    self.thumbSprite.position = ccp(index * self.distanceInterval + (self.distanceInterval / 2), (3 * self.contentSize.height) / 4);
+//    self.thumbSprite.position = ccp(index * self.distanceInterval + (self.distanceInterval / 2), (3 * self.contentSize.height) / 4);
 }
 
 - (void)handleAdvancedSequence:(NSNotification *)notification
@@ -100,8 +87,8 @@ static CGFloat const kTickerControlHeight = 50;
 - (BOOL)containsTouch:(UITouch *)touch
 {
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    CGRect rect = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
-    return (CGRectContainsPoint(rect, touchPosition));
+    CGRect localBox = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
+    return CGRectContainsPoint(localBox, touchPosition);
 }
 
 #pragma mark CCNode SceneManagement
@@ -134,11 +121,8 @@ static CGFloat const kTickerControlHeight = 50;
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-//    [self handleTouch:touch];
-    
     [super ccTouchEnded:touch withEvent:event];
     [self.delegate tickerControlTouchUp];
-
 }
 
 @end

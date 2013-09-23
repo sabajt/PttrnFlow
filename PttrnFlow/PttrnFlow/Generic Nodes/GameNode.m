@@ -122,6 +122,9 @@
 - (BOOL)containsTouch:(UITouch *)touch
 {
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+    
+    NSLog(@"\n\n\n**** **** ****\n---GameNode: %@\n---touch pos: %@\n---spr bounding box: %@\n---contains touch: %i", self, NSStringFromCGPoint(touchPosition), NSStringFromCGRect(self.sprite.boundingBox), CGRectContainsPoint(self.sprite.boundingBox, touchPosition));
+    
     return (CGRectContainsPoint(self.sprite.boundingBox, touchPosition));
 }
 
