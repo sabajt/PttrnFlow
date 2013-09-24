@@ -19,7 +19,6 @@
 
 // TODO: rename this to tickerControlDelegate
 @property (weak, nonatomic) id<TickerControlDelegate> delegate;
-@property (weak, nonatomic) CCSprite *thumbSprite;
 @property (assign) int numberOfTicks;
 @property (assign) int currentIndex;
 

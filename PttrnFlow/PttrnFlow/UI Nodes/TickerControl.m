@@ -14,6 +14,7 @@
 
 @interface TickerControl ()
 
+@property (weak, nonatomic) CCSprite *thumbSprite;
 @property (assign) CGFloat padding;
 @property (assign) CGSize unitSize;
 
@@ -32,6 +33,10 @@
         self.swallowsTouches = YES;
         self.position = origin;
         
+        _thumbSprite = [CCSprite spriteWithSpriteFrameName:@"tick_circle_on.png"];
+        self.thumbSprite.visible = NO;
+        [batchNode addChild:self.thumbSprite];
+        
         _padding = padding;
         _numberOfTicks = numberOfTicks;
         _currentIndex = 0;
@@ -39,7 +44,7 @@
         for (int i = 0; i < numberOfTicks; i++) {
             CCSprite *spr = [CCSprite spriteWithSpriteFrameName:@"tick_circle_off.png"];
             _unitSize = spr.contentSize;
-            CGPoint relPoint = ccp((i * (spr.contentSize.width + padding) + (self.unitSize.width / 2)), self.unitSize.height / 2);
+            CGPoint relPoint = ccp((i * (self.unitSize.width + padding) + (self.unitSize.width / 2)), self.unitSize.height / 2);
             CGPoint absPoint = ccp(relPoint.x + origin.x, relPoint.y + origin.y);
             spr.position = absPoint;
             [batchNode addChild:spr];
@@ -71,14 +76,15 @@
 
 - (void)positionThumb:(int)index
 {
-//    self.thumbSprite.position = ccp(index * self.distanceInterval + (self.distanceInterval / 2), (3 * self.contentSize.height) / 4);
+    self.thumbSprite.visible = YES;
+    CGPoint relPoint = ccp((index * (self.padding + self.unitSize.width)) + self.unitSize.width / 2, self.unitSize.height / 2);
+    self.thumbSprite.position = ccp(self.position.x + relPoint.x, self.position.y + relPoint.y);
 }
 
 - (void)handleAdvancedSequence:(NSNotification *)notification
 {
     NSNumber *subIndex = notification.userInfo[kKeySequenceIndex];
     self.currentIndex = ([subIndex intValue] / 4);
-    NSLog(@"current index: %i", self.currentIndex);
     [self positionThumb:self.currentIndex];
 }
 
