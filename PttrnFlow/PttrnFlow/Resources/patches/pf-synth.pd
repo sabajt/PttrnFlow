@@ -1,4 +1,4 @@
-#N canvas 302 189 467 483 10;
+#N canvas 610 146 632 518 10;
 #X floatatom 206 -9 5 0 0 0 - - -;
 #X obj 206 10 mtof;
 #X obj 179 185 osc~ 220;
@@ -17,7 +17,7 @@
 #X obj 74 -4 float;
 #X floatatom 90 18 5 0 0 0 - - -;
 #X obj 84 -99 hradio 15 1 0 3 empty empty empty 0 -8 0 10 -262144 -1
--1 1;
+-1 0;
 #X msg 84 -152 0;
 #X msg 196 -131 1;
 #X msg 277 -132 2;
