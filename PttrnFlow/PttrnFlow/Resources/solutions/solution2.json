@@ -1,0 +1,102 @@
+{
+    "tick_1" : {
+        "sub_1" : [
+                   {
+                   "event_type" : "synth",
+                   "synth_type" : "phasor",
+                   "midi_value" : "50",
+                   "channel" : "0",
+                   },
+                   ],
+        "sub_2" : [],
+        "sub_3" : [],
+        "sub_4" : []
+    },
+    "tick_2" : {
+        "sub_1" : [
+                   {
+                   "event_type" : "synth",
+                   "synth_type" : "phasor",
+                   "midi_value" : "52",
+                   "channel" : "0",
+                   },
+                   ],
+        "sub_2" : [],
+        "sub_3" : [],
+        "sub_4" : []
+    },
+    "tick_3" : {
+        "sub_1" : [
+                   {
+                   "event_type" : "synth",
+                   "synth_type" : "phasor",
+                   "midi_value" : "54",
+                   "channel" : "0"
+                   },
+                   ],
+        "sub_2" : [],
+        "sub_3" : [],
+        "sub_4" : []
+    },
+    "tick_4" : {
+        "sub_1" : [
+                   {
+                   "event_type" : "audio_stop",
+                   "channel" : "0"
+                   },
+                   ],
+        "sub_2" : [],
+        "sub_3" : [],
+        "sub_4" : []
+    },
+    "tick_5" : {
+        "sub_1" : [
+                   {
+                   "event_type" : "synth",
+                   "synth_type" : "phasor",
+                   "midi_value" : "54",
+                   "channel" : "0",
+                   },
+                   ],
+        "sub_2" : [],
+        "sub_3" : [],
+        "sub_4" : []
+    },
+    "tick_6" : {
+        "sub_1" : [ 
+                   {
+                   "event_type" : "audio_stop",
+                   "channel" : "0",
+                   },
+                   ],
+        "sub_2" : [],
+        "sub_3" : [],
+        "sub_4" : []
+    },
+    "tick_7" : {
+        "sub_1" : [ 
+                   {
+                   "event_type" : "synth",
+                   "synth_type" : "phasor",
+                   "midi_value" : "52",
+                   "channel" : "0"
+                   },
+                   ],
+        "sub_2" : [],
+        "sub_3" : [],
+        "sub_4" : []
+    },
+    "tick_8" : {
+        "sub_1" : [ 
+                   {
+                   "event_type" : "synth",
+                   "synth_type" : "phasor",
+                   "midi_value" : "50",
+                   "channel" : "0"
+                   },
+                   ],
+        "sub_2" : [],
+        "sub_3" : [],
+        "sub_4" : []
+    },
+}

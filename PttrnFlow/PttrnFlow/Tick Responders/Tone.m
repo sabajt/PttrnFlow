@@ -30,6 +30,7 @@
     self = [super initWithBatchNode:batchNode cell:cell];
     if (self) {
         _midiValue = [CCTMXTiledMap objectPropertyNamed:kTLDPropertyMidiValue object:tone];
+        _synthType = [CCTMXTiledMap objectPropertyNamed:kTLDPropertySynthType object:tone];
         _selected = NO;
         [self setSpriteForFrameName:[self frameNameForMidiValue:self.midiValue on:NO] cell:cell];
     }
@@ -66,7 +67,7 @@
     [self setSpriteForFrameName:[self frameNameForMidiValue:self.midiValue on:YES] cell:self.cell];
 
     // return fragments
-    return @[self.midiValue];
+    return @[self.midiValue, self.synthType];
 }
 
 - (void)afterTick:(NSInteger)bpm

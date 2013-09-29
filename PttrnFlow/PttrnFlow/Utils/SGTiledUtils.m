@@ -22,6 +22,7 @@ NSString *const kTLDObjectAudioPad = @"audio pad";
 
 // tiled object properties
 NSString *const kTLDPropertyMidiValue = @"midiValue";
+NSString *const kTLDPropertySynthType = @"synthType";
 NSString *const kTLDPropertyPattern = @"pattern";
 NSString *const kTLDPropertyDirection = @"direction";
 NSString *const kTLDPropertyEvents = @"events";

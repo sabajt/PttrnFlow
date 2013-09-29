@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum
+{
+    PFSynthTypePhasor = 0,
+    PFSynthTypeOsc,
+} PFSynthType;
+
 @interface MainSynth : NSObject
 
 + (void)receiveEvents:(NSArray *)events ignoreAudioPad:(BOOL)ignoreAudioPad;

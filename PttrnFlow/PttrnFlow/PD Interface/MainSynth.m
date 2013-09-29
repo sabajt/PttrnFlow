@@ -24,7 +24,7 @@ static NSString *const kTrigger = @"trigger";
 static NSString *const kMidiValue = @"midinote";
 static NSString *const kSelectDrum = @"selectDrum";
 static NSString *const kMute = @"mute";
-static NSString *const kSynthEvent = @"prepareSynth";
+static NSString *const kSynthEvent = @"synthEvent";
 static NSString *const kAudioStop = @"audioStop";
 
 
@@ -37,6 +37,16 @@ static NSString *const kAudioStop = @"audioStop";
         muteVal = 0.0;
     }
     [PdBase sendFloat:muteVal toReceiver:kMute];
+}
+
++ (PFSynthType)pfSynthTypeForStringRep:(NSString *)rep
+{
+    if ([rep isEqualToString:@"phasor"]) {
+        return PFSynthTypePhasor;
+    }
+    else {
+        return PFSynthTypeOsc;
+    }
 }
 
 #pragma mark - SoundEventReveiver
@@ -65,7 +75,8 @@ static NSString *const kAudioStop = @"audioStop";
             SynthEvent *synth = (SynthEvent *)event;
             NSNumber *midiValue = [NSNumber numberWithInt:[synth.midiValue intValue]];
             NSNumber *channel = [NSNumber numberWithInt:[synth.channel intValue]];
-            [PdBase sendList:@[synth.synthType, midiValue, channel] toReceiver:kSynthEvent];
+            NSNumber *synthType = [NSNumber numberWithInt:[self pfSynthTypeForStringRep:synth.synthType]];
+            [PdBase sendList:@[synthType, midiValue, channel] toReceiver:kSynthEvent];
         }
         if ([event isKindOfClass:[SampleEvent class]]) {
             SampleEvent *sample = (SampleEvent *)event;

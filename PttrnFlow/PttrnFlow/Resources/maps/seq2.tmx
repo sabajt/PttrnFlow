@@ -24,25 +24,25 @@
   <object name="tone" x="521" y="322" width="66" height="64">
    <properties>
     <property name="midiValue" value="58"/>
-    <property name="synthType" value="osc"/>
+    <property name="synthType" value="phasor"/>
    </properties>
   </object>
   <object name="tone" x="32" y="43" width="66" height="64">
    <properties>
     <property name="midiValue" value="50"/>
-    <property name="synthType" value="osc"/>
+    <property name="synthType" value="phasor"/>
    </properties>
   </object>
   <object name="tone" x="312" y="317" width="66" height="64">
    <properties>
     <property name="midiValue" value="52"/>
-    <property name="synthType" value="osc"/>
+    <property name="synthType" value="phasor"/>
    </properties>
   </object>
   <object name="tone" x="711" y="122" width="66" height="64">
    <properties>
     <property name="midiValue" value="54"/>
-    <property name="synthType" value="osc"/>
+    <property name="synthType" value="phasor"/>
    </properties>
   </object>
   <object name="drum" x="120" y="713" width="66" height="64">
@@ -62,7 +62,7 @@
   </object>
   <object name="audio pad" x="13" y="629" width="761" height="154"/>
   <object name="audio pad" x="207" y="234" width="565" height="140"/>
-  <object name="audio pad" x="19" y="25" width="761" height="154"/>
+  <object name="audio pad" x="24" y="29" width="761" height="154"/>
   <object name="entry" x="27" y="654" width="125" height="121">
    <properties>
     <property name="channel" value="1"/>
@@ -70,12 +70,11 @@
    </properties>
    <ellipse/>
   </object>
-  <object name="entry" x="646" y="248" width="125" height="121">
+  <object name="tone" x="257" y="85" width="66" height="64">
    <properties>
-    <property name="channel" value="2"/>
-    <property name="direction" value="left"/>
+    <property name="midiValue" value="51"/>
+    <property name="synthType" value="phasor"/>
    </properties>
-   <ellipse/>
   </object>
  </objectgroup>
 </map>
