@@ -1,79 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="4" height="4" tilewidth="200" tileheight="200">
+<map version="1.0" orientation="orthogonal" width="6" height="5" tilewidth="200" tileheight="200">
  <tileset firstgid="1" name="pipeTilesetBase1" tilewidth="200" tileheight="200" spacing="1" margin="1">
   <image source="pipeTilesetBase1.png" width="1609" height="805"/>
  </tileset>
- <layer name="Tile Layer 1" width="4" height="4">
+ <layer name="Tile Layer 1" width="6" height="5">
   <data encoding="base64" compression="zlib">
-   eJxjYKAMAAAAQAAB
+   eJxjYBgYAAAAeAAB
   </data>
  </layer>
- <objectgroup name="Tick Responders" width="4" height="4">
-  <object name="entry" x="68" y="71" width="125" height="121">
+ <objectgroup name="Tick Responders" width="6" height="5">
+  <object name="entry" x="43" y="60" width="125" height="121">
    <properties>
     <property name="channel" value="0"/>
     <property name="direction" value="right"/>
    </properties>
    <ellipse/>
   </object>
-  <object name="drum" x="317" y="714" width="66" height="64">
+  <object name="tone" x="266" y="484" width="66" height="64">
    <properties>
-    <property name="pattern" value="drum2"/>
+    <property name="midiValue" value="55"/>
+    <property name="synthType" value="phasor"/>
    </properties>
   </object>
-  <object name="tone" x="521" y="322" width="66" height="64">
+  <object name="tone" x="34" y="45" width="66" height="64">
    <properties>
-    <property name="midiValue" value="58"/>
+    <property name="midiValue" value="59"/>
+    <property name="synthType" value="phasor"/>
+   </properties>
+  </object>
+  <object name="tone" x="91" y="272" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="55"/>
+    <property name="synthType" value="phasor"/>
+   </properties>
+  </object>
+  <object name="tone" x="1060" y="102" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="51"/>
     <property name="synthType" value="osc"/>
    </properties>
   </object>
-  <object name="tone" x="32" y="43" width="66" height="64">
-   <properties>
-    <property name="midiValue" value="50"/>
-    <property name="synthType" value="osc"/>
-   </properties>
-  </object>
-  <object name="tone" x="312" y="317" width="66" height="64">
-   <properties>
-    <property name="midiValue" value="52"/>
-    <property name="synthType" value="osc"/>
-   </properties>
-  </object>
-  <object name="tone" x="711" y="122" width="66" height="64">
-   <properties>
-    <property name="midiValue" value="54"/>
-    <property name="synthType" value="osc"/>
-   </properties>
-  </object>
-  <object name="drum" x="120" y="713" width="66" height="64">
-   <properties>
-    <property name="pattern" value="drum1"/>
-   </properties>
-  </object>
-  <object name="drum" x="704" y="718" width="66" height="64">
-   <properties>
-    <property name="pattern" value="drum4"/>
-   </properties>
-  </object>
-  <object name="drum" x="515" y="718" width="66" height="64">
-   <properties>
-    <property name="pattern" value="drum3"/>
-   </properties>
-  </object>
-  <object name="audio pad" x="13" y="629" width="761" height="154"/>
-  <object name="audio pad" x="207" y="234" width="565" height="140"/>
-  <object name="audio pad" x="19" y="25" width="761" height="154"/>
-  <object name="entry" x="27" y="654" width="125" height="121">
+  <object name="audio pad" x="29" y="642" width="549" height="329"/>
+  <object name="audio pad" x="17" y="34" width="759" height="323"/>
+  <object name="entry" x="38" y="237" width="125" height="121">
    <properties>
     <property name="channel" value="1"/>
-    <property name="direction" value="right"/>
+    <property name="direction" value="down"/>
    </properties>
    <ellipse/>
   </object>
-  <object name="entry" x="646" y="248" width="125" height="121">
+  <object name="tone" x="273" y="270" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="56"/>
+    <property name="synthType" value="phasor"/>
+   </properties>
+  </object>
+  <object name="tone" x="267" y="876" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="52"/>
+    <property name="synthType" value="phasor"/>
+   </properties>
+  </object>
+  <object name="audio pad" x="16" y="429" width="356" height="145"/>
+  <object name="audio pad" x="1017" y="64" width="167" height="884"/>
+  <object name="audio pad" x="821" y="443" width="157" height="506"/>
+  <object name="tone" x="271" y="54" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="58"/>
+    <property name="synthType" value="phasor"/>
+   </properties>
+  </object>
+  <object name="tone" x="1071" y="680" width="66" height="64">
+   <properties>
+    <property name="midiValue" value="48"/>
+    <property name="synthType" value="osc"/>
+   </properties>
+  </object>
+  <object name="entry" x="1039" y="39" width="125" height="121">
    <properties>
     <property name="channel" value="2"/>
-    <property name="direction" value="left"/>
+    <property name="direction" value="down"/>
    </properties>
    <ellipse/>
   </object>

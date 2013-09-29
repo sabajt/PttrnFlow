@@ -4,8 +4,20 @@
 		{
 			"event_type" : "synth",
 			"synth_type" : "osc",
-			"midi_value" : "50",
+			"midi_value" : "51",
 			"channel" : "0",
+		},
+		{
+			"event_type" : "synth",
+			"synth_type" : "phasor",
+			"midi_value" : "55",
+			"channel" : "1",
+		},
+		{
+			"event_type" : "synth",
+			"synth_type" : "phasor",
+			"midi_value" : "59",
+			"channel" : "2",
 		},
 	],
 	"sub_2" : [],
@@ -17,8 +29,20 @@
 		{
 			"event_type" : "synth",
 			"synth_type" : "osc",
-			"midi_value" : "52",
+			"midi_value" : "51",
 			"channel" : "0",
+		},
+		{
+			"event_type" : "synth",
+			"synth_type" : "phasor",
+			"midi_value" : "55",
+			"channel" : "1",
+		},
+		{
+			"event_type" : "synth",
+			"synth_type" : "phasor",
+			"midi_value" : "58",
+			"channel" : "2",
 		},
 	],
 	"sub_2" : [],
@@ -26,14 +50,7 @@
 	"sub_4" : []
 },
 "tick_3" : {
-	"sub_1" : [ 
-		{
-			"event_type" : "synth",
-			"synth_type" : "osc",
-			"midi_value" : "54",
-			"channel" : "0"
-		},
-	],
+	"sub_1" : [],
 	"sub_2" : [],
 	"sub_3" : [],
 	"sub_4" : []
@@ -41,8 +58,22 @@
 "tick_4" : {
 	"sub_1" : [ 
 		{
-			"event_type" : "audio_stop",
-			"channel" : "0"
+			"event_type" : "synth",
+			"synth_type" : "osc",
+			"midi_value" : "48",
+			"channel" : "0",
+		},
+		{
+			"event_type" : "synth",
+			"synth_type" : "phasor",
+			"midi_value" : "55",
+			"channel" : "1",
+		},
+		{
+			"event_type" : "synth",
+			"synth_type" : "phasor",
+			"midi_value" : "58",
+			"channel" : "2",
 		},
 	],
 	"sub_2" : [],
@@ -54,8 +85,20 @@
 		{
 			"event_type" : "synth",
 			"synth_type" : "osc",
-			"midi_value" : "54",
+			"midi_value" : "48",
 			"channel" : "0",
+		},
+		{
+			"event_type" : "synth",
+			"synth_type" : "phasor",
+			"midi_value" : "52",
+			"channel" : "1",
+		},
+		{
+			"event_type" : "synth",
+			"synth_type" : "phasor",
+			"midi_value" : "58",
+			"channel" : "2",
 		},
 	],
 	"sub_2" : [],
@@ -63,12 +106,7 @@
 	"sub_4" : []
 },
 "tick_6" : {
-	"sub_1" : [ 
-		{
-			"event_type" : "audio_stop",
-			"channel" : "0",
-		},
-	],
+	"sub_1" : [],
 	"sub_2" : [],
 	"sub_3" : [],
 	"sub_4" : []
@@ -78,8 +116,20 @@
 		{
 			"event_type" : "synth",
 			"synth_type" : "osc",
+			"midi_value" : "48",
+			"channel" : "0",
+		},
+		{
+			"event_type" : "synth",
+			"synth_type" : "phasor",
 			"midi_value" : "52",
-			"channel" : "0"
+			"channel" : "1",
+		},
+		{
+			"event_type" : "synth",
+			"synth_type" : "phasor",
+			"midi_value" : "56",
+			"channel" : "2",
 		},
 	],
 	"sub_2" : [],
@@ -91,12 +141,24 @@
 		{
 			"event_type" : "synth",
 			"synth_type" : "osc",
-			"midi_value" : "50",
-			"channel" : "0"
+			"midi_value" : "48",
+			"channel" : "0",
+		},
+		{
+			"event_type" : "synth",
+			"synth_type" : "phasor",
+			"midi_value" : "52",
+			"channel" : "1",
+		},
+		{
+			"event_type" : "synth",
+			"synth_type" : "phasor",
+			"midi_value" : "55",
+			"channel" : "2",
 		},
 	],
 	"sub_2" : [],
 	"sub_3" : [],
 	"sub_4" : []
-},
+}
 }
