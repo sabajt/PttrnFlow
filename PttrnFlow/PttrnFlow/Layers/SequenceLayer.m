@@ -104,7 +104,7 @@
 #pragma mark - setup
 
 + (CCScene *)sceneWithSequence:(int)sequence
-{
+{    
     CCScene *scene = [CCScene node];
     
     // contstruct a tiled map from our sequence

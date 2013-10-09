@@ -33,9 +33,9 @@ static CGFloat const kHandleHeight = 40;
     if (self) {
         
         // sizes
-        CGFloat topBarHeight = 80.0;
+        CGFloat topBarHeight = 88.0;
         CGFloat yMidTopBar = self.contentSize.height - (topBarHeight/2);
-        CGSize buttonSize = CGSizeMake(topBarHeight, topBarHeight);
+        CGSize buttonSize = CGSizeMake(topBarHeight/2, topBarHeight/2);
         
         CCSpriteBatchNode *uiBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyUILayer stringByAppendingString:@".png"]];
         [self addChild:uiBatch];

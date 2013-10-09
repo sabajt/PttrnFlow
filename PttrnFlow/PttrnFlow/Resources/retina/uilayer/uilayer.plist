@@ -7,7 +7,7 @@
             <key>back_arrow_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{86,128},{38,38}}</string>
+                <string>{{86,166},{38,38}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +137,7 @@
             <key>play_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,204},{34,38}}</string>
+                <string>{{2,206},{34,38}}</string>
                 <key>offset</key>
                 <string>{1,0}</string>
                 <key>rotated</key>
@@ -163,7 +163,7 @@
             <key>scrubHandle.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,244},{8,8}}</string>
+                <string>{{2,246},{8,8}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -176,13 +176,13 @@
             <key>speaker_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{86,168},{34,38}}</string>
+                <string>{{86,128},{36,40}}</string>
                 <key>offset</key>
                 <string>{-2,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{1,1},{34,38}}</string>
+                <string>{{0,0},{36,40}}</string>
                 <key>sourceSize</key>
                 <string>{40,40}</string>
             </dict>
@@ -215,7 +215,7 @@
             <key>tick_chart_cell_hit.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{36,244},{6,6}}</string>
+                <string>{{36,246},{6,6}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -228,7 +228,7 @@
             <key>tick_chart_cell_miss.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{28,244},{6,6}}</string>
+                <string>{{28,246},{6,6}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -241,7 +241,7 @@
             <key>tick_circle_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{20,244},{6,6}}</string>
+                <string>{{20,246},{6,6}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -254,7 +254,7 @@
             <key>tick_circle_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{12,244},{6,6}}</string>
+                <string>{{12,246},{6,6}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -274,7 +274,7 @@
             <key>size</key>
             <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b32cd880d62f113a71f205de2d944172:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:fc03a8a83f4e6ab3c7b0b699420c77fc:1/1$</string>
             <key>textureFileName</key>
             <string>uilayer.png</string>
         </dict>
