@@ -219,14 +219,6 @@
 		3305105A17E1EE970050A6D4 /* samplePads-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3305105217E1EE970050A6D4 /* samplePads-ipadhd.png */; };
 		3305105B17E1EE970050A6D4 /* samplePads.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3305105317E1EE970050A6D4 /* samplePads.plist */; };
 		3305105C17E1EE970050A6D4 /* samplePads.png in Resources */ = {isa = PBXBuildFile; fileRef = 3305105417E1EE970050A6D4 /* samplePads.png */; };
-		3305108317E1F2620050A6D4 /* uilayer-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3305107B17E1F2620050A6D4 /* uilayer-hd.plist */; };
-		3305108417E1F2620050A6D4 /* uilayer-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3305107C17E1F2620050A6D4 /* uilayer-hd.png */; };
-		3305108517E1F2620050A6D4 /* uilayer-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3305107D17E1F2620050A6D4 /* uilayer-ipad.plist */; };
-		3305108617E1F2620050A6D4 /* uilayer-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3305107E17E1F2620050A6D4 /* uilayer-ipad.png */; };
-		3305108717E1F2620050A6D4 /* uilayer-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3305107F17E1F2620050A6D4 /* uilayer-ipadhd.plist */; };
-		3305108817E1F2620050A6D4 /* uilayer-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3305108017E1F2620050A6D4 /* uilayer-ipadhd.png */; };
-		3305108917E1F2620050A6D4 /* uilayer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3305108117E1F2620050A6D4 /* uilayer.plist */; };
-		3305108A17E1F2620050A6D4 /* uilayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3305108217E1F2620050A6D4 /* uilayer.png */; };
 		3338A9CC17C307D80037DFE2 /* SolutionSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3338A9CB17C307D80037DFE2 /* SolutionSequence.m */; };
 		334E7206179617F200EFECC1 /* Warp.m in Sources */ = {isa = PBXBuildFile; fileRef = 334E7205179617F200EFECC1 /* Warp.m */; };
 		334E726017961FE400EFECC1 /* warp-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E725F17961FE400EFECC1 /* warp-ipad.png */; };
@@ -253,6 +245,10 @@
 		33BF709617CBB2BB003E0A5F /* SpeedChangeEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BF709517CBB2BB003E0A5F /* SpeedChangeEvent.m */; };
 		33BF709917CBB588003E0A5F /* SpeedChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BF709817CBB588003E0A5F /* SpeedChange.m */; };
 		33BF70A917CC24EC003E0A5F /* solution1.json in Resources */ = {isa = PBXBuildFile; fileRef = 33BF70A817CC24EC003E0A5F /* solution1.json */; };
+		33DAC73C180E09A6006C2B2B /* uilayer-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33DAC738180E09A6006C2B2B /* uilayer-hd.plist */; };
+		33DAC73D180E09A6006C2B2B /* uilayer-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DAC739180E09A6006C2B2B /* uilayer-hd.png */; };
+		33DAC73E180E09A6006C2B2B /* uilayer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33DAC73A180E09A6006C2B2B /* uilayer.plist */; };
+		33DAC73F180E09A6006C2B2B /* uilayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DAC73B180E09A6006C2B2B /* uilayer.png */; };
 		33EE317017C92C3C004CC016 /* AudioTouchDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */; };
 		33F8A31317B9F104003B33E5 /* pf-main.pd in Resources */ = {isa = PBXBuildFile; fileRef = 33F8A31117B9F104003B33E5 /* pf-main.pd */; };
 /* End PBXBuildFile section */
@@ -667,14 +663,6 @@
 		3305105217E1EE970050A6D4 /* samplePads-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "samplePads-ipadhd.png"; sourceTree = "<group>"; };
 		3305105317E1EE970050A6D4 /* samplePads.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = samplePads.plist; sourceTree = "<group>"; };
 		3305105417E1EE970050A6D4 /* samplePads.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = samplePads.png; sourceTree = "<group>"; };
-		3305107B17E1F2620050A6D4 /* uilayer-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "uilayer-hd.plist"; sourceTree = "<group>"; };
-		3305107C17E1F2620050A6D4 /* uilayer-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uilayer-hd.png"; sourceTree = "<group>"; };
-		3305107D17E1F2620050A6D4 /* uilayer-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "uilayer-ipad.plist"; sourceTree = "<group>"; };
-		3305107E17E1F2620050A6D4 /* uilayer-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uilayer-ipad.png"; sourceTree = "<group>"; };
-		3305107F17E1F2620050A6D4 /* uilayer-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "uilayer-ipadhd.plist"; sourceTree = "<group>"; };
-		3305108017E1F2620050A6D4 /* uilayer-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uilayer-ipadhd.png"; sourceTree = "<group>"; };
-		3305108117E1F2620050A6D4 /* uilayer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = uilayer.plist; sourceTree = "<group>"; };
-		3305108217E1F2620050A6D4 /* uilayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uilayer.png; sourceTree = "<group>"; };
 		3338A9CA17C307D80037DFE2 /* SolutionSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolutionSequence.h; sourceTree = "<group>"; };
 		3338A9CB17C307D80037DFE2 /* SolutionSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionSequence.m; sourceTree = "<group>"; };
 		334E7204179617F200EFECC1 /* Warp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warp.h; sourceTree = "<group>"; };
@@ -717,6 +705,10 @@
 		33BF709717CBB588003E0A5F /* SpeedChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedChange.h; sourceTree = "<group>"; };
 		33BF709817CBB588003E0A5F /* SpeedChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedChange.m; sourceTree = "<group>"; };
 		33BF70A817CC24EC003E0A5F /* solution1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = solution1.json; sourceTree = "<group>"; };
+		33DAC738180E09A6006C2B2B /* uilayer-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "uilayer-hd.plist"; sourceTree = "<group>"; };
+		33DAC739180E09A6006C2B2B /* uilayer-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uilayer-hd.png"; sourceTree = "<group>"; };
+		33DAC73A180E09A6006C2B2B /* uilayer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = uilayer.plist; sourceTree = "<group>"; };
+		33DAC73B180E09A6006C2B2B /* uilayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uilayer.png; sourceTree = "<group>"; };
 		33EE316E17C92C3C004CC016 /* AudioTouchDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTouchDispatcher.h; sourceTree = "<group>"; };
 		33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioTouchDispatcher.m; sourceTree = "<group>"; };
 		33F8A31117B9F104003B33E5 /* pf-main.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-main.pd"; sourceTree = "<group>"; };
@@ -1395,14 +1387,10 @@
 		3305107A17E1F2620050A6D4 /* uilayer */ = {
 			isa = PBXGroup;
 			children = (
-				3305107B17E1F2620050A6D4 /* uilayer-hd.plist */,
-				3305107C17E1F2620050A6D4 /* uilayer-hd.png */,
-				3305107D17E1F2620050A6D4 /* uilayer-ipad.plist */,
-				3305107E17E1F2620050A6D4 /* uilayer-ipad.png */,
-				3305107F17E1F2620050A6D4 /* uilayer-ipadhd.plist */,
-				3305108017E1F2620050A6D4 /* uilayer-ipadhd.png */,
-				3305108117E1F2620050A6D4 /* uilayer.plist */,
-				3305108217E1F2620050A6D4 /* uilayer.png */,
+				33DAC738180E09A6006C2B2B /* uilayer-hd.plist */,
+				33DAC739180E09A6006C2B2B /* uilayer-hd.png */,
+				33DAC73A180E09A6006C2B2B /* uilayer.plist */,
+				33DAC73B180E09A6006C2B2B /* uilayer.png */,
 			);
 			path = uilayer;
 			sourceTree = "<group>";
@@ -1609,7 +1597,7 @@
 				1608082616B437AA00039339 /* ChangeLog in Resources */,
 				16284CA4173A072B00B058D2 /* pipeTilesetBase1.png in Resources */,
 				3305104817E1EE8E0050A6D4 /* synthPads-ipad.png in Resources */,
-				3305108917E1F2620050A6D4 /* uilayer.plist in Resources */,
+				33DAC73E180E09A6006C2B2B /* uilayer.plist in Resources */,
 				16284CA5173A072B00B058D2 /* seq0.tmx in Resources */,
 				3305104917E1EE8E0050A6D4 /* synthPads-ipadhd.plist in Resources */,
 				3305105617E1EE970050A6D4 /* samplePads-hd.png in Resources */,
@@ -1623,12 +1611,10 @@
 				168FA4ED173A08C7004C26AD /* fps_images.png in Resources */,
 				168FA4EE173A08C7004C26AD /* Icon-72.png in Resources */,
 				3305105517E1EE970050A6D4 /* samplePads-hd.plist in Resources */,
-				3305108517E1F2620050A6D4 /* uilayer-ipad.plist in Resources */,
 				168FA4EF173A08C7004C26AD /* Icon-Small-50.png in Resources */,
 				168FA4F0173A08C7004C26AD /* Icon-Small.png in Resources */,
 				168FA4F1173A08C7004C26AD /* Icon-Small@2x.png in Resources */,
 				3305103917E1EE840050A6D4 /* other-ipadhd.plist in Resources */,
-				3305108817E1F2620050A6D4 /* uilayer-ipadhd.png in Resources */,
 				168FA4F2173A08C7004C26AD /* Icon.png in Resources */,
 				168FA4F3173A08C7004C26AD /* Icon@2x.png in Resources */,
 				168FA4F4173A08C7004C26AD /* iTunesArtwork in Resources */,
@@ -1640,7 +1626,7 @@
 				3305104B17E1EE8E0050A6D4 /* synthPads.plist in Resources */,
 				33630CBC1804E52200A9F9EE /* Default-568h.png in Resources */,
 				160B50C2173A27D000BFC014 /* blank-ipad.png in Resources */,
-				3305108617E1F2620050A6D4 /* uilayer-ipad.png in Resources */,
+				33DAC73C180E09A6006C2B2B /* uilayer-hd.plist in Resources */,
 				160B50C3173A27D000BFC014 /* blank-on-ipad.png in Resources */,
 				3305105A17E1EE970050A6D4 /* samplePads-ipadhd.png in Resources */,
 				334E726017961FE400EFECC1 /* warp-ipad.png in Resources */,
@@ -1648,8 +1634,8 @@
 				334E72681796260700EFECC1 /* itemButtonWarpOn-ipad.png in Resources */,
 				3305103517E1EE840050A6D4 /* other-hd.plist in Resources */,
 				162B7F1A1754116000E0CC0D /* startArrow-ipad.png in Resources */,
-				3305108A17E1F2620050A6D4 /* uilayer.png in Resources */,
 				3305105817E1EE970050A6D4 /* samplePads-ipad.png in Resources */,
+				33DAC73F180E09A6006C2B2B /* uilayer.png in Resources */,
 				169F3D141770ADB2005F93B2 /* README-CCLayerPanZoom.md in Resources */,
 				33B4F24717C6E104004D4C13 /* solution0.json in Resources */,
 				16A942DF1778C5A50052D5BD /* drum1-ipad.png in Resources */,
@@ -1671,19 +1657,17 @@
 				1693C665177A628300FEB350 /* drum3.wav in Resources */,
 				1693C666177A628300FEB350 /* drum4.wav in Resources */,
 				3305105C17E1EE970050A6D4 /* samplePads.png in Resources */,
-				3305108317E1F2620050A6D4 /* uilayer-hd.plist in Resources */,
 				163091FC177F7B14003155BB /* itemButtonArrowOff-ipad.png in Resources */,
 				163091FD177F7B14003155BB /* itemButtonArrowOn-ipad.png in Resources */,
 				162C291C1784CF5600CE480C /* seq1.tmx in Resources */,
 				3305104A17E1EE8E0050A6D4 /* synthPads-ipadhd.png in Resources */,
 				3305103A17E1EE840050A6D4 /* other-ipadhd.png in Resources */,
 				3305104617E1EE8E0050A6D4 /* synthPads-hd.png in Resources */,
+				33DAC73D180E09A6006C2B2B /* uilayer-hd.png in Resources */,
 				3305104C17E1EE8E0050A6D4 /* synthPads.png in Resources */,
 				3356075A17F77C4B00ECD44B /* solution2.json in Resources */,
 				3305103C17E1EE840050A6D4 /* other.png in Resources */,
-				3305108717E1F2620050A6D4 /* uilayer-ipadhd.plist in Resources */,
 				3305103B17E1EE840050A6D4 /* other.plist in Resources */,
-				3305108417E1F2620050A6D4 /* uilayer-hd.png in Resources */,
 				3305103817E1EE840050A6D4 /* other-ipad.png in Resources */,
 				33F8A31317B9F104003B33E5 /* pf-main.pd in Resources */,
 			);

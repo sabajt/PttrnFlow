@@ -34,10 +34,10 @@ static CGFloat const kHitChartHeight = 24;
         }
         
         self.hitCells = [NSMutableArray array];
-        NSArray *frameNames = @[@"tick_chart_cell_default.png", @"tick_chart_cell_hit.png", @"tick_chart_cell_miss.png"];
+        NSArray *frameNames = @[@"chart_box_off.png", @"chart_box_on.png"];
 
         for (int i = 0; i < numberOfTicks; i++) {
-            CCSprite *spr = [CCSprite spriteWithSpriteFrameName:@"tick_chart_cell_default.png"];
+            CCSprite *spr = [CCSprite spriteWithSpriteFrameName:@"chart_box_off.png"];
             CGPoint relPoint = ccp(i * (spr.contentSize.width + padding), 0);
             relPoint = ccp(relPoint.x + (spr.contentSize.width / 2), relPoint.y + (spr.contentSize.height / 2));
             CGPoint absPoint = ccp(relPoint.x + origin.x, relPoint.y + origin.y);
@@ -62,7 +62,9 @@ static CGFloat const kHitChartHeight = 24;
         status = kHitStatusSuccess;
     }
     else {
-        status = kHitStatusFailure;
+//        status = kHitStatusFailure;
+        // TODO: temporary until graphics are in
+        status = kHitStatusSuccess;
     }
     
     SpritePicker *hitCell = self.hitCells[tickIndex];

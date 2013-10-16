@@ -33,7 +33,7 @@
         self.swallowsTouches = YES;
         self.position = origin;
         
-        _thumbSprite = [CCSprite spriteWithSpriteFrameName:@"tick_circle_on.png"];
+        _thumbSprite = [CCSprite spriteWithSpriteFrameName:@"tick_dot_on.png"];
         self.thumbSprite.visible = NO;
         [batchNode addChild:self.thumbSprite];
         
@@ -42,7 +42,7 @@
         _currentIndex = 0;
         
         for (int i = 0; i < numberOfTicks; i++) {
-            CCSprite *spr = [CCSprite spriteWithSpriteFrameName:@"tick_circle_off.png"];
+            CCSprite *spr = [CCSprite spriteWithSpriteFrameName:@"tick_dot_off.png"];
             _unitSize = spr.contentSize;
             CGPoint relPoint = ccp((i * (self.unitSize.width + padding) + (self.unitSize.width / 2)), self.unitSize.height / 2);
             CGPoint absPoint = ccp(relPoint.x + origin.x, relPoint.y + origin.y);

@@ -4,36 +4,88 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>back_arrow_off.png</key>
+            <key>chart_box_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{166,320},{76,76}}</string>
+                <string>{{2,698},{48,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{2,2},{76,76}}</string>
+                <string>{{0,0},{48,48}}</string>
+                <key>sourceSize</key>
+                <string>{48,48}</string>
+            </dict>
+            <key>chart_box_on.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{162,710},{48,48}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{48,48}}</string>
+                <key>sourceSize</key>
+                <string>{48,48}</string>
+            </dict>
+            <key>control_panel.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{640,160}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{640,160}}</string>
+                <key>sourceSize</key>
+                <string>{640,160}</string>
+            </dict>
+            <key>control_separator.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{246,2},{2,70}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,5},{2,70}}</string>
+                <key>sourceSize</key>
+                <string>{2,80}</string>
+            </dict>
+            <key>hamburger_off.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{214,658},{50,30}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{15,25},{50,30}}</string>
                 <key>sourceSize</key>
                 <string>{80,80}</string>
             </dict>
-            <key>back_arrow_on.png</key>
+            <key>hamburger_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{84,248},{80,80}}</string>
+                <string>{{110,696},{50,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{80,80}}</string>
+                <string>{{15,25},{50,30}}</string>
                 <key>sourceSize</key>
                 <string>{80,80}</string>
             </dict>
             <key>itemButtonArrowOff.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,248},{80,80}}</string>
+                <string>{{164,576},{80,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +98,7 @@
             <key>itemButtonArrowOn.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{166,166},{80,80}}</string>
+                <string>{{164,494},{80,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +111,7 @@
             <key>itemButtonAudioStopOff.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{84,166},{80,80}}</string>
+                <string>{{164,412},{80,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +124,7 @@
             <key>itemButtonAudioStopOn.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,166},{80,80}}</string>
+                <string>{{164,330},{80,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +137,7 @@
             <key>itemButtonSpeedDoubleOff.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{166,84},{80,80}}</string>
+                <string>{{164,248},{80,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +150,7 @@
             <key>itemButtonSpeedDoubleOn.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{84,84},{80,80}}</string>
+                <string>{{164,166},{80,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +163,7 @@
             <key>itemButtonWarpOff.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,84},{80,80}}</string>
+                <string>{{164,84},{80,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +176,7 @@
             <key>itemButtonWarpOn.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{166,2},{80,80}}</string>
+                <string>{{164,2},{80,80}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,132 +189,80 @@
             <key>play_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,398},{66,76}}</string>
+                <string>{{162,658},{50,50}}</string>
                 <key>offset</key>
-                <string>{2,0}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{9,2},{66,76}}</string>
+                <string>{{15,15},{50,50}}</string>
                 <key>sourceSize</key>
                 <string>{80,80}</string>
             </dict>
             <key>play_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{84,2},{80,80}}</string>
+                <string>{{110,644},{50,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{80,80}}</string>
+                <string>{{15,15},{50,50}}</string>
                 <key>sourceSize</key>
                 <string>{80,80}</string>
-            </dict>
-            <key>scrubHandle.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,476},{15,15}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{15,15}}</string>
-                <key>sourceSize</key>
-                <string>{15,15}</string>
             </dict>
             <key>speaker_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{166,248},{70,78}}</string>
+                <string>{{56,644},{52,52}}</string>
                 <key>offset</key>
-                <string>{-4,0}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,1},{70,78}}</string>
+                <string>{{14,14},{52,52}}</string>
                 <key>sourceSize</key>
                 <string>{80,80}</string>
             </dict>
             <key>speaker_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{80,80}}</string>
+                <string>{{2,644},{52,52}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{80,80}}</string>
+                <string>{{14,14},{52,52}}</string>
                 <key>sourceSize</key>
                 <string>{80,80}</string>
             </dict>
-            <key>tick_chart_cell_default.png</key>
+            <key>tick_dot_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{34,476},{13,13}}</string>
+                <string>{{212,742},{14,14}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{13,13}}</string>
+                <string>{{17,17},{14,14}}</string>
                 <key>sourceSize</key>
-                <string>{13,13}</string>
+                <string>{48,48}</string>
             </dict>
-            <key>tick_chart_cell_hit.png</key>
+            <key>tick_dot_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{32,491},{13,13}}</string>
+                <string>{{212,710},{30,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{13,13}}</string>
+                <string>{{9,9},{30,30}}</string>
                 <key>sourceSize</key>
-                <string>{13,13}</string>
-            </dict>
-            <key>tick_chart_cell_miss.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{19,476},{13,13}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{13,13}}</string>
-                <key>sourceSize</key>
-                <string>{13,13}</string>
-            </dict>
-            <key>tick_circle_off.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{17,493},{13,13}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{13,13}}</string>
-                <key>sourceSize</key>
-                <string>{13,13}</string>
-            </dict>
-            <key>tick_circle_on.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,493},{13,13}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{13,13}}</string>
-                <key>sourceSize</key>
-                <string>{13,13}</string>
+                <string>{48,48}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -272,9 +272,9 @@
             <key>realTextureFileName</key>
             <string>uilayer-hd.png</string>
             <key>size</key>
-            <string>{256,512}</string>
+            <string>{256,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9d12d9b2109552c7b8f29d751f01405a:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:6b1eb2fc6bfc5d652ee49b479f1bdf24:1/1$</string>
             <key>textureFileName</key>
             <string>uilayer-hd.png</string>
         </dict>

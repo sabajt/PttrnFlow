@@ -45,8 +45,8 @@ static CGFloat const kHandleHeight = 40;
         _tickDispatcher = tickDispatcher;
         
         // back button
-        CCSprite *backDefault = [CCSprite spriteWithSpriteFrameName:@"back_arrow_off.png"];
-        CCSprite *backSelected = [CCSprite spriteWithSpriteFrameName:@"back_arrow_on.png"];
+        CCSprite *backDefault = [CCSprite spriteWithSpriteFrameName:@"speaker_off.png"];
+        CCSprite *backSelected = [CCSprite spriteWithSpriteFrameName:@"speaker_on.png"];
         CCMenuItemSprite *backButton = [[CCMenuItemSprite alloc] initWithNormalSprite:backDefault selectedSprite:backSelected disabledSprite:nil target:self selector:@selector(backButtonPressed:)];
         backButton.position = ccp(buttonSize.width/2, yMidTopBar);
         
