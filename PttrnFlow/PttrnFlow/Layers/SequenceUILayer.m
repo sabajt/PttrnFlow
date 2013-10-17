@@ -33,9 +33,11 @@ static CGFloat const kHandleHeight = 40;
     if (self) {
         
         // sizes
-        CGFloat topBarHeight = 88.0;
-        CGFloat yMidTopBar = self.contentSize.height - (topBarHeight/2);
-        CGSize buttonSize = CGSizeMake(topBarHeight/2, topBarHeight/2);
+        CGFloat topBarHeight = 80.0;
+        CGFloat yMidRow1 = self.contentSize.height - (topBarHeight / 4);
+        CGFloat yMidRow2 = self.contentSize.height - (3 * topBarHeight / 4);
+        CGFloat yMidTopBar = self.contentSize.height - (topBarHeight / 2);
+        CGSize buttonSize = CGSizeMake(topBarHeight / 2, topBarHeight / 2);
         
         CCSpriteBatchNode *uiBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyUILayer stringByAppendingString:@".png"]];
         [self addChild:uiBatch];
@@ -44,17 +46,22 @@ static CGFloat const kHandleHeight = 40;
         // tick dispatcher
         _tickDispatcher = tickDispatcher;
         
-        // back button
-        CCSprite *backDefault = [CCSprite spriteWithSpriteFrameName:@"speaker_off.png"];
-        CCSprite *backSelected = [CCSprite spriteWithSpriteFrameName:@"speaker_on.png"];
-        CCMenuItemSprite *backButton = [[CCMenuItemSprite alloc] initWithNormalSprite:backDefault selectedSprite:backSelected disabledSprite:nil target:self selector:@selector(backButtonPressed:)];
-        backButton.position = ccp(buttonSize.width/2, yMidTopBar);
+        // exit button
+        CCLabelTTF *exitLabel = [CCLabelTTF labelWithString:@"EXIT" fontName:@"Arial Rounded MT Bold" fontSize:14];
+        CCMenuItemLabel *exitButton = [[CCMenuItemLabel alloc] initWithLabel:exitLabel target:self selector:@selector(backButtonPressed:)];
+        exitButton.position = ccp(self.contentSize.width - (buttonSize.width / 2), yMidRow1);
+        
+        // hamburger button (drop down menu)
+        CCSprite *hamburgerOff = [CCSprite spriteWithSpriteFrameName:@"hamburger_off.png"];
+        CCSprite *hamburgerOn = [CCSprite spriteWithSpriteFrameName:@"hamburger_on.png"];
+        CCMenuItemSprite *hamburgerButton = [[CCMenuItemSprite alloc] initWithNormalSprite:hamburgerOff selectedSprite:hamburgerOn disabledSprite:nil target:self selector:@selector(hamburgerButtonPressed:)];
+        hamburgerButton.position = ccp(exitButton.position.x, yMidRow2);
         
         // match sequence button
         CCSprite *matchDefault = [CCSprite spriteWithSpriteFrameName:@"speaker_off.png"];
         CCSprite *matchSelected = [CCSprite spriteWithSpriteFrameName:@"speaker_on.png"];
         CCMenuItemSprite *matchButton = [[CCMenuItemSprite alloc] initWithNormalSprite:matchDefault selectedSprite:matchSelected disabledSprite:nil target:self selector:@selector(matchButtonPressed:)];
-        matchButton.position = ccp(backButton.position.x + backButton.contentSize.width, yMidTopBar);
+        matchButton.position = ccp(exitButton.position.x + exitButton.contentSize.width, yMidTopBar);
         
         // run button
         CCSprite *runDefault = [CCSprite spriteWithSpriteFrameName:@"play_off.png"];
@@ -63,7 +70,7 @@ static CGFloat const kHandleHeight = 40;
         runButton.position = ccp(self.contentSize.width - buttonSize.width/2, yMidTopBar);
         
         // buttons must be added to a CCMenu to work
-        CCMenu *menu = [CCMenu menuWithItems:backButton, matchButton, runButton, nil];
+        CCMenu *menu = [CCMenu menuWithItems:exitButton, hamburgerButton, matchButton, runButton, nil];
         menu.position = ccp(0, 0);
         [self addChild:menu];
         
@@ -113,5 +120,11 @@ static CGFloat const kHandleHeight = 40;
     [self.hitChart resetCells];
     [self.tickDispatcher start];
 }
+
+- (void)hamburgerButtonPressed:(id)sender
+{
+    NSLog(@"halmborger");
+}
+                                             
 
 @end
