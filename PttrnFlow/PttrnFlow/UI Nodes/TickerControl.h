@@ -19,9 +19,10 @@
 
 // TODO: rename this to tickerControlDelegate
 @property (weak, nonatomic) id<TickerControlDelegate> delegate;
-@property (assign) int numberOfTicks;
+@property (assign) int steps;
 @property (assign) int currentIndex;
 
-- (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode origin:(CGPoint)origin;
+//- (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode origin:(CGPoint)origin;
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode steps:(int)steps unitSize:(CGSize)unitSize;
 
 @end

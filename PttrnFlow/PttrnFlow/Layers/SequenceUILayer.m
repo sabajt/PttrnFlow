@@ -13,6 +13,7 @@
 #import "CCSprite+Utils.h"
 #import "DragButton.h"
 #import "TextureUtils.h"
+#import "CCScrollLayer.h"
 
 static CGFloat const kHandleHeight = 40;
 
@@ -57,6 +58,60 @@ static CGFloat const kHandleHeight = 40;
         CCMenuItemSprite *hamburgerButton = [[CCMenuItemSprite alloc] initWithNormalSprite:hamburgerOff selectedSprite:hamburgerOn disabledSprite:nil target:self selector:@selector(hamburgerButtonPressed:)];
         hamburgerButton.position = ccp(exitButton.position.x, yMidRow2);
         
+        // ticker control
+//        CGPoint tickerControlOrigin = ccp(hitChartOrigin.x, hitChartOrigin.y + 40);
+//        NSLog(@"tickerControlOrigin: %@", NSStringFromCGPoint(tickerControlOrigin));
+//        //        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:(tickDispatcher.sequenceLength / 4) padding:2 batchNode:uiBatch origin:tickerControlOrigin];
+//        TickerControl *tickerControl = [[TickerControl alloc] initWithBatchNode:uiBatch steps:(tickDispatcher.sequenceLength / 4) unitSize:buttonSize];
+//        tickerControl.delegate = tickDispatcher;
+//        [self addChild:tickerControl];
+        
+        CCLayer *tickerControlLayer = [[CCLayer alloc] init];
+        CCLayer *tickerControlLayer1 = [[CCLayer alloc] init];
+        CCLayer *tickerControlLayer2 = [[CCLayer alloc] init];
+        CCLayer *tickerControlLayer3 = [[CCLayer alloc] init];
+        CCLayer *tickerControlLayer4 = [[CCLayer alloc] init];
+
+        
+        //
+        CCSprite *spr = [CCSprite spriteWithSpriteFrameName:@"hamburger_on.png"];
+        tickerControlLayer.contentSize = spr.contentSize;
+        spr.position = ccp(tickerControlLayer.contentSize.width/2, tickerControlLayer.contentSize.height/2);
+        [tickerControlLayer addChild:spr];
+        
+        //
+        CCSprite *spr1 = [CCSprite spriteWithSpriteFrameName:@"hamburger_on.png"];
+        tickerControlLayer1.contentSize = spr1.contentSize;
+        spr1.position = ccp(tickerControlLayer.contentSize.width/2, tickerControlLayer.contentSize.height/2);
+        [tickerControlLayer1 addChild:spr1];
+        
+        //
+        CCSprite *spr2 = [CCSprite spriteWithSpriteFrameName:@"hamburger_on.png"];
+        tickerControlLayer2.contentSize = spr2.contentSize;
+        spr2.position = ccp(tickerControlLayer.contentSize.width/2, tickerControlLayer.contentSize.height/2);
+        [tickerControlLayer2 addChild:spr2];
+        
+        //
+        CCSprite *spr3 = [CCSprite spriteWithSpriteFrameName:@"hamburger_on.png"];
+        tickerControlLayer3.contentSize = spr3.contentSize;
+        spr3.position = ccp(tickerControlLayer.contentSize.width/2, tickerControlLayer.contentSize.height/2);
+        [tickerControlLayer3 addChild:spr3];
+        
+        //
+        CCSprite *spr4 = [CCSprite spriteWithSpriteFrameName:@"hamburger_on.png"];
+        tickerControlLayer4.contentSize = spr4.contentSize;
+        spr4.position = ccp(tickerControlLayer.contentSize.width/2, tickerControlLayer.contentSize.height/2);
+        [tickerControlLayer4 addChild:spr4];
+        //
+        
+        CCScrollLayer *scrollLayer = [[CCScrollLayer alloc] initWithLayers:@[tickerControlLayer, tickerControlLayer1, tickerControlLayer2, tickerControlLayer3, tickerControlLayer4] widthOffset:0];
+        scrollLayer.contentSize = CGSizeMake(200, 100);
+        [self addChild:scrollLayer];
+        
+        
+        
+        
+        
         // match sequence button
         CCSprite *matchDefault = [CCSprite spriteWithSpriteFrameName:@"speaker_off.png"];
         CCSprite *matchSelected = [CCSprite spriteWithSpriteFrameName:@"speaker_on.png"];
@@ -80,12 +135,13 @@ static CGFloat const kHandleHeight = 40;
         [self addChild:hitChart];
         _hitChart = hitChart;
         
-        // ticker control
-        CGPoint tickerControlOrigin = ccp(hitChartOrigin.x, hitChartOrigin.y + 40);
-        NSLog(@"tickerControlOrigin: %@", NSStringFromCGPoint(tickerControlOrigin));
-        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:(tickDispatcher.sequenceLength / 4) padding:2 batchNode:uiBatch origin:tickerControlOrigin];
-        tickerControl.delegate = tickDispatcher;
-        [self addChild:tickerControl];
+//        // ticker control
+//        CGPoint tickerControlOrigin = ccp(hitChartOrigin.x, hitChartOrigin.y + 40);
+//        NSLog(@"tickerControlOrigin: %@", NSStringFromCGPoint(tickerControlOrigin));
+////        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:(tickDispatcher.sequenceLength / 4) padding:2 batchNode:uiBatch origin:tickerControlOrigin];
+//        TickerControl *tickerControl = [[TickerControl alloc] initWithBatchNode:uiBatch steps:(tickDispatcher.sequenceLength / 4) unitSize:buttonSize];
+//        tickerControl.delegate = tickDispatcher;
+//        [self addChild:tickerControl];
         
         // drag items
         int i = 0;

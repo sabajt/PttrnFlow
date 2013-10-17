@@ -15,60 +15,93 @@
 @interface TickerControl ()
 
 @property (weak, nonatomic) CCSprite *thumbSprite;
-@property (assign) CGFloat padding;
 @property (assign) CGSize unitSize;
 
 @end
 
 @implementation TickerControl
 
-- (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode origin:(CGPoint)origin
+- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode steps:(int)steps unitSize:(CGSize)unitSize
 {
-    self = [super init];
+    self = [super initWithBatchNode:batchNode];
     if (self) {
-        if (numberOfTicks < 1) {
-            NSLog(@"warning: number of ticks for TickerControl should be > 1");
+        if (steps < 1) {
+            NSLog(@"warning: steps TickerControl should be > 1");
         }
-        
+    
         self.swallowsTouches = YES;
-        self.position = origin;
+        
+        self.contentSize = CGSizeMake(unitSize.width * steps, unitSize.height);
+        
+        _steps = steps;
+        
+        _unitSize = unitSize;
+        
+        _currentIndex = 0;
         
         _thumbSprite = [CCSprite spriteWithSpriteFrameName:@"tick_dot_on.png"];
         self.thumbSprite.visible = NO;
         [batchNode addChild:self.thumbSprite];
         
-        _padding = padding;
-        _numberOfTicks = numberOfTicks;
-        _currentIndex = 0;
-        
-        for (int i = 0; i < numberOfTicks; i++) {
+        for (int i = 0; i < steps; i++) {
             CCSprite *spr = [CCSprite spriteWithSpriteFrameName:@"tick_dot_off.png"];
-            _unitSize = spr.contentSize;
-            CGPoint relPoint = ccp((i * (self.unitSize.width + padding) + (self.unitSize.width / 2)), self.unitSize.height / 2);
-            CGPoint absPoint = ccp(relPoint.x + origin.x, relPoint.y + origin.y);
+            CGPoint relPoint = ccp((i * self.unitSize.width + (self.unitSize.width / 2)), self.unitSize.height / 2);
+            CGPoint absPoint = ccp(relPoint.x + self.position.x, relPoint.y + self.position.y);
             spr.position = absPoint;
             [batchNode addChild:spr];
         }
         
-        CGFloat width = (self.unitSize.width + padding) * numberOfTicks;
-        self.contentSize = CGSizeMake(width, self.unitSize.height);
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAdvancedSequence:) name:kNotificationAdvancedSequence object:nil];
+
     }
     return self;
 }
 
+//- (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode origin:(CGPoint)origin
+//{
+//    self = [super init];
+//    if (self) {
+//        
+//        
+//        self.swallowsTouches = YES;
+//        self.position = origin;
+//        
+//        _thumbSprite = [CCSprite spriteWithSpriteFrameName:@"tick_dot_on.png"];
+//        self.thumbSprite.visible = NO;
+//        [batchNode addChild:self.thumbSprite];
+//        
+//        _padding = padding;
+//        _numberOfTicks = numberOfTicks;
+//        _currentIndex = 0;
+//        
+//        for (int i = 0; i < numberOfTicks; i++) {
+//            CCSprite *spr = [CCSprite spriteWithSpriteFrameName:@"tick_dot_off.png"];
+//            _unitSize = spr.contentSize;
+//            CGPoint relPoint = ccp((i * (self.unitSize.width + padding) + (self.unitSize.width / 2)), self.unitSize.height / 2);
+//            CGPoint absPoint = ccp(relPoint.x + origin.x, relPoint.y + origin.y);
+//            spr.position = absPoint;
+//            [batchNode addChild:spr];
+//        }
+//        
+//        CGFloat width = (self.unitSize.width + padding) * numberOfTicks;
+//        self.contentSize = CGSizeMake(width, self.unitSize.height);
+//        
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAdvancedSequence:) name:kNotificationAdvancedSequence object:nil];
+//    }
+//    return self;
+//}
+
 - (int)nearestIndex:(UITouch *)touch
 {
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    CGFloat index = touchPosition.x / (self.unitSize.width + self.padding);
+    CGFloat index = touchPosition.x / self.unitSize.width;
     return (int)index;
 }
 
 - (void)handleTouch:(UITouch *)touch
 {
     self.currentIndex = [self nearestIndex:touch];
-    if ((self.currentIndex < self.numberOfTicks) && (self.currentIndex >= 0)) {
+    if ((self.currentIndex < self.steps) && (self.currentIndex >= 0)) {
         [self positionThumb:self.currentIndex];
         [self.delegate tickerMovedToIndex:(self.currentIndex * 4)];
     }
@@ -77,7 +110,7 @@
 - (void)positionThumb:(int)index
 {
     self.thumbSprite.visible = YES;
-    CGPoint relPoint = ccp((index * (self.padding + self.unitSize.width)) + self.unitSize.width / 2, self.unitSize.height / 2);
+    CGPoint relPoint = ccp((index * self.unitSize.width) + self.unitSize.width / 2, self.unitSize.height / 2);
     self.thumbSprite.position = ccp(self.position.x + relPoint.x, self.position.y + relPoint.y);
 }
 
