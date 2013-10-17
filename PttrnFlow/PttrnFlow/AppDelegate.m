@@ -18,7 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// Create the main window
-	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     
 	// Create an CCGLView with a RGB565 color buffer, and a depth buffer of 0-bits
