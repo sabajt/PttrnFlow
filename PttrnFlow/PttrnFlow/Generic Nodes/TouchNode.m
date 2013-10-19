@@ -17,6 +17,7 @@
         _swallowsTouches = NO;
         _longPressDelay = 0;
         _isReceivingTouch = NO;
+        _handleTouches = YES;
     }
     return self;
 }
@@ -31,12 +32,16 @@
 - (void)onEnter
 {
     [super onEnter];
-    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:self.swallowsTouches];
+    if (self.handleTouches) {
+        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:self.swallowsTouches];
+    }
 }
 
 - (void)onExit
 {
-    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];    
+    if (self.handleTouches) {
+        [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    }
 	[super onExit];
 }
 

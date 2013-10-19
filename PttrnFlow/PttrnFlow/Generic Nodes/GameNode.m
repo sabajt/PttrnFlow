@@ -14,10 +14,7 @@
 {
     self = [super init];
     if (self) {
-        _handleTouches = YES;
-        _swallowsTouches = NO;
-        _longPressDelay = 0;
-        _isReceivingTouch = NO;
+        self.touchNodeDelegate = self;
     }
     return self;
 }
@@ -59,10 +56,6 @@
 {
     [super onEnter];
     
-    if (self.handleTouches) {
-        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:self.swallowsTouches];
-    }
-    
     // modified version of CCLayerPanZoom sends this notification when we start panning,
     // drag distance buffer specified by a layer's maxTouchDistanceToClick property
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStartPan) name:kNotificationStartPan object:nil];
@@ -70,54 +63,14 @@
 
 - (void)onExit
 {
-    if (self.handleTouches) {
-        [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
-    }
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self.sprite removeFromParentAndCleanup:YES];
     
+    // make sure sprite is removed from batch node
+    [self.sprite removeFromParentAndCleanup:YES];
     [super onExit];
 }
 
-#pragma mark CCTargetedTouchDelegate
-
-- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    if ([self containsTouch:touch]) {
-        self.isReceivingTouch = YES;
-        if (self.longPressDelay > 0) {
-            [self scheduleOnce:@selector(longPress:) delay:self.longPressDelay];
-        }
-        return YES;
-    }
-    return NO;
-}
-
-- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    if (![self containsTouch:touch] && (self.longPressDelay > 0)) {
-        [self unschedule:@selector(longPress:)];
-    }
-}
-
-- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    if (self.longPressDelay > 0) {
-        [self unschedule:@selector(longPress:)];
-    }
-    self.isReceivingTouch = NO;
-}
-
-- (void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    if (self.longPressDelay > 0) {
-        [self unschedule:@selector(longPress:)];
-    }
-    self.isReceivingTouch = NO;
-}
-
-#pragma mark - Extended touch handling
+#pragma mark - TouchNodeDelegate
 
 - (BOOL)containsTouch:(UITouch *)touch
 {
@@ -126,11 +79,6 @@
     NSLog(@"\n\n\n**** **** ****\n---GameNode: %@\n---touch pos: %@\n---spr bounding box: %@\n---contains touch: %i", self, NSStringFromCGPoint(touchPosition), NSStringFromCGRect(self.sprite.boundingBox), CGRectContainsPoint(self.sprite.boundingBox, touchPosition));
     
     return (CGRectContainsPoint(self.sprite.boundingBox, touchPosition));
-}
-
-- (void)longPress:(ccTime)deltaTime
-{
-    NSLog(@"long press needs implementation");
 }
 
 #pragma mark - Sprite helpers
@@ -173,7 +121,8 @@
     return self.sprite.boundingBox.size.height;
 }
 
-// TODO: generalize this to work without cells or move somewhere else
+//////////////////////////////////////////////////////////////////////////////
+// TODO: generalize align methods to work without cells or move somewhere else
 - (void)alignSprite:(kDirection)direction
 {
     switch (direction) {
@@ -219,8 +168,12 @@
     self.sprite.position = CGPointMake(relativeOrigin.x + (self.cellSize.width / 2), relativeOrigin.y + ([self spriteHeight] / 2));
 }
 
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
 #pragma mark - Handle panning
 
+// pan notification
 - (void)handleStartPan
 {
     [self cancelTouchForPan];

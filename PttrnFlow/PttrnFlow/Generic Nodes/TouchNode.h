@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) id<TouchNodeDelegate>touchNodeDelegate;
 
+@property (assign) BOOL handleTouches;
 @property (assign) BOOL swallowsTouches;
 @property (assign) CGFloat longPressDelay;
 @property (assign) BOOL isReceivingTouch;

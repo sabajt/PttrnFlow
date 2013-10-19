@@ -8,14 +8,9 @@
 
 #import "cocos2d.h"
 #import "GridUtils.h"
+#import "TouchNode.h"
 
-
-@interface GameNode : CCNode <CCTargetedTouchDelegate>
-
-@property (assign) BOOL handleTouches;
-@property (assign) BOOL swallowsTouches;
-@property (assign) BOOL isReceivingTouch;
-@property (assign) CGFloat longPressDelay;
+@interface GameNode : TouchNode <TouchNodeDelegate>
 
 @property (strong, nonatomic) CCSprite *sprite;
 @property (weak, nonatomic) CCSpriteBatchNode *batchNode;
@@ -30,9 +25,6 @@
 - (id)initWithCell:(GridCoord)cell;
 - (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode cell:(GridCoord)cell;
 
-// touch node functionality
-- (void)longPress:(ccTime)deltaTime;
-
 // subclasses should override and call super to handle any 'deselection behavior' triggered by pan start
 - (void)cancelTouchForPan;
 
@@ -44,6 +36,5 @@
 
 // TODO: need to update to work with batch node system
 - (void)alignSprite:(kDirection)direction;
-
 
 @end
