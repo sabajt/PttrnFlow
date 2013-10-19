@@ -234,9 +234,6 @@
 		338B1D7117E4C11B00F25751 /* GameNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 338B1D7017E4C11B00F25751 /* GameNode.m */; };
 		338EE1AE17A5EAFC005E98B1 /* PdArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1AD17A5EAFC005E98B1 /* PdArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */; };
-		3398ECCE18103CF80078C1F9 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3398ECCD18103CF80078C1F9 /* MainWindow.xib */; };
-		3398ECD818103DBC0078C1F9 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3398ECD618103DBC0078C1F9 /* MainMenuViewController.m */; };
-		3398ECD918103DBC0078C1F9 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3398ECD718103DBC0078C1F9 /* MainMenuViewController.xib */; };
 		33AF255717CB069700643CB2 /* AudioPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255617CB069700643CB2 /* AudioPad.m */; };
 		33AF255E17CB0B3F00643CB2 /* AudioPadEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255D17CB0B3F00643CB2 /* AudioPadEvent.m */; };
 		33B4F24717C6E104004D4C13 /* solution0.json in Resources */ = {isa = PBXBuildFile; fileRef = 33B4F24617C6E104004D4C13 /* solution0.json */; };
@@ -689,10 +686,6 @@
 		338EE1AD17A5EAFC005E98B1 /* PdArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdArray.m; sourceTree = "<group>"; };
 		338EE1B217A5F1D2005E98B1 /* NSArray+CompareNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CompareNumbers.h"; sourceTree = "<group>"; };
 		338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CompareNumbers.m"; sourceTree = "<group>"; };
-		3398ECCD18103CF80078C1F9 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		3398ECD518103DBC0078C1F9 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
-		3398ECD618103DBC0078C1F9 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
-		3398ECD718103DBC0078C1F9 /* MainMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
 		33AF255517CB069700643CB2 /* AudioPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPad.h; sourceTree = "<group>"; };
 		33AF255617CB069700643CB2 /* AudioPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPad.m; sourceTree = "<group>"; };
 		33AF255C17CB0B3F00643CB2 /* AudioPadEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPadEvent.h; sourceTree = "<group>"; };
@@ -785,8 +778,6 @@
 		160806CE16B437A700039339 /* PttrnFlow */ = {
 			isa = PBXGroup;
 			children = (
-				3398ECD418103DBC0078C1F9 /* ViewControllers */,
-				3398ECCD18103CF80078C1F9 /* MainWindow.xib */,
 				162C29291785BEBB00CE480C /* Generic Protocols */,
 				16A942C01777ABF90052D5BD /* UI Nodes */,
 				16A942971777A2250052D5BD /* Generic Nodes */,
@@ -1460,16 +1451,6 @@
 			path = "3rd Party/PdArray";
 			sourceTree = SOURCE_ROOT;
 		};
-		3398ECD418103DBC0078C1F9 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				3398ECD518103DBC0078C1F9 /* MainMenuViewController.h */,
-				3398ECD618103DBC0078C1F9 /* MainMenuViewController.m */,
-				3398ECD718103DBC0078C1F9 /* MainMenuViewController.xib */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
 		33ACE3BB17D5037400B9F4AC /* system */ = {
 			isa = PBXGroup;
 			children = (
@@ -1700,11 +1681,9 @@
 				3305103A17E1EE840050A6D4 /* other-ipadhd.png in Resources */,
 				3305104617E1EE8E0050A6D4 /* synthPads-hd.png in Resources */,
 				33DAC73D180E09A6006C2B2B /* uilayer-hd.png in Resources */,
-				3398ECD918103DBC0078C1F9 /* MainMenuViewController.xib in Resources */,
 				3305104C17E1EE8E0050A6D4 /* synthPads.png in Resources */,
 				3356075A17F77C4B00ECD44B /* solution2.json in Resources */,
 				3305103C17E1EE840050A6D4 /* other.png in Resources */,
-				3398ECCE18103CF80078C1F9 /* MainWindow.xib in Resources */,
 				3305103B17E1EE840050A6D4 /* other.plist in Resources */,
 				3305103817E1EE840050A6D4 /* other-ipad.png in Resources */,
 				33F8A31317B9F104003B33E5 /* pf-main.pd in Resources */,
@@ -1840,7 +1819,6 @@
 				1624D1E71733807300851B45 /* PathUtils.m in Sources */,
 				1624D1EA1733822C00851B45 /* ColorUtils.m in Sources */,
 				165A41A51734EA65005BFC32 /* SGTiledUtils.m in Sources */,
-				3398ECD818103DBC0078C1F9 /* MainMenuViewController.m in Sources */,
 				33B4F25E17C72600004D4C13 /* SampleEvent.m in Sources */,
 				163DBE0117692C3100FCB89C /* SequenceMenuLayer.m in Sources */,
 				163DBE081769325400FCB89C /* UIImage+Utils.m in Sources */,
