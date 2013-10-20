@@ -4,10 +4,36 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>blankRect.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{68,324},{10,10}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{10,10}}</string>
+                <key>sourceSize</key>
+                <string>{10,10}</string>
+            </dict>
+            <key>blankRectClear.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{80,324},{1,1}}</string>
+                <key>offset</key>
+                <string>{-4.5,4.5}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{1,1}}</string>
+                <key>sourceSize</key>
+                <string>{10,10}</string>
+            </dict>
             <key>chart_box_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{30,370},{24,24}}</string>
+                <string>{{76,366},{24,24}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +46,7 @@
             <key>chart_box_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{58,366},{24,24}}</string>
+                <string>{{2,373},{24,24}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,11 +98,11 @@
             <key>hamburger_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{30,352},{26,16}}</string>
+                <string>{{106,338},{26,16}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{7,12},{26,16}}</string>
                 <key>sourceSize</key>
@@ -189,7 +215,7 @@
             <key>play_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{96,338},{26,26}}</string>
+                <string>{{30,352},{26,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -202,7 +228,7 @@
             <key>play_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{68,338},{26,26}}</string>
+                <string>{{78,338},{26,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -241,7 +267,7 @@
             <key>tick_dot_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{68,324},{8,8}}</string>
+                <string>{{68,336},{8,8}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -254,7 +280,7 @@
             <key>tick_dot_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,373},{16,16}}</string>
+                <string>{{58,352},{16,16}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -274,7 +300,7 @@
             <key>size</key>
             <string>{128,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:29a99a7a51631ccd1325638b76bdfbab:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:ddc9242ea9a4c86a43ddcf709b415bb5:1/1$</string>
             <key>textureFileName</key>
             <string>uilayer.png</string>
         </dict>

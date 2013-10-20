@@ -174,8 +174,6 @@
 		1693C665177A628300FEB350 /* drum3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C663177A628200FEB350 /* drum3.wav */; };
 		1693C666177A628300FEB350 /* drum4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C664177A628200FEB350 /* drum4.wav */; };
 		1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */; };
-		169F3D131770ADB2005F93B2 /* CCLayerPanZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 169F3D111770ADB2005F93B2 /* CCLayerPanZoom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		169F3D141770ADB2005F93B2 /* README-CCLayerPanZoom.md in Resources */ = {isa = PBXBuildFile; fileRef = 169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */; };
 		16A4277C176BF0A100BEF13F /* SequenceUILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4277B176BF0A100BEF13F /* SequenceUILayer.m */; };
 		16A942B31777A2260052D5BD /* EntryArrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A9429B1777A2250052D5BD /* EntryArrow.m */; };
 		16A942B61777A2260052D5BD /* TouchNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A11777A2250052D5BD /* TouchNode.m */; };
@@ -229,10 +227,13 @@
 		3356075F17F8B67900ECD44B /* pf-phasorSynth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 3356075D17F8B67900ECD44B /* pf-phasorSynth.pd */; };
 		3356076117F8BB5000ECD44B /* seq2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 3356076017F8BB5000ECD44B /* seq2.tmx */; };
 		33630CBC1804E52200A9F9EE /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 33630CBB1804E52200A9F9EE /* Default-568h.png */; };
+		33850D161813A674007985EC /* CCLayerPanZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 33850D141813A674007985EC /* CCLayerPanZoom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		338B1D7117E4C11B00F25751 /* GameNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 338B1D7017E4C11B00F25751 /* GameNode.m */; };
 		338EE1AE17A5EAFC005E98B1 /* PdArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1AD17A5EAFC005E98B1 /* PdArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */; };
 		3398ECE91812F72B0078C1F9 /* PanNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3398ECE81812F72B0078C1F9 /* PanNode.m */; };
+		3398ECEB181312DA0078C1F9 /* blankRect.png in Resources */ = {isa = PBXBuildFile; fileRef = 3398ECEA181312DA0078C1F9 /* blankRect.png */; };
+		3398ECED181326C10078C1F9 /* redRect.png in Resources */ = {isa = PBXBuildFile; fileRef = 3398ECEC181326C10078C1F9 /* redRect.png */; };
 		33AF255717CB069700643CB2 /* AudioPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255617CB069700643CB2 /* AudioPad.m */; };
 		33AF255E17CB0B3F00643CB2 /* AudioPadEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255D17CB0B3F00643CB2 /* AudioPadEvent.m */; };
 		33B4F24717C6E104004D4C13 /* solution0.json in Resources */ = {isa = PBXBuildFile; fileRef = 33B4F24617C6E104004D4C13 /* solution0.json */; };
@@ -607,9 +608,6 @@
 		1693C664177A628200FEB350 /* drum4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drum4.wav; sourceTree = "<group>"; };
 		1693C66A177B5C7E00FEB350 /* NSArray+CompareStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CompareStrings.h"; sourceTree = "<group>"; };
 		1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CompareStrings.m"; sourceTree = "<group>"; };
-		169F3D101770ADB2005F93B2 /* CCLayerPanZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLayerPanZoom.h; sourceTree = "<group>"; };
-		169F3D111770ADB2005F93B2 /* CCLayerPanZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLayerPanZoom.m; sourceTree = "<group>"; };
-		169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README-CCLayerPanZoom.md"; sourceTree = "<group>"; };
 		16A4277A176BF0A100BEF13F /* SequenceUILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceUILayer.h; sourceTree = "<group>"; };
 		16A4277B176BF0A100BEF13F /* SequenceUILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceUILayer.m; sourceTree = "<group>"; };
 		16A9429A1777A2250052D5BD /* EntryArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryArrow.h; sourceTree = "<group>"; };
@@ -676,6 +674,8 @@
 		3356075D17F8B67900ECD44B /* pf-phasorSynth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-phasorSynth.pd"; sourceTree = "<group>"; };
 		3356076017F8BB5000ECD44B /* seq2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = seq2.tmx; sourceTree = "<group>"; };
 		33630CBB1804E52200A9F9EE /* Default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h.png"; path = "Resources/Default-568h.png"; sourceTree = "<group>"; };
+		33850D141813A674007985EC /* CCLayerPanZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCLayerPanZoom.m; path = "3rd Party/Extensions/CCLayerPanZoom.m"; sourceTree = SOURCE_ROOT; };
+		33850D151813A674007985EC /* CCLayerPanZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCLayerPanZoom.h; path = "3rd Party/Extensions/CCLayerPanZoom.h"; sourceTree = SOURCE_ROOT; };
 		338B1D6F17E4C11B00F25751 /* GameNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNode.h; sourceTree = "<group>"; };
 		338B1D7017E4C11B00F25751 /* GameNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameNode.m; sourceTree = "<group>"; };
 		338EE1AC17A5EAFC005E98B1 /* PdArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdArray.h; sourceTree = "<group>"; };
@@ -684,6 +684,8 @@
 		338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CompareNumbers.m"; sourceTree = "<group>"; };
 		3398ECE71812F72B0078C1F9 /* PanNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanNode.h; sourceTree = "<group>"; };
 		3398ECE81812F72B0078C1F9 /* PanNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanNode.m; sourceTree = "<group>"; };
+		3398ECEA181312DA0078C1F9 /* blankRect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blankRect.png; sourceTree = "<group>"; };
+		3398ECEC181326C10078C1F9 /* redRect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redRect.png; sourceTree = "<group>"; };
 		33AF255517CB069700643CB2 /* AudioPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPad.h; sourceTree = "<group>"; };
 		33AF255617CB069700643CB2 /* AudioPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPad.m; sourceTree = "<group>"; };
 		33AF255C17CB0B3F00643CB2 /* AudioPadEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPadEvent.h; sourceTree = "<group>"; };
@@ -741,7 +743,6 @@
 		160806AD16B437A700039339 = {
 			isa = PBXGroup;
 			children = (
-				169F3D0D1770ADB2005F93B2 /* 3rd Party */,
 				16918DEE172CE66100566A17 /* libpd.xcodeproj */,
 				160806CE16B437A700039339 /* PttrnFlow */,
 				160806BB16B437A700039339 /* Frameworks */,
@@ -776,6 +777,7 @@
 		160806CE16B437A700039339 /* PttrnFlow */ = {
 			isa = PBXGroup;
 			children = (
+				169F3D0D1770ADB2005F93B2 /* 3rd Party */,
 				162C29291785BEBB00CE480C /* Generic Protocols */,
 				16A942C01777ABF90052D5BD /* UI Nodes */,
 				16A942971777A2250052D5BD /* Generic Nodes */,
@@ -1281,7 +1283,8 @@
 			children = (
 				169F3D0E1770ADB2005F93B2 /* Extensions */,
 			);
-			path = "3rd Party";
+			name = "3rd Party";
+			path = "../3rd Party";
 			sourceTree = "<group>";
 		};
 		169F3D0E1770ADB2005F93B2 /* Extensions */ = {
@@ -1296,9 +1299,8 @@
 		169F3D0F1770ADB2005F93B2 /* CCLayerPanZoom */ = {
 			isa = PBXGroup;
 			children = (
-				169F3D101770ADB2005F93B2 /* CCLayerPanZoom.h */,
-				169F3D111770ADB2005F93B2 /* CCLayerPanZoom.m */,
-				169F3D121770ADB2005F93B2 /* README-CCLayerPanZoom.md */,
+				33850D141813A674007985EC /* CCLayerPanZoom.m */,
+				33850D151813A674007985EC /* CCLayerPanZoom.h */,
 			);
 			path = CCLayerPanZoom;
 			sourceTree = "<group>";
@@ -1465,6 +1467,8 @@
 		33ACE3BC17D5065C00B9F4AC /* retina */ = {
 			isa = PBXGroup;
 			children = (
+				3398ECEC181326C10078C1F9 /* redRect.png */,
+				3398ECEA181312DA0078C1F9 /* blankRect.png */,
 				3305107A17E1F2620050A6D4 /* uilayer */,
 				337D820717D75EC1002A6E8A /* other */,
 				337D820E17D75EC1002A6E8A /* synthPads */,
@@ -1601,6 +1605,7 @@
 				3305103717E1EE840050A6D4 /* other-ipad.plist in Resources */,
 				1608082616B437AA00039339 /* ChangeLog in Resources */,
 				16284CA4173A072B00B058D2 /* pipeTilesetBase1.png in Resources */,
+				3398ECEB181312DA0078C1F9 /* blankRect.png in Resources */,
 				3305104817E1EE8E0050A6D4 /* synthPads-ipad.png in Resources */,
 				33DAC73E180E09A6006C2B2B /* uilayer.plist in Resources */,
 				16284CA5173A072B00B058D2 /* seq0.tmx in Resources */,
@@ -1619,6 +1624,7 @@
 				168FA4EF173A08C7004C26AD /* Icon-Small-50.png in Resources */,
 				168FA4F0173A08C7004C26AD /* Icon-Small.png in Resources */,
 				168FA4F1173A08C7004C26AD /* Icon-Small@2x.png in Resources */,
+				3398ECED181326C10078C1F9 /* redRect.png in Resources */,
 				3305103917E1EE840050A6D4 /* other-ipadhd.plist in Resources */,
 				168FA4F2173A08C7004C26AD /* Icon.png in Resources */,
 				168FA4F3173A08C7004C26AD /* Icon@2x.png in Resources */,
@@ -1641,7 +1647,6 @@
 				162B7F1A1754116000E0CC0D /* startArrow-ipad.png in Resources */,
 				3305105817E1EE970050A6D4 /* samplePads-ipad.png in Resources */,
 				33DAC73F180E09A6006C2B2B /* uilayer.png in Resources */,
-				169F3D141770ADB2005F93B2 /* README-CCLayerPanZoom.md in Resources */,
 				33B4F24717C6E104004D4C13 /* solution0.json in Resources */,
 				16A942DF1778C5A50052D5BD /* drum1-ipad.png in Resources */,
 				16A942E01778C5A50052D5BD /* drum1on-ipad.png in Resources */,
@@ -1808,12 +1813,12 @@
 				1624D1EA1733822C00851B45 /* ColorUtils.m in Sources */,
 				165A41A51734EA65005BFC32 /* SGTiledUtils.m in Sources */,
 				33B4F25E17C72600004D4C13 /* SampleEvent.m in Sources */,
+				33850D161813A674007985EC /* CCLayerPanZoom.m in Sources */,
 				163DBE0117692C3100FCB89C /* SequenceMenuLayer.m in Sources */,
 				163DBE081769325400FCB89C /* UIImage+Utils.m in Sources */,
 				163DBE0B1769329C00FCB89C /* CCSprite+Utils.m in Sources */,
 				338EE1AE17A5EAFC005E98B1 /* PdArray.m in Sources */,
 				16A4277C176BF0A100BEF13F /* SequenceUILayer.m in Sources */,
-				169F3D131770ADB2005F93B2 /* CCLayerPanZoom.m in Sources */,
 				33EE317017C92C3C004CC016 /* AudioTouchDispatcher.m in Sources */,
 				33B4F25B17C72600004D4C13 /* AudioStopEvent.m in Sources */,
 				16A942B31777A2260052D5BD /* EntryArrow.m in Sources */,

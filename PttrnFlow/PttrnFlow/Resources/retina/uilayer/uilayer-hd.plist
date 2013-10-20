@@ -4,6 +4,32 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>blankRect.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{212,742},{20,20}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{20,20}}</string>
+                <key>sourceSize</key>
+                <string>{20,20}</string>
+            </dict>
+            <key>blankRectClear.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{250,2},{1,1}}</string>
+                <key>offset</key>
+                <string>{-9.5,9.5}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{1,1}}</string>
+                <key>sourceSize</key>
+                <string>{20,20}</string>
+            </dict>
             <key>chart_box_off.png</key>
             <dict>
                 <key>frame</key>
@@ -241,7 +267,7 @@
             <key>tick_dot_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{212,742},{14,14}}</string>
+                <string>{{234,742},{14,14}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -274,7 +300,7 @@
             <key>size</key>
             <string>{256,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:6b1eb2fc6bfc5d652ee49b479f1bdf24:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:272ab9018f2ded3035ad2fbad8ec987d:1/1$</string>
             <key>textureFileName</key>
             <string>uilayer-hd.png</string>
         </dict>

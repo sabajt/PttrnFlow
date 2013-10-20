@@ -13,6 +13,7 @@
 #import "CCSprite+Utils.h"
 #import "DragButton.h"
 #import "TextureUtils.h"
+#import "PanNode.h"
 
 static CGFloat const kHandleHeight = 40;
 
@@ -31,17 +32,46 @@ static CGFloat const kHandleHeight = 40;
 {
     self = [super init];
     if (self) {
-        
         // sizes
         CGFloat topBarHeight = 80.0;
         CGFloat yMidRow1 = self.contentSize.height - (topBarHeight / 4);
         CGFloat yMidRow2 = self.contentSize.height - (3 * topBarHeight / 4);
         CGFloat yMidTopBar = self.contentSize.height - (topBarHeight / 2);
+        CGFloat yTopBarBottom = self.contentSize.height - topBarHeight;
         CGSize buttonSize = CGSizeMake(topBarHeight / 2, topBarHeight / 2);
         
         CCSpriteBatchNode *uiBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyUILayer stringByAppendingString:@".png"]];
         [self addChild:uiBatch];
         self.uiBatchNode = uiBatch;
+        
+        ///////////////////////////////////////
+        // pan node
+        CGSize panNodeSize = CGSizeMake((tickDispatcher.sequenceLength/ 4) * buttonSize.width, topBarHeight);
+        CGSize scrollingContainerSize = CGSizeMake(panNodeSize.width + 200, panNodeSize.height);
+        CGPoint panNodeOrigin = ccp((self.contentSize.width - buttonSize.width) - panNodeSize.width, yTopBarBottom);
+        
+        NSMutableArray *scrollingSprites = [NSMutableArray array];
+        for (int i = 0; i < (tickDispatcher.sequenceLength / 4); i++) {
+            CCSprite *tickDot = [CCSprite spriteWithSpriteFrameName:@"tick_dot_off.png"];
+            tickDot.position = ccp((i * buttonSize.width) + (buttonSize.width / 2), topBarHeight / 2);
+            [scrollingSprites addObject:tickDot];
+        }
+        
+        PanNode *panNode = [[PanNode alloc] initWithBatchNode:uiBatch contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:[NSArray arrayWithArray:scrollingSprites]];
+        panNode.scrollDirection = ScrollDirectionHorizontal;
+        panNode.position = panNodeOrigin;
+        [self addChild:panNode];
+        
+        // pan node background (temporary)
+        CCSprite *panNodeBkg = [CCSprite spriteWithFile:@"blankRect.png"];
+        panNodeBkg.scaleX = (panNodeSize.width / panNodeBkg.contentSize.width);
+        panNodeBkg.scaleY = (panNodeSize.height / panNodeBkg.contentSize.height);
+        panNodeBkg.color = ccRED;
+        panNodeBkg.opacity = 20;
+        panNodeBkg.position = ccp(panNode.position.x + (panNode.contentSize.width / 2), panNode.position.y + (panNode.contentSize.height / 2));
+        [self addChild:panNodeBkg];
+        
+        ///////////////////////////////////////
         
         // tick dispatcher
         _tickDispatcher = tickDispatcher;
@@ -64,8 +94,6 @@ static CGFloat const kHandleHeight = 40;
 //        TickerControl *tickerControl = [[TickerControl alloc] initWithBatchNode:uiBatch steps:(tickDispatcher.sequenceLength / 4) unitSize:buttonSize];
 //        tickerControl.delegate = tickDispatcher;
 //        [self addChild:tickerControl];
-        
-
         
         // match sequence button
         CCSprite *matchDefault = [CCSprite spriteWithSpriteFrameName:@"speaker_off.png"];
