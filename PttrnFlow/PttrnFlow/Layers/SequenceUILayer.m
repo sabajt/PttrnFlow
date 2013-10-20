@@ -16,6 +16,7 @@
 #import "PanNode.h"
 
 static CGFloat const kHandleHeight = 40;
+static int const kMaxControlLength = 6;
 
 @interface SequenceUILayer ()
 
@@ -46,12 +47,20 @@ static CGFloat const kHandleHeight = 40;
         
         ///////////////////////////////////////
         // pan node
-        CGSize panNodeSize = CGSizeMake((tickDispatcher.sequenceLength/ 4) * buttonSize.width, topBarHeight);
-        CGSize scrollingContainerSize = CGSizeMake(panNodeSize.width + 200, panNodeSize.height);
+        int numberOfDots = (tickDispatcher.sequenceLength / 4);
+        CGFloat panNodeWidth;
+        if (numberOfDots > kMaxControlLength) {
+            panNodeWidth = kMaxControlLength * buttonSize.width;
+        }
+        else {
+            panNodeWidth = numberOfDots * buttonSize.width;
+        }
+        CGSize panNodeSize = CGSizeMake(panNodeWidth, topBarHeight);
+        CGSize scrollingContainerSize = CGSizeMake(numberOfDots * buttonSize.width, panNodeSize.height);
         CGPoint panNodeOrigin = ccp((self.contentSize.width - buttonSize.width) - panNodeSize.width, yTopBarBottom);
         
         NSMutableArray *scrollingSprites = [NSMutableArray array];
-        for (int i = 0; i < (tickDispatcher.sequenceLength / 4); i++) {
+        for (int i = 0; i < numberOfDots; i++) {
             CCSprite *tickDot = [CCSprite spriteWithSpriteFrameName:@"tick_dot_off.png"];
             tickDot.position = ccp((i * buttonSize.width) + (buttonSize.width / 2), topBarHeight / 2);
             [scrollingSprites addObject:tickDot];
