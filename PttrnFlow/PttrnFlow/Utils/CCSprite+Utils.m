@@ -16,22 +16,22 @@
 @implementation CCSprite (Utils)
 
 // solid rectangle sprite
-//+ (CCSprite *)rectSpriteWithSize:(CGSize)size color:(ccColor3B)color
-//{
-//    // we need to correct the size for retina ourselves because we are drawing into graphics context
-//    CGSize correctedSize = [SizeUtils correctedSize:size];
-//    NSString *key = [TextureUtils keyForPrimativeWithSize:correctedSize color:color];
-//    UIImage *image = [UIImage imageWithColor:[ColorUtils UIColorFor3B:color] size:correctedSize];
-//    return [CCSprite spriteWithCGImage:image.CGImage key:key];
-//}
-
-+ (CCSprite *)rectSpriteWithSize:(CGSize)cgsize color:(ccColor3B)color
++ (CCSprite *)rectSpriteWithSize:(CGSize)size color:(ccColor3B)color
 {
-    CCSprite *sg = [CCSprite spriteWithFile:@"blankRect.png"];
-    [sg setTextureRect:CGRectMake( 0, 0, cgsize.width, cgsize.height)];
-    sg.color = color;
-    return sg;
+    // we need to correct the size for retina ourselves because we are drawing into graphics context
+    CGSize correctedSize = [SizeUtils correctedSize:size];
+    NSString *key = [TextureUtils keyForPrimativeWithSize:correctedSize color:color];
+    UIImage *image = [UIImage imageWithColor:[ColorUtils UIColorFor3B:color] size:correctedSize];
+    return [CCSprite spriteWithCGImage:image.CGImage key:key];
 }
+
+//+ (CCSprite *)rectSpriteWithSize:(CGSize)cgsize color:(ccColor3B)color
+//{
+//    CCSprite *sg = [CCSprite spriteWithFile:@"blankRect.png"];
+//    [sg setTextureRect:CGRectMake(0, 0, cgsize.width, cgsize.height)];
+//    sg.color = color;
+//    return sg;
+//}
 
 // rectangle sprite with defined edges and clear center
 + (CCSprite *)rectSpriteWithSize:(CGSize)size edgeLength:(CGFloat)edge edgeColor:(ccColor3B)edgeColor

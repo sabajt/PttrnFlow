@@ -112,7 +112,7 @@
     CCTMXTiledMap *tiledMap = [CCTMXTiledMap tiledMapWithTMXFile:sequenceName];
     
     // background
-    BackgroundLayer *background = [BackgroundLayer layerWithColor:ccc4BFromccc3B([ColorUtils darkGray])];
+    BackgroundLayer *background = [BackgroundLayer layerWithColor:ccc4BFromccc3B([ColorUtils backgroundGray])];
     [scene addChild:background];
     
     // gameplay layer
@@ -129,7 +129,7 @@
 
 + (BlockFader *)exitFader:(GridCoord)cell
 {
-    return [BlockFader blockFaderWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) color:[ColorUtils exitFaderBlock] cell:cell duration:kTickInterval];
+    return [BlockFader blockFaderWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) color:ccGRAY cell:cell duration:kTickInterval];
 }
 
 - (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
@@ -330,7 +330,7 @@
         BOOL legalPlacement = [self isLegalItemPlacement:cell itemType:itemType sender:sender];
         if (legalPlacement) {
             if (self.selectionBox == nil) {
-                PrimativeCellActor *selectionBox = [[PrimativeCellActor alloc] initWithRectSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:20 color:[ColorUtils winningBackground] cell:cell];
+                PrimativeCellActor *selectionBox = [[PrimativeCellActor alloc] initWithRectSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:20 color:ccYELLOW cell:cell];
                 self.selectionBox = selectionBox;
                 self.selectionBox.position = [GridUtils relativePositionForGridCoord:self.selectionBox.cell unitSize:kSizeGridUnit];
                 [self addChild:selectionBox];
@@ -398,7 +398,7 @@
 
 - (void)win
 {
-    [self.backgroundLayer tintToColor:[ColorUtils winningBackground] duration:kTickInterval];
+    [self.backgroundLayer tintToColor:ccGREEN duration:kTickInterval];
 }
 
 #pragma mark - CCStandardTouchDelegate

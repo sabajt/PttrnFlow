@@ -18,24 +18,10 @@ static inline ccColor4B ccc4BFromccc3B(ccColor3B c)
 
 + (UIColor *)UIColorFor3B:(ccColor3B)color;
 
-+ (ccColor3B)sequenceHud;
-+ (ccColor3B)sequenceItemBar;
-+ (ccColor3B)ticker;
-+ (ccColor3B)tickerBar;
-+ (ccColor3B)sequenceMenuCell;
-+ (ccColor3B)sequenceMenuCellLabel;
-+ (ccColor3B)exitFaderBlock;
-+ (ccColor3B)winningBackground;
-+ (ccColor3B)hitDefault;
-+ (ccColor3B)hitSuccess;
-+ (ccColor3B)hitFailure;
-+ (ccColor3B)hitCellEdge;
-
-+ (ccColor3B)lightGray;
-+ (ccColor3B)darkGray;
-+ (ccColor3B)white;
-+ (ccColor3B)orange;
-
++ (ccColor3B)backgroundGray;
++ (ccColor3B)defaultSteel;
++ (ccColor3B)highlightRed;
++ (ccColor3B)skyBlue;
 
 @end
 

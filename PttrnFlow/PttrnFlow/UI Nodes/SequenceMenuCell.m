@@ -33,13 +33,13 @@
         self.swallowsTouches = YES;
         _index = index;
         
-        CCSprite *sprite = [CCSprite rectSpriteWithSize:CGSizeMake(width, height) color:[ColorUtils sequenceMenuCell]];
+        CCSprite *sprite = [CCSprite rectSpriteWithSize:CGSizeMake(width, height) color:ccGRAY];
         _sprite = sprite;
         _sprite.position = ccp(width/2, height/2);
         [self addChild:_sprite];
         
         CCLabelTTF *label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", index + 1] fontName:@"Helvetica" fontSize:20];
-        label.color = [ColorUtils sequenceMenuCellLabel];
+        label.color = ccWHITE;
         label.position = ccp(_sprite.contentSize.width/2, _sprite.contentSize.height/2);
         [_sprite addChild:label]; 
         

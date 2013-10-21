@@ -35,7 +35,7 @@
 - (CCSprite *)defaultSprite
 {
     if (_defaultSprite == nil) {
-        CCSprite *spr = [CCSprite rectSpriteWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:6 edgeColor:[ColorUtils white]];
+        CCSprite *spr = [CCSprite rectSpriteWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:6 edgeColor:ccWHITE];
         _defaultSprite = spr;
     }
     return _defaultSprite;
@@ -44,7 +44,7 @@
 - (CCSprite *)highlightSprite
 {
     if (_highlightSprite == nil) {
-        CCSprite *spr = [CCSprite rectSpriteWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:6 edgeColor:[ColorUtils orange]];
+        CCSprite *spr = [CCSprite rectSpriteWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:6 edgeColor:ccORANGE];
         _highlightSprite = spr;
     }
     return _highlightSprite;

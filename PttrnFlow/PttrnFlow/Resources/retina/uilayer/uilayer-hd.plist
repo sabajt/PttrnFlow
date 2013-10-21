@@ -46,7 +46,7 @@
             <key>chart_box_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{162,710},{48,48}}</string>
+                <string>{{162,708},{48,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,15 +72,15 @@
             <key>control_separator.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{246,2},{2,70}}</string>
+                <string>{{246,2},{2,138}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,5},{2,70}}</string>
+                <string>{{1,11},{2,138}}</string>
                 <key>sourceSize</key>
-                <string>{2,80}</string>
+                <string>{4,160}</string>
             </dict>
             <key>hamburger_off.png</key>
             <dict>
@@ -98,7 +98,7 @@
             <key>hamburger_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{110,696},{50,30}}</string>
+                <string>{{110,694},{50,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -215,26 +215,26 @@
             <key>play_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{162,658},{50,50}}</string>
+                <string>{{162,658},{48,50}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{1,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{15,15},{50,50}}</string>
+                <string>{{17,15},{48,50}}</string>
                 <key>sourceSize</key>
                 <string>{80,80}</string>
             </dict>
             <key>play_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{110,644},{50,50}}</string>
+                <string>{{110,644},{48,50}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{1,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{15,15},{50,50}}</string>
+                <string>{{17,15},{48,50}}</string>
                 <key>sourceSize</key>
                 <string>{80,80}</string>
             </dict>
@@ -300,7 +300,7 @@
             <key>size</key>
             <string>{256,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:272ab9018f2ded3035ad2fbad8ec987d:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:e7b57ac8ce9f873efa50af67eb0ab189:1/1$</string>
             <key>textureFileName</key>
             <string>uilayer-hd.png</string>
         </dict>
