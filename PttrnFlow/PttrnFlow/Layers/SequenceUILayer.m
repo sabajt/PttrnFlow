@@ -86,7 +86,7 @@ static int const kMaxControlLength = 6;
         
         NSMutableArray *scrollingSprites = [NSMutableArray array];
         for (int i = 0; i < numberOfDots; i++) {
-            CCSprite *tickDot = [CCSprite spriteWithSpriteFrameName:@"tick_dot_off.png"];
+            CCSprite *tickDot = [CCSprite spriteWithSpriteFrameName:@"tickdot_off.png"];
             tickDot.position = ccp((i * buttonSize.width) + (buttonSize.width / 2), topBarHeight / 2);
             [scrollingSprites addObject:tickDot];
         }
@@ -127,14 +127,14 @@ static int const kMaxControlLength = 6;
         menu.position = ccp(0, 0);
         [self addChild:menu];
         
-        // control separators
-        CCSprite *separatorLeft = [CCSprite spriteWithSpriteFrameName:@"control_separator.png"];
-        separatorLeft.position = ccp(matchButton.position.x + (buttonSize.width / 2), yMidTopBar);
-        [uiBatch addChild:separatorLeft];
-        
-        CCSprite *separatorRight = [CCSprite spriteWithSpriteFrameName:@"control_separator.png"];
-        separatorRight.position = ccp(hamburgerButton.position.x - (buttonSize.width / 2), yMidTopBar);
-        [uiBatch addChild:separatorRight];
+//        // control separators
+//        CCSprite *separatorLeft = [CCSprite spriteWithSpriteFrameName:@"control_separator.png"];
+//        separatorLeft.position = ccp(matchButton.position.x + (buttonSize.width / 2), yMidTopBar);
+//        [uiBatch addChild:separatorLeft];
+//        
+//        CCSprite *separatorRight = [CCSprite spriteWithSpriteFrameName:@"control_separator.png"];
+//        separatorRight.position = ccp(hamburgerButton.position.x - (buttonSize.width / 2), yMidTopBar);
+//        [uiBatch addChild:separatorRight];
         
         
         
