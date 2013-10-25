@@ -35,16 +35,17 @@ static int const kMaxControlLength = 6;
     self = [super init];
     if (self) {
         _tickDispatcher = tickDispatcher;
-        int numberOfDots = (tickDispatcher.sequenceLength / 4);
 
-        // sizes
-        CGFloat topBarHeight = 80.0;
-        CGFloat yMidRow1 = self.contentSize.height - (topBarHeight / 4);
-        CGFloat yMidRow2 = self.contentSize.height - (3 * topBarHeight / 4);
-        CGFloat yMidTopBar = self.contentSize.height - (topBarHeight / 2);
-        CGFloat yTopBarBottom = self.contentSize.height - topBarHeight;
-        CGSize buttonSize = CGSizeMake(topBarHeight / 2, topBarHeight / 2);
+        // size / position
+        CGFloat rowHeight = 44;
+        CGSize buttonSize = CGSizeMake(80, rowHeight);
+        CGSize controlUnitSize = CGSizeMake(40, rowHeight);
+        CGFloat yMidRow1 = self.contentSize.height - (rowHeight / 2);
+        CGFloat yMidRow2 = self.contentSize.height - ((3 * rowHeight) / 2);
+        CGFloat yMidRow3 = self.contentSize.height - ((5 * rowHeight) / 2);
         
+        // size of control pan node
+        int numberOfDots = (tickDispatcher.sequenceLength / 4);
         CGFloat panNodeWidth;
         if (numberOfDots > kMaxControlLength) {
             panNodeWidth = kMaxControlLength * buttonSize.width;
@@ -56,74 +57,66 @@ static int const kMaxControlLength = 6;
         // batch node
         CCSpriteBatchNode *uiBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyUILayer stringByAppendingString:@".png"]];
         self.uiBatchNode = uiBatch;
-        
-        // background panel
-        CGSize backgroundPanelSize = CGSizeMake((2 * buttonSize.width) + panNodeWidth, topBarHeight);
-        CCSprite *backgroundPanel = [CCSprite rectSpriteWithSize:backgroundPanelSize color:[ColorUtils skyBlue]];
-        backgroundPanel.position = ccp(self.contentSize.width - (backgroundPanelSize.width / 2), yMidTopBar);
-        [self addChild:backgroundPanel];
-        
-        // add batch node above background pannel
         [self addChild:uiBatch];
         
-        // exit button
-        CCLabelTTF *exitLabel = [CCLabelTTF labelWithString:@"EXIT" fontName:@"Arial Rounded MT Bold" fontSize:14];
-        exitLabel.color = [ColorUtils defaultSteel];
-        CCMenuItemLabel *exitButton = [[CCMenuItemLabel alloc] initWithLabel:exitLabel target:self selector:@selector(backButtonPressed:)];
-        exitButton.position = ccp(self.contentSize.width - (buttonSize.width / 2), yMidRow1);
+        // exit button top left
+        CCSprite *exitOff = [CCSprite spriteWithSpriteFrameName:@"exit_off.png"];
+        CCSprite *exitOn = [CCSprite spriteWithSpriteFrameName:@"exit_on.png"];
+        CCMenuItemSprite *exitButton = [[CCMenuItemSprite alloc] initWithNormalSprite:exitOff selectedSprite:exitOn disabledSprite:nil target:self selector:@selector(exitPressed:)];
+        exitButton.position = ccp(buttonSize.width / 2, yMidRow1);
         
-        // hamburger button (drop down menu)
+        // speaker button
+        CCSprite *speakerOff = [CCSprite spriteWithSpriteFrameName:@"speaker_off.png"];
+        CCSprite *speakerOn = [CCSprite spriteWithSpriteFrameName:@"speaker_on.png"];
+        CCMenuItemSprite *speakerButton = [[CCMenuItemSprite alloc] initWithNormalSprite:speakerOff selectedSprite:speakerOn disabledSprite:nil target:self selector:@selector(speakerPressed:)];
+        speakerButton.position = ccp((3 * buttonSize.width) / 2, yMidRow1);
+        
+        // play button
+        CCSprite *playOff = [CCSprite spriteWithSpriteFrameName:@"play_off.png"];
+        CCSprite *playOn = [CCSprite spriteWithSpriteFrameName:@"play_on.png"];
+        CCMenuItemSprite *playButton = [[CCMenuItemSprite alloc] initWithNormalSprite:playOff selectedSprite:playOn disabledSprite:nil target:self selector:@selector(playButtonPressed:)];
+        playButton.position = ccp((5 * buttonSize.width) / 2, yMidRow1);
+        
+        // hamburger button (drop down menu) top right
         CCSprite *hamburgerOff = [CCSprite spriteWithSpriteFrameName:@"hamburger_off.png"];
         CCSprite *hamburgerOn = [CCSprite spriteWithSpriteFrameName:@"hamburger_on.png"];
         CCMenuItemSprite *hamburgerButton = [[CCMenuItemSprite alloc] initWithNormalSprite:hamburgerOff selectedSprite:hamburgerOn disabledSprite:nil target:self selector:@selector(hamburgerButtonPressed:)];
-        hamburgerButton.position = ccp(exitButton.position.x, yMidRow2);
+        hamburgerButton.position = ccp((7 * buttonSize.width) / 2, yMidRow1);
         
-        ///////////////////////////////////////
-        // pan node
-        CGSize panNodeSize = CGSizeMake(panNodeWidth, topBarHeight);
-        CGSize scrollingContainerSize = CGSizeMake(numberOfDots * buttonSize.width, panNodeSize.height);
-        CGPoint panNodeOrigin = ccp((self.contentSize.width - buttonSize.width) - panNodeSize.width, yTopBarBottom);
-        
-        NSMutableArray *scrollingSprites = [NSMutableArray array];
-        for (int i = 0; i < numberOfDots; i++) {
-            CCSprite *tickDot = [CCSprite spriteWithSpriteFrameName:@"tickdot_off.png"];
-            tickDot.position = ccp((i * buttonSize.width) + (buttonSize.width / 2), topBarHeight / 2);
-            [scrollingSprites addObject:tickDot];
-        }
-        
-        PanNode *panNode = [[PanNode alloc] initWithBatchNode:uiBatch contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:[NSArray arrayWithArray:scrollingSprites]];
-        panNode.scrollDirection = ScrollDirectionHorizontal;
-        panNode.position = panNodeOrigin;
-        [self addChild:panNode];
-        ///////////////////////////////////////
-        
-        // pan mask pannels if needed
-        if (numberOfDots > kMaxControlLength) {
-            CGSize maskPanelSize = CGSizeMake(buttonSize.width, topBarHeight);
-            
-            CCSprite *leftMask = [CCSprite rectSpriteWithSize:maskPanelSize color:[ColorUtils skyBlue]];
-            leftMask.position = ccp(panNodeOrigin.x - (buttonSize.width / 2), yMidTopBar);
-            [self addChild:leftMask];
-            
-            CCSprite *rightMask = [CCSprite rectSpriteWithSize:maskPanelSize color:[ColorUtils skyBlue]];
-            rightMask.position = ccp(self.contentSize.width - (buttonSize.width / 2), yMidTopBar);
-            [self addChild:rightMask];
-        }
-        
-        // match sequence button
-        CCSprite *matchDefault = [CCSprite spriteWithSpriteFrameName:@"speaker_off.png"];
-        CCSprite *matchSelected = [CCSprite spriteWithSpriteFrameName:@"speaker_on.png"];
-        CCMenuItemSprite *matchButton = [[CCMenuItemSprite alloc] initWithNormalSprite:matchDefault selectedSprite:matchSelected disabledSprite:nil target:self selector:@selector(matchButtonPressed:)];
-        matchButton.position = ccp(panNodeOrigin.x - (buttonSize.width / 2), yMidRow1);
-        
-        // run button
-        CCSprite *runDefault = [CCSprite spriteWithSpriteFrameName:@"play_off.png"];
-        CCSprite *runSelected = [CCSprite spriteWithSpriteFrameName:@"play_on.png"];
-        CCMenuItemSprite *runButton = [[CCMenuItemSprite alloc] initWithNormalSprite:runDefault selectedSprite:runSelected disabledSprite:nil target:self selector:@selector(runButtonPressed:)];
-        runButton.position = ccp(matchButton.position.x, yMidRow2);
+//        ///////////////////////////////////////
+//        // pan node
+//        CGSize panNodeSize = CGSizeMake(panNodeWidth, topBarHeight);
+//        CGSize scrollingContainerSize = CGSizeMake(numberOfDots * buttonSize.width, panNodeSize.height);
+//        CGPoint panNodeOrigin = ccp((self.contentSize.width - buttonSize.width) - panNodeSize.width, yTopBarBottom);
+//        
+//        NSMutableArray *scrollingSprites = [NSMutableArray array];
+//        for (int i = 0; i < numberOfDots; i++) {
+//            CCSprite *tickDot = [CCSprite spriteWithSpriteFrameName:@"tickdot_off.png"];
+//            tickDot.position = ccp((i * buttonSize.width) + (buttonSize.width / 2), topBarHeight / 2);
+//            [scrollingSprites addObject:tickDot];
+//        }
+//        
+//        PanNode *panNode = [[PanNode alloc] initWithBatchNode:uiBatch contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:[NSArray arrayWithArray:scrollingSprites]];
+//        panNode.scrollDirection = ScrollDirectionHorizontal;
+//        panNode.position = panNodeOrigin;
+//        [self addChild:panNode];
+//        ///////////////////////////////////////
+//        
+//        // pan mask pannels if needed
+//        if (numberOfDots > kMaxControlLength) {
+//            CGSize maskPanelSize = CGSizeMake(buttonSize.width, topBarHeight);
+//            
+//            CCSprite *leftMask = [CCSprite rectSpriteWithSize:maskPanelSize color:[ColorUtils skyBlue]];
+//            leftMask.position = ccp(panNodeOrigin.x - (buttonSize.width / 2), yMidTopBar);
+//            [self addChild:leftMask];
+//            
+//            CCSprite *rightMask = [CCSprite rectSpriteWithSize:maskPanelSize color:[ColorUtils skyBlue]];
+//            rightMask.position = ccp(self.contentSize.width - (buttonSize.width / 2), yMidTopBar);
+//            [self addChild:rightMask];
+//        }
         
         // buttons must be added to a CCMenu to work
-        CCMenu *menu = [CCMenu menuWithItems:exitButton, hamburgerButton, matchButton, runButton, nil];
+        CCMenu *menu = [CCMenu menuWithItems:exitButton, speakerButton, playButton, hamburgerButton, nil];
         menu.position = ccp(0, 0);
         [self addChild:menu];
         
@@ -161,35 +154,46 @@ static int const kMaxControlLength = 6;
 //        [self addChild:hitChart];
 //        _hitChart = hitChart;
         
-        // drag items
-        int i = 0;
-        for (NSNumber *item in dragItems) {
-            
-            kDragItem itemType = [item intValue];
-            DragButton *button = [[DragButton alloc] initWithItemType:itemType delegate:dragItemDelegate];
-            
-            CGFloat yOffset = (topBarHeight + (button.contentSize.height * (i + 1)));
-            CGFloat yPos = self.contentSize.height - yOffset;
-            button.position = ccp(self.contentSize.width - button.contentSize.width, yPos);
-            
-            [self addChild:button];
-            i++;
-        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//        // drag items
+//        int i = 0;
+//        for (NSNumber *item in dragItems) {
+//            
+//            kDragItem itemType = [item intValue];
+//            DragButton *button = [[DragButton alloc] initWithItemType:itemType delegate:dragItemDelegate];
+//            
+//            CGFloat yOffset = (topBarHeight + (button.contentSize.height * (i + 1)));
+//            CGFloat yPos = self.contentSize.height - yOffset;
+//            button.position = ccp(self.contentSize.width - button.contentSize.width, yPos);
+//            
+//            [self addChild:button];
+//            i++;
+//        }
     }
     return self;
 }
 
-- (void)backButtonPressed:(id)sender
+- (void)exitPressed:(id)sender
 {
     [[CCDirector sharedDirector] popScene];
 }
 
-- (void)matchButtonPressed:(id)sender
+- (void)speakerPressed:(id)sender
 {
     [self.tickDispatcher scheduleSequence];
 }
 
-- (void)runButtonPressed:(id)sender
+- (void)playButtonPressed:(id)sender
 {
     [self.hitChart resetCells];
     [self.tickDispatcher start];

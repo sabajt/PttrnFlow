@@ -10,6 +10,7 @@
 
 @interface BackgroundLayer : CCLayerColor
 
--(void) tintToColor:(ccColor3B)color duration:(ccTime)duration;
++ (BackgroundLayer *)backgroundLayer;
+- (void)tintToColor:(ccColor3B)color duration:(ccTime)duration;
 
 @end

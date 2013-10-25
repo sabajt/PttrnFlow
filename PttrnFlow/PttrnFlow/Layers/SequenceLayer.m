@@ -112,7 +112,8 @@
     CCTMXTiledMap *tiledMap = [CCTMXTiledMap tiledMapWithTMXFile:sequenceName];
     
     // background
-    BackgroundLayer *background = [BackgroundLayer layerWithColor:ccc4BFromccc3B([ColorUtils backgroundGray])];
+//    BackgroundLayer *background = [BackgroundLayer layerWithColor:ccc4BFromccc3B([ColorUtils backgroundGray])];
+    BackgroundLayer *background = [BackgroundLayer backgroundLayer];
     [scene addChild:background];
     
     // gameplay layer

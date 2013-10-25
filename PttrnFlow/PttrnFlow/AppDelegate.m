@@ -84,6 +84,7 @@
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeySynthPads stringByAppendingString:@".plist"]];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeyOther stringByAppendingString:@".plist"]];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeyUILayer stringByAppendingString:@".plist"]];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeyBackground stringByAppendingString:@".plist"]];
 
 	[director_ pushScene: [SequenceMenuLayer scene]];
     
