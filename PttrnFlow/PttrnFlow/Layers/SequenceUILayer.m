@@ -36,23 +36,14 @@ static int const kMaxControlLength = 6;
     if (self) {
         _tickDispatcher = tickDispatcher;
 
-        // size / position
+        // general sizes / positions
         CGFloat rowHeight = 44;
         CGSize buttonSize = CGSizeMake(80, rowHeight);
         CGSize controlUnitSize = CGSizeMake(40, rowHeight);
         CGFloat yMidRow1 = self.contentSize.height - (rowHeight / 2);
         CGFloat yMidRow2 = self.contentSize.height - ((3 * rowHeight) / 2);
         CGFloat yMidRow3 = self.contentSize.height - ((5 * rowHeight) / 2);
-        
-        // size of control pan node
-        int numberOfDots = (tickDispatcher.sequenceLength / 4);
-        CGFloat panNodeWidth;
-        if (numberOfDots > kMaxControlLength) {
-            panNodeWidth = kMaxControlLength * buttonSize.width;
-        }
-        else {
-            panNodeWidth = numberOfDots * buttonSize.width;
-        }
+        CGFloat controlBarBottom = self.contentSize.height - (3 * rowHeight);
         
         // batch node
         CCSpriteBatchNode *uiBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyUILayer stringByAppendingString:@".png"]];
@@ -83,27 +74,44 @@ static int const kMaxControlLength = 6;
         CCMenuItemSprite *hamburgerButton = [[CCMenuItemSprite alloc] initWithNormalSprite:hamburgerOff selectedSprite:hamburgerOn disabledSprite:nil target:self selector:@selector(hamburgerButtonPressed:)];
         hamburgerButton.position = ccp((7 * buttonSize.width) / 2, yMidRow1);
         
+        // ticker control
+        int steps = (tickDispatcher.sequenceLength / 4);
+        TickerControl *tickerControl = [[TickerControl alloc] initWithSpriteFrameName:@"clear_rect_uilayer.png" steps:steps unitSize:controlUnitSize];
+        tickerControl.tickerControlDelegate = tickDispatcher;
+        tickerControl.position = ccp(tickerControl.contentSize.width / 2, tickerControl.contentSize.height / 2);
+        [uiBatch addChild:tickerControl];
+        
+        
+        
+        
+        
+        
+        
+        
 //        ///////////////////////////////////////
 //        // pan node
-//        CGSize panNodeSize = CGSizeMake(panNodeWidth, topBarHeight);
-//        CGSize scrollingContainerSize = CGSizeMake(numberOfDots * buttonSize.width, panNodeSize.height);
-//        CGPoint panNodeOrigin = ccp((self.contentSize.width - buttonSize.width) - panNodeSize.width, yTopBarBottom);
-//        
+//        int steps = (tickDispatcher.sequenceLength / 4);
+//        CGFloat panNodeWidth = MIN(steps, kMaxControlLength) * controlUnitSize.width;
+//        CGSize panNodeSize = CGSizeMake(panNodeWidth, 2 * controlUnitSize.height);
+//        CGSize scrollingContainerSize = CGSizeMake(steps * controlUnitSize.width, panNodeSize.height);
+//        CGPoint panNodeOrigin = ccp(0, controlBarBottom);
+        
 //        NSMutableArray *scrollingSprites = [NSMutableArray array];
-//        for (int i = 0; i < numberOfDots; i++) {
+//        for (int i = 0; i < steps; i++) {
 //            CCSprite *tickDot = [CCSprite spriteWithSpriteFrameName:@"tickdot_off.png"];
-//            tickDot.position = ccp((i * buttonSize.width) + (buttonSize.width / 2), topBarHeight / 2);
+//            tickDot.position = ccp((i * controlUnitSize.width) + (controlUnitSize.width / 2), controlUnitSize.height);
 //            [scrollingSprites addObject:tickDot];
 //        }
-//        
-//        PanNode *panNode = [[PanNode alloc] initWithBatchNode:uiBatch contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:[NSArray arrayWithArray:scrollingSprites]];
+        
+//        TickerControl *tickerControl = [[TickerControl alloc] initWithBatchNode:uiBatch steps:steps unitSize:controlUnitSize];
+//        tickerControl
+//        PanNode *panNode = [[PanNode alloc] initWithBatchNode:uiBatch contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:@[tickerControl]];
 //        panNode.scrollDirection = ScrollDirectionHorizontal;
 //        panNode.position = panNodeOrigin;
 //        [self addChild:panNode];
-//        ///////////////////////////////////////
-//        
+        
 //        // pan mask pannels if needed
-//        if (numberOfDots > kMaxControlLength) {
+//        if (steps > kMaxControlLength) {
 //            CGSize maskPanelSize = CGSizeMake(buttonSize.width, topBarHeight);
 //            
 //            CCSprite *leftMask = [CCSprite rectSpriteWithSize:maskPanelSize color:[ColorUtils skyBlue]];
@@ -114,11 +122,13 @@ static int const kMaxControlLength = 6;
 //            rightMask.position = ccp(self.contentSize.width - (buttonSize.width / 2), yMidTopBar);
 //            [self addChild:rightMask];
 //        }
+        ///////////////////////////////////////
         
         // buttons must be added to a CCMenu to work
         CCMenu *menu = [CCMenu menuWithItems:exitButton, speakerButton, playButton, hamburgerButton, nil];
         menu.position = ccp(0, 0);
         [self addChild:menu];
+        
         
 //        // control separators
 //        CCSprite *separatorLeft = [CCSprite spriteWithSpriteFrameName:@"control_separator.png"];

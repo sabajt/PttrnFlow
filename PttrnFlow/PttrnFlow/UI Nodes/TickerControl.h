@@ -2,11 +2,11 @@
 //  TickerControl.h
 //  PttrnFlow
 //
-//  Created by John Saba on 6/9/13.
+//  Created by John Saba on 10/26/13.
 //
 //
 
-#import "GameNode.h"
+#import "TouchSprite.h"
 
 @protocol TickerControlDelegate <NSObject>
 
@@ -15,14 +15,12 @@
 
 @end
 
-@interface TickerControl : GameNode;
+@interface TickerControl : TouchSprite
 
-// TODO: rename this to tickerControlDelegate
-@property (weak, nonatomic) id<TickerControlDelegate> delegate;
+@property (weak, nonatomic) id<TickerControlDelegate> tickerControlDelegate;
 @property (assign) int steps;
 @property (assign) int currentIndex;
 
-//- (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode origin:(CGPoint)origin;
-- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode steps:(int)steps unitSize:(CGSize)unitSize;
+- (id)initWithSpriteFrameName:(NSString *)spriteFrameName steps:(int)steps unitSize:(CGSize)unitSize;
 
 @end

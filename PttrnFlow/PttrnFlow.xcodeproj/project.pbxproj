@@ -184,7 +184,7 @@
 		16A942BC1777A2260052D5BD /* Tone.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942B11777A2260052D5BD /* Tone.m */; };
 		16A942BF1777AADF0052D5BD /* TickChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942BE1777AADF0052D5BD /* TickChannel.m */; };
 		16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */; };
-		16A942C61777ABFA0052D5BD /* TickerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942C41777ABFA0052D5BD /* TickerControl.m */; };
+		16A942C61777ABFA0052D5BD /* TickerControlOld.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942C41777ABFA0052D5BD /* TickerControlOld.m */; };
 		16A942DF1778C5A50052D5BD /* drum1-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942D71778C5A50052D5BD /* drum1-ipad.png */; };
 		16A942E01778C5A50052D5BD /* drum1on-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942D81778C5A50052D5BD /* drum1on-ipad.png */; };
 		16A942E11778C5A50052D5BD /* drum2-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942D91778C5A50052D5BD /* drum2-ipad.png */; };
@@ -228,6 +228,9 @@
 		334B2AD5181B03F000865510 /* background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 334B2AD1181B03F000865510 /* background-hd.png */; };
 		334B2AD6181B03F000865510 /* background.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334B2AD2181B03F000865510 /* background.plist */; };
 		334B2AD7181B03F000865510 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 334B2AD3181B03F000865510 /* background.png */; };
+		334B2ADA181C2E4C00865510 /* GameSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 334B2AD9181C2E4C00865510 /* GameSprite.m */; };
+		334B2ADD181C2F4B00865510 /* TouchSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 334B2ADC181C2F4B00865510 /* TouchSprite.m */; };
+		334B2AE0181C335900865510 /* TickerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 334B2ADF181C335900865510 /* TickerControl.m */; };
 		334E7206179617F200EFECC1 /* Warp.m in Sources */ = {isa = PBXBuildFile; fileRef = 334E7205179617F200EFECC1 /* Warp.m */; };
 		334E726017961FE400EFECC1 /* warp-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E725F17961FE400EFECC1 /* warp-ipad.png */; };
 		334E72671796260700EFECC1 /* itemButtonWarpOff-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E72651796260700EFECC1 /* itemButtonWarpOff-ipad.png */; };
@@ -632,8 +635,8 @@
 		16A942BE1777AADF0052D5BD /* TickChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TickChannel.m; path = "PttrnFlow/Sequence Model/TickChannel.m"; sourceTree = SOURCE_ROOT; };
 		16A942C11777ABFA0052D5BD /* SequenceMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceMenuCell.h; sourceTree = "<group>"; };
 		16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceMenuCell.m; sourceTree = "<group>"; };
-		16A942C31777ABFA0052D5BD /* TickerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickerControl.h; sourceTree = "<group>"; };
-		16A942C41777ABFA0052D5BD /* TickerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickerControl.m; sourceTree = "<group>"; };
+		16A942C31777ABFA0052D5BD /* TickerControlOld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickerControlOld.h; sourceTree = "<group>"; };
+		16A942C41777ABFA0052D5BD /* TickerControlOld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickerControlOld.m; sourceTree = "<group>"; };
 		16A942D71778C5A50052D5BD /* drum1-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drum1-ipad.png"; sourceTree = "<group>"; };
 		16A942D81778C5A50052D5BD /* drum1on-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drum1on-ipad.png"; sourceTree = "<group>"; };
 		16A942D91778C5A50052D5BD /* drum2-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drum2-ipad.png"; sourceTree = "<group>"; };
@@ -678,6 +681,12 @@
 		334B2AD1181B03F000865510 /* background-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-hd.png"; sourceTree = "<group>"; };
 		334B2AD2181B03F000865510 /* background.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = background.plist; sourceTree = "<group>"; };
 		334B2AD3181B03F000865510 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		334B2AD8181C2E4C00865510 /* GameSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSprite.h; sourceTree = "<group>"; };
+		334B2AD9181C2E4C00865510 /* GameSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSprite.m; sourceTree = "<group>"; };
+		334B2ADB181C2F4B00865510 /* TouchSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchSprite.h; sourceTree = "<group>"; };
+		334B2ADC181C2F4B00865510 /* TouchSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSprite.m; sourceTree = "<group>"; };
+		334B2ADE181C335900865510 /* TickerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickerControl.h; sourceTree = "<group>"; };
+		334B2ADF181C335900865510 /* TickerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickerControl.m; sourceTree = "<group>"; };
 		334E7204179617F200EFECC1 /* Warp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warp.h; sourceTree = "<group>"; };
 		334E7205179617F200EFECC1 /* Warp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Warp.m; sourceTree = "<group>"; };
 		334E725F17961FE400EFECC1 /* warp-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warp-ipad.png"; sourceTree = "<group>"; };
@@ -1334,6 +1343,10 @@
 				338B1D7017E4C11B00F25751 /* GameNode.m */,
 				3398ECE71812F72B0078C1F9 /* PanNode.h */,
 				3398ECE81812F72B0078C1F9 /* PanNode.m */,
+				334B2AD8181C2E4C00865510 /* GameSprite.h */,
+				334B2AD9181C2E4C00865510 /* GameSprite.m */,
+				334B2ADB181C2F4B00865510 /* TouchSprite.h */,
+				334B2ADC181C2F4B00865510 /* TouchSprite.m */,
 			);
 			path = "Generic Nodes";
 			sourceTree = "<group>";
@@ -1389,12 +1402,14 @@
 			children = (
 				16A942C11777ABFA0052D5BD /* SequenceMenuCell.h */,
 				16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */,
-				16A942C31777ABFA0052D5BD /* TickerControl.h */,
-				16A942C41777ABFA0052D5BD /* TickerControl.m */,
+				16A942C31777ABFA0052D5BD /* TickerControlOld.h */,
+				16A942C41777ABFA0052D5BD /* TickerControlOld.m */,
 				1692D28B1781CF900058448B /* DragButton.h */,
 				1692D28C1781CF900058448B /* DragButton.m */,
 				162C29361787699900CE480C /* TickHitChart.h */,
 				162C29371787699900CE480C /* TickHitChart.m */,
+				334B2ADE181C335900865510 /* TickerControl.h */,
+				334B2ADF181C335900865510 /* TickerControl.m */,
 			);
 			path = "UI Nodes";
 			sourceTree = "<group>";
@@ -1735,6 +1750,7 @@
 				33B4F25D17C72600004D4C13 /* ExitEvent.m in Sources */,
 				1608070B16B437A800039339 /* CCActionProgressTimer.m in Sources */,
 				1608070E16B437A800039339 /* CCActionTiledGrid.m in Sources */,
+				334B2AE0181C335900865510 /* TickerControl.m in Sources */,
 				1608071116B437A800039339 /* CCActionTween.m in Sources */,
 				1608071416B437A800039339 /* CCAnimation.m in Sources */,
 				33B4F26017C72600004D4C13 /* TickEvent.m in Sources */,
@@ -1861,9 +1877,11 @@
 				16A942BA1777A2260052D5BD /* Drum.m in Sources */,
 				16A942BC1777A2260052D5BD /* Tone.m in Sources */,
 				16A942BF1777AADF0052D5BD /* TickChannel.m in Sources */,
+				334B2ADD181C2F4B00865510 /* TouchSprite.m in Sources */,
 				16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */,
-				16A942C61777ABFA0052D5BD /* TickerControl.m in Sources */,
+				16A942C61777ABFA0052D5BD /* TickerControlOld.m in Sources */,
 				1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */,
+				334B2ADA181C2E4C00865510 /* GameSprite.m in Sources */,
 				163091E4177CBA1D003155BB /* PrimativeCellActor.m in Sources */,
 				163091E7177CBC20003155BB /* CCNode+Content.m in Sources */,
 				163091EA177CC176003155BB /* BlockFader.m in Sources */,
