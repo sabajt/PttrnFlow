@@ -7,6 +7,7 @@
 //
 
 #import "TouchSprite.h"
+#import "PanSprite.h"
 
 @protocol TickerControlDelegate <NSObject>
 
@@ -15,7 +16,7 @@
 
 @end
 
-@interface TickerControl : TouchSprite
+@interface TickerControl : TouchSprite <ScrollSpriteDelegate>
 
 @property (weak, nonatomic) id<TickerControlDelegate> tickerControlDelegate;
 @property (assign) int steps;

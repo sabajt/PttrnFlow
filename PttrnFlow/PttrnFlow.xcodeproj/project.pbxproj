@@ -230,6 +230,8 @@
 		334B2ADA181C2E4C00865510 /* GameSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 334B2AD9181C2E4C00865510 /* GameSprite.m */; };
 		334B2ADD181C2F4B00865510 /* TouchSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 334B2ADC181C2F4B00865510 /* TouchSprite.m */; };
 		334B2AE0181C335900865510 /* TickerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 334B2ADF181C335900865510 /* TickerControl.m */; };
+		334B2AE3181C47B900865510 /* ClippingSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 334B2AE2181C47B900865510 /* ClippingSprite.m */; };
+		334B2AE6181C493900865510 /* PanSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 334B2AE5181C493900865510 /* PanSprite.m */; };
 		334E7206179617F200EFECC1 /* Warp.m in Sources */ = {isa = PBXBuildFile; fileRef = 334E7205179617F200EFECC1 /* Warp.m */; };
 		334E726017961FE400EFECC1 /* warp-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E725F17961FE400EFECC1 /* warp-ipad.png */; };
 		334E72671796260700EFECC1 /* itemButtonWarpOff-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E72651796260700EFECC1 /* itemButtonWarpOff-ipad.png */; };
@@ -243,7 +245,6 @@
 		338B1D7117E4C11B00F25751 /* GameNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 338B1D7017E4C11B00F25751 /* GameNode.m */; };
 		338EE1AE17A5EAFC005E98B1 /* PdArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1AD17A5EAFC005E98B1 /* PdArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */; };
-		3398ECE91812F72B0078C1F9 /* PanNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3398ECE81812F72B0078C1F9 /* PanNode.m */; };
 		33AF255717CB069700643CB2 /* AudioPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255617CB069700643CB2 /* AudioPad.m */; };
 		33AF255E17CB0B3F00643CB2 /* AudioPadEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255D17CB0B3F00643CB2 /* AudioPadEvent.m */; };
 		33B4F24717C6E104004D4C13 /* solution0.json in Resources */ = {isa = PBXBuildFile; fileRef = 33B4F24617C6E104004D4C13 /* solution0.json */; };
@@ -684,6 +685,10 @@
 		334B2ADC181C2F4B00865510 /* TouchSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSprite.m; sourceTree = "<group>"; };
 		334B2ADE181C335900865510 /* TickerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickerControl.h; sourceTree = "<group>"; };
 		334B2ADF181C335900865510 /* TickerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickerControl.m; sourceTree = "<group>"; };
+		334B2AE1181C47B900865510 /* ClippingSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClippingSprite.h; sourceTree = "<group>"; };
+		334B2AE2181C47B900865510 /* ClippingSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClippingSprite.m; sourceTree = "<group>"; };
+		334B2AE4181C493900865510 /* PanSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanSprite.h; sourceTree = "<group>"; };
+		334B2AE5181C493900865510 /* PanSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanSprite.m; sourceTree = "<group>"; };
 		334E7204179617F200EFECC1 /* Warp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warp.h; sourceTree = "<group>"; };
 		334E7205179617F200EFECC1 /* Warp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Warp.m; sourceTree = "<group>"; };
 		334E725F17961FE400EFECC1 /* warp-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warp-ipad.png"; sourceTree = "<group>"; };
@@ -702,8 +707,6 @@
 		338EE1AD17A5EAFC005E98B1 /* PdArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdArray.m; sourceTree = "<group>"; };
 		338EE1B217A5F1D2005E98B1 /* NSArray+CompareNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CompareNumbers.h"; sourceTree = "<group>"; };
 		338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CompareNumbers.m"; sourceTree = "<group>"; };
-		3398ECE71812F72B0078C1F9 /* PanNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanNode.h; sourceTree = "<group>"; };
-		3398ECE81812F72B0078C1F9 /* PanNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanNode.m; sourceTree = "<group>"; };
 		33AF255517CB069700643CB2 /* AudioPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPad.h; sourceTree = "<group>"; };
 		33AF255617CB069700643CB2 /* AudioPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPad.m; sourceTree = "<group>"; };
 		33AF255C17CB0B3F00643CB2 /* AudioPadEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPadEvent.h; sourceTree = "<group>"; };
@@ -1338,12 +1341,14 @@
 				169258861788896A00B90DFE /* SpritePicker.m */,
 				338B1D6F17E4C11B00F25751 /* GameNode.h */,
 				338B1D7017E4C11B00F25751 /* GameNode.m */,
-				3398ECE71812F72B0078C1F9 /* PanNode.h */,
-				3398ECE81812F72B0078C1F9 /* PanNode.m */,
 				334B2AD8181C2E4C00865510 /* GameSprite.h */,
 				334B2AD9181C2E4C00865510 /* GameSprite.m */,
 				334B2ADB181C2F4B00865510 /* TouchSprite.h */,
 				334B2ADC181C2F4B00865510 /* TouchSprite.m */,
+				334B2AE1181C47B900865510 /* ClippingSprite.h */,
+				334B2AE2181C47B900865510 /* ClippingSprite.m */,
+				334B2AE4181C493900865510 /* PanSprite.h */,
+				334B2AE5181C493900865510 /* PanSprite.m */,
 			);
 			path = "Generic Nodes";
 			sourceTree = "<group>";
@@ -1809,6 +1814,7 @@
 				160807D116B437A900039339 /* CCEventDispatcher.m in Sources */,
 				160807D416B437A900039339 /* CCGLView.m in Sources */,
 				160807D716B437A900039339 /* CCWindow.m in Sources */,
+				334B2AE6181C493900865510 /* PanSprite.m in Sources */,
 				160807DA16B437A900039339 /* base64.c in Sources */,
 				160807DE16B437A900039339 /* CCArray.m in Sources */,
 				160807E116B437A900039339 /* ccCArray.m in Sources */,
@@ -1816,7 +1822,6 @@
 				160807E716B437AA00039339 /* CCProfiling.m in Sources */,
 				160807E916B437AA00039339 /* ccUtils.c in Sources */,
 				160807ED16B437AA00039339 /* CCVertex.m in Sources */,
-				3398ECE91812F72B0078C1F9 /* PanNode.m in Sources */,
 				160807F016B437AA00039339 /* CGPointExtension.m in Sources */,
 				160807F316B437AA00039339 /* NSThread+performBlock.m in Sources */,
 				160807F716B437AA00039339 /* TGAlib.m in Sources */,
@@ -1852,6 +1857,7 @@
 				1624D1DE1733453200851B45 /* TextureUtils.m in Sources */,
 				338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */,
 				1624D1E317337FBE00851B45 /* CCTMXTiledMap+Utils.m in Sources */,
+				334B2AE3181C47B900865510 /* ClippingSprite.m in Sources */,
 				1624D1E71733807300851B45 /* PathUtils.m in Sources */,
 				1624D1EA1733822C00851B45 /* ColorUtils.m in Sources */,
 				165A41A51734EA65005BFC32 /* SGTiledUtils.m in Sources */,

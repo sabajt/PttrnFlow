@@ -13,7 +13,7 @@
 #import "CCSprite+Utils.h"
 #import "DragButton.h"
 #import "TextureUtils.h"
-#import "PanNode.h"
+#import "PanSprite.h"
 #import "ColorUtils.h"
 
 static CGFloat const kHandleHeight = 40;
@@ -79,14 +79,16 @@ static int const kMaxControlLength = 6;
         TickerControl *tickerControl = [[TickerControl alloc] initWithSpriteFrameName:@"clear_rect_uilayer.png" steps:steps unitSize:controlUnitSize];
         tickerControl.tickerControlDelegate = tickDispatcher;
         tickerControl.position = ccp(tickerControl.contentSize.width / 2, tickerControl.contentSize.height / 2);
-        [uiBatch addChild:tickerControl];
         
-        
-        
-        
-        
-        
-        
+        // pan sprite
+        CGFloat panNodeWidth = MIN(steps, kMaxControlLength) * controlUnitSize.width;
+        CGSize panNodeSize = CGSizeMake(panNodeWidth, 2 * controlUnitSize.height);
+        CGSize scrollingContainerSize = CGSizeMake(steps * controlUnitSize.width, panNodeSize.height);
+        CGPoint panNodeOrigin = ccp(0, controlBarBottom);
+        PanSprite *panSprite = [[PanSprite alloc] initWithSpriteFrameName:@"clear_rect_uilayer.png" contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:@[tickerControl]];
+        panSprite.scrollDirection = ScrollDirectionHorizontal;
+        panSprite.position = panNodeOrigin;
+        [uiBatch addChild:panSprite];
         
 //        ///////////////////////////////////////
 //        // pan node

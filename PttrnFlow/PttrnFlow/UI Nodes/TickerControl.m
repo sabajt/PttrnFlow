@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) CCSprite *thumbSprite;
 @property (assign) CGSize unitSize;
+@property (assign) BOOL isReceivingTouches;
 
 @end
 
@@ -81,6 +82,13 @@
     [self positionThumb:self.currentIndex];
 }
 
+#pragma mark -
+
+- (BOOL)shouldStealTouch
+{
+    return self.isReceivingTouch;
+}
+
 #pragma mark - TouchNodeDelegate
 
 - (BOOL)containsTouch:(UITouch *)touch
@@ -103,6 +111,7 @@
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     if ([super ccTouchBegan:touch withEvent:event]) {
+        self.isReceivingTouch = YES;
         [self handleTouch:touch];
         return YES;
     }
@@ -121,6 +130,7 @@
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [super ccTouchEnded:touch withEvent:event];
+    self.isReceivingTouch = NO;
     [self.tickerControlDelegate tickerControlTouchUp];
 }
 
