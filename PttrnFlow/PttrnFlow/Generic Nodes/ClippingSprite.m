@@ -43,9 +43,11 @@
     [self setClippingRegion:clippingRegionInNodeCoordinates];
 }
 
--(void) visit {
+-(void) visit
+{
     glEnable(GL_SCISSOR_TEST);
     CGPoint worldPosition = [self convertToWorldSpace:CGPointZero];
+
     const CGFloat s = [[CCDirector sharedDirector] contentScaleFactor];
     glScissor(clippingRegion.origin.x + (worldPosition.x * s),
               clippingRegion.origin.y + (worldPosition.y * s),

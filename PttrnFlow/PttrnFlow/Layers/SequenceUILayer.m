@@ -78,7 +78,7 @@ static int const kMaxControlLength = 6;
         int steps = (tickDispatcher.sequenceLength / 4);
         TickerControl *tickerControl = [[TickerControl alloc] initWithSpriteFrameName:@"clear_rect_uilayer.png" steps:steps unitSize:controlUnitSize];
         tickerControl.tickerControlDelegate = tickDispatcher;
-        tickerControl.position = ccp(tickerControl.contentSize.width / 2, tickerControl.contentSize.height / 2);
+        tickerControl.position = ccp(tickerControl.contentSize.width / 2, ( 3 * tickerControl.contentSize.height ) / 2);
         
         // pan sprite
         CGFloat panNodeWidth = MIN(steps, kMaxControlLength) * controlUnitSize.width;
@@ -88,95 +88,19 @@ static int const kMaxControlLength = 6;
         PanSprite *panSprite = [[PanSprite alloc] initWithSpriteFrameName:@"clear_rect_uilayer.png" contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:@[tickerControl]];
         panSprite.scrollDirection = ScrollDirectionHorizontal;
         panSprite.position = panNodeOrigin;
-        [uiBatch addChild:panSprite];
-        
-//        ///////////////////////////////////////
-//        // pan node
-//        int steps = (tickDispatcher.sequenceLength / 4);
-//        CGFloat panNodeWidth = MIN(steps, kMaxControlLength) * controlUnitSize.width;
-//        CGSize panNodeSize = CGSizeMake(panNodeWidth, 2 * controlUnitSize.height);
-//        CGSize scrollingContainerSize = CGSizeMake(steps * controlUnitSize.width, panNodeSize.height);
-//        CGPoint panNodeOrigin = ccp(0, controlBarBottom);
-        
-//        NSMutableArray *scrollingSprites = [NSMutableArray array];
-//        for (int i = 0; i < steps; i++) {
-//            CCSprite *tickDot = [CCSprite spriteWithSpriteFrameName:@"tickdot_off.png"];
-//            tickDot.position = ccp((i * controlUnitSize.width) + (controlUnitSize.width / 2), controlUnitSize.height);
-//            [scrollingSprites addObject:tickDot];
-//        }
-        
-//        TickerControl *tickerControl = [[TickerControl alloc] initWithBatchNode:uiBatch steps:steps unitSize:controlUnitSize];
-//        tickerControl
-//        PanNode *panNode = [[PanNode alloc] initWithBatchNode:uiBatch contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:@[tickerControl]];
-//        panNode.scrollDirection = ScrollDirectionHorizontal;
-//        panNode.position = panNodeOrigin;
-//        [self addChild:panNode];
-        
-//        // pan mask pannels if needed
-//        if (steps > kMaxControlLength) {
-//            CGSize maskPanelSize = CGSizeMake(buttonSize.width, topBarHeight);
-//            
-//            CCSprite *leftMask = [CCSprite rectSpriteWithSize:maskPanelSize color:[ColorUtils skyBlue]];
-//            leftMask.position = ccp(panNodeOrigin.x - (buttonSize.width / 2), yMidTopBar);
-//            [self addChild:leftMask];
-//            
-//            CCSprite *rightMask = [CCSprite rectSpriteWithSize:maskPanelSize color:[ColorUtils skyBlue]];
-//            rightMask.position = ccp(self.contentSize.width - (buttonSize.width / 2), yMidTopBar);
-//            [self addChild:rightMask];
-//        }
-        ///////////////////////////////////////
+        [self addChild:panSprite];
         
         // buttons must be added to a CCMenu to work
         CCMenu *menu = [CCMenu menuWithItems:exitButton, speakerButton, playButton, hamburgerButton, nil];
         menu.position = ccp(0, 0);
         [self addChild:menu];
         
-        
-//        // control separators
-//        CCSprite *separatorLeft = [CCSprite spriteWithSpriteFrameName:@"control_separator.png"];
-//        separatorLeft.position = ccp(matchButton.position.x + (buttonSize.width / 2), yMidTopBar);
-//        [uiBatch addChild:separatorLeft];
-//        
-//        CCSprite *separatorRight = [CCSprite spriteWithSpriteFrameName:@"control_separator.png"];
-//        separatorRight.position = ccp(hamburgerButton.position.x - (buttonSize.width / 2), yMidTopBar);
-//        [uiBatch addChild:separatorRight];
-        
-        
-        
-    
-        // ticker control
-//        CGPoint tickerControlOrigin = ccp(hitChartOrigin.x, hitChartOrigin.y + 40);
-//        NSLog(@"tickerControlOrigin: %@", NSStringFromCGPoint(tickerControlOrigin));
-//        //        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:(tickDispatcher.sequenceLength / 4) padding:2 batchNode:uiBatch origin:tickerControlOrigin];
-//        TickerControl *tickerControl = [[TickerControl alloc] initWithBatchNode:uiBatch steps:(tickDispatcher.sequenceLength / 4) unitSize:buttonSize];
-//        tickerControl.delegate = tickDispatcher;
-//        [self addChild:tickerControl];
-        
-//        // ticker control
-//        CGPoint tickerControlOrigin = ccp(hitChartOrigin.x, hitChartOrigin.y + 40);
-//        NSLog(@"tickerControlOrigin: %@", NSStringFromCGPoint(tickerControlOrigin));
-////        TickerControl *tickerControl = [[TickerControl alloc] initWithNumberOfTicks:(tickDispatcher.sequenceLength / 4) padding:2 batchNode:uiBatch origin:tickerControlOrigin];
-//        TickerControl *tickerControl = [[TickerControl alloc] initWithBatchNode:uiBatch steps:(tickDispatcher.sequenceLength / 4) unitSize:buttonSize];
-//        tickerControl.delegate = tickDispatcher;
-//        [self addChild:tickerControl];
-        
 //        // tick hit chart
 //        CGPoint hitChartOrigin = ccp(matchButton.position.x + matchButton.contentSize.width, self.contentSize.height - topBarHeight);
 //        TickHitChart *hitChart = [[TickHitChart alloc] initWithNumberOfTicks:tickDispatcher.sequenceLength padding:2 batchNode:uiBatch origin:hitChartOrigin];
 //        [self addChild:hitChart];
 //        _hitChart = hitChart;
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+//
 //        // drag items
 //        int i = 0;
 //        for (NSNumber *item in dragItems) {

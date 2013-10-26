@@ -8,10 +8,12 @@
 
 #import "PanSprite.h"
 #import "CCSprite+Utils.h"
+#import "ClippingSprite.h"
 
 @interface PanSprite ()
 
 @property (assign) CGPoint lastTouchLocation;
+@property (weak, nonatomic) ClippingSprite *clippingSprite;
 
 @end
 
@@ -35,7 +37,12 @@
         for (CCSprite *spr in scrollSprites) {
             [self.scrollSurface addChild:spr];
         }
-        [self addChild:self.scrollSurface];
+        CGRect bounds = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
+        ClippingSprite *clippingSprite = [ClippingSprite clippingSpriteWithRect:bounds];
+        _clippingSprite = clippingSprite;
+        _clippingSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
+        [clippingSprite addChild:self.scrollSurface];
+        [self addChild:clippingSprite];
     }
     return self;
 }
