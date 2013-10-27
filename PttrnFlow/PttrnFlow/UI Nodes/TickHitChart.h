@@ -15,9 +15,9 @@ typedef enum
     kHitStatusFailure,
 } kHitStatus;
 
-@interface TickHitChart : CCNode
+@interface TickHitChart : CCSprite
 
-- (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode origin:(CGPoint)origin;
+- (id)initWithSpriteFrameName:(NSString *)spriteFrameName steps:(int)steps unitSize:(CGSize)unitSize;
 - (void)resetCells;
 
 @end

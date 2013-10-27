@@ -1477,20 +1477,12 @@
 		334B2AAB181B02CA00865510 /* uilayer */ = {
 			isa = PBXGroup;
 			children = (
-				334B2AAC181B02CA00865510 /* background */,
 				334B2AAD181B02CA00865510 /* uilayer-hd.plist */,
 				334B2AAE181B02CA00865510 /* uilayer-hd.png */,
 				334B2AAF181B02CA00865510 /* uilayer.plist */,
 				334B2AB0181B02CA00865510 /* uilayer.png */,
 			);
 			path = uilayer;
-			sourceTree = "<group>";
-		};
-		334B2AAC181B02CA00865510 /* background */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = background;
 			sourceTree = "<group>";
 		};
 		334B2ACF181B03F000865510 /* background */ = {

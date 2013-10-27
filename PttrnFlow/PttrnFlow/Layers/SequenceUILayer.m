@@ -74,32 +74,34 @@ static int const kMaxControlLength = 6;
         CCMenuItemSprite *hamburgerButton = [[CCMenuItemSprite alloc] initWithNormalSprite:hamburgerOff selectedSprite:hamburgerOn disabledSprite:nil target:self selector:@selector(hamburgerButtonPressed:)];
         hamburgerButton.position = ccp((7 * buttonSize.width) / 2, yMidRow1);
         
+        // buttons must be added to a CCMenu to work
+        CCMenu *menu = [CCMenu menuWithItems:exitButton, speakerButton, playButton, hamburgerButton, nil];
+        menu.position = ccp(0, 0);
+        [self addChild:menu];
+        
         // ticker control
         int steps = (tickDispatcher.sequenceLength / 4);
         TickerControl *tickerControl = [[TickerControl alloc] initWithSpriteFrameName:@"clear_rect_uilayer.png" steps:steps unitSize:controlUnitSize];
         tickerControl.tickerControlDelegate = tickDispatcher;
-        tickerControl.position = ccp(tickerControl.contentSize.width / 2, ( 3 * tickerControl.contentSize.height ) / 2);
+        tickerControl.position = ccp(tickerControl.contentSize.width / 2, (3 * tickerControl.contentSize.height) / 2);
+        
+        // hit chart
+        TickHitChart *hitChart = [[TickHitChart alloc] initWithSpriteFrameName:@"clear_rect_uilayer.png" steps:steps unitSize:controlUnitSize];
+        _hitChart = hitChart;
+        hitChart.position = ccp(hitChart.contentSize.width / 2, hitChart.contentSize.height / 2);
         
         // pan sprite
         CGFloat panNodeWidth = MIN(steps, kMaxControlLength) * controlUnitSize.width;
         CGSize panNodeSize = CGSizeMake(panNodeWidth, 2 * controlUnitSize.height);
         CGSize scrollingContainerSize = CGSizeMake(steps * controlUnitSize.width, panNodeSize.height);
         CGPoint panNodeOrigin = ccp(0, controlBarBottom);
-        PanSprite *panSprite = [[PanSprite alloc] initWithSpriteFrameName:@"clear_rect_uilayer.png" contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:@[tickerControl]];
+        PanSprite *panSprite = [[PanSprite alloc] initWithSpriteFrameName:@"clear_rect_uilayer.png" contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:@[hitChart, tickerControl]];
         panSprite.scrollDirection = ScrollDirectionHorizontal;
         panSprite.position = panNodeOrigin;
         [self addChild:panSprite];
         
-        // buttons must be added to a CCMenu to work
-        CCMenu *menu = [CCMenu menuWithItems:exitButton, speakerButton, playButton, hamburgerButton, nil];
-        menu.position = ccp(0, 0);
-        [self addChild:menu];
         
-//        // tick hit chart
-//        CGPoint hitChartOrigin = ccp(matchButton.position.x + matchButton.contentSize.width, self.contentSize.height - topBarHeight);
-//        TickHitChart *hitChart = [[TickHitChart alloc] initWithNumberOfTicks:tickDispatcher.sequenceLength padding:2 batchNode:uiBatch origin:hitChartOrigin];
-//        [self addChild:hitChart];
-//        _hitChart = hitChart;
+        
 //
 //        // drag items
 //        int i = 0;

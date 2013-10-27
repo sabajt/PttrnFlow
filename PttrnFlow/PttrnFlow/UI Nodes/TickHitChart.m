@@ -10,7 +10,6 @@
 #import "ColorUtils.h"
 #import "CCSprite+Utils.h"
 #import "TickDispatcher.h"
-#import "SpritePicker.h"
 
 static CGFloat const kHitCellEdge = 2;
 static CGFloat const kHitChartHeight = 24;
@@ -25,28 +24,23 @@ static CGFloat const kHitChartHeight = 24;
 
 @implementation TickHitChart
 
-- (id)initWithNumberOfTicks:(int)numberOfTicks padding:(CGFloat)padding batchNode:(CCSpriteBatchNode *)batchNode origin:(CGPoint)origin
+- (id)initWithSpriteFrameName:(NSString *)spriteFrameName steps:(int)steps unitSize:(CGSize)unitSize
 {
-    self = [super init];
+    self = [super initWithSpriteFrameName:spriteFrameName];
     if (self) {
-        if (numberOfTicks < 1) {
-            NSLog(@"warning: number of ticks for TickerControl should be > 1");
+        if (steps < 1) {
+            NSLog(@"warning: steps for TickHitChart should be > 1");
         }
         
+        self.contentSize = CGSizeMake(unitSize.width * steps, unitSize.height);
         self.hitCells = [NSMutableArray array];
-        NSArray *frameNames = @[@"chart_box_off.png", @"chart_box_on.png"];
 
-        for (int i = 0; i < numberOfTicks; i++) {
-            CCSprite *spr = [CCSprite spriteWithSpriteFrameName:@"chart_box_off.png"];
-            CGPoint relPoint = ccp(i * (spr.contentSize.width + padding), 0);
-            relPoint = ccp(relPoint.x + (spr.contentSize.width / 2), relPoint.y + (spr.contentSize.height / 2));
-            CGPoint absPoint = ccp(relPoint.x + origin.x, relPoint.y + origin.y);
-            SpritePicker *hitCell = [[SpritePicker alloc] initWithFrameNames:frameNames center:absPoint batchNode:batchNode];
-            [self.hitCells addObject:hitCell];
+        for (int i = 0; i < steps; i++) {
+            CCSprite *spr = [CCSprite spriteWithSpriteFrameName:@"chartbox_off.png"];
+            spr.position = ccp((i * unitSize.width + (unitSize.width / 2)), unitSize.height / 2);
+            self.hitCells[i] = spr;
+            [self addChild:spr];
         }
-        
-        SpritePicker *lastCell = [self.hitCells lastObject];
-        self.contentSize = CGSizeMake(lastCell.position.x + lastCell.contentSize.width, lastCell.contentSize.height);
     }
     return self;
 }
@@ -54,28 +48,30 @@ static CGFloat const kHitChartHeight = 24;
 - (void)handleTickHit:(NSNotification *)notification
 {
     NSMutableArray *hits = notification.userInfo[kKeyHits];
-    int tickIndex = hits.count - 1;
-    NSNumber *hitSuccess = hits[tickIndex];
+    int index = hits.count - 1;
+    NSNumber *hitSuccess = hits[index];
     
     kHitStatus status;
     if ([hitSuccess boolValue]) {
         status = kHitStatusSuccess;
     }
     else {
-//        status = kHitStatusFailure;
-        // TODO: temporary until graphics are in
-        status = kHitStatusSuccess;
+        status = kHitStatusFailure;
     }
     
-    SpritePicker *hitCell = self.hitCells[tickIndex];
-    [hitCell pickSprite:status];
+    [self updateIndex:index state:status];
 }
 
 - (void)resetCells
 {
-    for (SpritePicker *cell in self.hitCells) {
-        [cell pickSprite:kHitStatusDefault];
+    for (int i = 0; i < self.hitCells.count; i++) {
+        [self updateIndex:i state:kHitStatusDefault];
     }
+}
+
+- (void)updateIndex:(int)index state:(kHitStatus)state
+{
+    NSLog(@"update index %i with status %i", index, state);
 }
 
 #pragma mark - CCNode SceneManagement
@@ -83,14 +79,12 @@ static CGFloat const kHitChartHeight = 24;
 - (void)onEnter
 {
     [super onEnter];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTickHit:) name:kNotificationTickHit object:nil];
 }
 
 - (void)onExit
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
     [super onExit];
 }
 

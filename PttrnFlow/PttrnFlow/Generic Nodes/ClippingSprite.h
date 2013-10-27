@@ -12,8 +12,8 @@
     CGRect clippingRegion;
 }
 
-+ (id)clippingSpriteWithRect:(CGRect)rect;
-
 @property (nonatomic) CGRect clippingRegion;
+
++ (id)clippingSpriteWithRect:(CGRect)rect;
 
 @end

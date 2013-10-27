@@ -1,10 +1,15 @@
 //
-//  ClippingNode.m
+//  ClippingSprite.m
 //
 
 #import "ClippingSprite.h"
 
 @implementation ClippingSprite
+
++ (id)clippingSpriteWithRect:(CGRect)rect
+{
+    return [[self alloc] initWithRect:rect];
+}
 
 - (id)initWithRect:(CGRect)rect
 {
@@ -14,17 +19,12 @@
     return self;
 }
 
-+ (id)clippingSpriteWithRect:(CGRect)rect
-{
-    return [[self alloc] initWithRect:rect];
-}
-
--(CGRect) clippingRegion
+- (CGRect)clippingRegion
 {
     return clippingRegionInNodeCoordinates;
 }
 
--(void) setClippingRegion:(CGRect)region
+- (void)setClippingRegion:(CGRect)region
 {
     // keep the original region coordinates in case the user wants them back unchanged
     clippingRegionInNodeCoordinates = region;
@@ -37,13 +37,13 @@
     clippingRegion = CGRectMake(region.origin.x * self.scaleX, region.origin.y * self.scaleY, region.size.width * self.scaleX, region.size.height * self.scaleY);
 }
 
--(void) setScale:(float)newScale
+- (void)setScale:(float)newScale
 {
     [super setScale:newScale];
     [self setClippingRegion:clippingRegionInNodeCoordinates];
 }
 
--(void) visit
+- (void)visit
 {
     glEnable(GL_SCISSOR_TEST);
     CGPoint worldPosition = [self convertToWorldSpace:CGPointZero];
