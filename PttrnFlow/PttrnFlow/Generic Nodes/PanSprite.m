@@ -40,11 +40,18 @@
         CGRect bounds = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
         ClippingSprite *clippingSprite = [ClippingSprite clippingSpriteWithRect:bounds];
         _clippingSprite = clippingSprite;
-        _clippingSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
+        _clippingSprite.anchorPoint = ccp(0, 0);
+        _clippingSprite.position = ccp(0, 0);
         [clippingSprite addChild:self.scrollSurface];
         [self addChild:clippingSprite];
     }
     return self;
+}
+
+- (void)setContentSize:(CGSize)contentSize
+{
+    [super setContentSize:contentSize];
+    _clippingSprite.clippingRegion = CGRectMake(0, 0, contentSize.width, contentSize.height);
 }
 
 - (CGFloat)scrollableDistanceHorizontal

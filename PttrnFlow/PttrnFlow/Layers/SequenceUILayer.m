@@ -29,6 +29,7 @@ static CGFloat const kRowHeight = 44;
 @property (weak, nonatomic) TickHitChart *hitChart;
 @property (weak, nonatomic) CCSpriteBatchNode *uiBatchNode;
 @property (weak, nonatomic) CCSprite *controlBar;
+@property (weak, nonatomic) PanSprite *panSprite;
 
 @end
 
@@ -100,6 +101,7 @@ static CGFloat const kRowHeight = 44;
         CGSize scrollingContainerSize = CGSizeMake(steps * controlUnitSize.width, panNodeSize.height);
         CGPoint panNodeOrigin = ccp(0, controlBarBottom);
         PanSprite *panSprite = [[PanSprite alloc] initWithSpriteFrameName:@"clear_rect_uilayer.png" contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:@[hitChart, tickerControl]];
+        _panSprite = panSprite;
         panSprite.scrollDirection = ScrollDirectionHorizontal;
         panSprite.position = panNodeOrigin;
         [self addChild:panSprite];
@@ -108,7 +110,7 @@ static CGFloat const kRowHeight = 44;
         CCSprite *controlBar = [CCSprite spriteWithSpriteFrameName:@"control_bar.png"];
         _controlBar = controlBar;
         controlBar.anchorPoint = ccp(0, 0);
-        [self positionControlBarAnimated:NO compact:NO];
+        [self configureControlsCompact:NO animated:NO];
         [uiBatch addChild:controlBar];
         
         
@@ -136,26 +138,32 @@ static CGFloat const kRowHeight = 44;
     return self;
 }
 
-- (void)positionControlBarAnimated:(BOOL)animated compact:(BOOL)compact
+- (void)configureControlsCompact:(BOOL)compact animated:(BOOL)animated
 {
-    int length;
+    int unitWidth;
     if (compact) {
-        length = MIN(self.steps, kMaxControlLengthCompact);
+        unitWidth = MIN(self.steps, kMaxControlLengthCompact);
     }
     else {
-        length = MIN(self.steps, kMaxControlLengthFull);
+        unitWidth = MIN(self.steps, kMaxControlLengthFull);
     }
     
-    CGFloat xOffset = -(kMaxControlLengthFull - length) * kControlStepWidth;
+    // control bar offset
+    CGFloat xOffset = -(kMaxControlLengthFull - unitWidth) * kControlStepWidth;
     if (xOffset < 0){
         xOffset -= (self.controlBar.contentSize.width - self.contentSize.width);
     }
+    
+    // pan node size
+    CGFloat panNodeWidth = unitWidth * kControlStepWidth;
+    CGSize panNodeSize = CGSizeMake(panNodeWidth, 2 * kRowHeight);
     
     if (animated) {
         
     }
     else {
         self.controlBar.position = ccp(xOffset, self.contentSize.height - (3 * kRowHeight));
+        self.panSprite.contentSize = panNodeSize;
     }
 }
 
