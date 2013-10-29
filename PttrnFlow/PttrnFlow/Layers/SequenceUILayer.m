@@ -16,15 +16,19 @@
 #import "PanSprite.h"
 #import "ColorUtils.h"
 
-static CGFloat const kHandleHeight = 40;
-static int const kMaxControlLength = 6;
+static int const kMaxControlLengthFull = 8;
+static int const kMaxControlLengthCompact = 6;
+static CGFloat const kControlStepWidth = 40;
+static CGFloat const kRowHeight = 44;
 
 @interface SequenceUILayer ()
 
+@property (assign) int steps;
+
 @property (weak, nonatomic) TickDispatcher *tickDispatcher;
 @property (weak, nonatomic) TickHitChart *hitChart;
-
 @property (weak, nonatomic) CCSpriteBatchNode *uiBatchNode;
+@property (weak, nonatomic) CCSprite *controlBar;
 
 @end
 
@@ -37,13 +41,12 @@ static int const kMaxControlLength = 6;
         _tickDispatcher = tickDispatcher;
 
         // general sizes / positions
-        CGFloat rowHeight = 44;
-        CGSize buttonSize = CGSizeMake(80, rowHeight);
-        CGSize controlUnitSize = CGSizeMake(40, rowHeight);
-        CGFloat yMidRow1 = self.contentSize.height - (rowHeight / 2);
-        CGFloat yMidRow2 = self.contentSize.height - ((3 * rowHeight) / 2);
-        CGFloat yMidRow3 = self.contentSize.height - ((5 * rowHeight) / 2);
-        CGFloat controlBarBottom = self.contentSize.height - (3 * rowHeight);
+        CGSize buttonSize = CGSizeMake(80, kRowHeight);
+        CGSize controlUnitSize = CGSizeMake(kControlStepWidth, kRowHeight);
+        CGFloat yMidRow1 = self.contentSize.height - (kRowHeight / 2);
+        CGFloat yMidRow2 = self.contentSize.height - ((3 * kRowHeight) / 2);
+        CGFloat yMidRow3 = self.contentSize.height - ((5 * kRowHeight) / 2);
+        CGFloat controlBarBottom = self.contentSize.height - (3 * kRowHeight);
         
         // batch node
         CCSpriteBatchNode *uiBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyUILayer stringByAppendingString:@".png"]];
@@ -81,6 +84,7 @@ static int const kMaxControlLength = 6;
         
         // ticker control
         int steps = (tickDispatcher.sequenceLength / 4);
+        self.steps = steps;
         TickerControl *tickerControl = [[TickerControl alloc] initWithSpriteFrameName:@"clear_rect_uilayer.png" steps:steps unitSize:controlUnitSize];
         tickerControl.tickerControlDelegate = tickDispatcher;
         tickerControl.position = ccp(tickerControl.contentSize.width / 2, (3 * tickerControl.contentSize.height) / 2);
@@ -91,7 +95,7 @@ static int const kMaxControlLength = 6;
         hitChart.position = ccp(hitChart.contentSize.width / 2, hitChart.contentSize.height / 2);
         
         // pan sprite
-        CGFloat panNodeWidth = MIN(steps, kMaxControlLength) * controlUnitSize.width;
+        CGFloat panNodeWidth = MIN(steps, kMaxControlLengthCompact) * controlUnitSize.width;
         CGSize panNodeSize = CGSizeMake(panNodeWidth, 2 * controlUnitSize.height);
         CGSize scrollingContainerSize = CGSizeMake(steps * controlUnitSize.width, panNodeSize.height);
         CGPoint panNodeOrigin = ccp(0, controlBarBottom);
@@ -100,6 +104,17 @@ static int const kMaxControlLength = 6;
         panSprite.position = panNodeOrigin;
         [self addChild:panSprite];
         
+        // control bar separator
+        CCSprite *controlBar = [CCSprite spriteWithSpriteFrameName:@"control_bar.png"];
+        _controlBar = controlBar;
+        controlBar.anchorPoint = ccp(0, 0);
+        [self positionControlBarAnimated:NO compact:NO];
+        [uiBatch addChild:controlBar];
+        
+        
+        
+//        CCSprite *controlBarRightEdge = [CCSprite spriteWithSpriteFrameName:@"controlbar_right_edge.png"];
+//        CCSprite *controlBarBottom = [CCSprite rectSpriteWithSize:CGSizeMake(, <#CGFloat height#>) color:<#(ccColor3B)#>]
         
         
 //
@@ -121,6 +136,29 @@ static int const kMaxControlLength = 6;
     return self;
 }
 
+- (void)positionControlBarAnimated:(BOOL)animated compact:(BOOL)compact
+{
+    int length;
+    if (compact) {
+        length = MIN(self.steps, kMaxControlLengthCompact);
+    }
+    else {
+        length = MIN(self.steps, kMaxControlLengthFull);
+    }
+    
+    CGFloat xOffset = -(kMaxControlLengthFull - length) * kControlStepWidth;
+    if (xOffset < 0){
+        xOffset -= (self.controlBar.contentSize.width - self.contentSize.width);
+    }
+    
+    if (animated) {
+        
+    }
+    else {
+        self.controlBar.position = ccp(xOffset, self.contentSize.height - (3 * kRowHeight));
+    }
+}
+
 - (void)exitPressed:(id)sender
 {
     [[CCDirector sharedDirector] popScene];
@@ -139,7 +177,6 @@ static int const kMaxControlLength = 6;
 
 - (void)hamburgerButtonPressed:(id)sender
 {
-    NSLog(@"halmborger");
 }
                                              
 
