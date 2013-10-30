@@ -19,6 +19,8 @@
 
 @implementation PanSprite
 
+@synthesize containerWidth = _containerWidth;
+
 - (id)initWithSpriteFrameName:(NSString *)spriteFrameName contentSize:(CGSize)size scrollingSize:(CGSize)scrollingSize scrollSprites:(NSArray *)scrollSprites
 {
     self = [super initWithSpriteFrameName:spriteFrameName];
@@ -48,10 +50,31 @@
     return self;
 }
 
+- (void)setContainerWidth:(CGFloat)containerWidth
+{
+    _containerWidth = containerWidth;
+    self.contentSize = CGSizeMake(containerWidth, self.contentSize.height);
+}
+
+- (CGFloat)containerWidth
+{
+    return _containerWidth;
+}
+
+- (void)setNilValueForKey:(NSString *)key
+{
+    if ([key isEqualToString:@"containerWidth"]) {
+        [self setValue:@YES forKey:@"containerWidth"];
+    }
+    else {
+        [super setNilValueForKey:key];
+    }
+}
+
 - (void)setContentSize:(CGSize)contentSize
 {
     [super setContentSize:contentSize];
-    _clippingSprite.clippingRegion = CGRectMake(0, 0, contentSize.width, contentSize.height);
+    self.clippingSprite.clippingRegion = CGRectMake(0, 0, contentSize.width, contentSize.height);
 }
 
 - (CGFloat)scrollableDistanceHorizontal

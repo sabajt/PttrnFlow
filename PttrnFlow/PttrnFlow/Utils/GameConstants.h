@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
 
 #define IS_WIDESCREEN ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
@@ -21,6 +22,7 @@ typedef enum
 } kDirection;
 
 FOUNDATION_EXPORT CGFloat const kSizeGridUnit;
+FOUNDATION_EXPORT ccTime const kTransitionDuration;
 
 FOUNDATION_EXPORT NSString *const kNotificationRemoveTickReponder;
 FOUNDATION_EXPORT NSString *const kNotificationStartPan;

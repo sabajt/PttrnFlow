@@ -24,12 +24,15 @@ static CGFloat const kRowHeight = 44;
 @interface SequenceUILayer ()
 
 @property (assign) int steps;
+@property (assign) BOOL menuOpen;
 
 @property (weak, nonatomic) TickDispatcher *tickDispatcher;
-@property (weak, nonatomic) TickHitChart *hitChart;
+
 @property (weak, nonatomic) CCSpriteBatchNode *uiBatchNode;
-@property (weak, nonatomic) CCSprite *controlBar;
+
 @property (weak, nonatomic) PanSprite *panSprite;
+@property (weak, nonatomic) CCSprite *controlBar;
+@property (weak, nonatomic) TickHitChart *hitChart;
 
 @end
 
@@ -73,13 +76,18 @@ static CGFloat const kRowHeight = 44;
         playButton.position = ccp((5 * buttonSize.width) / 2, yMidRow1);
         
         // hamburger button (drop down menu) top right
-        CCSprite *hamburgerOff = [CCSprite spriteWithSpriteFrameName:@"hamburger_off.png"];
-        CCSprite *hamburgerOn = [CCSprite spriteWithSpriteFrameName:@"hamburger_on.png"];
-        CCMenuItemSprite *hamburgerButton = [[CCMenuItemSprite alloc] initWithNormalSprite:hamburgerOff selectedSprite:hamburgerOn disabledSprite:nil target:self selector:@selector(hamburgerButtonPressed:)];
-        hamburgerButton.position = ccp((7 * buttonSize.width) / 2, yMidRow1);
+        CCSprite *hamburgerOff1 = [CCSprite spriteWithSpriteFrameName:@"hamburger_off.png"];
+        CCSprite *hamburgerOn1 = [CCSprite spriteWithSpriteFrameName:@"hamburger_on.png"];
+        CCMenuItemSprite *hamburgerOffItem = [CCMenuItemSprite itemWithNormalSprite:hamburgerOff1 selectedSprite:hamburgerOn1];
+        
+        CCSprite *hamburgerOff2 = [CCSprite spriteWithSpriteFrameName:@"hamburger_off.png"];
+        CCSprite *hamburgerOn2 = [CCSprite spriteWithSpriteFrameName:@"hamburger_on.png"];
+        CCMenuItemSprite *hamburgerOnItem = [CCMenuItemSprite itemWithNormalSprite:hamburgerOn2 selectedSprite:hamburgerOff2];
+        CCMenuItemToggle *hamburgerToggle = [CCMenuItemToggle itemWithTarget:self selector:@selector(hamburgerButtonPressed:) items:hamburgerOffItem, hamburgerOnItem, nil];
+        hamburgerToggle.position = ccp((7 * buttonSize.width) / 2, yMidRow1);
         
         // buttons must be added to a CCMenu to work
-        CCMenu *menu = [CCMenu menuWithItems:exitButton, speakerButton, playButton, hamburgerButton, nil];
+        CCMenu *menu = [CCMenu menuWithItems:exitButton, speakerButton, playButton, hamburgerToggle, nil];
         menu.position = ccp(0, 0);
         [self addChild:menu];
         
@@ -96,7 +104,7 @@ static CGFloat const kRowHeight = 44;
         hitChart.position = ccp(hitChart.contentSize.width / 2, hitChart.contentSize.height / 2);
         
         // pan sprite
-        CGFloat panNodeWidth = MIN(steps, kMaxControlLengthCompact) * controlUnitSize.width;
+        CGFloat panNodeWidth = MIN(steps, kMaxControlLengthFull) * controlUnitSize.width;
         CGSize panNodeSize = CGSizeMake(panNodeWidth, 2 * controlUnitSize.height);
         CGSize scrollingContainerSize = CGSizeMake(steps * controlUnitSize.width, panNodeSize.height);
         CGPoint panNodeOrigin = ccp(0, controlBarBottom);
@@ -110,16 +118,12 @@ static CGFloat const kRowHeight = 44;
         CCSprite *controlBar = [CCSprite spriteWithSpriteFrameName:@"control_bar.png"];
         _controlBar = controlBar;
         controlBar.anchorPoint = ccp(0, 0);
-        [self configureControlsCompact:NO animated:NO];
         [uiBatch addChild:controlBar];
         
+        // size and position the pan sprite and control bar
+        [self configureControlsCompact:NO animated:NO];
+        _menuOpen = NO;
         
-        
-//        CCSprite *controlBarRightEdge = [CCSprite spriteWithSpriteFrameName:@"controlbar_right_edge.png"];
-//        CCSprite *controlBarBottom = [CCSprite rectSpriteWithSize:CGSizeMake(, <#CGFloat height#>) color:<#(ccColor3B)#>]
-        
-        
-//
 //        // drag items
 //        int i = 0;
 //        for (NSNumber *item in dragItems) {
@@ -148,22 +152,28 @@ static CGFloat const kRowHeight = 44;
         unitWidth = MIN(self.steps, kMaxControlLengthFull);
     }
     
-    // control bar offset
+    // control bar
     CGFloat xOffset = -(kMaxControlLengthFull - unitWidth) * kControlStepWidth;
     if (xOffset < 0){
         xOffset -= (self.controlBar.contentSize.width - self.contentSize.width);
     }
+    CGPoint controlBarPos = ccp(xOffset, self.contentSize.height - (3 * kRowHeight));
     
-    // pan node size
+    // pan sprite
     CGFloat panNodeWidth = unitWidth * kControlStepWidth;
-    CGSize panNodeSize = CGSizeMake(panNodeWidth, 2 * kRowHeight);
     
+    // animate
     if (animated) {
+        CCMoveTo *moveControlBar = [CCMoveTo actionWithDuration:kTransitionDuration position:controlBarPos];
+        CCActionTween *changeWidth = [CCActionTween actionWithDuration:kTransitionDuration key:@"containerWidth" from:self.panSprite.contentSize.width to:panNodeWidth];
         
+        [self.controlBar runAction:moveControlBar];
+        [self.panSprite runAction:changeWidth];
     }
+    // jump to
     else {
-        self.controlBar.position = ccp(xOffset, self.contentSize.height - (3 * kRowHeight));
-        self.panSprite.contentSize = panNodeSize;
+        self.controlBar.position = controlBarPos;
+        self.panSprite.containerWidth = panNodeWidth;
     }
 }
 
@@ -185,7 +195,9 @@ static CGFloat const kRowHeight = 44;
 
 - (void)hamburgerButtonPressed:(id)sender
 {
+    self.menuOpen = !self.menuOpen;
+    [self configureControlsCompact:self.menuOpen animated:YES];
 }
-                                             
+
 
 @end

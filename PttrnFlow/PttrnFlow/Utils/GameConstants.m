@@ -9,6 +9,7 @@
 #import "GameConstants.h"
 
 CGFloat const kSizeGridUnit = 200;
+ccTime const kTransitionDuration = 0.15;
 
 NSString *const kNotificationRemoveTickReponder = @"removeTickResponder";
 NSString *const kNotificationStartPan = @"startPan";
