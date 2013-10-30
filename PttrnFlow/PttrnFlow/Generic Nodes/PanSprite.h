@@ -28,5 +28,6 @@ typedef NS_ENUM(NSInteger, ScrollDirection)
 @property (assign) CGFloat containerWidth;
 
 - (id)initWithSpriteFrameName:(NSString *)spriteFrameName contentSize:(CGSize)size scrollingSize:(CGSize)scrollingSize scrollSprites:(NSArray *)scrollSprites;
+- (CGFloat)scrollSurfaceRight;
 
 @end

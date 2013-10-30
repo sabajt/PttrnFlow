@@ -33,6 +33,7 @@ static CGFloat const kRowHeight = 44;
 @property (weak, nonatomic) PanSprite *panSprite;
 @property (weak, nonatomic) CCSprite *controlBar;
 @property (weak, nonatomic) TickHitChart *hitChart;
+@property (weak, nonatomic) TickerControl *tickerControl;
 
 @end
 
@@ -95,6 +96,7 @@ static CGFloat const kRowHeight = 44;
         int steps = (tickDispatcher.sequenceLength / 4);
         self.steps = steps;
         TickerControl *tickerControl = [[TickerControl alloc] initWithSpriteFrameName:@"clear_rect_uilayer.png" steps:steps unitSize:controlUnitSize];
+        _tickerControl = tickerControl;
         tickerControl.tickerControlDelegate = tickDispatcher;
         tickerControl.position = ccp(tickerControl.contentSize.width / 2, (3 * tickerControl.contentSize.height) / 2);
         
@@ -164,16 +166,39 @@ static CGFloat const kRowHeight = 44;
     
     // animate
     if (animated) {
+        // control bar
         CCMoveTo *moveControlBar = [CCMoveTo actionWithDuration:kTransitionDuration position:controlBarPos];
+        CCEaseSineOut *easeControlBar = [CCEaseSineOut actionWithAction:moveControlBar];
+        [self.controlBar runAction:easeControlBar];
+
+        // pan sprite with completion
         CCActionTween *changeWidth = [CCActionTween actionWithDuration:kTransitionDuration key:@"containerWidth" from:self.panSprite.contentSize.width to:panNodeWidth];
+        CCEaseSineOut *easePanSprite = [CCEaseSineOut actionWithAction:changeWidth];
+        CCCallBlock *completion = [CCCallBlock actionWithBlock:^{
+            [self unscheduleUpdate];
+        }];
+        CCSequence *panSequence = [CCSequence actionWithArray:@[easePanSprite, completion]];
+        [self.panSprite runAction:panSequence];
         
-        [self.controlBar runAction:moveControlBar];
-        [self.panSprite runAction:changeWidth];
+        // update callback for pan node interior tracking
+        [self scheduleUpdate];
     }
     // jump to
     else {
         self.controlBar.position = controlBarPos;
         self.panSprite.containerWidth = panNodeWidth;
+    }
+}
+
+// scheduled when menu is opening
+- (void)update:(ccTime)deltaTime
+{
+    if (!self.menuOpen) {
+        // track and move pan sprite's scroll surface if needed
+        if (self.panSprite.containerWidth > [self.panSprite scrollSurfaceRight]) {
+            CGFloat dx = self.panSprite.containerWidth - [self.panSprite scrollSurfaceRight];
+            self.panSprite.scrollSurface.position = ccp(self.panSprite.scrollSurface.position.x + dx, self.panSprite.scrollSurface.position.y);
+        }
     }
 }
 

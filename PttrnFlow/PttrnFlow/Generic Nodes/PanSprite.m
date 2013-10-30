@@ -87,6 +87,11 @@
     return (self.scrollSurface.contentSize.height - self.contentSize.height);
 }
 
+- (CGFloat)scrollSurfaceRight
+{
+    return (self.scrollSurface.position.x + self.scrollSurface.contentSize.width);
+}
+
 - (void)scrollWithTranslation:(CGPoint)translation
 {
     // correct for one-way movement if needed

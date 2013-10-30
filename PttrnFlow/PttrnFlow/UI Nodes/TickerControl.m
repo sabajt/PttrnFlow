@@ -82,20 +82,20 @@
     [self positionThumb:self.currentIndex];
 }
 
-#pragma mark -
-
-- (BOOL)shouldStealTouch
-{
-    return self.isReceivingTouch;
-}
-
-#pragma mark - TouchNodeDelegate
+#pragma mark - TouchSprite
 
 - (BOOL)containsTouch:(UITouch *)touch
 {
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     CGRect localBox = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
     return CGRectContainsPoint(localBox, touchPosition);
+}
+
+#pragma mark - ScrollSpriteDelegate
+
+- (BOOL)shouldStealTouch
+{
+    return self.isReceivingTouch;
 }
 
 #pragma mark CCNode SceneManagement
