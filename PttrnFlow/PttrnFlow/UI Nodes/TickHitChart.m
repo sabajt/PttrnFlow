@@ -21,7 +21,7 @@ static CGFloat const kHitChartHeight = 24;
 
 @end
 
-
+// limitations: can't be used with batch node
 @implementation TickHitChart
 
 - (id)initWithSpriteFrameName:(NSString *)spriteFrameName steps:(int)steps unitSize:(CGSize)unitSize
@@ -36,10 +36,10 @@ static CGFloat const kHitChartHeight = 24;
         self.hitCells = [NSMutableArray array];
 
         for (int i = 0; i < steps; i++) {
-            CCSprite *spr = [CCSprite spriteWithSpriteFrameName:@"chartbox_off.png"];
-            spr.position = ccp((i * unitSize.width + (unitSize.width / 2)), unitSize.height / 2);
-            self.hitCells[i] = spr;
-            [self addChild:spr];
+            CCLabelTTF *numberLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", i + 1] fontName:@"Arial Rounded MT Bold" fontSize:12];
+            numberLabel.position = ccp((i * unitSize.width + (unitSize.width / 2)), unitSize.height / 2);
+            self.hitCells[i] = numberLabel;
+            [self addChild:numberLabel];
         }
     }
     return self;

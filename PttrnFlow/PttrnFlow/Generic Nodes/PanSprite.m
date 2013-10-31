@@ -143,6 +143,16 @@
     return YES;
 }
 
+- (void)blockScrollNodesFromReceivingTouch:(BOOL)shouldBlock
+{
+    for (id child in self.scrollSurface.children) {
+        if ([child conformsToProtocol:@protocol(ScrollSpriteDelegate)]) {
+            id<ScrollSpriteDelegate> delegate = (id<ScrollSpriteDelegate>)child;
+            [delegate blockTouch:shouldBlock];
+        }
+    }
+}
+
 #pragma mark CCTargetedTouchDelegate
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
@@ -151,6 +161,9 @@
         self.lastTouchLocation = [self convertTouchToNodeSpace:touch];
         return YES;
     }
+    // if touch is outside of our bounds, don't pass touch to scrolling children
+    [self blockScrollNodesFromReceivingTouch:YES];
+    
     return NO;
 }
 
@@ -165,21 +178,21 @@
     }
 }
 
-//- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-//{
-//    if (self.longPressDelay > 0) {
-//        [self unschedule:@selector(longPress:)];
-//    }
-//    self.isReceivingTouch = NO;
-//}
-//
-//- (void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
-//{
-//    if (self.longPressDelay > 0) {
-//        [self unschedule:@selector(longPress:)];
-//    }
-//    self.isReceivingTouch = NO;
-//}
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    [super ccTouchEnded:touch withEvent:event];
+    
+    // unblock scrolling children from receiving touches
+    [self blockScrollNodesFromReceivingTouch:NO];
+}
+
+- (void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    [super ccTouchCancelled:touch withEvent:event];
+    
+    // unblock scrolling children from receiving touches
+    [self blockScrollNodesFromReceivingTouch:NO];
+}
 
 #pragma mark - TouchNodeDelegate
 

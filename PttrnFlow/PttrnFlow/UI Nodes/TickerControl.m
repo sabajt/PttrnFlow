@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) CCSprite *thumbSprite;
 @property (assign) CGSize unitSize;
-@property (assign) BOOL isReceivingTouches;
+@property (assign) BOOL touchesBlocked;
 
 @end
 
@@ -98,6 +98,11 @@
     return self.isReceivingTouch;
 }
 
+- (void)blockTouch:(BOOL)blockTouch
+{
+    self.touchesBlocked = blockTouch;
+}
+
 #pragma mark CCNode SceneManagement
 
 - (void)onExit
@@ -110,8 +115,7 @@
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if ([super ccTouchBegan:touch withEvent:event]) {
-        self.isReceivingTouch = YES;
+    if (!self.touchesBlocked && [super ccTouchBegan:touch withEvent:event]) {
         [self handleTouch:touch];
         return YES;
     }
@@ -130,7 +134,6 @@
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [super ccTouchEnded:touch withEvent:event];
-    self.isReceivingTouch = NO;
     [self.tickerControlDelegate tickerControlTouchUp];
 }
 

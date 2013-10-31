@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, ScrollDirection)
 @protocol ScrollSpriteDelegate <NSObject>
 
 - (BOOL)shouldStealTouch;
+- (void)blockTouch:(BOOL)blockTouch;
 
 @end
 
