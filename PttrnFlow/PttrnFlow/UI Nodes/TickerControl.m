@@ -126,7 +126,7 @@
 {
     [super ccTouchMoved:touch withEvent:event];
 
-    if (self.currentIndex != [self nearestIndex:touch]) {
+    if (!self.touchesBlocked && (self.currentIndex != [self nearestIndex:touch])) {
         [self handleTouch:touch];
     }
 }

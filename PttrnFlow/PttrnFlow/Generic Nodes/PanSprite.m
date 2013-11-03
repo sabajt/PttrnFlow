@@ -170,11 +170,18 @@
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [super ccTouchMoved:touch withEvent:event];
-    if ([self containsTouch:touch] && [self shouldPan:self.children]) {
-        CGPoint touchLocation = [self convertTouchToNodeSpace:touch];
-        CGPoint translation = ccp(touchLocation.x - self.lastTouchLocation.x, touchLocation.y - self.lastTouchLocation.y);
-        [self scrollWithTranslation:translation];
-        self.lastTouchLocation = touchLocation;
+    if ([self containsTouch:touch]) {
+        [self blockScrollNodesFromReceivingTouch:NO];
+        
+        if ([self shouldPan:self.children]) {
+            CGPoint touchLocation = [self convertTouchToNodeSpace:touch];
+            CGPoint translation = ccp(touchLocation.x - self.lastTouchLocation.x, touchLocation.y - self.lastTouchLocation.y);
+            [self scrollWithTranslation:translation];
+            self.lastTouchLocation = touchLocation;
+        }
+    }
+    else {
+        [self blockScrollNodesFromReceivingTouch:YES];
     }
 }
 
