@@ -29,6 +29,7 @@ FOUNDATION_EXPORT NSString *const kNotificationStartPan;
 FOUNDATION_EXPORT NSString *const kNotificationLockPan;
 FOUNDATION_EXPORT NSString *const kNotificationUnlockPan;
 
+FOUNDATION_EXPORT NSString *const kClearRectUILayer;
 
 @interface GameConstants : NSObject
 

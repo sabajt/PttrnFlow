@@ -16,6 +16,8 @@ NSString *const kNotificationStartPan = @"startPan";
 NSString *const kNotificationLockPan = @"lockPan";
 NSString *const kNotificationUnlockPan = @"unlockPan";
 
+NSString *const kClearRectUILayer = @"clear_rect_uilayer.png";
+
 @implementation GameConstants
 
 @end

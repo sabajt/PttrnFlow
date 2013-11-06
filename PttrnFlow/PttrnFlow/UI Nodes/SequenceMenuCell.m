@@ -23,7 +23,7 @@
 -(id) initWithIndex:(int)index
 {
     static CGFloat width = 200;
-    static CGFloat height = 50;
+    static CGFloat height = 20;
 
     self = [super init];
     if (self) {

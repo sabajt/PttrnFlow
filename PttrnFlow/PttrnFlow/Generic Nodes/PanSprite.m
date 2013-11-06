@@ -79,6 +79,7 @@
 
 - (CGFloat)scrollableDistanceHorizontal
 {
+    NSLog(@"scroll surface content size: %@, content size: %@", NSStringFromCGSize(self.scrollSurface.contentSize), NSStringFromCGSize(self.contentSize));
     return (self.scrollSurface.contentSize.width - self.contentSize.width);
 }
 
@@ -110,6 +111,7 @@
     self.scrollSurface.position = ccp(self.scrollSurface.position.x + correctedTranslation.x, self.scrollSurface.position.y + correctedTranslation.y);
     
     CGFloat leftScrollSurfaceEdge = -[self scrollableDistanceHorizontal];
+    NSLog(@"left scroll surface edge: %f", leftScrollSurfaceEdge);
     if (self.scrollSurface.position.x < leftScrollSurfaceEdge) {
         self.scrollSurface.position = ccp(leftScrollSurfaceEdge, self.scrollSurface.position.y);
     }

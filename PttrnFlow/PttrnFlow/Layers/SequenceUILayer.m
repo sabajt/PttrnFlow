@@ -15,11 +15,14 @@
 #import "TextureUtils.h"
 #import "PanSprite.h"
 #import "ColorUtils.h"
+#import "TileSprite.h"
 
 static int const kMaxControlLengthFull = 8;
 static int const kMaxControlLengthCompact = 6;
 static CGFloat const kControlStepWidth = 40;
 static CGFloat const kRowHeight = 44;
+static CGFloat const kButtonFramePadding = 4;
+static CGFloat const kLineWidth = 2;
 
 @interface SequenceUILayer ()
 
@@ -95,22 +98,26 @@ static CGFloat const kRowHeight = 44;
         // ticker control
         int steps = (tickDispatcher.sequenceLength / 4);
         self.steps = steps;
-        TickerControl *tickerControl = [[TickerControl alloc] initWithSpriteFrameName:@"clear_rect_uilayer.png" steps:steps unitSize:controlUnitSize];
+        TickerControl *tickerControl = [[TickerControl alloc] initWithSpriteFrameName:kClearRectUILayer steps:steps unitSize:controlUnitSize];
         _tickerControl = tickerControl;
         tickerControl.tickerControlDelegate = tickDispatcher;
         tickerControl.position = ccp(tickerControl.contentSize.width / 2, (3 * tickerControl.contentSize.height) / 2);
         
         // hit chart
-        TickHitChart *hitChart = [[TickHitChart alloc] initWithSpriteFrameName:@"clear_rect_uilayer.png" steps:steps unitSize:controlUnitSize];
+        TickHitChart *hitChart = [[TickHitChart alloc] initWithSpriteFrameName:kClearRectUILayer steps:steps unitSize:controlUnitSize];
         _hitChart = hitChart;
         hitChart.position = ccp(hitChart.contentSize.width / 2, hitChart.contentSize.height / 2);
+        
+        // dotted line separator
+        TileSprite *dotSeparator = [[TileSprite alloc] initWithTileFrameName:@"dotted_line_40_2.png" repeatHorizonal:steps repeatVertical:1];
+        dotSeparator.position = ccp(dotSeparator.contentSize.width / 2, controlUnitSize.height);
         
         // pan sprite
         CGFloat panNodeWidth = MIN(steps, kMaxControlLengthFull) * controlUnitSize.width;
         CGSize panNodeSize = CGSizeMake(panNodeWidth, 2 * controlUnitSize.height);
         CGSize scrollingContainerSize = CGSizeMake(steps * controlUnitSize.width, panNodeSize.height);
         CGPoint panNodeOrigin = ccp(0, controlBarBottom);
-        PanSprite *panSprite = [[PanSprite alloc] initWithSpriteFrameName:@"clear_rect_uilayer.png" contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:@[hitChart, tickerControl]];
+        PanSprite *panSprite = [[PanSprite alloc] initWithSpriteFrameName:kClearRectUILayer contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:@[hitChart, tickerControl, dotSeparator]];
         _panSprite = panSprite;
         panSprite.scrollDirection = ScrollDirectionHorizontal;
         panSprite.position = panNodeOrigin;
@@ -158,11 +165,23 @@ static CGFloat const kRowHeight = 44;
     CGFloat xOffset = -(kMaxControlLengthFull - unitWidth) * kControlStepWidth;
     if (xOffset < 0){
         xOffset -= (self.controlBar.contentSize.width - self.contentSize.width);
+        if (unitWidth == kMaxControlLengthCompact) {
+            xOffset -= kButtonFramePadding;
+        }
     }
     CGPoint controlBarPos = ccp(xOffset, self.contentSize.height - (3 * kRowHeight));
     
     // pan sprite
-    CGFloat panNodeWidth = unitWidth * kControlStepWidth;
+    CGFloat panSpriteWidth;
+    if ( xOffset < 0) {
+        panSpriteWidth = (unitWidth * kControlStepWidth);
+        if (unitWidth == kMaxControlLengthCompact) {
+            panSpriteWidth -= (kButtonFramePadding + kLineWidth);
+        }
+    }
+    else {
+        panSpriteWidth = (unitWidth * kControlStepWidth);
+    }
     
     // animate
     if (animated) {
@@ -172,7 +191,7 @@ static CGFloat const kRowHeight = 44;
         [self.controlBar runAction:easeControlBar];
 
         // pan sprite with completion
-        CCActionTween *changeWidth = [CCActionTween actionWithDuration:kTransitionDuration key:@"containerWidth" from:self.panSprite.contentSize.width to:panNodeWidth];
+        CCActionTween *changeWidth = [CCActionTween actionWithDuration:kTransitionDuration key:@"containerWidth" from:self.panSprite.contentSize.width to:panSpriteWidth];
         CCEaseSineOut *easePanSprite = [CCEaseSineOut actionWithAction:changeWidth];
         CCCallBlock *completion = [CCCallBlock actionWithBlock:^{
             [self unscheduleUpdate];
@@ -186,7 +205,7 @@ static CGFloat const kRowHeight = 44;
     // jump to
     else {
         self.controlBar.position = controlBarPos;
-        self.panSprite.containerWidth = panNodeWidth;
+        self.panSprite.containerWidth = panSpriteWidth;
     }
 }
 

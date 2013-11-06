@@ -1,300 +1,52 @@
 {
-"tick_1" : {
-	"sub_1" : [ 
-		{
-			"event_type" : "synth",
-			"synth_type" : "osc",
-			"midi_value" : "50",
-			"channel" : "0",
-		},
-	],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_2" : {
-	"sub_1" : [ 
-		{
-			"event_type" : "synth",
-			"synth_type" : "osc",
-			"midi_value" : "52",
-			"channel" : "0",
-		},
-	],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_3" : {
-	"sub_1" : [ 
-		{
-			"event_type" : "synth",
-			"synth_type" : "osc",
-			"midi_value" : "54",
-			"channel" : "0"
-		},
-	],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_4" : {
-	"sub_1" : [ 
-		{
-			"event_type" : "audio_stop",
-			"channel" : "0"
-		},
-	],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_5" : {
-	"sub_1" : [ 
-		{
-			"event_type" : "synth",
-			"synth_type" : "osc",
-			"midi_value" : "54",
-			"channel" : "0",
-		},
-	],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_6" : {
-	"sub_1" : [ 
-		{
-			"event_type" : "audio_stop",
-			"channel" : "0",
-		},
-	],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_7" : {
-	"sub_1" : [ 
-		{
-			"event_type" : "synth",
-			"synth_type" : "osc",
-			"midi_value" : "52",
-			"channel" : "0"
-		},
-	],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_8" : {
-	"sub_1" : [ 
-		{
-			"event_type" : "synth",
-			"synth_type" : "osc",
-			"midi_value" : "50",
-			"channel" : "0"
-		},
-	],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_9" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_10" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_11" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_12" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_13" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_14" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_15" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_16" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_17" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_18" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_19" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_20" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_21" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_22" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_9" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_23" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_24" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_25" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_26" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_27" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_28" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_29" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_30" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_31" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_32" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_33" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_34" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_35" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_36" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_37" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_38" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_39" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
-"tick_40" : {
-	"sub_1" : [],
-	"sub_2" : [],
-	"sub_3" : [],
-	"sub_4" : []
-},
+    "tick_1" : {
+        "sub_1" : [
+                   {
+                   "event_type" : "synth",
+                   "synth_type" : "osc",
+                   "midi_value" : "51",
+                   "channel" : "0",
+                   },
+                   {
+                   "event_type" : "synth",
+                   "synth_type" : "phasor",
+                   "midi_value" : "55",
+                   "channel" : "1",
+                   },
+                   {
+                   "event_type" : "synth",
+                   "synth_type" : "phasor",
+                   "midi_value" : "59",
+                   "channel" : "2",
+                   },
+                   ],
+        "sub_2" : [],
+        "sub_3" : [],
+        "sub_4" : []
+    },
+    "tick_2" : {
+        "sub_1" : [
+                   {
+                   "event_type" : "synth",
+                   "synth_type" : "osc",
+                   "midi_value" : "51",
+                   "channel" : "0",
+                   },
+                   {
+                   "event_type" : "synth",
+                   "synth_type" : "phasor",
+                   "midi_value" : "55",
+                   "channel" : "1",
+                   },
+                   {
+                   "event_type" : "synth",
+                   "synth_type" : "phasor",
+                   "midi_value" : "58",
+                   "channel" : "2",
+                   },
+                   ],
+        "sub_2" : [],
+        "sub_3" : [],
+        "sub_4" : []
+    }
 }
