@@ -20,7 +20,6 @@
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    
 	// Create an CCGLView with a RGB565 color buffer, and a depth buffer of 0-bits
 	CCGLView *glView = [CCGLView viewWithFrame:[window_ bounds]
 								   pixelFormat:kEAGLColorFormatRGB565	//kEAGLColorFormatRGBA8
@@ -35,7 +34,7 @@
 	director_.wantsFullScreenLayout = YES;
     
 	// Display FSP and SPF
-	[director_ setDisplayStats:YES];
+	[director_ setDisplayStats:NO];
     
 	// set FPS at 60
 	[director_ setAnimationInterval:1.0/60];
@@ -76,6 +75,8 @@
     
     // ********************
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
+    
+    [application setStatusBarStyle:UIStatusBarStyleLightContent];
     
     // load textures (old method)
     [TextureUtils loadTextures];

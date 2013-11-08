@@ -21,14 +21,20 @@ typedef enum
     kDirectionThrough,
 } kDirection;
 
+// size
 FOUNDATION_EXPORT CGFloat const kSizeGridUnit;
+FOUNDATION_EXPORT CGFloat const kStatusBarHeight;
+
+// duration
 FOUNDATION_EXPORT ccTime const kTransitionDuration;
 
+// notifications
 FOUNDATION_EXPORT NSString *const kNotificationRemoveTickReponder;
 FOUNDATION_EXPORT NSString *const kNotificationStartPan;
 FOUNDATION_EXPORT NSString *const kNotificationLockPan;
 FOUNDATION_EXPORT NSString *const kNotificationUnlockPan;
 
+// frame names
 FOUNDATION_EXPORT NSString *const kClearRectUILayer;
 
 @interface GameConstants : NSObject
