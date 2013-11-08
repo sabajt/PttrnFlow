@@ -142,17 +142,20 @@ static CGFloat const kLineWidth = 2;
         CCSprite *itemMenuBottom = [CCSprite spriteWithSpriteFrameName:@"item_menu_bottom.png"];
         _itemMenuBottomCap = itemMenuBottom;
         itemMenuBottom.anchorPoint = ccp(0, 0);
+        itemMenuBottom.position = ccp(self.contentSize.width, self.controlBarBottom);
         [uiBatch addChild:itemMenuBottom];
-        
-        CCSprite *itemMenuTop = [CCSprite spriteWithSpriteFrameName:@"item_menu_top.png"];
-        _itemMenuTopCap = itemMenuTop;
-        itemMenuTop.anchorPoint = ccp(0, 0);
-        [uiBatch addChild:itemMenuTop];
         
         TileSprite *itemMenuLeft = [[TileSprite alloc] initWithTileFrameName:@"dotted_line_2_80.png" repeatHorizonal:1 repeatVertical:dragItems.count];
         _itemMenuLeftSeparator = itemMenuLeft;
         itemMenuLeft.anchorPoint = ccp(0, 0);
+        itemMenuLeft.position = ccp(self.contentSize.width, self.itemMenuBottomCap.position.y + self.itemMenuBottomCap.contentSize.height);
         [uiBatch addChild:itemMenuLeft];
+        
+        CCSprite *itemMenuTop = [CCSprite spriteWithSpriteFrameName:@"item_menu_top.png"];
+        _itemMenuTopCap = itemMenuTop;
+        itemMenuTop.anchorPoint = ccp(0, 0);
+        itemMenuTop.position = ccp(self.contentSize.width, self.itemMenuLeftSeparator.position.y + self.itemMenuLeftSeparator.contentSize.height);
+        [uiBatch addChild:itemMenuTop];
         
         // size and position the pan sprite and control bar
         [self configureItemMenuOpened:NO animated:NO];
@@ -207,6 +210,11 @@ static CGFloat const kLineWidth = 2;
         panSpriteWidth = (unitWidth * kControlStepWidth);
     }
     
+    // item menu
+    CGPoint itemMenuBottomCapPos = ccp(itemMenuLeft, self.controlBarBottom);
+    CGPoint itemMenuLeftSeparatorPos = ccp(itemMenuLeft, self.itemMenuBottomCap.position.y + self.itemMenuBottomCap.contentSize.height);
+    CGPoint itemMenuTopCapPos = ccp(itemMenuLeft, self.itemMenuLeftSeparator.position.y + self.itemMenuLeftSeparator.contentSize.height);
+    
     // animate
     if (animated) {
         // control bar
@@ -224,10 +232,17 @@ static CGFloat const kLineWidth = 2;
         [self.panSprite runAction:panSequence];
         
         // item menu
-        // TODO: animate
-        self.itemMenuBottomCap.position = ccp(itemMenuLeft, self.controlBarBottom);
-        self.itemMenuLeftSeparator.position = ccp(itemMenuLeft, self.itemMenuBottomCap.position.y + self.itemMenuBottomCap.contentSize.height);
-        self.itemMenuTopCap.position = ccp(itemMenuLeft, self.itemMenuLeftSeparator.position.y + self.itemMenuLeftSeparator.contentSize.height);
+        CCMoveTo *moveItemMenuBottomCap = [CCMoveTo actionWithDuration:kTransitionDuration position:itemMenuBottomCapPos];
+        CCEaseSineOut *easeItemMenuBottomCap = [CCEaseSineOut actionWithAction:moveItemMenuBottomCap];
+        [self.itemMenuBottomCap runAction:easeItemMenuBottomCap];
+        
+        CCMoveTo *moveItemMenuLeftSeparator = [CCMoveTo actionWithDuration:kTransitionDuration position:itemMenuLeftSeparatorPos];
+        CCEaseSineOut *easeItemMenuLeftSeparator = [CCEaseSineOut actionWithAction:moveItemMenuLeftSeparator];
+        [self.itemMenuLeftSeparator runAction:easeItemMenuLeftSeparator];
+        
+        CCMoveTo *moveItemMenuTopCap = [CCMoveTo actionWithDuration:kTransitionDuration position:itemMenuTopCapPos];
+        CCEaseSineOut *easeItemMenuTopCap = [CCEaseSineOut actionWithAction:moveItemMenuTopCap];
+        [self.itemMenuTopCap runAction:easeItemMenuTopCap];
         
         // update callback for pan node interior tracking
         [self scheduleUpdate];
@@ -236,9 +251,9 @@ static CGFloat const kLineWidth = 2;
     else {
         self.controlBar.position = controlBarPos;
         self.panSprite.containerWidth = panSpriteWidth;
-        self.itemMenuBottomCap.position = ccp(itemMenuLeft, self.controlBarBottom);
-        self.itemMenuLeftSeparator.position = ccp(itemMenuLeft, self.itemMenuBottomCap.position.y + self.itemMenuBottomCap.contentSize.height);
-        self.itemMenuTopCap.position = ccp(itemMenuLeft, self.itemMenuLeftSeparator.position.y + self.itemMenuLeftSeparator.contentSize.height);
+        self.itemMenuBottomCap.position = itemMenuBottomCapPos;
+        self.itemMenuLeftSeparator.position = itemMenuLeftSeparatorPos;
+        self.itemMenuTopCap.position = itemMenuTopCapPos;
     }
 }
 
