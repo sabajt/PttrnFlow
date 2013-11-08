@@ -36,6 +36,9 @@ static CGFloat const kLineWidth = 2;
 @property (weak, nonatomic) CCSprite *controlBar;
 @property (weak, nonatomic) TickHitChart *hitChart;
 @property (weak, nonatomic) TickerControl *tickerControl;
+@property (weak, nonatomic) CCSprite *itemMenuTopCap;
+@property (weak, nonatomic) CCSprite *itemMenuBottomCap;
+@property (weak, nonatomic) TileSprite *itemMenuLeftSeparator;
 
 @end
 
@@ -135,8 +138,24 @@ static CGFloat const kLineWidth = 2;
         controlBar.anchorPoint = ccp(0, 0);
         [uiBatch addChild:controlBar];
         
+        // item menu
+        CCSprite *itemMenuBottom = [CCSprite spriteWithSpriteFrameName:@"item_menu_bottom.png"];
+        _itemMenuBottomCap = itemMenuBottom;
+        itemMenuBottom.anchorPoint = ccp(0, 0);
+        [uiBatch addChild:itemMenuBottom];
+        
+        CCSprite *itemMenuTop = [CCSprite spriteWithSpriteFrameName:@"item_menu_top.png"];
+        _itemMenuTopCap = itemMenuTop;
+        itemMenuTop.anchorPoint = ccp(0, 0);
+        [uiBatch addChild:itemMenuTop];
+        
+        TileSprite *itemMenuLeft = [[TileSprite alloc] initWithTileFrameName:@"dotted_line_2_80.png" repeatHorizonal:1 repeatVertical:dragItems.count];
+        _itemMenuLeftSeparator = itemMenuLeft;
+        itemMenuLeft.anchorPoint = ccp(0, 0);
+        [uiBatch addChild:itemMenuLeft];
+        
         // size and position the pan sprite and control bar
-        [self configureControlsCompact:NO animated:NO];
+        [self configureItemMenuOpened:NO animated:NO];
         _menuOpen = NO;
         
 //        // drag items
@@ -157,14 +176,13 @@ static CGFloat const kLineWidth = 2;
     return self;
 }
 
-- (void)configureControlsCompact:(BOOL)compact animated:(BOOL)animated
+- (void)configureItemMenuOpened:(BOOL)opened animated:(BOOL)animated
 {
-    int unitWidth;
-    if (compact) {
+    int unitWidth = MIN(self.steps, kMaxControlLengthFull);
+    CGFloat itemMenuLeft = self.contentSize.width;
+    if (opened) {
         unitWidth = MIN(self.steps, kMaxControlLengthCompact);
-    }
-    else {
-        unitWidth = MIN(self.steps, kMaxControlLengthFull);
+        itemMenuLeft = self.contentSize.width - self.itemMenuBottomCap.contentSize.width;
     }
     
     // control bar
@@ -205,6 +223,12 @@ static CGFloat const kLineWidth = 2;
         CCSequence *panSequence = [CCSequence actionWithArray:@[easePanSprite, completion]];
         [self.panSprite runAction:panSequence];
         
+        // item menu
+        // TODO: animate
+        self.itemMenuBottomCap.position = ccp(itemMenuLeft, self.controlBarBottom);
+        self.itemMenuLeftSeparator.position = ccp(itemMenuLeft, self.itemMenuBottomCap.position.y + self.itemMenuBottomCap.contentSize.height);
+        self.itemMenuTopCap.position = ccp(itemMenuLeft, self.itemMenuLeftSeparator.position.y + self.itemMenuLeftSeparator.contentSize.height);
+        
         // update callback for pan node interior tracking
         [self scheduleUpdate];
     }
@@ -212,6 +236,9 @@ static CGFloat const kLineWidth = 2;
     else {
         self.controlBar.position = controlBarPos;
         self.panSprite.containerWidth = panSpriteWidth;
+        self.itemMenuBottomCap.position = ccp(itemMenuLeft, self.controlBarBottom);
+        self.itemMenuLeftSeparator.position = ccp(itemMenuLeft, self.itemMenuBottomCap.position.y + self.itemMenuBottomCap.contentSize.height);
+        self.itemMenuTopCap.position = ccp(itemMenuLeft, self.itemMenuLeftSeparator.position.y + self.itemMenuLeftSeparator.contentSize.height);
     }
 }
 
@@ -246,7 +273,7 @@ static CGFloat const kLineWidth = 2;
 - (void)hamburgerButtonPressed:(id)sender
 {
     self.menuOpen = !self.menuOpen;
-    [self configureControlsCompact:self.menuOpen animated:YES];
+    [self configureItemMenuOpened:self.menuOpen animated:YES];
 }
 
 
