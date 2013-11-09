@@ -139,23 +139,23 @@ static CGFloat const kLineWidth = 2;
         [uiBatch addChild:controlBar];
         
         // item menu
-        CCSprite *itemMenuBottom = [CCSprite spriteWithSpriteFrameName:@"item_menu_bottom.png"];
-        _itemMenuBottomCap = itemMenuBottom;
-        itemMenuBottom.anchorPoint = ccp(0, 0);
-        itemMenuBottom.position = ccp(self.contentSize.width, self.controlBarBottom);
-        [uiBatch addChild:itemMenuBottom];
+        CCSprite *itemMenuBottomCap = [CCSprite spriteWithSpriteFrameName:@"item_menu_bottom.png"];
+        _itemMenuBottomCap = itemMenuBottomCap;
+        itemMenuBottomCap.anchorPoint = ccp(0, 0);
+        itemMenuBottomCap.position = ccp([self itemMenuLeftOnscreen:NO], self.controlBarBottom);
+        [uiBatch addChild:itemMenuBottomCap];
         
-        TileSprite *itemMenuLeft = [[TileSprite alloc] initWithTileFrameName:@"dotted_line_2_80.png" repeatHorizonal:1 repeatVertical:dragItems.count];
-        _itemMenuLeftSeparator = itemMenuLeft;
-        itemMenuLeft.anchorPoint = ccp(0, 0);
-        itemMenuLeft.position = ccp(self.contentSize.width, self.itemMenuBottomCap.position.y + self.itemMenuBottomCap.contentSize.height);
-        [uiBatch addChild:itemMenuLeft];
+        TileSprite *itemMenuLeftSeparator = [[TileSprite alloc] initWithTileFrameName:@"dotted_line_2_80.png" repeatHorizonal:1 repeatVertical:dragItems.count];
+        _itemMenuLeftSeparator = itemMenuLeftSeparator;
+        itemMenuLeftSeparator.anchorPoint = ccp(0, 0);
+        itemMenuLeftSeparator.position = ccp([self itemMenuLeftOnscreen:NO], self.itemMenuBottomCap.position.y + self.itemMenuBottomCap.contentSize.height);
+        [uiBatch addChild:itemMenuLeftSeparator];
         
-        CCSprite *itemMenuTop = [CCSprite spriteWithSpriteFrameName:@"item_menu_top.png"];
-        _itemMenuTopCap = itemMenuTop;
-        itemMenuTop.anchorPoint = ccp(0, 0);
-        itemMenuTop.position = ccp(self.contentSize.width, self.itemMenuLeftSeparator.position.y + self.itemMenuLeftSeparator.contentSize.height);
-        [uiBatch addChild:itemMenuTop];
+        CCSprite *itemMenuTopCap = [CCSprite spriteWithSpriteFrameName:@"item_menu_top.png"];
+        _itemMenuTopCap = itemMenuTopCap;
+        itemMenuTopCap.anchorPoint = ccp(0, 0);
+        itemMenuTopCap.position = ccp([self itemMenuLeftOnscreen:NO], self.itemMenuLeftSeparator.position.y + self.itemMenuLeftSeparator.contentSize.height);
+        [uiBatch addChild:itemMenuTopCap];
         
         // size and position the pan sprite and control bar
         [self configureItemMenuOpened:NO animated:NO];
@@ -179,13 +179,22 @@ static CGFloat const kLineWidth = 2;
     return self;
 }
 
+- (CGFloat)itemMenuLeftOnscreen:(BOOL)onscreen
+{
+    static CGFloat padding = 4;
+    if (onscreen) {
+        return self.contentSize.width - self.itemMenuBottomCap.contentSize.width;
+    }
+    return self.contentSize.width + (self.controlBar.contentSize.width - self.contentSize.width) + padding;
+}
+
 - (void)configureItemMenuOpened:(BOOL)opened animated:(BOOL)animated
 {
     int unitWidth = MIN(self.steps, kMaxControlLengthFull);
-    CGFloat itemMenuLeft = self.contentSize.width;
+    CGFloat itemMenuLeft = [self itemMenuLeftOnscreen:NO];
     if (opened) {
         unitWidth = MIN(self.steps, kMaxControlLengthCompact);
-        itemMenuLeft = self.contentSize.width - self.itemMenuBottomCap.contentSize.width;
+        itemMenuLeft = [self itemMenuLeftOnscreen:YES];
     }
     
     // control bar
