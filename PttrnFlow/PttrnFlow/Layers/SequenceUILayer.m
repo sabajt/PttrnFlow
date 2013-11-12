@@ -20,16 +20,16 @@
 static int const kMaxControlLengthFull = 8;
 static int const kMaxControlLengthCompact = 6;
 static CGFloat const kControlStepWidth = 40;
-static CGFloat const kRowHeight = 44;
-static CGFloat const kButtonFramePadding = 4;
+static CGFloat const kTimeLineRowHeight = 44;
+static CGFloat const kControlsRowHeight = 64;
+static CGFloat const kUIPadding = 4;
 static CGFloat const kLineWidth = 2;
 
 @interface SequenceUILayer ()
 
 @property (assign) int steps;
 @property (assign) BOOL menuOpen;
-@property (assign) CGFloat controlBarBottom;
-@property (assign) CGFloat yMidRowBottom;
+@property (assign) CGSize buttonSize;
 
 @property (weak, nonatomic) TickDispatcher *tickDispatcher;
 @property (weak, nonatomic) CCSpriteBatchNode *uiBatchNode;
@@ -53,9 +53,9 @@ static CGFloat const kLineWidth = 2;
         _tickDispatcher = tickDispatcher;
 
         // general sizes / positions
-        CGSize buttonSize = CGSizeMake(80, kRowHeight);
-        CGSize controlUnitSize = CGSizeMake(kControlStepWidth, kRowHeight);
-        CGFloat padding = 20;
+        _buttonSize = CGSizeMake(72, kControlsRowHeight);
+        CGSize controlUnitSize = CGSizeMake(kControlStepWidth, kTimeLineRowHeight);
+//        CGFloat padding = 20;
         
         // batch node
         CCSpriteBatchNode *uiBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyUILayer stringByAppendingString:@".png"]];
@@ -65,26 +65,26 @@ static CGFloat const kLineWidth = 2;
         // exit button bottom left
         CCSprite *exitOff = [CCSprite spriteWithSpriteFrameName:@"exit_off.png"];
         
-        // bottom button alignment --------------
-        _yMidRowBottom = (exitOff.contentSize.height / 2) + padding;
-        _controlBarBottom = (2 * padding) + exitOff.contentSize.height;
-        // -------------------------------------
-
+        // bottom button alignment
+//        _yMidRowBottom = (exitOff.contentSize.height / 2) + padding;
+//        _controlBarBottom = (2 * padding) + exitOff.contentSize.height;
+//        _controlBarBottom = kTimeLineRowHeight;
+        
         CCSprite *exitOn = [CCSprite spriteWithSpriteFrameName:@"exit_on.png"];
         CCMenuItemSprite *exitButton = [[CCMenuItemSprite alloc] initWithNormalSprite:exitOff selectedSprite:exitOn disabledSprite:nil target:self selector:@selector(exitPressed:)];
-        exitButton.position = ccp(exitButton.contentSize.width / 2, self.yMidRowBottom);
+        exitButton.position = ccp(exitButton.contentSize.width / 2, kControlsRowHeight / 2);
         
         // speaker button
         CCSprite *speakerOff = [CCSprite spriteWithSpriteFrameName:@"speaker_off.png"];
         CCSprite *speakerOn = [CCSprite spriteWithSpriteFrameName:@"speaker_on.png"];
         CCMenuItemSprite *speakerButton = [[CCMenuItemSprite alloc] initWithNormalSprite:speakerOff selectedSprite:speakerOn disabledSprite:nil target:self selector:@selector(speakerPressed:)];
-        speakerButton.position = ccp((3 * buttonSize.width) / 2, self.yMidRowBottom);
+        speakerButton.position = ccp((3 * self.buttonSize.width) / 2, kControlsRowHeight / 2);
         
         // play button
         CCSprite *playOff = [CCSprite spriteWithSpriteFrameName:@"play_off.png"];
         CCSprite *playOn = [CCSprite spriteWithSpriteFrameName:@"play_on.png"];
         CCMenuItemSprite *playButton = [[CCMenuItemSprite alloc] initWithNormalSprite:playOff selectedSprite:playOn disabledSprite:nil target:self selector:@selector(playButtonPressed:)];
-        playButton.position = ccp((5 * buttonSize.width) / 2, self.yMidRowBottom);
+        playButton.position = ccp((5 * self.buttonSize.width) / 2, kControlsRowHeight / 2);
         
         // items_button button (drop down menu) top right
         CCSprite *itemsButtonOff1 = [CCSprite spriteWithSpriteFrameName:@"items_button_off.png"];
@@ -124,7 +124,7 @@ static CGFloat const kLineWidth = 2;
         CGFloat panNodeWidth = MIN(steps, kMaxControlLengthFull) * controlUnitSize.width;
         CGSize panNodeSize = CGSizeMake(panNodeWidth, 2 * controlUnitSize.height);
         CGSize scrollingContainerSize = CGSizeMake(steps * controlUnitSize.width, panNodeSize.height);
-        CGPoint panNodeOrigin = ccp(0, self.controlBarBottom);
+        CGPoint panNodeOrigin = ccp(0, kControlsRowHeight);
         PanSprite *panSprite = [[PanSprite alloc] initWithSpriteFrameName:kClearRectUILayer contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:@[hitChart, tickerControl, dotSeparator]];
         _panSprite = panSprite;
         panSprite.scrollDirection = ScrollDirectionHorizontal;
@@ -141,7 +141,7 @@ static CGFloat const kLineWidth = 2;
         CCSprite *itemMenuBottomCap = [CCSprite spriteWithSpriteFrameName:@"item_menu_bottom.png"];
         _itemMenuBottomCap = itemMenuBottomCap;
         itemMenuBottomCap.anchorPoint = ccp(0, 0);
-        itemMenuBottomCap.position = ccp([self itemMenuLeftOpened:NO], self.controlBarBottom);
+        itemMenuBottomCap.position = ccp([self itemMenuLeftOpened:NO], kControlsRowHeight);
         [uiBatch addChild:itemMenuBottomCap];
         
         TileSprite *itemMenuLeftSeparator = [[TileSprite alloc] initWithTileFrameName:@"dotted_line_2_80.png" repeatHorizonal:1 repeatVertical:dragItems.count];
@@ -189,11 +189,11 @@ static CGFloat const kLineWidth = 2;
 
 - (CGPoint)itemsToggleOriginOpened:(BOOL)opened
 {
-    static CGFloat padding = 16;
     if (opened) {
-        return ccp(self.contentSize.width - (self.itemsToggle.contentSize.width / 2), self.yMidRowBottom);
+        CGFloat x = ( ((7 * self.buttonSize.width) / 2) - (self.itemsToggle.contentSize.width - self.buttonSize.width) );
+        return ccp(x, kControlsRowHeight / 2);
     }
-    return ccp(self.contentSize.width - (self.itemsToggle.contentSize.width / 2) + padding, self.yMidRowBottom);
+    return ccp(self.contentSize.width - (self.itemsToggle.contentSize.width / 2), kControlsRowHeight / 2);
 }
 
 - (void)configureItemMenuOpened:(BOOL)opened animated:(BOOL)animated
@@ -209,17 +209,17 @@ static CGFloat const kLineWidth = 2;
     if (xOffset < 0){
         xOffset -= (self.controlBar.contentSize.width - self.contentSize.width);
         if (unitWidth == kMaxControlLengthCompact) {
-            xOffset -= kButtonFramePadding;
+            xOffset -= kUIPadding;
         }
     }
-    CGPoint controlBarPos = ccp(xOffset, self.controlBarBottom);
+    CGPoint controlBarPos = ccp(xOffset, kControlsRowHeight);
     
     // pan sprite
     CGFloat panSpriteWidth;
     if ( xOffset < 0) {
         panSpriteWidth = (unitWidth * kControlStepWidth);
         if (unitWidth == kMaxControlLengthCompact) {
-            panSpriteWidth -= (kButtonFramePadding + kLineWidth);
+            panSpriteWidth -= (kUIPadding + kLineWidth);
         }
     }
     else {
@@ -227,7 +227,7 @@ static CGFloat const kLineWidth = 2;
     }
     
     // item menu
-    CGPoint itemMenuBottomCapPos = ccp(itemMenuLeft, self.controlBarBottom);
+    CGPoint itemMenuBottomCapPos = ccp(itemMenuLeft, kControlsRowHeight);
     CGPoint itemMenuLeftSeparatorPos = ccp(itemMenuLeft, self.itemMenuBottomCap.position.y + self.itemMenuBottomCap.contentSize.height);
     CGPoint itemMenuTopCapPos = ccp(itemMenuLeft, self.itemMenuLeftSeparator.position.y + self.itemMenuLeftSeparator.contentSize.height);
     
@@ -263,6 +263,7 @@ static CGFloat const kLineWidth = 2;
         // item menu toggle button
         CCMoveTo *moveItemToggle = [CCMoveTo actionWithDuration:kTransitionDuration position:[self itemsToggleOriginOpened:opened]];
         CCEaseSineInOut *easeItemToggle = [CCEaseSineInOut actionWithAction:moveItemToggle];
+//        self.itemsToggle.anchorPoint = ccp(0, 0);
         [self.itemsToggle runAction:easeItemToggle];
         
         // update callback for pan node interior tracking
@@ -312,6 +313,5 @@ static CGFloat const kLineWidth = 2;
     self.menuOpen = !self.menuOpen;
     [self configureItemMenuOpened:self.menuOpen animated:YES];
 }
-
 
 @end
