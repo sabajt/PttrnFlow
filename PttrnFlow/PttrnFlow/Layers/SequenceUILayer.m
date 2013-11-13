@@ -22,6 +22,7 @@ static int const kMaxControlLengthCompact = 6;
 static CGFloat const kControlStepWidth = 40;
 static CGFloat const kTimeLineRowHeight = 44;
 static CGFloat const kControlsRowHeight = 64;
+static CGFloat const kItemMenuBottom = 12;
 static CGFloat const kUIPadding = 4;
 static CGFloat const kLineWidth = 2;
 
@@ -87,12 +88,12 @@ static CGFloat const kLineWidth = 2;
         // items button (drop down menu) top right
         CCSprite *itemsButtonOff1 = [CCSprite spriteWithSpriteFrameName:@"items_button_off.png"];
         CCSprite *itemsButtonOn1 = [CCSprite spriteWithSpriteFrameName:@"items_button_on.png"];
-        CCMenuItemSprite *items_buttonOffItem = [CCMenuItemSprite itemWithNormalSprite:itemsButtonOff1 selectedSprite:itemsButtonOn1];
+        CCMenuItemSprite *itemsButtonOffItem = [CCMenuItemSprite itemWithNormalSprite:itemsButtonOff1 selectedSprite:itemsButtonOn1];
         CCSprite *itemsButtonOff2 = [CCSprite spriteWithSpriteFrameName:@"items_button_off.png"];
         CCSprite *itemsButtonOn2 = [CCSprite spriteWithSpriteFrameName:@"items_button_on.png"];
-        CCMenuItemSprite *items_buttonOnItem = [CCMenuItemSprite itemWithNormalSprite:itemsButtonOn2 selectedSprite:itemsButtonOff2];
+        CCMenuItemSprite *itemsButtonOnItem = [CCMenuItemSprite itemWithNormalSprite:itemsButtonOn2 selectedSprite:itemsButtonOff2];
         
-        CCMenuItemToggle *itemsToggle = [CCMenuItemToggle itemWithTarget:self selector:@selector(itemsButtonPressed:) items:items_buttonOffItem, items_buttonOnItem, nil];
+        CCMenuItemToggle *itemsToggle = [CCMenuItemToggle itemWithTarget:self selector:@selector(itemsButtonPressed:) items:itemsButtonOffItem, itemsButtonOnItem, nil];
         _itemsToggle = itemsToggle;
         itemsToggle.position = [self itemsToggleOriginOpened:NO];
         
@@ -138,7 +139,7 @@ static CGFloat const kLineWidth = 2;
         // item menu
         _itemMenuBottomCap = itemMenuBottomCap;
         itemMenuBottomCap.anchorPoint = ccp(0, 0);
-        itemMenuBottomCap.position = ccp([self itemMenuLeftOpened:NO], kControlsRowHeight);
+        itemMenuBottomCap.position = ccp([self itemMenuLeftOpened:NO], kItemMenuBottom);
         [uiBatch addChild:itemMenuBottomCap];
         
         TileSprite *itemMenuLeftSeparator = [[TileSprite alloc] initWithTileFrameName:@"dotted_line_2_80.png" repeatHorizonal:1 repeatVertical:dragItems.count];
@@ -227,7 +228,7 @@ static CGFloat const kLineWidth = 2;
     }
     
     // item menu
-    CGPoint itemMenuBottomCapPos = ccp(itemMenuLeft, kControlsRowHeight);
+    CGPoint itemMenuBottomCapPos = ccp(itemMenuLeft, kItemMenuBottom);
     CGPoint itemMenuLeftSeparatorPos = ccp(itemMenuLeft, self.itemMenuBottomCap.position.y + self.itemMenuBottomCap.contentSize.height);
     CGPoint itemMenuTopCapPos = ccp(itemMenuLeft, self.itemMenuLeftSeparator.position.y + self.itemMenuLeftSeparator.contentSize.height);
     
