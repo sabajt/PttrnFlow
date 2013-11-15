@@ -16,15 +16,18 @@
 #import "PanSprite.h"
 #import "ColorUtils.h"
 #import "TileSprite.h"
+#import "ClippingSprite.h"
+#import "TBSpriteMask.h"
 
 static int const kMaxControlLengthFull = 8;
 static int const kMaxControlLengthCompact = 6;
 static CGFloat const kControlStepWidth = 40;
 static CGFloat const kTimeLineRowHeight = 44;
 static CGFloat const kControlsRowHeight = 64;
-static CGFloat const kItemMenuBottom = 12;
+static CGFloat const kItemMenuBottom = 12; // use as the bottom of the right gradient image
 static CGFloat const kUIPadding = 4;
 static CGFloat const kLineWidth = 2;
+static CGFloat const kItemMenuRowHeight = 80;
 
 @interface SequenceUILayer ()
 
@@ -43,6 +46,7 @@ static CGFloat const kLineWidth = 2;
 @property (weak, nonatomic) CCSprite *itemMenuTopCap;
 @property (weak, nonatomic) CCSprite *itemMenuBottomCap;
 @property (weak, nonatomic) TileSprite *itemMenuLeftSeparator;
+@property (weak, nonatomic) ClippingSprite *rightGradientMask;
 @property (weak, nonatomic) CCMenuItemToggle *itemsToggle;
 
 @end
@@ -53,6 +57,19 @@ static CGFloat const kLineWidth = 2;
 {
     self = [super init];
     if (self) {
+        
+        
+        
+        // testing masks
+        
+        TBSpriteMask *maskedSprite = [[TBSpriteMask alloc] initWithFile:@"Calendar1.png" andMaskFile:@"CalendarMask.png"];
+        [self addChild:maskedSprite];
+
+        //
+        
+        
+        
+        
         _tickDispatcher = tickDispatcher;
 
         // general sizes / positions
@@ -66,7 +83,6 @@ static CGFloat const kLineWidth = 2;
         // batch node
         CCSpriteBatchNode *uiBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyUILayer stringByAppendingString:@".png"]];
         self.uiBatchNode = uiBatch;
-        [self addChild:uiBatch];
         
         // exit button bottom left
         CCSprite *exitOn = [CCSprite spriteWithSpriteFrameName:@"exit_on.png"];
@@ -102,7 +118,6 @@ static CGFloat const kLineWidth = 2;
         menu.position = ccp(0, 0);
         [self addChild:menu];
         
-        
         int steps = (tickDispatcher.sequenceLength / 4);
         self.steps = steps;
         TickerControl *tickerControl = [[TickerControl alloc] initWithSpriteFrameName:kClearRectUILayer steps:steps unitSize:CGSizeMake(kControlStepWidth, kTimeLineRowHeight)];
@@ -137,6 +152,7 @@ static CGFloat const kLineWidth = 2;
         [uiBatch addChild:controlBar];
         
         // item menu
+        // -- edges
         _itemMenuBottomCap = itemMenuBottomCap;
         itemMenuBottomCap.anchorPoint = ccp(0, 0);
         itemMenuBottomCap.position = ccp([self itemMenuLeftOpened:NO], kItemMenuBottom);
@@ -153,6 +169,21 @@ static CGFloat const kLineWidth = 2;
         itemMenuTopCap.anchorPoint = ccp(0, 0);
         itemMenuTopCap.position = ccp([self itemMenuLeftOpened:NO], self.itemMenuLeftSeparator.position.y + self.itemMenuLeftSeparator.contentSize.height);
         [uiBatch addChild:itemMenuTopCap];
+        
+        // -- panel mask
+        CGFloat maskHeight = (itemMenuTopCap.position.y + itemMenuTopCap.contentSize.height) - kItemMenuBottom;
+        ClippingSprite *rightGradientMask = [ClippingSprite clippingSpriteWithRect:CGRectMake(0, 0, self.itemMenuBottomCap.contentSize.width, maskHeight)];
+        _rightGradientMask = rightGradientMask;
+        
+        CCSprite *rightGradientSprite = [CCSprite spriteWithSpriteFrameName:@"gradient_mask_76_556.png"];
+        rightGradientSprite.anchorPoint = ccp(0, 0);
+        rightGradientSprite.position = CGPointZero;
+        [rightGradientMask addChild:rightGradientSprite];
+        
+        rightGradientMask.anchorPoint = ccp(0, 0);
+        rightGradientMask.position = ccp([self itemMenuLeftOpened:NO], kItemMenuBottom);
+        [self addChild:rightGradientMask];
+        
         
         // size and position the pan sprite and control bar
         [self configureItemMenuOpened:NO animated:NO];
@@ -172,6 +203,9 @@ static CGFloat const kLineWidth = 2;
 //            [self addChild:button];
 //            i++;
 //        }
+        
+        // add ui batch at top
+        [self addChild:uiBatch];
     }
     return self;
 }
@@ -203,7 +237,6 @@ static CGFloat const kLineWidth = 2;
     if (opened) {
         unitWidth = MIN(self.steps, kMaxControlLengthCompact);
     }
-    CGFloat itemMenuLeft = [self itemMenuLeftOpened:opened];
     
     // control bar
     CGFloat xOffset = -(kMaxControlLengthFull - unitWidth) * kControlStepWidth;
@@ -228,9 +261,10 @@ static CGFloat const kLineWidth = 2;
     }
     
     // item menu
-    CGPoint itemMenuBottomCapPos = ccp(itemMenuLeft, kItemMenuBottom);
-    CGPoint itemMenuLeftSeparatorPos = ccp(itemMenuLeft, self.itemMenuBottomCap.position.y + self.itemMenuBottomCap.contentSize.height);
-    CGPoint itemMenuTopCapPos = ccp(itemMenuLeft, self.itemMenuLeftSeparator.position.y + self.itemMenuLeftSeparator.contentSize.height);
+    CGPoint itemMenuBottomCapPos = ccp([self itemMenuLeftOpened:opened], kItemMenuBottom);
+    CGPoint itemMenuLeftSeparatorPos = ccp([self itemMenuLeftOpened:opened], self.itemMenuBottomCap.position.y + self.itemMenuBottomCap.contentSize.height);
+    CGPoint itemMenuTopCapPos = ccp([self itemMenuLeftOpened:opened], self.itemMenuLeftSeparator.position.y + self.itemMenuLeftSeparator.contentSize.height);
+    CGPoint itemMenuGradientMaskPos = ccp([self itemMenuLeftOpened:opened], kItemMenuBottom);
     
     // animate
     if (animated) {
@@ -261,6 +295,11 @@ static CGFloat const kLineWidth = 2;
         CCEaseSineOut *easeItemMenuTopCap = [CCEaseSineOut actionWithAction:moveItemMenuTopCap];
         [self.itemMenuTopCap runAction:easeItemMenuTopCap];
         
+        // gradient mask
+        CCMoveTo *moveMenuMask = [CCMoveTo actionWithDuration:kTransitionDuration position:itemMenuGradientMaskPos];
+        CCEaseSineInOut *easeMenuMask = [CCEaseSineOut actionWithAction:moveMenuMask];
+        [self.rightGradientMask runAction:easeMenuMask];
+        
         // item menu toggle button
         CCMoveTo *moveItemToggle = [CCMoveTo actionWithDuration:kTransitionDuration position:[self itemsToggleOriginOpened:opened]];
         CCEaseSineInOut *easeItemToggle = [CCEaseSineInOut actionWithAction:moveItemToggle];
@@ -276,6 +315,7 @@ static CGFloat const kLineWidth = 2;
         self.itemMenuBottomCap.position = itemMenuBottomCapPos;
         self.itemMenuLeftSeparator.position = itemMenuLeftSeparatorPos;
         self.itemMenuTopCap.position = itemMenuTopCapPos;
+        self.rightGradientMask.position = itemMenuGradientMaskPos;
         self.itemsToggle.position = [self itemsToggleOriginOpened:opened];
     }
 }

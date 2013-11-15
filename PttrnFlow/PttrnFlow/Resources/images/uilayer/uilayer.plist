@@ -95,6 +95,19 @@
                 <key>sourceSize</key>
                 <string>{80,80}</string>
             </dict>
+            <key>gradient_mask_76_556.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,330},{76,556}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{76,556}}</string>
+                <key>sourceSize</key>
+                <string>{76,556}</string>
+            </dict>
             <key>itemButtonArrowOff.png</key>
             <dict>
                 <key>frame</key>
@@ -280,7 +293,7 @@
             <key>speaker_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,330},{26,26}}</string>
+                <string>{{80,334},{26,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -350,9 +363,9 @@
             <key>realTextureFileName</key>
             <string>uilayer.png</string>
             <key>size</key>
-            <string>{256,512}</string>
+            <string>{256,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c9ff455fc7e1d7ba409ec0fd3e31391e:c896b22981c744d588f46f83a3d5afaa:842074752256af9eab1246752001c5a2$</string>
+            <string>$TexturePacker:SmartUpdate:e8ff7210030479bdc7427148a83921ed:622e2d77e823c5c0f01b611b0f5ff90c:842074752256af9eab1246752001c5a2$</string>
             <key>textureFileName</key>
             <string>uilayer.png</string>
         </dict>
