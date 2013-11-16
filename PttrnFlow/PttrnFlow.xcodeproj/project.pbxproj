@@ -193,6 +193,9 @@
 		16A942E51778C5A50052D5BD /* drum4-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DD1778C5A50052D5BD /* drum4-ipad.png */; };
 		16A942E61778C5A50052D5BD /* drum4on-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DE1778C5A50052D5BD /* drum4on-ipad.png */; };
 		3338A9CC17C307D80037DFE2 /* SolutionSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3338A9CB17C307D80037DFE2 /* SolutionSequence.m */; };
+		334017461837E948006F2CBA /* TBSpriteMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 334017431837E948006F2CBA /* TBSpriteMask.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		334017471837E995006F2CBA /* MaskNegative.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 334017401837E948006F2CBA /* MaskNegative.fsh */; };
+		334017481837E995006F2CBA /* MaskPositive.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 334017411837E948006F2CBA /* MaskPositive.fsh */; };
 		334B2AB2181B02CA00865510 /* other-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334B2A90181B02CA00865510 /* other-hd.plist */; };
 		334B2AB3181B02CA00865510 /* other-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 334B2A91181B02CA00865510 /* other-hd.png */; };
 		334B2AB4181B02CA00865510 /* other-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334B2A92181B02CA00865510 /* other-ipad.plist */; };
@@ -272,11 +275,6 @@
 		33BF70A917CC24EC003E0A5F /* solution9.json in Resources */ = {isa = PBXBuildFile; fileRef = 33BF70A817CC24EC003E0A5F /* solution9.json */; };
 		33DD066618365302007311C8 /* CCLayerPanZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD065D18365302007311C8 /* CCLayerPanZoom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		33DD066718365302007311C8 /* PdArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD066018365302007311C8 /* PdArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		33DD067018365542007311C8 /* MaskNegative.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 33DD066C18365542007311C8 /* MaskNegative.fsh */; };
-		33DD067118365542007311C8 /* MaskPositive.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 33DD066D18365542007311C8 /* MaskPositive.fsh */; };
-		33DD067218365542007311C8 /* TBSpriteMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD066F18365542007311C8 /* TBSpriteMask.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		33DD067E183658EE007311C8 /* MaskNegative.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 33DD066C18365542007311C8 /* MaskNegative.fsh */; };
-		33DD067F183658EE007311C8 /* MaskPositive.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 33DD066D18365542007311C8 /* MaskPositive.fsh */; };
 		33EE317017C92C3C004CC016 /* AudioTouchDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */; };
 		33F8A31317B9F104003B33E5 /* pf-main.pd in Resources */ = {isa = PBXBuildFile; fileRef = 33F8A31117B9F104003B33E5 /* pf-main.pd */; };
 /* End PBXBuildFile section */
@@ -664,6 +662,10 @@
 		16A942DE1778C5A50052D5BD /* drum4on-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drum4on-ipad.png"; sourceTree = "<group>"; };
 		3338A9CA17C307D80037DFE2 /* SolutionSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolutionSequence.h; sourceTree = "<group>"; };
 		3338A9CB17C307D80037DFE2 /* SolutionSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionSequence.m; sourceTree = "<group>"; };
+		334017401837E948006F2CBA /* MaskNegative.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MaskNegative.fsh; sourceTree = "<group>"; };
+		334017411837E948006F2CBA /* MaskPositive.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MaskPositive.fsh; sourceTree = "<group>"; };
+		334017421837E948006F2CBA /* TBSpriteMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBSpriteMask.h; sourceTree = "<group>"; };
+		334017431837E948006F2CBA /* TBSpriteMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBSpriteMask.m; sourceTree = "<group>"; };
 		334B2A90181B02CA00865510 /* other-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "other-hd.plist"; sourceTree = "<group>"; };
 		334B2A91181B02CA00865510 /* other-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "other-hd.png"; sourceTree = "<group>"; };
 		334B2A92181B02CA00865510 /* other-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "other-ipad.plist"; sourceTree = "<group>"; };
@@ -765,10 +767,6 @@
 		33DD065D18365302007311C8 /* CCLayerPanZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLayerPanZoom.m; sourceTree = "<group>"; };
 		33DD065F18365302007311C8 /* PdArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdArray.h; sourceTree = "<group>"; };
 		33DD066018365302007311C8 /* PdArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdArray.m; sourceTree = "<group>"; };
-		33DD066C18365542007311C8 /* MaskNegative.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MaskNegative.fsh; sourceTree = "<group>"; };
-		33DD066D18365542007311C8 /* MaskPositive.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MaskPositive.fsh; sourceTree = "<group>"; };
-		33DD066E18365542007311C8 /* TBSpriteMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBSpriteMask.h; sourceTree = "<group>"; };
-		33DD066F18365542007311C8 /* TBSpriteMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBSpriteMask.m; sourceTree = "<group>"; };
 		33EE316E17C92C3C004CC016 /* AudioTouchDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTouchDispatcher.h; sourceTree = "<group>"; };
 		33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioTouchDispatcher.m; sourceTree = "<group>"; };
 		33F8A31117B9F104003B33E5 /* pf-main.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-main.pd"; sourceTree = "<group>"; };
@@ -1434,6 +1432,17 @@
 			path = "UI Nodes";
 			sourceTree = "<group>";
 		};
+		3340173F1837E948006F2CBA /* TBSpriteMask */ = {
+			isa = PBXGroup;
+			children = (
+				334017401837E948006F2CBA /* MaskNegative.fsh */,
+				334017411837E948006F2CBA /* MaskPositive.fsh */,
+				334017421837E948006F2CBA /* TBSpriteMask.h */,
+				334017431837E948006F2CBA /* TBSpriteMask.m */,
+			);
+			path = TBSpriteMask;
+			sourceTree = "<group>";
+		};
 		334B2A8D181B02CA00865510 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -1581,7 +1590,7 @@
 		33DD065A18365302007311C8 /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
-				33DD066B18365542007311C8 /* TBSpriteMask */,
+				3340173F1837E948006F2CBA /* TBSpriteMask */,
 				33DD065B18365302007311C8 /* Extensions */,
 				33DD065E18365302007311C8 /* PdArray */,
 			);
@@ -1604,17 +1613,6 @@
 				33DD066018365302007311C8 /* PdArray.m */,
 			);
 			path = PdArray;
-			sourceTree = "<group>";
-		};
-		33DD066B18365542007311C8 /* TBSpriteMask */ = {
-			isa = PBXGroup;
-			children = (
-				33DD066C18365542007311C8 /* MaskNegative.fsh */,
-				33DD066D18365542007311C8 /* MaskPositive.fsh */,
-				33DD066E18365542007311C8 /* TBSpriteMask.h */,
-				33DD066F18365542007311C8 /* TBSpriteMask.m */,
-			);
-			path = TBSpriteMask;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1691,8 +1689,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33DD067E183658EE007311C8 /* MaskNegative.fsh in Resources */,
-				33DD067F183658EE007311C8 /* MaskPositive.fsh in Resources */,
+				334017471837E995006F2CBA /* MaskNegative.fsh in Resources */,
+				334017481837E995006F2CBA /* MaskPositive.fsh in Resources */,
 				334B2AD6181B03F000865510 /* background.plist in Resources */,
 				335836C31827D8D900921270 /* solution3.json in Resources */,
 				334B2ACD181B02CA00865510 /* uilayer.plist in Resources */,
@@ -1813,8 +1811,7 @@
 				1608070B16B437A800039339 /* CCActionProgressTimer.m in Sources */,
 				1608070E16B437A800039339 /* CCActionTiledGrid.m in Sources */,
 				334B2AE0181C335900865510 /* TickerControl.m in Sources */,
-				33DD067218365542007311C8 /* TBSpriteMask.m in Sources */,
-				33DD067018365542007311C8 /* MaskNegative.fsh in Sources */,
+				334017461837E948006F2CBA /* TBSpriteMask.m in Sources */,
 				1608071116B437A800039339 /* CCActionTween.m in Sources */,
 				1608071416B437A800039339 /* CCAnimation.m in Sources */,
 				33B4F26017C72600004D4C13 /* TickEvent.m in Sources */,
@@ -1958,7 +1955,6 @@
 				162C291017821E0200CE480C /* SizeUtils.m in Sources */,
 				33B4F25F17C72600004D4C13 /* SynthEvent.m in Sources */,
 				162C291717848A8800CE480C /* CCLayerPanZoom+Utils.m in Sources */,
-				33DD067118365542007311C8 /* MaskPositive.fsh in Sources */,
 				162C2926178501CA00CE480C /* DragCellNode.m in Sources */,
 				162C293517871F2600CE480C /* CCNode+DragItem.m in Sources */,
 				162C29381787699A00CE480C /* TickHitChart.m in Sources */,

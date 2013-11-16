@@ -13,7 +13,7 @@ do {                                                                            
     ccGLEnable( _mask.glServerState );                                              \
     NSAssert1(_mask.shaderProgram, @"No shader program set for node: %@", _mask);   \
     [_mask.shaderProgram use];                                                      \
-    [_mask.shaderProgram setUniformForModelViewProjectionMatrix];                                   \
+    [_mask.shaderProgram setUniformForModelViewProjectionMatrix];                   \
 } while(0)                                                                          \
 
 @implementation TBSpriteMask

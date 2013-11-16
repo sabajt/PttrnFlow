@@ -58,18 +58,6 @@ static CGFloat const kItemMenuRowHeight = 80;
     self = [super init];
     if (self) {
         
-        
-        
-        // testing masks
-        
-        TBSpriteMask *maskedSprite = [[TBSpriteMask alloc] initWithFile:@"Calendar1.png" andMaskFile:@"CalendarMask.png"];
-        [self addChild:maskedSprite];
-
-        //
-        
-        
-        
-        
         _tickDispatcher = tickDispatcher;
 
         // general sizes / positions
@@ -183,7 +171,6 @@ static CGFloat const kItemMenuRowHeight = 80;
         rightGradientMask.anchorPoint = ccp(0, 0);
         rightGradientMask.position = ccp([self itemMenuLeftOpened:NO], kItemMenuBottom);
         [self addChild:rightGradientMask];
-        
         
         // size and position the pan sprite and control bar
         [self configureItemMenuOpened:NO animated:NO];
