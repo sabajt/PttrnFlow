@@ -31,6 +31,7 @@ static CGFloat const kHitChartHeight = 24;
         if (steps < 1) {
             NSLog(@"warning: steps for TickHitChart should be > 1");
         }
+        self.swallowsTouches = YES;
         
         self.contentSize = CGSizeMake(unitSize.width * steps, unitSize.height);
         self.hitCells = [NSMutableArray array];

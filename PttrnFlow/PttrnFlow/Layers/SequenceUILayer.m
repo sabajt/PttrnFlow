@@ -48,6 +48,7 @@ static CGFloat const kItemMenuRowHeight = 80;
 @property (weak, nonatomic) TileSprite *itemMenuLeftSeparator;
 @property (weak, nonatomic) ClippingSprite *rightGradientMask;
 @property (weak, nonatomic) CCMenuItemToggle *itemsToggle;
+@property (weak, nonatomic) CCMenu *controlMenu;
 
 @end
 
@@ -103,6 +104,7 @@ static CGFloat const kItemMenuRowHeight = 80;
         
         // buttons must be added to a CCMenu to work
         CCMenu *menu = [CCMenu menuWithItems:exitButton, speakerButton, playButton, itemsToggle, nil];
+        _controlMenu = menu;
         menu.position = ccp(0, 0);
         [self addChild:menu];
         
@@ -195,6 +197,13 @@ static CGFloat const kItemMenuRowHeight = 80;
         [self addChild:uiBatch];
     }
     return self;
+}
+
+- (void)onEnter
+{
+    [super onEnter];
+    // set control menu to receive touches below everything (so won't overlap pan sprte)
+    [self.controlMenu setHandlerPriority:INT_MAX - 1];
 }
 
 - (CGFloat)itemMenuLeftOpened:(BOOL)opened

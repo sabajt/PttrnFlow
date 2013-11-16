@@ -7,6 +7,7 @@
 //
 
 #import "cocos2d.h"
+#import "TouchSprite.h"
 
 typedef enum
 {
@@ -15,7 +16,7 @@ typedef enum
     kHitStatusFailure,
 } kHitStatus;
 
-@interface TickHitChart : CCSprite
+@interface TickHitChart : TouchSprite
 
 - (id)initWithSpriteFrameName:(NSString *)spriteFrameName steps:(int)steps unitSize:(CGSize)unitSize;
 - (void)resetCells;
