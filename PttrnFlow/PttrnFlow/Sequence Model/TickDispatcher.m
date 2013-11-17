@@ -17,7 +17,7 @@
 #import "ExitEvent.h"
 #import "SolutionSequence.h"
 #import "AudioStopEvent.h"
-
+#import "GameSprite.h"
 
 NSInteger const kBPM = 120;
 NSString *const kNotificationAdvancedSequence = @"advanceSequence";
@@ -104,7 +104,7 @@ CGFloat const kTickInterval = 0.12;
 - (void)registerTickResponderCellNode:(id<TickResponder>)responder
 {
     NSAssert([responder conformsToProtocol:@protocol(TickResponder)], @"registered tick responders much conform to TickResponder protocol");
-    NSAssert([responder isKindOfClass:[GameNode class]], @"registered tick responders for TickDispatcher must be CellNode");
+    NSAssert([responder isKindOfClass:[GameNode class]] || [responder isKindOfClass:[GameSprite class]], @"registered tick responders for TickDispatcher must be a GameNode or GameSprite");
     [self.responders addObject:responder];
 }
 

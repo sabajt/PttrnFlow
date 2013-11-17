@@ -193,6 +193,10 @@
 		16A942E51778C5A50052D5BD /* drum4-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DD1778C5A50052D5BD /* drum4-ipad.png */; };
 		16A942E61778C5A50052D5BD /* drum4on-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DE1778C5A50052D5BD /* drum4on-ipad.png */; };
 		3338A9CC17C307D80037DFE2 /* SolutionSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3338A9CB17C307D80037DFE2 /* SolutionSequence.m */; };
+		3339C03118397638005771BC /* audioObjects-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02D18397638005771BC /* audioObjects-hd.plist */; };
+		3339C03218397638005771BC /* audioObjects-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02E18397638005771BC /* audioObjects-hd.png */; };
+		3339C03318397638005771BC /* audioObjects.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02F18397638005771BC /* audioObjects.plist */; };
+		3339C03418397638005771BC /* audioObjects.png in Resources */ = {isa = PBXBuildFile; fileRef = 3339C03018397638005771BC /* audioObjects.png */; };
 		334017461837E948006F2CBA /* TBSpriteMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 334017431837E948006F2CBA /* TBSpriteMask.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		334017471837E995006F2CBA /* MaskNegative.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 334017401837E948006F2CBA /* MaskNegative.fsh */; };
 		334017481837E995006F2CBA /* MaskPositive.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 334017411837E948006F2CBA /* MaskPositive.fsh */; };
@@ -662,6 +666,10 @@
 		16A942DE1778C5A50052D5BD /* drum4on-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drum4on-ipad.png"; sourceTree = "<group>"; };
 		3338A9CA17C307D80037DFE2 /* SolutionSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolutionSequence.h; sourceTree = "<group>"; };
 		3338A9CB17C307D80037DFE2 /* SolutionSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionSequence.m; sourceTree = "<group>"; };
+		3339C02D18397638005771BC /* audioObjects-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "audioObjects-hd.plist"; sourceTree = "<group>"; };
+		3339C02E18397638005771BC /* audioObjects-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audioObjects-hd.png"; sourceTree = "<group>"; };
+		3339C02F18397638005771BC /* audioObjects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = audioObjects.plist; sourceTree = "<group>"; };
+		3339C03018397638005771BC /* audioObjects.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audioObjects.png; sourceTree = "<group>"; };
 		334017401837E948006F2CBA /* MaskNegative.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MaskNegative.fsh; sourceTree = "<group>"; };
 		334017411837E948006F2CBA /* MaskPositive.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MaskPositive.fsh; sourceTree = "<group>"; };
 		334017421837E948006F2CBA /* TBSpriteMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBSpriteMask.h; sourceTree = "<group>"; };
@@ -1432,6 +1440,17 @@
 			path = "UI Nodes";
 			sourceTree = "<group>";
 		};
+		3339C02C18397638005771BC /* audioObjects */ = {
+			isa = PBXGroup;
+			children = (
+				3339C02D18397638005771BC /* audioObjects-hd.plist */,
+				3339C02E18397638005771BC /* audioObjects-hd.png */,
+				3339C02F18397638005771BC /* audioObjects.plist */,
+				3339C03018397638005771BC /* audioObjects.png */,
+			);
+			path = audioObjects;
+			sourceTree = "<group>";
+		};
 		3340173F1837E948006F2CBA /* TBSpriteMask */ = {
 			isa = PBXGroup;
 			children = (
@@ -1446,6 +1465,7 @@
 		334B2A8D181B02CA00865510 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3339C02C18397638005771BC /* audioObjects */,
 				335836A4181F486100921270 /* white_rect.png */,
 				334B2ACF181B03F000865510 /* background */,
 				334B2A8F181B02CA00865510 /* other */,
@@ -1726,6 +1746,7 @@
 				334B2AD5181B03F000865510 /* background-hd.png in Resources */,
 				335836C51827D90A00921270 /* solution2.json in Resources */,
 				168FA4F2173A08C7004C26AD /* Icon.png in Resources */,
+				3339C03418397638005771BC /* audioObjects.png in Resources */,
 				168FA4F3173A08C7004C26AD /* Icon@2x.png in Resources */,
 				168FA4F4173A08C7004C26AD /* iTunesArtwork in Resources */,
 				160B50BA173A27D000BFC014 /* arrow-down-ipad.png in Resources */,
@@ -1741,6 +1762,7 @@
 				335836D21827DAF600921270 /* seq4.tmx in Resources */,
 				335836C91827DA7300921270 /* solution8.json in Resources */,
 				335836D71827DAF600921270 /* seq9.tmx in Resources */,
+				3339C03118397638005771BC /* audioObjects-hd.plist in Resources */,
 				160B50C2173A27D000BFC014 /* blank-ipad.png in Resources */,
 				334B2AD4181B03F000865510 /* background-hd.plist in Resources */,
 				334B2AC0181B02CA00865510 /* samplePads-ipadhd.png in Resources */,
@@ -1778,7 +1800,9 @@
 				335836C11827D8AE00921270 /* solution4.json in Resources */,
 				1693C661177A0C9300FEB350 /* drum1.wav in Resources */,
 				1693C662177A0C9300FEB350 /* drum2.wav in Resources */,
+				3339C03318397638005771BC /* audioObjects.plist in Resources */,
 				1693C665177A628300FEB350 /* drum3.wav in Resources */,
+				3339C03218397638005771BC /* audioObjects-hd.png in Resources */,
 				1693C666177A628300FEB350 /* drum4.wav in Resources */,
 				334B2AB8181B02CA00865510 /* other.plist in Resources */,
 				334B2AB6181B02CA00865510 /* other-ipadhd.plist in Resources */,

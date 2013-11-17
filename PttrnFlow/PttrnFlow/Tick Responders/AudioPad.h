@@ -6,12 +6,11 @@
 //
 //
 
-#import "GameNode.h"
+#import "GameSprite.h"
 #import "TickResponder.h"
 
-@interface AudioPad : GameNode <TickResponder>
+@interface AudioPad : GameSprite <TickResponder>
 
-// TODO: audio pad doesn't actually use batch node, but it probably should, - rendering the sprite creation is probably expensive
-- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode cell:(GridCoord)cell;
+- (id)initWithCell:(GridCoord)cell;
 
 @end

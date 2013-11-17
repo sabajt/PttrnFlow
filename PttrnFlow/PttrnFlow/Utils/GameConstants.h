@@ -36,6 +36,7 @@ FOUNDATION_EXPORT NSString *const kNotificationUnlockPan;
 
 // frame names
 FOUNDATION_EXPORT NSString *const kClearRectUILayer;
+FOUNDATION_EXPORT NSString *const kClearRectPuzzleBatch;
 
 @interface GameConstants : NSObject
 

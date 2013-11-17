@@ -9,7 +9,7 @@
 #import "GameConstants.h"
 
 // size
-CGFloat const kSizeGridUnit = 200.0;
+CGFloat const kSizeGridUnit = 80.0;
 CGFloat const kStatusBarHeight = 20.0;
 
 // duration
@@ -23,6 +23,7 @@ NSString *const kNotificationUnlockPan = @"unlockPan";
 
 // frame names
 NSString *const kClearRectUILayer = @"clear_rect_uilayer.png";
+NSString *const kClearRectPuzzleBatch = @"clear_rect_puzzle_batch.png";
 
 @implementation GameConstants
 

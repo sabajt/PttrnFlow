@@ -6,16 +6,10 @@
 //
 //
 
-
 #import "AudioPad.h"
-#import "CCTMXTiledMap+Utils.h"
-#import "TextureUtils.h"
-#import "CCSprite+Utils.h"
-#import "ColorUtils.h"
 
 @interface AudioPad ()
 
-@property (strong, nonatomic) CCSprite *defaultSprite;
 @property (strong, nonatomic) CCSprite *highlightSprite;
 
 @end
@@ -23,58 +17,35 @@
 
 @implementation AudioPad
 
-- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode cell:(GridCoord)cell
+- (id)initWithCell:(GridCoord)cell
 {
-    self = [super initWithBatchNode:batchNode cell:cell];
+    self = [super initWithSpriteFrameName:@"audio_box_off.png" cell:cell];
     if (self) {
-        [self setSpriteForFrameName:@"rectBorderBlue.png" cell:cell];
+        CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:@"audio_box_on.png"];
+        _highlightSprite = highlightSprite;
+        highlightSprite.visible = NO;
+        highlightSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
+        [self addChild:highlightSprite];
     }
     return self;
 }
 
-- (CCSprite *)defaultSprite
-{
-    if (_defaultSprite == nil) {
-        CCSprite *spr = [CCSprite rectSpriteWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:6 edgeColor:ccWHITE];
-        _defaultSprite = spr;
-    }
-    return _defaultSprite;
-}
-
-- (CCSprite *)highlightSprite
-{
-    if (_highlightSprite == nil) {
-        CCSprite *spr = [CCSprite rectSpriteWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:6 edgeColor:ccORANGE];
-        _highlightSprite = spr;
-    }
-    return _highlightSprite;
-}
-
-#pragma mark - Tick Responder
+#pragma mark - TickResponder
 
 - (NSArray *)tick:(NSInteger)bpm
 {
-    [self.sprite removeFromParentAndCleanup:YES];
-    self.sprite = [self highlightSprite];
-    self.sprite.position = [GridUtils relativeMidpointForCell:self.cell unitSize:kSizeGridUnit];
-    [self addChild:self.sprite];
-    
+    self.highlightSprite.visible = YES;
     return @[@"audio_pad"];
 }
 
 - (void)afterTick:(NSInteger)bpm
 {
-    [self.sprite removeFromParentAndCleanup:YES];
-    self.sprite = [self defaultSprite];
-    self.sprite.position = [GridUtils relativeMidpointForCell:self.cell unitSize:kSizeGridUnit];
-    [self addChild:self.sprite];
+    self.highlightSprite.visible = NO;
 }
 
 - (GridCoord)responderCell
 {
     return self.cell;
 }
-
-
 
 @end
