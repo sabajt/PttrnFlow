@@ -23,31 +23,40 @@ static int const kMaxControlLengthFull = 8;
 static int const kMaxControlLengthCompact = 6;
 static CGFloat const kControlStepWidth = 40;
 static CGFloat const kTimeLineRowHeight = 44;
-static CGFloat const kControlsRowHeight = 64;
-static CGFloat const kItemMenuBottom = 12; // use as the bottom of the right gradient image
+static CGFloat const kControlsRowHeight = 64; // use as bottom of control bar gradient image offset
+static CGFloat const kItemMenuBottom = 64; // use as the bottom of the right gradient image
 static CGFloat const kUIPadding = 4;
 static CGFloat const kLineWidth = 2;
 static CGFloat const kItemMenuRowHeight = 80;
+static GLubyte const kPanelMaskOpacity = 255 * 0.92;
 
 @interface SequenceUILayer ()
 
+@property (weak, nonatomic) TickDispatcher *tickDispatcher;
+@property (weak, nonatomic) CCSpriteBatchNode *uiBatchNode;
+
+// size and positions
 @property (assign) int steps;
 @property (assign) BOOL menuOpen;
 @property (assign) CGFloat controlsButtonLength;
 @property (assign) CGFloat itemsToggleOpenX;
 @property (assign) CGSize buttonAssetSize;
 
-@property (weak, nonatomic) TickDispatcher *tickDispatcher;
-@property (weak, nonatomic) CCSpriteBatchNode *uiBatchNode;
+// timeline controls
 @property (weak, nonatomic) PanSprite *panSprite;
-@property (weak, nonatomic) CCSprite *controlBar;
+@property (weak, nonatomic) CCSprite *timelineBorder;
+@property (weak, nonatomic) CCSprite *timelineBackground;
 @property (weak, nonatomic) TickHitChart *hitChart;
 @property (weak, nonatomic) TickerControl *tickerControl;
+
+// item menu
 @property (weak, nonatomic) CCSprite *itemMenuTopCap;
 @property (weak, nonatomic) CCSprite *itemMenuBottomCap;
 @property (weak, nonatomic) TileSprite *itemMenuLeftSeparator;
 @property (weak, nonatomic) ClippingSprite *rightGradientMask;
 @property (weak, nonatomic) CCMenuItemToggle *itemsToggle;
+
+// general controls
 @property (weak, nonatomic) CCMenu *controlMenu;
 
 @end
@@ -58,16 +67,15 @@ static CGFloat const kItemMenuRowHeight = 80;
 {
     self = [super init];
     if (self) {
-        
         _tickDispatcher = tickDispatcher;
 
-        // general sizes / positions
+        // set general sizes / positions
         CCSprite *itemMenuBottomCap = [CCSprite spriteWithSpriteFrameName:@"item_menu_bottom.png"];
         static CGFloat itemsToggleOpenOffset = 10;
         _itemsToggleOpenX = (self.contentSize.width - itemMenuBottomCap.contentSize.width) - itemsToggleOpenOffset;
         _controlsButtonLength = (self.itemsToggleOpenX / 7) * 2;
         CCSprite *exitOff = [CCSprite spriteWithSpriteFrameName:@"exit_off.png"];
-        self.buttonAssetSize = exitOff.contentSize;
+        _buttonAssetSize = exitOff.contentSize;
         
         // batch node
         CCSpriteBatchNode *uiBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyUILayer stringByAppendingString:@".png"]];
@@ -105,8 +113,8 @@ static CGFloat const kItemMenuRowHeight = 80;
         // buttons must be added to a CCMenu to work
         CCMenu *menu = [CCMenu menuWithItems:exitButton, speakerButton, playButton, itemsToggle, nil];
         _controlMenu = menu;
-        menu.position = ccp(0, 0);
-        [self addChild:menu];
+        menu.position = CGPointZero;
+        [self addChild:menu]; // can't add to batch because menu is not a ccsprite
         
         int steps = (tickDispatcher.sequenceLength / 4);
         self.steps = steps;
@@ -133,46 +141,53 @@ static CGFloat const kItemMenuRowHeight = 80;
         _panSprite = panSprite;
         panSprite.scrollDirection = ScrollDirectionHorizontal;
         panSprite.position = panNodeOrigin;
-        [self addChild:panSprite];
+        [self addChild:panSprite]; // can't add to batch because PanSprite contains ClippingSprite which overrides 'visit'
         
-        // control bar separator
-        CCSprite *controlBar = [CCSprite spriteWithSpriteFrameName:@"control_bar.png"];
-        _controlBar = controlBar;
-        controlBar.anchorPoint = ccp(0, 0);
-        [uiBatch addChild:controlBar];
+        // timeline controls border
+        CCSprite *timelineBorder = [CCSprite spriteWithSpriteFrameName:@"control_bar.png"];
+        _timelineBorder = timelineBorder;
+        timelineBorder.anchorPoint = CGPointZero;
+        [uiBatch addChild:timelineBorder];
+        
+        // timeline controls background
+        CCSprite *timelineBackground = [CCSprite spriteWithSpriteFrameName:@"control_bar_gradient_mask.png"];
+        _timelineBackground = timelineBackground;
+        timelineBackground.anchorPoint = CGPointZero;
+        timelineBackground.opacity = kPanelMaskOpacity;
+        [self addChild:timelineBackground z:self.panSprite.zOrder - 1]; // can't add to batch because must be drawn below pan sprite
         
         // item menu
         // -- edges
         _itemMenuBottomCap = itemMenuBottomCap;
-        itemMenuBottomCap.anchorPoint = ccp(0, 0);
+        itemMenuBottomCap.anchorPoint = CGPointZero;
         itemMenuBottomCap.position = ccp([self itemMenuLeftOpened:NO], kItemMenuBottom);
         [uiBatch addChild:itemMenuBottomCap];
         
         TileSprite *itemMenuLeftSeparator = [[TileSprite alloc] initWithTileFrameName:@"dotted_line_2_80.png" repeatHorizonal:1 repeatVertical:dragItems.count];
         _itemMenuLeftSeparator = itemMenuLeftSeparator;
-        itemMenuLeftSeparator.anchorPoint = ccp(0, 0);
+        itemMenuLeftSeparator.anchorPoint = CGPointZero;
         itemMenuLeftSeparator.position = ccp([self itemMenuLeftOpened:NO], self.itemMenuBottomCap.position.y + self.itemMenuBottomCap.contentSize.height);
         [uiBatch addChild:itemMenuLeftSeparator];
         
         CCSprite *itemMenuTopCap = [CCSprite spriteWithSpriteFrameName:@"item_menu_top.png"];
         _itemMenuTopCap = itemMenuTopCap;
-        itemMenuTopCap.anchorPoint = ccp(0, 0);
+        itemMenuTopCap.anchorPoint = CGPointZero;
         itemMenuTopCap.position = ccp([self itemMenuLeftOpened:NO], self.itemMenuLeftSeparator.position.y + self.itemMenuLeftSeparator.contentSize.height);
         [uiBatch addChild:itemMenuTopCap];
         
         // -- panel mask
-        CGFloat maskHeight = (itemMenuTopCap.position.y + itemMenuTopCap.contentSize.height) - kItemMenuBottom;
+        CGFloat maskHeight = itemMenuTopCap.position.y - (kItemMenuBottom + itemMenuBottomCap.contentSize.height);
         ClippingSprite *rightGradientMask = [ClippingSprite clippingSpriteWithRect:CGRectMake(0, 0, self.itemMenuBottomCap.contentSize.width, maskHeight)];
         _rightGradientMask = rightGradientMask;
+        rightGradientMask.anchorPoint = CGPointZero;
+        rightGradientMask.position = [self itemMenuOriginOpened:NO];
         
-        CCSprite *rightGradientSprite = [CCSprite spriteWithSpriteFrameName:@"gradient_mask_76_556.png"];
-        rightGradientSprite.anchorPoint = ccp(0, 0);
-        rightGradientSprite.position = CGPointZero;
+        CCSprite *rightGradientSprite = [CCSprite spriteWithSpriteFrameName:@"gradient_mask_76_568.png"];
+        rightGradientSprite.anchorPoint = CGPointZero;
+        rightGradientSprite.position = ccp(0, -(kItemMenuBottom + itemMenuBottomCap.contentSize.height));
+        rightGradientSprite.opacity = kPanelMaskOpacity;
         [rightGradientMask addChild:rightGradientSprite];
-        
-        rightGradientMask.anchorPoint = ccp(0, 0);
-        rightGradientMask.position = ccp([self itemMenuLeftOpened:NO], kItemMenuBottom);
-        [self addChild:rightGradientMask];
+        [self addChild:rightGradientMask]; // can't add to batch because
         
         // size and position the pan sprite and control bar
         [self configureItemMenuOpened:NO animated:NO];
@@ -212,7 +227,12 @@ static CGFloat const kItemMenuRowHeight = 80;
     if (opened) {
         return self.contentSize.width - self.itemMenuBottomCap.contentSize.width;
     }
-    return self.contentSize.width + (self.controlBar.contentSize.width - self.contentSize.width) + padding;
+    return self.contentSize.width + (self.timelineBorder.contentSize.width - self.contentSize.width) + padding;
+}
+
+- (CGPoint)itemMenuOriginOpened:(BOOL)opened
+{
+    return ccp([self itemMenuLeftOpened:opened], kItemMenuBottom + self.itemMenuBottomCap.contentSize.height);
 }
 
 - (CGPoint)itemsToggleOriginOpened:(BOOL)opened
@@ -234,15 +254,15 @@ static CGFloat const kItemMenuRowHeight = 80;
         unitWidth = MIN(self.steps, kMaxControlLengthCompact);
     }
     
-    // control bar
+    // timeline
     CGFloat xOffset = -(kMaxControlLengthFull - unitWidth) * kControlStepWidth;
     if (xOffset < 0){
-        xOffset -= (self.controlBar.contentSize.width - self.contentSize.width);
+        xOffset -= (self.timelineBorder.contentSize.width - self.contentSize.width);
         if (unitWidth == kMaxControlLengthCompact) {
             xOffset -= kUIPadding;
         }
     }
-    CGPoint controlBarPos = ccp(xOffset, kControlsRowHeight);
+    CGPoint timelinePos = ccp(xOffset, kControlsRowHeight);
     
     // pan sprite
     CGFloat panSpriteWidth;
@@ -260,14 +280,18 @@ static CGFloat const kItemMenuRowHeight = 80;
     CGPoint itemMenuBottomCapPos = ccp([self itemMenuLeftOpened:opened], kItemMenuBottom);
     CGPoint itemMenuLeftSeparatorPos = ccp([self itemMenuLeftOpened:opened], self.itemMenuBottomCap.position.y + self.itemMenuBottomCap.contentSize.height);
     CGPoint itemMenuTopCapPos = ccp([self itemMenuLeftOpened:opened], self.itemMenuLeftSeparator.position.y + self.itemMenuLeftSeparator.contentSize.height);
-    CGPoint itemMenuGradientMaskPos = ccp([self itemMenuLeftOpened:opened], kItemMenuBottom);
     
     // animate
     if (animated) {
-        // control bar
-        CCMoveTo *moveControlBar = [CCMoveTo actionWithDuration:kTransitionDuration position:controlBarPos];
-        CCEaseSineOut *easeControlBar = [CCEaseSineOut actionWithAction:moveControlBar];
-        [self.controlBar runAction:easeControlBar];
+        // timeline border
+        CCMoveTo *moveTimelineBorder = [CCMoveTo actionWithDuration:kTransitionDuration position:timelinePos];
+        CCEaseSineOut *easeTimelineBorder = [CCEaseSineOut actionWithAction:moveTimelineBorder];
+        [self.timelineBorder runAction:easeTimelineBorder];
+        
+        // timeline background
+        CCMoveTo *moveTimelineBackgroud = [CCMoveTo actionWithDuration:kTransitionDuration position:timelinePos];
+        CCEaseSineOut *easeTimelineBackground = [CCEaseSineOut actionWithAction:moveTimelineBackgroud];
+        [self.timelineBackground runAction:easeTimelineBackground];
 
         // pan sprite with completion
         CCActionTween *changeWidth = [CCActionTween actionWithDuration:kTransitionDuration key:@"containerWidth" from:self.panSprite.contentSize.width to:panSpriteWidth];
@@ -292,7 +316,7 @@ static CGFloat const kItemMenuRowHeight = 80;
         [self.itemMenuTopCap runAction:easeItemMenuTopCap];
         
         // gradient mask
-        CCMoveTo *moveMenuMask = [CCMoveTo actionWithDuration:kTransitionDuration position:itemMenuGradientMaskPos];
+        CCMoveTo *moveMenuMask = [CCMoveTo actionWithDuration:kTransitionDuration position:[self itemMenuOriginOpened:opened]];
         CCEaseSineInOut *easeMenuMask = [CCEaseSineOut actionWithAction:moveMenuMask];
         [self.rightGradientMask runAction:easeMenuMask];
         
@@ -306,12 +330,13 @@ static CGFloat const kItemMenuRowHeight = 80;
     }
     // jump to
     else {
-        self.controlBar.position = controlBarPos;
+        self.timelineBorder.position = timelinePos;
+        self.timelineBackground.position = timelinePos;
         self.panSprite.containerWidth = panSpriteWidth;
         self.itemMenuBottomCap.position = itemMenuBottomCapPos;
         self.itemMenuLeftSeparator.position = itemMenuLeftSeparatorPos;
         self.itemMenuTopCap.position = itemMenuTopCapPos;
-        self.rightGradientMask.position = itemMenuGradientMaskPos;
+        self.rightGradientMask.position = [self itemMenuOriginOpened:opened];
         self.itemsToggle.position = [self itemsToggleOriginOpened:opened];
     }
 }
