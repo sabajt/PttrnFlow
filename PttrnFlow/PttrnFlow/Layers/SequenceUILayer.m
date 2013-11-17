@@ -21,10 +21,11 @@
 
 static int const kMaxControlLengthFull = 8;
 static int const kMaxControlLengthCompact = 6;
-static CGFloat const kControlStepWidth = 40;
+static CGFloat const kTimelineStepWidth = 40;
 static CGFloat const kTimeLineRowHeight = 44;
-static CGFloat const kControlsRowHeight = 64; // use as bottom of control bar gradient image offset
-static CGFloat const kItemMenuBottom = 64; // use as the bottom of the right gradient image
+static CGFloat const kControlsRowHeight = 80; // use as bottom of timeline background image asset offset
+static CGFloat const kControlsButtonWidth = 320 / 4;
+static CGFloat const kItemMenuBottom = 80;
 static CGFloat const kUIPadding = 4;
 static CGFloat const kLineWidth = 2;
 static CGFloat const kItemMenuRowHeight = 80;
@@ -38,7 +39,6 @@ static GLubyte const kPanelMaskOpacity = 255 * 0.92;
 // size and positions
 @property (assign) int steps;
 @property (assign) BOOL menuOpen;
-@property (assign) CGFloat controlsButtonLength;
 @property (assign) CGFloat itemsToggleOpenX;
 @property (assign) CGSize buttonAssetSize;
 
@@ -73,7 +73,6 @@ static GLubyte const kPanelMaskOpacity = 255 * 0.92;
         CCSprite *itemMenuBottomCap = [CCSprite spriteWithSpriteFrameName:@"item_menu_bottom.png"];
         static CGFloat itemsToggleOpenOffset = 10;
         _itemsToggleOpenX = (self.contentSize.width - itemMenuBottomCap.contentSize.width) - itemsToggleOpenOffset;
-        _controlsButtonLength = (self.itemsToggleOpenX / 7) * 2;
         CCSprite *exitOff = [CCSprite spriteWithSpriteFrameName:@"exit_off.png"];
         _buttonAssetSize = exitOff.contentSize;
         
@@ -84,31 +83,31 @@ static GLubyte const kPanelMaskOpacity = 255 * 0.92;
         // exit button bottom left
         CCSprite *exitOn = [CCSprite spriteWithSpriteFrameName:@"exit_on.png"];
         CCMenuItemSprite *exitButton = [[CCMenuItemSprite alloc] initWithNormalSprite:exitOff selectedSprite:exitOn disabledSprite:nil target:self selector:@selector(exitPressed:)];
-        exitButton.position = ccp(self.controlsButtonLength / 2, kControlsRowHeight / 2);
+        exitButton.position = ccp(kControlsButtonWidth / 2, kControlsRowHeight / 2);
         
         // speaker button
         CCSprite *speakerOff = [CCSprite spriteWithSpriteFrameName:@"speaker_off.png"];
         CCSprite *speakerOn = [CCSprite spriteWithSpriteFrameName:@"speaker_on.png"];
         CCMenuItemSprite *speakerButton = [[CCMenuItemSprite alloc] initWithNormalSprite:speakerOff selectedSprite:speakerOn disabledSprite:nil target:self selector:@selector(speakerPressed:)];
-        speakerButton.position = ccp((3 * self.controlsButtonLength) / 2, kControlsRowHeight / 2);
+        speakerButton.position = ccp((3 * kControlsButtonWidth) / 2, kControlsRowHeight / 2);
         
         // play button
         CCSprite *playOff = [CCSprite spriteWithSpriteFrameName:@"play_off.png"];
         CCSprite *playOn = [CCSprite spriteWithSpriteFrameName:@"play_on.png"];
         CCMenuItemSprite *playButton = [[CCMenuItemSprite alloc] initWithNormalSprite:playOff selectedSprite:playOn disabledSprite:nil target:self selector:@selector(playButtonPressed:)];
-        playButton.position = ccp((5 * self.controlsButtonLength) / 2, kControlsRowHeight / 2);
+        playButton.position = ccp((5 * kControlsButtonWidth) / 2, kControlsRowHeight / 2);
         
-        // items button (drop down menu) top right
-        CCSprite *itemsButtonOff1 = [CCSprite spriteWithSpriteFrameName:@"items_button_off.png"];
-        CCSprite *itemsButtonOn1 = [CCSprite spriteWithSpriteFrameName:@"items_button_on.png"];
+        // toolbox (item menu) button
+        CCSprite *itemsButtonOff1 = [CCSprite spriteWithSpriteFrameName:@"toolbox_off.png"];
+        CCSprite *itemsButtonOn1 = [CCSprite spriteWithSpriteFrameName:@"toolbox_on.png"];
         CCMenuItemSprite *itemsButtonOffItem = [CCMenuItemSprite itemWithNormalSprite:itemsButtonOff1 selectedSprite:itemsButtonOn1];
-        CCSprite *itemsButtonOff2 = [CCSprite spriteWithSpriteFrameName:@"items_button_off.png"];
-        CCSprite *itemsButtonOn2 = [CCSprite spriteWithSpriteFrameName:@"items_button_on.png"];
+        CCSprite *itemsButtonOff2 = [CCSprite spriteWithSpriteFrameName:@"toolbox_off.png"];
+        CCSprite *itemsButtonOn2 = [CCSprite spriteWithSpriteFrameName:@"toolbox_on.png"];
         CCMenuItemSprite *itemsButtonOnItem = [CCMenuItemSprite itemWithNormalSprite:itemsButtonOn2 selectedSprite:itemsButtonOff2];
         
         CCMenuItemToggle *itemsToggle = [CCMenuItemToggle itemWithTarget:self selector:@selector(itemsButtonPressed:) items:itemsButtonOffItem, itemsButtonOnItem, nil];
         _itemsToggle = itemsToggle;
-        itemsToggle.position = [self itemsToggleOriginOpened:NO];
+        _itemsToggle.position = ccp((7 * kControlsButtonWidth) / 2, kControlsRowHeight / 2);
         
         // buttons must be added to a CCMenu to work
         CCMenu *menu = [CCMenu menuWithItems:exitButton, speakerButton, playButton, itemsToggle, nil];
@@ -118,13 +117,13 @@ static GLubyte const kPanelMaskOpacity = 255 * 0.92;
         
         int steps = (tickDispatcher.sequenceLength / 4);
         self.steps = steps;
-        TickerControl *tickerControl = [[TickerControl alloc] initWithSpriteFrameName:kClearRectUILayer steps:steps unitSize:CGSizeMake(kControlStepWidth, kTimeLineRowHeight)];
+        TickerControl *tickerControl = [[TickerControl alloc] initWithSpriteFrameName:kClearRectUILayer steps:steps unitSize:CGSizeMake(kTimelineStepWidth, kTimeLineRowHeight)];
         _tickerControl = tickerControl;
         tickerControl.tickerControlDelegate = tickDispatcher;
         tickerControl.position = ccp(tickerControl.contentSize.width / 2, (3 * tickerControl.contentSize.height) / 2);
         
         // hit chart
-        TickHitChart *hitChart = [[TickHitChart alloc] initWithSpriteFrameName:kClearRectUILayer steps:steps unitSize:CGSizeMake(kControlStepWidth, kTimeLineRowHeight)];
+        TickHitChart *hitChart = [[TickHitChart alloc] initWithSpriteFrameName:kClearRectUILayer steps:steps unitSize:CGSizeMake(kTimelineStepWidth, kTimeLineRowHeight)];
         _hitChart = hitChart;
         hitChart.position = ccp(hitChart.contentSize.width / 2, hitChart.contentSize.height / 2);
         
@@ -133,9 +132,9 @@ static GLubyte const kPanelMaskOpacity = 255 * 0.92;
         dotSeparator.position = ccp(dotSeparator.contentSize.width / 2, kTimeLineRowHeight);
         
         // pan sprite
-        CGFloat panNodeWidth = MIN(steps, kMaxControlLengthFull) * kControlStepWidth;
+        CGFloat panNodeWidth = MIN(steps, kMaxControlLengthFull) * kTimelineStepWidth;
         CGSize panNodeSize = CGSizeMake(panNodeWidth, 2 * kTimeLineRowHeight);
-        CGSize scrollingContainerSize = CGSizeMake(steps * kControlStepWidth, panNodeSize.height);
+        CGSize scrollingContainerSize = CGSizeMake(steps * kTimelineStepWidth, panNodeSize.height);
         CGPoint panNodeOrigin = ccp(0, kControlsRowHeight);
         PanSprite *panSprite = [[PanSprite alloc] initWithSpriteFrameName:kClearRectUILayer contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:@[hitChart, tickerControl, dotSeparator]];
         _panSprite = panSprite;
@@ -235,18 +234,6 @@ static GLubyte const kPanelMaskOpacity = 255 * 0.92;
     return ccp([self itemMenuLeftOpened:opened], kItemMenuBottom + self.itemMenuBottomCap.contentSize.height);
 }
 
-- (CGPoint)itemsToggleOriginOpened:(BOOL)opened
-{
-    if (opened) {
-        CGFloat visualCenterX = (7 * self.controlsButtonLength) / 2;
-        CGFloat imageSizeCorrectionX = (self.itemsToggle.contentSize.width - self.buttonAssetSize.width) / 2;
-        CGFloat x = visualCenterX - imageSizeCorrectionX;
-
-        return ccp(x, kControlsRowHeight / 2);
-    }
-    return ccp(self.contentSize.width - (self.itemsToggle.contentSize.width / 2), kControlsRowHeight / 2);
-}
-
 - (void)configureItemMenuOpened:(BOOL)opened animated:(BOOL)animated
 {
     int unitWidth = MIN(self.steps, kMaxControlLengthFull);
@@ -255,7 +242,7 @@ static GLubyte const kPanelMaskOpacity = 255 * 0.92;
     }
     
     // timeline
-    CGFloat xOffset = -(kMaxControlLengthFull - unitWidth) * kControlStepWidth;
+    CGFloat xOffset = -(kMaxControlLengthFull - unitWidth) * kTimelineStepWidth;
     if (xOffset < 0){
         xOffset -= (self.timelineBorder.contentSize.width - self.contentSize.width);
         if (unitWidth == kMaxControlLengthCompact) {
@@ -267,13 +254,13 @@ static GLubyte const kPanelMaskOpacity = 255 * 0.92;
     // pan sprite
     CGFloat panSpriteWidth;
     if ( xOffset < 0) {
-        panSpriteWidth = (unitWidth * kControlStepWidth);
+        panSpriteWidth = (unitWidth * kTimelineStepWidth);
         if (unitWidth == kMaxControlLengthCompact) {
             panSpriteWidth -= (kUIPadding + kLineWidth);
         }
     }
     else {
-        panSpriteWidth = (unitWidth * kControlStepWidth);
+        panSpriteWidth = (unitWidth * kTimelineStepWidth);
     }
     
     // item menu
@@ -320,11 +307,6 @@ static GLubyte const kPanelMaskOpacity = 255 * 0.92;
         CCEaseSineInOut *easeMenuMask = [CCEaseSineOut actionWithAction:moveMenuMask];
         [self.rightGradientMask runAction:easeMenuMask];
         
-        // item menu toggle button
-        CCMoveTo *moveItemToggle = [CCMoveTo actionWithDuration:kTransitionDuration position:[self itemsToggleOriginOpened:opened]];
-        CCEaseSineInOut *easeItemToggle = [CCEaseSineInOut actionWithAction:moveItemToggle];
-        [self.itemsToggle runAction:easeItemToggle];
-        
         // update callback for pan node interior tracking
         [self scheduleUpdate];
     }
@@ -337,7 +319,6 @@ static GLubyte const kPanelMaskOpacity = 255 * 0.92;
         self.itemMenuLeftSeparator.position = itemMenuLeftSeparatorPos;
         self.itemMenuTopCap.position = itemMenuTopCapPos;
         self.rightGradientMask.position = [self itemMenuOriginOpened:opened];
-        self.itemsToggle.position = [self itemsToggleOriginOpened:opened];
     }
 }
 
