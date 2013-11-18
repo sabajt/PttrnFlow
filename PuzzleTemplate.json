@@ -1,0 +1,40 @@
+{
+	"bpm" : 120,
+	"inventory" : 
+	{
+		"arrows" : 4
+	},
+	"audio_pads" : 
+	[
+		{
+			"cell" : [1, 1],
+			"synth" : "osc",
+			"midi" : 50,
+			"arrow" : "up"
+		},
+		{
+			"cell" : [2, 1],
+			"entry" : "left"
+		},
+		{
+			"cell" : [1, 2],
+			"synth" : "osc",
+			"midi" : 52
+		},
+		{
+			"cell" : [2, 2],
+			"synth" : "osc",
+			"midi" : 54,
+		},
+		{
+			"cell" : [1, 4],
+			"sample" : "drum_01",
+			"entry" : "right"
+		},
+		{
+			"cell" : [2, 4],
+			"sample" : "drum_02"
+		}
+	]
+}
+

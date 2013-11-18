@@ -1,0 +1,47 @@
+-- current colors
+
+default gray - cbc9caff
+active purple - ba4c64ff
+gradient purple - 3a0f38ff
+grandient red - dd3e35ff
+
+-- alt bright gradient colors
+
+gradient top (dark purple) - 1c2134ff
+gradient bottom (sunburst red) - ff004cff
+
+-- old colors
+
+panel steel - 738b9eff
+highlight ice - bdd6dcff
+bubbleGumBlue - 6dd2faff (109, 210, 255)
+default steel - 7c98a2ff
+highlight red - ad3d69ff
+sky blue - cbe2eeff
+background grey - 313131ff
+
+-- system available fonts
+
+"American Typewriter"
+"Arial"
+"Arial Rounded MT Bold"
+"Courier New"
+"Georgia"
+"Helvetica"
+"Marker Felt"
+"Times New Roman"
+"Trebuchet MS"
+"Verdana"
+"Zapfino"
+
+-- misc
+
+top button frame - 72 x 32
+
+
+
+
+
+
+
+

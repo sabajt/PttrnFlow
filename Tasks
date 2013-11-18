@@ -1,0 +1,37 @@
+-- todo now
+
+[ ui layer ]
+toolbox button
+bigger button highlight, more room for button button row
+rearrange bottom row to match new design
+
+touch down highlight states for buttons
+highlight states stick for all toggles
+
+-- todo later
+
+[ ui layer ]
+design new drag items
+implement new drag items
+permanent solid gradient mask across bottom controls layer
+thin horizontal gradient slices over range of alpha above bottom mask for "fade to invisible" effect
+design toggle pan / play button (maybe an unlocked symbol for pan and locked symbol for play?)
+design toggle zoom button (maybe a magnifying glass with a '-' when zoomed in default, and a '+' when zoomed out)
+
+[ puzzle layer ]
+replace old audio box with new audio box
+integrate new tone assets
+tone on squiggly animation
+highlight should happen on audio box in addition to tick responders
+replace cclayerpanzoom with a 1 finger momentum pan
+toggle snap between pan and play mode
+toggle snap to 1/2 zoom (from either pan or play mode)
+
+[ misc ]
+make bitmap font for audio objects
+
+[ maybe ]
+
+-- done 
+
+timeline gradient mask
