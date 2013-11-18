@@ -22,6 +22,7 @@
 @property (weak, nonatomic) CCSpriteBatchNode *samplesBatchNode;
 @property (weak, nonatomic) CCSpriteBatchNode *synthBatchNode;
 @property (weak, nonatomic) CCSpriteBatchNode *othersBatchNode;
+@property (weak, nonatomic) CCSpriteBatchNode *audioObjectsBatchNode;
 
 + (CCScene *)sceneWithSequence:(int)sequence;
 

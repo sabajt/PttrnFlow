@@ -149,15 +149,19 @@
         // Sprite sheet batch nodes
         CCSpriteBatchNode *samplesBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeySamplePads stringByAppendingString:@".png"]];
         [self addChild:samplesBatch];
-        self.samplesBatchNode = samplesBatch;
+        _samplesBatchNode = samplesBatch;
         
         CCSpriteBatchNode *synthBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeySynthPads stringByAppendingString:@".png"]];
         [self addChild:synthBatch];
-        self.synthBatchNode = synthBatch;
+        _synthBatchNode = synthBatch;
         
         CCSpriteBatchNode *othersBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyOther stringByAppendingString:@".png"]];
         [self addChild:othersBatch];
-        self.othersBatchNode = othersBatch;
+        _othersBatchNode = othersBatch;
+        
+        CCSpriteBatchNode *audioObjectsBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyAudioObjects stringByAppendingString:@".png"]];
+        [self addChild:audioObjectsBatch];
+        _audioObjectsBatchNode = audioObjectsBatch;
 
         // Setup
         self.isTouchEnabled = YES;
@@ -217,7 +221,7 @@
                 audioPad.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
                 [self.tickDispatcher registerTickResponderCellNode:audioPad];
                 [self.audioTouchDispatcher addResponder:audioPad];
-                [self addChild:audioPad];
+                [self.audioObjectsBatchNode addChild:audioPad];
             }
         }
     }

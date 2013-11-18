@@ -102,7 +102,7 @@
  Default: 0,0 (bottom-left corner)
  */
 #ifndef CC_DIRECTOR_STATS_POSITION
-#define CC_DIRECTOR_STATS_POSITION ccp(0,0)
+#define CC_DIRECTOR_STATS_POSITION ccp(0,510)
 #endif
 
 /** @def CC_DIRECTOR_IOS_USE_BACKGROUND_THREAD
