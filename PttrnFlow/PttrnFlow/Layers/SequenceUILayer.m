@@ -29,7 +29,7 @@ static CGFloat const kItemMenuBottom = 80;
 static CGFloat const kUIPadding = 4;
 static CGFloat const kLineWidth = 2;
 static CGFloat const kItemMenuRowHeight = 80;
-static GLubyte const kPanelMaskOpacity = 255 * 0.92;
+static GLubyte const kPanelMaskOpacity = 255;
 
 @interface SequenceUILayer ()
 
@@ -79,6 +79,12 @@ static GLubyte const kPanelMaskOpacity = 255 * 0.92;
         // batch node
         CCSpriteBatchNode *uiBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyUILayer stringByAppendingString:@".png"]];
         self.uiBatchNode = uiBatch;
+        
+        // bottom controls mask
+        CCSprite *bottomControlsMask = [CCSprite spriteWithSpriteFrameName:@"bottom_controls_mask.png"];
+        bottomControlsMask.anchorPoint = ccp(0, 0);
+        bottomControlsMask.position = ccp(0, 0);
+        [self addChild:bottomControlsMask]; // can't add to batch because must be drawn below menu items
         
         // exit button bottom left
         CCSprite *exitOn = [CCSprite spriteWithSpriteFrameName:@"exit_on.png"];

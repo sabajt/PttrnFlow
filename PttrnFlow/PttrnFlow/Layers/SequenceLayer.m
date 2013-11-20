@@ -33,6 +33,7 @@
 #import "AudioStop.h"
 #import "SpeedChange.h"
 #import "TextureUtils.h"
+#import "PathUtils.h"
 
 @interface SequenceLayer ()
 
@@ -191,39 +192,93 @@
         [self addChild:self.audioTouchDispatcher];
         
         // create puzzle objects
-        [self createPuzzleObjects:tiledMap];
+//        [self createPuzzleObjectsOld:tiledMap];
+        [self createPuzzleObjects:1];
+
 
         // find optimal scale and position
         CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
         self.scale = [self scaleToFitArea:self.absoluteGridSize insideConstraintSize:activeWindow.size];
         self.position = [self positionAtCenterOfGridSized:self.gridSize unitSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) constraintRect:activeWindow];
-        
     }
     return self;
 }
 
-- (void)createPuzzleObjects:(CCTMXTiledMap *)tiledMap
+- (void)createPuzzleObjects:(NSInteger)puzzle
+{
+//    NSLog(@"puzzle files: %@", [PathUtils puzzleFileNames]);
+//    NSLog(@"bpm: %i", [PathUtils puzzleBpm:puzzle]);
+//    NSLog(@"inventory: %@", [PathUtils puzzleInventory:puzzle]);
+//    NSLog(@"audio pads: %@", [PathUtils puzzleAudioPads:puzzle]);
+    
+    // audio pads
+    NSArray *audioPads = [PathUtils puzzleAudioPads:puzzle];
+    for (NSDictionary *pad in audioPads) {
+        
+        NSArray *coord = pad[kCell];
+        NSString *entry = pad[kEntry];
+        NSString *arrow = pad[kArrow];
+        NSString *synth = pad[kSynth];
+        NSNumber *midi = pad[kMidi];
+        NSString *sample = pad[kSample];
+        
+//        NSLog(@"\n_______\npad:");
+//        NSLog(@"cell: %@", cell);
+//        NSLog(@"synth: %@", synth);
+//        NSLog(@"midi: %@", midi);
+//        NSLog(@"arrow: %@", arrow);
+//        NSLog(@"entry: %@", entry);
+//        NSLog(@"sample: %@", sample);
+//        NSLog(@"\n-----------");
+        
+        // cell is the only mandatory field
+        if (coord == NULL) {
+            NSLog(@"SequenceLayer createPuzzleObjects error: 'cell' must not be null on audio pads");
+            return;
+        }
+        GridCoord cell = GridCoordMake([coord[0] intValue], [coord[1] intValue]);
+        AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
+        audioPad.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
+        [self.tickDispatcher registerTickResponderCellNode:audioPad];
+        [self.audioTouchDispatcher addResponder:audioPad];
+        [self.audioObjectsBatchNode addChild:audioPad];
+
+        // entry point
+        if (entry != NULL) {
+        }
+        if (arrow != NULL) {
+        }
+        if (synth != NULL) {
+        }
+        if (midi != NULL) {
+        }
+        if (sample != NULL) {
+        }
+    }
+}
+
+- (void)createPuzzleObjectsOld:(CCTMXTiledMap *)tiledMap
 {
     // audio pads
     NSMutableArray *pads = [tiledMap objectsWithName:kTLDObjectAudioPad groupName:kTLDGroupTickResponders];
     for (NSMutableDictionary *pad in pads) {
         
-        GridCoord padChunkOrigin = [tiledMap gridCoordForObject:pad];
-        NSNumber *width = [pad objectForKey:@"width"];
-        NSNumber *height = [pad objectForKey:@"height"];
-        int column = ([width intValue] / kSizeGridUnit);
-        int row = ([height intValue] / kSizeGridUnit);
-        
-        for (int c = 0; c <= column; c++) {
-            for (int r = 0; r <= row; r++) {
-                GridCoord cell = GridCoordMake(padChunkOrigin.x + c, padChunkOrigin.y + r);
-                AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
-                audioPad.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
-                [self.tickDispatcher registerTickResponderCellNode:audioPad];
-                [self.audioTouchDispatcher addResponder:audioPad];
-                [self.audioObjectsBatchNode addChild:audioPad];
-            }
-        }
+//        GridCoord padChunkOrigin = [tiledMap gridCoordForObject:pad];
+//        NSNumber *width = [pad objectForKey:@"width"];
+//        NSNumber *height = [pad objectForKey:@"height"];
+//        int column = ([width intValue] / kSizeGridUnit);
+//        int row = ([height intValue] / kSizeGridUnit);
+//        
+//        for (int c = 0; c <= column; c++) {
+//            for (int r = 0; r <= row; r++) {
+//                GridCoord cell = GridCoordMake(padChunkOrigin.x + c, padChunkOrigin.y + r);
+//                AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
+//                audioPad.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
+//                [self.tickDispatcher registerTickResponderCellNode:audioPad];
+//                [self.audioTouchDispatcher addResponder:audioPad];
+//                [self.audioObjectsBatchNode addChild:audioPad];
+//            }
+//        }
     }
     
     // tone blocks
