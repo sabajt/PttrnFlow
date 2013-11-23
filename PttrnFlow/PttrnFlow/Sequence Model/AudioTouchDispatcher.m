@@ -56,9 +56,9 @@
     
     // crunch fragments into events and send to pd
     NSArray *events = [TickEvent eventsFromFragments:fragments channel:channel lastLinkedEvents:nil];
-    [MainSynth receiveEvents:events ignoreAudioPad:NO];
     
     // send events to pd
+    [MainSynth receiveEvents:events ignoreAudioPad:NO];
 }
 
 - (void)afterTickForCell:(GridCoord)cell channel:(NSString *)channel

@@ -1,19 +1,16 @@
 //
 //  Tone.h
-//  SequencerGame
+//  PttrnFlow
 //
-//  Created by John Saba on 5/4/13.
+//  Created by John Saba on 11/20/13.
 //
 //
 
-#import "GameNode.h"
+#import "GameSprite.h"
 #import "TickResponder.h"
 
-@interface Tone : GameNode <TickResponder>
+@interface Tone : GameSprite <TickResponder>
 
-@property (copy, nonatomic) NSString *midiValue;
-@property (copy, nonatomic) NSString *synthType;
-
-- (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode tone:(NSMutableDictionary *)tone tiledMap:(CCTMXTiledMap *)tiledMap;
+- (id)initWithCell:(GridCoord)cell synth:(NSString *)synth midi:(NSString *)midi;
 
 @end

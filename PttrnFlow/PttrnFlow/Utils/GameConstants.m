@@ -23,7 +23,7 @@ NSString *const kNotificationUnlockPan = @"unlockPan";
 
 // frame names
 NSString *const kClearRectUILayer = @"clear_rect_uilayer.png";
-NSString *const kClearRectPuzzleBatch = @"clear_rect_puzzle_batch.png";
+NSString *const kClearRectAudioBatch = @"clear_rect_audio_batch.png";
 
 @implementation GameConstants
 

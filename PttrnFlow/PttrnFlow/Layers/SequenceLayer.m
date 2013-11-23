@@ -113,7 +113,6 @@
     CCTMXTiledMap *tiledMap = [CCTMXTiledMap tiledMapWithTMXFile:sequenceName];
     
     // background
-//    BackgroundLayer *background = [BackgroundLayer layerWithColor:ccc4BFromccc3B([ColorUtils backgroundGray])];
     BackgroundLayer *background = [BackgroundLayer backgroundLayer];
     [scene addChild:background];
     
@@ -237,84 +236,95 @@
             return;
         }
         GridCoord cell = GridCoordMake([coord[0] intValue], [coord[1] intValue]);
+        
+        // audio pad sprite
         AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
         audioPad.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
         [self.tickDispatcher registerTickResponderCellNode:audioPad];
         [self.audioTouchDispatcher addResponder:audioPad];
         [self.audioObjectsBatchNode addChild:audioPad];
 
-        // entry point
+        // ticker entry point
         if (entry != NULL) {
         }
-        if (arrow != NULL) {
+        
+        // melody synth
+        if (synth != NULL && midi != NULL) {
+            Tone *tone = [[Tone alloc] initWithCell:cell synth:synth midi:midi.stringValue];
+//            [self.tickDispatcher registerTickResponderCellNode:tone];
+            [self.audioTouchDispatcher addResponder:tone];
+            tone.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
+            [self addChild:tone];
         }
-        if (synth != NULL) {
-        }
-        if (midi != NULL) {
-        }
+        
+        // audio sample
         if (sample != NULL) {
+        }
+        
+        // direction arrow
+        if (arrow != NULL) {
         }
     }
 }
 
-- (void)createPuzzleObjectsOld:(CCTMXTiledMap *)tiledMap
-{
-    // audio pads
-    NSMutableArray *pads = [tiledMap objectsWithName:kTLDObjectAudioPad groupName:kTLDGroupTickResponders];
-    for (NSMutableDictionary *pad in pads) {
-        
-//        GridCoord padChunkOrigin = [tiledMap gridCoordForObject:pad];
-//        NSNumber *width = [pad objectForKey:@"width"];
-//        NSNumber *height = [pad objectForKey:@"height"];
-//        int column = ([width intValue] / kSizeGridUnit);
-//        int row = ([height intValue] / kSizeGridUnit);
+//- (void)createPuzzleObjectsOld:(CCTMXTiledMap *)tiledMap
+//{
+//    // audio pads
+//    NSMutableArray *pads = [tiledMap objectsWithName:kTLDObjectAudioPad groupName:kTLDGroupTickResponders];
+//    for (NSMutableDictionary *pad in pads) {
 //        
-//        for (int c = 0; c <= column; c++) {
-//            for (int r = 0; r <= row; r++) {
-//                GridCoord cell = GridCoordMake(padChunkOrigin.x + c, padChunkOrigin.y + r);
-//                AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
-//                audioPad.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
-//                [self.tickDispatcher registerTickResponderCellNode:audioPad];
-//                [self.audioTouchDispatcher addResponder:audioPad];
-//                [self.audioObjectsBatchNode addChild:audioPad];
-//            }
-//        }
-    }
-    
-    // tone blocks
-    NSMutableArray *tones = [tiledMap objectsWithName:kTLDObjectTone groupName:kTLDGroupTickResponders];
-    for (NSMutableDictionary *tone in tones) {
-        
-        Tone *toneNode = [[Tone alloc] initWithBatchNode:self.synthBatchNode tone:tone tiledMap:tiledMap];
-        [self.tickDispatcher registerTickResponderCellNode:toneNode];
-        [self.audioTouchDispatcher addResponder:toneNode];
-        [self addChild:toneNode];
-    }
-    
-    // drum blocks
-    NSMutableArray *drums = [tiledMap objectsWithName:kTLDObjectDrum groupName:kTLDGroupTickResponders];
-    for (NSMutableDictionary *drum in drums) {
-        Drum *drumNode = [[Drum alloc] initWithDrum:drum batchNode:self.samplesBatchNode tiledMap:tiledMap];
-        [self.tickDispatcher registerTickResponderCellNode:drumNode];
-        [self.audioTouchDispatcher addResponder:drumNode];
-        [self addChild:drumNode];
-    }
-    
-    //        // arrow blocks
-    //        NSMutableArray *arrows = [tiledMap objectsWithName:kTLDObjectArrow groupName:kTLDGroupTickResponders];
-    //        for (NSMutableDictionary *arrow in arrows) {
-    //            Arrow *arrowNode = [[Arrow alloc] initWithArrow:arrow tiledMap:tiledMap synth:self.synth];
-    //            [self.tickDispatcher registerTickResponder:arrowNode];
-    //            [self addChild:arrowNode];
-    //        }
-    
-    // entry arrow
-    NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupTickResponders];
-    for (NSMutableDictionary *entry in entries) {
-        EntryArrow *entryArrow = [[EntryArrow alloc] initWithBatchNode:self.othersBatchNode entry:entry tiledMap:tiledMap];
-        [self addChild:entryArrow];
-    }
-}
+////        GridCoord padChunkOrigin = [tiledMap gridCoordForObject:pad];
+////        NSNumber *width = [pad objectForKey:@"width"];
+////        NSNumber *height = [pad objectForKey:@"height"];
+////        int column = ([width intValue] / kSizeGridUnit);
+////        int row = ([height intValue] / kSizeGridUnit);
+////        
+////        for (int c = 0; c <= column; c++) {
+////            for (int r = 0; r <= row; r++) {
+////                GridCoord cell = GridCoordMake(padChunkOrigin.x + c, padChunkOrigin.y + r);
+////                AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
+////                audioPad.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
+////                [self.tickDispatcher registerTickResponderCellNode:audioPad];
+////                [self.audioTouchDispatcher addResponder:audioPad];
+////                [self.audioObjectsBatchNode addChild:audioPad];
+////            }
+////        }
+//    }
+//    
+//    // tone blocks
+//    NSMutableArray *tones = [tiledMap objectsWithName:kTLDObjectTone groupName:kTLDGroupTickResponders];
+//    for (NSMutableDictionary *tone in tones) {
+//        
+//        Tone *toneNode = [[Tone alloc] initWithBatchNode:self.synthBatchNode tone:tone tiledMap:tiledMap];
+//        [self.tickDispatcher registerTickResponderCellNode:toneNode];
+//        [self.audioTouchDispatcher addResponder:toneNode];
+//        [self addChild:toneNode];
+//    }
+//    
+//    // drum blocks
+//    NSMutableArray *drums = [tiledMap objectsWithName:kTLDObjectDrum groupName:kTLDGroupTickResponders];
+//    for (NSMutableDictionary *drum in drums) {
+//        Drum *drumNode = [[Drum alloc] initWithDrum:drum batchNode:self.samplesBatchNode tiledMap:tiledMap];
+//        [self.tickDispatcher registerTickResponderCellNode:drumNode];
+//        [self.audioTouchDispatcher addResponder:drumNode];
+//        [self addChild:drumNode];
+//    }
+//    
+//    //        // arrow blocks
+//    //        NSMutableArray *arrows = [tiledMap objectsWithName:kTLDObjectArrow groupName:kTLDGroupTickResponders];
+//    //        for (NSMutableDictionary *arrow in arrows) {
+//    //            Arrow *arrowNode = [[Arrow alloc] initWithArrow:arrow tiledMap:tiledMap synth:self.synth];
+//    //            [self.tickDispatcher registerTickResponder:arrowNode];
+//    //            [self addChild:arrowNode];
+//    //        }
+//    
+//    // entry arrow
+//    NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupTickResponders];
+//    for (NSMutableDictionary *entry in entries) {
+//        EntryArrow *entryArrow = [[EntryArrow alloc] initWithBatchNode:self.othersBatchNode entry:entry tiledMap:tiledMap];
+//        [self addChild:entryArrow];
+//    }
+//}
 
 // general rule for legal placement of drag items
 - (BOOL)isLegalItemPlacement:(GridCoord)cell itemType:(kDragItem)itemType sender:(id)sender

@@ -30,6 +30,71 @@
                 <key>sourceSize</key>
                 <string>{76,76}</string>
             </dict>
+            <key>clear_rect_audio_batch.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{80,14},{1,1}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{1,1}}</string>
+                <key>sourceSize</key>
+                <string>{1,1}</string>
+            </dict>
+            <key>num1_off.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{116,8},{4,9}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{4,9}}</string>
+                <key>sourceSize</key>
+                <string>{4,9}</string>
+            </dict>
+            <key>num1_on.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{116,2},{4,9}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{4,9}}</string>
+                <key>sourceSize</key>
+                <string>{4,9}</string>
+            </dict>
+            <key>synth_line_off.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{80,10},{34,2}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,4},{34,2}}</string>
+                <key>sourceSize</key>
+                <string>{34,10}</string>
+            </dict>
+            <key>synth_line_on.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{80,2},{34,6}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,2},{34,6}}</string>
+                <key>sourceSize</key>
+                <string>{34,10}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -40,7 +105,7 @@
             <key>size</key>
             <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:ebbdfa611d705122f85489b6dc9b12bb:408a578efdae173ddb39b7b810fcd633:b365ed0847c6905af74912c7dbbb1edb$</string>
+            <string>$TexturePacker:SmartUpdate:720925f625c0e4cf97dca1c8090b7de9:1da339c787b732548e62b512b09bbe1f:b365ed0847c6905af74912c7dbbb1edb$</string>
             <key>textureFileName</key>
             <string>audioObjects.png</string>
         </dict>
