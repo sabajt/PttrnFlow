@@ -9,6 +9,7 @@
 #import "Tone.h"
 #import "GameConstants.h"
 #import "TickEvent.h"
+#import "CCNode+Grid.h"
 
 static CGFloat const kPadding = 4;
 
@@ -29,8 +30,12 @@ static CGFloat const kPadding = 4;
 
 - (id)initWithCell:(GridCoord)cell synth:(NSString *)synth midi:(NSString *)midi
 {
-    self = [super initWithSpriteFrameName:kClearRectAudioBatch cell:cell];
+    self = [super initWithSpriteFrameName:kClearRectAudioBatch];
     if (self) {
+        // CCNode+Grid
+        self.cell = cell;
+        self.cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
+    
         self.contentSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
         _synth = synth;
         _midi = midi;
@@ -62,6 +67,7 @@ static CGFloat const kPadding = 4;
 
 - (GridCoord)responderCell
 {
+    NSLog(@"responder cell: %i, %i", self.cell.x, self.cell.y);
     return self.cell;
 }
 
