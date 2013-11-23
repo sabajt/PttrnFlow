@@ -10,7 +10,7 @@
 #import "ColorUtils.h"
 
 // tiled object groups
-NSString *const kTLDGroupTickResponders = @"Tick Responders";
+NSString *const kTLDGroupAudioResponders = @"Tick Responders";
 
 // tiled objects
 NSString *const kTLDObjectSequence = @"sequence";

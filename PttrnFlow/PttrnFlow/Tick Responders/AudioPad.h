@@ -7,9 +7,9 @@
 //
 
 #import "GameSprite.h"
-#import "TickResponder.h"
+#import "AudioResponder.h"
 
-@interface AudioPad : GameSprite <TickResponder>
+@interface AudioPad : GameSprite <AudioResponder>
 
 - (id)initWithCell:(GridCoord)cell;
 

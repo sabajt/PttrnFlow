@@ -240,7 +240,7 @@
         // audio pad sprite
         AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
         audioPad.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
-        [self.tickDispatcher registerTickResponderCellNode:audioPad];
+        [self.tickDispatcher registerAudioResponderCellNode:audioPad];
         [self.audioTouchDispatcher addResponder:audioPad];
         [self.audioObjectsBatchNode addChild:audioPad];
 
@@ -251,7 +251,7 @@
         // melody synth
         if (synth != NULL && midi != NULL) {
             Tone *tone = [[Tone alloc] initWithCell:cell synth:synth midi:midi.stringValue];
-//            [self.tickDispatcher registerTickResponderCellNode:tone];
+//            [self.tickDispatcher registerAudioResponderCellNode:tone];
             [self.audioTouchDispatcher addResponder:tone];
             tone.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
             [self addChild:tone];
@@ -270,7 +270,7 @@
 //- (void)createPuzzleObjectsOld:(CCTMXTiledMap *)tiledMap
 //{
 //    // audio pads
-//    NSMutableArray *pads = [tiledMap objectsWithName:kTLDObjectAudioPad groupName:kTLDGroupTickResponders];
+//    NSMutableArray *pads = [tiledMap objectsWithName:kTLDObjectAudioPad groupName:kTLDGroupAudioResponders];
 //    for (NSMutableDictionary *pad in pads) {
 //        
 ////        GridCoord padChunkOrigin = [tiledMap gridCoordForObject:pad];
@@ -284,7 +284,7 @@
 ////                GridCoord cell = GridCoordMake(padChunkOrigin.x + c, padChunkOrigin.y + r);
 ////                AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
 ////                audioPad.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
-////                [self.tickDispatcher registerTickResponderCellNode:audioPad];
+////                [self.tickDispatcher registerAudioResponderCellNode:audioPad];
 ////                [self.audioTouchDispatcher addResponder:audioPad];
 ////                [self.audioObjectsBatchNode addChild:audioPad];
 ////            }
@@ -292,34 +292,34 @@
 //    }
 //    
 //    // tone blocks
-//    NSMutableArray *tones = [tiledMap objectsWithName:kTLDObjectTone groupName:kTLDGroupTickResponders];
+//    NSMutableArray *tones = [tiledMap objectsWithName:kTLDObjectTone groupName:kTLDGroupAudioResponders];
 //    for (NSMutableDictionary *tone in tones) {
 //        
 //        Tone *toneNode = [[Tone alloc] initWithBatchNode:self.synthBatchNode tone:tone tiledMap:tiledMap];
-//        [self.tickDispatcher registerTickResponderCellNode:toneNode];
+//        [self.tickDispatcher registerAudioResponderCellNode:toneNode];
 //        [self.audioTouchDispatcher addResponder:toneNode];
 //        [self addChild:toneNode];
 //    }
 //    
 //    // drum blocks
-//    NSMutableArray *drums = [tiledMap objectsWithName:kTLDObjectDrum groupName:kTLDGroupTickResponders];
+//    NSMutableArray *drums = [tiledMap objectsWithName:kTLDObjectDrum groupName:kTLDGroupAudioResponders];
 //    for (NSMutableDictionary *drum in drums) {
 //        Drum *drumNode = [[Drum alloc] initWithDrum:drum batchNode:self.samplesBatchNode tiledMap:tiledMap];
-//        [self.tickDispatcher registerTickResponderCellNode:drumNode];
+//        [self.tickDispatcher registerAudioResponderCellNode:drumNode];
 //        [self.audioTouchDispatcher addResponder:drumNode];
 //        [self addChild:drumNode];
 //    }
 //    
 //    //        // arrow blocks
-//    //        NSMutableArray *arrows = [tiledMap objectsWithName:kTLDObjectArrow groupName:kTLDGroupTickResponders];
+//    //        NSMutableArray *arrows = [tiledMap objectsWithName:kTLDObjectArrow groupName:kTLDGroupAudioResponders];
 //    //        for (NSMutableDictionary *arrow in arrows) {
 //    //            Arrow *arrowNode = [[Arrow alloc] initWithArrow:arrow tiledMap:tiledMap synth:self.synth];
-//    //            [self.tickDispatcher registerTickResponder:arrowNode];
+//    //            [self.tickDispatcher registerAudioResponder:arrowNode];
 //    //            [self addChild:arrowNode];
 //    //        }
 //    
 //    // entry arrow
-//    NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupTickResponders];
+//    NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupAudioResponders];
 //    for (NSMutableDictionary *entry in entries) {
 //        EntryArrow *entryArrow = [[EntryArrow alloc] initWithBatchNode:self.othersBatchNode entry:entry tiledMap:tiledMap];
 //        [self addChild:entryArrow];
@@ -329,12 +329,12 @@
 // general rule for legal placement of drag items
 - (BOOL)isLegalItemPlacement:(GridCoord)cell itemType:(kDragItem)itemType sender:(id)sender
 {
-    NSArray *tickResponders = [self.tickDispatcher tickRespondersAtCell:cell];
+    NSArray *AudioResponders = [self.tickDispatcher AudioRespondersAtCell:cell];
     
     // a stop item can only be placed on an empty audio pad
     if (itemType == kDragItemAudioStop) {
-        if (tickResponders.count == 1) {
-            id responder = [tickResponders lastObject];
+        if (AudioResponders.count == 1) {
+            id responder = [AudioResponders lastObject];
             return [responder isKindOfClass:[AudioPad class]];
         }
         else {
@@ -343,12 +343,12 @@
     }
     
     // otherwise only place on top of a block
-    if (tickResponders.count == 0) {
+    if (AudioResponders.count == 0) {
         return NO;
     }
     // can't place on top of another object of same type unless it's the source cell
     else {
-        for (id responder in tickResponders) {
+        for (id responder in AudioResponders) {
             if ([responder isKindOfClass:[sender class]] && ![GridUtils isCell:cell equalToCell:self.draggedItemSourceCell]) {
                 return NO;
             }
@@ -426,23 +426,23 @@
         
         if (itemType == kDragItemArrow) {
             Arrow *arrow = [[Arrow alloc] initWithCell:self.lastDraggedItemCell batchNode:self.othersBatchNode facing:kDirectionUp dragItemDelegate:self];
-            [self.tickDispatcher registerTickResponderCellNode:arrow];
+            [self.tickDispatcher registerAudioResponderCellNode:arrow];
             [self addChild:arrow];
         }
         else if (itemType == kDragItemWarp) {
             Warp *warp = [[Warp alloc] initWithBatchNode:self.othersBatchNode dragItemDelegate:self cell:self.lastDraggedItemCell];
-            [self.tickDispatcher registerTickResponderCellNode:warp];
+            [self.tickDispatcher registerAudioResponderCellNode:warp];
             [self addChild:warp];
         }
         else if (itemType == kDragItemAudioStop) {
             AudioStop *audioStop = [[AudioStop alloc] initWithBatchNode:self.othersBatchNode cell:self.lastDraggedItemCell dragItemDelegate:self];
-            [self.tickDispatcher registerTickResponderCellNode:audioStop];
+            [self.tickDispatcher registerAudioResponderCellNode:audioStop];
             [self.audioTouchDispatcher addResponder:audioStop];
             [self addChild:audioStop];
         }
         else if (itemType == kDragItemSpeedChange) {
             SpeedChange *speedChange = [[SpeedChange alloc] initWithBatchNode:self.othersBatchNode Cell:self.lastDraggedItemCell dragItemDelegate:self speed:@"2X"];
-            [self.tickDispatcher registerTickResponderCellNode:speedChange];
+            [self.tickDispatcher registerAudioResponderCellNode:speedChange];
             [self.audioTouchDispatcher addResponder:speedChange]; // not actually an audio event, but we need to track touches for highlighting
             [self addChild:speedChange];
         }
@@ -484,7 +484,7 @@
         GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
         
         // create the exit animation and send event to synth if we aren't touching a synth node
-        if (![self.tickDispatcher isAnyTickResponderAtCell:cell]) {
+        if (![self.tickDispatcher isAnyAudioResponderAtCell:cell]) {
             [self addChild:[SequenceLayer exitFader:cell]];
 //            [MainSynth receiveEvents:@[kExitEvent]];
         }

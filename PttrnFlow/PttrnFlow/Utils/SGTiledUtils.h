@@ -11,7 +11,7 @@
 #import "GameConstants.h"
 
 // tiled object groups
-FOUNDATION_EXPORT NSString *const kTLDGroupTickResponders;
+FOUNDATION_EXPORT NSString *const kTLDGroupAudioResponders;
 
 // tiled objects
 FOUNDATION_EXPORT NSString *const kTLDObjectSequence;

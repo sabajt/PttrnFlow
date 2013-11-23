@@ -7,9 +7,9 @@
 //
 
 #import "DragCellNode.h"
-#import "TickResponder.h"
+#import "AudioResponder.h"
 
-@interface Warp : DragCellNode <TickResponder>
+@interface Warp : DragCellNode <AudioResponder>
 
 - (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode dragItemDelegate:(id<DragItemDelegate>)delegate cell:(GridCoord)cell;
 

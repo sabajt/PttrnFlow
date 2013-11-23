@@ -53,7 +53,7 @@
 - (void)cancelTouchForPan
 {
     [super cancelTouchForPan];
-    [self afterTick:kBPM];
+    [self audioRelease:kBPM];
 }
 
 #pragma mark - CCTargetedTouchDelegate
@@ -66,13 +66,13 @@
 
 #pragma mark - Tick Responder
 
-- (NSArray *)tick:(NSInteger)bpm
+- (NSArray *)audioHit:(NSInteger)bpm
 {
     [self setSpriteForFrameName:[self frameNameForPattern:self.pattern on:YES] cell:self.cell];
     return @[[NSString stringWithFormat:@"sample_%@", self.pattern]];
 }
 
-- (void)afterTick:(NSInteger)bpm
+- (void)audioRelease:(NSInteger)bpm
 {
     [self deselect];
 }

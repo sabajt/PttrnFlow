@@ -30,15 +30,15 @@
     return self;
 }
 
-#pragma mark - TickResponder
+#pragma mark - AudioResponder
 
-- (NSArray *)tick:(NSInteger)bpm
+- (NSArray *)audioHit:(NSInteger)bpm
 {
     self.highlightSprite.visible = YES;
     return @[@"audio_pad"];
 }
 
-- (void)afterTick:(NSInteger)bpm
+- (void)audioRelease:(NSInteger)bpm
 {
     self.highlightSprite.visible = NO;
 }

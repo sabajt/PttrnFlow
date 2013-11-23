@@ -7,9 +7,9 @@
 //
 
 #import "GameSprite.h"
-#import "TickResponder.h"
+#import "AudioResponder.h"
 
-@interface Tone : CCSprite <TickResponder>
+@interface Tone : CCSprite <AudioResponder>
 
 - (id)initWithCell:(GridCoord)cell synth:(NSString *)synth midi:(NSString *)midi;
 

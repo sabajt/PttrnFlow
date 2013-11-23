@@ -7,9 +7,9 @@
 //
 
 #import "DragCellNode.h"
-#import "TickResponder.h"
+#import "AudioResponder.h"
 
-@interface SpeedChange : DragCellNode <TickResponder>
+@interface SpeedChange : DragCellNode <AudioResponder>
 
 - (id)initWithBatchNode:(CCSpriteBatchNode *)batchNode Cell:(GridCoord)cell dragItemDelegate:(id<DragItemDelegate>)delegate speed:(NSString *)speed;
 

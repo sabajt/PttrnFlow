@@ -61,7 +61,7 @@ CGFloat const kTickInterval = 0.12;
         self.sequenceLength = self.solutionSequence.sequence.count;
         
         // create initial channels
-        NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupTickResponders];
+        NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupAudioResponders];
         NSMutableSet *channels = [NSMutableSet set];
         for (NSMutableDictionary *entry in entries) {
             NSString *channel = [entry objectForKey:kTLDPropertyChannel];
@@ -95,15 +95,15 @@ CGFloat const kTickInterval = 0.12;
 
 - (void)handleRemoveResponder:(NSNotification *)notification
 {
-    id<TickResponder> responder =  notification.object;
+    id<AudioResponder> responder =  notification.object;
     if ([self.responders containsObject:responder]) {
         [self.responders removeObject:responder];
     }
 }
 
-- (void)registerTickResponderCellNode:(id<TickResponder>)responder
+- (void)registerAudioResponderCellNode:(id<AudioResponder>)responder
 {
-    NSAssert([responder conformsToProtocol:@protocol(TickResponder)], @"registered tick responders much conform to TickResponder protocol");
+    NSAssert([responder conformsToProtocol:@protocol(AudioResponder)], @"registered tick responders much conform to AudioResponder protocol");
     NSAssert([responder isKindOfClass:[GameNode class]] || [responder isKindOfClass:[GameSprite class]], @"registered tick responders for TickDispatcher must be a GameNode or GameSprite");
     [self.responders addObject:responder];
 }
@@ -194,23 +194,23 @@ CGFloat const kTickInterval = 0.12;
 
     // figure out which responders need an after tick / removal based on decay value (given by channel speed when they were ticked)
     NSMutableArray *removeResponders = [NSMutableArray array];
-    for (GameNode<TickResponder> *responder in self.lastTickedResponders) {
+    for (GameNode<AudioResponder> *responder in self.lastTickedResponders) {
         
         if (sub == 0) {
             if ([@[@"1X", @"2X", @"4X"] hasString:responder.decaySpeed]) {
-                [responder afterTick:kBPM];
+                [responder audioHit:kBPM];
                 [removeResponders addObject:responder];
             }
         }
         else if (sub == 2) {
             if ([@[@"2X", @"4X"] hasString:responder.decaySpeed]) {
-                [responder afterTick:kBPM];
+                [responder audioHit:kBPM];
                 [removeResponders addObject:responder];
             }
         }
         else if (sub == 1 || sub == 3) {
             if ([@"4X" isEqualToString:responder.decaySpeed]) {
-                [responder afterTick:kBPM];
+                [responder audioHit:kBPM];
                 [removeResponders addObject:responder];
             }
         }
@@ -250,9 +250,9 @@ CGFloat const kTickInterval = 0.12;
         // tick and collect event fragments for all responders at current cell
         NSMutableArray *currentLastTickedResponders = [NSMutableArray array];
         NSMutableArray *fragments = [NSMutableArray array];
-        for (id<TickResponder> responder in self.responders) {
+        for (id<AudioResponder> responder in self.responders) {
             if ([GridUtils isCell:[responder responderCell] equalToCell:tickChannel.currentCell]) {
-                NSArray *responderFragmnets = [responder tick:kBPM];
+                NSArray *responderFragmnets = [responder audioHit:kBPM];
                 [fragments addObjectsFromArray:responderFragmnets];
                 
                 // remember last responders
@@ -334,10 +334,10 @@ CGFloat const kTickInterval = 0.12;
 
 #pragma mark - public queries
 
-- (NSArray *)tickRespondersAtCell:(GridCoord)cell
+- (NSArray *)AudioRespondersAtCell:(GridCoord)cell
 {
     NSMutableArray *results = [NSMutableArray array];
-    for (id<TickResponder> responder in self.responders) {
+    for (id<AudioResponder> responder in self.responders) {
         if ([GridUtils isCell:cell equalToCell:[responder responderCell]]) {
             [results addObject:responder];
         }
@@ -345,10 +345,10 @@ CGFloat const kTickInterval = 0.12;
     return [NSArray arrayWithArray:results];
 }
 
-- (NSArray *)tickRespondersAtCell:(GridCoord)cell class:(Class)class
+- (NSArray *)AudioRespondersAtCell:(GridCoord)cell class:(Class)class
 {
     NSMutableArray *results= [NSMutableArray array];
-    for (id<TickResponder> responder in self.responders) {
+    for (id<AudioResponder> responder in self.responders) {
         if ([GridUtils isCell:cell equalToCell:[responder responderCell]] && [responder isKindOfClass:class]) {
             [results addObject:responder];
         }
@@ -356,9 +356,9 @@ CGFloat const kTickInterval = 0.12;
     return [NSArray arrayWithArray:results];
 }
 
-- (BOOL)isAnyTickResponderAtCell:(GridCoord)cell
+- (BOOL)isAnyAudioResponderAtCell:(GridCoord)cell
 {
-    for (id<TickResponder> responder in self.responders) {
+    for (id<AudioResponder> responder in self.responders) {
         if ([GridUtils isCell:cell equalToCell:[responder responderCell]]) {
             return YES;
         }

@@ -33,7 +33,7 @@
     return self;
 }
 
-- (void)addResponder:(id<TickResponder>)responder
+- (void)addResponder:(id<AudioResponder>)responder
 {
     [self.responders addObject:responder];
 }
@@ -47,9 +47,9 @@
 {
     // collect fragments for the responders at the cell we touched
     NSMutableArray *fragments = [NSMutableArray array];
-    for (id<TickResponder> responder in self.responders) {
+    for (id<AudioResponder> responder in self.responders) {
         if ([GridUtils isCell:[responder responderCell] equalToCell:cell]) {
-            NSArray *responderFragmnets = [responder tick:kBPM];
+            NSArray *responderFragmnets = [responder audioHit:kBPM];
             [fragments addObjectsFromArray:responderFragmnets];
         }
     }
@@ -63,9 +63,9 @@
 
 - (void)afterTickForCell:(GridCoord)cell channel:(NSString *)channel
 {
-    for (id<TickResponder> responder in self.responders) {
+    for (id<AudioResponder> responder in self.responders) {
         if ([GridUtils isCell:[responder responderCell] equalToCell:cell]) {
-            [responder afterTick:kBPM];
+            [responder audioRelease:kBPM];
         }
     }
 }

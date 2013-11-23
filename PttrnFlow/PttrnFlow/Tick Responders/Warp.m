@@ -22,14 +22,14 @@
     return self;
 }
 
-#pragma mark - TickResponder
+#pragma mark - AudioResponder
 
-- (NSString *)tick:(NSInteger)bpm
+- (NSString *)audioHit:(NSInteger)bpm
 {
     return @"";
 }
 
-- (void)afterTick:(NSInteger)bpm
+- (void)audioRelease:(NSInteger)bpm
 {
     
 }

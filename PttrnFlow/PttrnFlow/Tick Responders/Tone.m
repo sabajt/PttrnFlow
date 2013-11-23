@@ -63,20 +63,19 @@ static CGFloat const kPadding = 4;
     return self;
 }
 
-#pragma mark - TickResponder
+#pragma mark - AudioResponder
 
 - (GridCoord)responderCell
 {
-    NSLog(@"responder cell: %i, %i", self.cell.x, self.cell.y);
     return self.cell;
 }
 
-- (NSArray *)tick:(NSInteger)bpm
+- (NSArray *)audioHit:(NSInteger)bpm
 {
     return @[self.midi, self.synth];
 }
 
-- (void)afterTick:(NSInteger)bpm
+- (void)audioRelease:(NSInteger)bpm
 {
     
 }

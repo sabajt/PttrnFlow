@@ -8,9 +8,9 @@
 
 
 #import "DragCellNode.h"
-#import "TickResponder.h"
+#import "AudioResponder.h"
 
-@interface Arrow : DragCellNode <TickResponder>
+@interface Arrow : DragCellNode <AudioResponder>
 
 @property (assign) kDirection facing;
 

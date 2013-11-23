@@ -80,7 +80,7 @@
 - (void)cancelTouchForPan
 {
     [super cancelTouchForPan];
-    [self afterTick:kBPM];
+    [self audioRelease:kBPM];
 }
 
 #pragma mark - CCTargetedTouchDelegate
@@ -94,15 +94,15 @@
     return NO;
 }
 
-#pragma mark - TickResponder
+#pragma mark - AudioResponder
 
-- (NSArray *)tick:(NSInteger)bpm
+- (NSArray *)audioHit:(NSInteger)bpm
 {
     // TODO: FIX MEEEE
     return @[[GridUtils directionStringForDirection:self.facing]];
 }
 
-- (void)afterTick:(NSInteger)bpm
+- (void)audioRelease:(NSInteger)bpm
 {
     
 }

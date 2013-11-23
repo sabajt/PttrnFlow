@@ -599,7 +599,7 @@
 		162C2922178501C700CE480C /* DragCellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragCellNode.h; sourceTree = "<group>"; };
 		162C2923178501C700CE480C /* DragCellNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragCellNode.m; sourceTree = "<group>"; };
 		162C29281785BE0B00CE480C /* DragItemDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DragItemDelegate.h; path = "Generic Protocols/DragItemDelegate.h"; sourceTree = "<group>"; };
-		162C293217871F1600CE480C /* TickResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TickResponder.h; path = "Generic Protocols/TickResponder.h"; sourceTree = "<group>"; };
+		162C293217871F1600CE480C /* AudioResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioResponder.h; path = "Generic Protocols/AudioResponder.h"; sourceTree = "<group>"; };
 		162C293317871F2500CE480C /* CCNode+DragItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+DragItem.h"; sourceTree = "<group>"; };
 		162C293417871F2500CE480C /* CCNode+DragItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+DragItem.m"; sourceTree = "<group>"; };
 		162C29361787699900CE480C /* TickHitChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickHitChart.h; sourceTree = "<group>"; };
@@ -1358,7 +1358,7 @@
 		162C29291785BEBB00CE480C /* Generic Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				162C293217871F1600CE480C /* TickResponder.h */,
+				162C293217871F1600CE480C /* AudioResponder.h */,
 				162C29281785BE0B00CE480C /* DragItemDelegate.h */,
 			);
 			name = "Generic Protocols";

@@ -16,7 +16,7 @@ CGFloat const kStatusBarHeight = 20.0;
 ccTime const kTransitionDuration = 0.25;
 
 // notifications
-NSString *const kNotificationRemoveTickReponder = @"removeTickResponder";
+NSString *const kNotificationRemoveTickReponder = @"removeAudioResponder";
 NSString *const kNotificationStartPan = @"startPan";
 NSString *const kNotificationLockPan = @"lockPan";
 NSString *const kNotificationUnlockPan = @"unlockPan";

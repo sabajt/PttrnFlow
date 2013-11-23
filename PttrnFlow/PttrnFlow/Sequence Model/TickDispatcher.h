@@ -10,7 +10,7 @@
 #import "GridUtils.h"
 #import "MainSynth.h"
 #import "TickerControl.h"
-#import "TickResponder.h"
+#import "AudioResponder.h"
 
 FOUNDATION_EXPORT NSInteger const kBPM;
 FOUNDATION_EXPORT NSString *const kNotificationAdvancedSequence;
@@ -35,7 +35,7 @@ FOUNDATION_EXPORT CGFloat const kTickInterval;
 
 // setup
 - (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap;
-- (void)registerTickResponderCellNode:(id<TickResponder>)responder;
+- (void)registerAudioResponderCellNode:(id<AudioResponder>)responder;
 
 // control
 - (void)start;
@@ -44,8 +44,8 @@ FOUNDATION_EXPORT CGFloat const kTickInterval;
 - (void)scheduleSequence;
 
 // queries
-- (NSArray *)tickRespondersAtCell:(GridCoord)cell;
-- (NSArray *)tickRespondersAtCell:(GridCoord)cell class:(Class)class;
-- (BOOL)isAnyTickResponderAtCell:(GridCoord)cell;
+- (NSArray *)AudioRespondersAtCell:(GridCoord)cell;
+- (NSArray *)AudioRespondersAtCell:(GridCoord)cell class:(Class)class;
+- (BOOL)isAnyAudioResponderAtCell:(GridCoord)cell;
 
 @end

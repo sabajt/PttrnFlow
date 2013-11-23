@@ -7,9 +7,9 @@
 //
 
 #import "GameNode.h"
-#import "TickResponder.h"
+#import "AudioResponder.h"
 
-@interface Drum : GameNode <TickResponder>
+@interface Drum : GameNode <AudioResponder>
 
 - (id)initWithDrum:(NSMutableDictionary *)drum batchNode:(CCSpriteBatchNode *)batchNode tiledMap:(CCTMXTiledMap *)tiledMap;
 
