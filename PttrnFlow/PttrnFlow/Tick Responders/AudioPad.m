@@ -38,9 +38,10 @@
     return @[@"audio_pad"];
 }
 
-- (void)audioRelease:(NSInteger)bpm
+- (NSArray *)audioRelease:(NSInteger)bpm
 {
     self.highlightSprite.visible = NO;
+    return nil;
 }
 
 - (GridCoord)responderCell

@@ -40,11 +40,6 @@
     return @[@"audio_stop"];
 }
 
-- (void)audioRelease:(NSInteger)bpm
-{
-    
-}
-
 - (GridCoord)responderCell
 {
     return self.cell;

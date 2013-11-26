@@ -75,10 +75,5 @@ static CGFloat const kPadding = 4;
     return @[self.midi, self.synth];
 }
 
-- (void)audioRelease:(NSInteger)bpm
-{
-    
-}
-
 @end
 

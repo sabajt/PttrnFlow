@@ -198,19 +198,25 @@ CGFloat const kTickInterval = 0.12;
         
         if (sub == 0) {
             if ([@[@"1X", @"2X", @"4X"] hasString:responder.decaySpeed]) {
-                [responder audioHit:kBPM];
+                if ([responder respondsToSelector:@selector(audioRelease:)]) {
+                    [responder audioRelease:kBPM];
+                }
                 [removeResponders addObject:responder];
             }
         }
         else if (sub == 2) {
             if ([@[@"2X", @"4X"] hasString:responder.decaySpeed]) {
-                [responder audioHit:kBPM];
+                if ([responder respondsToSelector:@selector(audioRelease:)]) {
+                    [responder audioRelease:kBPM];
+                }
                 [removeResponders addObject:responder];
             }
         }
         else if (sub == 1 || sub == 3) {
             if ([@"4X" isEqualToString:responder.decaySpeed]) {
-                [responder audioHit:kBPM];
+                if ([responder respondsToSelector:@selector(audioRelease:)]) {
+                    [responder audioRelease:kBPM];
+                }
                 [removeResponders addObject:responder];
             }
         }

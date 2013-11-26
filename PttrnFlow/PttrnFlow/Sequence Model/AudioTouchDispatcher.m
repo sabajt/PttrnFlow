@@ -63,7 +63,9 @@
 - (void)audioRelease:(GridCoord)cell channel:(NSString *)channel
 {
     for (id<AudioResponder> responder in self.responders) {
-        if ([GridUtils isCell:[responder responderCell] equalToCell:cell]) {
+        if ([GridUtils isCell:[responder responderCell] equalToCell:cell] &&
+            [responder respondsToSelector:@selector(audioRelease:)])
+        {
             [responder audioRelease:kBPM];
         }
     }

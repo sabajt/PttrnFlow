@@ -40,11 +40,6 @@
     return @[self.speed];
 }
 
-- (void)audioRelease:(NSInteger)bpm
-{
-    
-}
-
 - (GridCoord)responderCell
 {
     return self.cell;

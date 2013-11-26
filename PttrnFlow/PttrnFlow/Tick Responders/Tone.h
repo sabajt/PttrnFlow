@@ -6,7 +6,6 @@
 //
 //
 
-#import "GameSprite.h"
 #import "AudioResponder.h"
 
 @interface Tone : CCSprite <AudioResponder>
