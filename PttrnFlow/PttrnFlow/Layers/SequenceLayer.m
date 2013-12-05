@@ -121,8 +121,8 @@
     SequenceLayer *sequenceLayer = [[SequenceLayer alloc] initWithSequence:sequence tiledMap:tiledMap background:background topMargin:controlBarHeight];
     [scene addChild:sequenceLayer];
     
-    // hud layer -- top control bar
-    SequenceUILayer *uiLayer = [[SequenceUILayer alloc] initWithTickDispatcher:sequenceLayer.tickDispatcher dragItems:@[@(kDragItemArrow), @(kDragItemAudioStop), @(kDragItemSpeedChange)] dragItemDelegate:sequenceLayer];
+    // hud layer -- controls / item menu
+    SequenceUILayer *uiLayer = [[SequenceUILayer alloc] initWithPuzzle:sequence tickDispatcher:sequenceLayer.tickDispatcher dragItemDelegate:sequenceLayer];
     [scene addChild:uiLayer z:1];
     
     return scene;

@@ -18,6 +18,7 @@
 #import "TileSprite.h"
 #import "ClippingSprite.h"
 #import "TBSpriteMask.h"
+#import "PathUtils.h"
 
 static int const kMaxControlLengthFull = 8;
 static int const kMaxControlLengthCompact = 6;
@@ -55,6 +56,7 @@ static GLubyte const kPanelMaskOpacity = 255;
 @property (weak, nonatomic) TileSprite *itemMenuLeftSeparator;
 @property (weak, nonatomic) ClippingSprite *rightGradientMask;
 @property (weak, nonatomic) CCMenuItemToggle *itemsToggle;
+@property (strong, nonatomic) NSMutableArray *dragButtons;
 
 // general controls
 @property (weak, nonatomic) CCMenu *controlMenu;
@@ -63,7 +65,7 @@ static GLubyte const kPanelMaskOpacity = 255;
 
 @implementation SequenceUILayer
 
-- (id)initWithTickDispatcher:(TickDispatcher *)tickDispatcher dragItems:(NSArray *)dragItems dragItemDelegate:(id<DragItemDelegate>)dragItemDelegate
+- (id)initWithPuzzle:(NSUInteger)puzzle tickDispatcher:(TickDispatcher *)tickDispatcher dragItemDelegate:(id<DragItemDelegate>)dragItemDelegate
 {
     self = [super init];
     if (self) {
@@ -162,13 +164,15 @@ static GLubyte const kPanelMaskOpacity = 255;
         [self addChild:timelineBackground z:self.panSprite.zOrder - 1]; // can't add to batch because must be drawn below pan sprite
         
         // item menu
+        NSDictionary *inventory = [PathUtils puzzleInventory:puzzle];
+        
         // -- edges
         _itemMenuBottomCap = itemMenuBottomCap;
         itemMenuBottomCap.anchorPoint = CGPointZero;
         itemMenuBottomCap.position = ccp([self itemMenuLeftOpened:NO], kItemMenuBottom);
         [uiBatch addChild:itemMenuBottomCap];
         
-        TileSprite *itemMenuLeftSeparator = [[TileSprite alloc] initWithTileFrameName:@"dotted_line_2_80.png" repeatHorizonal:1 repeatVertical:dragItems.count];
+        TileSprite *itemMenuLeftSeparator = [[TileSprite alloc] initWithTileFrameName:@"dotted_line_2_80.png" repeatHorizonal:1 repeatVertical:inventory.count];
         _itemMenuLeftSeparator = itemMenuLeftSeparator;
         itemMenuLeftSeparator.anchorPoint = CGPointZero;
         itemMenuLeftSeparator.position = ccp([self itemMenuLeftOpened:NO], self.itemMenuBottomCap.position.y + self.itemMenuBottomCap.contentSize.height);
@@ -194,24 +198,20 @@ static GLubyte const kPanelMaskOpacity = 255;
         [rightGradientMask addChild:rightGradientSprite];
         [self addChild:rightGradientMask]; // can't add to batch because
         
+        // drag items
+        _dragButtons = [NSMutableArray array];
+        int i = 0;
+        [inventory enumerateKeysAndObjectsUsingBlock:^(NSString *itemKey, NSNumber *number, BOOL *stop) {
+            DragButton *button = [[DragButton alloc] initWithItemKey:itemKey delegate:dragItemDelegate];
+            button.anchorPoint = CGPointZero;
+            [self addChild:button];
+            [self.dragButtons addObject:button];
+            button.position = [self dragButtonPosition:i opened:NO];
+        }];
+
         // size and position the pan sprite and control bar
         [self configureItemMenuOpened:NO animated:NO];
         _menuOpen = NO;
-        
-//        // drag items
-//        int i = 0;
-//        for (NSNumber *item in dragItems) {
-//            
-//            kDragItem itemType = [item intValue];
-//            DragButton *button = [[DragButton alloc] initWithItemType:itemType delegate:dragItemDelegate];
-//            
-//            CGFloat yOffset = (topBarHeight + (button.contentSize.height * (i + 1)));
-//            CGFloat yPos = self.contentSize.height - yOffset;
-//            button.position = ccp(self.contentSize.width - button.contentSize.width, yPos);
-//            
-//            [self addChild:button];
-//            i++;
-//        }
         
         // add ui batch at top
         [self addChild:uiBatch];
@@ -226,6 +226,7 @@ static GLubyte const kPanelMaskOpacity = 255;
     [self.controlMenu setHandlerPriority:INT_MAX - 1];
 }
 
+// assumes contentSize, itemMenuBottomCap and timelineBorder are already setup
 - (CGFloat)itemMenuLeftOpened:(BOOL)opened
 {
     static CGFloat padding = 4;
@@ -235,9 +236,18 @@ static GLubyte const kPanelMaskOpacity = 255;
     return self.contentSize.width + (self.timelineBorder.contentSize.width - self.contentSize.width) + padding;
 }
 
+// assumes contentSize, itemMenuBottomCap and timelineBorder are already setup
 - (CGPoint)itemMenuOriginOpened:(BOOL)opened
 {
     return ccp([self itemMenuLeftOpened:opened], kItemMenuBottom + self.itemMenuBottomCap.contentSize.height);
+}
+
+// assumes drag button at index, contentSize, itemMenuBottomCap and timelineBorder are already setup
+- (CGPoint)dragButtonPosition:(NSUInteger)index opened:(BOOL)opened
+{
+    CGPoint menuOrigin = [self itemMenuOriginOpened:opened];
+    DragButton *button = self.dragButtons[index];
+    return ccp(menuOrigin.x, menuOrigin.y + (index * button.contentSize.height));
 }
 
 - (void)configureItemMenuOpened:(BOOL)opened animated:(BOOL)animated
@@ -310,8 +320,17 @@ static GLubyte const kPanelMaskOpacity = 255;
         
         // gradient mask
         CCMoveTo *moveMenuMask = [CCMoveTo actionWithDuration:kTransitionDuration position:[self itemMenuOriginOpened:opened]];
-        CCEaseSineInOut *easeMenuMask = [CCEaseSineOut actionWithAction:moveMenuMask];
+        CCEaseSineOut *easeMenuMask = [CCEaseSineOut actionWithAction:moveMenuMask];
         [self.rightGradientMask runAction:easeMenuMask];
+        
+        // item buttons
+        NSUInteger i = 0;
+        for (DragButton *button in self.dragButtons) {
+            CCMoveTo *moveDragButton = [CCMoveTo actionWithDuration:kTransitionDuration position:[self dragButtonPosition:i opened:opened]];
+            CCEaseSineOut *easeDragButton = [CCEaseSineOut actionWithAction:moveDragButton];
+            [button runAction:easeDragButton];
+            i++;
+        }
         
         // update callback for pan node interior tracking
         [self scheduleUpdate];
@@ -325,6 +344,13 @@ static GLubyte const kPanelMaskOpacity = 255;
         self.itemMenuLeftSeparator.position = itemMenuLeftSeparatorPos;
         self.itemMenuTopCap.position = itemMenuTopCapPos;
         self.rightGradientMask.position = [self itemMenuOriginOpened:opened];
+        
+        // item buttons
+        NSUInteger i = 0;
+        for (DragButton *button in self.dragButtons) {
+            button.position = [self dragButtonPosition:i opened:opened];
+            i++;
+        }
     }
 }
 

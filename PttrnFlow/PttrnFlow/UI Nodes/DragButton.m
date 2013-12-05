@@ -22,11 +22,23 @@
 
 @implementation DragButton
 
+- (id)initWithItemKey:(NSString *)key delegate:(id<DragItemDelegate>)delegate
+{
+    kDragItem itemType;
+    if ([key isEqualToString:@"arrows"]) {
+        itemType = kDragItemArrow;
+    }
+    else {
+        NSLog(@"DragButton warning: item with key '%@' is unsupported", key);
+        return nil;
+    }
+    return [self initWithItemType:itemType delegate:delegate];
+}
+
 - (id)initWithItemType:(kDragItem)itemType delegate:(id<DragItemDelegate>)delegate
 {
     self = [super init];
     if (self) {
-        self.touchNodeDelegate = self;
         
         NSString *defaultFrameName;
         NSString *selectedFrameName;
@@ -35,37 +47,37 @@
         if (itemType == kDragItemArrow) {
             defaultFrameName = kImageArrowButton_off;
             selectedFrameName = kImageArrowButton_on;
-            dragFrameName = kImageArrowUp;
+            dragFrameName = kImageArrowButton_on;
         }
-        else if (itemType == kDragItemWarp) {
-            defaultFrameName = kImageWarpButton_off;
-            selectedFrameName = kImageWarpButton_on;
-            dragFrameName = kImageWarpDefault;
-        }
-        else if (itemType == kDragItemAudioStop) {
-            defaultFrameName = kImageItemButtonAudioStopOff;
-            selectedFrameName = kImageItemButtonAudioStopOn;
-            dragFrameName = kImageAudioStop;
-        }
-        else if (itemType == kDragItemSpeedChange) {
-            defaultFrameName = kImageItemButtonSpeedDoubleOff;
-            selectedFrameName = kImageItemButtonSpeedDoubleOn;
-            dragFrameName = kImageSpeedDouble;
-        }
+//        else if (itemType == kDragItemWarp) {
+//            defaultFrameName = kImageWarpButton_off;
+//            selectedFrameName = kImageWarpButton_on;
+//            dragFrameName = kImageWarpDefault;
+//        }
+//        else if (itemType == kDragItemAudioStop) {
+//            defaultFrameName = kImageItemButtonAudioStopOff;
+//            selectedFrameName = kImageItemButtonAudioStopOn;
+//            dragFrameName = kImageAudioStop;
+//        }
+//        else if (itemType == kDragItemSpeedChange) {
+//            defaultFrameName = kImageItemButtonSpeedDoubleOff;
+//            selectedFrameName = kImageItemButtonSpeedDoubleOn;
+//            dragFrameName = kImageSpeedDouble;
+//        }
         else {
             NSLog(@"warning: unsupported kDragItem type, enum %i", itemType);
         }
 
         CCSprite *defaultSprite = [CCSprite spriteWithSpriteFrameName:defaultFrameName];
-        self.defaultSprite = defaultSprite;
+        _defaultSprite = defaultSprite;
         [self addChild:defaultSprite];
 
         CCSprite *selectedSprite = [CCSprite spriteWithSpriteFrameName:selectedFrameName];
-        self.selectedSprite = selectedSprite;
+        _selectedSprite = selectedSprite;
         [self addChild:selectedSprite];
 
         CCSprite *dragSprite = [CCSprite spriteWithSpriteFrameName:dragFrameName];
-        self.dragSprite = dragSprite;
+        _dragSprite = dragSprite;
         [self addChild:dragSprite];
 
         self.contentSize = defaultSprite.contentSize;

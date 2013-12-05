@@ -6,17 +6,15 @@
 //
 //
 
-#import "TouchNode.h"
+#import "TouchSprite.h"
 #import "DragItemDelegate.h"
 
-
-@interface DragButton : TouchNode <TouchNodeDelegate>
+@interface DragButton : TouchSprite
 
 @property (weak, nonatomic) id<DragItemDelegate> dragItemDelegate;
 
+- (id)initWithItemKey:(NSString *)key delegate:(id<DragItemDelegate>)delegate;
 - (id)initWithItemType:(kDragItem)itemType delegate:(id<DragItemDelegate>)delegate;
-
 - (CGFloat)buttonWidth;
-
 
 @end

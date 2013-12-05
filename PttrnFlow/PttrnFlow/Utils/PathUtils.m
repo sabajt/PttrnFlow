@@ -22,24 +22,6 @@ static NSString *const kAudioPads = @"audio_pads";
 
 @implementation PathUtils
 
-//// array of strings for all .tmx files, strings formatted without the .tmx extensions
-//+ (NSArray *)tileMapNames
-//{    
-//    NSError *error = nil;
-//    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[NSBundle mainBundle] resourcePath] error:&error];
-//    if (error) {
-//        NSLog(@"error: %@", error);
-//    }
-//    NSMutableArray *maps = [NSMutableArray array];
-//    for (id c in contents) {
-//        NSString *name = (NSString *)c;
-//        if ([[name substringFromIndex:name.length - kTmx.length] isEqualToString:kTmx]) {
-//            [maps addObject:[name substringToIndex:name.length - kTmx.length]];
-//        }
-//    }    
-//    return maps;
-//}
-
 + (NSArray *)puzzleFileNames
 {
     NSError *error = nil;
