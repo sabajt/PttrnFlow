@@ -14,15 +14,15 @@ FOUNDATION_EXPORT NSString *const kMidi;
 FOUNDATION_EXPORT NSString *const kArrow;
 FOUNDATION_EXPORT NSString *const kEntry;
 FOUNDATION_EXPORT NSString *const kSample;
+FOUNDATION_EXPORT NSString *const kStatic;
+FOUNDATION_EXPORT NSString *const kGlyphs;
 
 @interface PathUtils : NSObject
-
-//+ (NSArray *)tileMapNames;
 
 + (NSArray *)puzzleFileNames;
 + (NSDictionary *)puzzle:(NSInteger)number;
 + (NSInteger)puzzleBpm:(NSInteger)number;
-+ (NSDictionary *)puzzleInventory:(NSInteger)number;
++ (NSArray *)puzzleArea:(NSInteger)number;
 + (NSArray *)puzzleAudioPads:(NSInteger)number;
 
 @end

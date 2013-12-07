@@ -14,11 +14,13 @@ NSString *const kMidi = @"midi";
 NSString *const kArrow = @"arrow";
 NSString *const kEntry = @"entry";
 NSString *const kSample = @"sample";
+NSString *const kStatic = @"static";
+NSString *const kGlyphs = @"glyphs";
 
 static NSString *const kPuzzle = @"puzzle";
 static NSString *const kBpm = @"bpm";
-static NSString *const kInventory = @"inventory";
-static NSString *const kAudioPads = @"audio_pads";
+static NSString *const kArea = @"area";
+static NSString *const kPads = @"pads";
 
 @implementation PathUtils
 
@@ -52,16 +54,16 @@ static NSString *const kAudioPads = @"audio_pads";
     return [puzzle[kBpm] integerValue];
 }
 
-+ (NSDictionary *)puzzleInventory:(NSInteger)number
++ (NSArray *)puzzleArea:(NSInteger)number
 {
     NSDictionary *puzzle = [PathUtils puzzle:number];
-    return puzzle[kInventory];
+    return puzzle[kArea];
 }
 
 + (NSArray *)puzzleAudioPads:(NSInteger)number
 {
     NSDictionary *puzzle = [PathUtils puzzle:number];
-    return puzzle[kAudioPads];
+    return puzzle[kPads];
 }
 
 @end

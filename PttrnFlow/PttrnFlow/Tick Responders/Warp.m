@@ -29,11 +29,6 @@
     return @"";
 }
 
-- (void)audioRelease:(NSInteger)bpm
-{
-    
-}
-
 - (GridCoord)responderCell
 {
     return self.cell;

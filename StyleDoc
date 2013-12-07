@@ -1,5 +1,12 @@
 -- current colors
 
+cream - f3efe5ff
+purple - 9b8a9fff
+coffee - 43333bff
+red - dc5874ff
+
+-- old colors
+
 default gray - cbc9caff
 active purple - ba4c64ff
 gradient purple - 3a0f38ff

@@ -13,17 +13,19 @@
 
 @protocol AudioResponder <NSObject>
 
+// tick responder must have a cell
+- (GridCoord)responderCell;
+
 // triggered on touch down or step
-// responder should return an array of 1 or many fragments
+// responder may return an array of 1 or many fragments
 - (NSArray *)audioHit:(NSInteger)bpm;
 
 @optional
 
-//triggered after touch up or step
-// responder should return an aray of 1 or many fragments
+// triggered after touch up or after a step
+// responder may return an aray of 1 or many fragments
 - (NSArray *)audioRelease:(NSInteger)bpm;
 
-// tick responder must have a cell
-- (GridCoord)responderCell;
+
 
 @end

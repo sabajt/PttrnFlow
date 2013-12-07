@@ -44,14 +44,10 @@
 @property (assign) GridCoord draggedItemSourceCell;
 @property (assign) BOOL shouldDrawGrid; // debugging
 
-@property (strong, nonatomic) CCTMXTiledMap *tileMap;
 @property (strong, nonatomic) MainSynth *synth;
 
 @property (weak, nonatomic) TickDispatcher *tickDispatcher;
 @property (weak, nonatomic) AudioTouchDispatcher *audioTouchDispatcher;
-
-// TODO: prob remove
-@property (strong, nonatomic) NSMutableArray *audioTouchDispatchers;
 
 @property (weak, nonatomic) Tone *pressedTone;
 @property (weak, nonatomic) BackgroundLayer *backgroundLayer;
@@ -167,7 +163,6 @@
         self.isTouchEnabled = YES;
         self.backgroundLayer = backgroundLayer;
         self.synth = [[MainSynth alloc] init];
-        self.tileMap = tiledMap;
         self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
         self.absoluteGridSize = CGSizeMake(self.gridSize.x * kSizeGridUnit, self.gridSize.y * kSizeGridUnit);
         self.draggedItemSourceCell = [GridUtils gridCoordNone];
@@ -191,9 +186,7 @@
         [self addChild:self.audioTouchDispatcher];
         
         // create puzzle objects
-//        [self createPuzzleObjectsOld:tiledMap];
         [self createPuzzleObjects:1];
-
 
         // find optimal scale and position
         CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
@@ -203,66 +196,63 @@
     return self;
 }
 
+- (void)createPuzzleBorder:(NSInteger)puzzle
+{
+    
+}
+
 - (void)createPuzzleObjects:(NSInteger)puzzle
 {
-//    NSLog(@"puzzle files: %@", [PathUtils puzzleFileNames]);
-//    NSLog(@"bpm: %i", [PathUtils puzzleBpm:puzzle]);
-//    NSLog(@"inventory: %@", [PathUtils puzzleInventory:puzzle]);
-//    NSLog(@"audio pads: %@", [PathUtils puzzleAudioPads:puzzle]);
-    
-    // audio pads
     NSArray *audioPads = [PathUtils puzzleAudioPads:puzzle];
+    
     for (NSDictionary *pad in audioPads) {
         
-        NSArray *coord = pad[kCell];
-        NSString *entry = pad[kEntry];
-        NSString *arrow = pad[kArrow];
-        NSString *synth = pad[kSynth];
-        NSNumber *midi = pad[kMidi];
-        NSString *sample = pad[kSample];
+        BOOL isStatic = [pad[kStatic] boolValue];
+        NSArray *glyphs = pad[kGlyphs];
         
-//        NSLog(@"\n_______\npad:");
-//        NSLog(@"cell: %@", cell);
-//        NSLog(@"synth: %@", synth);
-//        NSLog(@"midi: %@", midi);
-//        NSLog(@"arrow: %@", arrow);
-//        NSLog(@"entry: %@", entry);
-//        NSLog(@"sample: %@", sample);
-//        NSLog(@"\n-----------");
-        
-        // cell is the only mandatory field
-        if (coord == NULL) {
-            NSLog(@"SequenceLayer createPuzzleObjects error: 'cell' must not be null on audio pads");
-            return;
-        }
-        GridCoord cell = GridCoordMake([coord[0] intValue], [coord[1] intValue]);
-        
-        // audio pad sprite
-        AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
-        audioPad.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
-        [self.tickDispatcher registerAudioResponderCellNode:audioPad];
-        [self.audioTouchDispatcher addResponder:audioPad];
-        [self.audioObjectsBatchNode addChild:audioPad];
-
-        // ticker entry point
-        if (entry != NULL) {
-        }
-        
-        // melody synth
-        if (synth != NULL && midi != NULL) {
-            Tone *tone = [[Tone alloc] initWithCell:cell synth:synth midi:midi.stringValue];
-//            [self.tickDispatcher registerAudioResponderCellNode:tone];
-            [self.audioTouchDispatcher addResponder:tone];
-            tone.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
-            [self addChild:tone];
-        }
-        
-        // audio sample
-        if (sample != NULL) {
-        }
-        
-        // direction arrow
-        if (arrow != NULL) {
+        for (NSDictionary *glyph in glyphs) {
+            
+            NSArray *coord = glyph[kCell];
+            NSString *entry = glyph[kEntry];
+            NSString *arrow = glyph[kArrow];
+            NSString *synth = glyph[kSynth];
+            NSNumber *midi = glyph[kMidi];
+            NSString *sample = glyph[kSample];
+         
+            // cell is the only mandatory field
+            if (coord == NULL) {
+                NSLog(@"SequenceLayer createPuzzleObjects error: 'cell' must not be null on audio pads");
+                return;
+            }
+            GridCoord cell = GridCoordMake([coord[0] intValue], [coord[1] intValue]);
+            
+            // audio pad sprite
+            AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
+            audioPad.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
+            [self.tickDispatcher registerAudioResponderCellNode:audioPad];
+            [self.audioTouchDispatcher addResponder:audioPad];
+            [self.audioObjectsBatchNode addChild:audioPad];
+            
+            // ticker entry point
+            if (entry != NULL) {
+            }
+            
+            // melody synth
+            if (synth != NULL && midi != NULL) {
+                Tone *tone = [[Tone alloc] initWithCell:cell synth:synth midi:midi.stringValue];
+                // [self.tickDispatcher registerAudioResponderCellNode:tone];
+                [self.audioTouchDispatcher addResponder:tone];
+                tone.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
+                [self addChild:tone];
+            }
+            
+            // audio sample
+            if (sample != NULL) {
+            }
+            
+            // direction arrow
+            if (arrow != NULL) {
+            }
         }
     }
 }
