@@ -128,7 +128,21 @@
 }
 
 
-#pragma mark - distance
+#pragma mark - distance / size
+
+// cell with maximum x and y value of cells in the following format: [ [@1, @2], [@1, @3] ... ]
++ (GridCoord)maxCoord:(NSArray *)cells
+{
+    int xMax = 0;
+    int yMax = 0;
+    
+    for (NSArray *cell in cells) {
+        xMax = MAX(xMax, [cell[0] intValue]);
+        yMax = MAX(yMax, [cell[1] intValue]);
+    }
+    
+    return GridCoordMake(xMax, yMax);
+}
 
 // number of cell steps to get from starting coord to ending coord, no diagonal path allowed
 + (int)numberOfStepsBetweenStart:(GridCoord)start end:(GridCoord)end

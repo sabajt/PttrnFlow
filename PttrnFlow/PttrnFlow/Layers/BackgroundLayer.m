@@ -13,7 +13,7 @@
 + (BackgroundLayer *)backgroundLayer
 {
     BackgroundLayer *layer = [[self alloc] init];
-    CCSprite *gradient = [CCSprite spriteWithSpriteFrameName:@"background_gradient.png"];
+    CCSprite *gradient = [CCSprite spriteWithSpriteFrameName:@"background_cream.png"];
     gradient.position = ccp(layer.contentSize.width / 2, layer.contentSize.height / 2);
     [layer addChild:gradient];
     return layer;

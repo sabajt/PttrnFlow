@@ -57,6 +57,8 @@ static NSString *const kPads = @"pads";
 + (NSArray *)puzzleArea:(NSInteger)number
 {
     NSDictionary *puzzle = [PathUtils puzzle:number];
+//    NSArray *area =  puzzle[kArea];
+//    return area;
     return puzzle[kArea];
 }
 

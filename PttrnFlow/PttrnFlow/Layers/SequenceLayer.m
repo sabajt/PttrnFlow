@@ -163,7 +163,10 @@
         self.isTouchEnabled = YES;
         self.backgroundLayer = backgroundLayer;
         self.synth = [[MainSynth alloc] init];
-        self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
+        
+        NSArray *cells = [PathUtils puzzleArea:sequence];
+        self.gridSize = [GridUtils maxCoord:cells];
+        
         self.absoluteGridSize = CGSizeMake(self.gridSize.x * kSizeGridUnit, self.gridSize.y * kSizeGridUnit);
         self.draggedItemSourceCell = [GridUtils gridCoordNone];
         
@@ -186,8 +189,10 @@
         [self addChild:self.audioTouchDispatcher];
         
         // create puzzle objects
-        [self createPuzzleObjects:1];
-
+//        [self createPuzzleObjects:1];
+        self.area = [self createPuzzleArea:sequence];
+        [self createPuzzleBorder:sequence];
+        
         // find optimal scale and position
         CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
         self.scale = [self scaleToFitArea:self.absoluteGridSize insideConstraintSize:activeWindow.size];
@@ -196,9 +201,122 @@
     return self;
 }
 
+- (NSSet *)createPuzzleArea:(NSInteger)puzzle
+{
+    // convert puzzle data to area set
+    NSMutableSet *area = [NSMutableSet set];
+    NSArray *cells = [PathUtils puzzleArea:puzzle];
+    for (NSArray *cell in cells) {
+        NSString *x = [cell[0] stringValue];
+        NSString *y = [cell[1] stringValue];
+        [area addObject:[x stringByAppendingString:y]];
+    }
+    return [NSSet setWithSet:area];
+}
+
 - (void)createPuzzleBorder:(NSInteger)puzzle
 {
+    static NSString *padBorderStrait = @"pad_border_strait.png";
+    static NSString *padBorderCorner = @"pad_border_corner.png";
     
+    // 0-base index against 1-base index grid size will give us the corner points to create border images
+    for (int x = 0; x <= self.gridSize.x; x++) {
+        for (int y = 0; y <= self.gridSize.y; y++) {
+            
+            GridCoord cell = GridCoordMake(x, y);
+            
+            // find neighbors
+            NSString *bottomLeft = [NSString stringWithFormat:@"%i%i", x, y];
+            NSString *topLeft = [NSString stringWithFormat:@"%i%i", x, y + 1];
+            NSString *bottomRight = [NSString stringWithFormat:@"%i%i", x + 1, y];
+            NSString *topRight = [NSString stringWithFormat:@"%i%i", x + 1, y + 1];
+            
+            BOOL hasBottomLeft = [self.area containsObject:bottomLeft];
+            BOOL hasTopLeft = [self.area containsObject:topLeft];
+            BOOL hasBottomRight = [self.area containsObject:bottomRight];
+            BOOL hasTopRight = [self.area containsObject:topRight];
+            
+            // cell on every side or no side, no border needed
+            if ((hasBottomLeft && hasTopLeft && hasBottomRight && hasTopRight) ||
+                (!hasBottomLeft && !hasTopLeft && !hasBottomRight && !hasTopRight))
+            {
+                continue;
+            }
+            
+            CCSprite *border1;
+            CCSprite *border2;
+            
+            // strait edge vertical
+            if ((hasBottomLeft && hasTopLeft && !hasBottomRight && !hasTopRight) ||
+                (!hasBottomLeft && !hasTopLeft && hasBottomRight && hasTopRight))
+            {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderStrait];
+            }
+            
+            // strait edge horizontal
+            else if ((hasTopLeft && hasTopRight && !hasBottomLeft && !hasBottomRight) ||
+                     (!hasTopLeft && !hasTopRight && hasBottomLeft && hasBottomRight))
+            {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderStrait];
+                border1.rotation = 90;
+            }
+            
+            // top left only
+            else if ((hasTopLeft && !hasTopRight && !hasBottomLeft && !hasBottomRight) ||
+                     (!hasTopLeft && hasTopRight && hasBottomLeft && hasBottomRight))
+            {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+            }
+            
+            // top right only
+            else if ((hasTopRight && !hasTopLeft && !hasBottomLeft && !hasBottomRight) ||
+                     (!hasTopRight && hasTopLeft && hasBottomLeft && hasBottomRight))
+            {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+                border1.rotation = 90;
+            }
+            
+            // bottom left only
+            else if ((hasBottomLeft && !hasBottomRight && !hasTopLeft && !hasTopRight) ||
+                     (!hasBottomLeft && hasBottomRight && hasTopLeft && hasTopRight))
+            {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+                border1.rotation = -90;
+            }
+            
+            // bottom right only
+            else if ((hasBottomRight && !hasBottomLeft && !hasTopLeft && !hasTopRight) ||
+                     (!hasBottomRight && hasBottomLeft && hasTopLeft && hasTopRight))
+            {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+                border1.rotation = 180;
+            }
+            
+            // both bottom left and top right corner
+            else if (hasBottomLeft && hasTopRight && !hasBottomRight && !hasTopLeft) {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+                border1.rotation = -90;
+                border2 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+                border2.rotation = 90;
+            }
+            
+            // both bottom right and top left corner
+            else if (hasBottomRight && hasTopLeft && !hasBottomLeft && !hasTopRight) {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+                border1.rotation = 120;
+                border2 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+            }
+            
+            // position and add border(s)
+            border1.position = [GridUtils relativePositionForGridCoord:cell unitSize:kSizeGridUnit];
+            [self.audioObjectsBatchNode addChild:border1];
+            
+            if (border2 != nil) {
+                border2.position = [GridUtils relativePositionForGridCoord:cell unitSize:kSizeGridUnit];
+                [self.audioObjectsBatchNode addChild:border2];
+            }
+        }
+    }
 }
 
 - (void)createPuzzleObjects:(NSInteger)puzzle

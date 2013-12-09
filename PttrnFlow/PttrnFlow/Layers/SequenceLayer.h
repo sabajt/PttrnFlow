@@ -24,6 +24,9 @@
 @property (weak, nonatomic) CCSpriteBatchNode *othersBatchNode;
 @property (weak, nonatomic) CCSpriteBatchNode *audioObjectsBatchNode;
 
+// set of active puzzle coordinates represented as strings: (1, 3) -> @"13"
+@property (strong, nonatomic) NSSet *area;
+
 + (CCScene *)sceneWithSequence:(int)sequence;
 
 @end

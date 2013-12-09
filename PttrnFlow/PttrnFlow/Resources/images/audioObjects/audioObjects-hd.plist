@@ -46,13 +46,13 @@
             <key>pad_border_corner.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{110,2},{70,70}}</string>
+                <string>{{110,2},{72,72}}</string>
                 <key>offset</key>
-                <string>{-35,35}</string>
+                <string>{-34,34}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{70,70}}</string>
+                <string>{{0,0},{72,72}}</string>
                 <key>sourceSize</key>
                 <string>{140,140}</string>
             </dict>
@@ -79,7 +79,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7afa974e05a12e6b8bbcd9afcf38c431:804da2d66dd7cf5bd711c9a7b266ebbc:b365ed0847c6905af74912c7dbbb1edb$</string>
+            <string>$TexturePacker:SmartUpdate:f46ece2e2fa7762d475d494d80c25e48:276e4c0fd5a6130005734f0810469bc3:b365ed0847c6905af74912c7dbbb1edb$</string>
             <key>textureFileName</key>
             <string>audioObjects-hd.png</string>
         </dict>

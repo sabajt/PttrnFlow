@@ -1,40 +1,72 @@
 {
-	"bpm" : 120,
-	"inventory" :
-	{
-		"arrows" : 4
-	},
-	"audio_pads" :
+     "bpm" : 120,
+     "area" :
+     [
+          [1, 3],
+          [2, 3],
+          [2, 1],
+          [2, 2],
+          [3, 2],
+          [4, 3],
+          [4, 4],
+          [5, 4]
+     ],
+	"pads" :
 	[
-     {
-     "cell" : [1, 1],
-     "synth" : "osc",
-     "midi" : 50,
-     "arrow" : "up"
-     },
-     {
-     "cell" : [2, 1],
-     "entry" : "left"
-     },
-     {
-     "cell" : [1, 2],
-     "synth" : "osc",
-     "midi" : 52
-     },
-     {
-     "cell" : [2, 2],
-     "synth" : "osc",
-     "midi" : 54,
-     },
-     {
-     "cell" : [1, 4],
-     "sample" : "drum_01",
-     "entry" : "right"
-     },
-     {
-     "cell" : [2, 4],
-     "sample" : "drum_02"
-     }
+          {
+               "static" : 0,
+               "glyphs" :
+               [
+                    {
+                         "cell" : [1, 1],
+                         "entry" : "right",
+                         "sample" : "drum_01",
+                    },
+                    {
+                         "cell" : [2, 1],
+                         "sample" : "drum_02",
+                         "arrow" : "up",
+                    }
+               ]
+          },
+          {
+               "static" : 1,
+               "glyphs" :
+               [
+                    {
+                         "cell" : [3, 2],
+                         "synth" : "osc",
+                         "midi" : 52
+                    },
+               ]
+          },
+          {
+               "static" : 0,
+               "glyphs" :
+               [
+                    {
+                         "cell" : [4, 1],
+                         "sample" : "drum_03",
+                    }
+               ]
+          },
+          {
+               "static" : 1,
+               "glyphs" :
+               [
+                    {
+                         "cell" : [2, 4],
+                         "synth" : "osc",
+                         "midi" : 50,
+                         "arrow" : "right"
+                    },
+                    {
+                         "cell" : [3, 4],
+                         "synth" : "osc",
+                         "midi" : 54
+                    }
+               ]
+          }
      ]
 }
 

@@ -70,7 +70,10 @@ GridCoordMake(const int x, const int y)
 // draws grid lines, call in layer's draw method
 + (void)drawGridWithSize:(GridCoord)gridSize unitSize:(CGFloat)unitSize origin:(CGPoint)origin;
 
-#pragma mark - distance
+#pragma mark - distance / size
+
+// cell with maximum x and y value of cells in the following format: [ [@1, @2], [@1, @3] ... ]
++ (GridCoord)maxCoord:(NSArray *)cells;
 
 // number of cell steps to get from starting coord to ending coord, no diagonal path allowed
 + (int)numberOfStepsBetweenStart:(GridCoord)start end:(GridCoord)end;

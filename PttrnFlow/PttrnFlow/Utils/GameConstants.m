@@ -9,7 +9,7 @@
 #import "GameConstants.h"
 
 // size
-CGFloat const kSizeGridUnit = 80.0;
+CGFloat const kSizeGridUnit = 68.0;
 CGFloat const kStatusBarHeight = 20.0;
 
 // duration
