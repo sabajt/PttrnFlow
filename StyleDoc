@@ -1,11 +1,18 @@
 -- current colors
 
+cream - fcfbf7ff
+grey purple - 9b8a9fff
+default purple - 9d4f8cff
+active pink - d84179ff
+
+-- old colors 3
+
 cream - f3efe5ff
 purple - 9b8a9fff
 coffee - 43333bff
 red - dc5874ff
 
--- old colors
+-- old colors 2
 
 default gray - cbc9caff
 active purple - ba4c64ff
@@ -17,7 +24,7 @@ grandient red - dd3e35ff
 gradient top (dark purple) - 1c2134ff
 gradient bottom (sunburst red) - ff004cff
 
--- old colors
+-- old colors 1
 
 panel steel - 738b9eff
 highlight ice - bdd6dcff

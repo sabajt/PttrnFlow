@@ -7,7 +7,20 @@
             <key>audio_box_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{6,2},{50,50}}</string>
+                <string>{{2,58},{50,50}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{50,50}}</string>
+                <key>sourceSize</key>
+                <string>{50,50}</string>
+            </dict>
+            <key>audio_box_off_static.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{54,54},{50,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +33,7 @@
             <key>audio_box_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,74},{50,50}}</string>
+                <string>{{2,6},{50,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -30,10 +43,49 @@
                 <key>sourceSize</key>
                 <string>{50,50}</string>
             </dict>
+            <key>audio_box_on_static.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{74,2},{50,50}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{50,50}}</string>
+                <key>sourceSize</key>
+                <string>{50,50}</string>
+            </dict>
+            <key>audio_connector.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{106,86},{20,30}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{20,30}}</string>
+                <key>sourceSize</key>
+                <string>{20,30}</string>
+            </dict>
+            <key>audio_connector_padded.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{106,54},{20,30}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{20,30}}</string>
+                <key>sourceSize</key>
+                <string>{20,30}</string>
+            </dict>
             <key>clear_rect_audio_batch.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{6,54},{1,1}}</string>
+                <string>{{54,6},{1,1}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +98,7 @@
             <key>pad_border_corner.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{58,2},{36,36}}</string>
+                <string>{{54,106},{36,36}}</string>
                 <key>offset</key>
                 <string>{-17,17}</string>
                 <key>rotated</key>
@@ -63,7 +115,7 @@
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{34,0},{2,70}}</string>
                 <key>sourceSize</key>
@@ -77,9 +129,9 @@
             <key>realTextureFileName</key>
             <string>audioObjects.png</string>
             <key>size</key>
-            <string>{128,128}</string>
+            <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:f46ece2e2fa7762d475d494d80c25e48:276e4c0fd5a6130005734f0810469bc3:b365ed0847c6905af74912c7dbbb1edb$</string>
+            <string>$TexturePacker:SmartUpdate:2da1d075cc9f6405aa1aed14b02e85e6:4727ce1d38f4aa09d7da3d96ad467b4b:b365ed0847c6905af74912c7dbbb1edb$</string>
             <key>textureFileName</key>
             <string>audioObjects.png</string>
         </dict>

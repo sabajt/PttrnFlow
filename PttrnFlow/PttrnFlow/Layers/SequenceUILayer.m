@@ -20,17 +20,12 @@
 #import "TBSpriteMask.h"
 #import "PathUtils.h"
 
-static int const kMaxControlLengthFull = 8;
-static int const kMaxControlLengthCompact = 6;
+static NSInteger const kMaxControlLength = 7;
+
+static CGFloat const kButtonUnitSize = 50;
 static CGFloat const kTimelineStepWidth = 40;
-static CGFloat const kTimeLineRowHeight = 44;
-static CGFloat const kControlsRowHeight = 80; // use as bottom of timeline background image asset offset
-static CGFloat const kControlsButtonWidth = 320 / 4;
-static CGFloat const kItemMenuBottom = 80;
 static CGFloat const kUIPadding = 4;
 static CGFloat const kLineWidth = 2;
-static CGFloat const kItemMenuRowHeight = 80;
-static GLubyte const kPanelMaskOpacity = 255;
 
 @interface SequenceUILayer ()
 
@@ -38,7 +33,7 @@ static GLubyte const kPanelMaskOpacity = 255;
 @property (weak, nonatomic) CCSpriteBatchNode *uiBatchNode;
 
 // size and positions
-@property (assign) int steps;
+@property (assign) NSInteger steps;
 @property (assign) BOOL menuOpen;
 @property (assign) CGFloat itemsToggleOpenX;
 @property (assign) CGSize buttonAssetSize;
@@ -70,11 +65,10 @@ static GLubyte const kPanelMaskOpacity = 255;
     self = [super init];
     if (self) {
         _tickDispatcher = tickDispatcher;
+        NSInteger steps = (tickDispatcher.sequenceLength / 4);
+        self.steps = steps;
 
         // set general sizes / positions
-        CCSprite *itemMenuBottomCap = [CCSprite spriteWithSpriteFrameName:@"item_menu_bottom.png"];
-        static CGFloat itemsToggleOpenOffset = 10;
-        _itemsToggleOpenX = (self.contentSize.width - itemMenuBottomCap.contentSize.width) - itemsToggleOpenOffset;
         CCSprite *exitOff = [CCSprite spriteWithSpriteFrameName:@"exit_off.png"];
         _buttonAssetSize = exitOff.contentSize;
         
@@ -82,28 +76,44 @@ static GLubyte const kPanelMaskOpacity = 255;
         CCSpriteBatchNode *uiBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyUILayer stringByAppendingString:@".png"]];
         self.uiBatchNode = uiBatch;
         
-        // bottom controls mask
-        CCSprite *bottomControlsMask = [CCSprite spriteWithSpriteFrameName:@"bottom_controls_mask.png"];
-        bottomControlsMask.anchorPoint = ccp(0, 0);
-        bottomControlsMask.position = ccp(0, 0);
-        [self addChild:bottomControlsMask]; // can't add to batch because must be drawn below menu items
+        // right controls panel
+        CCSprite *rightControlsPanel = [CCSprite spriteWithSpriteFrameName:@"controls_panel_right.png"];
+        rightControlsPanel.anchorPoint = ccp(0, 0);
         
-        // exit button bottom left
+        if (steps > kMaxControlLength) {
+            rightControlsPanel.position = ccp(10, 0);
+        }
+        else {
+            rightControlsPanel.position = ccp(((kButtonUnitSize - kTimelineStepWidth) + kLineWidth) - (kTimelineStepWidth * (kMaxControlLength - steps)), 0);
+        }
+        
+        [self.uiBatchNode addChild:rightControlsPanel];
+        
+        // left controls panel
+        CCSprite *leftControlsPanel = [CCSprite spriteWithSpriteFrameName:@"controls_panel_left.png"];
+        leftControlsPanel.anchorPoint = ccp(0, 0);
+        leftControlsPanel.position = ccp(0, 0);
+        [self.uiBatchNode addChild:leftControlsPanel];
+        
+        // add ui batch below buttons (ccmenu not compatible with batch) and pan sprite (clipping using glscissor also not compatible with batch)
+        [self addChild:uiBatch];
+        
+        // exit button top left
         CCSprite *exitOn = [CCSprite spriteWithSpriteFrameName:@"exit_on.png"];
         CCMenuItemSprite *exitButton = [[CCMenuItemSprite alloc] initWithNormalSprite:exitOff selectedSprite:exitOn disabledSprite:nil target:self selector:@selector(exitPressed:)];
-        exitButton.position = ccp(kControlsButtonWidth / 2, kControlsRowHeight / 2);
+        exitButton.position = ccp(kButtonUnitSize / 2, self.contentSize.height - (kButtonUnitSize / 2));
         
         // speaker button
         CCSprite *speakerOff = [CCSprite spriteWithSpriteFrameName:@"speaker_off.png"];
         CCSprite *speakerOn = [CCSprite spriteWithSpriteFrameName:@"speaker_on.png"];
         CCMenuItemSprite *speakerButton = [[CCMenuItemSprite alloc] initWithNormalSprite:speakerOff selectedSprite:speakerOn disabledSprite:nil target:self selector:@selector(speakerPressed:)];
-        speakerButton.position = ccp((3 * kControlsButtonWidth) / 2, kControlsRowHeight / 2);
+        speakerButton.position = ccp(kButtonUnitSize / 2, (3 * kButtonUnitSize) / 2);
         
         // play button
         CCSprite *playOff = [CCSprite spriteWithSpriteFrameName:@"play_off.png"];
         CCSprite *playOn = [CCSprite spriteWithSpriteFrameName:@"play_on.png"];
         CCMenuItemSprite *playButton = [[CCMenuItemSprite alloc] initWithNormalSprite:playOff selectedSprite:playOn disabledSprite:nil target:self selector:@selector(playButtonPressed:)];
-        playButton.position = ccp((5 * kControlsButtonWidth) / 2, kControlsRowHeight / 2);
+        playButton.position = ccp(kButtonUnitSize / 2, kButtonUnitSize / 2);
         
         // buttons must be added to a CCMenu to work
         CCMenu *menu = [CCMenu menuWithItems:exitButton, speakerButton, playButton, nil];
@@ -111,48 +121,30 @@ static GLubyte const kPanelMaskOpacity = 255;
         menu.position = CGPointZero;
         [self addChild:menu]; // can't add to batch because menu is not a ccsprite
         
-        int steps = (tickDispatcher.sequenceLength / 4);
-        self.steps = steps;
-        TickerControl *tickerControl = [[TickerControl alloc] initWithSpriteFrameName:kClearRectUILayer steps:steps unitSize:CGSizeMake(kTimelineStepWidth, kTimeLineRowHeight)];
+        TickerControl *tickerControl = [[TickerControl alloc] initWithSpriteFrameName:kClearRectUILayer steps:steps unitSize:CGSizeMake(kTimelineStepWidth, kButtonUnitSize)];
         _tickerControl = tickerControl;
         tickerControl.tickerControlDelegate = tickDispatcher;
         tickerControl.position = ccp(tickerControl.contentSize.width / 2, (3 * tickerControl.contentSize.height) / 2);
         
         // hit chart
-        TickHitChart *hitChart = [[TickHitChart alloc] initWithSpriteFrameName:kClearRectUILayer steps:steps unitSize:CGSizeMake(kTimelineStepWidth, kTimeLineRowHeight)];
+        TickHitChart *hitChart = [[TickHitChart alloc] initWithSpriteFrameName:kClearRectUILayer steps:steps unitSize:CGSizeMake(kTimelineStepWidth, kButtonUnitSize)];
         _hitChart = hitChart;
         hitChart.position = ccp(hitChart.contentSize.width / 2, hitChart.contentSize.height / 2);
         
         // dotted line separator
         TileSprite *dotSeparator = [[TileSprite alloc] initWithTileFrameName:@"dotted_line_40_2.png" repeatHorizonal:steps repeatVertical:1];
-        dotSeparator.position = ccp(dotSeparator.contentSize.width / 2, kTimeLineRowHeight);
+        dotSeparator.position = ccp(dotSeparator.contentSize.width / 2, kButtonUnitSize);
         
         // pan sprite
-        CGFloat panNodeWidth = MIN(steps, kMaxControlLengthFull) * kTimelineStepWidth;
-        CGSize panNodeSize = CGSizeMake(panNodeWidth, 2 * kTimeLineRowHeight);
+        CGFloat panNodeWidth = MIN(steps, kMaxControlLength) * kTimelineStepWidth;
+        CGSize panNodeSize = CGSizeMake(panNodeWidth, 2 * kButtonUnitSize);
         CGSize scrollingContainerSize = CGSizeMake(steps * kTimelineStepWidth, panNodeSize.height);
-        CGPoint panNodeOrigin = ccp(0, kControlsRowHeight);
+        CGPoint panNodeOrigin = ccp(kButtonUnitSize, 0);
         PanSprite *panSprite = [[PanSprite alloc] initWithSpriteFrameName:kClearRectUILayer contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:@[hitChart, tickerControl, dotSeparator]];
         _panSprite = panSprite;
         panSprite.scrollDirection = ScrollDirectionHorizontal;
         panSprite.position = panNodeOrigin;
         [self addChild:panSprite]; // can't add to batch because PanSprite contains ClippingSprite which overrides 'visit'
-        
-        // timeline controls border
-        CCSprite *timelineBorder = [CCSprite spriteWithSpriteFrameName:@"control_bar.png"];
-        _timelineBorder = timelineBorder;
-        timelineBorder.anchorPoint = CGPointZero;
-        [uiBatch addChild:timelineBorder];
-        
-        // timeline controls background
-        CCSprite *timelineBackground = [CCSprite spriteWithSpriteFrameName:@"control_bar_gradient_mask.png"];
-        _timelineBackground = timelineBackground;
-        timelineBackground.anchorPoint = CGPointZero;
-        timelineBackground.opacity = kPanelMaskOpacity;
-        [self addChild:timelineBackground z:self.panSprite.zOrder - 1]; // can't add to batch because must be drawn below pan sprite
-        
-        // add ui batch at top
-        [self addChild:uiBatch];
     }
     return self;
 }
