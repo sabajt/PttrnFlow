@@ -11,6 +11,8 @@
 
 @interface AudioPad : GameSprite <AudioResponder>
 
-- (id)initWithCell:(GridCoord)cell;
+@property (assign) BOOL moveable;
+
+- (id)initWithCell:(GridCoord)cell moveable:(BOOL)moveable;
 
 @end

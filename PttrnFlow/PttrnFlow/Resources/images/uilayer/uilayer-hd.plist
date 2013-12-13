@@ -7,7 +7,7 @@
             <key>check.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{244,444},{38,28}}</string>
+                <string>{{48,366},{38,28}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,28 +72,28 @@
             <key>exit_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{244,510},{32,28}}</string>
+                <string>{{2,412},{34,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{104,106},{32,28}}</string>
+                <string>{{33,35},{34,30}}</string>
                 <key>sourceSize</key>
-                <string>{240,240}</string>
+                <string>{100,100}</string>
             </dict>
             <key>exit_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,366},{240,240}}</string>
+                <string>{{48,396},{34,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{240,240}}</string>
+                <string>{{33,35},{34,30}}</string>
                 <key>sourceSize</key>
-                <string>{240,240}</string>
+                <string>{100,100}</string>
             </dict>
             <key>play_off.png</key>
             <dict>
@@ -150,7 +150,7 @@
             <key>tickdot_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{284,444},{14,14}}</string>
+                <string>{{124,366},{14,14}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -163,7 +163,7 @@
             <key>tickdot_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{244,398},{44,44}}</string>
+                <string>{{2,366},{44,44}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -202,7 +202,7 @@
             <key>x.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{244,474},{34,34}}</string>
+                <string>{{88,366},{34,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -222,7 +222,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:43e8ef2b4792c4fb08e0bbb81b1fe185:5ceeed3fe4d28efedb1878878a3d4416:842074752256af9eab1246752001c5a2$</string>
+            <string>$TexturePacker:SmartUpdate:cf12941c5e1b3f1f6c2a74d40b85e064:6db14e1395a22964a7e7505f21794ec7:842074752256af9eab1246752001c5a2$</string>
             <key>textureFileName</key>
             <string>uilayer-hd.png</string>
         </dict>

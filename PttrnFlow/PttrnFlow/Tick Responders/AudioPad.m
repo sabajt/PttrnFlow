@@ -17,11 +17,18 @@
 
 @implementation AudioPad
 
-- (id)initWithCell:(GridCoord)cell
+- (id)initWithCell:(GridCoord)cell moveable:(BOOL)moveable
 {
-    self = [super initWithSpriteFrameName:@"audio_box_off.png" cell:cell];
+    NSString *offFrameName = @"audio_box_off_static.png";
+    NSString *onFrameName = @"audio_box_on_static.png";
+    if (moveable) {
+        _moveable = YES;
+        offFrameName = @"audio_box_off.png";
+        onFrameName = @"audio_box_on.png";
+    }
+    self = [super initWithSpriteFrameName:offFrameName cell:cell];
     if (self) {
-        CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:@"audio_box_on.png"];
+        CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:onFrameName];
         _highlightSprite = highlightSprite;
         highlightSprite.visible = NO;
         highlightSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);

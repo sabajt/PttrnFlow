@@ -189,9 +189,9 @@
         [self addChild:self.audioTouchDispatcher];
         
         // create puzzle objects
-//        [self createPuzzleObjects:1];
         self.area = [self createPuzzleArea:sequence];
         [self createPuzzleBorder:sequence];
+        [self createPuzzleObjects:1];
         
         // find optimal scale and position
         CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
@@ -330,7 +330,8 @@
         
         for (NSDictionary *glyph in glyphs) {
             
-            NSArray *coord = glyph[kCell];
+            NSArray *rawCoord = glyph[kCell];
+            NSArray *coord = @[@([rawCoord[0] intValue] - 1), @([rawCoord[1] intValue] - 1)];
             NSString *entry = glyph[kEntry];
             NSString *arrow = glyph[kArrow];
             NSString *synth = glyph[kSynth];
@@ -345,7 +346,7 @@
             GridCoord cell = GridCoordMake([coord[0] intValue], [coord[1] intValue]);
             
             // audio pad sprite
-            AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
+            AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell moveable:!isStatic];
             audioPad.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
             [self.tickDispatcher registerAudioResponderCellNode:audioPad];
             [self.audioTouchDispatcher addResponder:audioPad];
@@ -357,11 +358,11 @@
             
             // melody synth
             if (synth != NULL && midi != NULL) {
-                Tone *tone = [[Tone alloc] initWithCell:cell synth:synth midi:midi.stringValue];
-                // [self.tickDispatcher registerAudioResponderCellNode:tone];
-                [self.audioTouchDispatcher addResponder:tone];
-                tone.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
-                [self addChild:tone];
+//                Tone *tone = [[Tone alloc] initWithCell:cell synth:synth midi:midi.stringValue];
+//                // [self.tickDispatcher registerAudioResponderCellNode:tone];
+//                [self.audioTouchDispatcher addResponder:tone];
+//                tone.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
+//                [self addChild:tone];
             }
             
             // audio sample
