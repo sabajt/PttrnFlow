@@ -191,7 +191,7 @@
         // create puzzle objects
         self.area = [self createPuzzleArea:sequence];
         [self createPuzzleBorder:sequence];
-        [self createPuzzleObjects:1];
+        [self createPuzzleObjects:sequence];
         
         // find optimal scale and position
         CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
@@ -303,7 +303,7 @@
             // both bottom right and top left corner
             else if (hasBottomRight && hasTopLeft && !hasBottomLeft && !hasTopRight) {
                 border1 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
-                border1.rotation = 120;
+                border1.rotation = 180;
                 border2 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
             }
             

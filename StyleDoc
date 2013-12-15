@@ -5,6 +5,16 @@ grey purple - 9b8a9fff
 default purple - 9d4f8cff
 active pink - d84179ff
 
+-- tone units
+
+1 - 51
+2 - 103
+3 - 154
+4 - 206
+5 - 257
+6 - 309
+
+
 -- old colors 3
 
 cream - f3efe5ff

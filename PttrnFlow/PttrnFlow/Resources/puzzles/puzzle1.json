@@ -14,7 +14,7 @@
 	"pads" :
 	[
           {
-               "static" : 0,
+               "static" : 1,
                "glyphs" :
                [
                     {
@@ -41,7 +41,7 @@
                ]
           },
           {
-               "static" : 0,
+               "static" : 1,
                "glyphs" :
                [
                     {

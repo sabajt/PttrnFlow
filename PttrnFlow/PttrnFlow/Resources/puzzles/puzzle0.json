@@ -38,7 +38,7 @@
                ]
           },
           {
-               "static" : 1,
+               "static" : 0,
                "glyphs" :
                [
                     {
@@ -59,7 +59,7 @@
                ]
           },
           {
-               "static" : 1,
+               "static" : 0,
                "glyphs" :
                [
                     {
