@@ -131,7 +131,7 @@
 		160B50C3173A27D000BFC014 /* blank-on-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 160B50A5173A27D000BFC014 /* blank-on-ipad.png */; };
 		1624D1DE1733453200851B45 /* TextureUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1624D1DD1733453200851B45 /* TextureUtils.m */; };
 		1624D1E317337FBE00851B45 /* CCTMXTiledMap+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1624D1E217337FBD00851B45 /* CCTMXTiledMap+Utils.m */; };
-		1624D1E71733807300851B45 /* PathUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1624D1E61733807200851B45 /* PathUtils.m */; };
+		1624D1E71733807300851B45 /* PuzzleUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1624D1E61733807200851B45 /* PuzzleUtils.m */; };
 		1624D1EA1733822C00851B45 /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1624D1E91733822B00851B45 /* ColorUtils.m */; };
 		16284CA4173A072B00B058D2 /* pipeTilesetBase1.png in Resources */ = {isa = PBXBuildFile; fileRef = 16284C8F173A072B00B058D2 /* pipeTilesetBase1.png */; };
 		16284CA5173A072B00B058D2 /* seq0.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 16284C90173A072B00B058D2 /* seq0.tmx */; };
@@ -570,8 +570,8 @@
 		1624D1DD1733453200851B45 /* TextureUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureUtils.m; sourceTree = "<group>"; };
 		1624D1E117337FBC00851B45 /* CCTMXTiledMap+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCTMXTiledMap+Utils.h"; sourceTree = "<group>"; };
 		1624D1E217337FBD00851B45 /* CCTMXTiledMap+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCTMXTiledMap+Utils.m"; sourceTree = "<group>"; };
-		1624D1E51733807100851B45 /* PathUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathUtils.h; sourceTree = "<group>"; };
-		1624D1E61733807200851B45 /* PathUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathUtils.m; sourceTree = "<group>"; };
+		1624D1E51733807100851B45 /* PuzzleUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleUtils.h; sourceTree = "<group>"; };
+		1624D1E61733807200851B45 /* PuzzleUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleUtils.m; sourceTree = "<group>"; };
 		1624D1E81733822A00851B45 /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
 		1624D1E91733822B00851B45 /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtils.m; sourceTree = "<group>"; };
 		16284C8F173A072B00B058D2 /* pipeTilesetBase1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pipeTilesetBase1.png; sourceTree = "<group>"; };
@@ -1235,8 +1235,8 @@
 				165A41A41734EA65005BFC32 /* SGTiledUtils.m */,
 				1624D1E81733822A00851B45 /* ColorUtils.h */,
 				1624D1E91733822B00851B45 /* ColorUtils.m */,
-				1624D1E51733807100851B45 /* PathUtils.h */,
-				1624D1E61733807200851B45 /* PathUtils.m */,
+				1624D1E51733807100851B45 /* PuzzleUtils.h */,
+				1624D1E61733807200851B45 /* PuzzleUtils.m */,
 				1624D1E117337FBC00851B45 /* CCTMXTiledMap+Utils.h */,
 				1624D1E217337FBD00851B45 /* CCTMXTiledMap+Utils.m */,
 				1624D1DC1733453100851B45 /* TextureUtils.h */,
@@ -1962,7 +1962,7 @@
 				338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */,
 				1624D1E317337FBE00851B45 /* CCTMXTiledMap+Utils.m in Sources */,
 				334B2AE3181C47B900865510 /* ClippingSprite.m in Sources */,
-				1624D1E71733807300851B45 /* PathUtils.m in Sources */,
+				1624D1E71733807300851B45 /* PuzzleUtils.m in Sources */,
 				1624D1EA1733822C00851B45 /* ColorUtils.m in Sources */,
 				165A41A51734EA65005BFC32 /* SGTiledUtils.m in Sources */,
 				33B4F25E17C72600004D4C13 /* SampleEvent.m in Sources */,

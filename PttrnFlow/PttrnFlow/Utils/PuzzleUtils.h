@@ -16,14 +16,20 @@ FOUNDATION_EXPORT NSString *const kEntry;
 FOUNDATION_EXPORT NSString *const kSample;
 FOUNDATION_EXPORT NSString *const kStatic;
 FOUNDATION_EXPORT NSString *const kGlyphs;
+FOUNDATION_EXPORT NSString *const kImageSet;
 
-@interface PathUtils : NSObject
+FOUNDATION_EXPORT NSString *const kTonePrimary;
+FOUNDATION_EXPORT NSString *const kToneSecondary;
+FOUNDATION_EXPORT NSString *const kBeatPrimary;
+FOUNDATION_EXPORT NSString *const kBeatSecondary;
+
+@interface PuzzleUtils : NSObject
 
 + (NSArray *)puzzleFileNames;
 + (NSDictionary *)puzzle:(NSInteger)number;
 + (NSInteger)puzzleBpm:(NSInteger)number;
 + (NSArray *)puzzleArea:(NSInteger)number;
 + (NSArray *)puzzleAudioPads:(NSInteger)number;
-+ (NSArray *)puzzleImageSequenceKey:(NSInteger)number;
++ (NSDictionary *)puzzleImageSequenceKey:(NSInteger)number;
 
 @end

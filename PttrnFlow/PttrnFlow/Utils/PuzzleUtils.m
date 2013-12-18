@@ -6,7 +6,7 @@
 //
 //
 
-#import "PathUtils.h"
+#import "PuzzleUtils.h"
 
 NSString *const kCell = @"cell";
 NSString *const kSynth = @"synth";
@@ -18,17 +18,17 @@ NSString *const kStatic = @"static";
 NSString *const kGlyphs = @"glyphs";
 NSString *const kImageSet = @"image_set";
 
+NSString *const kTonePrimary = @"tone_primary";
+NSString *const kToneSecondary = @"tone_secondary";
+NSString *const kBeatPrimary = @"beat_primary";
+NSString *const kBeatSecondary = @"beat_secondary";
+
 static NSString *const kPuzzle = @"puzzle";
 static NSString *const kBpm = @"bpm";
 static NSString *const kArea = @"area";
 static NSString *const kPads = @"pads";
 
-static NSString *const kTonePrimary = @"tone_primary";
-static NSString *const kToneSecondary = @"tone_secondary";
-static NSString *const kBeatPrimary = @"beat_primary";
-static NSString *const kBeatSecondary = @"beat_secondary";
-
-@implementation PathUtils
+@implementation PuzzleUtils
 
 + (NSArray *)puzzleFileNames
 {
@@ -56,19 +56,19 @@ static NSString *const kBeatSecondary = @"beat_secondary";
 
 + (NSInteger)puzzleBpm:(NSInteger)number
 {
-    NSDictionary *puzzle = [PathUtils puzzle:number];
+    NSDictionary *puzzle = [PuzzleUtils puzzle:number];
     return [puzzle[kBpm] integerValue];
 }
 
 + (NSArray *)puzzleArea:(NSInteger)number
 {
-    NSDictionary *puzzle = [PathUtils puzzle:number];
+    NSDictionary *puzzle = [PuzzleUtils puzzle:number];
     return puzzle[kArea];
 }
 
 + (NSArray *)puzzleAudioPads:(NSInteger)number
 {
-    NSDictionary *puzzle = [PathUtils puzzle:number];
+    NSDictionary *puzzle = [PuzzleUtils puzzle:number];
     return puzzle[kPads];
 }
 
@@ -77,7 +77,7 @@ static NSString *const kBeatSecondary = @"beat_secondary";
  {
     image_set : 
     {
-        audio_value : sequence_order,
+        audio_value : frame_name,
         ...
     },
     ...
@@ -85,7 +85,7 @@ static NSString *const kBeatSecondary = @"beat_secondary";
 
  image_set determines the sequence of images that will be used, (kTonePrimary, kToneSecondary, kBeatPrimary, kBeatSecondary)
  audio_value is the unique identifier for sequence based glyphs
- sequence_order is a 0 based indexing NSNumber that uniques each glyph value providing a key to a unique image
+ frame_name is the image frame name derived from 0 based indexing NSNumber that uniques each glyph value providing a key to a unique image
 
  value for synths are midi values (NSNumber)
  values for samples are unique id's (NSStrings)
@@ -102,7 +102,7 @@ static NSString *const kBeatSecondary = @"beat_secondary";
     NSMutableSet *beatPrimaryValues = [NSMutableSet set];
     NSMutableSet *beatSecondaryValues = [NSMutableSet set];
     
-    NSArray *audioPads = [PathUtils puzzleAudioPads:number];
+    NSArray *audioPads = [PuzzleUtils puzzleAudioPads:number];
     for (NSDictionary *pad in audioPads) {
         NSArray *glyphs = pad[kGlyphs];
         
@@ -156,38 +156,48 @@ static NSString *const kBeatSecondary = @"beat_secondary";
     
     NSMutableDictionary *imageSequence = [NSMutableDictionary dictionary];
     
+    // sequence image frame naming convention:
+    // 'base name' + 'order' + 'total number', delineated by "_"
+    // example: the 3rd primary tone in a series of 5 would be "tone_primary_3_5"
+    
     if (sortedTonePrimaryValues.count > 0) {
-        NSInteger i = 0;
+        NSInteger i = 1;
         for (NSNumber *value in sortedTonePrimaryValues) {
-            [tonePrimary setObject:@(i) forKey:value];
+            NSString *frameName = [NSString stringWithFormat:@"%@_%i_%i.png", kTonePrimary, i, sortedTonePrimaryValues.count];
+            [tonePrimary setObject:frameName forKey:value];
             i++;
         }
         [imageSequence setObject:tonePrimary forKey:kTonePrimary];
     }
     if (sortedToneSecondaryValues.count > 0) {
-        NSInteger i = 0;
+        NSInteger i = 1;
         for (NSNumber *value in sortedToneSecondaryValues) {
-            [toneSecondary setObject:@(i) forKey:value];
+            NSString *frameName = [NSString stringWithFormat:@"%@_%i_%i.png", kToneSecondary, i, sortedToneSecondaryValues.count];
+            [toneSecondary setObject:frameName forKey:value];
             i++;
         }
         [imageSequence setObject:toneSecondary forKey:kToneSecondary];
     }
     if (beatPrimaryValues.count > 0) {
-        NSInteger i = 0;
+        NSInteger i = 1;
         for (NSNumber *value in beatPrimaryValues) {
-            [beatPrimary setObject:@(i) forKey:value];
+            NSString *frameName = [NSString stringWithFormat:@"%@_%i_%i.png", kBeatPrimary, i, beatPrimaryValues.count];
+            [beatPrimary setObject:frameName forKey:value];
             i++;
         }
         [imageSequence setObject:beatPrimary forKey:kBeatPrimary];
-    };
+    }
     if (beatSecondaryValues.count > 0) {
-        NSInteger i = 0;
+        NSInteger i = 1;
         for (NSNumber *value in beatSecondaryValues) {
-            [beatSecondary setObject:@(i) forKey:value];
+            NSString *frameName = [NSString stringWithFormat:@"%@_%i_%i.png", kBeatSecondary, i, beatSecondaryValues.count];
+            [beatSecondary setObject:frameName forKey:value];
             i++;
         }
         [imageSequence setObject:beatSecondary forKey:kBeatSecondary];
     }
+    
+    NSLog(@"image seq: %@", imageSequence);
     
     return [NSDictionary dictionaryWithDictionary:imageSequence];
 }

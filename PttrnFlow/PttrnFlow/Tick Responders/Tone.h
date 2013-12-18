@@ -10,6 +10,6 @@
 
 @interface Tone : CCSprite <AudioResponder>
 
-- (id)initWithCell:(GridCoord)cell synth:(NSString *)synth midi:(NSString *)midi;
+- (id)initWithCell:(GridCoord)cell synth:(NSString *)synth midi:(NSString *)midi frameName:(NSString *)frameName;
 
 @end

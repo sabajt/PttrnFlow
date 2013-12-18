@@ -18,7 +18,7 @@
 #import "TileSprite.h"
 #import "ClippingSprite.h"
 #import "TBSpriteMask.h"
-#import "PathUtils.h"
+#import "PuzzleUtils.h"
 
 static NSInteger const kMaxControlLength = 7;
 

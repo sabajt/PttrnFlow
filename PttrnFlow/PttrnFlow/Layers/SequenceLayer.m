@@ -33,7 +33,7 @@
 #import "AudioStop.h"
 #import "SpeedChange.h"
 #import "TextureUtils.h"
-#import "PathUtils.h"
+#import "PuzzleUtils.h"
 
 @interface SequenceLayer ()
 
@@ -164,7 +164,7 @@
         self.backgroundLayer = backgroundLayer;
         self.synth = [[MainSynth alloc] init];
         
-        NSArray *cells = [PathUtils puzzleArea:sequence];
+        NSArray *cells = [PuzzleUtils puzzleArea:sequence];
         self.gridSize = [GridUtils maxCoord:cells];
         
         self.absoluteGridSize = CGSizeMake(self.gridSize.x * kSizeGridUnit, self.gridSize.y * kSizeGridUnit);
@@ -192,7 +192,7 @@
         self.area = [self createPuzzleArea:sequence];
         [self createPuzzleBorder:sequence];
 //        [self createPuzzleObjects:sequence];
-        [PathUtils puzzleImageSequenceKey:sequence];
+        [PuzzleUtils puzzleImageSequenceKey:sequence];
         
         // find optimal scale and position
         CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
@@ -206,7 +206,7 @@
 {
     // convert puzzle data to area set
     NSMutableSet *area = [NSMutableSet set];
-    NSArray *cells = [PathUtils puzzleArea:puzzle];
+    NSArray *cells = [PuzzleUtils puzzleArea:puzzle];
     for (NSArray *cell in cells) {
         NSString *x = [cell[0] stringValue];
         NSString *y = [cell[1] stringValue];
@@ -322,7 +322,8 @@
 
 - (void)createPuzzleObjects:(NSInteger)puzzle
 {
-    NSArray *audioPads = [PathUtils puzzleAudioPads:puzzle];
+    NSArray *audioPads = [PuzzleUtils puzzleAudioPads:puzzle];
+    NSDictionary *imageSequenceKey = [PuzzleUtils puzzleImageSequenceKey:puzzle];
     
     for (NSDictionary *pad in audioPads) {
         
@@ -338,8 +339,9 @@
             NSString *synth = glyph[kSynth];
             NSNumber *midi = glyph[kMidi];
             NSString *sample = glyph[kSample];
+            NSString *imageSet = glyph[kImageSet];
          
-            // cell is the only mandatory field
+            // cell is the only mandatory field to create an audio pad (empty pad can be used as a puzzle object to just take up space)
             if (coord == NULL) {
                 NSLog(@"SequenceLayer createPuzzleObjects error: 'cell' must not be null on audio pads");
                 return;
@@ -357,13 +359,16 @@
             if (entry != NULL) {
             }
             
-            // melody synth
+            // pd synth
             if (synth != NULL && midi != NULL) {
 //                Tone *tone = [[Tone alloc] initWithCell:cell synth:synth midi:midi.stringValue];
 //                // [self.tickDispatcher registerAudioResponderCellNode:tone];
 //                [self.audioTouchDispatcher addResponder:tone];
 //                tone.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
 //                [self addChild:tone];
+                
+                
+                
             }
             
             // audio sample
