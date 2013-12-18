@@ -24,5 +24,6 @@ FOUNDATION_EXPORT NSString *const kGlyphs;
 + (NSInteger)puzzleBpm:(NSInteger)number;
 + (NSArray *)puzzleArea:(NSInteger)number;
 + (NSArray *)puzzleAudioPads:(NSInteger)number;
++ (NSArray *)puzzleImageSequenceKey:(NSInteger)number;
 
 @end

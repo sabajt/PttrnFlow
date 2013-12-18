@@ -29,11 +29,13 @@
                          "cell" : [1, 1],
                          "entry" : "right",
                          "sample" : "drum_01",
+                         "image_set" : "beat_primary",
                     },
                     {
                          "cell" : [2, 1],
                          "sample" : "drum_02",
                          "arrow" : "up",
+                         "image_set" : "beat_primary"
                     }
                ]
           },
@@ -44,7 +46,8 @@
                     {
                          "cell" : [3, 2],
                          "synth" : "osc",
-                         "midi" : 52
+                         "midi" : 52,
+                         "image_set" : "tone_primary"
                     },
                ]
           },
@@ -55,6 +58,7 @@
                     {
                          "cell" : [4, 1],
                          "sample" : "drum_03",
+                         "image_set" : "beat_primary"
                     }
                ]
           },
@@ -66,12 +70,14 @@
                          "cell" : [2, 4],
                          "synth" : "osc",
                          "midi" : 50,
-                         "arrow" : "right"
+                         "arrow" : "right",
+                         "image_set" : "tone_primary"
                     },
                     {
                          "cell" : [3, 4],
                          "synth" : "osc",
-                         "midi" : 54
+                         "midi" : 54,
+                         "image_set" : "tone_primary"
                     }
                ]
           }

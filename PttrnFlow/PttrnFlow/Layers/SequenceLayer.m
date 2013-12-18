@@ -191,7 +191,8 @@
         // create puzzle objects
         self.area = [self createPuzzleArea:sequence];
         [self createPuzzleBorder:sequence];
-        [self createPuzzleObjects:sequence];
+//        [self createPuzzleObjects:sequence];
+        [PathUtils puzzleImageSequenceKey:sequence];
         
         // find optimal scale and position
         CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
