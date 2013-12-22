@@ -7,6 +7,7 @@
 //
 
 #import "AudioPad.h"
+#import "CCNode+Grid.h"
 
 @interface AudioPad ()
 
@@ -24,8 +25,12 @@
         _moveable = YES;
         offFrameName = @"audio_box_off.png";
     }
-    self = [super initWithSpriteFrameName:offFrameName cell:cell];
+    self = [super initWithSpriteFrameName:offFrameName];
     if (self) {
+        // CCNode+Grid
+        self.cell = cell;
+        self.cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
+        
         CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:@"audio_box_on.png"];
         _highlightSprite = highlightSprite;
         highlightSprite.visible = NO;

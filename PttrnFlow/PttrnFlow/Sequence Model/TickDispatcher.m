@@ -103,8 +103,8 @@ CGFloat const kTickInterval = 0.12;
 
 - (void)registerAudioResponderCellNode:(id<AudioResponder>)responder
 {
-    NSAssert([responder conformsToProtocol:@protocol(AudioResponder)], @"registered tick responders much conform to AudioResponder protocol");
-    NSAssert([responder isKindOfClass:[GameNode class]] || [responder isKindOfClass:[GameSprite class]], @"registered tick responders for TickDispatcher must be a GameNode or GameSprite");
+    NSAssert([responder conformsToProtocol:@protocol(AudioResponder)], @"tick responders much conform to AudioResponder protocol");
+    NSAssert([responder respondsToSelector:@selector(cell)], @"tick responders must respond to selector 'cell'");
     [self.responders addObject:responder];
 }
 

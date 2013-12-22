@@ -9,7 +9,7 @@
 #import "GameSprite.h"
 #import "AudioResponder.h"
 
-@interface AudioPad : GameSprite <AudioResponder>
+@interface AudioPad : CCSprite <AudioResponder>
 
 @property (assign) BOOL moveable;
 
