@@ -191,8 +191,7 @@
         // create puzzle objects
         self.area = [self createPuzzleArea:sequence];
         [self createPuzzleBorder:sequence];
-//        [self createPuzzleObjects:sequence];
-        [PuzzleUtils puzzleImageSequenceKey:sequence];
+        [self createPuzzleObjects:sequence];
         
         // find optimal scale and position
         CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
@@ -339,7 +338,7 @@
             NSString *synth = glyph[kSynth];
             NSNumber *midi = glyph[kMidi];
             NSString *sample = glyph[kSample];
-            NSString *imageSet = glyph[kImageSet];
+            NSString *imageSetBaseName = glyph[kImageSet];
          
             // cell is the only mandatory field to create an audio pad (empty pad can be used as a puzzle object to just take up space)
             if (coord == NULL) {
@@ -347,10 +346,11 @@
                 return;
             }
             GridCoord cell = GridCoordMake([coord[0] intValue], [coord[1] intValue]);
+            CGPoint cellCenter = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
             
             // audio pad sprite
             AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell moveable:!isStatic];
-            audioPad.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
+            audioPad.position = cellCenter;
             [self.tickDispatcher registerAudioResponderCellNode:audioPad];
             [self.audioTouchDispatcher addResponder:audioPad];
             [self.audioObjectsBatchNode addChild:audioPad];
@@ -361,12 +361,17 @@
             
             // pd synth
             if (synth != NULL && midi != NULL) {
+                
+                NSDictionary *mappedImageSet = [imageSequenceKey objectForKey:imageSetBaseName];
+                NSString *imageName = [mappedImageSet objectForKey:midi];
+                Tone *tone = [[Tone alloc] initWithCell:cell synth:synth midi:[midi stringValue] frameName:imageName];
+                
 //                Tone *tone = [[Tone alloc] initWithCell:cell synth:synth midi:midi.stringValue];
 //                // [self.tickDispatcher registerAudioResponderCellNode:tone];
-//                [self.audioTouchDispatcher addResponder:tone];
-//                tone.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
-//                [self addChild:tone];
                 
+                [self.audioTouchDispatcher addResponder:tone];
+                tone.position = cellCenter;
+                [self.audioObjectsBatchNode addChild:tone];
                 
                 
             }
