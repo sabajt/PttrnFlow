@@ -11,6 +11,10 @@
 
 @class TickDispatcher;
 
+FOUNDATION_EXPORT CGFloat const kUIButtonUnitSize;
+FOUNDATION_EXPORT CGFloat const kUITimelineStepWidth;
+FOUNDATION_EXPORT CGFloat const kUILineWidth;
+
 @interface SequenceUILayer : CCLayer
 
 - (id)initWithPuzzle:(NSUInteger)puzzle tickDispatcher:(TickDispatcher *)tickDispatcher dragItemDelegate:(id<DragItemDelegate>)dragItemDelegate;

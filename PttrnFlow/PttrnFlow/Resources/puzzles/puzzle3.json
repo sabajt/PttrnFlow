@@ -3,48 +3,22 @@
      "area" :
      [
           [1, 1],
+          [1, 2],
+          [1, 3],
+          [1, 4],
+          [1, 6],
+          [1, 7],
+          [1, 10],
           [2, 1],
-          [2, 2],
           [2, 3],
-          [2, 4],
-          [3, 1],
-          [3, 2],
+          [2, 5],
+          [2, 7],
+          [2, 9],
           [3, 4],
-          [4, 1],
-          [4, 2],
-          [4, 3],
-          [4, 4],
-          [5, 1],
-          [6, 2],
-          [7, 3],
-          [8, 4],
-          [9, 4],
-          [9, 5],
-          [9, 6],
-          [9, 8],
-          [10, 4],
-          [10, 6]
+          [3, 5]
      ],
 	"pads" :
 	[
-          {
-               "static" : 1,
-               "glyphs" :
-               [
-                    {
-                         "cell" : [1, 1],
-                         "entry" : "right",
-                         "sample" : "drum_01",
-                         "image_set" : "beat_primary",
-                    },
-                    {
-                         "cell" : [2, 1],
-                         "sample" : "drum_02",
-                         "arrow" : "up",
-                         "image_set" : "beat_primary"
-                    }
-               ]
-          },
           {
                "static" : 0,
                "glyphs" :
@@ -58,13 +32,25 @@
                ]
           },
           {
-               "static" : 1,
+               "static" : 0,
+               "glyphs" :
+               [
+                    {
+                         "cell" : [1, 1],
+                         "synth" : "osc",
+                         "midi" : 48,
+                         "image_set" : "tone_primary"
+                    },
+               ]
+          },
+          {
+               "static" : 0,
                "glyphs" :
                [
                     {
                          "cell" : [4, 1],
                          "sample" : "drum_03",
-                         "image_set" : "beat_primary"
+                         "image_set" : "pattern_primary"
                     }
                ]
           },

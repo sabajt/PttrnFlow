@@ -35,13 +35,21 @@
 #import "TextureUtils.h"
 #import "PuzzleUtils.h"
 
+static CGFloat kPuzzleBoundsMargin = 10.0;
+
 @interface SequenceLayer ()
 
+@property (assign) CGSize screenSize;
 @property (assign) GridCoord gridSize;
-@property (assign) CGSize absoluteGridSize;
 @property (assign) CGPoint gridOrigin; // TODO: using grid origin except for drawing debug grid?
+@property (assign) CGRect puzzleBounds;
+
+@property (assign) BOOL allowsPanHorizontal;
+@property (assign) BOOL allowsPanVertical;
+
 @property (assign) GridCoord lastDraggedItemCell;
 @property (assign) GridCoord draggedItemSourceCell;
+
 @property (assign) BOOL shouldDrawGrid; // debugging
 
 @property (strong, nonatomic) MainSynth *synth;
@@ -57,46 +65,6 @@
 
 
 @implementation SequenceLayer
-
-#pragma mark - debug methods
-
-// edit debugging options here
-- (void)setupDebug
-{
-    // mute PD
-    [MainSynth mute:NO];
-    
-    // draw grid as defined in our tile map -- does not neccesarily coordinate with gameplay
-    // warning: enabling makes many calls to draw cycle -- large maps will lag
-    self.shouldDrawGrid = NO;
-    
-    // layer size reporting:
-    // [self.scheduler scheduleSelector:@selector(reportSize:) forTarget:self interval:0.3 paused:NO repeat:kCCRepeatForever delay:0];
-    
-    // color the background
-    // CCSprite *cover = [CCSprite rectSpriteWithSize:self.contentSize edgeLength:30 color:ccBLACK];
-    // cover.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
-    // [self addChild:cover];
-}
-
-- (void)reportSize:(ccTime)deltaTime
-{
-    NSLog(@"\n\n--debug------------------------");
-    NSLog(@"seq layer content size: %@", NSStringFromCGSize(self.contentSize));
-    NSLog(@"seq layer bounding box: %@", NSStringFromCGRect(self.boundingBox));
-    NSLog(@"seq layer position: %@", NSStringFromCGPoint(self.position));
-    NSLog(@"seq layer scale: %g", self.scale);
-    NSLog(@"--end debug------------------------\n");
-}
-
-- (void)draw
-{
-    // grid
-    if (self.shouldDrawGrid) {
-        ccDrawColor4F(0.5f, 0.5f, 0.5f, 1.0f);
-        [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
-    }
-}
 
 #pragma mark - setup
 
@@ -128,15 +96,23 @@
 {
     return [BlockFader blockFaderWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) color:ccGRAY cell:cell duration:kTickInterval];
 }
+//
+//// area where puzzle elements are bordered
+//- (CGRect)puzzleFrame
+//{
+//    return CGRectMake(0, 2 * kUIButtonUnitSize, self.contentSize.width, self.contentSize.height - (2 * kUIButtonUnitSize));
+//}
 
 - (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
 {
     self = [super init];
     if (self) {
+        self.screenSize = self.contentSize;
         
         self.isTouchEnabled = NO;
         
         // Initialize Pure Data stuff
+        
         _dispatcher = [[PdDispatcher alloc] init];
         [PdBase setDelegate:_dispatcher];
         _patch = [PdBase openFile:@"pf-main.pd" path:[[NSBundle mainBundle] resourcePath]];
@@ -145,6 +121,7 @@
         }
         
         // Sprite sheet batch nodes
+        
         CCSpriteBatchNode *samplesBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeySamplePads stringByAppendingString:@".png"]];
         [self addChild:samplesBatch];
         _samplesBatchNode = samplesBatch;
@@ -162,17 +139,45 @@
         _audioObjectsBatchNode = audioObjectsBatch;
 
         // Setup
+        
         self.isTouchEnabled = YES;
+        
         self.backgroundLayer = backgroundLayer;
+        
         self.synth = [[MainSynth alloc] init];
         
         NSArray *cells = [PuzzleUtils puzzleArea:sequence];
-        self.gridSize = [GridUtils maxCoord:cells];
         
-        self.absoluteGridSize = CGSizeMake(self.gridSize.x * kSizeGridUnit, self.gridSize.y * kSizeGridUnit);
+        self.gridSize = [GridUtils maxCoord:cells];
+        self.contentSize = CGSizeMake(self.gridSize.x * kSizeGridUnit, self.gridSize.y * kSizeGridUnit);
+        
+        self.puzzleBounds = CGRectMake(kPuzzleBoundsMargin,
+                                       (3 * kUIButtonUnitSize) + kPuzzleBoundsMargin,
+                                       self.screenSize.width - (2 * kPuzzleBoundsMargin),
+                                       self.screenSize.height - (4 * kUIButtonUnitSize) - (2 * kPuzzleBoundsMargin));
+        
+        if (self.contentSize.width >= self.puzzleBounds.size.width) {
+            self.allowsPanHorizontal = YES;
+            self.position = ccp(self.puzzleBounds.origin.x, self.position.y);
+        }
+        else {
+            CGFloat padding = self.puzzleBounds.size.width - self.contentSize.width;
+            self.position = ccp(self.puzzleBounds.origin.x + (padding / 2), self.position.y);
+        }
+        
+        if (self.contentSize.height >= self.puzzleBounds.size.height) {
+            self.allowsPanVertical = YES;
+            self.position = ccp(self.position.x, self.puzzleBounds.origin.y);
+        }
+        else {
+            CGFloat padding = self.puzzleBounds.size.height - self.contentSize.height;
+            self.position = ccp(self.position.x, self.puzzleBounds.origin.y + (padding / 2));
+        }
+
         self.draggedItemSourceCell = [GridUtils gridCoordNone];
         
         // tick dispatcher
+        
         TickDispatcher *tickDispatcher = [[TickDispatcher alloc] initWithSequence:sequence tiledMap:tiledMap];
         
         self.tickDispatcher = tickDispatcher;
@@ -180,16 +185,19 @@
         [self addChild:self.tickDispatcher];
         
         // audio touch dispatcher
+        
         AudioTouchDispatcher *audioTouchDispatcher = [[AudioTouchDispatcher alloc] init];
         self.audioTouchDispatcher = audioTouchDispatcher;
         [self addChild:self.audioTouchDispatcher];
         
         // create puzzle objects
+        
         self.area = [self createPuzzleArea:sequence];
         [self createPuzzleBorder:sequence];
         [self createPuzzleObjects:sequence];
         
 //        // find optimal scale and position
+//
 //        CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
 //        self.scale = [self scaleToFitArea:self.absoluteGridSize insideConstraintSize:activeWindow.size];
 //        self.position = [self positionAtCenterOfGridSized:self.gridSize unitSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) constraintRect:activeWindow];
@@ -304,11 +312,11 @@
             }
             
             // position and add border(s)
-            border1.position = [GridUtils relativePositionForGridCoord:cell unitSize:kSizeGridUnit];
+            border1.position = [GridUtils relativePositionForGridCoord:GridCoordMake(cell.x + 1, cell.y + 1) unitSize:kSizeGridUnit];
             [self.audioObjectsBatchNode addChild:border1];
             
             if (border2 != nil) {
-                border2.position = [GridUtils relativePositionForGridCoord:cell unitSize:kSizeGridUnit];
+                border2.position = border1.position;
                 [self.audioObjectsBatchNode addChild:border2];
             }
         }
@@ -328,7 +336,7 @@
         for (NSDictionary *glyph in glyphs) {
             
             NSArray *rawCoord = glyph[kCell];
-            NSArray *coord = @[@([rawCoord[0] intValue] - 1), @([rawCoord[1] intValue] - 1)];
+            NSArray *coord = @[@([rawCoord[0] intValue]), @([rawCoord[1] intValue])];
             NSString *entry = glyph[kEntry];
             NSString *arrow = glyph[kArrow];
             NSString *synth = glyph[kSynth];
@@ -342,7 +350,7 @@
                 return;
             }
             GridCoord cell = GridCoordMake([coord[0] intValue], [coord[1] intValue]);
-            CGPoint cellCenter = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
+            CGPoint cellCenter = [GridUtils relativeMidpointForCell:GridCoordMake(cell.x, cell.y) unitSize:kSizeGridUnit];
             
             // audio pad sprite
             AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell moveable:!isStatic];
@@ -362,14 +370,11 @@
                 NSString *imageName = [mappedImageSet objectForKey:midi];
                 Tone *tone = [[Tone alloc] initWithCell:cell synth:synth midi:[midi stringValue] frameName:imageName];
                 
-//                Tone *tone = [[Tone alloc] initWithCell:cell synth:synth midi:midi.stringValue];
 //                // [self.tickDispatcher registerAudioResponderCellNode:tone];
                 
                 [self.audioTouchDispatcher addResponder:tone];
                 tone.position = cellCenter;
                 [self.audioObjectsBatchNode addChild:tone];
-                
-                
             }
             
             // audio sample
@@ -604,6 +609,48 @@
             [self addChild:[SequenceLayer exitFader:cell]];
 //            [MainSynth receiveEvents:@[kExitEvent]];
         }
+    }
+}
+
+#pragma mark - debug methods
+
+// edit debugging options here
+- (void)setupDebug
+{
+    // mute PD
+    [MainSynth mute:NO];
+    
+    // draw grid as defined in our tile map -- does not neccesarily coordinate with gameplay
+    // warning: enabling makes many calls to draw cycle -- large maps will lag
+    self.shouldDrawGrid = NO;
+    
+    // layer size reporting:
+    // [self.scheduler scheduleSelector:@selector(reportSize:) forTarget:self interval:0.3 paused:NO repeat:kCCRepeatForever delay:0];
+    
+    // // draw bounding box over puzzle layer content box
+    // CCSprite *rectSprite = [CCSprite rectSpriteWithSize:CGSizeMake(self.contentSize.width, self.contentSize.height) color:ccRED];
+    // rectSprite.anchorPoint = ccp(0, 0);
+    // rectSprite.position = ccp(0, 0);
+    // rectSprite.opacity = 100;
+    // [self addChild:rectSprite];
+}
+
+- (void)reportSize:(ccTime)deltaTime
+{
+    NSLog(@"\n\n--debug------------------------");
+    NSLog(@"seq layer content size: %@", NSStringFromCGSize(self.contentSize));
+    NSLog(@"seq layer bounding box: %@", NSStringFromCGRect(self.boundingBox));
+    NSLog(@"seq layer position: %@", NSStringFromCGPoint(self.position));
+    NSLog(@"seq layer scale: %g", self.scale);
+    NSLog(@"--end debug------------------------\n");
+}
+
+- (void)draw
+{
+    // grid
+    if (self.shouldDrawGrid) {
+        ccDrawColor4F(0.5f, 0.5f, 0.5f, 1.0f);
+        [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
     }
 }
 

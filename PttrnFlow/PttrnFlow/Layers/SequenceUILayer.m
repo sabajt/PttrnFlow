@@ -20,12 +20,11 @@
 #import "TBSpriteMask.h"
 #import "PuzzleUtils.h"
 
-static NSInteger const kMaxControlLength = 7;
+CGFloat const kUIButtonUnitSize = 50;
+CGFloat const kUITimelineStepWidth = 40;
+CGFloat const kUILineWidth = 2;
 
-static CGFloat const kButtonUnitSize = 50;
-static CGFloat const kTimelineStepWidth = 40;
-static CGFloat const kUIPadding = 4;
-static CGFloat const kLineWidth = 2;
+static NSInteger const kMaxControlLength = 7;
 
 @interface SequenceUILayer ()
 
@@ -84,7 +83,7 @@ static CGFloat const kLineWidth = 2;
             rightControlsPanel.position = ccp(10, 0);
         }
         else {
-            rightControlsPanel.position = ccp(((kButtonUnitSize - kTimelineStepWidth) + kLineWidth) - (kTimelineStepWidth * (kMaxControlLength - steps)), 0);
+            rightControlsPanel.position = ccp(((kUIButtonUnitSize - kUITimelineStepWidth) + kUILineWidth) - (kUITimelineStepWidth * (kMaxControlLength - steps)), 0);
         }
         
         [self.uiBatchNode addChild:rightControlsPanel];
@@ -101,19 +100,19 @@ static CGFloat const kLineWidth = 2;
         // exit button top left
         CCSprite *exitOn = [CCSprite spriteWithSpriteFrameName:@"exit_on.png"];
         CCMenuItemSprite *exitButton = [[CCMenuItemSprite alloc] initWithNormalSprite:exitOff selectedSprite:exitOn disabledSprite:nil target:self selector:@selector(exitPressed:)];
-        exitButton.position = ccp(kButtonUnitSize / 2, self.contentSize.height - (kButtonUnitSize / 2));
+        exitButton.position = ccp(kUIButtonUnitSize / 2, self.contentSize.height - (kUIButtonUnitSize / 2));
         
         // speaker button
         CCSprite *speakerOff = [CCSprite spriteWithSpriteFrameName:@"speaker_off.png"];
         CCSprite *speakerOn = [CCSprite spriteWithSpriteFrameName:@"speaker_on.png"];
         CCMenuItemSprite *speakerButton = [[CCMenuItemSprite alloc] initWithNormalSprite:speakerOff selectedSprite:speakerOn disabledSprite:nil target:self selector:@selector(speakerPressed:)];
-        speakerButton.position = ccp(kButtonUnitSize / 2, (3 * kButtonUnitSize) / 2);
+        speakerButton.position = ccp(kUIButtonUnitSize / 2, (3 * kUIButtonUnitSize) / 2);
         
         // play button
         CCSprite *playOff = [CCSprite spriteWithSpriteFrameName:@"play_off.png"];
         CCSprite *playOn = [CCSprite spriteWithSpriteFrameName:@"play_on.png"];
         CCMenuItemSprite *playButton = [[CCMenuItemSprite alloc] initWithNormalSprite:playOff selectedSprite:playOn disabledSprite:nil target:self selector:@selector(playButtonPressed:)];
-        playButton.position = ccp(kButtonUnitSize / 2, kButtonUnitSize / 2);
+        playButton.position = ccp(kUIButtonUnitSize / 2, kUIButtonUnitSize / 2);
         
         // buttons must be added to a CCMenu to work
         CCMenu *menu = [CCMenu menuWithItems:exitButton, speakerButton, playButton, nil];
@@ -121,25 +120,25 @@ static CGFloat const kLineWidth = 2;
         menu.position = CGPointZero;
         [self addChild:menu]; // can't add to batch because menu is not a ccsprite
         
-        TickerControl *tickerControl = [[TickerControl alloc] initWithSpriteFrameName:kClearRectUILayer steps:steps unitSize:CGSizeMake(kTimelineStepWidth, kButtonUnitSize)];
+        TickerControl *tickerControl = [[TickerControl alloc] initWithSpriteFrameName:kClearRectUILayer steps:steps unitSize:CGSizeMake(kUITimelineStepWidth, kUIButtonUnitSize)];
         _tickerControl = tickerControl;
         tickerControl.tickerControlDelegate = tickDispatcher;
         tickerControl.position = ccp(tickerControl.contentSize.width / 2, (3 * tickerControl.contentSize.height) / 2);
         
         // hit chart
-        TickHitChart *hitChart = [[TickHitChart alloc] initWithSpriteFrameName:kClearRectUILayer steps:steps unitSize:CGSizeMake(kTimelineStepWidth, kButtonUnitSize)];
+        TickHitChart *hitChart = [[TickHitChart alloc] initWithSpriteFrameName:kClearRectUILayer steps:steps unitSize:CGSizeMake(kUITimelineStepWidth, kUIButtonUnitSize)];
         _hitChart = hitChart;
         hitChart.position = ccp(hitChart.contentSize.width / 2, hitChart.contentSize.height / 2);
         
         // dotted line separator
         TileSprite *dotSeparator = [[TileSprite alloc] initWithTileFrameName:@"dotted_line_40_2.png" repeatHorizonal:steps repeatVertical:1];
-        dotSeparator.position = ccp(dotSeparator.contentSize.width / 2, kButtonUnitSize);
+        dotSeparator.position = ccp(dotSeparator.contentSize.width / 2, kUIButtonUnitSize);
         
         // pan sprite
-        CGFloat panNodeWidth = MIN(steps, kMaxControlLength) * kTimelineStepWidth;
-        CGSize panNodeSize = CGSizeMake(panNodeWidth, 2 * kButtonUnitSize);
-        CGSize scrollingContainerSize = CGSizeMake(steps * kTimelineStepWidth, panNodeSize.height);
-        CGPoint panNodeOrigin = ccp(kButtonUnitSize, 0);
+        CGFloat panNodeWidth = MIN(steps, kMaxControlLength) * kUITimelineStepWidth;
+        CGSize panNodeSize = CGSizeMake(panNodeWidth, 2 * kUIButtonUnitSize);
+        CGSize scrollingContainerSize = CGSizeMake(steps * kUITimelineStepWidth, panNodeSize.height);
+        CGPoint panNodeOrigin = ccp(kUIButtonUnitSize, 0);
         PanSprite *panSprite = [[PanSprite alloc] initWithSpriteFrameName:kClearRectUILayer contentSize:panNodeSize scrollingSize:scrollingContainerSize scrollSprites:@[hitChart, tickerControl, dotSeparator]];
         _panSprite = panSprite;
         panSprite.scrollDirection = ScrollDirectionHorizontal;
