@@ -96,12 +96,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 {
     return [BlockFader blockFaderWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) color:ccGRAY cell:cell duration:kTickInterval];
 }
-//
-//// area where puzzle elements are bordered
-//- (CGRect)puzzleFrame
-//{
-//    return CGRectMake(0, 2 * kUIButtonUnitSize, self.contentSize.width, self.contentSize.height - (2 * kUIButtonUnitSize));
-//}
 
 - (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
 {
@@ -195,12 +189,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
         self.area = [self createPuzzleArea:sequence];
         [self createPuzzleBorder:sequence];
         [self createPuzzleObjects:sequence];
-        
-//        // find optimal scale and position
-//
-//        CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
-//        self.scale = [self scaleToFitArea:self.absoluteGridSize insideConstraintSize:activeWindow.size];
-//        self.position = [self positionAtCenterOfGridSized:self.gridSize unitSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) constraintRect:activeWindow];
     }
     return self;
 }
