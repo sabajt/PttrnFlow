@@ -134,6 +134,8 @@
     self = [super init];
     if (self) {
         
+        self.isTouchEnabled = NO;
+        
         // Initialize Pure Data stuff
         _dispatcher = [[PdDispatcher alloc] init];
         [PdBase setDelegate:_dispatcher];
@@ -170,12 +172,6 @@
         self.absoluteGridSize = CGSizeMake(self.gridSize.x * kSizeGridUnit, self.gridSize.y * kSizeGridUnit);
         self.draggedItemSourceCell = [GridUtils gridCoordNone];
         
-        // CCLayerPanZoom
-        self.mode = kCCLayerPanZoomModeSheet;
-        self.maxScale = 1;
-        self.minScale = .3;
-        self.maxTouchDistanceToClick = 50;
-        
         // tick dispatcher
         TickDispatcher *tickDispatcher = [[TickDispatcher alloc] initWithSequence:sequence tiledMap:tiledMap];
         
@@ -193,10 +189,10 @@
         [self createPuzzleBorder:sequence];
         [self createPuzzleObjects:sequence];
         
-        // find optimal scale and position
-        CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
-        self.scale = [self scaleToFitArea:self.absoluteGridSize insideConstraintSize:activeWindow.size];
-        self.position = [self positionAtCenterOfGridSized:self.gridSize unitSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) constraintRect:activeWindow];
+//        // find optimal scale and position
+//        CGRect activeWindow = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height - topMargin);
+//        self.scale = [self scaleToFitArea:self.absoluteGridSize insideConstraintSize:activeWindow.size];
+//        self.position = [self positionAtCenterOfGridSized:self.gridSize unitSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) constraintRect:activeWindow];
     }
     return self;
 }

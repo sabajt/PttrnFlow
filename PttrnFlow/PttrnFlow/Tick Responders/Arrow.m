@@ -102,9 +102,9 @@
     return @[[GridUtils directionStringForDirection:self.facing]];
 }
 
-- (void)audioRelease:(NSInteger)bpm
+- (NSArray *)audioRelease:(NSInteger)bpm
 {
-    
+    return nil;
 }
 
 - (GridCoord)responderCell
