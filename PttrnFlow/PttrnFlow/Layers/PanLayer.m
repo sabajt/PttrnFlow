@@ -17,6 +17,8 @@ static CGFloat const kDecelerationInterval = 1.0 / 120.0;
 @property (assign) CGPoint panStartLocation;
 @property (assign) CGPoint velocity;
 
+@property (weak, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
+
 @end
 
 @implementation PanLayer
@@ -27,12 +29,14 @@ static CGFloat const kDecelerationInterval = 1.0 / 120.0;
     
     // attach pan
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    self.panGestureRecognizer = pan;
     pan.delegate = self;
     [[CCDirector sharedDirector].view addGestureRecognizer:pan];
 }
 
 - (void)onExit
 {
+    [[CCDirector sharedDirector].view removeGestureRecognizer:self.panGestureRecognizer];
     [super onExit];
 }
 
@@ -49,19 +53,24 @@ static CGFloat const kDecelerationInterval = 1.0 / 120.0;
     
     switch (pan.state) {
         case UIGestureRecognizerStateBegan: {
+            
             self.panStartLocation = self.position;
             break;
         }
         case UIGestureRecognizerStateChanged: {
-            self.position = CGPointMake(self.panStartLocation.x + translation.x, self.panStartLocation.y + translation.y);
+            
+            self.position = CGPointMake(self.panStartLocation.x + (translation.x * [@(self.allowsPanHorizontal) integerValue]),
+                                        self.panStartLocation.y + (translation.y * [@(self.allowsPanVertical) integerValue]));
             break;
         }
         case UIGestureRecognizerStateEnded: {
+            
             self.velocity = velocity;
             [self schedule:@selector(decelarate:) interval:kDecelerationInterval];
             break;
         }
         case UIGestureRecognizerStateCancelled: {
+            
             break;
         }
         default: {
@@ -74,13 +83,15 @@ static CGFloat const kDecelerationInterval = 1.0 / 120.0;
 {
     static CGFloat framesPerSecond = 60.0;
     self.velocity = CGPointMake(self.velocity.x * kDeceleration, self.velocity.y * kDeceleration);
-    CGPoint deltaPosition = CGPointMake(self.velocity.x / framesPerSecond, -self.velocity.y / framesPerSecond);
+    
+    CGPoint deltaPosition = CGPointMake((self.velocity.x / framesPerSecond) * [@(self.allowsPanHorizontal) integerValue],
+                                        (-self.velocity.y / framesPerSecond) * [@(self.allowsPanVertical) integerValue]);
+    
     self.position = CGPointMake(self.position.x + deltaPosition.x, self.position.y + deltaPosition.y);
     
     if ((fabsf(self.velocity.x) < kLowerSpeedLimit) && (fabsf(self.velocity.y) < kLowerSpeedLimit)) {
         [self unschedule:@selector(decelarate:)];
     }
-    
 }
 
 #pragma mark - UIGestureRecognizerDelegate

@@ -126,6 +126,7 @@
         CFDictionaryReplaceValue(self.trackingTouches, (__bridge void *)(touch), (__bridge void *)(touchInfo));
         
         [self audioRelease:lastCell channel:channel];
+                
         [self processFragmentsForCell:cell channel:channel];
     }
 }

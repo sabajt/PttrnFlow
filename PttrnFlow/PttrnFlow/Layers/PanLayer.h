@@ -10,4 +10,7 @@
 
 @interface PanLayer : CCLayer <UIGestureRecognizerDelegate>
 
+@property (assign) BOOL allowsPanHorizontal;
+@property (assign) BOOL allowsPanVertical;
+
 @end

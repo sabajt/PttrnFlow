@@ -44,9 +44,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 @property (assign) CGPoint gridOrigin; // TODO: using grid origin except for drawing debug grid?
 @property (assign) CGRect puzzleBounds;
 
-@property (assign) BOOL allowsPanHorizontal;
-@property (assign) BOOL allowsPanVertical;
-
 @property (assign) GridCoord lastDraggedItemCell;
 @property (assign) GridCoord draggedItemSourceCell;
 
