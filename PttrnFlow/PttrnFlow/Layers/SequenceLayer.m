@@ -205,9 +205,10 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 
 - (void)createPuzzleBorder:(NSInteger)puzzle
 {
-    static NSString *padBorderStrait = @"pad_border_strait.png";
-    static NSString *padBorderCorner = @"pad_border_corner.png";
-    
+    static NSString *padBorderStraitRightFill = @"pad_border_strait_right_fill.png";
+    static NSString *padBorderCornerInside = @"pad_border_corner_inside.png";
+    static NSString *padBorderCornerOutside = @"pad_border_corner_outside.png";
+
     // 0-base index against 1-base index grid size will give us the corner points to create border images
     for (int x = 0; x <= self.gridSize.x; x++) {
         for (int y = 0; y <= self.gridSize.y; y++) {
@@ -225,10 +226,15 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             BOOL hasBottomRight = [self.area containsObject:bottomRight];
             BOOL hasTopRight = [self.area containsObject:topRight];
             
-            // cell on every side or no side, no border needed
-            if ((hasBottomLeft && hasTopLeft && hasBottomRight && hasTopRight) ||
-                (!hasBottomLeft && !hasTopLeft && !hasBottomRight && !hasTopRight))
-            {
+            // cell on every side, fill panel instead of border needed
+            if (hasBottomLeft && hasTopLeft && hasBottomRight && hasTopRight) {
+                CCSprite *padFill = [CCSprite spriteWithSpriteFrameName:@"pad_fill.png"];
+                padFill.position = [GridUtils relativePositionForGridCoord:GridCoordMake(cell.x + 1, cell.y + 1) unitSize:kSizeGridUnit];
+                [self.audioObjectsBatchNode addChild:padFill];
+                continue;
+            }
+            // cell on no side, nothing needed
+            if (!hasBottomLeft && !hasTopLeft && !hasBottomRight && !hasTopRight) {
                 continue;
             }
             
@@ -236,64 +242,75 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             CCSprite *border2;
             
             // strait edge vertical
-            if ((hasBottomLeft && hasTopLeft && !hasBottomRight && !hasTopRight) ||
-                (!hasBottomLeft && !hasTopLeft && hasBottomRight && hasTopRight))
-            {
-                border1 = [CCSprite spriteWithSpriteFrameName:padBorderStrait];
+            if (hasBottomLeft && hasTopLeft && !hasBottomRight && !hasTopRight) {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderStraitRightFill];
+                border1.scale *= -1;
             }
-            
+            else if (!hasBottomLeft && !hasTopLeft && hasBottomRight && hasTopRight) {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderStraitRightFill];
+            }
+
             // strait edge horizontal
-            else if ((hasTopLeft && hasTopRight && !hasBottomLeft && !hasBottomRight) ||
-                     (!hasTopLeft && !hasTopRight && hasBottomLeft && hasBottomRight))
-            {
-                border1 = [CCSprite spriteWithSpriteFrameName:padBorderStrait];
+            else if (hasTopLeft && hasTopRight && !hasBottomLeft && !hasBottomRight) {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderStraitRightFill];
+                border1.rotation = -90;
+            }
+            else if (!hasTopLeft && !hasTopRight && hasBottomLeft && hasBottomRight) {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderStraitRightFill];
                 border1.rotation = 90;
             }
-            
+
             // top left only
-            else if ((hasTopLeft && !hasTopRight && !hasBottomLeft && !hasBottomRight) ||
-                     (!hasTopLeft && hasTopRight && hasBottomLeft && hasBottomRight))
-            {
-                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+            else if (hasTopLeft && !hasTopRight && !hasBottomLeft && !hasBottomRight) {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCornerInside];
+            }
+            else if (!hasTopLeft && hasTopRight && hasBottomLeft && hasBottomRight) {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCornerOutside];
             }
             
             // top right only
-            else if ((hasTopRight && !hasTopLeft && !hasBottomLeft && !hasBottomRight) ||
-                     (!hasTopRight && hasTopLeft && hasBottomLeft && hasBottomRight))
-            {
-                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+            else if (hasTopRight && !hasTopLeft && !hasBottomLeft && !hasBottomRight) {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCornerInside];
+                border1.rotation = 90;
+            }
+            else if (!hasTopRight && hasTopLeft && hasBottomLeft && hasBottomRight) {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCornerOutside];
                 border1.rotation = 90;
             }
             
             // bottom left only
-            else if ((hasBottomLeft && !hasBottomRight && !hasTopLeft && !hasTopRight) ||
-                     (!hasBottomLeft && hasBottomRight && hasTopLeft && hasTopRight))
-            {
-                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+            else if (hasBottomLeft && !hasBottomRight && !hasTopLeft && !hasTopRight) {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCornerInside];
+                border1.rotation = -90;
+            }
+            else if (!hasBottomLeft && hasBottomRight && hasTopLeft && hasTopRight) {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCornerOutside];
                 border1.rotation = -90;
             }
             
             // bottom right only
-            else if ((hasBottomRight && !hasBottomLeft && !hasTopLeft && !hasTopRight) ||
-                     (!hasBottomRight && hasBottomLeft && hasTopLeft && hasTopRight))
-            {
-                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+            else if (hasBottomRight && !hasBottomLeft && !hasTopLeft && !hasTopRight) {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCornerInside];
                 border1.rotation = 180;
             }
-            
+            else if (!hasBottomRight && hasBottomLeft && hasTopLeft && hasTopRight) {
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCornerOutside];
+                border1.rotation = 180;
+            }
+
             // both bottom left and top right corner
             else if (hasBottomLeft && hasTopRight && !hasBottomRight && !hasTopLeft) {
-                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCornerInside];
                 border1.rotation = -90;
-                border2 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+                border2 = [CCSprite spriteWithSpriteFrameName:padBorderCornerInside];
                 border2.rotation = 90;
             }
             
             // both bottom right and top left corner
             else if (hasBottomRight && hasTopLeft && !hasBottomLeft && !hasTopRight) {
-                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+                border1 = [CCSprite spriteWithSpriteFrameName:padBorderCornerInside];
                 border1.rotation = 180;
-                border2 = [CCSprite spriteWithSpriteFrameName:padBorderCorner];
+                border2 = [CCSprite spriteWithSpriteFrameName:padBorderCornerInside];
             }
             
             // position and add border(s)
