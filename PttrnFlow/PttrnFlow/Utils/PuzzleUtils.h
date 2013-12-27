@@ -20,8 +20,8 @@ FOUNDATION_EXPORT NSString *const kImageSet;
 
 FOUNDATION_EXPORT NSString *const kTonePrimary;
 FOUNDATION_EXPORT NSString *const kToneSecondary;
-FOUNDATION_EXPORT NSString *const kBeatPrimary;
-FOUNDATION_EXPORT NSString *const kBeatSecondary;
+FOUNDATION_EXPORT NSString *const kDrumPrimary;
+FOUNDATION_EXPORT NSString *const kDrumSecondary;
 
 @interface PuzzleUtils : NSObject
 

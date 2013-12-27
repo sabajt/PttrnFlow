@@ -20,8 +20,8 @@ NSString *const kImageSet = @"image_set";
 
 NSString *const kTonePrimary = @"tone_primary";
 NSString *const kToneSecondary = @"tone_secondary";
-NSString *const kBeatPrimary = @"beat_primary";
-NSString *const kBeatSecondary = @"beat_secondary";
+NSString *const kDrumPrimary = @"drum_primary";
+NSString *const kDrumSecondary = @"drum_secondary";
 
 static NSString *const kPuzzle = @"puzzle";
 static NSString *const kBpm = @"bpm";
@@ -83,7 +83,7 @@ static NSString *const kPads = @"pads";
     ...
  }
 
- image_set determines the sequence of images that will be used, (kTonePrimary, kToneSecondary, kBeatPrimary, kBeatSecondary)
+ image_set determines the sequence of images that will be used, (kTonePrimary, kToneSecondary, kDrumPrimary, kDrumSecondary)
  audio_value is the unique identifier for sequence based glyphs
  frame_name is the image frame name derived from 0 based indexing NSNumber that uniques each glyph value providing a key to a unique image
 
@@ -135,10 +135,10 @@ static NSString *const kPads = @"pads";
                     [toneSecondaryValues addObject:numberValue];
                 }
             }
-            else if ([imageSet isEqualToString:kBeatPrimary]) {
+            else if ([imageSet isEqualToString:kDrumPrimary]) {
                 [beatPrimaryValues addObject:sample];
             }
-            else if ([imageSet isEqualToString:kBeatSecondary]) {
+            else if ([imageSet isEqualToString:kDrumSecondary]) {
                 [beatSecondaryValues addObject:sample];
             }
         }
@@ -154,12 +154,12 @@ static NSString *const kPads = @"pads";
         NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:toneSecondaryValues] rootName:kToneSecondary needsSort:YES];
         [imageSequenceKey setObject:mappedSet forKey:kToneSecondary];    }
     if (beatPrimaryValues.count > 0) {
-        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:beatPrimaryValues] rootName:kBeatPrimary needsSort:NO];
-        [imageSequenceKey setObject:mappedSet forKey:kBeatPrimary];
+        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:beatPrimaryValues] rootName:kDrumPrimary needsSort:NO];
+        [imageSequenceKey setObject:mappedSet forKey:kDrumPrimary];
     }
     if (beatSecondaryValues.count > 0) {
-        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:beatSecondaryValues] rootName:kBeatSecondary needsSort:NO];
-        [imageSequenceKey setObject:mappedSet forKey:kBeatSecondary];
+        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:beatSecondaryValues] rootName:kDrumSecondary needsSort:NO];
+        [imageSequenceKey setObject:mappedSet forKey:kDrumSecondary];
     }
     
     NSLog(@"image seq: %@", imageSequenceKey);

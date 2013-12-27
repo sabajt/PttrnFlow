@@ -7,7 +7,7 @@
             <key>arrow_up_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{148,166},{20,20}}</string>
+                <string>{{172,212},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +20,7 @@
             <key>arrow_up_off_static.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{74,88},{20,20}}</string>
+                <string>{{168,190},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>arrow_up_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{74,66},{20,20}}</string>
+                <string>{{150,214},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>audio_box_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{96,146},{50,50}}</string>
+                <string>{{96,144},{50,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,11 +85,11 @@
             <key>audio_connector.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{74,34},{20,30}}</string>
+                <string>{{116,74},{20,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{20,30}}</string>
                 <key>sourceSize</key>
@@ -98,11 +98,11 @@
             <key>audio_connector_padded.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{74,2},{20,30}}</string>
+                <string>{{116,196},{20,30}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{20,30}}</string>
                 <key>sourceSize</key>
@@ -111,7 +111,7 @@
             <key>clear_rect_audio_batch.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{96,95},{1,1}}</string>
+                <string>{{96,105},{1,1}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -120,6 +120,214 @@
                 <string>{{0,0},{1,1}}</string>
                 <key>sourceSize</key>
                 <string>{1,1}</string>
+            </dict>
+            <key>drum_primary_1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{132,96},{6,6}}</string>
+                <key>offset</key>
+                <string>{0,14}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{14,0},{6,6}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
+            </dict>
+            <key>drum_primary_2_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{96,97},{6,34}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{14,0},{6,34}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
+            </dict>
+            <key>drum_primary_2_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{96,67},{18,28}}</string>
+                <key>offset</key>
+                <string>{6,3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{14,0},{18,28}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
+            </dict>
+            <key>drum_primary_2_4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{148,166},{20,20}}</string>
+                <key>offset</key>
+                <string>{7,7}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{14,0},{20,20}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
+            </dict>
+            <key>drum_primary_2_5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{190,190},{20,16}}</string>
+                <key>offset</key>
+                <string>{6,9}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{13,0},{20,16}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
+            </dict>
+            <key>drum_primary_2_6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{202,38},{18,14}}</string>
+                <key>offset</key>
+                <string>{6,10}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{14,0},{18,14}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
+            </dict>
+            <key>drum_primary_3_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{182,126},{30,28}}</string>
+                <key>offset</key>
+                <string>{0,3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,0},{30,28}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
+            </dict>
+            <key>drum_primary_3_4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{74,38},{20,34}}</string>
+                <key>offset</key>
+                <string>{7,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{14,0},{20,34}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
+            </dict>
+            <key>drum_primary_3_5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{74,74},{20,32}}</string>
+                <key>offset</key>
+                <string>{6,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{13,0},{20,32}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
+            </dict>
+            <key>drum_primary_3_6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{148,74},{20,28}}</string>
+                <key>offset</key>
+                <string>{6,3}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{13,0},{20,28}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
+            </dict>
+            <key>drum_primary_4_4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{214,74},{34,34}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{34,34}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
+            </dict>
+            <key>drum_primary_4_5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{182,156},{28,32}}</string>
+                <key>offset</key>
+                <string>{2,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{5,0},{28,32}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
+            </dict>
+            <key>drum_primary_4_6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{74,2},{20,34}}</string>
+                <key>offset</key>
+                <string>{6,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{13,0},{20,34}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
+            </dict>
+            <key>drum_primary_5_5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{148,132},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
+            </dict>
+            <key>drum_primary_5_6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{222,38},{32,34}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,0},{32,34}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
+            </dict>
+            <key>drum_primary_6_6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{116,38},{32,34}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,0},{32,34}}</string>
+                <key>sourceSize</key>
+                <string>{34,34}</string>
             </dict>
             <key>pad_border_corner.png</key>
             <dict>
@@ -215,11 +423,11 @@
             <key>tone_primary_1_3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{96,67},{18,26}}</string>
+                <string>{{150,54},{18,26}}</string>
                 <key>offset</key>
                 <string>{8,4}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{16,0},{18,26}}</string>
                 <key>sourceSize</key>
@@ -228,7 +436,7 @@
             <key>tone_primary_1_4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{136,74},{18,18}}</string>
+                <string>{{190,234},{18,18}}</string>
                 <key>offset</key>
                 <string>{8,8}</string>
                 <key>rotated</key>
@@ -241,7 +449,7 @@
             <key>tone_primary_1_5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{116,74},{18,18}}</string>
+                <string>{{170,236},{18,18}}</string>
                 <key>offset</key>
                 <string>{8,8}</string>
                 <key>rotated</key>
@@ -254,7 +462,7 @@
             <key>tone_primary_1_6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{156,74},{16,18}}</string>
+                <string>{{208,190},{16,18}}</string>
                 <key>offset</key>
                 <string>{7,8}</string>
                 <key>rotated</key>
@@ -267,7 +475,7 @@
             <key>tone_primary_1_7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{148,54},{16,18}}</string>
+                <string>{{194,212},{16,18}}</string>
                 <key>offset</key>
                 <string>{6,8}</string>
                 <key>rotated</key>
@@ -280,7 +488,7 @@
             <key>tone_primary_1_8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{166,54},{14,18}}</string>
+                <string>{{212,168},{14,18}}</string>
                 <key>offset</key>
                 <string>{6,8}</string>
                 <key>rotated</key>
@@ -332,11 +540,11 @@
             <key>tone_primary_2_6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{96,67},{18,26}}</string>
+                <string>{{150,54},{18,26}}</string>
                 <key>offset</key>
                 <string>{8,4}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{16,0},{18,26}}</string>
                 <key>sourceSize</key>
@@ -345,11 +553,11 @@
             <key>tone_primary_2_7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{116,198},{18,22}}</string>
+                <string>{{148,190},{18,22}}</string>
                 <key>offset</key>
                 <string>{8,6}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{16,0},{18,22}}</string>
                 <key>sourceSize</key>
@@ -358,7 +566,7 @@
             <key>tone_primary_2_8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{140,198},{18,18}}</string>
+                <string>{{150,236},{18,18}}</string>
                 <key>offset</key>
                 <string>{8,8}</string>
                 <key>rotated</key>
@@ -371,7 +579,7 @@
             <key>tone_primary_3_4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{202,2},{34,34}}</string>
+                <string>{{214,2},{34,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -384,7 +592,7 @@
             <key>tone_primary_3_5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{202,38},{28,34}}</string>
+                <string>{{214,110},{28,34}}</string>
                 <key>offset</key>
                 <string>{3,0}</string>
                 <key>rotated</key>
@@ -436,7 +644,7 @@
             <key>tone_primary_4_5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{146,94},{34,34}}</string>
+                <string>{{178,54},{34,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -462,11 +670,11 @@
             <key>tone_primary_4_7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{148,130},{26,34}}</string>
+                <string>{{214,140},{26,34}}</string>
                 <key>offset</key>
                 <string>{4,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{8,0},{26,34}}</string>
                 <key>sourceSize</key>
@@ -488,7 +696,7 @@
             <key>tone_primary_5_6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{110,95},{34,34}}</string>
+                <string>{{146,96},{34,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -501,7 +709,7 @@
             <key>tone_primary_5_7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{150,218},{34,34}}</string>
+                <string>{{110,105},{34,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -514,7 +722,7 @@
             <key>tone_primary_5_8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{116,38},{30,34}}</string>
+                <string>{{182,90},{30,34}}</string>
                 <key>offset</key>
                 <string>{2,0}</string>
                 <key>rotated</key>
@@ -527,7 +735,7 @@
             <key>tone_primary_6_7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{74,110},{34,34}}</string>
+                <string>{{74,108},{34,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -540,7 +748,7 @@
             <key>tone_primary_6_8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{202,2},{34,34}}</string>
+                <string>{{214,2},{34,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -586,7 +794,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:70708f18c89b56ec64eeb9d34374f8b3:fabbad3e1a2dd9a2f7b3ec7fa3e557e8:b365ed0847c6905af74912c7dbbb1edb$</string>
+            <string>$TexturePacker:SmartUpdate:98fb6d0812ac5efee7aa8beb845ef92b:709a759a93a92e07da4589e323f6f895:b365ed0847c6905af74912c7dbbb1edb$</string>
             <key>textureFileName</key>
             <string>audioObjects.png</string>
         </dict>
