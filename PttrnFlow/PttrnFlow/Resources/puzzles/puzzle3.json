@@ -24,18 +24,6 @@
                "glyphs" :
                [
                     {
-                         "cell" : [3, 2],
-                         "synth" : "osc",
-                         "midi" : 52,
-                         "image_set" : "tone_primary"
-                    },
-               ]
-          },
-          {
-               "static" : 0,
-               "glyphs" :
-               [
-                    {
                          "cell" : [1, 1],
                          "synth" : "osc",
                          "midi" : 48,
@@ -48,9 +36,9 @@
                "glyphs" :
                [
                     {
-                         "cell" : [4, 1],
-                         "sample" : "drum_03",
-                         "image_set" : "pattern_primary"
+                         "cell" : [1, 4],
+                         "sample" : "basic_5",
+                         "image_set" : "drum_primary"
                     }
                ]
           },
@@ -59,12 +47,29 @@
                "glyphs" :
                [
                     {
-                         "cell" : [2, 4],
+                         "cell" : [1, 7],
+                         "sample" : "basic_4",
+                         "image_set" : "drum_primary"
+                    }
+               ]
+          },
+          {
+               "static" : 1,
+               "glyphs" :
+               [
+                    {
+                         "cell" : [2, 9],
                          "synth" : "osc",
                          "midi" : 50,
                          "arrow" : "right",
                          "image_set" : "tone_primary"
                     },
+               ]
+          },
+          {
+               "static" : 0,
+               "glyphs" :
+               [
                     {
                          "cell" : [3, 4],
                          "synth" : "osc",

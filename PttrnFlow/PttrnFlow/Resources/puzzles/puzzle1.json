@@ -13,8 +13,12 @@
           [3, 2],
           [3, 4],
           [4, 1],
-          [4, 2],
           [4, 4],
+          [5, 2],
+          [5, 3],
+          [5, 4],
+          [5, 5],
+          [6, 5]
      ],
 	"pads" :
 	[
@@ -25,14 +29,14 @@
                     {
                          "cell" : [1, 1],
                          "entry" : "right",
-                         "sample" : "drum_01",
-                         "image_set" : "beat_primary",
+                         "sample" : "basic_1",
+                         "image_set" : "drum_primary",
                     },
                     {
                          "cell" : [2, 1],
-                         "sample" : "drum_02",
+                         "sample" : "basic_2",
                          "arrow" : "up",
-                         "image_set" : "beat_primary"
+                         "image_set" : "drum_primary"
                     }
                ]
           },
@@ -54,8 +58,8 @@
                [
                     {
                          "cell" : [4, 1],
-                         "sample" : "drum_03",
-                         "image_set" : "beat_primary"
+                         "sample" : "basic_3",
+                         "image_set" : "drum_primary"
                     }
                ]
           },
@@ -83,30 +87,19 @@
                "glyphs" :
                [
                     {
-                         "cell" : [3, 3],
-                         "sample" : "bells_10",
-                         "arrow" : "right",
-                         "image_set" : "tone_secondary"
-                    },
-                    {
-                         "cell" : [4, 3],
-                         "sample" : "bells_2",
-                         "image_set" : "tone_secondary"
-                    },
-                    {
                          "cell" : [5, 3],
-                         "sample" : "bells_3",
-                         "image_set" : "tone_secondary"
+                         "sample" : "bongos_1",
+                         "image_set" : "drum_primary"
                     },
                     {
                          "cell" : [5, 4],
                          "sample" : "bongos_1",
-                         "image_set" : "beat_secondary"
+                         "image_set" : "drum_primary"
                     },
                     {
                          "cell" : [5, 5],
-                         "sample" : "bongos_99",
-                         "image_set" : "beat_secondary"
+                         "sample" : "bongos_3",
+                         "image_set" : "drum_primary"
                     }
                ]
           }

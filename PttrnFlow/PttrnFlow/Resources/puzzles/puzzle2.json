@@ -42,17 +42,6 @@
                "glyphs" :
                [
                     {
-                         "cell" : [4, 1],
-                         "sample" : "drum_03",
-                         "image_set" : "pattern_primary"
-                    }
-               ]
-          },
-          {
-               "static" : 0,
-               "glyphs" :
-               [
-                    {
                          "cell" : [2, 4],
                          "synth" : "osc",
                          "midi" : 50,

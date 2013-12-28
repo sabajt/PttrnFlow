@@ -34,14 +34,14 @@
                     {
                          "cell" : [1, 1],
                          "entry" : "right",
-                         "sample" : "drum_01",
-                         "image_set" : "beat_primary",
+                         "sample" : "basic_5",
+                         "image_set" : "drum_primary",
                     },
                     {
                          "cell" : [2, 1],
-                         "sample" : "drum_02",
+                         "sample" : "basic_2",
                          "arrow" : "up",
-                         "image_set" : "beat_primary"
+                         "image_set" : "drum_primary"
                     }
                ]
           },
@@ -63,8 +63,8 @@
                [
                     {
                          "cell" : [4, 1],
-                         "sample" : "drum_03",
-                         "image_set" : "beat_primary"
+                         "sample" : "basic_1",
+                         "image_set" : "drum_primary"
                     }
                ]
           },

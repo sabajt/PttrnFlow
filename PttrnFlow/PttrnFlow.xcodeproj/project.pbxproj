@@ -180,7 +180,7 @@
 		16A942B71777A2260052D5BD /* MainSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A41777A2250052D5BD /* MainSynth.m */; };
 		16A942B81777A2260052D5BD /* TickDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A71777A2250052D5BD /* TickDispatcher.m */; };
 		16A942B91777A2260052D5BD /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942AA1777A2260052D5BD /* Arrow.m */; };
-		16A942BA1777A2260052D5BD /* Drum.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942AC1777A2260052D5BD /* Drum.m */; };
+		16A942BA1777A2260052D5BD /* Sample.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942AC1777A2260052D5BD /* Sample.m */; };
 		16A942BF1777AADF0052D5BD /* TickChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942BE1777AADF0052D5BD /* TickChannel.m */; };
 		16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */; };
 		16A942DF1778C5A50052D5BD /* drum1-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942D71778C5A50052D5BD /* drum1-ipad.png */; };
@@ -259,7 +259,7 @@
 		335836D61827DAF600921270 /* seq8.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 335836CF1827DAF600921270 /* seq8.tmx */; };
 		335836D71827DAF600921270 /* seq9.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 335836D01827DAF600921270 /* seq9.tmx */; };
 		33630CBC1804E52200A9F9EE /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 33630CBB1804E52200A9F9EE /* Default-568h.png */; };
-		338112B2183D7E870012E528 /* Tone.m in Sources */ = {isa = PBXBuildFile; fileRef = 338112B1183D7E870012E528 /* Tone.m */; };
+		338112B2183D7E870012E528 /* Synth.m in Sources */ = {isa = PBXBuildFile; fileRef = 338112B1183D7E870012E528 /* Synth.m */; };
 		338B1D7117E4C11B00F25751 /* GameNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 338B1D7017E4C11B00F25751 /* GameNode.m */; };
 		338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */; };
 		33A64C45183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 33A64C43183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt */; };
@@ -650,8 +650,8 @@
 		16A942A71777A2250052D5BD /* TickDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickDispatcher.m; sourceTree = "<group>"; };
 		16A942A91777A2260052D5BD /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arrow.h; sourceTree = "<group>"; };
 		16A942AA1777A2260052D5BD /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Arrow.m; sourceTree = "<group>"; };
-		16A942AB1777A2260052D5BD /* Drum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drum.h; sourceTree = "<group>"; };
-		16A942AC1777A2260052D5BD /* Drum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Drum.m; sourceTree = "<group>"; };
+		16A942AB1777A2260052D5BD /* Sample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sample.h; sourceTree = "<group>"; };
+		16A942AC1777A2260052D5BD /* Sample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sample.m; sourceTree = "<group>"; };
 		16A942BD1777AADF0052D5BD /* TickChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TickChannel.h; path = "PttrnFlow/Sequence Model/TickChannel.h"; sourceTree = SOURCE_ROOT; };
 		16A942BE1777AADF0052D5BD /* TickChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TickChannel.m; path = "PttrnFlow/Sequence Model/TickChannel.m"; sourceTree = SOURCE_ROOT; };
 		16A942C11777ABFA0052D5BD /* SequenceMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceMenuCell.h; sourceTree = "<group>"; };
@@ -743,8 +743,8 @@
 		335836CF1827DAF600921270 /* seq8.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = seq8.tmx; sourceTree = "<group>"; };
 		335836D01827DAF600921270 /* seq9.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = seq9.tmx; sourceTree = "<group>"; };
 		33630CBB1804E52200A9F9EE /* Default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h.png"; path = "Resources/Default-568h.png"; sourceTree = "<group>"; };
-		338112B0183D7E870012E528 /* Tone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tone.h; sourceTree = "<group>"; };
-		338112B1183D7E870012E528 /* Tone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tone.m; sourceTree = "<group>"; };
+		338112B0183D7E870012E528 /* Synth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Synth.h; sourceTree = "<group>"; };
+		338112B1183D7E870012E528 /* Synth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Synth.m; sourceTree = "<group>"; };
 		338B1D6F17E4C11B00F25751 /* GameNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNode.h; sourceTree = "<group>"; };
 		338B1D7017E4C11B00F25751 /* GameNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameNode.m; sourceTree = "<group>"; };
 		338EE1B217A5F1D2005E98B1 /* NSArray+CompareNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CompareNumbers.h"; sourceTree = "<group>"; };
@@ -1421,8 +1421,8 @@
 			children = (
 				16A942A91777A2260052D5BD /* Arrow.h */,
 				16A942AA1777A2260052D5BD /* Arrow.m */,
-				16A942AB1777A2260052D5BD /* Drum.h */,
-				16A942AC1777A2260052D5BD /* Drum.m */,
+				16A942AB1777A2260052D5BD /* Sample.h */,
+				16A942AC1777A2260052D5BD /* Sample.m */,
 				334E7204179617F200EFECC1 /* Warp.h */,
 				334E7205179617F200EFECC1 /* Warp.m */,
 				33AF255517CB069700643CB2 /* AudioPad.h */,
@@ -1431,8 +1431,8 @@
 				33BF709117CBA7A5003E0A5F /* AudioStop.m */,
 				33BF709717CBB588003E0A5F /* SpeedChange.h */,
 				33BF709817CBB588003E0A5F /* SpeedChange.m */,
-				338112B0183D7E870012E528 /* Tone.h */,
-				338112B1183D7E870012E528 /* Tone.m */,
+				338112B0183D7E870012E528 /* Synth.h */,
+				338112B1183D7E870012E528 /* Synth.m */,
 			);
 			path = "Tick Responders";
 			sourceTree = "<group>";
@@ -1876,7 +1876,7 @@
 				1608072716B437A800039339 /* CCDirector.m in Sources */,
 				1608072A16B437A800039339 /* CCDrawingPrimitives.m in Sources */,
 				1608072D16B437A800039339 /* CCGLProgram.m in Sources */,
-				338112B2183D7E870012E528 /* Tone.m in Sources */,
+				338112B2183D7E870012E528 /* Synth.m in Sources */,
 				1608073016B437A800039339 /* ccGLStateCache.m in Sources */,
 				1608073316B437A800039339 /* CCGrabber.m in Sources */,
 				1608073616B437A800039339 /* CCGrid.m in Sources */,
@@ -1991,7 +1991,7 @@
 				16A942B71777A2260052D5BD /* MainSynth.m in Sources */,
 				16A942B81777A2260052D5BD /* TickDispatcher.m in Sources */,
 				16A942B91777A2260052D5BD /* Arrow.m in Sources */,
-				16A942BA1777A2260052D5BD /* Drum.m in Sources */,
+				16A942BA1777A2260052D5BD /* Sample.m in Sources */,
 				16A942BF1777AADF0052D5BD /* TickChannel.m in Sources */,
 				334B2ADD181C2F4B00865510 /* TouchSprite.m in Sources */,
 				16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */,

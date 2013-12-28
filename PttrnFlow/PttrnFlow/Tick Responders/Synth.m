@@ -1,19 +1,17 @@
 //
-//  Tone.m
+//  Synth.m
 //  PttrnFlow
 //
 //  Created by John Saba on 11/20/13.
 //
 //
 
-#import "Tone.h"
+#import "Synth.h"
 #import "GameConstants.h"
 #import "TickEvent.h"
 #import "CCNode+Grid.h"
 
-static CGFloat const kPadding = 4;
-
-@interface Tone ()
+@interface Synth ()
 
 // fragments
 @property (copy, nonatomic) NSString *synth;
@@ -21,7 +19,7 @@ static CGFloat const kPadding = 4;
 
 @end
 
-@implementation Tone
+@implementation Synth
 
 - (id)initWithCell:(GridCoord)cell synth:(NSString *)synth midi:(NSString *)midi frameName:(NSString *)frameName
 {

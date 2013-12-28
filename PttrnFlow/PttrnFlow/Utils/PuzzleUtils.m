@@ -147,18 +147,18 @@ static NSString *const kPads = @"pads";
     NSMutableDictionary *imageSequenceKey = [NSMutableDictionary dictionary];
     
     if (tonePrimaryValues.count > 0) {
-        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:tonePrimaryValues] rootName:kTonePrimary needsSort:YES];
+        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:tonePrimaryValues] rootName:kTonePrimary];
         [imageSequenceKey setObject:mappedSet forKey:kTonePrimary];
     }
     if (toneSecondaryValues.count > 0) {
-        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:toneSecondaryValues] rootName:kToneSecondary needsSort:YES];
+        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:toneSecondaryValues] rootName:kToneSecondary];
         [imageSequenceKey setObject:mappedSet forKey:kToneSecondary];    }
     if (beatPrimaryValues.count > 0) {
-        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:beatPrimaryValues] rootName:kDrumPrimary needsSort:NO];
+        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:beatPrimaryValues] rootName:kDrumPrimary];
         [imageSequenceKey setObject:mappedSet forKey:kDrumPrimary];
     }
     if (beatSecondaryValues.count > 0) {
-        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:beatSecondaryValues] rootName:kDrumSecondary needsSort:NO];
+        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:beatSecondaryValues] rootName:kDrumSecondary];
         [imageSequenceKey setObject:mappedSet forKey:kDrumSecondary];
     }
     
@@ -167,11 +167,11 @@ static NSString *const kPads = @"pads";
 }
 
 // create a mapping of sequence image set consisting of audio value (key) and frame name (value)
-+ (NSDictionary *)mappedImageSetForAudioValues:(NSSet *)audioValues rootName:(NSString *)rootName needsSort:(BOOL)needsSort
++ (NSDictionary *)mappedImageSetForAudioValues:(NSSet *)audioValues rootName:(NSString *)rootName
 {
     // sort audio values if needed
     NSArray *sortedAudioValues;
-    if (needsSort) {
+    if ([rootName isEqualToString:kTonePrimary]) {
         NSSortDescriptor *ascendingNumbers = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
         sortedAudioValues = [audioValues sortedArrayUsingDescriptors:@[ascendingNumbers]];
     }
@@ -184,8 +184,11 @@ static NSString *const kPads = @"pads";
     NSInteger i = 1;
     for (NSNumber *value in sortedAudioValues) {
         NSString *frameName;
-        if (i == sortedAudioValues.count) {
+        if ((i == sortedAudioValues.count) && ([rootName isEqualToString:kTonePrimary] || [rootName isEqualToString:kToneSecondary])) {
             frameName = [NSString stringWithFormat:@"%@_full.png", rootName];
+        }
+        else if ((i == 1) && ([rootName isEqualToString:kDrumPrimary] || [rootName isEqualToString:kDrumSecondary])) {
+            frameName = [NSString stringWithFormat:@"%@_1.png", rootName];
         }
         else {
             frameName = [NSString stringWithFormat:@"%@_%i_%i.png", rootName, i, sortedAudioValues.count];

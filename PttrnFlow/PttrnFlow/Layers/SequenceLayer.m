@@ -13,7 +13,7 @@
 #import "SpriteUtils.h"
 #import "CCTMXTiledMap+Utils.h"
 #import "SGTiledUtils.h"
-#import "Tone.h"
+#import "Synth.h"
 #import "SGTiledUtils.h"
 #import "Arrow.h"
 #import "MainSynth.h"
@@ -21,7 +21,7 @@
 #import "TickerControl.h"
 #import "ColorUtils.h"
 #import "PdDispatcher.h"
-#import "Drum.h"
+#import "Sample.h"
 #import "BlockFader.h"
 #import "ColorUtils.h"
 #import "CCLayer+Positioning.h"
@@ -54,7 +54,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 @property (weak, nonatomic) TickDispatcher *tickDispatcher;
 @property (weak, nonatomic) AudioTouchDispatcher *audioTouchDispatcher;
 
-@property (weak, nonatomic) Tone *pressedTone;
+@property (weak, nonatomic) Synth *pressedSynth;
 @property (weak, nonatomic) BackgroundLayer *backgroundLayer;
 @property (weak, nonatomic) PrimativeCellActor *selectionBox;
 
@@ -341,9 +341,9 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             NSArray *coord = @[@([rawCoord[0] intValue]), @([rawCoord[1] intValue])];
             NSString *entry = glyph[kEntry];
             NSString *arrow = glyph[kArrow];
-            NSString *synth = glyph[kSynth];
+            NSString *synthName = glyph[kSynth];
             NSNumber *midi = glyph[kMidi];
-            NSString *sample = glyph[kSample];
+            NSString *sampleName = glyph[kSample];
             NSString *imageSetBaseName = glyph[kImageSet];
          
             // cell is the only mandatory field to create an audio pad (empty pad can be used as a puzzle object to just take up space)
@@ -366,21 +366,31 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             }
             
             // pd synth
-            if (synth != NULL && midi != NULL) {
+            if (synthName != NULL && midi != NULL) {
                 
                 NSDictionary *mappedImageSet = [imageSequenceKey objectForKey:imageSetBaseName];
                 NSString *imageName = [mappedImageSet objectForKey:midi];
-                Tone *tone = [[Tone alloc] initWithCell:cell synth:synth midi:[midi stringValue] frameName:imageName];
+                Synth *synth = [[Synth alloc] initWithCell:cell synth:synthName midi:[midi stringValue] frameName:imageName];
                 
-//                // [self.tickDispatcher registerAudioResponderCellNode:tone];
+                // [self.tickDispatcher registerAudioResponderCellNode:synth];
+                [self.audioTouchDispatcher addResponder:synth];
                 
-                [self.audioTouchDispatcher addResponder:tone];
-                tone.position = cellCenter;
-                [self.audioObjectsBatchNode addChild:tone];
+                synth.position = cellCenter;
+                [self.audioObjectsBatchNode addChild:synth];
             }
             
             // audio sample
-            if (sample != NULL) {
+            if (sampleName != NULL) {
+                
+                NSDictionary *mappedImageSet = [imageSequenceKey objectForKey:imageSetBaseName];
+                NSString *imageName = [mappedImageSet objectForKey:sampleName];
+                Sample *sample = [[Sample alloc] initWithCell:cell sampleName:sampleName frameName:imageName];
+                
+                // [self.tickDispatcher registerAudioResponderCellNode:sample];
+                // [self.audioTouchDispatcher addResponder:sample];
+                
+                sample.position = cellCenter;
+                [self.audioObjectsBatchNode addChild:sample];
             }
             
             // direction arrow
