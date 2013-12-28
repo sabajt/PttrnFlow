@@ -53,24 +53,20 @@ static CGFloat const kDecelerationInterval = 1.0 / 120.0;
     
     switch (pan.state) {
         case UIGestureRecognizerStateBegan: {
-            
             self.panStartLocation = self.position;
             break;
         }
         case UIGestureRecognizerStateChanged: {
-            
             self.position = CGPointMake(self.panStartLocation.x + (translation.x * [@(self.allowsPanHorizontal) integerValue]),
                                         self.panStartLocation.y + (translation.y * [@(self.allowsPanVertical) integerValue]));
             break;
         }
         case UIGestureRecognizerStateEnded: {
-            
             self.velocity = velocity;
             [self schedule:@selector(decelarate:) interval:kDecelerationInterval];
             break;
         }
         case UIGestureRecognizerStateCancelled: {
-            
             break;
         }
         default: {

@@ -94,6 +94,12 @@ static NSInteger const kMaxControlLength = 7;
         leftControlsPanel.position = ccp(0, 0);
         [self.uiBatchNode addChild:leftControlsPanel];
         
+        // top left controls panel
+        CCSprite *topLeftControlsPanel = [CCSprite spriteWithSpriteFrameName:@"controls_panel_top_left.png"];
+        topLeftControlsPanel.anchorPoint = ccp(0, 1);
+        topLeftControlsPanel.position = ccp(0, self.contentSize.height);
+        [self.uiBatchNode addChild:topLeftControlsPanel];
+        
         // add ui batch below buttons (ccmenu not compatible with batch) and pan sprite (clipping using glscissor also not compatible with batch)
         [self addChild:uiBatch];
         
