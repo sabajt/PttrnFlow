@@ -52,7 +52,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 @property (strong, nonatomic) MainSynth *synth;
 
 @property (weak, nonatomic) TickDispatcher *tickDispatcher;
-@property (weak, nonatomic) AudioTouchDispatcher *audioTouchDispatcher;
 
 @property (weak, nonatomic) Synth *pressedSynth;
 @property (weak, nonatomic) BackgroundLayer *backgroundLayer;
@@ -177,9 +176,9 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
         
         // audio touch dispatcher
         
-        AudioTouchDispatcher *audioTouchDispatcher = [[AudioTouchDispatcher alloc] init];
-        self.audioTouchDispatcher = audioTouchDispatcher;
-        [self addChild:self.audioTouchDispatcher];
+        AudioTouchDispatcher *sharedTouchDispatcher = [AudioTouchDispatcher sharedAudioTouchDispatcher];
+        self.panDelegate = sharedTouchDispatcher;
+        [self addChild:sharedTouchDispatcher];
         
         // create puzzle objects
         
@@ -361,7 +360,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell moveable:!isStatic];
             audioPad.position = cellCenter;
             [self.tickDispatcher registerAudioResponderCellNode:audioPad];
-            [self.audioTouchDispatcher addResponder:audioPad];
+            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:audioPad];
             [self.audioObjectsBatchNode addChild:audioPad];
             
             // ticker entry point
@@ -376,7 +375,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
                 Synth *synth = [[Synth alloc] initWithCell:cell synth:synthName midi:[midi stringValue] frameName:imageName];
                 
                 // [self.tickDispatcher registerAudioResponderCellNode:synth];
-                [self.audioTouchDispatcher addResponder:synth];
+                [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:synth];
                 
                 synth.position = cellCenter;
                 [self.audioObjectsBatchNode addChild:synth];
@@ -391,7 +390,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
                 Sample *sample = [[Sample alloc] initWithCell:cell sampleName:sampleName frameName:imageName];
                 
                 // [self.tickDispatcher registerAudioResponderCellNode:sample];
-                [self.audioTouchDispatcher addResponder:sample];
+                [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:sample];
                 
                 sample.position = cellCenter;
                 [self.audioObjectsBatchNode addChild:sample];
@@ -423,7 +422,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 ////                AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
 ////                audioPad.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
 ////                [self.tickDispatcher registerAudioResponderCellNode:audioPad];
-////                [self.audioTouchDispatcher addResponder:audioPad];
+////                [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:audioPad];
 ////                [self.audioObjectsBatchNode addChild:audioPad];
 ////            }
 ////        }
@@ -435,7 +434,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 //        
 //        Tone *toneNode = [[Tone alloc] initWithBatchNode:self.synthBatchNode tone:tone tiledMap:tiledMap];
 //        [self.tickDispatcher registerAudioResponderCellNode:toneNode];
-//        [self.audioTouchDispatcher addResponder:toneNode];
+//        [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:toneNode];
 //        [self addChild:toneNode];
 //    }
 //    
@@ -444,7 +443,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 //    for (NSMutableDictionary *drum in drums) {
 //        Drum *drumNode = [[Drum alloc] initWithDrum:drum batchNode:self.samplesBatchNode tiledMap:tiledMap];
 //        [self.tickDispatcher registerAudioResponderCellNode:drumNode];
-//        [self.audioTouchDispatcher addResponder:drumNode];
+//        [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:drumNode];
 //        [self addChild:drumNode];
 //    }
 //    
@@ -575,13 +574,13 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
         else if (itemType == kDragItemAudioStop) {
             AudioStop *audioStop = [[AudioStop alloc] initWithBatchNode:self.othersBatchNode cell:self.lastDraggedItemCell dragItemDelegate:self];
             [self.tickDispatcher registerAudioResponderCellNode:audioStop];
-            [self.audioTouchDispatcher addResponder:audioStop];
+            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:audioStop];
             [self addChild:audioStop];
         }
         else if (itemType == kDragItemSpeedChange) {
             SpeedChange *speedChange = [[SpeedChange alloc] initWithBatchNode:self.othersBatchNode Cell:self.lastDraggedItemCell dragItemDelegate:self speed:@"2X"];
             [self.tickDispatcher registerAudioResponderCellNode:speedChange];
-            [self.audioTouchDispatcher addResponder:speedChange]; // not actually an audio event, but we need to track touches for highlighting
+            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:speedChange]; // not actually an audio event, but we need to track touches for highlighting
             [self addChild:speedChange];
         }
         

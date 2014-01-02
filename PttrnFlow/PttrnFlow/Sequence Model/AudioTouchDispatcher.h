@@ -7,8 +7,13 @@
 //
 
 #import "AudioResponder.h"
+#import "PanLayer.h"
 
-@interface AudioTouchDispatcher : CCNode <CCTargetedTouchDelegate>
+@interface AudioTouchDispatcher : CCNode <CCTargetedTouchDelegate, PanLayerDelegate>
+
+@property (assign) BOOL allowScrolling;
+
++ (AudioTouchDispatcher *)sharedAudioTouchDispatcher;
 
 - (void)addResponder:(id<AudioResponder>)responder;
 - (void)clearResponders;

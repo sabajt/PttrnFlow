@@ -8,9 +8,18 @@
 
 #import "cocos2d.h"
 
+@protocol PanLayerDelegate <NSObject>
+@optional
+
+- (BOOL)shouldPan;
+
+@end
+
 @interface PanLayer : CCLayer <UIGestureRecognizerDelegate>
 
 @property (assign) BOOL allowsPanHorizontal;
 @property (assign) BOOL allowsPanVertical;
+
+@property (weak, nonatomic) id<PanLayerDelegate> panDelegate;
 
 @end

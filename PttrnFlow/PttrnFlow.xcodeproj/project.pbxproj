@@ -280,6 +280,8 @@
 		33BF709617CBB2BB003E0A5F /* SpeedChangeEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BF709517CBB2BB003E0A5F /* SpeedChangeEvent.m */; };
 		33BF709917CBB588003E0A5F /* SpeedChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BF709817CBB588003E0A5F /* SpeedChange.m */; };
 		33C3B1C61874E9E7008F5FA8 /* pf-sample.pd in Resources */ = {isa = PBXBuildFile; fileRef = 33C3B1C51874E9E7008F5FA8 /* pf-sample.pd */; };
+		33C3B1CA1874F591008F5FA8 /* pttrn1-01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33C3B1C81874F591008F5FA8 /* pttrn1-01.wav */; };
+		33C3B1CB1874F591008F5FA8 /* pttrn1-02.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33C3B1C91874F591008F5FA8 /* pttrn1-02.wav */; };
 		33DD066618365302007311C8 /* CCLayerPanZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD065D18365302007311C8 /* CCLayerPanZoom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		33DD066718365302007311C8 /* PdArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD066018365302007311C8 /* PdArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		33EE317017C92C3C004CC016 /* AudioTouchDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */; };
@@ -779,6 +781,8 @@
 		33BF709717CBB588003E0A5F /* SpeedChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedChange.h; sourceTree = "<group>"; };
 		33BF709817CBB588003E0A5F /* SpeedChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedChange.m; sourceTree = "<group>"; };
 		33C3B1C51874E9E7008F5FA8 /* pf-sample.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-sample.pd"; sourceTree = "<group>"; };
+		33C3B1C81874F591008F5FA8 /* pttrn1-01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "pttrn1-01.wav"; sourceTree = "<group>"; };
+		33C3B1C91874F591008F5FA8 /* pttrn1-02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "pttrn1-02.wav"; sourceTree = "<group>"; };
 		33DD065C18365302007311C8 /* CCLayerPanZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLayerPanZoom.h; sourceTree = "<group>"; };
 		33DD065D18365302007311C8 /* CCLayerPanZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLayerPanZoom.m; sourceTree = "<group>"; };
 		33DD065F18365302007311C8 /* PdArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdArray.h; sourceTree = "<group>"; };
@@ -1328,6 +1332,8 @@
 		16284C94173A072B00B058D2 /* patches */ = {
 			isa = PBXGroup;
 			children = (
+				33C3B1C81874F591008F5FA8 /* pttrn1-01.wav */,
+				33C3B1C91874F591008F5FA8 /* pttrn1-02.wav */,
 				33C3B1C51874E9E7008F5FA8 /* pf-sample.pd */,
 				3356075C17F8B67900ECD44B /* pf-oscSynth.pd */,
 				3356075D17F8B67900ECD44B /* pf-phasorSynth.pd */,
@@ -1772,6 +1778,7 @@
 				334B2ACE181B02CA00865510 /* uilayer.png in Resources */,
 				33BA5F22185E3385005A0452 /* puzzle0.json in Resources */,
 				334B2ABF181B02CA00865510 /* samplePads-ipadhd.plist in Resources */,
+				33C3B1CA1874F591008F5FA8 /* pttrn1-01.wav in Resources */,
 				334B2AC7181B02CA00865510 /* synthPads-ipadhd.plist in Resources */,
 				168FA4F1173A08C7004C26AD /* Icon-Small@2x.png in Resources */,
 				334B2AD5181B03F000865510 /* background-hd.png in Resources */,
@@ -1829,6 +1836,7 @@
 				16A942E61778C5A50052D5BD /* drum4on-ipad.png in Resources */,
 				1693C661177A0C9300FEB350 /* drum1.wav in Resources */,
 				1693C662177A0C9300FEB350 /* drum2.wav in Resources */,
+				33C3B1CB1874F591008F5FA8 /* pttrn1-02.wav in Resources */,
 				3339C03318397638005771BC /* audioObjects.plist in Resources */,
 				1693C665177A628300FEB350 /* drum3.wav in Resources */,
 				3350B17F186A39A100F3BE57 /* puzzle3.json in Resources */,

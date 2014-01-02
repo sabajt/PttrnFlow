@@ -46,7 +46,6 @@ static NSString *const kStageSample = @"stageSample";
     return sharedInstance;
 }
 
-
 + (void)mute:(BOOL)mute
 {
     float muteVal = 1.0;

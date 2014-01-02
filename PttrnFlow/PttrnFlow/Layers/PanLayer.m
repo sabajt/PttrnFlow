@@ -85,7 +85,9 @@ static CGFloat const kDecelerationInterval = 1.0 / 120.0;
     
     self.position = CGPointMake(self.position.x + deltaPosition.x, self.position.y + deltaPosition.y);
     
-    if ((fabsf(self.velocity.x) < kLowerSpeedLimit) && (fabsf(self.velocity.y) < kLowerSpeedLimit)) {
+    if ((fabsf(self.velocity.x) < kLowerSpeedLimit) &&
+        (fabsf(self.velocity.y) < kLowerSpeedLimit))
+    {
         [self unschedule:@selector(decelarate:)];
     }
 }
@@ -94,6 +96,12 @@ static CGFloat const kDecelerationInterval = 1.0 / 120.0;
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
+    if ((self.panDelegate != nil) &&
+        ([self.panDelegate respondsToSelector:@selector(shouldPan)]))
+    {
+        return [self.panDelegate shouldPan];
+    }
+    
     if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
         return YES;
     }

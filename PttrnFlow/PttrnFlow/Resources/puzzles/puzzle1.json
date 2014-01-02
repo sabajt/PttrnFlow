@@ -29,12 +29,12 @@
                     {
                          "cell" : [1, 1],
                          "entry" : "right",
-                         "sample" : "basic_1",
+                         "sample" : "pttrn1-01.wav",
                          "image_set" : "drum_primary",
                     },
                     {
                          "cell" : [2, 1],
-                         "sample" : "basic_2",
+                         "sample" : "pttrn1-02.wav",
                          "arrow" : "up",
                          "image_set" : "drum_primary"
                     }
@@ -58,7 +58,7 @@
                [
                     {
                          "cell" : [4, 1],
-                         "sample" : "basic_3",
+                         "sample" : "pttrn1-02.wav",
                          "image_set" : "drum_primary"
                     }
                ]
@@ -88,17 +88,17 @@
                [
                     {
                          "cell" : [5, 3],
-                         "sample" : "bongos_1",
+                         "sample" : "pttrn1-01.wav",
                          "image_set" : "drum_primary"
                     },
                     {
                          "cell" : [5, 4],
-                         "sample" : "bongos_1",
+                         "sample" : "pttrn1-02.wav",
                          "image_set" : "drum_primary"
                     },
                     {
                          "cell" : [5, 5],
-                         "sample" : "bongos_3",
+                         "sample" : "pttrn1-02.wav",
                          "image_set" : "drum_primary"
                     }
                ]

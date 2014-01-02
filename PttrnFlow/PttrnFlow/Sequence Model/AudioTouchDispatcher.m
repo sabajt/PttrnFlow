@@ -22,6 +22,16 @@
 
 @implementation AudioTouchDispatcher
 
++ (AudioTouchDispatcher *)sharedAudioTouchDispatcher
+{
+    static AudioTouchDispatcher *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[AudioTouchDispatcher alloc] init];
+    });
+    return sharedInstance;
+}
+
 - (id)init
 {
     self = [super init];
@@ -55,6 +65,9 @@
     
     // crunch fragments into events and send to pd
     NSArray *events = [TickEvent eventsFromFragments:fragments channel:channel lastLinkedEvents:nil];
+    
+    // block scrolling the puzzle if there are any events
+    self.allowScrolling = (events.count == 0);
     
     // send events to pd
     [[MainSynth sharedMainSynth] receiveEvents:events ignoreAudioPad:NO];
@@ -163,5 +176,11 @@
     CFDictionaryRemoveValue(self.trackingTouches, (__bridge void *)touch);
 }
 
+#pragma mark - PanLayerDelegate
+
+- (BOOL)shouldPan
+{
+    return self.allowScrolling;
+}
 
 @end
