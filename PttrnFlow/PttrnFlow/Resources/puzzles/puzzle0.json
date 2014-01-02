@@ -34,12 +34,12 @@
                     {
                          "cell" : [1, 1],
                          "entry" : "right",
-                         "sample" : "basic_5",
+                         "sample" : "drum1.wav",
                          "image_set" : "drum_primary",
                     },
                     {
                          "cell" : [2, 1],
-                         "sample" : "basic_2",
+                         "sample" : "drum2.wav",
                          "arrow" : "up",
                          "image_set" : "drum_primary"
                     }
@@ -63,7 +63,7 @@
                [
                     {
                          "cell" : [4, 1],
-                         "sample" : "basic_1",
+                         "sample" : "drum3.wav",
                          "image_set" : "drum_primary"
                     }
                ]

@@ -16,7 +16,9 @@ typedef enum
 
 @interface MainSynth : NSObject
 
-+ (void)receiveEvents:(NSArray *)events ignoreAudioPad:(BOOL)ignoreAudioPad;
++ (MainSynth *)sharedMainSynth;
+- (void)loadSamples:(NSArray *)samples;
+- (void)receiveEvents:(NSArray *)events ignoreAudioPad:(BOOL)ignoreAudioPad;
 + (void)mute:(BOOL)mute;
 
 @end

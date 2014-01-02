@@ -144,7 +144,7 @@ CGFloat const kTickInterval = 0.12;
         AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES];
         [combined addObject:audioStop];
     }
-    [MainSynth receiveEvents:combined ignoreAudioPad:YES];
+    [[MainSynth sharedMainSynth] receiveEvents:combined ignoreAudioPad:YES];
 }
 
 
@@ -158,7 +158,7 @@ CGFloat const kTickInterval = 0.12;
     }
     
     NSArray *events = [self.solutionSequence.sequence objectAtIndex:index];
-    [MainSynth receiveEvents:events ignoreAudioPad:YES];
+    [[MainSynth sharedMainSynth] receiveEvents:events ignoreAudioPad:YES];
     
     for (TickEvent *event in events) {
         [self.solutionChannels addObject:event.channel];
@@ -321,7 +321,7 @@ CGFloat const kTickInterval = 0.12;
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationTickHit object:nil userInfo:@{kKeyHits : self.hits}];
 
     // hand over events to synth class which talks to PD patch
-    [MainSynth receiveEvents:combinedEvents ignoreAudioPad:NO];
+    [[MainSynth sharedMainSynth] receiveEvents:combinedEvents ignoreAudioPad:NO];
     
     // advance tick counter (subs)
     self.currentTick++;

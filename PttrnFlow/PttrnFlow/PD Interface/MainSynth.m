@@ -18,17 +18,34 @@
 #import "SampleEvent.h"
 
 static NSString *const kActivateNoise = @"activateNoise";
-static NSString *const kActiviateDrum = @"activateDrum";
 static NSString *const kClear = @"clear";
 static NSString *const kTrigger = @"trigger";
 static NSString *const kMidiValue = @"midinote";
-static NSString *const kSelectDrum = @"selectDrum";
 static NSString *const kMute = @"mute";
 static NSString *const kSynthEvent = @"synthEvent";
 static NSString *const kAudioStop = @"audioStop";
 
+static NSString *const kLoadSample = @"loadSample";
+static NSString *const kStageSample = @"stageSample";
+
+@interface MainSynth ()
+
+@property (strong, nonatomic) NSMutableDictionary *sampleKey;
+
+@end
 
 @implementation MainSynth
+
++ (MainSynth *)sharedMainSynth
+{
+    static MainSynth *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[MainSynth alloc] init];
+    });
+    return sharedInstance;
+}
+
 
 + (void)mute:(BOOL)mute
 {
@@ -51,7 +68,20 @@ static NSString *const kAudioStop = @"audioStop";
 
 #pragma mark - SoundEventReveiver
 
-+ (void)receiveEvents:(NSArray *)events ignoreAudioPad:(BOOL)ignoreAudioPad
+- (void)loadSamples:(NSArray *)samples
+{
+    self.sampleKey = [NSMutableDictionary dictionary];
+    NSInteger i = 1;
+    for (NSString *sampleName in samples) {
+        NSString *sampleSuffix = [NSString stringWithFormat:@"_%i", i];
+        [self.sampleKey setObject:sampleSuffix forKey:sampleName];
+        NSString *receiver = [kLoadSample stringByAppendingString:sampleSuffix];
+        [PdBase sendList:@[sampleName, sampleSuffix] toReceiver:receiver];
+        i++;
+    }
+}
+
+- (void)receiveEvents:(NSArray *)events ignoreAudioPad:(BOOL)ignoreAudioPad
 {
     if ((events == nil) || (events.count < 1)) {
         NSLog(@"no events sent to synth");
@@ -75,13 +105,15 @@ static NSString *const kAudioStop = @"audioStop";
             SynthEvent *synth = (SynthEvent *)event;
             NSNumber *midiValue = [NSNumber numberWithInt:[synth.midiValue intValue]];
             NSNumber *channel = [NSNumber numberWithInt:[synth.channel intValue]];
-            NSNumber *synthType = [NSNumber numberWithInt:[self pfSynthTypeForStringRep:synth.synthType]];
+            NSNumber *synthType = [NSNumber numberWithInt:[MainSynth pfSynthTypeForStringRep:synth.synthType]];
             [PdBase sendList:@[synthType, midiValue, channel] toReceiver:kSynthEvent];
         }
+        
         if ([event isKindOfClass:[SampleEvent class]]) {
             SampleEvent *sample = (SampleEvent *)event;
-            [PdBase sendSymbol:sample.fileName toReceiver:kSelectDrum];
-            [PdBase sendBangToReceiver:kActiviateDrum];
+            NSString *sampleSuffix = self.sampleKey[sample.fileName];
+            NSString *receiver = [kStageSample stringByAppendingString:sampleSuffix];
+            [PdBase sendBangToReceiver:receiver];
         }
         
         if ([event isKindOfClass:[AudioStopEvent class]]) {

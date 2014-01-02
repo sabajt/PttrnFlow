@@ -57,7 +57,7 @@
     NSArray *events = [TickEvent eventsFromFragments:fragments channel:channel lastLinkedEvents:nil];
     
     // send events to pd
-    [MainSynth receiveEvents:events ignoreAudioPad:NO];
+    [[MainSynth sharedMainSynth] receiveEvents:events ignoreAudioPad:NO];
 }
 
 - (void)audioRelease:(GridCoord)cell channel:(NSString *)channel
@@ -137,7 +137,7 @@
     NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.trackingTouches, (__bridge void *)touch);
     NSString *channel = [touchInfo objectForKey:@"channel"];
     AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES];
-    [MainSynth receiveEvents:@[audioStop] ignoreAudioPad:YES];
+    [[MainSynth sharedMainSynth] receiveEvents:@[audioStop] ignoreAudioPad:YES];
     
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
@@ -153,7 +153,7 @@
     NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.trackingTouches, (__bridge void *)touch);
     NSString *channel = [touchInfo objectForKey:@"channel"];
     AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES];
-    [MainSynth receiveEvents:@[audioStop] ignoreAudioPad:YES];
+    [[MainSynth sharedMainSynth] receiveEvents:@[audioStop] ignoreAudioPad:YES];
     
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];

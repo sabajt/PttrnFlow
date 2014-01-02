@@ -330,6 +330,9 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
     NSArray *audioPads = [PuzzleUtils puzzleAudioPads:puzzle];
     NSDictionary *imageSequenceKey = [PuzzleUtils puzzleImageSequenceKey:puzzle];
     
+    // collect sample names so we can load them in PD tables
+    NSMutableArray *allSampleNames = [NSMutableArray array];
+    
     for (NSDictionary *pad in audioPads) {
         
         BOOL isStatic = [pad[kStatic] boolValue];
@@ -381,13 +384,14 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             
             // audio sample
             if (sampleName != NULL) {
+                [allSampleNames addObject:sampleName];
                 
                 NSDictionary *mappedImageSet = [imageSequenceKey objectForKey:imageSetBaseName];
                 NSString *imageName = [mappedImageSet objectForKey:sampleName];
                 Sample *sample = [[Sample alloc] initWithCell:cell sampleName:sampleName frameName:imageName];
                 
                 // [self.tickDispatcher registerAudioResponderCellNode:sample];
-                // [self.audioTouchDispatcher addResponder:sample];
+                [self.audioTouchDispatcher addResponder:sample];
                 
                 sample.position = cellCenter;
                 [self.audioObjectsBatchNode addChild:sample];
@@ -398,6 +402,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             }
         }
     }
+    [[MainSynth sharedMainSynth] loadSamples:allSampleNames];
 }
 
 //- (void)createPuzzleObjectsOld:(CCTMXTiledMap *)tiledMap

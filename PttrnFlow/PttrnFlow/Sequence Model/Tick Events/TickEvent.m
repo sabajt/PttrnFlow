@@ -46,10 +46,12 @@ NSString *const kChannelNone = @"ChannelNone";
 
 - (BOOL)isSampleName
 {
-    if (self.length < @"sample".length) {
+    static NSString *kWav = @"wav";
+    if (self.length < (kWav.length + 2)) {
         return NO;
     }
-    return [[self substringToIndex:@"sample".length] isEqualToString:@"sample"];
+    NSString *extension = [[self componentsSeparatedByString:@"."] lastObject];
+    return ([extension isEqualToString:kWav]);
 }
 
 - (BOOL)isDirection
