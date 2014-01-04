@@ -68,7 +68,7 @@ NSString *const kNeighborBelow = @"below";
         if ([c1 isNeighbor:c2]) {
             [pairs addObject:coords];
         }
-        else return pairs;
+        return pairs;
     }
     
     Coord *baseCoord = [coords firstObject];
