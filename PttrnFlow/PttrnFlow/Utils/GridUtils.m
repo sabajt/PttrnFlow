@@ -99,7 +99,6 @@
     return CGPointMake(coord.x, coord.y);
 }
 
-
 #pragma mark - drawing
 
 // draws grid lines, call in layer's draw method

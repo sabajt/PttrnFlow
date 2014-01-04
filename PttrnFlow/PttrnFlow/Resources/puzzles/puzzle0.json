@@ -28,7 +28,7 @@
 	"pads" :
 	[
           {
-               "static" : 1,
+               "static" : 0,
                "glyphs" :
                [
                     {

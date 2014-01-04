@@ -34,6 +34,7 @@
 #import "SpeedChange.h"
 #import "TextureUtils.h"
 #import "PuzzleUtils.h"
+#import "Coord.h"
 
 static CGFloat kPuzzleBoundsMargin = 10.0;
 
@@ -326,6 +327,9 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 
 - (void)createPuzzleObjects:(NSInteger)puzzle
 {
+
+    
+    
     NSArray *audioPads = [PuzzleUtils puzzleAudioPads:puzzle];
     NSDictionary *imageSequenceKey = [PuzzleUtils puzzleImageSequenceKey:puzzle];
     
@@ -336,6 +340,15 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
         
         BOOL isStatic = [pad[kStatic] boolValue];
         NSArray *glyphs = pad[kGlyphs];
+        
+        if (glyphs.count > 1) {
+            if (isStatic) {
+                NSLog(@"Puzzle format warning: audio pad is static but contains multiple units:\n%@", pad);
+            }
+            else {
+                
+            }
+        }
         
         for (NSDictionary *glyph in glyphs) {
             
@@ -356,12 +369,12 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             GridCoord cell = GridCoordMake([coord[0] intValue], [coord[1] intValue]);
             CGPoint cellCenter = [GridUtils relativeMidpointForCell:GridCoordMake(cell.x, cell.y) unitSize:kSizeGridUnit];
             
-            // audio pad sprite
-            AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell moveable:!isStatic];
-            audioPad.position = cellCenter;
-            [self.tickDispatcher registerAudioResponderCellNode:audioPad];
-            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:audioPad];
-            [self.audioObjectsBatchNode addChild:audioPad];
+            // audio pad unit sprite
+            AudioPad *audioPadUnit = [[AudioPad alloc] initWithCell:cell moveable:!isStatic];
+            audioPadUnit.position = cellCenter;
+            [self.tickDispatcher registerAudioResponderCellNode:audioPadUnit];
+            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:audioPadUnit];
+            [self.audioObjectsBatchNode addChild:audioPadUnit];
             
             // ticker entry point
             if (entry != NULL) {
@@ -607,25 +620,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 - (void)win
 {
     [self.backgroundLayer tintToColor:ccGREEN duration:kTickInterval];
-}
-
-#pragma mark - CCStandardTouchDelegate
-
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super ccTouchesBegan:touches withEvent:event];
-
-    if (touches.count == 1) {
-        UITouch *touch = [touches anyObject];
-        CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-        GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
-        
-        // create the exit animation and send event to synth if we aren't touching a synth node
-        if (![self.tickDispatcher isAnyAudioResponderAtCell:cell]) {
-            [self addChild:[SequenceLayer exitFader:cell]];
-//            [MainSynth receiveEvents:@[kExitEvent]];
-        }
-    }
 }
 
 #pragma mark - debug methods
