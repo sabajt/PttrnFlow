@@ -388,7 +388,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             if (entry != NULL) {
             }
             
-            // pd synthr
+            // pd synth
             if (synthName != NULL && midi != NULL) {
                 
                 NSDictionary *mappedImageSet = [imageSequenceKey objectForKey:imageSetBaseName];
