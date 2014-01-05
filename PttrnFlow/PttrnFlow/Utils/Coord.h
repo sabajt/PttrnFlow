@@ -20,14 +20,25 @@ FOUNDATION_EXPORT NSString *const kNeighborBelow;
 
 + (id)coordWithX:(NSInteger)x Y:(NSInteger)y;
 
+#pragma mark - position
+
+- (CGPoint)relativePosition;
+- (CGPoint)relativePositionWithUnitSize:(CGFloat)unitSize;
+- (CGPoint)relativeMidpoint;
+- (CGPoint)relativeMidpointWithUnitSize:(CGFloat)unitSize;
+
 #pragma mark - compare
 
 - (BOOL)isEqualToCoord:(Coord *)coord;
 
 #pragma mark - context
 
++ (NSArray *)findNeighborPairs:(NSArray *)coords;
 - (NSDictionary *)neighbors;
 - (BOOL)isNeighbor:(Coord *)coord;
-+ (NSArray *)findNeighborPairs:(NSArray *)coords;
+- (BOOL)isAbove:(Coord *)coord;
+- (BOOL)isBelow:(Coord *)coord;
+- (BOOL)isLeft:(Coord *)coord;
+- (BOOL)isRight:(Coord *)coord;
 
 @end

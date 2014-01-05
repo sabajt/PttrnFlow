@@ -191,6 +191,7 @@
 		16A942E41778C5A50052D5BD /* drum3on-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DC1778C5A50052D5BD /* drum3on-ipad.png */; };
 		16A942E51778C5A50052D5BD /* drum4-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DD1778C5A50052D5BD /* drum4-ipad.png */; };
 		16A942E61778C5A50052D5BD /* drum4on-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DE1778C5A50052D5BD /* drum4on-ipad.png */; };
+		3302EF6E1879C92C0032AD58 /* PFGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302EF6D1879C92C0032AD58 /* PFGeometry.m */; };
 		3338A9CC17C307D80037DFE2 /* SolutionSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3338A9CB17C307D80037DFE2 /* SolutionSequence.m */; };
 		3339C03118397638005771BC /* audioObjects-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02D18397638005771BC /* audioObjects-hd.plist */; };
 		3339C03218397638005771BC /* audioObjects-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02E18397638005771BC /* audioObjects-hd.png */; };
@@ -680,6 +681,8 @@
 		16A942DC1778C5A50052D5BD /* drum3on-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drum3on-ipad.png"; sourceTree = "<group>"; };
 		16A942DD1778C5A50052D5BD /* drum4-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drum4-ipad.png"; sourceTree = "<group>"; };
 		16A942DE1778C5A50052D5BD /* drum4on-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drum4on-ipad.png"; sourceTree = "<group>"; };
+		3302EF6C1879C92C0032AD58 /* PFGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGeometry.h; sourceTree = "<group>"; };
+		3302EF6D1879C92C0032AD58 /* PFGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGeometry.m; sourceTree = "<group>"; };
 		3338A9CA17C307D80037DFE2 /* SolutionSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolutionSequence.h; sourceTree = "<group>"; };
 		3338A9CB17C307D80037DFE2 /* SolutionSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionSequence.m; sourceTree = "<group>"; };
 		3339C02D18397638005771BC /* audioObjects-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "audioObjects-hd.plist"; sourceTree = "<group>"; };
@@ -1314,6 +1317,8 @@
 				162C291617848A8700CE480C /* CCLayerPanZoom+Utils.m */,
 				33C3B1D11876FA91008F5FA8 /* Coord.h */,
 				33C3B1D21876FA91008F5FA8 /* Coord.m */,
+				3302EF6C1879C92C0032AD58 /* PFGeometry.h */,
+				3302EF6D1879C92C0032AD58 /* PFGeometry.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2043,6 +2048,7 @@
 				160807F716B437AA00039339 /* TGAlib.m in Sources */,
 				160807FA16B437AA00039339 /* TransformUtils.m in Sources */,
 				160807FF16B437AA00039339 /* ZipUtils.m in Sources */,
+				3302EF6E1879C92C0032AD58 /* PFGeometry.m in Sources */,
 				33425EAB1841218C002B56DB /* CCNode+Grid.m in Sources */,
 				1608080416B437AA00039339 /* CDAudioManager.m in Sources */,
 				33B4F25C17C72600004D4C13 /* DirectionEvent.m in Sources */,
@@ -2355,6 +2361,7 @@
 				33E4F70518788CF6005571F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

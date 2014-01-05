@@ -35,6 +35,16 @@
 #import "TextureUtils.h"
 #import "PuzzleUtils.h"
 #import "Coord.h"
+#import "PFGeometry.h"
+
+typedef NS_ENUM(NSInteger, ZOrderAudioBatch)
+{
+    ZOrderAudioBatchPanelFill = 0,
+    ZOrderAudioBatchPanelBorder,
+    ZOrderAudioBatchPadConnector,
+    ZOrderAudioBatchPad,
+    ZOrderAudioBatchGlyph
+};
 
 static CGFloat kPuzzleBoundsMargin = 10.0;
 
@@ -66,7 +76,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 #pragma mark - setup
 
 + (CCScene *)sceneWithSequence:(int)sequence
-{    
+{
     CCScene *scene = [CCScene node];
     
     // contstruct a tiled map from our sequence
@@ -230,7 +240,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             if (hasBottomLeft && hasTopLeft && hasBottomRight && hasTopRight) {
                 CCSprite *padFill = [CCSprite spriteWithSpriteFrameName:@"pad_fill.png"];
                 padFill.position = [GridUtils relativePositionForGridCoord:GridCoordMake(cell.x + 1, cell.y + 1) unitSize:kSizeGridUnit];
-                [self.audioObjectsBatchNode addChild:padFill];
+                [self.audioObjectsBatchNode addChild:padFill z:ZOrderAudioBatchPanelFill];
                 continue;
             }
             // cell on no side, nothing needed
@@ -315,11 +325,11 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             
             // position and add border(s)
             border1.position = [GridUtils relativePositionForGridCoord:GridCoordMake(cell.x + 1, cell.y + 1) unitSize:kSizeGridUnit];
-            [self.audioObjectsBatchNode addChild:border1];
+            [self.audioObjectsBatchNode addChild:border1 z:ZOrderAudioBatchPanelBorder];
             
             if (border2 != nil) {
                 border2.position = border1.position;
-                [self.audioObjectsBatchNode addChild:border2];
+                [self.audioObjectsBatchNode addChild:border2 z:ZOrderAudioBatchPanelBorder];
             }
         }
     }
@@ -327,9 +337,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 
 - (void)createPuzzleObjects:(NSInteger)puzzle
 {
-
-    
-    
     NSArray *audioPads = [PuzzleUtils puzzleAudioPads:puzzle];
     NSDictionary *imageSequenceKey = [PuzzleUtils puzzleImageSequenceKey:puzzle];
     
@@ -341,19 +348,20 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
         BOOL isStatic = [pad[kStatic] boolValue];
         NSArray *glyphs = pad[kGlyphs];
         
+        NSMutableArray *cluster;
         if (glyphs.count > 1) {
             if (isStatic) {
                 NSLog(@"Puzzle format warning: audio pad is static but contains multiple units:\n%@", pad);
             }
             else {
-                
+                cluster = [NSMutableArray array];
             }
         }
         
         for (NSDictionary *glyph in glyphs) {
             
-            NSArray *rawCoord = glyph[kCell];
-            NSArray *coord = @[@([rawCoord[0] intValue]), @([rawCoord[1] intValue])];
+            NSArray *rawCellArray = glyph[kCell];
+            NSArray *cellArray = @[@([rawCellArray[0] intValue]), @([rawCellArray[1] intValue])]; // TODO: why?
             NSString *entry = glyph[kEntry];
             NSString *arrow = glyph[kArrow];
             NSString *synthName = glyph[kSynth];
@@ -362,11 +370,11 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             NSString *imageSetBaseName = glyph[kImageSet];
          
             // cell is the only mandatory field to create an audio pad (empty pad can be used as a puzzle object to just take up space)
-            if (coord == NULL) {
+            if (cellArray == NULL) {
                 NSLog(@"SequenceLayer createPuzzleObjects error: 'cell' must not be null on audio pads");
                 return;
             }
-            GridCoord cell = GridCoordMake([coord[0] intValue], [coord[1] intValue]);
+            GridCoord cell = GridCoordMake([cellArray[0] intValue], [cellArray[1] intValue]);
             CGPoint cellCenter = [GridUtils relativeMidpointForCell:GridCoordMake(cell.x, cell.y) unitSize:kSizeGridUnit];
             
             // audio pad unit sprite
@@ -374,13 +382,13 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             audioPadUnit.position = cellCenter;
             [self.tickDispatcher registerAudioResponderCellNode:audioPadUnit];
             [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:audioPadUnit];
-            [self.audioObjectsBatchNode addChild:audioPadUnit];
+            [self.audioObjectsBatchNode addChild:audioPadUnit z:ZOrderAudioBatchPad];
             
             // ticker entry point
             if (entry != NULL) {
             }
             
-            // pd synth
+            // pd synthr
             if (synthName != NULL && midi != NULL) {
                 
                 NSDictionary *mappedImageSet = [imageSequenceKey objectForKey:imageSetBaseName];
@@ -391,7 +399,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
                 [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:synth];
                 
                 synth.position = cellCenter;
-                [self.audioObjectsBatchNode addChild:synth];
+                [self.audioObjectsBatchNode addChild:synth z:ZOrderAudioBatchGlyph];
             }
             
             // audio sample
@@ -406,11 +414,37 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
                 [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:sample];
                 
                 sample.position = cellCenter;
-                [self.audioObjectsBatchNode addChild:sample];
+                [self.audioObjectsBatchNode addChild:sample z:ZOrderAudioBatchGlyph];
             }
             
             // direction arrow
             if (arrow != NULL) {
+            }
+            
+            // collect coords if glyph is part of an audio pad cluster so we can create the connector panels
+            if (cluster != nil) {
+                [cluster addObject:[Coord coordWithX:cell.x Y:cell.y]];
+            }
+        }
+        
+        // create connector panels if audio pad is a cluster
+        if (cluster != nil) {
+            NSArray *neighborPairs = [Coord findNeighborPairs:[NSArray arrayWithArray:cluster]];
+            NSAssert(neighborPairs.count == (cluster.count - 1), @"Error: clustered glyphs must have n - 1 neighbors");
+
+            for (NSArray *pair in neighborPairs) {
+                Coord *c1 = pair[0];
+                Coord *c2 = pair[1];
+                
+                Coord *coord1 = [Coord coordWithX:c1.x - 1 Y:c1.y - 1];
+                Coord *coord2 = [Coord coordWithX:c2.x - 1 Y:c2.y - 1];
+                
+                CCSprite *connector = [CCSprite spriteWithSpriteFrameName:@"audio_connector.png"];
+                if ([coord1 isAbove:coord2] || [coord1 isBelow:coord2]) {
+                    connector.rotation = 90.0;
+                }
+                connector.position = CGMidPointMake([coord1 relativeMidpoint], [coord2 relativeMidpoint]);
+                [self.audioObjectsBatchNode addChild:connector z:ZOrderAudioBatchPadConnector];
             }
         }
     }

@@ -8,6 +8,8 @@
 
 #import "Coord.h"
 
+static CGFloat kDefaultUnitSize = 68.0;
+
 NSString *const kNeighborLeft = @"left";
 NSString *const kNeighborRight = @"right";
 NSString *const kNeighborAbove = @"above";
@@ -30,6 +32,29 @@ NSString *const kNeighborBelow = @"below";
     return self;
 }
 
+#pragma mark - position
+
+- (CGPoint)relativePosition
+{
+    return [self relativePositionWithUnitSize:kDefaultUnitSize];
+}
+
+- (CGPoint)relativePositionWithUnitSize:(CGFloat)unitSize
+{
+    return CGPointMake(self.x * unitSize, self.y * unitSize);
+}
+
+- (CGPoint)relativeMidpoint
+{
+    return [self relativeMidpointWithUnitSize:kDefaultUnitSize];
+}
+
+- (CGPoint)relativeMidpointWithUnitSize:(CGFloat)unitSize
+{
+    CGPoint position = [self relativePositionWithUnitSize:unitSize];
+    return CGPointMake(position.x + unitSize / 2, position.y + unitSize / 2);
+}
+
 #pragma mark - compare
 
 - (BOOL)isEqualToCoord:(Coord *)coord
@@ -38,22 +63,6 @@ NSString *const kNeighborBelow = @"below";
 }
 
 #pragma mark - context
-
-- (NSDictionary *)neighbors
-{
-    return @{kNeighborLeft : [Coord coordWithX:self.x - 1 Y:self.y],
-             kNeighborRight : [Coord coordWithX:self.x + 1 Y:self.y],
-             kNeighborAbove : [Coord coordWithX:self.x Y:self.y + 1],
-             kNeighborBelow : [Coord coordWithX:self.x Y:self.y - 1]};
-}
-
-- (BOOL)isNeighbor:(Coord *)coord
-{
-    NSUInteger index = [[[self neighbors] allValues] indexOfObjectPassingTest:^BOOL(Coord *neighbor, NSUInteger idx, BOOL *stop) {
-        return [coord isEqualToCoord:neighbor];
-    }];
-    return index != NSNotFound;
-}
 
 + (NSArray *)findNeighborPairs:(NSArray *)coords
 {
@@ -81,5 +90,44 @@ NSString *const kNeighborBelow = @"below";
     return [Coord findNeighborPairs:truncatedCoords existingPairs:pairs];
 }
 
+- (NSDictionary *)neighbors
+{
+    return @{kNeighborLeft : [Coord coordWithX:self.x - 1 Y:self.y],
+             kNeighborRight : [Coord coordWithX:self.x + 1 Y:self.y],
+             kNeighborAbove : [Coord coordWithX:self.x Y:self.y + 1],
+             kNeighborBelow : [Coord coordWithX:self.x Y:self.y - 1]};
+}
+
+- (BOOL)isNeighbor:(Coord *)coord
+{
+    NSUInteger index = [[[self neighbors] allValues] indexOfObjectPassingTest:^BOOL(Coord *neighbor, NSUInteger idx, BOOL *stop) {
+        return [coord isEqualToCoord:neighbor];
+    }];
+    return index != NSNotFound;
+}
+
+- (BOOL)isAbove:(Coord *)coord
+{
+    Coord *above = [[coord neighbors] objectForKey:kNeighborAbove];
+    return [self isEqualToCoord:above];
+}
+
+- (BOOL)isBelow:(Coord *)coord
+{
+    Coord *below = [[coord neighbors] objectForKey:kNeighborBelow];
+    return [self isEqualToCoord:below];
+}
+
+- (BOOL)isLeft:(Coord *)coord
+{
+    Coord *left = [[coord neighbors] objectForKey:kNeighborLeft];
+    return [self isEqualToCoord:left];
+}
+
+- (BOOL)isRight:(Coord *)coord
+{
+    Coord *right = [[coord neighbors] objectForKey:kNeighborRight];
+    return [self isEqualToCoord:right];
+}
 
 @end
