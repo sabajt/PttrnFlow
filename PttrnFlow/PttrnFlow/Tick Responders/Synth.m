@@ -37,7 +37,7 @@
 
 #pragma mark - AudioResponder
 
-- (GridCoord)responderCell
+- (GridCoord)audioCell
 {
     return self.cell;
 }
@@ -45,6 +45,11 @@
 - (NSArray *)audioHit:(NSInteger)bpm
 {
     return @[self.midi, self.synth];
+}
+
+- (NSInteger)audioCluster
+{
+    return self.cellGroup;
 }
 
 @end

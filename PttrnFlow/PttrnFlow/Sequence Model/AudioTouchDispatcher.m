@@ -12,6 +12,7 @@
 #import "GridUtils.h"
 #import "TickDispatcher.h"
 #import "AudioStopEvent.h"
+#import "Coord.h"
 
 @interface AudioTouchDispatcher ()
 
@@ -52,14 +53,34 @@
     self.responders = nil;
 }
 
-- (void)processFragmentsForCell:(GridCoord)cell channel:(NSString *)channel
+- (void)hitCell:(GridCoord)cell channel:(NSString *)channel
 {
-    // collect fragments for the responders at the cell we touched
+    NSInteger cluster = AUDIO_CLUSTER_NONE;
     NSMutableArray *fragments = [NSMutableArray array];
+    
+    // enumerate responders
     for (id<AudioResponder> responder in self.responders) {
-        if ([GridUtils isCell:[responder responderCell] equalToCell:cell]) {
-            NSArray *responderFragmnets = [responder audioHit:kBPM];
-            [fragments addObjectsFromArray:responderFragmnets];
+        if ([GridUtils isCell:[responder audioCell] equalToCell:cell]) {
+            
+            // hit responder and collect fragments
+            [fragments addObjectsFromArray:[responder audioHit:kBPM]];
+            
+            // remember if responder is part of a cluster
+            if ([responder respondsToSelector:@selector(audioCluster)]) {
+                cluster = [responder audioCluster];
+            }
+        }
+    }
+
+    // inform any cluster members of hit
+    if (cluster != AUDIO_CLUSTER_NONE) {
+        for (id<AudioResponder> responder in self.responders) {
+            if ([responder respondsToSelector:@selector(audioCluster)] &&
+                [responder respondsToSelector:@selector(audioClusterMemberWasHit)] &&
+                ([responder audioCluster] == cluster))
+            {
+                [responder audioClusterMemberWasHit];
+            }
         }
     }
     
@@ -73,15 +94,22 @@
     [[MainSynth sharedMainSynth] receiveEvents:events ignoreAudioPad:NO];
 }
 
-- (void)audioRelease:(GridCoord)cell channel:(NSString *)channel
+//- (void)dragCell:(Coord *)cell cha
+
+- (void)releaseCell:(GridCoord)cell channel:(NSString *)channel
 {
     for (id<AudioResponder> responder in self.responders) {
-        if ([GridUtils isCell:[responder responderCell] equalToCell:cell] &&
+        if ([GridUtils isCell:[responder audioCell] equalToCell:cell] &&
             [responder respondsToSelector:@selector(audioRelease:)])
         {
             [responder audioRelease:kBPM];
         }
     }
+}
+
+- (void)changeCell:(Coord *)cell channgel:(NSString *)channel
+{
+    
 }
 
 #pragma mark CCNode SceneManagement
@@ -113,7 +141,7 @@
     NSMutableDictionary *mutableTouchInfo = [NSMutableDictionary dictionaryWithDictionary:touchInfo];
     CFDictionaryAddValue(self.trackingTouches, (__bridge void *)(touch), (__bridge void *)(mutableTouchInfo));
     
-    [self processFragmentsForCell:cell channel:channel];
+    [self hitCell:cell channel:channel];
     
     return YES;
 }
@@ -133,14 +161,12 @@
     
     // if touch moved to a new cell, update info
     if (![GridUtils isCell:cell equalToCell:lastCell]) {
-        
         [touchInfo setObject:@(cell.x) forKey:@"x"];
         [touchInfo setObject:@(cell.y) forKey:@"y"];
         CFDictionaryReplaceValue(self.trackingTouches, (__bridge void *)(touch), (__bridge void *)(touchInfo));
         
-        [self audioRelease:lastCell channel:channel];
-                
-        [self processFragmentsForCell:cell channel:channel];
+        [self releaseCell:lastCell channel:channel];
+        [self hitCell:cell channel:channel];
     }
 }
 
@@ -155,7 +181,7 @@
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
-    [self audioRelease:cell channel:channel];
+    [self releaseCell:cell channel:channel];
     
     CFDictionaryRemoveValue(self.trackingTouches, (__bridge void *)touch);
 }
@@ -171,7 +197,7 @@
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
-    [self audioRelease:cell channel:channel];
+    [self releaseCell:cell channel:channel];
     
     CFDictionaryRemoveValue(self.trackingTouches, (__bridge void *)touch);
 }

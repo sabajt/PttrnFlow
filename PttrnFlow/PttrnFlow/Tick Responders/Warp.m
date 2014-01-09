@@ -29,7 +29,7 @@
     return @"";
 }
 
-- (GridCoord)responderCell
+- (GridCoord)audioCell
 {
     return self.cell;
 }

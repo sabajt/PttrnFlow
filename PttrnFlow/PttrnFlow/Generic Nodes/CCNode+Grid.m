@@ -11,39 +11,7 @@
 
 static char kCellValue;
 static char kCellSizeValue;
-
-#pragma mark - private
-
-@interface CCNode (GridPrivate)
-
-@property (strong, nonatomic) NSValue *cellValue;
-@property (strong, nonatomic) NSValue *cellSizeValue;
-
-@end
-
-@implementation CCNode (GridPrivate)
-
-- (void)setCellValue:(NSValue *)cellValue
-{
-    objc_setAssociatedObject(self, &kCellValue, cellValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (NSValue *)cellValue
-{
-    return objc_getAssociatedObject(self, &kCellValue);
-}
-
-- (void)setCellSizeValue:(NSValue *)cellSizeValue
-{
-    objc_setAssociatedObject(self, &kCellSizeValue, cellSizeValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (NSValue *)cellSizeValue
-{
-    return objc_getAssociatedObject(self, &kCellSizeValue);
-}
-
-@end
+static char kCellGroup;
 
 #pragma mark - public
 
@@ -51,16 +19,17 @@ static char kCellSizeValue;
 
 @dynamic cell;
 @dynamic cellSize;
+@dynamic cellGroup;
 
 - (void)setCell:(GridCoord)cell
 {
     NSValue *value = [NSValue valueWithCGPoint:ccp(cell.x, cell.y)];
-    [self setCellValue:value];
+    objc_setAssociatedObject(self, &kCellValue, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (GridCoord)cell
 {
-    NSValue *value = [self cellValue];
+    NSValue *value = objc_getAssociatedObject(self, &kCellValue);
     CGPoint point = [value CGPointValue];
     return GridCoordMake((int)point.x, (int)point.y);
 }
@@ -68,13 +37,23 @@ static char kCellSizeValue;
 - (void)setCellSize:(CGSize)cellSize
 {
     NSValue *value = [NSValue valueWithCGSize:cellSize];
-    [self setCellSizeValue:value];
+    objc_setAssociatedObject(self, &kCellSizeValue, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (CGSize)cellSize
 {
-    NSValue *value = [self cellSizeValue];
+    NSValue *value = objc_getAssociatedObject(self, &kCellSizeValue);;
     return [value CGSizeValue];
+}
+
+- (void)setCellGroup:(NSNumber *)cellGroup
+{
+    objc_setAssociatedObject(self, &kCellGroup, cellGroup, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (NSNumber *)cellGroup
+{
+    return objc_getAssociatedObject(self, &kCellGroup);
 }
 
 @end

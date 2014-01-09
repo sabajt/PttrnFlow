@@ -35,7 +35,7 @@
 
 #pragma mark - AudioResponder
 
-- (GridCoord)responderCell
+- (GridCoord)audioCell
 {
     return self.cell;
 }

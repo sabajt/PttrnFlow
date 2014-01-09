@@ -107,7 +107,7 @@
     return nil;
 }
 
-- (GridCoord)responderCell
+- (GridCoord)audioCell
 {
     return self.cell;
 }

@@ -257,7 +257,7 @@ CGFloat const kTickInterval = 0.12;
         NSMutableArray *currentLastTickedResponders = [NSMutableArray array];
         NSMutableArray *fragments = [NSMutableArray array];
         for (id<AudioResponder> responder in self.responders) {
-            if ([GridUtils isCell:[responder responderCell] equalToCell:tickChannel.currentCell]) {
+            if ([GridUtils isCell:[responder audioCell] equalToCell:tickChannel.currentCell]) {
                 NSArray *responderFragmnets = [responder audioHit:kBPM];
                 [fragments addObjectsFromArray:responderFragmnets];
                 
@@ -344,7 +344,7 @@ CGFloat const kTickInterval = 0.12;
 {
     NSMutableArray *results = [NSMutableArray array];
     for (id<AudioResponder> responder in self.responders) {
-        if ([GridUtils isCell:cell equalToCell:[responder responderCell]]) {
+        if ([GridUtils isCell:cell equalToCell:[responder audioCell]]) {
             [results addObject:responder];
         }
     }
@@ -355,7 +355,7 @@ CGFloat const kTickInterval = 0.12;
 {
     NSMutableArray *results= [NSMutableArray array];
     for (id<AudioResponder> responder in self.responders) {
-        if ([GridUtils isCell:cell equalToCell:[responder responderCell]] && [responder isKindOfClass:class]) {
+        if ([GridUtils isCell:cell equalToCell:[responder audioCell]] && [responder isKindOfClass:class]) {
             [results addObject:responder];
         }
     }
@@ -365,7 +365,7 @@ CGFloat const kTickInterval = 0.12;
 - (BOOL)isAnyAudioResponderAtCell:(GridCoord)cell
 {
     for (id<AudioResponder> responder in self.responders) {
-        if ([GridUtils isCell:cell equalToCell:[responder responderCell]]) {
+        if ([GridUtils isCell:cell equalToCell:[responder audioCell]]) {
             return YES;
         }
     }

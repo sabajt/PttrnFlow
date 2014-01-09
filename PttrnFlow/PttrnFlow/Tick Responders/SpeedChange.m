@@ -40,7 +40,7 @@
     return @[self.speed];
 }
 
-- (GridCoord)responderCell
+- (GridCoord)audioCell
 {
     return self.cell;
 }

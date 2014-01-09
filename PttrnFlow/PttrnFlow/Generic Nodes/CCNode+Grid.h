@@ -13,5 +13,6 @@
 
 @property (assign) GridCoord cell;
 @property (assign) CGSize cellSize;
+@property (copy, nonatomic) NSNumber *cellGroup;
 
 @end

@@ -40,7 +40,7 @@
     return @[@"audio_stop"];
 }
 
-- (GridCoord)responderCell
+- (GridCoord)audioCell
 {
     return self.cell;
 }

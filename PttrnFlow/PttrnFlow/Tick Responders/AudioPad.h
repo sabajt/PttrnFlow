@@ -11,8 +11,8 @@
 
 @interface AudioPad : CCSprite <AudioResponder>
 
-@property (assign) BOOL moveable;
+@property (assign) BOOL isStatic;
 
-- (id)initWithCell:(GridCoord)cell moveable:(BOOL)moveable;
+- (id)initWithCell:(GridCoord)cell group:(NSNumber *)group isStatic:(BOOL)isStatic;
 
 @end

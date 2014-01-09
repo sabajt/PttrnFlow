@@ -343,18 +343,24 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
     // collect sample names so we can load them in PD tables
     NSMutableArray *allSampleNames = [NSMutableArray array];
     
+    // unique cluster id if needed
+    NSInteger clusterCount = 0;
+    
     for (NSDictionary *pad in audioPads) {
         
         BOOL isStatic = [pad[kStatic] boolValue];
         NSArray *glyphs = pad[kGlyphs];
         
-        NSMutableArray *cluster;
+        NSMutableArray *clusterCells = nil;
+        NSInteger currentCluster = AUDIO_CLUSTER_NONE;
         if (glyphs.count > 1) {
             if (isStatic) {
                 NSLog(@"Puzzle format warning: audio pad is static but contains multiple units:\n%@", pad);
             }
             else {
-                cluster = [NSMutableArray array];
+                clusterCells = [NSMutableArray array];
+                currentCluster = clusterCount;
+                clusterCount++;
             }
         }
         
@@ -378,7 +384,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             CGPoint cellCenter = [GridUtils relativeMidpointForCell:GridCoordMake(cell.x, cell.y) unitSize:kSizeGridUnit];
             
             // audio pad unit sprite
-            AudioPad *audioPadUnit = [[AudioPad alloc] initWithCell:cell moveable:!isStatic];
+            AudioPad *audioPadUnit = [[AudioPad alloc] initWithCell:cell group:@(currentCluster) isStatic:isStatic];
             audioPadUnit.position = cellCenter;
             [self.tickDispatcher registerAudioResponderCellNode:audioPadUnit];
             [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:audioPadUnit];
@@ -422,15 +428,15 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             }
             
             // collect coords if glyph is part of an audio pad cluster so we can create the connector panels
-            if (cluster != nil) {
-                [cluster addObject:[Coord coordWithX:cell.x Y:cell.y]];
+            if (clusterCells != nil) {
+                [clusterCells addObject:[Coord coordWithX:cell.x Y:cell.y]];
             }
         }
         
         // create connector panels if audio pad is a cluster
-        if (cluster != nil) {
-            NSArray *neighborPairs = [Coord findNeighborPairs:[NSArray arrayWithArray:cluster]];
-            NSAssert(neighborPairs.count == (cluster.count - 1), @"Error: clustered glyphs must have n - 1 neighbors");
+        if (clusterCells != nil) {
+            NSArray *neighborPairs = [Coord findNeighborPairs:[NSArray arrayWithArray:clusterCells]];
+            NSAssert(neighborPairs.count == (clusterCells.count - 1), @"Error: clustered glyphs must have n - 1 neighbors");
 
             for (NSArray *pair in neighborPairs) {
                 Coord *c1 = pair[0];
