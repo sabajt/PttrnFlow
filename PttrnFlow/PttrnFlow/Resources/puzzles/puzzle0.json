@@ -2,68 +2,68 @@
      "bpm" : 120,
      "area" :
      [
+          [0, 0],
+          [1, 0],
           [1, 1],
+          [1, 2],
+          [1, 3],
+          [2, 0],
           [2, 1],
-          [2, 2],
           [2, 3],
-          [2, 4],
+          [3, 0],
           [3, 1],
           [3, 2],
-          [3, 4],
-          [4, 1],
-          [4, 2],
-          [4, 3],
-          [4, 4],
+          [3, 3],
+          [4, 0],
           [5, 1],
           [6, 2],
           [7, 3],
+          [8, 3],
           [8, 4],
-          [9, 4],
-          [9, 5],
-          [9, 6],
-          [9, 8],
-          [10, 4],
-          [10, 6]
+          [8, 5],
+          [8, 7],
+          [9, 3],
+          [9, 5]
      ],
 	"glyphs" :
 	[
           {
                "static" : 0,
-               "cell" : [1, 1],
+               "cell" : [0, 0],
                "entry" : "right",
                "sample" : "drum1.wav",
                "image_set" : "drum_primary",
           },
           {
                "static" : 0,
-               "cell" : [2, 1],
+               "cell" : [1, 0],
                "sample" : "drum2.wav",
                "arrow" : "up",
                "image_set" : "drum_primary"
           },
           {
                "static" : 0,
-               "cell" : [3, 2],
+               "cell" : [2, 1],
                "synth" : "osc",
                "midi" : 52,
                "image_set" : "tone_primary"
           },
           {
                "static" : 1,
-               "cell" : [4, 1],
+               "cell" : [3, 0],
                "sample" : "drum3.wav",
                "image_set" : "drum_primary"
           },
           {
                "static" : 0,
-               "cell" : [2, 4],
+               "cell" : [1, 3],
                "synth" : "osc",
                "midi" : 50,
                "arrow" : "right",
                "image_set" : "tone_primary"
           },
           {
-               "cell" : [3, 4],
+               "cell" : [2, 3],
                "synth" : "osc",
                "midi" : 54,
                "image_set" : "tone_primary"

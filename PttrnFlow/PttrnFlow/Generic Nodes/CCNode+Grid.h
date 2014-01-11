@@ -7,11 +7,11 @@
 //
 
 #import "CCNode.h"
-#import "GridUtils.h"
+#import "Coord.h"
 
 @interface CCNode (Grid)
 
-@property (assign) GridCoord cell;
+@property (strong, nonatomic) Coord *cell;
 @property (assign) CGSize cellSize;
 
 @end

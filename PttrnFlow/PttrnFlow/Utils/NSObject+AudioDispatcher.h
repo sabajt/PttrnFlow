@@ -12,6 +12,6 @@
 
 @interface NSObject (AudioDispatcher)
 
-- (NSArray *)hitRespondersAtCoord:(Coord *)coord responders:(NSArray *)responders;
+- (NSArray *)responders:(NSArray *)responders atCoord:(Coord *)coord;
 
 @end

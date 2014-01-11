@@ -21,7 +21,7 @@
 
 @implementation Synth
 
-- (id)initWithCell:(GridCoord)cell synth:(NSString *)synth midi:(NSString *)midi frameName:(NSString *)frameName
+- (id)initWithCell:(Coord *)cell synth:(NSString *)synth midi:(NSString *)midi frameName:(NSString *)frameName
 {
     self = [super initWithSpriteFrameName:frameName];
     if (self) {
@@ -37,7 +37,7 @@
 
 #pragma mark - AudioResponder
 
-- (GridCoord)audioCell
+- (Coord *)audioCell
 {
     return self.cell;
 }

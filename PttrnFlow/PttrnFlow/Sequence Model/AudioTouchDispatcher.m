@@ -9,10 +9,12 @@
 #import "AudioTouchDispatcher.h"
 #import "TickEvent.h"
 #import "MainSynth.h"
-#import "GridUtils.h"
 #import "TickDispatcher.h"
 #import "AudioStopEvent.h"
 #import "Coord.h"
+#import "NSObject+AudioDispatcher.h"
+#import "AudioPad.h"
+#import "CCNode+Grid.h"
 
 @interface AudioTouchDispatcher ()
 
@@ -53,17 +55,15 @@
     self.responders = nil;
 }
 
-- (void)hitCell:(GridCoord)cell channel:(NSString *)channel
+- (void)hitCell:(Coord *)coord channel:(NSString *)channel
 {
-    NSMutableArray *fragments = [NSMutableArray array];
-    
-    // collect fragments from responders at hit cell
-    for (id<AudioResponder> responder in self.responders) {
-        if ([GridUtils isCell:[responder audioCell] equalToCell:cell]) {
-            [fragments addObjectsFromArray:[responder audioHit:kBPM]];
-        }
+    // collect fragments from all hit cells
+    NSArray *fragments = [NSMutableArray array];
+    NSArray *hitResponders = [self responders:self.responders atCoord:coord];
+    for (id<AudioResponder> responder in hitResponders) {
+        fragments = [fragments arrayByAddingObjectsFromArray:[responder audioHit:kBPM]];
     }
-
+    
     // crunch fragments into events and send to pd
     NSArray *events = [TickEvent eventsFromFragments:fragments channel:channel lastLinkedEvents:nil];
     
@@ -74,10 +74,10 @@
     [[MainSynth sharedMainSynth] receiveEvents:events ignoreAudioPad:NO];
 }
 
-- (void)releaseCell:(GridCoord)cell channel:(NSString *)channel
+- (void)releaseCell:(Coord *)cell channel:(NSString *)channel
 {
     for (id<AudioResponder> responder in self.responders) {
-        if ([GridUtils isCell:[responder audioCell] equalToCell:cell] &&
+        if (([cell isEqualToCoord:[responder audioCell]]) &&
             [responder respondsToSelector:@selector(audioRelease:)])
         {
             [responder audioRelease:kBPM];
@@ -87,6 +87,29 @@
 
 - (void)changeToCell:(Coord *)toCell fromCell:(Coord *)fromCell channel:(NSString *)channel
 {
+    // don't do anything if responders at to cell
+    NSArray *toCellResponders = [self responders:self.responders atCoord:toCell];
+    if (toCellResponders.count > 0) {
+        return;
+    }
+    
+    // move any responders to new cell if audio pad is not static
+    AudioPad *pad;
+    NSArray *fromCellResponders = [self responders:self.responders atCoord:fromCell];
+    if (fromCellResponders.count > 0) {
+        NSInteger found = [fromCellResponders indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            return [obj isKindOfClass:[AudioPad class]];
+        }];
+        if (found != NSNotFound) {
+            pad = fromCellResponders[found];
+        }
+    }
+    if (pad && !pad.isStatic) {
+        for (CCNode<AudioResponder> *node in fromCellResponders) {
+            node.position = [toCell relativeMidpoint];
+            node.cell = toCell;
+        }
+    }
 }
 
 #pragma mark CCNode SceneManagement
@@ -109,7 +132,7 @@
 {
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
+    Coord *cell = [Coord coordForRelativePosition:touchPosition];
     
     // track touch so we know which fragments / cell to associate
     CFIndex count = CFDictionaryGetCount(self.trackingTouches);
@@ -127,23 +150,23 @@
 {
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
+    Coord *cell = [Coord coordForRelativePosition:touchPosition];
     
     // get channel and last touched cell of this specific touch
     NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.trackingTouches, (__bridge void *)touch);
     NSString *channel = [touchInfo objectForKey:@"channel"];
     NSNumber *x = touchInfo[@"x"];
     NSNumber *y = [touchInfo objectForKey:@"y"];
-    GridCoord lastCell = GridCoordMake([x intValue], [y intValue]);
+    Coord *lastCell = [Coord coordWithX:[x integerValue] Y:[y integerValue]];
     
     // if touch moved to a new cell, update info
-    if (![GridUtils isCell:cell equalToCell:lastCell]) {
+    if (![cell isEqualToCoord:lastCell]) {
         [touchInfo setObject:@(cell.x) forKey:@"x"];
         [touchInfo setObject:@(cell.y) forKey:@"y"];
         CFDictionaryReplaceValue(self.trackingTouches, (__bridge void *)(touch), (__bridge void *)(touchInfo));
         
         // process cell change
-        [self changeToCell:[Coord coordWithX:cell.x Y:cell.y] fromCell:[Coord coordWithX:lastCell.x Y:lastCell.y] channel:channel];
+        [self changeToCell:cell fromCell:lastCell channel:channel];
         
         // TODO: hit / release will only be needed when working with PD synths later
 //        [self releaseCell:lastCell channel:channel];
@@ -161,7 +184,7 @@
     
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
+    Coord *cell = [Coord coordForRelativePosition:touchPosition];
     [self releaseCell:cell channel:channel];
     
     CFDictionaryRemoveValue(self.trackingTouches, (__bridge void *)touch);
@@ -177,7 +200,7 @@
     
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
+    Coord *cell = [Coord coordForRelativePosition:touchPosition];
     [self releaseCell:cell channel:channel];
     
     CFDictionaryRemoveValue(self.trackingTouches, (__bridge void *)touch);

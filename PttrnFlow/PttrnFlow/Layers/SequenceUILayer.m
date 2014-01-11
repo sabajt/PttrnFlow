@@ -11,13 +11,11 @@
 #import "TickHitChart.h"
 #import "TickDispatcher.h"
 #import "CCSprite+Utils.h"
-#import "DragButton.h"
 #import "TextureUtils.h"
 #import "PanSprite.h"
 #import "ColorUtils.h"
 #import "TileSprite.h"
 #import "ClippingSprite.h"
-#import "TBSpriteMask.h"
 #import "PuzzleUtils.h"
 
 CGFloat const kUIButtonUnitSize = 50;
@@ -59,7 +57,7 @@ static NSInteger const kMaxControlLength = 7;
 
 @implementation SequenceUILayer
 
-- (id)initWithPuzzle:(NSUInteger)puzzle tickDispatcher:(TickDispatcher *)tickDispatcher dragItemDelegate:(id<DragItemDelegate>)dragItemDelegate
+- (id)initWithPuzzle:(NSUInteger)puzzle tickDispatcher:(TickDispatcher *)tickDispatcher
 {
     self = [super init];
     if (self) {

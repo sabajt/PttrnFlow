@@ -7,6 +7,7 @@
 //
 
 #import "PuzzleUtils.h"
+#import "Coord.h"
 
 NSString *const kCell = @"cell";
 NSString *const kSynth = @"synth";
@@ -62,7 +63,12 @@ static NSString *const kGlyphs = @"glyphs";
 + (NSArray *)puzzleArea:(NSInteger)number
 {
     NSDictionary *puzzle = [PuzzleUtils puzzle:number];
-    return puzzle[kArea];
+    NSMutableArray *area = [NSMutableArray array];
+    for (NSArray *coordArray in puzzle[kArea]) {
+        Coord *coord = [Coord coordWithX:[coordArray[0] integerValue] Y:[coordArray[1] integerValue]];
+        [area addObject:coord];
+    }
+    return [NSArray arrayWithArray:area];
 }
 
 + (NSArray *)puzzleGlyphs:(NSInteger)number

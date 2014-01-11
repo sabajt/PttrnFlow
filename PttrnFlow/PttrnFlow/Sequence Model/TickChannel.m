@@ -15,7 +15,7 @@
 
 @implementation TickChannel
 
-- (id)initWithChannel:(NSString *)channel startingDirection:(kDirection)direction startingCell:(GridCoord)cell
+- (id)initWithChannel:(NSString *)channel startingDirection:(kDirection)direction startingCell:(Coord *)cell
 {
     self = [super init];
     if (self) {
@@ -28,9 +28,9 @@
     return self;
 }
 
-- (GridCoord)nextCell
+- (Coord *)nextCell
 {
-    return [GridUtils stepInDirection:self.currentDirection fromCell:self.currentCell];
+    return [self.currentCell stepInDirection:self.currentDirection];
 }
 
 // some events cause changes in channel state
@@ -45,7 +45,8 @@
         // change direction if direction event
         if ([event isKindOfClass:[DirectionEvent class]]) {
             DirectionEvent *directionEvent = (DirectionEvent *)event;
-            self.currentDirection = [GridUtils directionForString:directionEvent.direction];
+//            self.currentDirection = [GridUtils directionForString:directionEvent.direction];
+            self.currentDirection = [Coord directionForString:directionEvent.direction];
         }
         // change speed
         if ([event isKindOfClass:[SpeedChangeEvent class]]) {

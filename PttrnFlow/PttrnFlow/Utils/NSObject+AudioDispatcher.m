@@ -14,23 +14,21 @@
 
 @implementation NSObject (AudioDispatcher)
 
-// hit and collect fragments at all responders at given coord
-- (NSArray *)hitRespondersAtCoord:(Coord *)coord responders:(NSArray *)responders
+- (NSArray *)responders:(NSArray *)responders atCoord:(Coord *)coord
 {
-    NSMutableArray *fragments = [NSMutableArray array];
+    NSMutableArray *results = [NSMutableArray array];
     for (id<AudioResponder> responder in responders) {
         if (![responder conformsToProtocol:@protocol(AudioResponder)]) {
             NSLog(@"warning: %@ does not conform to AudioResponder, aborting.", responder);
             return nil;
         }
         
-        GridCoord cell = [responder audioCell];
-        Coord *responderCoord = [Coord coordWithX:cell.x Y:cell.y];
+        Coord *responderCoord = [responder audioCell];
         if ([responderCoord isEqualToCoord:coord]) {
-            [fragments addObjectsFromArray:[responder audioHit:kBPM]];
+            [results addObject:responder];
         }
     }
-    return fragments;
+    return [NSArray arrayWithArray:results];
 }
 
 @end

@@ -8,16 +8,15 @@
 
 #import "TickDispatcher.h"
 #import "GameConstants.h"
-#import "Arrow.h"
+//#import "Arrow.h"
 #import "SGTiledUtils.h"
-#import "CCTMXTiledMap+Utils.h"
 #import "TickChannel.h"
 #import "NSArray+CompareStrings.h"
 #import "TickEvent.h"
 #import "ExitEvent.h"
 #import "SolutionSequence.h"
 #import "AudioStopEvent.h"
-#import "GameSprite.h"
+#import "CCNode+Grid.h"
 
 NSInteger const kBPM = 120;
 NSString *const kNotificationAdvancedSequence = @"advanceSequence";
@@ -40,7 +39,6 @@ CGFloat const kTickInterval = 0.12;
 
 @property (assign) int sequenceIndex;
 @property (assign) int currentTick;
-@property (assign) GridCoord gridSize;
 
 
 // for each channel, track most recent synth related events so we can compare with solution
@@ -60,22 +58,21 @@ CGFloat const kTickInterval = 0.12;
         self.solutionSequence = [[SolutionSequence alloc] initWithSolution:[NSString stringWithFormat:@"solution%i", sequence]];
         self.sequenceLength = self.solutionSequence.sequence.count;
         
-        // create initial channels
-        NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupAudioResponders];
-        NSMutableSet *channels = [NSMutableSet set];
-        for (NSMutableDictionary *entry in entries) {
-            NSString *channel = [entry objectForKey:kTLDPropertyChannel];
-            GridCoord cell = [tiledMap gridCoordForObject:entry];
-            kDirection direction = [SGTiledUtils directionNamed:[entry objectForKey:kTLDPropertyDirection]];
-            TickChannel *tickChannel = [[TickChannel alloc] initWithChannel:channel startingDirection:direction startingCell:cell];
-            [channels addObject:tickChannel];
-        }
-        self.channels = [NSSet setWithSet:channels];
+//        // create initial channels
+//        NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupAudioResponders];
+//        NSMutableSet *channels = [NSMutableSet set];
+//        for (NSMutableDictionary *entry in entries) {
+//            NSString *channel = [entry objectForKey:kTLDPropertyChannel];
+//            GridCoord cell = [tiledMap gridCoordForObject:entry];
+//            kDirection direction = [SGTiledUtils directionNamed:[entry objectForKey:kTLDPropertyDirection]];
+//            TickChannel *tickChannel = [[TickChannel alloc] initWithChannel:channel startingDirection:direction startingCell:cell];
+//            [channels addObject:tickChannel];
+//        }
+//        self.channels = [NSSet setWithSet:channels];
         
         // other setup
         self.sequenceIndex = 0;
         self.responders = [NSMutableArray array];
-        self.gridSize = [GridUtils gridCoordFromSize:tiledMap.mapSize];
         self.lastTickedResponders = [NSMutableArray array];
         self.hits = [NSMutableArray array];
         self.lastLinkedEvents = [NSMutableDictionary dictionary];
@@ -86,7 +83,7 @@ CGFloat const kTickInterval = 0.12;
 
 #pragma mark - setup
 
-- (void)addDynamicChannel:(NSString *)channel startingCell:(GridCoord)cell startingDirection:(kDirection)direction
+- (void)addDynamicChannel:(NSString *)channel startingCell:(Coord *)cell startingDirection:(kDirection)direction
 {
     TickChannel *ch = [[TickChannel alloc] initWithChannel:channel startingDirection:direction startingCell:cell];
     [self.dynamicChannels addObject:ch];
@@ -189,142 +186,144 @@ CGFloat const kTickInterval = 0.12;
 // moves all tickers along the grid
 - (void)tick:(ccTime)dt
 {
-    // find out what 'beat; we are on (0, 1, 2, 3)
-    int sub = (self.currentTick % 4);
-
-    // figure out which responders need an after tick / removal based on decay value (given by channel speed when they were ticked)
-    NSMutableArray *removeResponders = [NSMutableArray array];
-    for (GameNode<AudioResponder> *responder in self.lastTickedResponders) {
-        
-        if (sub == 0) {
-            if ([@[@"1X", @"2X", @"4X"] hasString:responder.decaySpeed]) {
-                if ([responder respondsToSelector:@selector(audioRelease:)]) {
-                    [responder audioRelease:kBPM];
-                }
-                [removeResponders addObject:responder];
-            }
-        }
-        else if (sub == 2) {
-            if ([@[@"2X", @"4X"] hasString:responder.decaySpeed]) {
-                if ([responder respondsToSelector:@selector(audioRelease:)]) {
-                    [responder audioRelease:kBPM];
-                }
-                [removeResponders addObject:responder];
-            }
-        }
-        else if (sub == 1 || sub == 3) {
-            if ([@"4X" isEqualToString:responder.decaySpeed]) {
-                if ([responder respondsToSelector:@selector(audioRelease:)]) {
-                    [responder audioRelease:kBPM];
-                }
-                [removeResponders addObject:responder];
-            }
-        }
-    }
-    [self.lastTickedResponders removeObjectsInArray:removeResponders];
+    [self stop];
     
-    // stop and check for winning conditions if we have reached the tick limit
-    if (self.currentTick >= self.solutionSequence.sequence.count) {
-        [self stop];
-        if ([self didWin]) {
-            [self.delegate win];
-        }
-        return;
-    }
-    
-    // collect events for tick on each channel
-    NSMutableArray *combinedEvents = [NSMutableArray array];
-    NSSet *channels = [self.channels setByAddingObjectsFromSet:self.dynamicChannels];
-    for (TickChannel *tickChannel in channels) {
-        
-        // skip if tick channel has stopped
-        if (tickChannel.hasStopped) {
-            continue;
-        }
-
-        if (sub == 2) {
-            if (!([tickChannel.speed isEqualToString:@"4X"] || [tickChannel.speed isEqualToString:@"2X"])) {
-                continue;
-            }
-        }
-        else if (sub == 1 || sub == 3) {
-            if (!([tickChannel.speed isEqualToString:@"4X"])) {
-                continue;
-            }
-        }
-        
-        // tick and collect event fragments for all responders at current cell
-        NSMutableArray *currentLastTickedResponders = [NSMutableArray array];
-        NSMutableArray *fragments = [NSMutableArray array];
-        for (id<AudioResponder> responder in self.responders) {
-            if ([GridUtils isCell:[responder audioCell] equalToCell:tickChannel.currentCell]) {
-                NSArray *responderFragmnets = [responder audioHit:kBPM];
-                [fragments addObjectsFromArray:responderFragmnets];
-                
-                // remember last responders
-                [currentLastTickedResponders addObject:responder];
-            }
-        }
-        
-        // construct events that synths can understand from fragments
-        // multiple fragments on a cell may create one or many events...
-        NSArray *events = [TickEvent eventsFromFragments:fragments channel:tickChannel.channel lastLinkedEvents:self.lastLinkedEvents];
-        
-        // refresh last linked events for each channel.
-        // current supports only one linked event at a time per channel
-        for (TickEvent *event in events) {
-            if (event.isLinkedEvent) {
-                [self.lastLinkedEvents setObject:event forKey:tickChannel.channel];
-            }
-        }
-        
-        // if we have no event, we've hit no blocks -- this is an exit event
-        if (events.count == 0) {
-            events = @[[[ExitEvent alloc] initWithChannel:tickChannel.channel isAudioEvent:YES isLinkedEvent:NO lastLinkedEvent:nil fragments:nil]];
-            [self.delegate tickExit:tickChannel.currentCell];
-        }
-        
-        // tick events may affect spacial / game logic of tick channels
-        [tickChannel update:events];
-        
-        // our speed will now be updated, so give current last ticked responders correct decay
-        for (GameNode *node in self.lastTickedResponders) {
-            node.decaySpeed = tickChannel.speed;
-        }
-        [self.lastTickedResponders addObjectsFromArray:currentLastTickedResponders];
-        
-        
-        // tick events collected in combined events will also be sent to pd synth to create sound
-        [combinedEvents addObjectsFromArray:events];
-        
-        // advance cell
-        tickChannel.currentCell = [tickChannel nextCell];
-    }
-    
-//    // stop if we have no events from any channel
-//    if (combinedEvents.count == 0) {
+//    // find out what 'beat; we are on (0, 1, 2, 3)
+//    int sub = (self.currentTick % 4);
+//
+//    // figure out which responders need an after tick / removal based on decay value (given by channel speed when they were ticked)
+//    NSMutableArray *removeResponders = [NSMutableArray array];
+//    for (GameNode<AudioResponder> *responder in self.lastTickedResponders) {
+//        
+//        if (sub == 0) {
+//            if ([@[@"1X", @"2X", @"4X"] hasString:responder.decaySpeed]) {
+//                if ([responder respondsToSelector:@selector(audioRelease:)]) {
+//                    [responder audioRelease:kBPM];
+//                }
+//                [removeResponders addObject:responder];
+//            }
+//        }
+//        else if (sub == 2) {
+//            if ([@[@"2X", @"4X"] hasString:responder.decaySpeed]) {
+//                if ([responder respondsToSelector:@selector(audioRelease:)]) {
+//                    [responder audioRelease:kBPM];
+//                }
+//                [removeResponders addObject:responder];
+//            }
+//        }
+//        else if (sub == 1 || sub == 3) {
+//            if ([@"4X" isEqualToString:responder.decaySpeed]) {
+//                if ([responder respondsToSelector:@selector(audioRelease:)]) {
+//                    [responder audioRelease:kBPM];
+//                }
+//                [removeResponders addObject:responder];
+//            }
+//        }
+//    }
+//    [self.lastTickedResponders removeObjectsInArray:removeResponders];
+//    
+//    // stop and check for winning conditions if we have reached the tick limit
+//    if (self.currentTick >= self.solutionSequence.sequence.count) {
 //        [self stop];
+//        if ([self didWin]) {
+//            [self.delegate win];
+//        }
 //        return;
 //    }
-    
-    // check for a hit (collected audio events for this tick match solution events for this tick)
-    if ([self.solutionSequence tick:self.currentTick doesMatchAudioEventsInGroup:combinedEvents]) {
-        NSLog(@"HIT");
-        [self.hits addObject:@(YES)];
-    }
-    else {
-        NSLog(@"MISS");
-        [self.hits addObject:@(NO)];
-    }
-    
-    // notify UI elements of our hits status
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationTickHit object:nil userInfo:@{kKeyHits : self.hits}];
-
-    // hand over events to synth class which talks to PD patch
-    [[MainSynth sharedMainSynth] receiveEvents:combinedEvents ignoreAudioPad:NO];
-    
-    // advance tick counter (subs)
-    self.currentTick++;
+//    
+//    // collect events for tick on each channel
+//    NSMutableArray *combinedEvents = [NSMutableArray array];
+//    NSSet *channels = [self.channels setByAddingObjectsFromSet:self.dynamicChannels];
+//    for (TickChannel *tickChannel in channels) {
+//        
+//        // skip if tick channel has stopped
+//        if (tickChannel.hasStopped) {
+//            continue;
+//        }
+//
+//        if (sub == 2) {
+//            if (!([tickChannel.speed isEqualToString:@"4X"] || [tickChannel.speed isEqualToString:@"2X"])) {
+//                continue;
+//            }
+//        }
+//        else if (sub == 1 || sub == 3) {
+//            if (!([tickChannel.speed isEqualToString:@"4X"])) {
+//                continue;
+//            }
+//        }
+//        
+//        // tick and collect event fragments for all responders at current cell
+//        NSMutableArray *currentLastTickedResponders = [NSMutableArray array];
+//        NSMutableArray *fragments = [NSMutableArray array];
+//        for (id<AudioResponder> responder in self.responders) {
+//            if ([GridUtils isCell:[responder audioCell] equalToCell:tickChannel.currentCell]) {
+//                NSArray *responderFragmnets = [responder audioHit:kBPM];
+//                [fragments addObjectsFromArray:responderFragmnets];
+//                
+//                // remember last responders
+//                [currentLastTickedResponders addObject:responder];
+//            }
+//        }
+//        
+//        // construct events that synths can understand from fragments
+//        // multiple fragments on a cell may create one or many events...
+//        NSArray *events = [TickEvent eventsFromFragments:fragments channel:tickChannel.channel lastLinkedEvents:self.lastLinkedEvents];
+//        
+//        // refresh last linked events for each channel.
+//        // current supports only one linked event at a time per channel
+//        for (TickEvent *event in events) {
+//            if (event.isLinkedEvent) {
+//                [self.lastLinkedEvents setObject:event forKey:tickChannel.channel];
+//            }
+//        }
+//        
+//        // if we have no event, we've hit no blocks -- this is an exit event
+//        if (events.count == 0) {
+//            events = @[[[ExitEvent alloc] initWithChannel:tickChannel.channel isAudioEvent:YES isLinkedEvent:NO lastLinkedEvent:nil fragments:nil]];
+//            [self.delegate tickExit:tickChannel.currentCell];
+//        }
+//        
+//        // tick events may affect spacial / game logic of tick channels
+//        [tickChannel update:events];
+//        
+//        // our speed will now be updated, so give current last ticked responders correct decay
+//        for (GameNode *node in self.lastTickedResponders) {
+//            node.decaySpeed = tickChannel.speed;
+//        }
+//        [self.lastTickedResponders addObjectsFromArray:currentLastTickedResponders];
+//        
+//        
+//        // tick events collected in combined events will also be sent to pd synth to create sound
+//        [combinedEvents addObjectsFromArray:events];
+//        
+//        // advance cell
+//        tickChannel.currentCell = [tickChannel nextCell];
+//    }
+//    
+////    // stop if we have no events from any channel
+////    if (combinedEvents.count == 0) {
+////        [self stop];
+////        return;
+////    }
+//    
+//    // check for a hit (collected audio events for this tick match solution events for this tick)
+//    if ([self.solutionSequence tick:self.currentTick doesMatchAudioEventsInGroup:combinedEvents]) {
+//        NSLog(@"HIT");
+//        [self.hits addObject:@(YES)];
+//    }
+//    else {
+//        NSLog(@"MISS");
+//        [self.hits addObject:@(NO)];
+//    }
+//    
+//    // notify UI elements of our hits status
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationTickHit object:nil userInfo:@{kKeyHits : self.hits}];
+//
+//    // hand over events to synth class which talks to PD patch
+//    [[MainSynth sharedMainSynth] receiveEvents:combinedEvents ignoreAudioPad:NO];
+//    
+//    // advance tick counter (subs)
+//    self.currentTick++;
 }
 
 // did we hit correct patterns after ticking thru sequence?
@@ -336,40 +335,6 @@ CGFloat const kTickInterval = 0.12;
         }
     }
     return YES;
-}
-
-#pragma mark - public queries
-
-- (NSArray *)AudioRespondersAtCell:(GridCoord)cell
-{
-    NSMutableArray *results = [NSMutableArray array];
-    for (id<AudioResponder> responder in self.responders) {
-        if ([GridUtils isCell:cell equalToCell:[responder audioCell]]) {
-            [results addObject:responder];
-        }
-    }
-    return [NSArray arrayWithArray:results];
-}
-
-- (NSArray *)AudioRespondersAtCell:(GridCoord)cell class:(Class)class
-{
-    NSMutableArray *results= [NSMutableArray array];
-    for (id<AudioResponder> responder in self.responders) {
-        if ([GridUtils isCell:cell equalToCell:[responder audioCell]] && [responder isKindOfClass:class]) {
-            [results addObject:responder];
-        }
-    }
-    return [NSArray arrayWithArray:results];
-}
-
-- (BOOL)isAnyAudioResponderAtCell:(GridCoord)cell
-{
-    for (id<AudioResponder> responder in self.responders) {
-        if ([GridUtils isCell:cell equalToCell:[responder audioCell]]) {
-            return YES;
-        }
-    }
-    return NO;
 }
 
 #pragma mark - scene management

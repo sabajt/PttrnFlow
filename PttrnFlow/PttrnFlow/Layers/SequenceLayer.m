@@ -11,27 +11,24 @@
 #import "GameConstants.h"
 #import "SimpleAudioEngine.h"
 #import "SpriteUtils.h"
-#import "CCTMXTiledMap+Utils.h"
 #import "SGTiledUtils.h"
 #import "Synth.h"
 #import "SGTiledUtils.h"
-#import "Arrow.h"
+//#import "Arrow.h"
 #import "MainSynth.h"
-#import "EntryArrow.h"
+//#import "EntryArrow.h"
 #import "TickerControl.h"
 #import "ColorUtils.h"
 #import "PdDispatcher.h"
 #import "Sample.h"
-#import "BlockFader.h"
 #import "ColorUtils.h"
 #import "CCLayer+Positioning.h"
 #import "BackgroundLayer.h"
 #import "CCSprite+Utils.h"
-#import "Warp.h"
+//#import "Warp.h"
 #import "AudioTouchDispatcher.h"
 #import "AudioPad.h"
-#import "AudioStop.h"
-#import "SpeedChange.h"
+//#import "AudioStop.h"
 #import "TextureUtils.h"
 #import "PuzzleUtils.h"
 #import "Coord.h"
@@ -51,12 +48,9 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 @interface SequenceLayer ()
 
 @property (assign) CGSize screenSize;
-@property (assign) GridCoord gridSize;
+@property (assign) Coord *maxCoord;
 @property (assign) CGPoint gridOrigin; // TODO: using grid origin except for drawing debug grid?
 @property (assign) CGRect puzzleBounds;
-
-@property (assign) GridCoord lastDraggedItemCell;
-@property (assign) GridCoord draggedItemSourceCell;
 
 @property (assign) BOOL shouldDrawGrid; // debugging
 
@@ -66,7 +60,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 
 @property (weak, nonatomic) Synth *pressedSynth;
 @property (weak, nonatomic) BackgroundLayer *backgroundLayer;
-@property (weak, nonatomic) PrimativeCellActor *selectionBox;
 
 @end
 
@@ -93,15 +86,10 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
     [scene addChild:sequenceLayer];
     
     // hud layer -- controls / item menu
-    SequenceUILayer *uiLayer = [[SequenceUILayer alloc] initWithPuzzle:sequence tickDispatcher:sequenceLayer.tickDispatcher dragItemDelegate:sequenceLayer];
+    SequenceUILayer *uiLayer = [[SequenceUILayer alloc] initWithPuzzle:sequence tickDispatcher:sequenceLayer.tickDispatcher];
     [scene addChild:uiLayer z:1];
     
     return scene;
-}
-
-+ (BlockFader *)exitFader:(GridCoord)cell
-{
-    return [BlockFader blockFaderWithSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) color:ccGRAY cell:cell duration:kTickInterval];
 }
 
 - (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
@@ -149,8 +137,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
         
         NSArray *cells = [PuzzleUtils puzzleArea:sequence];
         
-        self.gridSize = [GridUtils maxCoord:cells];
-        self.contentSize = CGSizeMake(self.gridSize.x * kSizeGridUnit, self.gridSize.y * kSizeGridUnit);
+        self.maxCoord = [Coord maxCoord:cells];
+        self.contentSize = CGSizeMake(self.maxCoord.x * kSizeGridUnit, self.maxCoord.y * kSizeGridUnit);
         
         self.puzzleBounds = CGRectMake(kPuzzleBoundsMargin,
                                        (3 * kUIButtonUnitSize) + kPuzzleBoundsMargin,
@@ -174,11 +162,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             CGFloat padding = self.puzzleBounds.size.height - self.contentSize.height;
             self.position = ccp(self.position.x, self.puzzleBounds.origin.y + (padding / 2));
         }
-
-        self.draggedItemSourceCell = [GridUtils gridCoordNone];
         
         // tick dispatcher
-        
         TickDispatcher *tickDispatcher = [[TickDispatcher alloc] initWithSequence:sequence tiledMap:tiledMap];
         
         self.tickDispatcher = tickDispatcher;
@@ -186,31 +171,16 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
         [self addChild:self.tickDispatcher];
         
         // audio touch dispatcher
-        
         AudioTouchDispatcher *sharedTouchDispatcher = [AudioTouchDispatcher sharedAudioTouchDispatcher];
         self.panDelegate = sharedTouchDispatcher;
         [self addChild:sharedTouchDispatcher];
         
         // create puzzle objects
-        
-        self.area = [self createPuzzleArea:sequence];
+        self.areaCells = [PuzzleUtils puzzleArea:sequence];
         [self createPuzzleBorder:sequence];
         [self createPuzzleObjects:sequence];
     }
     return self;
-}
-
-- (NSSet *)createPuzzleArea:(NSInteger)puzzle
-{
-    // convert puzzle data to area set
-    NSMutableSet *area = [NSMutableSet set];
-    NSArray *cells = [PuzzleUtils puzzleArea:puzzle];
-    for (NSArray *cell in cells) {
-        NSString *x = [cell[0] stringValue];
-        NSString *y = [cell[1] stringValue];
-        [area addObject:[x stringByAppendingString:y]];
-    }
-    return [NSSet setWithSet:area];
 }
 
 - (void)createPuzzleBorder:(NSInteger)puzzle
@@ -220,26 +190,26 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
     static NSString *padBorderCornerOutside = @"pad_border_corner_outside.png";
 
     // 0-base index against 1-base index grid size will give us the corner points to create border images
-    for (int x = 0; x <= self.gridSize.x; x++) {
-        for (int y = 0; y <= self.gridSize.y; y++) {
+    for (NSInteger x = -1; x <= self.maxCoord.x; x++) {
+        for (NSInteger y = -1; y <= self.maxCoord.y; y++) {
             
-            GridCoord cell = GridCoordMake(x, y);
+            Coord *cell = [Coord coordWithX:x Y:y];
             
-            // find neighbors
-            NSString *bottomLeft = [NSString stringWithFormat:@"%i%i", x, y];
-            NSString *topLeft = [NSString stringWithFormat:@"%i%i", x, y + 1];
-            NSString *bottomRight = [NSString stringWithFormat:@"%i%i", x + 1, y];
-            NSString *topRight = [NSString stringWithFormat:@"%i%i", x + 1, y + 1];
+            // find neighbor corners
+            Coord *bottomleft = [Coord coordWithX:x Y:y];
+            Coord *topLeft = [Coord coordWithX:x Y:y + 1];
+            Coord *bottomRight = [Coord coordWithX:x + 1 Y:y];
+            Coord *topRight = [Coord coordWithX:x + 1 Y:y + 1];
             
-            BOOL hasBottomLeft = [self.area containsObject:bottomLeft];
-            BOOL hasTopLeft = [self.area containsObject:topLeft];
-            BOOL hasBottomRight = [self.area containsObject:bottomRight];
-            BOOL hasTopRight = [self.area containsObject:topRight];
+            BOOL hasBottomLeft = [bottomleft isCoordInGroup:self.areaCells];
+            BOOL hasTopLeft = [topLeft isCoordInGroup:self.areaCells];
+            BOOL hasBottomRight = [bottomRight isCoordInGroup:self.areaCells];
+            BOOL hasTopRight = [topRight isCoordInGroup:self.areaCells];
             
             // cell on every side, fill panel instead of border needed
             if (hasBottomLeft && hasTopLeft && hasBottomRight && hasTopRight) {
                 CCSprite *padFill = [CCSprite spriteWithSpriteFrameName:@"pad_fill.png"];
-                padFill.position = [GridUtils relativePositionForGridCoord:GridCoordMake(cell.x + 1, cell.y + 1) unitSize:kSizeGridUnit];
+                padFill.position = [[[cell stepInDirection:kDirectionRight] stepInDirection:kDirectionUp] relativePosition];
                 [self.audioObjectsBatchNode addChild:padFill z:ZOrderAudioBatchPanelFill];
                 continue;
             }
@@ -324,7 +294,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             }
             
             // position and add border(s)
-            border1.position = [GridUtils relativePositionForGridCoord:GridCoordMake(cell.x + 1, cell.y + 1) unitSize:kSizeGridUnit];
+            border1.position = [[[cell stepInDirection:kDirectionRight] stepInDirection:kDirectionUp] relativePosition];
             [self.audioObjectsBatchNode addChild:border1 z:ZOrderAudioBatchPanelBorder];
             
             if (border2 != nil) {
@@ -345,8 +315,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
     
     for (NSDictionary *glyph in glyphs) {
         BOOL isStatic = [glyph[kStatic] boolValue];
-        NSArray *rawCellArray = glyph[kCell];
-        NSArray *cellArray = @[@([rawCellArray[0] intValue]), @([rawCellArray[1] intValue])]; // TODO: why?
+        NSArray *cellArray = glyph[kCell];
         NSString *entry = glyph[kEntry];
         NSString *arrow = glyph[kArrow];
         NSString *synthName = glyph[kSynth];
@@ -359,8 +328,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             NSLog(@"SequenceLayer createPuzzleObjects error: 'cell' must not be null on audio pads");
             return;
         }
-        GridCoord cell = GridCoordMake([cellArray[0] intValue], [cellArray[1] intValue]);
-        CGPoint cellCenter = [GridUtils relativeMidpointForCell:GridCoordMake(cell.x, cell.y) unitSize:kSizeGridUnit];
+        Coord *cell = [Coord coordWithX:[cellArray[0] integerValue] Y:[cellArray[1] integerValue]];
+        CGPoint cellCenter = [cell relativeMidpoint];
         
         // audio pad unit sprite
         AudioPad *audioPadUnit = [[AudioPad alloc] initWithCell:cell isStatic:isStatic];
@@ -409,37 +378,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
     [[MainSynth sharedMainSynth] loadSamples:allSampleNames];
 }
 
-// general rule for legal placement of drag items
-- (BOOL)isLegalItemPlacement:(GridCoord)cell itemType:(kDragItem)itemType sender:(id)sender
-{
-    NSArray *AudioResponders = [self.tickDispatcher AudioRespondersAtCell:cell];
-    
-    // a stop item can only be placed on an empty audio pad
-    if (itemType == kDragItemAudioStop) {
-        if (AudioResponders.count == 1) {
-            id responder = [AudioResponders lastObject];
-            return [responder isKindOfClass:[AudioPad class]];
-        }
-        else {
-            return NO;
-        }
-    }
-    
-    // otherwise only place on top of a block
-    if (AudioResponders.count == 0) {
-        return NO;
-    }
-    // can't place on top of another object of same type unless it's the source cell
-    else {
-        for (id responder in AudioResponders) {
-            if ([responder isKindOfClass:[sender class]] && ![GridUtils isCell:cell equalToCell:self.draggedItemSourceCell]) {
-                return NO;
-            }
-        }
-    }
-    return YES;
-}
-
 #pragma mark - scene management
 // TODO: opening and closing pd patch not matched with onEnter / onExit would cause pd patch to not be opened if
 // TODO: leaving scene but keeping sequence layer around then coming back to seq layer
@@ -458,96 +396,12 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
     [super onExit];
 }
 
-#pragma mark - DragItemDelegate
-
-- (void)dragItemBegan:(kDragItem)itemType touch:(UITouch *)touch sender:(id)sender
-{    
-    GameNode *gameNode = (GameNode *)sender;
-    self.draggedItemSourceCell = gameNode.cell;
-    
-    if (itemType == kDragItemArrow) {
-        self.selectionBox.cell = self.draggedItemSourceCell;
-        self.selectionBox.position = [GridUtils relativePositionForGridCoord:self.selectionBox.cell unitSize:kSizeGridUnit];
-        self.selectionBox.visible = YES;
-    }
-}
-
-- (void)dragItemMoved:(kDragItem)itemType touch:(UITouch *)touch sender:(id)sender
-{
-    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    GridCoord cell = [GridUtils gridCoordForRelativePosition:touchPosition unitSize:kSizeGridUnit];
-    
-    if (![GridUtils isCell:cell equalToCell:self.lastDraggedItemCell]) {
-        self.lastDraggedItemCell = cell;
-        
-        // highlight if legal for placement
-        BOOL legalPlacement = [self isLegalItemPlacement:cell itemType:itemType sender:sender];
-        if (legalPlacement) {
-            if (self.selectionBox == nil) {
-                PrimativeCellActor *selectionBox = [[PrimativeCellActor alloc] initWithRectSize:CGSizeMake(kSizeGridUnit, kSizeGridUnit) edgeLength:20 color:ccYELLOW cell:cell];
-                self.selectionBox = selectionBox;
-                self.selectionBox.position = [GridUtils relativePositionForGridCoord:self.selectionBox.cell unitSize:kSizeGridUnit];
-                [self addChild:selectionBox];
-            }
-            else {
-                self.selectionBox.cell = cell;
-                self.selectionBox.position = [GridUtils relativePositionForGridCoord:self.selectionBox.cell unitSize:kSizeGridUnit];
-            }
-            self.selectionBox.visible = YES;
-        }
-        else {
-            self.selectionBox.visible = NO;
-        }
-    }
-}
-
-- (void)dragItemDropped:(kDragItem)itemType touch:(UITouch *)touch sender:(id)sender
-{    
-    if (self.selectionBox.visible) {
-        
-        // instantiate drag items here -- will just be easiest to hard code each case
-        
-        if (itemType == kDragItemArrow) {
-            Arrow *arrow = [[Arrow alloc] initWithCell:self.lastDraggedItemCell batchNode:self.othersBatchNode facing:kDirectionUp dragItemDelegate:self];
-            [self.tickDispatcher registerAudioResponderCellNode:arrow];
-            [self addChild:arrow];
-        }
-        else if (itemType == kDragItemWarp) {
-            Warp *warp = [[Warp alloc] initWithBatchNode:self.othersBatchNode dragItemDelegate:self cell:self.lastDraggedItemCell];
-            [self.tickDispatcher registerAudioResponderCellNode:warp];
-            [self addChild:warp];
-        }
-        else if (itemType == kDragItemAudioStop) {
-            AudioStop *audioStop = [[AudioStop alloc] initWithBatchNode:self.othersBatchNode cell:self.lastDraggedItemCell dragItemDelegate:self];
-            [self.tickDispatcher registerAudioResponderCellNode:audioStop];
-            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:audioStop];
-            [self addChild:audioStop];
-        }
-        else if (itemType == kDragItemSpeedChange) {
-            SpeedChange *speedChange = [[SpeedChange alloc] initWithBatchNode:self.othersBatchNode Cell:self.lastDraggedItemCell dragItemDelegate:self speed:@"2X"];
-            [self.tickDispatcher registerAudioResponderCellNode:speedChange];
-            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:speedChange]; // not actually an audio event, but we need to track touches for highlighting
-            [self addChild:speedChange];
-        }
-        
-        self.selectionBox.visible = NO;
-    }
-    
-    self.draggedItemSourceCell = [GridUtils gridCoordNone];
-    self.lastDraggedItemCell = [GridUtils gridCoordNone];
-}
-
-- (CGFloat)dragItemScaleFactor
-{
-    return self.scale;
-}
-
 #pragma mark - TickDispatcherDelegate
 
-- (void)tickExit:(GridCoord)cell
+- (void)tickExit:(Coord *)cell
 {
-    // create the exit animation -- don't send an event to synth, TickDispatcher handles in this case
-    [self addChild:[SequenceLayer exitFader:cell]];
+//    // create the exit animation -- don't send an event to synth, TickDispatcher handles in this case
+//    [self addChild:[SequenceLayer exitFader:cell]];
 }
 
 - (void)win
@@ -588,13 +442,13 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
     NSLog(@"--end debug------------------------\n");
 }
 
-- (void)draw
-{
-    // grid
-    if (self.shouldDrawGrid) {
-        ccDrawColor4F(0.5f, 0.5f, 0.5f, 1.0f);
-        [GridUtils drawGridWithSize:self.gridSize unitSize:kSizeGridUnit origin:_gridOrigin];
-    }
-}
+//- (void)draw
+//{
+//    // grid
+//    if (self.shouldDrawGrid) {
+//        ccDrawColor4F(0.5f, 0.5f, 0.5f, 1.0f);
+//        [GridUtils drawGridWithSize:self.maxCoord unitSize:kSizeGridUnit origin:_gridOrigin];
+//    }
+//}
 
 @end

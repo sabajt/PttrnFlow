@@ -19,17 +19,14 @@ static char kCellSizeValue;
 @dynamic cell;
 @dynamic cellSize;
 
-- (void)setCell:(GridCoord)cell
+- (void)setCell:(Coord *)cell
 {
-    NSValue *value = [NSValue valueWithCGPoint:ccp(cell.x, cell.y)];
-    objc_setAssociatedObject(self, &kCellValue, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &kCellValue, cell, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (GridCoord)cell
+- (Coord *)cell
 {
-    NSValue *value = objc_getAssociatedObject(self, &kCellValue);
-    CGPoint point = [value CGPointValue];
-    return GridCoordMake((int)point.x, (int)point.y);
+    return objc_getAssociatedObject(self, &kCellValue);
 }
 
 - (void)setCellSize:(CGSize)cellSize

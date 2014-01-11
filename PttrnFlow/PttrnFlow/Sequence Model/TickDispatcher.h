@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GridUtils.h"
 #import "MainSynth.h"
 #import "TickerControl.h"
 #import "AudioResponder.h"
@@ -22,7 +21,7 @@ FOUNDATION_EXPORT CGFloat const kTickInterval;
 
 @protocol TickDispatcherDelegate <NSObject>
 
-- (void)tickExit:(GridCoord)cell;
+- (void)tickExit:(Coord *)cell;
 - (void)win;
 
 @end
@@ -42,10 +41,5 @@ FOUNDATION_EXPORT CGFloat const kTickInterval;
 - (void)stop;
 - (void)play:(int)index;
 - (void)scheduleSequence;
-
-// queries
-- (NSArray *)AudioRespondersAtCell:(GridCoord)cell;
-- (NSArray *)AudioRespondersAtCell:(GridCoord)cell class:(Class)class;
-- (BOOL)isAnyAudioResponderAtCell:(GridCoord)cell;
 
 @end

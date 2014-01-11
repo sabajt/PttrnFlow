@@ -8,6 +8,7 @@
 
 #import "AudioPad.h"
 #import "CCNode+Grid.h"
+#import "GameConstants.h"
 
 @interface AudioPad ()
 
@@ -18,7 +19,7 @@
 
 @implementation AudioPad
 
-- (id)initWithCell:(GridCoord)cell isStatic:(BOOL)isStatic
+- (id)initWithCell:(Coord *)cell isStatic:(BOOL)isStatic
 {
     NSString *offFrameName = @"audio_box_off_static.png";
     if (!isStatic) {
@@ -56,7 +57,7 @@
     return nil;
 }
 
-- (GridCoord)audioCell
+- (Coord *)audioCell
 {
     return self.cell;
 }

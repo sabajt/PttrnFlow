@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GridUtils.h"
+#import "Coord.h"
 
 @class TickEvent;
 
 @protocol AudioResponder <NSObject>
 
 // responder must have a cell
-- (GridCoord)audioCell;
+- (Coord *)audioCell;
 
 // triggered on touch down or step
 // responder may return an array of 1 or many fragments
