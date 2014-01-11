@@ -20,88 +20,67 @@
           [5, 5],
           [6, 5]
      ],
-	"pads" :
-	[
+	"glyphs" :
+     [
           {
                "static" : 0,
-               "glyphs" :
-               [
-                    {
-                         "cell" : [1, 1],
-                         "entry" : "right",
-                         "sample" : "pttrn1-01.wav",
-                         "image_set" : "drum_primary",
-                    },
-                    {
-                         "cell" : [2, 1],
-                         "sample" : "pttrn1-02.wav",
-                         "arrow" : "up",
-                         "image_set" : "drum_primary"
-                    }
-               ]
+               "cell" : [1, 1],
+               "entry" : "right",
+               "sample" : "pttrn1-01.wav",
+               "image_set" : "drum_primary",
+          },
+          {
+               "static" : 0,
+               "cell" : [2, 1],
+               "sample" : "pttrn1-02.wav",
+               "arrow" : "up",
+               "image_set" : "drum_primary"
           },
           {
                "static" : 1,
-               "glyphs" :
-               [
-                    {
-                         "cell" : [3, 2],
-                         "synth" : "osc",
-                         "midi" : 52,
-                         "image_set" : "tone_primary"
-                    },
-               ]
+               "cell" : [3, 2],
+               "synth" : "osc",
+               "midi" : 52,
+               "image_set" : "tone_primary"
           },
           {
                "static" : 1,
-               "glyphs" :
-               [
-                    {
-                         "cell" : [4, 1],
-                         "sample" : "pttrn1-02.wav",
-                         "image_set" : "drum_primary"
-                    }
-               ]
+               "cell" : [4, 1],
+               "sample" : "pttrn1-02.wav",
+               "image_set" : "drum_primary"
           },
           {
                "static" : 0,
-               "glyphs" :
-               [
-                    {
-                         "cell" : [2, 4],
-                         "synth" : "osc",
-                         "midi" : 50,
-                         "arrow" : "right",
-                         "image_set" : "tone_primary"
-                    },
-                    {
-                         "cell" : [3, 4],
-                         "synth" : "osc",
-                         "midi" : 54,
-                         "image_set" : "tone_primary"
-                    }
-               ]
+               "cell" : [2, 4],
+               "synth" : "osc",
+               "midi" : 50,
+               "arrow" : "right",
+               "image_set" : "tone_primary"
           },
           {
                "static" : 0,
-               "glyphs" :
-               [
-                    {
-                         "cell" : [5, 3],
-                         "sample" : "pttrn1-01.wav",
-                         "image_set" : "drum_primary"
-                    },
-                    {
-                         "cell" : [5, 4],
-                         "sample" : "pttrn1-02.wav",
-                         "image_set" : "drum_primary"
-                    },
-                    {
-                         "cell" : [5, 5],
-                         "sample" : "pttrn1-02.wav",
-                         "image_set" : "drum_primary"
-                    }
-               ]
+               "cell" : [3, 4],
+               "synth" : "osc",
+               "midi" : 54,
+               "image_set" : "tone_primary"
+          },
+          {
+               "static" : 0,
+               "cell" : [5, 3],
+               "sample" : "pttrn1-01.wav",
+               "image_set" : "drum_primary"
+          },
+          {
+               "static" : 1,
+               "cell" : [5, 4],
+               "sample" : "pttrn1-02.wav",
+               "image_set" : "drum_primary"
+          },
+          {
+               "static" : 1,
+               "cell" : [5, 5],
+               "sample" : "pttrn1-02.wav",
+               "image_set" : "drum_primary"
           }
      ]
 }

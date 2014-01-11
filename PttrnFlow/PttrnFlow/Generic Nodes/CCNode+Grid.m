@@ -11,7 +11,6 @@
 
 static char kCellValue;
 static char kCellSizeValue;
-static char kCellGroup;
 
 #pragma mark - public
 
@@ -19,7 +18,6 @@ static char kCellGroup;
 
 @dynamic cell;
 @dynamic cellSize;
-@dynamic cellGroup;
 
 - (void)setCell:(GridCoord)cell
 {
@@ -44,16 +42,6 @@ static char kCellGroup;
 {
     NSValue *value = objc_getAssociatedObject(self, &kCellSizeValue);;
     return [value CGSizeValue];
-}
-
-- (void)setCellGroup:(NSNumber *)cellGroup
-{
-    objc_setAssociatedObject(self, &kCellGroup, cellGroup, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-- (NSNumber *)cellGroup
-{
-    return objc_getAssociatedObject(self, &kCellGroup);
 }
 
 @end

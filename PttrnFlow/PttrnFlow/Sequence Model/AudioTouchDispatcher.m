@@ -55,40 +55,15 @@
 
 - (void)hitCell:(GridCoord)cell channel:(NSString *)channel
 {
-    NSInteger cluster = AUDIO_CLUSTER_NONE;
     NSMutableArray *fragments = [NSMutableArray array];
     
-    // enumerate responders
+    // collect fragments from responders at hit cell
     for (id<AudioResponder> responder in self.responders) {
         if ([GridUtils isCell:[responder audioCell] equalToCell:cell]) {
-            
-            // hit responder and collect fragments
             [fragments addObjectsFromArray:[responder audioHit:kBPM]];
-            
-            // remember if responder is part of a cluster
-            if ([responder respondsToSelector:@selector(audioCluster)]) {
-                cluster = [responder audioCluster];
-            }
         }
     }
 
-    // handle cluster actions
-    if (cluster != AUDIO_CLUSTER_NONE) {
-        for (id<AudioResponder> responder in self.responders) {
-            if ([responder respondsToSelector:@selector(audioCluster)]) {
-                // add movement dots
-            }
-            
-//            if ([responder respondsToSelector:@selector(audioCluster)] &&
-//                [responder respondsToSelector:@selector(audioClusterMemberWasHit)] &&
-//                ([responder audioCluster] == cluster))
-//            {
-//                [responder audioClusterMemberWasHit];
-//            }
-            
-        }
-    }
-    
     // crunch fragments into events and send to pd
     NSArray *events = [TickEvent eventsFromFragments:fragments channel:channel lastLinkedEvents:nil];
     
@@ -98,8 +73,6 @@
     // send events to pd
     [[MainSynth sharedMainSynth] receiveEvents:events ignoreAudioPad:NO];
 }
-
-//- (void)dragCell:(Coord *)cell cha
 
 - (void)releaseCell:(GridCoord)cell channel:(NSString *)channel
 {
@@ -114,9 +87,6 @@
 
 - (void)changeToCell:(Coord *)toCell fromCell:(Coord *)fromCell channel:(NSString *)channel
 {
-//    for (id<AudioResponder> responder in self.responders) {
-//        if (re)
-//    }
 }
 
 #pragma mark CCNode SceneManagement

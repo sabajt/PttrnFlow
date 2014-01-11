@@ -15,7 +15,6 @@ NSString *const kArrow = @"arrow";
 NSString *const kEntry = @"entry";
 NSString *const kSample = @"sample";
 NSString *const kStatic = @"static";
-NSString *const kGlyphs = @"glyphs";
 NSString *const kImageSet = @"image_set";
 
 NSString *const kTonePrimary = @"tone_primary";
@@ -26,7 +25,7 @@ NSString *const kDrumSecondary = @"drum_secondary";
 static NSString *const kPuzzle = @"puzzle";
 static NSString *const kBpm = @"bpm";
 static NSString *const kArea = @"area";
-static NSString *const kPads = @"pads";
+static NSString *const kGlyphs = @"glyphs";
 
 @implementation PuzzleUtils
 
@@ -66,10 +65,10 @@ static NSString *const kPads = @"pads";
     return puzzle[kArea];
 }
 
-+ (NSArray *)puzzleAudioPads:(NSInteger)number
++ (NSArray *)puzzleGlyphs:(NSInteger)number
 {
     NSDictionary *puzzle = [PuzzleUtils puzzle:number];
-    return puzzle[kPads];
+    return puzzle[kGlyphs];
 }
 
 /* image sequence keys take the following form:
@@ -102,45 +101,40 @@ static NSString *const kPads = @"pads";
     NSMutableSet *beatPrimaryValues = [NSMutableSet set];
     NSMutableSet *beatSecondaryValues = [NSMutableSet set];
     
-    NSArray *audioPads = [PuzzleUtils puzzleAudioPads:number];
-    for (NSDictionary *pad in audioPads) {
-        NSArray *glyphs = pad[kGlyphs];
+    NSArray *glyphs = [PuzzleUtils puzzleGlyphs:number];
+    for (NSDictionary *glyph in glyphs) {
+        NSString *imageSet = glyph[kImageSet];
+        NSString *synth = glyph[kSynth];
+        NSNumber *midi = glyph[kMidi];
+        NSString *sample = glyph[kSample];
         
-        for (NSDictionary *glyph in glyphs) {
-            
-            NSString *imageSet = glyph[kImageSet];
-            NSString *synth = glyph[kSynth];
-            NSNumber *midi = glyph[kMidi];
-            NSString *sample = glyph[kSample];
-            
-            if ([imageSet isEqualToString:kTonePrimary]) {
-                // tone image sequence can be used with either PD synths or tonal samples that follow naming format like: @"name_1";
-                if (synth != nil && midi != nil) {
-                    [tonePrimaryValues addObject:midi];
-                }
-                if (sample != nil) {
-                    NSString *value = [[sample componentsSeparatedByString:@"_"] lastObject];
-                    NSNumber *numberValue = @([value integerValue]);
-                    [tonePrimaryValues addObject:numberValue];
-                }
+        if ([imageSet isEqualToString:kTonePrimary]) {
+            // tone image sequence can be used with either PD synths or tonal samples that follow naming format like: @"name_1";
+            if (synth != nil && midi != nil) {
+                [tonePrimaryValues addObject:midi];
             }
-            else if ([imageSet isEqualToString:kToneSecondary]) {
-                // tone image sequence can be used with either PD synths or tonal samples that follow naming format like: @"name_1";
-                if (synth != nil && midi != nil) {
-                    [toneSecondaryValues addObject:midi];
-                }
-                if (sample != nil) {
-                    NSString *value = [[sample componentsSeparatedByString:@"_"] lastObject];
-                    NSNumber *numberValue = @([value integerValue]);
-                    [toneSecondaryValues addObject:numberValue];
-                }
+            if (sample != nil) {
+                NSString *value = [[sample componentsSeparatedByString:@"_"] lastObject];
+                NSNumber *numberValue = @([value integerValue]);
+                [tonePrimaryValues addObject:numberValue];
             }
-            else if ([imageSet isEqualToString:kDrumPrimary]) {
-                [beatPrimaryValues addObject:sample];
+        }
+        else if ([imageSet isEqualToString:kToneSecondary]) {
+            // tone image sequence can be used with either PD synths or tonal samples that follow naming format like: @"name_1";
+            if (synth != nil && midi != nil) {
+                [toneSecondaryValues addObject:midi];
             }
-            else if ([imageSet isEqualToString:kDrumSecondary]) {
-                [beatSecondaryValues addObject:sample];
+            if (sample != nil) {
+                NSString *value = [[sample componentsSeparatedByString:@"_"] lastObject];
+                NSNumber *numberValue = @([value integerValue]);
+                [toneSecondaryValues addObject:numberValue];
             }
+        }
+        else if ([imageSet isEqualToString:kDrumPrimary]) {
+            [beatPrimaryValues addObject:sample];
+        }
+        else if ([imageSet isEqualToString:kDrumSecondary]) {
+            [beatSecondaryValues addObject:sample];
         }
     }
     

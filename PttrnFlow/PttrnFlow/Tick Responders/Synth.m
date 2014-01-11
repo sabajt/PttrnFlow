@@ -47,10 +47,5 @@
     return @[self.midi, self.synth];
 }
 
-- (NSInteger)audioCluster
-{
-    return self.cellGroup;
-}
-
 @end
 

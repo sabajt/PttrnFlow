@@ -33,27 +33,4 @@
     return fragments;
 }
 
-// return first cluster value that is not AUDIO_CLUSTER_NONE found on a responder at given cell
-// if no responders at given cell are clustered or only return AUDIO_CLUSTER_NONE, method returns AUDIO_CLUSTER_NONE
-- (NSInteger)clusterAtCoord:(Coord *)coord responers:(NSArray *)responders
-{
-    for (id<AudioResponder> responder in responders) {
-        if (![responder conformsToProtocol:@protocol(AudioResponder)]) {
-            NSLog(@"warning: %@ does not conform to AudioResponder, aborting.", responder);
-            return AUDIO_CLUSTER_NONE;
-        }
-        
-        GridCoord cell = [responder audioCell];
-        Coord *responderCoord = [Coord coordWithX:cell.x Y:cell.y];
-        if ([responderCoord isEqualToCoord:coord]) {
-            if ([responder respondsToSelector:@selector(audioCluster)]) {
-                if ([responder audioCluster] != AUDIO_CLUSTER_NONE) {
-                    return [responder audioCluster];
-                }
-            }
-        }
-    }
-    return AUDIO_CLUSTER_NONE;
-}
-
 @end

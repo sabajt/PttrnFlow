@@ -337,184 +337,77 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 
 - (void)createPuzzleObjects:(NSInteger)puzzle
 {
-    NSArray *audioPads = [PuzzleUtils puzzleAudioPads:puzzle];
+    NSArray *glyphs = [PuzzleUtils puzzleGlyphs:puzzle];
     NSDictionary *imageSequenceKey = [PuzzleUtils puzzleImageSequenceKey:puzzle];
     
     // collect sample names so we can load them in PD tables
     NSMutableArray *allSampleNames = [NSMutableArray array];
     
-    // unique cluster id if needed
-    NSInteger clusterCount = 0;
-    
-    for (NSDictionary *pad in audioPads) {
+    for (NSDictionary *glyph in glyphs) {
+        BOOL isStatic = [glyph[kStatic] boolValue];
+        NSArray *rawCellArray = glyph[kCell];
+        NSArray *cellArray = @[@([rawCellArray[0] intValue]), @([rawCellArray[1] intValue])]; // TODO: why?
+        NSString *entry = glyph[kEntry];
+        NSString *arrow = glyph[kArrow];
+        NSString *synthName = glyph[kSynth];
+        NSNumber *midi = glyph[kMidi];
+        NSString *sampleName = glyph[kSample];
+        NSString *imageSetBaseName = glyph[kImageSet];
+     
+        // cell is the only mandatory field to create an audio pad (empty pad can be used as a puzzle object to just take up space)
+        if (cellArray == NULL) {
+            NSLog(@"SequenceLayer createPuzzleObjects error: 'cell' must not be null on audio pads");
+            return;
+        }
+        GridCoord cell = GridCoordMake([cellArray[0] intValue], [cellArray[1] intValue]);
+        CGPoint cellCenter = [GridUtils relativeMidpointForCell:GridCoordMake(cell.x, cell.y) unitSize:kSizeGridUnit];
         
-        BOOL isStatic = [pad[kStatic] boolValue];
-        NSArray *glyphs = pad[kGlyphs];
+        // audio pad unit sprite
+        AudioPad *audioPadUnit = [[AudioPad alloc] initWithCell:cell isStatic:isStatic];
+        audioPadUnit.position = cellCenter;
+        [self.tickDispatcher registerAudioResponderCellNode:audioPadUnit];
+        [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:audioPadUnit];
+        [self.audioObjectsBatchNode addChild:audioPadUnit z:ZOrderAudioBatchPad];
         
-        NSMutableArray *clusterCells = nil;
-        NSInteger currentCluster = AUDIO_CLUSTER_NONE;
-        if (glyphs.count > 1) {
-            if (isStatic) {
-                NSLog(@"Puzzle format warning: audio pad is static but contains multiple units:\n%@", pad);
-            }
-            else {
-                clusterCells = [NSMutableArray array];
-                currentCluster = clusterCount;
-                clusterCount++;
-            }
+        // ticker entry point
+        if (entry != NULL) {
         }
         
-        for (NSDictionary *glyph in glyphs) {
+        // pd synth
+        if (synthName != NULL && midi != NULL) {
             
-            NSArray *rawCellArray = glyph[kCell];
-            NSArray *cellArray = @[@([rawCellArray[0] intValue]), @([rawCellArray[1] intValue])]; // TODO: why?
-            NSString *entry = glyph[kEntry];
-            NSString *arrow = glyph[kArrow];
-            NSString *synthName = glyph[kSynth];
-            NSNumber *midi = glyph[kMidi];
-            NSString *sampleName = glyph[kSample];
-            NSString *imageSetBaseName = glyph[kImageSet];
-         
-            // cell is the only mandatory field to create an audio pad (empty pad can be used as a puzzle object to just take up space)
-            if (cellArray == NULL) {
-                NSLog(@"SequenceLayer createPuzzleObjects error: 'cell' must not be null on audio pads");
-                return;
-            }
-            GridCoord cell = GridCoordMake([cellArray[0] intValue], [cellArray[1] intValue]);
-            CGPoint cellCenter = [GridUtils relativeMidpointForCell:GridCoordMake(cell.x, cell.y) unitSize:kSizeGridUnit];
+            NSDictionary *mappedImageSet = [imageSequenceKey objectForKey:imageSetBaseName];
+            NSString *imageName = [mappedImageSet objectForKey:midi];
+            Synth *synth = [[Synth alloc] initWithCell:cell synth:synthName midi:[midi stringValue] frameName:imageName];
             
-            // audio pad unit sprite
-            AudioPad *audioPadUnit = [[AudioPad alloc] initWithCell:cell group:@(currentCluster) isStatic:isStatic];
-            audioPadUnit.position = cellCenter;
-            [self.tickDispatcher registerAudioResponderCellNode:audioPadUnit];
-            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:audioPadUnit];
-            [self.audioObjectsBatchNode addChild:audioPadUnit z:ZOrderAudioBatchPad];
+            // [self.tickDispatcher registerAudioResponderCellNode:synth];
+            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:synth];
             
-            // ticker entry point
-            if (entry != NULL) {
-            }
-            
-            // pd synth
-            if (synthName != NULL && midi != NULL) {
-                
-                NSDictionary *mappedImageSet = [imageSequenceKey objectForKey:imageSetBaseName];
-                NSString *imageName = [mappedImageSet objectForKey:midi];
-                Synth *synth = [[Synth alloc] initWithCell:cell synth:synthName midi:[midi stringValue] frameName:imageName];
-                
-                // [self.tickDispatcher registerAudioResponderCellNode:synth];
-                [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:synth];
-                
-                synth.position = cellCenter;
-                [self.audioObjectsBatchNode addChild:synth z:ZOrderAudioBatchGlyph];
-            }
-            
-            // audio sample
-            if (sampleName != NULL) {
-                [allSampleNames addObject:sampleName];
-                
-                NSDictionary *mappedImageSet = [imageSequenceKey objectForKey:imageSetBaseName];
-                NSString *imageName = [mappedImageSet objectForKey:sampleName];
-                Sample *sample = [[Sample alloc] initWithCell:cell sampleName:sampleName frameName:imageName];
-                
-                // [self.tickDispatcher registerAudioResponderCellNode:sample];
-                [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:sample];
-                
-                sample.position = cellCenter;
-                [self.audioObjectsBatchNode addChild:sample z:ZOrderAudioBatchGlyph];
-            }
-            
-            // direction arrow
-            if (arrow != NULL) {
-            }
-            
-            // collect coords if glyph is part of an audio pad cluster so we can create the connector panels
-            if (clusterCells != nil) {
-                [clusterCells addObject:[Coord coordWithX:cell.x Y:cell.y]];
-            }
+            synth.position = cellCenter;
+            [self.audioObjectsBatchNode addChild:synth z:ZOrderAudioBatchGlyph];
         }
         
-        // create connector panels if audio pad is a cluster
-        if (clusterCells != nil) {
-            NSArray *neighborPairs = [Coord findNeighborPairs:[NSArray arrayWithArray:clusterCells]];
-            NSAssert(neighborPairs.count == (clusterCells.count - 1), @"Error: clustered glyphs must have n - 1 neighbors");
-
-            for (NSArray *pair in neighborPairs) {
-                Coord *c1 = pair[0];
-                Coord *c2 = pair[1];
-                
-                Coord *coord1 = [Coord coordWithX:c1.x - 1 Y:c1.y - 1];
-                Coord *coord2 = [Coord coordWithX:c2.x - 1 Y:c2.y - 1];
-                
-                CCSprite *connector = [CCSprite spriteWithSpriteFrameName:@"audio_connector.png"];
-                if ([coord1 isAbove:coord2] || [coord1 isBelow:coord2]) {
-                    connector.rotation = 90.0;
-                }
-                connector.position = CGMidPointMake([coord1 relativeMidpoint], [coord2 relativeMidpoint]);
-                [self.audioObjectsBatchNode addChild:connector z:ZOrderAudioBatchPadConnector];
-            }
+        // audio sample
+        if (sampleName != NULL) {
+            [allSampleNames addObject:sampleName];
+            
+            NSDictionary *mappedImageSet = [imageSequenceKey objectForKey:imageSetBaseName];
+            NSString *imageName = [mappedImageSet objectForKey:sampleName];
+            Sample *sample = [[Sample alloc] initWithCell:cell sampleName:sampleName frameName:imageName];
+            
+            // [self.tickDispatcher registerAudioResponderCellNode:sample];
+            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:sample];
+            
+            sample.position = cellCenter;
+            [self.audioObjectsBatchNode addChild:sample z:ZOrderAudioBatchGlyph];
+        }
+        
+        // direction arrow
+        if (arrow != NULL) {
         }
     }
     [[MainSynth sharedMainSynth] loadSamples:allSampleNames];
 }
-
-//- (void)createPuzzleObjectsOld:(CCTMXTiledMap *)tiledMap
-//{
-//    // audio pads
-//    NSMutableArray *pads = [tiledMap objectsWithName:kTLDObjectAudioPad groupName:kTLDGroupAudioResponders];
-//    for (NSMutableDictionary *pad in pads) {
-//        
-////        GridCoord padChunkOrigin = [tiledMap gridCoordForObject:pad];
-////        NSNumber *width = [pad objectForKey:@"width"];
-////        NSNumber *height = [pad objectForKey:@"height"];
-////        int column = ([width intValue] / kSizeGridUnit);
-////        int row = ([height intValue] / kSizeGridUnit);
-////        
-////        for (int c = 0; c <= column; c++) {
-////            for (int r = 0; r <= row; r++) {
-////                GridCoord cell = GridCoordMake(padChunkOrigin.x + c, padChunkOrigin.y + r);
-////                AudioPad *audioPad = [[AudioPad alloc] initWithCell:cell];
-////                audioPad.position = [GridUtils relativeMidpointForCell:cell unitSize:kSizeGridUnit];
-////                [self.tickDispatcher registerAudioResponderCellNode:audioPad];
-////                [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:audioPad];
-////                [self.audioObjectsBatchNode addChild:audioPad];
-////            }
-////        }
-//    }
-//    
-//    // tone blocks
-//    NSMutableArray *tones = [tiledMap objectsWithName:kTLDObjectTone groupName:kTLDGroupAudioResponders];
-//    for (NSMutableDictionary *tone in tones) {
-//        
-//        Tone *toneNode = [[Tone alloc] initWithBatchNode:self.synthBatchNode tone:tone tiledMap:tiledMap];
-//        [self.tickDispatcher registerAudioResponderCellNode:toneNode];
-//        [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:toneNode];
-//        [self addChild:toneNode];
-//    }
-//    
-//    // drum blocks
-//    NSMutableArray *drums = [tiledMap objectsWithName:kTLDObjectDrum groupName:kTLDGroupAudioResponders];
-//    for (NSMutableDictionary *drum in drums) {
-//        Drum *drumNode = [[Drum alloc] initWithDrum:drum batchNode:self.samplesBatchNode tiledMap:tiledMap];
-//        [self.tickDispatcher registerAudioResponderCellNode:drumNode];
-//        [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:drumNode];
-//        [self addChild:drumNode];
-//    }
-//    
-//    //        // arrow blocks
-//    //        NSMutableArray *arrows = [tiledMap objectsWithName:kTLDObjectArrow groupName:kTLDGroupAudioResponders];
-//    //        for (NSMutableDictionary *arrow in arrows) {
-//    //            Arrow *arrowNode = [[Arrow alloc] initWithArrow:arrow tiledMap:tiledMap synth:self.synth];
-//    //            [self.tickDispatcher registerAudioResponder:arrowNode];
-//    //            [self addChild:arrowNode];
-//    //        }
-//    
-//    // entry arrow
-//    NSMutableArray *entries = [tiledMap objectsWithName:kTLDObjectEntry groupName:kTLDGroupAudioResponders];
-//    for (NSMutableDictionary *entry in entries) {
-//        EntryArrow *entryArrow = [[EntryArrow alloc] initWithBatchNode:self.othersBatchNode entry:entry tiledMap:tiledMap];
-//        [self addChild:entryArrow];
-//    }
-//}
 
 // general rule for legal placement of drag items
 - (BOOL)isLegalItemPlacement:(GridCoord)cell itemType:(kDragItem)itemType sender:(id)sender

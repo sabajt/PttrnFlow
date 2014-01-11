@@ -17,66 +17,41 @@
           [3, 4],
           [3, 5]
      ],
-	"pads" :
+	"glyphs" :
 	[
           {
                "static" : 0,
-               "glyphs" :
-               [
-                    {
-                         "cell" : [1, 1],
-                         "synth" : "osc",
-                         "midi" : 48,
-                         "image_set" : "tone_primary"
-                    },
-               ]
+               "cell" : [1, 1],
+               "synth" : "osc",
+               "midi" : 48,
+               "image_set" : "tone_primary"
           },
           {
                "static" : 0,
-               "glyphs" :
-               [
-                    {
-                         "cell" : [1, 4],
-                         "sample" : "basic_5",
-                         "image_set" : "drum_primary"
-                    }
-               ]
+               "cell" : [1, 4],
+               "sample" : "basic_5",
+               "image_set" : "drum_primary"
           },
           {
                "static" : 0,
-               "glyphs" :
-               [
-                    {
-                         "cell" : [1, 7],
-                         "sample" : "basic_4",
-                         "image_set" : "drum_primary"
-                    }
-               ]
+               "cell" : [1, 7],
+               "sample" : "basic_4",
+               "image_set" : "drum_primary"
           },
           {
                "static" : 1,
-               "glyphs" :
-               [
-                    {
-                         "cell" : [2, 9],
-                         "synth" : "osc",
-                         "midi" : 50,
-                         "arrow" : "right",
-                         "image_set" : "tone_primary"
-                    },
-               ]
+               "cell" : [2, 9],
+               "synth" : "osc",
+               "midi" : 50,
+               "arrow" : "right",
+               "image_set" : "tone_primary"
           },
           {
                "static" : 0,
-               "glyphs" :
-               [
-                    {
-                         "cell" : [3, 4],
-                         "synth" : "osc",
-                         "midi" : 54,
-                         "image_set" : "tone_primary"
-                    }
-               ]
+               "cell" : [3, 4],
+               "synth" : "osc",
+               "midi" : 54,
+               "image_set" : "tone_primary"
           }
      ]
 }

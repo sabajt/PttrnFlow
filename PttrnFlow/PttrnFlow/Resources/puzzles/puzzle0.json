@@ -25,67 +25,48 @@
           [10, 4],
           [10, 6]
      ],
-	"pads" :
+	"glyphs" :
 	[
           {
                "static" : 0,
-               "glyphs" :
-               [
-                    {
-                         "cell" : [1, 1],
-                         "entry" : "right",
-                         "sample" : "drum1.wav",
-                         "image_set" : "drum_primary",
-                    },
-                    {
-                         "cell" : [2, 1],
-                         "sample" : "drum2.wav",
-                         "arrow" : "up",
-                         "image_set" : "drum_primary"
-                    }
-               ]
+               "cell" : [1, 1],
+               "entry" : "right",
+               "sample" : "drum1.wav",
+               "image_set" : "drum_primary",
           },
           {
                "static" : 0,
-               "glyphs" :
-               [
-                    {
-                         "cell" : [3, 2],
-                         "synth" : "osc",
-                         "midi" : 52,
-                         "image_set" : "tone_primary"
-                    },
-               ]
+               "cell" : [2, 1],
+               "sample" : "drum2.wav",
+               "arrow" : "up",
+               "image_set" : "drum_primary"
+          },
+          {
+               "static" : 0,
+               "cell" : [3, 2],
+               "synth" : "osc",
+               "midi" : 52,
+               "image_set" : "tone_primary"
           },
           {
                "static" : 1,
-               "glyphs" :
-               [
-                    {
-                         "cell" : [4, 1],
-                         "sample" : "drum3.wav",
-                         "image_set" : "drum_primary"
-                    }
-               ]
+               "cell" : [4, 1],
+               "sample" : "drum3.wav",
+               "image_set" : "drum_primary"
           },
           {
                "static" : 0,
-               "glyphs" :
-               [
-                    {
-                         "cell" : [2, 4],
-                         "synth" : "osc",
-                         "midi" : 50,
-                         "arrow" : "right",
-                         "image_set" : "tone_primary"
-                    },
-                    {
-                         "cell" : [3, 4],
-                         "synth" : "osc",
-                         "midi" : 54,
-                         "image_set" : "tone_primary"
-                    }
-               ]
+               "cell" : [2, 4],
+               "synth" : "osc",
+               "midi" : 50,
+               "arrow" : "right",
+               "image_set" : "tone_primary"
+          },
+          {
+               "cell" : [3, 4],
+               "synth" : "osc",
+               "midi" : 54,
+               "image_set" : "tone_primary"
           }
      ]
 }
