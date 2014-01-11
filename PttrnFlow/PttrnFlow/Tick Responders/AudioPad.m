@@ -70,9 +70,9 @@
     return AUDIO_CLUSTER_NONE;
 }
 
-- (void)audioClusterMemberWasHit
-{
-    NSLog(@"*** my cluster (%i)was hit!!!\n*** i am of class:\n\n%@\n\n*** at cell: %i, %i", [self audioCluster], [self class], self.cell.x, self.cell.y);
-}
+//- (void)audioClusterMemberWasHit
+//{
+//    NSLog(@"*** my cluster (%i)was hit!!!\n*** i am of class:\n\n%@\n\n*** at cell: %i, %i", [self audioCluster], [self class], self.cell.x, self.cell.y);
+//}
 
 @end
