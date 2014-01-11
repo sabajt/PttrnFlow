@@ -72,15 +72,20 @@
         }
     }
 
-    // inform any cluster members of hit
+    // handle cluster actions
     if (cluster != AUDIO_CLUSTER_NONE) {
         for (id<AudioResponder> responder in self.responders) {
-            if ([responder respondsToSelector:@selector(audioCluster)] &&
-                [responder respondsToSelector:@selector(audioClusterMemberWasHit)] &&
-                ([responder audioCluster] == cluster))
-            {
-                [responder audioClusterMemberWasHit];
+            if ([responder respondsToSelector:@selector(audioCluster)]) {
+                // add movement dots
             }
+            
+//            if ([responder respondsToSelector:@selector(audioCluster)] &&
+//                [responder respondsToSelector:@selector(audioClusterMemberWasHit)] &&
+//                ([responder audioCluster] == cluster))
+//            {
+//                [responder audioClusterMemberWasHit];
+//            }
+            
         }
     }
     
@@ -107,9 +112,11 @@
     }
 }
 
-- (void)changeCell:(Coord *)cell channgel:(NSString *)channel
+- (void)changeToCell:(Coord *)toCell fromCell:(Coord *)fromCell channel:(NSString *)channel
 {
-    
+//    for (id<AudioResponder> responder in self.responders) {
+//        if (re)
+//    }
 }
 
 #pragma mark CCNode SceneManagement
@@ -165,8 +172,12 @@
         [touchInfo setObject:@(cell.y) forKey:@"y"];
         CFDictionaryReplaceValue(self.trackingTouches, (__bridge void *)(touch), (__bridge void *)(touchInfo));
         
-        [self releaseCell:lastCell channel:channel];
-        [self hitCell:cell channel:channel];
+        // process cell change
+        [self changeToCell:[Coord coordWithX:cell.x Y:cell.y] fromCell:[Coord coordWithX:lastCell.x Y:lastCell.y] channel:channel];
+        
+        // TODO: hit / release will only be needed when working with PD synths later
+//        [self releaseCell:lastCell channel:channel];
+//        [self hitCell:cell channel:channel];
     }
 }
 

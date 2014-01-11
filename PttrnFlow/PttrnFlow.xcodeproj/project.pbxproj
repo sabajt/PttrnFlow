@@ -192,6 +192,7 @@
 		16A942E51778C5A50052D5BD /* drum4-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DD1778C5A50052D5BD /* drum4-ipad.png */; };
 		16A942E61778C5A50052D5BD /* drum4on-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DE1778C5A50052D5BD /* drum4on-ipad.png */; };
 		3302EF6E1879C92C0032AD58 /* PFGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302EF6D1879C92C0032AD58 /* PFGeometry.m */; };
+		33185342188033940011D638 /* NSObject+AudioDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 33185341188033940011D638 /* NSObject+AudioDispatcher.m */; };
 		3338A9CC17C307D80037DFE2 /* SolutionSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3338A9CB17C307D80037DFE2 /* SolutionSequence.m */; };
 		3339C03118397638005771BC /* audioObjects-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02D18397638005771BC /* audioObjects-hd.plist */; };
 		3339C03218397638005771BC /* audioObjects-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02E18397638005771BC /* audioObjects-hd.png */; };
@@ -683,6 +684,8 @@
 		16A942DE1778C5A50052D5BD /* drum4on-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drum4on-ipad.png"; sourceTree = "<group>"; };
 		3302EF6C1879C92C0032AD58 /* PFGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGeometry.h; sourceTree = "<group>"; };
 		3302EF6D1879C92C0032AD58 /* PFGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGeometry.m; sourceTree = "<group>"; };
+		33185340188033940011D638 /* NSObject+AudioDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AudioDispatcher.h"; sourceTree = "<group>"; };
+		33185341188033940011D638 /* NSObject+AudioDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AudioDispatcher.m"; sourceTree = "<group>"; };
 		3338A9CA17C307D80037DFE2 /* SolutionSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolutionSequence.h; sourceTree = "<group>"; };
 		3338A9CB17C307D80037DFE2 /* SolutionSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionSequence.m; sourceTree = "<group>"; };
 		3339C02D18397638005771BC /* audioObjects-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "audioObjects-hd.plist"; sourceTree = "<group>"; };
@@ -1319,6 +1322,8 @@
 				33C3B1D21876FA91008F5FA8 /* Coord.m */,
 				3302EF6C1879C92C0032AD58 /* PFGeometry.h */,
 				3302EF6D1879C92C0032AD58 /* PFGeometry.m */,
+				33185340188033940011D638 /* NSObject+AudioDispatcher.h */,
+				33185341188033940011D638 /* NSObject+AudioDispatcher.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2067,6 +2072,7 @@
 				1608083816B437AA00039339 /* ray2.c in Sources */,
 				1608083A16B437AA00039339 /* utility.c in Sources */,
 				1608083C16B437AA00039339 /* vec2.c in Sources */,
+				33185342188033940011D638 /* NSObject+AudioDispatcher.m in Sources */,
 				1608083E16B437AA00039339 /* vec3.c in Sources */,
 				33BF709917CBB588003E0A5F /* SpeedChange.m in Sources */,
 				33BF709217CBA7A5003E0A5F /* AudioStop.m in Sources */,
