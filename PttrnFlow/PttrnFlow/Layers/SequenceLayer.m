@@ -172,6 +172,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
         
         // audio touch dispatcher
         AudioTouchDispatcher *sharedTouchDispatcher = [AudioTouchDispatcher sharedAudioTouchDispatcher];
+        sharedTouchDispatcher.areaCells = [PuzzleUtils puzzleArea:sequence];
         self.panDelegate = sharedTouchDispatcher;
         [self addChild:sharedTouchDispatcher];
         

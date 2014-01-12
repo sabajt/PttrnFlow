@@ -93,7 +93,7 @@
         return;
     }
     
-    // move any responders to new cell if audio pad is not static
+    // move any responders to available cell if audio pad is not static
     AudioPad *pad;
     NSArray *fromCellResponders = [self responders:self.responders atCoord:fromCell];
     if (fromCellResponders.count > 0) {
@@ -104,7 +104,7 @@
             pad = fromCellResponders[found];
         }
     }
-    if (pad && !pad.isStatic) {
+    if (pad && !pad.isStatic && [toCell isCoordInGroup:self.areaCells]) {
         for (CCNode<AudioResponder> *node in fromCellResponders) {
             node.position = [toCell relativeMidpoint];
             node.cell = toCell;
