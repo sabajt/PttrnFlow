@@ -23,9 +23,10 @@
     return self;
 }
 
+// default implementation
 - (BOOL)containsTouch:(UITouch *)touch
 {
-    CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
+    CGPoint touchPosition = [self.parent convertTouchToNodeSpace:touch];
     return (CGRectContainsPoint(self.boundingBox, touchPosition));
 }
 

@@ -9,11 +9,10 @@
 #import "cocos2d.h"
 #import "PanLayer.h"
 #import "TickDispatcher.h"
-#import "DragButton.h"
 
 @class PdDispatcher;
 
-@interface SequenceLayer : PanLayer <TickDispatcherDelegate, DragItemDelegate>
+@interface SequenceLayer : PanLayer <TickDispatcherDelegate>
 {
     PdDispatcher *_dispatcher;
     void *_patch;
@@ -24,8 +23,7 @@
 @property (weak, nonatomic) CCSpriteBatchNode *othersBatchNode;
 @property (weak, nonatomic) CCSpriteBatchNode *audioObjectsBatchNode;
 
-// set of active puzzle coordinates represented as strings: (1, 3) -> @"13"
-@property (strong, nonatomic) NSSet *area;
+@property (strong, nonatomic) NSArray *areaCells;
 
 + (CCScene *)sceneWithSequence:(int)sequence;
 

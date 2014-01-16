@@ -16,7 +16,7 @@
 @property (assign) BOOL isReceivingTouch;
 @property (assign) CGFloat longPressDelay;
 
-// subclasses may overwrite to define custom touch area (default is bounding box)
+// subclasses may overwrite to define custom touch area (default is bounding box tracked in parent node space)
 - (BOOL)containsTouch:(UITouch *)touch;
 
 // set a long press delay to receive this callback

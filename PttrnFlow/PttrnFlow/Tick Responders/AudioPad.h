@@ -6,13 +6,15 @@
 //
 //
 
-#import "GameSprite.h"
+#import "CCSprite.h"
 #import "AudioResponder.h"
+
+@class Coord;
 
 @interface AudioPad : CCSprite <AudioResponder>
 
 @property (assign) BOOL isStatic;
 
-- (id)initWithCell:(GridCoord)cell group:(NSNumber *)group isStatic:(BOOL)isStatic;
+- (id)initWithCell:(Coord *)cell isStatic:(BOOL)isStatic;
 
 @end

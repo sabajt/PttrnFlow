@@ -34,6 +34,16 @@ NSString *const kNeighborBelow = @"below";
 
 #pragma mark - position
 
++ (Coord *)coordForRelativePosition:(CGPoint)position
+{
+    return [Coord coordForRelativePosition:position unitSize:kDefaultUnitSize];
+}
+
++ (Coord *)coordForRelativePosition:(CGPoint)position unitSize:(CGFloat)unitSize
+{
+    return [Coord coordWithX:floorf(position.x / unitSize) Y:floorf(position.y / unitSize)];
+}
+
 - (CGPoint)relativePosition
 {
     return [self relativePositionWithUnitSize:kDefaultUnitSize];
@@ -57,9 +67,31 @@ NSString *const kNeighborBelow = @"below";
 
 #pragma mark - compare
 
++ (Coord *)maxCoord:(NSArray *)coords
+{
+    NSInteger xMax = 0;
+    NSInteger yMax = 0;
+
+    for (Coord *c in coords) {
+        xMax = MAX(xMax, c.x);
+        yMax = MAX(yMax, c.y);
+    }
+    return [Coord coordWithX:xMax Y:yMax];
+}
+
 - (BOOL)isEqualToCoord:(Coord *)coord
 {
     return ((self.x == coord.x) && (self.y == coord.y));
+}
+
+- (BOOL)isCoordInGroup:(NSArray *)coords
+{
+    for (Coord *c in coords) {
+        if ([c isEqualToCoord:self]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 #pragma mark - context
@@ -88,6 +120,27 @@ NSString *const kNeighborBelow = @"below";
         }
     }
     return [Coord findNeighborPairs:truncatedCoords existingPairs:pairs];
+}
+
+// TODO: just change directions to strings eventually
++ (kDirection)directionForString:(NSString *)string
+{
+    if ([string isEqualToString:@"up"]) {
+        return kDirectionUp;
+    }
+    else if ([string isEqualToString:@"down"]) {
+        return kDirectionDown;
+    }
+    else if ([string isEqualToString:@"left"]) {
+        return kDirectionLeft;
+    }
+    else if ([string isEqualToString:@"right"]) {
+        return kDirectionRight;
+    }
+    else {
+        NSLog(@"warning: string '%@' not recognized as direction, returning -1", string);
+        return -1;
+    }
 }
 
 - (NSDictionary *)neighbors
@@ -128,6 +181,26 @@ NSString *const kNeighborBelow = @"below";
 {
     Coord *right = [[coord neighbors] objectForKey:kNeighborRight];
     return [self isEqualToCoord:right];
+}
+
+- (Coord *)stepInDirection:(kDirection)direction
+{
+    if (direction == kDirectionUp) {
+        return [self neighbors][kNeighborAbove];
+    }
+    else if (direction == kDirectionRight) {
+        return [self neighbors][kNeighborRight];
+    }
+    else if (direction == kDirectionDown) {
+        return [self neighbors][kNeighborBelow];
+    }
+    else if (direction == kDirectionLeft) {
+        return [self neighbors][kNeighborLeft];
+    }
+    else {
+        NSLog(@"warning: unrecognized direction");
+        return nil;
+    }
 }
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "cocos2d.h"
-#import "DragItemDelegate.h"
 
 @class TickDispatcher;
 
@@ -17,6 +16,6 @@ FOUNDATION_EXPORT CGFloat const kUILineWidth;
 
 @interface SequenceUILayer : CCLayer
 
-- (id)initWithPuzzle:(NSUInteger)puzzle tickDispatcher:(TickDispatcher *)tickDispatcher dragItemDelegate:(id<DragItemDelegate>)dragItemDelegate;
+- (id)initWithPuzzle:(NSUInteger)puzzle tickDispatcher:(TickDispatcher *)tickDispatcher;
 
 @end

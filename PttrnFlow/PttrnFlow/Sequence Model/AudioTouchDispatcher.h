@@ -12,6 +12,7 @@
 @interface AudioTouchDispatcher : CCNode <CCTargetedTouchDelegate, PanLayerDelegate>
 
 @property (assign) BOOL allowScrolling;
+@property (strong, nonatomic) NSArray *areaCells;
 
 + (AudioTouchDispatcher *)sharedAudioTouchDispatcher;
 

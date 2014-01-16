@@ -15,7 +15,6 @@ FOUNDATION_EXPORT NSString *const kArrow;
 FOUNDATION_EXPORT NSString *const kEntry;
 FOUNDATION_EXPORT NSString *const kSample;
 FOUNDATION_EXPORT NSString *const kStatic;
-FOUNDATION_EXPORT NSString *const kGlyphs;
 FOUNDATION_EXPORT NSString *const kImageSet;
 
 FOUNDATION_EXPORT NSString *const kTonePrimary;
@@ -29,7 +28,7 @@ FOUNDATION_EXPORT NSString *const kDrumSecondary;
 + (NSDictionary *)puzzle:(NSInteger)number;
 + (NSInteger)puzzleBpm:(NSInteger)number;
 + (NSArray *)puzzleArea:(NSInteger)number;
-+ (NSArray *)puzzleAudioPads:(NSInteger)number;
++ (NSArray *)puzzleGlyphs:(NSInteger)number;
 + (NSDictionary *)puzzleImageSequenceKey:(NSInteger)number;
 
 @end

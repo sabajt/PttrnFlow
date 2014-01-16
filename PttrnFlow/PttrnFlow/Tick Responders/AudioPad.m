@@ -8,6 +8,7 @@
 
 #import "AudioPad.h"
 #import "CCNode+Grid.h"
+#import "GameConstants.h"
 
 @interface AudioPad ()
 
@@ -18,7 +19,7 @@
 
 @implementation AudioPad
 
-- (id)initWithCell:(GridCoord)cell group:(NSNumber *)group isStatic:(BOOL)isStatic
+- (id)initWithCell:(Coord *)cell isStatic:(BOOL)isStatic
 {
     NSString *offFrameName = @"audio_box_off_static.png";
     if (!isStatic) {
@@ -32,7 +33,6 @@
         // CCNode+Grid
         self.cell = cell;
         self.cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
-        self.cellGroup = group;
         
         CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:@"audio_box_on.png"];
         _highlightSprite = highlightSprite;
@@ -57,22 +57,9 @@
     return nil;
 }
 
-- (GridCoord)audioCell
+- (Coord *)audioCell
 {
     return self.cell;
 }
-
-- (NSInteger)audioCluster
-{
-    if (self.cellGroup != nil) {
-        return [self.cellGroup integerValue];
-    }
-    return AUDIO_CLUSTER_NONE;
-}
-
-//- (void)audioClusterMemberWasHit
-//{
-//    NSLog(@"*** my cluster (%i)was hit!!!\n*** i am of class:\n\n%@\n\n*** at cell: %i, %i", [self audioCluster], [self class], self.cell.x, self.cell.y);
-//}
 
 @end

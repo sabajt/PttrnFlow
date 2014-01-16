@@ -11,6 +11,7 @@
 
 #define IS_WIDESCREEN ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
+// TODO: maybe just change everything to strings
 typedef enum
 {
     kDirectionNone = 0,

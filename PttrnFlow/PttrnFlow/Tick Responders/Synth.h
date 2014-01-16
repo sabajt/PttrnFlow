@@ -6,10 +6,11 @@
 //
 //
 
+#import "CCSprite.h"
 #import "AudioResponder.h"
 
 @interface Synth : CCSprite <AudioResponder>
 
-- (id)initWithCell:(GridCoord)cell synth:(NSString *)synth midi:(NSString *)midi frameName:(NSString *)frameName;
+- (id)initWithCell:(Coord *)cell synth:(NSString *)synth midi:(NSString *)midi frameName:(NSString *)frameName;
 
 @end

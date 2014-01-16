@@ -20,7 +20,7 @@
 
 @implementation Sample
 
-- (id)initWithCell:(GridCoord)cell sampleName:(NSString *)sampleName frameName:(NSString *)frameName
+- (id)initWithCell:(Coord *)cell sampleName:(NSString *)sampleName frameName:(NSString *)frameName
 {
     self = [super initWithSpriteFrameName:frameName];
     if (self) {
@@ -35,7 +35,7 @@
 
 #pragma mark - AudioResponder
 
-- (GridCoord)audioCell
+- (Coord *)audioCell
 {
     return self.cell;
 }
