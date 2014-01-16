@@ -50,5 +50,18 @@
         "sub_2" : [],
         "sub_3" : [],
         "sub_4" : []
+    },
+    "tick_5" : {
+        "sub_1" : [
+                   {
+                   "event_type" : "synth",
+                   "synth_type" : "osc",
+                   "midi_value" : "52",
+                   "channel" : "0",
+                   },
+                   ],
+        "sub_2" : [],
+        "sub_3" : [],
+        "sub_4" : []
     }
 }

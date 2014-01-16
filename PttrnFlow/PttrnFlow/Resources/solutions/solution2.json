@@ -37,44 +37,5 @@
         "sub_2" : [],
         "sub_3" : [],
         "sub_4" : []
-    },
-    "tick_4" : {
-        "sub_1" : [
-                   {
-                   "event_type" : "synth",
-                   "synth_type" : "osc",
-                   "midi_value" : "51",
-                   "channel" : "0",
-                   },
-                   ],
-        "sub_2" : [],
-        "sub_3" : [],
-        "sub_4" : []
-    },
-    "tick_5" : {
-        "sub_1" : [
-                   {
-                   "event_type" : "synth",
-                   "synth_type" : "osc",
-                   "midi_value" : "52",
-                   "channel" : "0",
-                   },
-                   ],
-        "sub_2" : [],
-        "sub_3" : [],
-        "sub_4" : []
-    },
-    "tick_6" : {
-        "sub_1" : [
-                   {
-                   "event_type" : "synth",
-                   "synth_type" : "osc",
-                   "midi_value" : "53",
-                   "channel" : "0",
-                   },
-                   ],
-        "sub_2" : [],
-        "sub_3" : [],
-        "sub_4" : []
-    },
+    }
 }

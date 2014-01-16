@@ -247,6 +247,11 @@
 		33630CBC1804E52200A9F9EE /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 33630CBB1804E52200A9F9EE /* Default-568h.png */; };
 		338112B2183D7E870012E528 /* Synth.m in Sources */ = {isa = PBXBuildFile; fileRef = 338112B1183D7E870012E528 /* Synth.m */; };
 		338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */; };
+		339ACE6C1884E22600F3D839 /* solution4.json in Resources */ = {isa = PBXBuildFile; fileRef = 339ACE6A1884E22600F3D839 /* solution4.json */; };
+		339ACE6D1884E22600F3D839 /* solution5.json in Resources */ = {isa = PBXBuildFile; fileRef = 339ACE6B1884E22600F3D839 /* solution5.json */; };
+		339ACE711884E23700F3D839 /* puzzle4.json in Resources */ = {isa = PBXBuildFile; fileRef = 339ACE6F1884E23700F3D839 /* puzzle4.json */; };
+		339ACE721884E23700F3D839 /* puzzle5.json in Resources */ = {isa = PBXBuildFile; fileRef = 339ACE701884E23700F3D839 /* puzzle5.json */; };
+		339ACE7F1886C64100F3D839 /* SolutionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 339ACE7E1886C64100F3D839 /* SolutionCell.m */; };
 		33A64C45183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 33A64C43183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt */; };
 		33A64C46183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png in Resources */ = {isa = PBXBuildFile; fileRef = 33A64C44183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png */; };
 		33AF255717CB069700643CB2 /* AudioPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255617CB069700643CB2 /* AudioPad.m */; };
@@ -717,6 +722,12 @@
 		338112B1183D7E870012E528 /* Synth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Synth.m; sourceTree = "<group>"; };
 		338EE1B217A5F1D2005E98B1 /* NSArray+CompareNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CompareNumbers.h"; sourceTree = "<group>"; };
 		338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CompareNumbers.m"; sourceTree = "<group>"; };
+		339ACE6A1884E22600F3D839 /* solution4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = solution4.json; sourceTree = "<group>"; };
+		339ACE6B1884E22600F3D839 /* solution5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = solution5.json; sourceTree = "<group>"; };
+		339ACE6F1884E23700F3D839 /* puzzle4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle4.json; sourceTree = "<group>"; };
+		339ACE701884E23700F3D839 /* puzzle5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle5.json; sourceTree = "<group>"; };
+		339ACE7D1886C64100F3D839 /* SolutionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolutionCell.h; sourceTree = "<group>"; };
+		339ACE7E1886C64100F3D839 /* SolutionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionCell.m; sourceTree = "<group>"; };
 		33A64C43183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "arial-rounded-mt-bold-12fnt.fnt"; sourceTree = "<group>"; };
 		33A64C44183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arial-rounded-mt-bold-12fnt.png"; sourceTree = "<group>"; };
 		33AF255517CB069700643CB2 /* AudioPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPad.h; sourceTree = "<group>"; };
@@ -1407,6 +1418,8 @@
 				162C29371787699900CE480C /* TickHitChart.m */,
 				334B2ADE181C335900865510 /* TickerControl.h */,
 				334B2ADF181C335900865510 /* TickerControl.m */,
+				339ACE7D1886C64100F3D839 /* SolutionCell.h */,
+				339ACE7E1886C64100F3D839 /* SolutionCell.m */,
 			);
 			path = "UI Nodes";
 			sourceTree = "<group>";
@@ -1562,6 +1575,8 @@
 		33BA5F1E185E3385005A0452 /* puzzles */ = {
 			isa = PBXGroup;
 			children = (
+				339ACE6F1884E23700F3D839 /* puzzle4.json */,
+				339ACE701884E23700F3D839 /* puzzle5.json */,
 				3350B17E186A39A100F3BE57 /* puzzle3.json */,
 				33BA5F1F185E3385005A0452 /* puzzle0.json */,
 				33BA5F20185E3385005A0452 /* puzzle1.json */,
@@ -1574,6 +1589,8 @@
 		33BCC67F17BCADB40008ED26 /* solutions */ = {
 			isa = PBXGroup;
 			children = (
+				339ACE6A1884E22600F3D839 /* solution4.json */,
+				339ACE6B1884E22600F3D839 /* solution5.json */,
 				3350B180186A3AC700F3BE57 /* solution3.json */,
 				33B4F24617C6E104004D4C13 /* solution0.json */,
 				335836C41827D90A00921270 /* solution2.json */,
@@ -1715,6 +1732,7 @@
 				335836D11827DAF600921270 /* seq3.tmx in Resources */,
 				168FA4E9173A08C7004C26AD /* Default-Landscape~ipad.png in Resources */,
 				168FA4EA173A08C7004C26AD /* Default.png in Resources */,
+				339ACE6D1884E22600F3D839 /* solution5.json in Resources */,
 				334B2ABC181B02CA00865510 /* samplePads-hd.png in Resources */,
 				168FA4EB173A08C7004C26AD /* fps_images-hd.png in Resources */,
 				334B2AB4181B02CA00865510 /* other-ipad.plist in Resources */,
@@ -1747,6 +1765,7 @@
 				334B2AC3181B02CA00865510 /* synthPads-hd.plist in Resources */,
 				334B2ABB181B02CA00865510 /* samplePads-hd.plist in Resources */,
 				33630CBC1804E52200A9F9EE /* Default-568h.png in Resources */,
+				339ACE711884E23700F3D839 /* puzzle4.json in Resources */,
 				334B2ACB181B02CA00865510 /* uilayer-hd.plist in Resources */,
 				335836D21827DAF600921270 /* seq4.tmx in Resources */,
 				335836D71827DAF600921270 /* seq9.tmx in Resources */,
@@ -1771,6 +1790,7 @@
 				16A942E21778C5A50052D5BD /* drum2on-ipad.png in Resources */,
 				334B2AC1181B02CA00865510 /* samplePads.plist in Resources */,
 				16A942E31778C5A50052D5BD /* drum3-ipad.png in Resources */,
+				339ACE721884E23700F3D839 /* puzzle5.json in Resources */,
 				335836D31827DAF600921270 /* seq5.tmx in Resources */,
 				334B2AB3181B02CA00865510 /* other-hd.png in Resources */,
 				16A942E41778C5A50052D5BD /* drum3on-ipad.png in Resources */,
@@ -1779,6 +1799,7 @@
 				335836D61827DAF600921270 /* seq8.tmx in Resources */,
 				16A942E51778C5A50052D5BD /* drum4-ipad.png in Resources */,
 				33C3B1C61874E9E7008F5FA8 /* pf-sample.pd in Resources */,
+				339ACE6C1884E22600F3D839 /* solution4.json in Resources */,
 				3356075F17F8B67900ECD44B /* pf-phasorSynth.pd in Resources */,
 				334B2AC2181B02CA00865510 /* samplePads.png in Resources */,
 				334B2AB9181B02CA00865510 /* other.png in Resources */,
@@ -1888,6 +1909,7 @@
 				160807A516B437A900039339 /* CCTMXTiledMap.m in Sources */,
 				160807A816B437A900039339 /* CCTMXXMLParser.m in Sources */,
 				160807AB16B437A900039339 /* CCTransition.m in Sources */,
+				339ACE7F1886C64100F3D839 /* SolutionCell.m in Sources */,
 				160807AE16B437A900039339 /* CCTransitionPageTurn.m in Sources */,
 				160807B116B437A900039339 /* CCTransitionProgress.m in Sources */,
 				160807B516B437A900039339 /* cocos2d.m in Sources */,
