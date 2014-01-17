@@ -11,6 +11,6 @@
 @interface TileSprite : CCSprite
 
 - (id)initWithTileFrameName:(NSString *)name repeatHorizonal:(int)repeatHorizontal repeatVertical:(int)repeatVertical;
-
+- (id)initWithTileFrameName:(NSString *)name repeatHorizonal:(int)repeatHorizontal repeatVertical:(int)repeatVertical skip:(NSInteger)skip;
 
 @end
