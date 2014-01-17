@@ -18,10 +18,7 @@ static inline ccColor4B ccc4BFromccc3B(ccColor3B c)
 
 + (UIColor *)UIColorFor3B:(ccColor3B)color;
 
-+ (ccColor3B)backgroundGray;
-+ (ccColor3B)defaultSteel;
-+ (ccColor3B)highlightRed;
-+ (ccColor3B)skyBlue;
++ (ccColor3B)cream;
 
 @end
 

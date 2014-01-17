@@ -4,18 +4,31 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>background_checkers.png</key>
+            <key>background_tile.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{640,1136}}</string>
+                <string>{{2,2},{40,40}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{640,1136}}</string>
+                <string>{{0,0},{40,40}}</string>
                 <key>sourceSize</key>
-                <string>{640,1136}</string>
+                <string>{40,40}</string>
+            </dict>
+            <key>clear_rect_background.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,44},{1,1}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{1,1}}</string>
+                <key>sourceSize</key>
+                <string>{1,1}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -25,9 +38,9 @@
             <key>realTextureFileName</key>
             <string>background-hd.png</string>
             <key>size</key>
-            <string>{1024,2048}</string>
+            <string>{64,64}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:57b73818f6259c4a5c194fa26e73eeaf:d5c1d42809d82e28e2dbea2d2566b13f:d6e4f920c414470d4fd98b66988416bd$</string>
+            <string>$TexturePacker:SmartUpdate:3c3a0a473de88f85663ae1473c200ae6:8a8f4e0346ae7be691f7f9d86b82d37a:d6e4f920c414470d4fd98b66988416bd$</string>
             <key>textureFileName</key>
             <string>background-hd.png</string>
         </dict>

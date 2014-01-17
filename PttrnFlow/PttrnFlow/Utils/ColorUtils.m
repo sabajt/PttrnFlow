@@ -22,24 +22,9 @@
 
 #pragma mark - colors
 
-+ (ccColor3B)backgroundGray
++ (ccColor3B)cream
 {
-    return ccc3(49, 49, 49);
-}
-
-+ (ccColor3B)defaultSteel
-{
-    return ccc3(124, 152, 162);
-}
-
-+ (ccColor3B)highlightRed
-{
-    return ccc3(173, 61, 105);
-}
-
-+ (ccColor3B)skyBlue
-{
-    return ccc3(203, 226, 238);
+    return ccc3(252, 251, 247);
 }
 
 @end

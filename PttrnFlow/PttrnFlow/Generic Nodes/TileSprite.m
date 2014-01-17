@@ -11,15 +11,14 @@
 
 @implementation TileSprite
 
-- (id)initWithTileFrameName:(NSString *)name repeatHorizonal:(int)repeatHorizontal repeatVertical:(int)repeatVertical
+- (id)initWithTileFrameName:(NSString *)name placeholderFrameName:(NSString *)placeholderName repeatHorizonal:(int)repeatHorizontal repeatVertical:(int)repeatVertical
 {
-    return [self initWithTileFrameName:name repeatHorizonal:repeatHorizontal repeatVertical:repeatVertical skip:0];
-    
+    return [self initWithTileFrameName:name placeholderFrameName:placeholderName repeatHorizonal:repeatHorizontal repeatVertical:repeatVertical skip:0];
 }
 
-- (id)initWithTileFrameName:(NSString *)name repeatHorizonal:(int)repeatHorizontal repeatVertical:(int)repeatVertical skip:(NSInteger)skip
+- (id)initWithTileFrameName:(NSString *)name placeholderFrameName:(NSString *)placeholderName repeatHorizonal:(int)repeatHorizontal repeatVertical:(int)repeatVertical skip:(NSInteger)skip
 {
-    self = [super initWithSpriteFrameName:kClearRectUILayer];
+    self = [super initWithSpriteFrameName:placeholderName];
     if (self)
     {
         CCSprite *tileSprite = [CCSprite spriteWithSpriteFrameName:name];
@@ -34,7 +33,8 @@
             }
         }
     }
-    return self;}
+    return self;
+}
 
 
 @end
