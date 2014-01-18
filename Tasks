@@ -1,2 +1,18 @@
--- todo
+PttrnFlow todo
+
+* ASSETS
+- new highlight colors for blocks
+- add ring to percussinon blocks
+- animated dotted line for selected blocks
+- new play and speaker buttons
+
+* DEV
+- simplify solution sequence and place in puzzle file
+- correctly position timeline panels (just states for 4, 8 or 16...?)
+- fix touch highlight states to be working correctly
+- recognize hit or miss and display on timeline
+
+* DESIGN
+- figure out what timeline will look like in diffrent states
+
 

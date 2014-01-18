@@ -68,6 +68,23 @@
                "midi" : 54,
                "image_set" : "tone_primary"
           }
+     ],
+     "solution" :
+     [
+          {
+               "sample" : "drum1.wav"
+          },
+          {
+               "synth" : "osc",
+               "midi" : 52
+          },
+          {
+               "sample" : "drum2.wav"
+          },
+          {
+               "synth" : "osc",
+               "midi" : 54
+          }
      ]
 }
 

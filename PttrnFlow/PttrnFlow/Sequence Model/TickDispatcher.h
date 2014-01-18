@@ -33,7 +33,7 @@ FOUNDATION_EXPORT CGFloat const kTickInterval;
 @property (assign) int sequenceLength;
 
 // setup
-- (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap;
+- (id)initWithSequence:(int)sequence;
 - (void)registerAudioResponderCellNode:(id<AudioResponder>)responder;
 
 // control

@@ -49,7 +49,7 @@ CGFloat const kTickInterval = 0.12;
 
 @implementation TickDispatcher
 
-- (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap
+- (id)initWithSequence:(int)sequence
 {
     self = [super init];
     if (self) {

@@ -72,17 +72,13 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 {
     CCScene *scene = [CCScene node];
     
-    // contstruct a tiled map from our sequence
-    NSString *sequenceName = [NSString stringWithFormat:@"seq%i.tmx", sequence];
-    CCTMXTiledMap *tiledMap = [CCTMXTiledMap tiledMapWithTMXFile:sequenceName];
-    
     // background
     BackgroundLayer *background = [BackgroundLayer backgroundLayer];
     [scene addChild:background];
     
     // gameplay layer
     static CGFloat controlBarHeight = 80;
-    SequenceLayer *sequenceLayer = [[SequenceLayer alloc] initWithSequence:sequence tiledMap:tiledMap background:background topMargin:controlBarHeight];
+    SequenceLayer *sequenceLayer = [[SequenceLayer alloc] initWithSequence:sequence background:background topMargin:controlBarHeight];
     [scene addChild:sequenceLayer];
     
     // hud layer -- controls / item menu
@@ -92,7 +88,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
     return scene;
 }
 
-- (id)initWithSequence:(int)sequence tiledMap:(CCTMXTiledMap *)tiledMap background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
+- (id)initWithSequence:(int)sequence background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
 {
     self = [super init];
     if (self) {
@@ -164,7 +160,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
         }
         
         // tick dispatcher
-        TickDispatcher *tickDispatcher = [[TickDispatcher alloc] initWithSequence:sequence tiledMap:tiledMap];
+        TickDispatcher *tickDispatcher = [[TickDispatcher alloc] initWithSequence:sequence];
         
         self.tickDispatcher = tickDispatcher;
         self.tickDispatcher.delegate = self;
