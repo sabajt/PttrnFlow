@@ -7,8 +7,6 @@
 //
 
 #import "SequenceUILayer.h"
-#import "TickerControl.h"
-#import "TickHitChart.h"
 #import "TickDispatcher.h"
 #import "CCSprite+Utils.h"
 #import "TextureUtils.h"
@@ -20,7 +18,6 @@
 #import "SolutionCell.h"
 
 CGFloat const kUIButtonUnitSize = 50;
-//CGFloat const kUITimelineStepWidth = 44;
 CGFloat const kUITimelineStepWidth = 40;
 CGFloat const kUILineWidth = 2;
 
@@ -28,8 +25,8 @@ static NSInteger const kMaxControlLength = 6;
 
 @interface SequenceUILayer ()
 
-@property (weak, nonatomic) TickDispatcher *tickDispatcher;
 @property (weak, nonatomic) CCSpriteBatchNode *uiBatchNode;
+@property (weak, nonatomic) id<PuzzleControlsDelegate> delegate;
 
 // size and positions
 @property (assign) NSInteger steps;
@@ -41,8 +38,6 @@ static NSInteger const kMaxControlLength = 6;
 @property (weak, nonatomic) PanSprite *panSprite;
 @property (weak, nonatomic) CCSprite *timelineBorder;
 @property (weak, nonatomic) CCSprite *timelineBackground;
-@property (weak, nonatomic) TickHitChart *hitChart;
-@property (weak, nonatomic) TickerControl *tickerControl;
 
 // item menu
 @property (weak, nonatomic) CCSprite *itemMenuTopCap;
@@ -55,16 +50,19 @@ static NSInteger const kMaxControlLength = 6;
 // general controls
 @property (weak, nonatomic) CCMenu *controlMenu;
 
+// buttons
+@property (weak, nonatomic) ToggleButton *speakerButton;
+@property (weak, nonatomic) ToggleButton *playButton;
+
 @end
 
 @implementation SequenceUILayer
 
-- (id)initWithPuzzle:(NSUInteger)puzzle tickDispatcher:(TickDispatcher *)tickDispatcher
+- (id)initWithPuzzle:(NSUInteger)puzzle delegate:(id<PuzzleControlsDelegate>)delegate
 {
     self = [super init];
     if (self) {
-        _tickDispatcher = tickDispatcher;
-        NSInteger steps = (tickDispatcher.sequenceLength / 4);
+        NSInteger steps = 4;
         self.steps = steps;
 
         // set general sizes / positions
@@ -104,6 +102,18 @@ static NSInteger const kMaxControlLength = 6;
         
         // add ui batch below buttons (ccmenu not compatible with batch) and pan sprite (clipping using glscissor also not compatible with batch)
         [self addChild:uiBatch];
+        
+        // speaker (solution sequence) button
+        ToggleButton *speakerButton = [[ToggleButton alloc] initWithPlaceholderFrameName:@"clear_rect_uilayer.png" offFrameName:@"speaker_off.png" onFrameName:@"speaker_on.png" delegate:self];
+        self.speakerButton = speakerButton;
+        self.speakerButton.position = ccp(kUITimelineStepWidth / 2, 75); // FIX ME LATER
+        [self.uiBatchNode addChild:self.speakerButton];
+        
+        // play (user sequence) button
+        ToggleButton *playButton = [[ToggleButton alloc] initWithPlaceholderFrameName:@"clear_rect_uilayer.png" offFrameName:@"play_off.png" onFrameName:@"play_on.png" delegate:self];
+        self.playButton = playButton;
+        self.playButton.position = ccp(speakerButton.position.x + kUITimelineStepWidth, speakerButton.position.y);
+        [self.uiBatchNode addChild:self.playButton];
         
         // exit button top left
         CCSprite *exitOn = [CCSprite spriteWithSpriteFrameName:@"exit_on.png"];
@@ -155,7 +165,7 @@ static NSInteger const kMaxControlLength = 6;
 //        panSprite.position = panNodeOrigin;
 //        [self addChild:panSprite]; // can't add to batch because PanSprite contains ClippingSprite which overrides 'visit'
         
-        for (NSInteger i = 0; i < tickDispatcher.sequenceLength / 4; i++) {
+        for (NSInteger i = 0; i < steps; i++) {
             SolutionCell *cell = [[SolutionCell alloc] initWithIndex:i];
             cell.position = ccp((i * kUITimelineStepWidth) + (cell.contentSize.width / 2), cell.contentSize.height / 2);
             [self addChild:cell];
@@ -176,15 +186,32 @@ static NSInteger const kMaxControlLength = 6;
     [[CCDirector sharedDirector] popScene];
 }
 
-- (void)speakerPressed:(id)sender
-{
-    [self.tickDispatcher scheduleSequence];
-}
-
 - (void)playButtonPressed:(id)sender
 {
-    [self.hitChart resetCells];
-    [self.tickDispatcher start];
+//    [self.hitChart resetCells];
+    [self.delegate startUserSequence];
+}
+
+#pragma mark - ToggleButtonDelegate
+
+- (void)toggleButtonPressed:(ToggleButton *)sender
+{
+    if ([sender isEqual:self.speakerButton]) {
+        if (self.speakerButton.isOn) {
+            [self.delegate startSolutionSequence];
+        }
+        else {
+            [self.delegate stopSolutionSequence];
+        }
+    }
+    else if ([sender isEqual:self.playButton]) {
+        if (self.playButton.isOn) {
+            [self.delegate startUserSequence];
+        }
+        else {
+            [self.delegate stopUserSequence];
+        }
+    }
 }
 
 @end

@@ -47,13 +47,6 @@
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     if ([super ccTouchBegan:touch withEvent:event]) {
-        
-        NSLog(@"\n");
-        NSLog(@"hit solution index: %i", self.index);
-        NSLog(@"self contentsize: %@", NSStringFromCGSize(self.contentSize));
-        NSLog(@"self position: %@", NSStringFromCGPoint(self.position));
-        NSLog(@"self bounding box: %@", NSStringFromCGRect(self.boundingBox));
-        
         self.hitDot.opacity = 255;
         CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
         [self.hitDot runAction:fadeOut];

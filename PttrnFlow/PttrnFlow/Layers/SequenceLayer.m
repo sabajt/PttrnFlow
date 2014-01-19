@@ -17,7 +17,6 @@
 //#import "Arrow.h"
 #import "MainSynth.h"
 //#import "EntryArrow.h"
-#import "TickerControl.h"
 #import "ColorUtils.h"
 #import "PdDispatcher.h"
 #import "Sample.h"
@@ -44,6 +43,7 @@ typedef NS_ENUM(NSInteger, ZOrderAudioBatch)
 };
 
 static CGFloat kPuzzleBoundsMargin = 10.0;
+static CGFloat kSequenceInterval = 0.5;
 
 @interface SequenceLayer ()
 
@@ -51,15 +51,15 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
 @property (assign) Coord *maxCoord;
 @property (assign) CGPoint gridOrigin; // TODO: using grid origin except for drawing debug grid?
 @property (assign) CGRect puzzleBounds;
-
 @property (assign) BOOL shouldDrawGrid; // debugging
-
 @property (strong, nonatomic) MainSynth *synth;
-
-@property (weak, nonatomic) TickDispatcher *tickDispatcher;
-
 @property (weak, nonatomic) Synth *pressedSynth;
 @property (weak, nonatomic) BackgroundLayer *backgroundLayer;
+@property (weak, nonatomic) NSMutableArray *responders;
+
+// sequence
+@property (assign) NSInteger userSequenceIndex;
+@property (assign) NSInteger solutionSequenceIndex;
 
 @end
 
@@ -82,7 +82,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
     [scene addChild:sequenceLayer];
     
     // hud layer -- controls / item menu
-    SequenceUILayer *uiLayer = [[SequenceUILayer alloc] initWithPuzzle:sequence tickDispatcher:sequenceLayer.tickDispatcher];
+    SequenceUILayer *uiLayer = [[SequenceUILayer alloc] initWithPuzzle:sequence delegate:sequenceLayer];
     [scene addChild:uiLayer z:1];
     
     return scene;
@@ -158,13 +158,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             CGFloat padding = self.puzzleBounds.size.height - self.contentSize.height;
             self.position = ccp(self.position.x, self.puzzleBounds.origin.y + (padding / 2));
         }
-        
-        // tick dispatcher
-        TickDispatcher *tickDispatcher = [[TickDispatcher alloc] initWithSequence:sequence];
-        
-        self.tickDispatcher = tickDispatcher;
-        self.tickDispatcher.delegate = self;
-        [self addChild:self.tickDispatcher];
         
         // audio touch dispatcher
         AudioTouchDispatcher *sharedTouchDispatcher = [AudioTouchDispatcher sharedAudioTouchDispatcher];
@@ -331,8 +324,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
         // audio pad unit sprite
         AudioPad *audioPadUnit = [[AudioPad alloc] initWithCell:cell isStatic:isStatic];
         audioPadUnit.position = cellCenter;
-        [self.tickDispatcher registerAudioResponderCellNode:audioPadUnit];
         [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:audioPadUnit];
+        [self addAudioResponder:audioPadUnit];
         [self.audioObjectsBatchNode addChild:audioPadUnit z:ZOrderAudioBatchPad];
         
         // ticker entry point
@@ -346,8 +339,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             NSString *imageName = [mappedImageSet objectForKey:midi];
             Synth *synth = [[Synth alloc] initWithCell:cell synth:synthName midi:[midi stringValue] frameName:imageName];
             
-            // [self.tickDispatcher registerAudioResponderCellNode:synth];
             [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:synth];
+            [self addAudioResponder:synth];
             
             synth.position = cellCenter;
             [self.audioObjectsBatchNode addChild:synth z:ZOrderAudioBatchGlyph];
@@ -361,8 +354,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
             NSString *imageName = [mappedImageSet objectForKey:sampleName];
             Sample *sample = [[Sample alloc] initWithCell:cell sampleName:sampleName frameName:imageName];
             
-            // [self.tickDispatcher registerAudioResponderCellNode:sample];
             [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:sample];
+            [self addAudioResponder:sample];
             
             sample.position = cellCenter;
             [self.audioObjectsBatchNode addChild:sample z:ZOrderAudioBatchGlyph];
@@ -373,6 +366,102 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
         }
     }
     [[MainSynth sharedMainSynth] loadSamples:allSampleNames];
+}
+
+#pragma mark - PuzzleControlsDelegate
+
+- (void)startUserSequence
+{
+    NSLog(@"start user seq...");
+    self.userSequenceIndex = 0;
+    
+//    [self.dynamicChannels removeAllObjects];
+//    [self.hits removeAllObjects];
+    
+//    for (TickChannel *channel in self.channels) {
+//        [channel reset];
+//    }
+    
+    [self schedule:@selector(stepUserSequence:) interval:kSequenceInterval];
+}
+
+- (void)stopUserSequence
+{
+    NSLog(@"stop user seq...");
+    [self unschedule:@selector(stepUserSequence:)];
+    
+    //    NSMutableSet *channels = [NSMutableSet set];
+    //    NSSet *tickChannels = [self.channels setByAddingObjectsFromSet:self.dynamicChannels];
+    //    for (TickChannel *ch in tickChannels) {
+    //        [channels addObject:ch.channel];
+    //    }
+    //    [self stopAudioForChannels:channels];
+}
+
+- (void)startSolutionSequence
+{
+    NSLog(@"start sol seq...");
+    self.solutionSequenceIndex = 0;
+//    [self.solutionChannels removeAllObjects];
+    [self schedule:@selector(stepSolutionSequence) interval:kSequenceInterval];
+}
+
+- (void)stopSolutionSequence
+{
+    NSLog(@"stop sol seq...");
+    [self unschedule:@selector(stepSolutionSequence)];
+}
+
+- (void)playSolutionIndex:(NSInteger)index
+{
+    NSLog(@"play sol index: %i", index);
+//    if ((index >= self.solutionSequence.sequence.count) || (index < 0)) {
+//        NSLog(@"warning: index out of TickDispatcher range");
+//        return;
+//    }
+//    
+//    NSArray *events = [self.solutionSequence.sequence objectAtIndex:index];
+//    [[MainSynth sharedMainSynth] receiveEvents:events ignoreAudioPad:YES];
+//    
+//    for (TickEvent *event in events) {
+//        [self.solutionChannels addObject:event.channel];
+//    }
+}
+
+
+#pragma mark - Other sequence stuff
+
+- (void)addAudioResponder:(id<AudioResponder>)responder
+{
+    [self.responders addObject:responder];
+}
+
+//- (void)stopAudioForChannels:(NSSet *)channels
+//{
+//    NSMutableArray *combined = [NSMutableArray array];
+//    for (NSString *channel in channels) {
+//        AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES];
+//        [combined addObject:audioStop];
+//    }
+//    [[MainSynth sharedMainSynth] receiveEvents:combined ignoreAudioPad:YES];
+//}
+
+- (void)stepUserSequence:(ccTime)dt
+{
+    NSLog(@"step user seq...");
+}
+
+- (void)stepSolutionSequence
+{
+    NSLog(@"step sol seq...");
+//    if (self.sequenceIndex >= self.sequenceLength) {
+//        [self unschedule:@selector(advanceSequence)];
+//        [self stopAudioForChannels:self.solutionChannels];
+//        return;
+//    }
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationAdvancedSequence object:nil userInfo:@{kKeySequenceIndex:@(self.sequenceIndex)}];
+//    [self play:self.sequenceIndex];
+//    self.sequenceIndex++;
 }
 
 #pragma mark - scene management
@@ -393,18 +482,18 @@ static CGFloat kPuzzleBoundsMargin = 10.0;
     [super onExit];
 }
 
-#pragma mark - TickDispatcherDelegate
-
-- (void)tickExit:(Coord *)cell
-{
-//    // create the exit animation -- don't send an event to synth, TickDispatcher handles in this case
-//    [self addChild:[SequenceLayer exitFader:cell]];
-}
-
-- (void)win
-{
-    [self.backgroundLayer tintToColor:ccGREEN duration:kTickInterval];
-}
+//#pragma mark - TickDispatcherDelegate
+//
+//- (void)tickExit:(Coord *)cell
+//{
+////    // create the exit animation -- don't send an event to synth, TickDispatcher handles in this case
+////    [self addChild:[SequenceLayer exitFader:cell]];
+//}
+//
+//- (void)win
+//{
+//    [self.backgroundLayer tintToColor:ccGREEN duration:kTickInterval];
+//}
 
 #pragma mark - debug methods
 

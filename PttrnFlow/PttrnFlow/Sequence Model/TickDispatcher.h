@@ -8,16 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "MainSynth.h"
-#import "TickerControl.h"
 #import "AudioResponder.h"
 
-FOUNDATION_EXPORT NSInteger const kBPM;
-FOUNDATION_EXPORT NSString *const kNotificationAdvancedSequence;
-FOUNDATION_EXPORT NSString *const kNotificationTickHit;
-FOUNDATION_EXPORT NSString *const kKeySequenceIndex;
-FOUNDATION_EXPORT NSString *const kKeyHits;
-FOUNDATION_EXPORT NSString *const kExitEvent;
-FOUNDATION_EXPORT CGFloat const kTickInterval;
+//FOUNDATION_EXPORT NSInteger const kBPM;
+//FOUNDATION_EXPORT NSString *const kNotificationAdvancedSequence;
+//FOUNDATION_EXPORT NSString *const kNotificationTickHit;
+//FOUNDATION_EXPORT NSString *const kKeySequenceIndex;
+//FOUNDATION_EXPORT NSString *const kKeyHits;
+//FOUNDATION_EXPORT NSString *const kExitEvent;
+//FOUNDATION_EXPORT CGFloat const kTickInterval;
 
 @protocol TickDispatcherDelegate <NSObject>
 
@@ -27,7 +26,7 @@ FOUNDATION_EXPORT CGFloat const kTickInterval;
 @end
 
 
-@interface TickDispatcher : CCNode <TickerControlDelegate>
+@interface TickDispatcher : CCNode
 
 @property (weak, nonatomic) id<TickDispatcherDelegate> delegate;
 @property (assign) int sequenceLength;

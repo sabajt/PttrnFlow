@@ -8,11 +8,11 @@
 
 #import "cocos2d.h"
 #import "PanLayer.h"
-#import "TickDispatcher.h"
+#import "SequenceUILayer.h"
 
 @class PdDispatcher;
 
-@interface SequenceLayer : PanLayer <TickDispatcherDelegate>
+@interface SequenceLayer : PanLayer <PuzzleControlsDelegate>
 {
     PdDispatcher *_dispatcher;
     void *_patch;

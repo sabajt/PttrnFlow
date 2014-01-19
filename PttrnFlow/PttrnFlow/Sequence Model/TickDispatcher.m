@@ -18,7 +18,6 @@
 #import "AudioStopEvent.h"
 #import "CCNode+Grid.h"
 
-NSInteger const kBPM = 120;
 NSString *const kNotificationAdvancedSequence = @"advanceSequence";
 NSString *const kNotificationTickHit = @"tickHit";
 NSString *const kKeySequenceIndex = @"sequenceIndex";

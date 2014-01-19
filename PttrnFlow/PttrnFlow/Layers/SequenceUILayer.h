@@ -7,15 +7,24 @@
 //
 
 #import "cocos2d.h"
+#import "ToggleButton.h"
 
-@class TickDispatcher;
+@protocol PuzzleControlsDelegate <NSObject>
+
+- (void)startUserSequence;
+- (void)stopUserSequence;
+- (void)startSolutionSequence;
+- (void)stopSolutionSequence;
+- (void)playSolutionIndex:(NSInteger)index;
+
+@end
 
 FOUNDATION_EXPORT CGFloat const kUIButtonUnitSize;
 FOUNDATION_EXPORT CGFloat const kUITimelineStepWidth;
 FOUNDATION_EXPORT CGFloat const kUILineWidth;
 
-@interface SequenceUILayer : CCLayer
+@interface SequenceUILayer : CCLayer <ToggleButtonDelegate>
 
-- (id)initWithPuzzle:(NSUInteger)puzzle tickDispatcher:(TickDispatcher *)tickDispatcher;
+- (id)initWithPuzzle:(NSUInteger)puzzle delegate:(id<PuzzleControlsDelegate>)delegate;
 
 @end
