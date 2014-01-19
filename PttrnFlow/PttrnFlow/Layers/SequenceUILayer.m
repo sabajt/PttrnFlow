@@ -62,6 +62,8 @@ static NSInteger const kMaxControlLength = 6;
 {
     self = [super init];
     if (self) {
+        self.delegate = delegate;
+        
         NSInteger steps = 4;
         self.steps = steps;
 
@@ -174,22 +176,9 @@ static NSInteger const kMaxControlLength = 6;
     return self;
 }
 
-- (void)onEnter
-{
-    [super onEnter];
-    // set control menu to receive touches below everything (so won't overlap pan sprte)
-    [self.controlMenu setHandlerPriority:INT_MAX - 1];
-}
-
 - (void)exitPressed:(id)sender
 {
     [[CCDirector sharedDirector] popScene];
-}
-
-- (void)playButtonPressed:(id)sender
-{
-//    [self.hitChart resetCells];
-    [self.delegate startUserSequence];
 }
 
 #pragma mark - ToggleButtonDelegate
