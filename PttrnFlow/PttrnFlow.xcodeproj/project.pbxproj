@@ -253,6 +253,7 @@
 		33A64C45183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 33A64C43183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt */; };
 		33A64C46183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png in Resources */ = {isa = PBXBuildFile; fileRef = 33A64C44183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png */; };
 		33A957E9188C561B006BF182 /* ToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957E8188C561B006BF182 /* ToggleButton.m */; };
+		33A957EC188C8236006BF182 /* BasicButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957EB188C8236006BF182 /* BasicButton.m */; };
 		33AF255717CB069700643CB2 /* AudioPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255617CB069700643CB2 /* AudioPad.m */; };
 		33AF255E17CB0B3F00643CB2 /* AudioPadEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255D17CB0B3F00643CB2 /* AudioPadEvent.m */; };
 		33B4F24717C6E104004D4C13 /* solution0.json in Resources */ = {isa = PBXBuildFile; fileRef = 33B4F24617C6E104004D4C13 /* solution0.json */; };
@@ -727,6 +728,8 @@
 		33A64C44183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arial-rounded-mt-bold-12fnt.png"; sourceTree = "<group>"; };
 		33A957E7188C561B006BF182 /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleButton.h; sourceTree = "<group>"; };
 		33A957E8188C561B006BF182 /* ToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleButton.m; sourceTree = "<group>"; };
+		33A957EA188C8236006BF182 /* BasicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicButton.h; sourceTree = "<group>"; };
+		33A957EB188C8236006BF182 /* BasicButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicButton.m; sourceTree = "<group>"; };
 		33AF255517CB069700643CB2 /* AudioPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPad.h; sourceTree = "<group>"; };
 		33AF255617CB069700643CB2 /* AudioPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPad.m; sourceTree = "<group>"; };
 		33AF255C17CB0B3F00643CB2 /* AudioPadEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPadEvent.h; sourceTree = "<group>"; };
@@ -1366,6 +1369,8 @@
 				33425EAA1841218C002B56DB /* CCNode+Grid.m */,
 				33A957E7188C561B006BF182 /* ToggleButton.h */,
 				33A957E8188C561B006BF182 /* ToggleButton.m */,
+				33A957EA188C8236006BF182 /* BasicButton.h */,
+				33A957EB188C8236006BF182 /* BasicButton.m */,
 			);
 			path = "Generic Nodes";
 			sourceTree = "<group>";
@@ -1927,6 +1932,7 @@
 				160807E916B437AA00039339 /* ccUtils.c in Sources */,
 				160807ED16B437AA00039339 /* CCVertex.m in Sources */,
 				160807F016B437AA00039339 /* CGPointExtension.m in Sources */,
+				33A957EC188C8236006BF182 /* BasicButton.m in Sources */,
 				160807F316B437AA00039339 /* NSThread+performBlock.m in Sources */,
 				160807F716B437AA00039339 /* TGAlib.m in Sources */,
 				160807FA16B437AA00039339 /* TransformUtils.m in Sources */,

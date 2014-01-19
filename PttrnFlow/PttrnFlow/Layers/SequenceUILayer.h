@@ -8,6 +8,7 @@
 
 #import "cocos2d.h"
 #import "ToggleButton.h"
+#import "BasicButton.h"
 
 @protocol PuzzleControlsDelegate <NSObject>
 
@@ -20,10 +21,8 @@
 @end
 
 FOUNDATION_EXPORT CGFloat const kUIButtonUnitSize;
-FOUNDATION_EXPORT CGFloat const kUITimelineStepWidth;
-FOUNDATION_EXPORT CGFloat const kUILineWidth;
 
-@interface SequenceUILayer : CCLayer <ToggleButtonDelegate>
+@interface SequenceUILayer : CCLayer <ToggleButtonDelegate, BasicButtonDelegate>
 
 - (id)initWithPuzzle:(NSUInteger)puzzle delegate:(id<PuzzleControlsDelegate>)delegate;
 
