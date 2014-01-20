@@ -10,18 +10,14 @@
 #import "SequenceUILayer.h"
 #import "GameConstants.h"
 #import "SimpleAudioEngine.h"
-#import "SpriteUtils.h"
-#import "SGTiledUtils.h"
 #import "Synth.h"
-#import "SGTiledUtils.h"
-//#import "Arrow.h"
+#import "Arrow.h"
 #import "MainSynth.h"
 //#import "EntryArrow.h"
 #import "ColorUtils.h"
 #import "PdDispatcher.h"
 #import "Sample.h"
 #import "ColorUtils.h"
-#import "CCLayer+Positioning.h"
 #import "BackgroundLayer.h"
 #import "CCSprite+Utils.h"
 //#import "Warp.h"
@@ -364,6 +360,13 @@ static CGFloat kSequenceInterval = 0.5;
         
         // direction arrow
         if (arrow != NULL) {
+            Arrow *arrowObj = [[Arrow alloc] initWithCell:cell direction:arrow isStatic:isStatic];
+            
+            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:arrowObj];
+            [self addAudioResponder:arrowObj];
+            
+            arrowObj.position = cellCenter;
+            [self.audioObjectsBatchNode addChild:arrowObj z:ZOrderAudioBatchGlyph];
         }
     }
     [[MainSynth sharedMainSynth] loadSamples:allSampleNames];

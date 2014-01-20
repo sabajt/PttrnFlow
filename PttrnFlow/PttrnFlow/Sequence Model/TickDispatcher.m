@@ -9,8 +9,6 @@
 #import "TickDispatcher.h"
 #import "GameConstants.h"
 //#import "Arrow.h"
-#import "SGTiledUtils.h"
-#import "TickChannel.h"
 #import "NSArray+CompareStrings.h"
 #import "TickEvent.h"
 #import "ExitEvent.h"
@@ -82,11 +80,11 @@ CGFloat const kTickInterval = 0.12;
 
 #pragma mark - setup
 
-- (void)addDynamicChannel:(NSString *)channel startingCell:(Coord *)cell startingDirection:(kDirection)direction
-{
-    TickChannel *ch = [[TickChannel alloc] initWithChannel:channel startingDirection:direction startingCell:cell];
-    [self.dynamicChannels addObject:ch];
-}
+//- (void)addDynamicChannel:(NSString *)channel startingCell:(Coord *)cell startingDirection:(kDirection)direction
+//{
+//    TickChannel *ch = [[TickChannel alloc] initWithChannel:channel startingDirection:direction startingCell:cell];
+//    [self.dynamicChannels addObject:ch];
+//}
 
 
 - (void)handleRemoveResponder:(NSNotification *)notification
@@ -106,32 +104,32 @@ CGFloat const kTickInterval = 0.12;
 
 #pragma mark - control
 
-// public method to kick off the sequence
-- (void)start
-{
-    self.currentTick = 0;
+//// public method to kick off the sequence
+//- (void)start
+//{
+//    self.currentTick = 0;
+//
+//    [self.dynamicChannels removeAllObjects];
+//    [self.hits removeAllObjects];
+//    
+//    for (TickChannel *channel in self.channels) {
+//        [channel reset];
+//    }
+//    
+//    [self schedule:@selector(tick:) interval:kTickInterval];
+//}
 
-    [self.dynamicChannels removeAllObjects];
-    [self.hits removeAllObjects];
-    
-    for (TickChannel *channel in self.channels) {
-        [channel reset];
-    }
-    
-    [self schedule:@selector(tick:) interval:kTickInterval];
-}
-
-// public method to stop the sequence
-- (void)stop
-{
-    [self unschedule:@selector(tick:)];
-    NSMutableSet *channels = [NSMutableSet set];
-    NSSet *tickChannels = [self.channels setByAddingObjectsFromSet:self.dynamicChannels];
-    for (TickChannel *ch in tickChannels) {
-        [channels addObject:ch.channel];
-    }
-    [self stopAudioForChannels:channels];
-}
+//// public method to stop the sequence
+//- (void)stop
+//{
+//    [self unschedule:@selector(tick:)];
+//    NSMutableSet *channels = [NSMutableSet set];
+//    NSSet *tickChannels = [self.channels setByAddingObjectsFromSet:self.dynamicChannels];
+//    for (TickChannel *ch in tickChannels) {
+//        [channels addObject:ch.channel];
+//    }
+//    [self stopAudioForChannels:channels];
+//}
 
 - (void)stopAudioForChannels:(NSSet *)channels
 {

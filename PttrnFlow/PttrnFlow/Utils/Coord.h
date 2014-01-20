@@ -39,13 +39,12 @@ FOUNDATION_EXPORT NSString *const kNeighborBelow;
 #pragma mark - context
 
 + (NSArray *)findNeighborPairs:(NSArray *)coords;
-+ (kDirection)directionForString:(NSString *)string;
 - (NSDictionary *)neighbors;
 - (BOOL)isNeighbor:(Coord *)coord;
 - (BOOL)isAbove:(Coord *)coord;
 - (BOOL)isBelow:(Coord *)coord;
 - (BOOL)isLeft:(Coord *)coord;
 - (BOOL)isRight:(Coord *)coord;
-- (Coord *)stepInDirection:(kDirection)direction;
+- (Coord *)stepInDirection:(NSString *)direction;
 
 @end

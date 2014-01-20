@@ -8,6 +8,12 @@
 
 #import "GameConstants.h"
 
+// directions
+NSString *const kDirectionUp = @"up";
+NSString *const kDirectionRight = @"right";
+NSString *const kDirectionDown = @"down";
+NSString *const kDirectionLeft = @"left";
+
 // size
 CGFloat const kSizeGridUnit = 68.0;
 CGFloat const kStatusBarHeight = 20.0;

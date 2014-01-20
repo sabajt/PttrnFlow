@@ -122,27 +122,6 @@ NSString *const kNeighborBelow = @"below";
     return [Coord findNeighborPairs:truncatedCoords existingPairs:pairs];
 }
 
-// TODO: just change directions to strings eventually
-+ (kDirection)directionForString:(NSString *)string
-{
-    if ([string isEqualToString:@"up"]) {
-        return kDirectionUp;
-    }
-    else if ([string isEqualToString:@"down"]) {
-        return kDirectionDown;
-    }
-    else if ([string isEqualToString:@"left"]) {
-        return kDirectionLeft;
-    }
-    else if ([string isEqualToString:@"right"]) {
-        return kDirectionRight;
-    }
-    else {
-        NSLog(@"warning: string '%@' not recognized as direction, returning -1", string);
-        return -1;
-    }
-}
-
 - (NSDictionary *)neighbors
 {
     return @{kNeighborLeft : [Coord coordWithX:self.x - 1 Y:self.y],
@@ -183,7 +162,7 @@ NSString *const kNeighborBelow = @"below";
     return [self isEqualToCoord:right];
 }
 
-- (Coord *)stepInDirection:(kDirection)direction
+- (Coord *)stepInDirection:(NSString *)direction
 {
     if (direction == kDirectionUp) {
         return [self neighbors][kNeighborAbove];

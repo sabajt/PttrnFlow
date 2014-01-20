@@ -11,16 +11,11 @@
 
 #define IS_WIDESCREEN ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
-// TODO: maybe just change everything to strings
-typedef enum
-{
-    kDirectionNone = 0,
-    kDirectionUp,
-    kDirectionRight,
-    kDirectionDown,
-    kDirectionLeft,
-    kDirectionThrough,
-} kDirection;
+// directions
+FOUNDATION_EXPORT NSString *const kDirectionUp;
+FOUNDATION_EXPORT NSString *const kDirectionRight;
+FOUNDATION_EXPORT NSString *const kDirectionDown;
+FOUNDATION_EXPORT NSString *const kDirectionLeft;
 
 // size
 FOUNDATION_EXPORT CGFloat const kSizeGridUnit;
