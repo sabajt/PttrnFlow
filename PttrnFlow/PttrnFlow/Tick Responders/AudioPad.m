@@ -19,26 +19,30 @@
 
 @implementation AudioPad
 
-- (id)initWithCell:(Coord *)cell isStatic:(BOOL)isStatic
+- (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName cell:(Coord *)cell isStatic:(BOOL)isStatic
 {
-    NSString *offFrameName = @"audio_box_off_static.png";
-    if (!isStatic) {
-        offFrameName = @"audio_box_off.png";
-    }
-    
-    self = [super initWithSpriteFrameName:offFrameName];
+    self = [super initWithSpriteFrameName:placeholderFrameName];
     if (self) {
         _isStatic = isStatic;
+        
+        CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:@"audio_box_highlight.png"];
+        self.contentSize = highlightSprite.contentSize;
+        _highlightSprite = highlightSprite;
+        highlightSprite.opacity = 0;
+        highlightSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
+        [self addChild:highlightSprite];
+        
+        NSString *boxFrameName = @"audio_box_static.png";
+        if (!isStatic) {
+            boxFrameName = @"audio_box.png";
+        }
+        CCSprite *boxSprite = [CCSprite spriteWithSpriteFrameName:boxFrameName];
+        boxSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
+        [self addChild:boxSprite];
 
         // CCNode+Grid
         self.cell = cell;
         self.cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
-        
-        CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:@"audio_box_on.png"];
-        _highlightSprite = highlightSprite;
-        highlightSprite.visible = NO;
-        highlightSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
-        [self addChild:highlightSprite];
     }
     return self;
 }
@@ -47,14 +51,10 @@
 
 - (NSArray *)audioHit:(NSInteger)bpm
 {
-    self.highlightSprite.visible = YES;
+    CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
+    [self.highlightSprite runAction:fadeOut];
+    
     return @[@"audio_pad"];
-}
-
-- (NSArray *)audioRelease:(NSInteger)bpm
-{
-    self.highlightSprite.visible = NO;
-    return nil;
 }
 
 - (Coord *)audioCell

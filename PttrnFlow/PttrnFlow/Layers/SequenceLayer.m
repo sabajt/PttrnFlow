@@ -322,7 +322,8 @@ static CGFloat kSequenceInterval = 0.5;
         CGPoint cellCenter = [cell relativeMidpoint];
         
         // audio pad unit sprite
-        AudioPad *audioPadUnit = [[AudioPad alloc] initWithCell:cell isStatic:isStatic];
+        AudioPad *audioPadUnit = [[AudioPad alloc] initWithPlaceholderFrameName:@"clear_rect_audio_batch.png" cell:cell isStatic:isStatic];
+
         audioPadUnit.position = cellCenter;
         [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:audioPadUnit];
         [self addAudioResponder:audioPadUnit];

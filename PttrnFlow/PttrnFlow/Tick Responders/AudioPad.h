@@ -15,6 +15,6 @@
 
 @property (assign) BOOL isStatic;
 
-- (id)initWithCell:(Coord *)cell isStatic:(BOOL)isStatic;
+- (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName cell:(Coord *)cell isStatic:(BOOL)isStatic;
 
 @end

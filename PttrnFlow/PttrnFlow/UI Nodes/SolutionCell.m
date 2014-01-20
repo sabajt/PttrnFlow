@@ -47,7 +47,6 @@
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     if ([super ccTouchBegan:touch withEvent:event]) {
-        self.hitDot.opacity = 255;
         CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
         [self.hitDot runAction:fadeOut];
         return YES;
