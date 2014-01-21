@@ -1,18 +1,22 @@
 PttrnFlow todo
 
 * ASSETS
-- new highlight colors for blocks
-- add ring to percussinon blocks
+- tintable white versions of tone assets
 - animated dotted line for selected blocks
 - new play and speaker buttons
+- tweak drum assets to look beter
 
 * DEV
+- edges for scrolling 
 - simplify solution sequence and place in puzzle file
 - correctly position timeline panels (just states for 4, 8 or 16...?)
 - fix touch highlight states to be working correctly
 - recognize hit or miss and display on timeline
+- side out menu
+- elastic edge or some smoothing for scrolling to edges
 
 * DESIGN
 - figure out what timeline will look like in diffrent states
+- design menu 
 
 
