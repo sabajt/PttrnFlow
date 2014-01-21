@@ -187,9 +187,6 @@ static NSString *const kGlyphs = @"glyphs";
         if ((i == sortedAudioValues.count) && ([rootName isEqualToString:kTonePrimary] || [rootName isEqualToString:kToneSecondary])) {
             frameName = [NSString stringWithFormat:@"%@_full.png", rootName];
         }
-        else if ((i == 1) && ([rootName isEqualToString:kDrumPrimary] || [rootName isEqualToString:kDrumSecondary])) {
-            frameName = [NSString stringWithFormat:@"%@_1.png", rootName];
-        }
         else {
             frameName = [NSString stringWithFormat:@"%@_%i_%i.png", rootName, i, sortedAudioValues.count];
         }

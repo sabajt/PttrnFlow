@@ -27,4 +27,9 @@
     return ccc3(252, 251, 247);
 }
 
++ (ccColor3B)activeYellow
+{
+    return ccc3(255, 212, 39);
+}
+
 @end

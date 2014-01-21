@@ -19,6 +19,7 @@ static inline ccColor4B ccc4BFromccc3B(ccColor3B c)
 + (UIColor *)UIColorFor3B:(ccColor3B)color;
 
 + (ccColor3B)cream;
++ (ccColor3B)activeYellow;
 
 @end
 
