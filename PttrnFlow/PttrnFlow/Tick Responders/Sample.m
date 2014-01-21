@@ -50,6 +50,9 @@
 
 - (NSArray *)audioHit:(NSInteger)bpm
 {
+    CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
+    [self.onSprite runAction:fadeOut];
+
     return @[self.sampleName];
 }
 
