@@ -8,20 +8,35 @@
 
 #import "PanLayer.h"
 
-static CGFloat const kDeceleration = 0.94;
-static CGFloat const kLowerSpeedLimit = 10.0;
-static CGFloat const kDecelerationInterval = 1.0 / 120.0;
+// deceleration
+static CGFloat const kDeceleration = 0.94f;
+static CGFloat const kLowerSpeedLimit = 10.0f;
+static CGFloat const kDecelerationInterval = 1.0f / 120.0f;
+
+// edge elasticity
+static CGFloat const kElasticTrackLimit = 100.0f;
+static ccTime const kBounceBackDuration = 0.5f;
 
 @interface PanLayer ()
 
 @property (assign) CGPoint panStartLocation;
 @property (assign) CGPoint velocity;
+@property (assign) CGRect panBounds;
 
 @property (weak, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 
 @end
 
 @implementation PanLayer
+
+- (id)initWithPanBounds:(CGRect)bounds
+{
+    self = [super init];
+    if (self) {
+        _panBounds = bounds;
+    }
+    return self;
+}
 
 - (void)onEnter
 {
@@ -40,6 +55,10 @@ static CGFloat const kDecelerationInterval = 1.0 / 120.0;
     [super onExit];
 }
 
+#pragma mark - Elastic calculations
+
+
+
 #pragma mark - Pan momentum
 
 - (void)pan:(UIGestureRecognizer *)gesture
@@ -57,8 +76,27 @@ static CGFloat const kDecelerationInterval = 1.0 / 120.0;
             break;
         }
         case UIGestureRecognizerStateChanged: {
-            self.position = CGPointMake(self.panStartLocation.x + (translation.x * [@(self.allowsPanHorizontal) integerValue]),
-                                        self.panStartLocation.y + (translation.y * [@(self.allowsPanVertical) integerValue]));
+            CGPoint rawPosition = CGPointMake(self.panStartLocation.x + (translation.x * [@(self.allowsPanHorizontal) integerValue]),
+                                              self.panStartLocation.y + (translation.y * [@(self.allowsPanVertical) integerValue]));
+            
+            if (rawPosition.x > self.panBounds.origin.x) {
+                CGFloat distance = rawPosition.x - self.panBounds.origin.x;
+                CGFloat multiplier = distance / kElasticTrackLimit;
+                if (multiplier > 1.0) {
+                    multiplier = 1.0;
+                }
+                multiplier = multiplier * multiplier;
+                
+                multiplier = (1.0 - multiplier) / 2;
+                CGFloat adjustedDistance = distance * multiplier;
+                
+                NSLog(@"\n\nraw position x: %f", rawPosition.x);
+                NSLog(@"right distance: %f", distance);
+                NSLog(@"adjusted distance: %f", adjustedDistance);
+                NSLog(@"multiplier: %f", multiplier);
+            }
+            
+            self.position = rawPosition;
             break;
         }
         case UIGestureRecognizerStateEnded: {

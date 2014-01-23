@@ -22,4 +22,6 @@
 
 @property (weak, nonatomic) id<PanLayerDelegate> panDelegate;
 
+- (id)initWithPanBounds:(CGRect)bounds;
+
 @end

@@ -7,12 +7,12 @@
 //
 
 #import "Synth.h"
-#import "GameConstants.h"
-#import "TickEvent.h"
 #import "CCNode+Grid.h"
+#import "ColorUtils.h"
 
 @interface Synth ()
 
+@property (weak, nonatomic) CCSprite *onSprite;
 // fragments
 @property (copy, nonatomic) NSString *synth;
 @property (copy, nonatomic) NSString *midi;
@@ -25,13 +25,23 @@
 {
     self = [super initWithSpriteFrameName:frameName];
     if (self) {
+        self.color = [ColorUtils cream];
+        
+        _synth = synth;
+        _midi = midi;
+
+        CCSprite *onSprite = [CCSprite spriteWithSpriteFrameName:frameName];
+        self.onSprite = onSprite;
+        onSprite.color = [ColorUtils activeYellow];
+        onSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
+        onSprite.opacity = 0.0;
+        [self addChild:onSprite];
+        
         // CCNode+Grid
         self.cell = cell;
         self.cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
     
-        _synth = synth;
-        _midi = midi;
-    }
+            }
     return self;
 }
 
@@ -44,6 +54,9 @@
 
 - (NSArray *)audioHit:(NSInteger)bpm
 {
+    CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
+    [self.onSprite runAction:fadeOut];
+
     return @[self.midi, self.synth];
 }
 

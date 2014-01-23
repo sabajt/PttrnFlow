@@ -86,7 +86,7 @@ static CGFloat kSequenceInterval = 0.5;
 
 - (id)initWithSequence:(int)sequence background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
 {
-    self = [super init];
+    self = [super initWithPanBounds:CGRectMake(320/2, 0, 320, 568)];
     if (self) {
         self.screenSize = self.contentSize;
         
