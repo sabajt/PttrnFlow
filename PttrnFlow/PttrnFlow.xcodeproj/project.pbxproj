@@ -175,6 +175,7 @@
 		16A942E51778C5A50052D5BD /* drum4-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DD1778C5A50052D5BD /* drum4-ipad.png */; };
 		16A942E61778C5A50052D5BD /* drum4on-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DE1778C5A50052D5BD /* drum4on-ipad.png */; };
 		3302EF6E1879C92C0032AD58 /* PFGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302EF6D1879C92C0032AD58 /* PFGeometry.m */; };
+		3317322E1892A89D005435D9 /* ScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3317322D1892A89D005435D9 /* ScrollLayer.m */; };
 		33185342188033940011D638 /* NSObject+AudioDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 33185341188033940011D638 /* NSObject+AudioDispatcher.m */; };
 		3338A9CC17C307D80037DFE2 /* SolutionSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3338A9CB17C307D80037DFE2 /* SolutionSequence.m */; };
 		3339C03118397638005771BC /* audioObjects-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02D18397638005771BC /* audioObjects-hd.plist */; };
@@ -630,6 +631,8 @@
 		16A942DE1778C5A50052D5BD /* drum4on-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drum4on-ipad.png"; sourceTree = "<group>"; };
 		3302EF6C1879C92C0032AD58 /* PFGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGeometry.h; sourceTree = "<group>"; };
 		3302EF6D1879C92C0032AD58 /* PFGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGeometry.m; sourceTree = "<group>"; };
+		3317322C1892A89D005435D9 /* ScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollLayer.h; sourceTree = "<group>"; };
+		3317322D1892A89D005435D9 /* ScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollLayer.m; sourceTree = "<group>"; };
 		33185340188033940011D638 /* NSObject+AudioDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AudioDispatcher.h"; sourceTree = "<group>"; };
 		33185341188033940011D638 /* NSObject+AudioDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AudioDispatcher.m"; sourceTree = "<group>"; };
 		3338A9CA17C307D80037DFE2 /* SolutionSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolutionSequence.h; sourceTree = "<group>"; };
@@ -1218,6 +1221,8 @@
 				163091EF177DEDA9003155BB /* BackgroundLayer.m */,
 				3350B17A186803E100F3BE57 /* PanLayer.h */,
 				3350B17B186803E100F3BE57 /* PanLayer.m */,
+				3317322C1892A89D005435D9 /* ScrollLayer.h */,
+				3317322D1892A89D005435D9 /* ScrollLayer.m */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -1889,6 +1894,7 @@
 				33A957E9188C561B006BF182 /* ToggleButton.m in Sources */,
 				1608079916B437A900039339 /* CCTexturePVR.m in Sources */,
 				1608079C16B437A900039339 /* CCTileMapAtlas.m in Sources */,
+				3317322E1892A89D005435D9 /* ScrollLayer.m in Sources */,
 				1608079F16B437A900039339 /* CCTMXLayer.m in Sources */,
 				160807A216B437A900039339 /* CCTMXObjectGroup.m in Sources */,
 				160807A516B437A900039339 /* CCTMXTiledMap.m in Sources */,

@@ -86,7 +86,8 @@ static CGFloat kSequenceInterval = 0.5;
 
 - (id)initWithSequence:(int)sequence background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
 {
-    self = [super initWithPanBounds:CGRectMake(320/2, 0, 320, 568)];
+//    self = [super initWithPanBounds:CGRectMake(320/2, 0, 320, 568)];
+    self = [super init];
     if (self) {
         self.screenSize = self.contentSize;
         
@@ -138,7 +139,7 @@ static CGFloat kSequenceInterval = 0.5;
                                        self.screenSize.height - (4 * kUIButtonUnitSize) - (2 * kPuzzleBoundsMargin));
         
         if (self.contentSize.width >= self.puzzleBounds.size.width) {
-            self.allowsPanHorizontal = YES;
+//            self.allowsPanHorizontal = YES;
             self.position = ccp(self.puzzleBounds.origin.x, self.position.y);
         }
         else {
@@ -147,7 +148,7 @@ static CGFloat kSequenceInterval = 0.5;
         }
         
         if (self.contentSize.height >= self.puzzleBounds.size.height) {
-            self.allowsPanVertical = YES;
+//            self.allowsPanVertical = YES;
             self.position = ccp(self.position.x, self.puzzleBounds.origin.y);
         }
         else {
@@ -158,7 +159,7 @@ static CGFloat kSequenceInterval = 0.5;
         // audio touch dispatcher
         AudioTouchDispatcher *sharedTouchDispatcher = [AudioTouchDispatcher sharedAudioTouchDispatcher];
         sharedTouchDispatcher.areaCells = [PuzzleUtils puzzleArea:sequence];
-        self.panDelegate = sharedTouchDispatcher;
+//        self.panDelegate = sharedTouchDispatcher;
         [self addChild:sharedTouchDispatcher];
         
         // create puzzle objects
