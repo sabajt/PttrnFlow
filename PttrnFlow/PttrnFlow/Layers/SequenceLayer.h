@@ -7,12 +7,13 @@
 //
 
 #import "cocos2d.h"
-#import "PanLayer.h"
+//#import "PanLayer.h"
+#import "ScrollLayer.h"
 #import "SequenceUILayer.h"
 
 @class PdDispatcher;
 
-@interface SequenceLayer : PanLayer <PuzzleControlsDelegate>
+@interface SequenceLayer : ScrollLayer <PuzzleControlsDelegate>
 {
     PdDispatcher *_dispatcher;
     void *_patch;
