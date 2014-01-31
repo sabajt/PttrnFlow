@@ -131,7 +131,7 @@ static CGFloat kSequenceInterval = 0.5;
         NSArray *cells = [PuzzleUtils puzzleArea:sequence];
         
         self.maxCoord = [Coord maxCoord:cells];
-        self.contentSize = CGSizeMake(self.maxCoord.x * kSizeGridUnit, self.maxCoord.y * kSizeGridUnit);
+        self.contentSize = CGSizeMake((self.maxCoord.x + 1) * kSizeGridUnit, (self.maxCoord.y + 1)* kSizeGridUnit);
         
         self.puzzleBounds = CGRectMake(kPuzzleBoundsMargin,
                                        (3 * kUIButtonUnitSize) + kPuzzleBoundsMargin,
