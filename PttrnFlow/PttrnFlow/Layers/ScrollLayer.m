@@ -8,6 +8,8 @@
 
 #import "ScrollLayer.h"
 
+static CGFloat const kClipSpeed = 0.25f;
+
 @interface ScrollLayer ()
 
 @property (assign) CGPoint lastFrameTouch;
@@ -40,9 +42,27 @@
     [super onExit];
 }
 
+- (CGFloat)elasticPull:(CGFloat)distance
+{
+    // adapted from http://squareb.wordpress.com/2013/01/06/31/
+    // not calculating anything based on screen or container size, just using constants for nice/consistent feel
+    return (1.0f - (1.0f / ((distance * 0.30f / 900.0f) + 1.0))) * 900.f;
+}
+
+- (void)clipVelocity
+{
+    // stop after min value
+    if (fabsf(self.velocity.x) < kClipSpeed) {
+        self.velocity = ccp(0, self.velocity.y);
+    }
+    if (fabsf(self.velocity.y) < kClipSpeed) {
+        self.velocity = ccp(self.velocity.x, 0);
+    }
+}
+
 - (void)update:(ccTime)dt
 {
-    static CGFloat minVel = 0.3f;
+    static CGFloat minVel = 0.25f;
     
 	if (self.isTouching) {
         const float kFilterAmount = 0.25f;
@@ -50,14 +70,7 @@
         CGFloat yVelocity = (self.velocity.y * kFilterAmount) + (self.unfilteredVelocity.y * (1.0f - kFilterAmount));
         self.velocity = ccp(xVelocity, yVelocity);
 		self.unfilteredVelocity = CGPointZero;
-        
-        // stop after min value
-        if (fabsf(self.velocity.x) < minVel) {
-            self.velocity = ccp(0, self.velocity.y);
-        }
-        if (fabsf(self.velocity.y) < minVel) {
-            self.velocity = ccp(self.velocity.x, 0);
-        }
+        [self clipVelocity];
         return;
 	}
     
@@ -75,21 +88,14 @@
         }
         else {
             CGFloat distance = min.x - bounds.origin.x;
-            CGFloat dx = -((1.0f - (1.0f / ((distance * 0.30f / 900.0f) + 1.0))) * 900.f);
+            CGFloat dx = -[self elasticPull:distance];
             self.velocity = ccp(dx, self.velocity.y);
         }
     }
     
     if (decay) {
         self.velocity = ccpMult(self.velocity, decayValue);
-        
-        // stop after min value
-        if (fabsf(self.velocity.x) < minVel) {
-            self.velocity = ccp(0, self.velocity.y);
-        }
-        if (fabsf(self.velocity.y) < minVel) {
-            self.velocity = ccp(self.velocity.x, 0);
-        }
+        [self clipVelocity];
     }
     self.position = ccpAdd(self.position, self.velocity);
 }
@@ -116,7 +122,7 @@
     if (min.x > bounds.origin.x) {
         if (self.unfilteredVelocity.x > minVel) {
             CGFloat distance = min.x - bounds.origin.x;
-            CGFloat dx = (1.0f - (1.0f / ((distance * 0.3f / 900.0f) + 1.0))) * 900.f;
+            CGFloat dx = [self elasticPull:distance];
             CGFloat normalized = 1.0f - (dx / 20.f);
             self.unfilteredVelocity = ccp(self.unfilteredVelocity.x * normalized, self.unfilteredVelocity.y);
         }
