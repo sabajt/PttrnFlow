@@ -40,41 +40,6 @@
     [super onExit];
 }
 
-- (BOOL)ccTouchBegan:(UITouch*)touch withEvent:(UIEvent*)event
-{
-	self.lastFrameTouch = [self.parent convertTouchToNodeSpace:touch];
-	self.isTouching = YES;
-    return YES;
-}
-
-- (void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent*)event
-{
-	CGPoint currentTouch = [self.parent convertTouchToNodeSpace:touch];
-	self.unfilteredVelocity = ccp(currentTouch.x - self.lastFrameTouch.x, currentTouch.y - self.lastFrameTouch.y);
-    
-    static CGFloat minVel = 0.2f;
-    CGRect bounds = CGRectMake(0, 0, 320, 568);
-    CGPoint min = self.position;
-    CGPoint max = ccp(self.position.x + self.contentSize.width, self.position.y + self.contentSize.height);
-    
-    if (min.x > bounds.origin.x) {
-        if (self.unfilteredVelocity.x > minVel) {
-            CGFloat distance = min.x - bounds.origin.x;
-            CGFloat dx = (1.0f - (1.0f / ((distance * 0.55f / 900.0f) + 1.0))) * 900.f;
-            CGFloat normalized = 1.0f - (dx / 20.f);
-            self.unfilteredVelocity = ccp(self.unfilteredVelocity.x * normalized, self.unfilteredVelocity.y);
-        }
-    }
-    
-	self.position = ccpAdd(self.position, self.unfilteredVelocity);
-	self.lastFrameTouch = currentTouch;
-}
-
-- (void)ccTouchEnded:(UITouch*)touch withEvent:(UIEvent*)event
-{
-	self.isTouching = NO;
-}
-
 - (void)update:(ccTime)dt
 {
     static CGFloat minVel = 0.3f;
@@ -110,7 +75,7 @@
         }
         else {
             CGFloat distance = min.x - bounds.origin.x;
-            CGFloat dx = -((1.0f - (1.0f / ((distance * 0.55f / 900.0f) + 1.0))) * 900.f);
+            CGFloat dx = -((1.0f - (1.0f / ((distance * 0.30f / 900.0f) + 1.0))) * 900.f);
             self.velocity = ccp(dx, self.velocity.y);
         }
     }
@@ -127,6 +92,43 @@
         }
     }
     self.position = ccpAdd(self.position, self.velocity);
+}
+
+#pragma mark - CCTargetedTouchDelegate
+
+- (BOOL)ccTouchBegan:(UITouch*)touch withEvent:(UIEvent*)event
+{
+	self.lastFrameTouch = [self.parent convertTouchToNodeSpace:touch];
+	self.isTouching = YES;
+    return YES;
+}
+
+- (void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent*)event
+{
+	CGPoint currentTouch = [self.parent convertTouchToNodeSpace:touch];
+	self.unfilteredVelocity = ccp(currentTouch.x - self.lastFrameTouch.x, currentTouch.y - self.lastFrameTouch.y);
+    
+    static CGFloat minVel = 0.2f;
+    CGRect bounds = CGRectMake(0, 0, 320, 568);
+    CGPoint min = self.position;
+    CGPoint max = ccp(self.position.x + self.contentSize.width, self.position.y + self.contentSize.height);
+    
+    if (min.x > bounds.origin.x) {
+        if (self.unfilteredVelocity.x > minVel) {
+            CGFloat distance = min.x - bounds.origin.x;
+            CGFloat dx = (1.0f - (1.0f / ((distance * 0.3f / 900.0f) + 1.0))) * 900.f;
+            CGFloat normalized = 1.0f - (dx / 20.f);
+            self.unfilteredVelocity = ccp(self.unfilteredVelocity.x * normalized, self.unfilteredVelocity.y);
+        }
+    }
+    
+	self.position = ccpAdd(self.position, self.unfilteredVelocity);
+	self.lastFrameTouch = currentTouch;
+}
+
+- (void)ccTouchEnded:(UITouch*)touch withEvent:(UIEvent*)event
+{
+	self.isTouching = NO;
 }
 
 @end
