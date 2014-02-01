@@ -10,4 +10,6 @@
 
 @interface ScrollLayer : CCLayer
 
+@property (assign) CGRect scrollBounds;
+
 @end

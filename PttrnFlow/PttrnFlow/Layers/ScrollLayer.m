@@ -45,7 +45,8 @@ static CGFloat const kClipSpeed = 0.25f;
 - (CGFloat)elasticPull:(CGFloat)distance
 {
     // adapted from http://squareb.wordpress.com/2013/01/06/31/
-    // not calculating anything based on screen or container size, just using constants for nice/consistent feel
+    // not calculating anything based on screen or container size
+    // just using constants for consistent feel
     return (1.0f - (1.0f / ((distance * 0.30f / 900.0f) + 1.0))) * 900.f;
 }
 
@@ -62,8 +63,6 @@ static CGFloat const kClipSpeed = 0.25f;
 
 - (void)update:(ccTime)dt
 {
-    static CGFloat minVel = 0.25f;
-    
 	if (self.isTouching) {
         const float kFilterAmount = 0.25f;
 		CGFloat xVelocity = (self.velocity.x * kFilterAmount) + (self.unfilteredVelocity.x * (1.0f - kFilterAmount));
@@ -75,25 +74,24 @@ static CGFloat const kClipSpeed = 0.25f;
 	}
     
     BOOL decay = YES;
-    CGFloat decayValue = 0.9f;
     
-    CGRect bounds = CGRectMake(0, 0, 320, 568);
-    CGPoint min = self.position;
-    CGPoint max = ccp(self.position.x + self.contentSize.width, self.position.y + self.contentSize.height);
+    CGPoint minPos = self.position;
+    CGPoint maxPos = ccp(self.position.x + self.contentSize.width, self.position.y + self.contentSize.height);
     
-    if (min.x > bounds.origin.x) {
+    if (minPos.x > self.scrollBounds.origin.x) {
         decay = NO;
-        if (self.velocity.x > minVel) {
+        if (self.velocity.x > kClipSpeed) {
             self.velocity = ccp(self.velocity.x * 0.6f, self.velocity.y);
         }
         else {
-            CGFloat distance = min.x - bounds.origin.x;
+            CGFloat distance = minPos.x - self.scrollBounds.origin.x;
             CGFloat dx = -[self elasticPull:distance];
             self.velocity = ccp(dx, self.velocity.y);
         }
     }
     
     if (decay) {
+        static CGFloat decayValue = 0.9f;
         self.velocity = ccpMult(self.velocity, decayValue);
         [self clipVelocity];
     }
@@ -114,14 +112,12 @@ static CGFloat const kClipSpeed = 0.25f;
 	CGPoint currentTouch = [self.parent convertTouchToNodeSpace:touch];
 	self.unfilteredVelocity = ccp(currentTouch.x - self.lastFrameTouch.x, currentTouch.y - self.lastFrameTouch.y);
     
-    static CGFloat minVel = 0.2f;
-    CGRect bounds = CGRectMake(0, 0, 320, 568);
-    CGPoint min = self.position;
-    CGPoint max = ccp(self.position.x + self.contentSize.width, self.position.y + self.contentSize.height);
+    CGPoint minPos = self.position;
+    CGPoint maxPos = ccp(self.position.x + self.contentSize.width, self.position.y + self.contentSize.height);
     
-    if (min.x > bounds.origin.x) {
-        if (self.unfilteredVelocity.x > minVel) {
-            CGFloat distance = min.x - bounds.origin.x;
+    if (minPos.x > self.scrollBounds.origin.x) {
+        if (self.unfilteredVelocity.x > kClipSpeed) {
+            CGFloat distance = minPos.x - self.scrollBounds.origin.x;
             CGFloat dx = [self elasticPull:distance];
             CGFloat normalized = 1.0f - (dx / 20.f);
             self.unfilteredVelocity = ccp(self.unfilteredVelocity.x * normalized, self.unfilteredVelocity.y);
