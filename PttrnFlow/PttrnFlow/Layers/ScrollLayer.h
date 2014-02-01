@@ -11,5 +11,7 @@
 @interface ScrollLayer : CCLayer
 
 @property (assign) CGRect scrollBounds;
+@property (assign) BOOL allowsScrollHorizontal;
+@property (assign) BOOL allowsScrollVertical;
 
 @end
