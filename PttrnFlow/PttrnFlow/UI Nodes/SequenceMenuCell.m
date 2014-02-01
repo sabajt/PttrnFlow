@@ -7,12 +7,10 @@
 //
 
 #import "SequenceMenuCell.h"
-#import "CCSprite+Utils.h"
 #import "ColorUtils.h"
 
 @interface SequenceMenuCell ()
 
-@property (weak, nonatomic) CCSprite *sprite;
 @property (assign) int index;
 
 @end
@@ -22,27 +20,18 @@
 
 -(id) initWithIndex:(int)index
 {
-    static CGFloat width = 200;
-    static CGFloat height = 20;
-
     self = [super init];
     if (self) {
         self.touchNodeDelegate = self;
         
-        self.contentSize = CGSizeMake(width, height);
+        self.contentSize = CGSizeMake(320, 50);
         self.swallowsTouches = YES;
         _index = index;
         
-        CCSprite *sprite = [CCSprite rectSpriteWithSize:CGSizeMake(width, height) color:ccGRAY];
-        _sprite = sprite;
-        _sprite.position = ccp(width/2, height/2);
-        [self addChild:_sprite];
-        
-        CCLabelTTF *label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", index + 1] fontName:@"Helvetica" fontSize:20];
+        CCLabelTTF *label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", index + 1] fontName:@"Helvetica" fontSize:40];
         label.color = ccWHITE;
-        label.position = ccp(_sprite.contentSize.width/2, _sprite.contentSize.height/2);
-        [_sprite addChild:label]; 
-        
+        label.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
+        [self addChild:label];
     }
     return self;
 }

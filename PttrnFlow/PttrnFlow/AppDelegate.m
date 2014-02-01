@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "SequenceMenuLayer.h"
 #import "SimpleAudioEngine.h"
-#import "TextureUtils.h"
+#import "GameConstants.h"
 
 @implementation AppDelegate
 
@@ -78,8 +78,6 @@
     
     [application setStatusBarHidden:YES];
     
-    // load textures (old method)
-    [TextureUtils loadTextures];
     // load sprite sheets (new method)
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeySamplePads stringByAppendingString:@".plist"]];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeySynthPads stringByAppendingString:@".plist"]];

@@ -11,6 +11,14 @@
 
 #define IS_WIDESCREEN ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
+// sprite sheets
+FOUNDATION_EXPORT NSString *const kTextureKeySamplePads;
+FOUNDATION_EXPORT NSString *const kTextureKeySynthPads;
+FOUNDATION_EXPORT NSString *const kTextureKeyOther;
+FOUNDATION_EXPORT NSString *const kTextureKeyUILayer;
+FOUNDATION_EXPORT NSString *const kTextureKeyBackground;
+FOUNDATION_EXPORT NSString *const kTextureKeyAudioObjects;
+
 // directions
 FOUNDATION_EXPORT NSString *const kDirectionUp;
 FOUNDATION_EXPORT NSString *const kDirectionRight;

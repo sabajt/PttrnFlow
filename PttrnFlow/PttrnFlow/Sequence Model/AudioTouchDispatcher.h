@@ -7,9 +7,9 @@
 //
 
 #import "AudioResponder.h"
-#import "PanLayer.h"
+#import "ScrollLayer.h"
 
-@interface AudioTouchDispatcher : CCNode <CCTargetedTouchDelegate, PanLayerDelegate>
+@interface AudioTouchDispatcher : CCNode <CCTargetedTouchDelegate, ScrollLayerDelegate>
 
 @property (assign) BOOL allowScrolling;
 @property (strong, nonatomic) NSArray *areaCells;

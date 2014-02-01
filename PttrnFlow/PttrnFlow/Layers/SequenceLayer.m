@@ -18,10 +18,8 @@
 #import "Sample.h"
 #import "ColorUtils.h"
 #import "BackgroundLayer.h"
-#import "CCSprite+Utils.h"
 #import "AudioTouchDispatcher.h"
 #import "AudioPad.h"
-#import "TextureUtils.h"
 #import "PuzzleUtils.h"
 #import "Coord.h"
 #import "PFGeometry.h"
@@ -158,8 +156,9 @@ static CGFloat kSequenceInterval = 0.5f;
         
         // audio touch dispatcher
         AudioTouchDispatcher *sharedTouchDispatcher = [AudioTouchDispatcher sharedAudioTouchDispatcher];
+        [sharedTouchDispatcher clearResponders];
         sharedTouchDispatcher.areaCells = [PuzzleUtils puzzleArea:sequence];
-//        self.panDelegate = sharedTouchDispatcher;
+        self.scrollDelegate = sharedTouchDispatcher;
         [self addChild:sharedTouchDispatcher];
         
         // create puzzle objects

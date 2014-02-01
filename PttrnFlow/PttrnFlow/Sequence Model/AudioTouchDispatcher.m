@@ -52,7 +52,7 @@
 
 - (void)clearResponders
 {
-    self.responders = nil;
+    [self.responders removeAllObjects];
 }
 
 - (void)hitCell:(Coord *)coord channel:(NSString *)channel
@@ -206,9 +206,9 @@
     CFDictionaryRemoveValue(self.trackingTouches, (__bridge void *)touch);
 }
 
-#pragma mark - PanLayerDelegate
+#pragma mark - ScrollLayerDelegate
 
-- (BOOL)shouldPan
+- (BOOL)shouldScroll
 {
     return self.allowScrolling;
 }

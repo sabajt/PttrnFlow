@@ -10,9 +10,7 @@
 
 @protocol PanLayerDelegate <NSObject>
 @optional
-
 - (BOOL)shouldPan;
-
 @end
 
 @interface PanLayer : CCLayer <UIGestureRecognizerDelegate>

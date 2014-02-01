@@ -35,8 +35,9 @@
         int i = 0;
         for (NSString *name in _mapNames) {
             SequenceMenuCell *cell = [[SequenceMenuCell alloc] initWithIndex:i];
+            cell.anchorPoint = ccp(0.5, 0.5);
             CGFloat yPosition = sideMargins.height + ((i * cell.contentSize.height) + (i * padding.height));
-            cell.position = ccp(sideMargins.width, yPosition);
+            cell.position = ccp(self.contentSize.width / 2, yPosition);
             cell.menuCellDelegate = self;
             [self addChild:cell];
             i++;

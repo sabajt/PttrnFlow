@@ -8,9 +8,6 @@
 
 #import "SequenceUILayer.h"
 #import "TickDispatcher.h"
-#import "CCSprite+Utils.h"
-#import "TextureUtils.h"
-#import "PanSprite.h"
 #import "ColorUtils.h"
 #import "TileSprite.h"
 #import "ClippingSprite.h"

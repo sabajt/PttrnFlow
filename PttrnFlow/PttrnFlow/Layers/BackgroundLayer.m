@@ -8,8 +8,8 @@
 
 #import "BackgroundLayer.h"
 #import "TileSprite.h"
-#import "TextureUtils.h"
 #import "ColorUtils.h"
+#import "GameConstants.h"
 
 @implementation BackgroundLayer
 
