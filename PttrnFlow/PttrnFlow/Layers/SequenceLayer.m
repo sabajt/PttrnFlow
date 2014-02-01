@@ -13,17 +13,14 @@
 #import "Synth.h"
 #import "Arrow.h"
 #import "MainSynth.h"
-//#import "EntryArrow.h"
 #import "ColorUtils.h"
 #import "PdDispatcher.h"
 #import "Sample.h"
 #import "ColorUtils.h"
 #import "BackgroundLayer.h"
 #import "CCSprite+Utils.h"
-//#import "Warp.h"
 #import "AudioTouchDispatcher.h"
 #import "AudioPad.h"
-//#import "AudioStop.h"
 #import "TextureUtils.h"
 #import "PuzzleUtils.h"
 #import "Coord.h"
@@ -38,8 +35,8 @@ typedef NS_ENUM(NSInteger, ZOrderAudioBatch)
     ZOrderAudioBatchGlyph
 };
 
-static CGFloat kPuzzleBoundsMargin = 10.0;
-static CGFloat kSequenceInterval = 0.5;
+static CGFloat kPuzzleBoundsMargin = 10.0f;
+static CGFloat kSequenceInterval = 0.5f;
 
 @interface SequenceLayer ()
 
@@ -86,9 +83,10 @@ static CGFloat kSequenceInterval = 0.5;
 
 - (id)initWithSequence:(int)sequence background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
 {
-//    self = [super initWithPanBounds:CGRectMake(320/2, 0, 320, 568)];
     self = [super init];
     if (self) {
+        // layer initialized with default content size of screen size...
+        // would be better to do figure out best practice and get screen size more explicitly
         self.screenSize = self.contentSize;
         
         self.isTouchEnabled = NO;
@@ -131,7 +129,7 @@ static CGFloat kSequenceInterval = 0.5;
         NSArray *cells = [PuzzleUtils puzzleArea:sequence];
         
         self.maxCoord = [Coord maxCoord:cells];
-        self.contentSize = CGSizeMake(self.maxCoord.x * kSizeGridUnit, self.maxCoord.y * kSizeGridUnit);
+        self.contentSize = CGSizeMake((self.maxCoord.x + 1) * kSizeGridUnit, (self.maxCoord.y + 1) * kSizeGridUnit);
         
         self.puzzleBounds = CGRectMake(kPuzzleBoundsMargin,
                                        (3 * kUIButtonUnitSize) + kPuzzleBoundsMargin,
@@ -139,22 +137,24 @@ static CGFloat kSequenceInterval = 0.5;
                                        self.screenSize.height - (4 * kUIButtonUnitSize) - (2 * kPuzzleBoundsMargin));
         
         if (self.contentSize.width >= self.puzzleBounds.size.width) {
-//            self.allowsPanHorizontal = YES;
             self.position = ccp(self.puzzleBounds.origin.x, self.position.y);
         }
         else {
+            self.allowsScrollHorizontal = NO;
             CGFloat padding = self.puzzleBounds.size.width - self.contentSize.width;
             self.position = ccp(self.puzzleBounds.origin.x + (padding / 2), self.position.y);
         }
         
         if (self.contentSize.height >= self.puzzleBounds.size.height) {
-//            self.allowsPanVertical = YES;
             self.position = ccp(self.position.x, self.puzzleBounds.origin.y);
         }
         else {
+            self.allowsScrollVertical = NO;
             CGFloat padding = self.puzzleBounds.size.height - self.contentSize.height;
             self.position = ccp(self.position.x, self.puzzleBounds.origin.y + (padding / 2));
         }
+        self.scrollBounds = CGRectMake(self.position.x, self.position.y, (self.screenSize.width - kPuzzleBoundsMargin) - self.position.x, (self.screenSize.height - kPuzzleBoundsMargin) - self.position.y);
+        NSLog(@"scroll bounds: %@", NSStringFromCGRect(self.scrollBounds));
         
         // audio touch dispatcher
         AudioTouchDispatcher *sharedTouchDispatcher = [AudioTouchDispatcher sharedAudioTouchDispatcher];
