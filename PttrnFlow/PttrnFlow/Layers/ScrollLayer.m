@@ -75,15 +75,20 @@ static CGFloat const kClipSpeed = 0.25f;
         return;
 	}
     
+    // calculate elastic momentum while not touching
+    
     CGPoint minPos = self.position;
     CGPoint maxPos = ccp(self.position.x + self.contentSize.width, self.position.y + self.contentSize.height);
-    
-    BOOL decay = YES;
+    static CGFloat elasticDecay = 0.6f;
+    BOOL hasDecayX = YES;
+    BOOL hasDecayY = YES;
 
-    if ((minPos.x > self.scrollBounds.origin.x) && self.allowsScrollHorizontal) {
-        decay = NO;
+    if ((minPos.x > self.scrollBounds.origin.x) &&
+        self.allowsScrollHorizontal)
+    {
+        hasDecayX = NO;
         if (self.velocity.x > kClipSpeed) {
-            self.velocity = ccp(self.velocity.x * 0.6f, self.velocity.y);
+            self.velocity = ccp(self.velocity.x * elasticDecay, self.velocity.y);
         }
         else {
             CGFloat distance = minPos.x - self.scrollBounds.origin.x;
@@ -91,12 +96,55 @@ static CGFloat const kClipSpeed = 0.25f;
             self.velocity = ccp(dx, self.velocity.y);
         }
     }
-    
-    if (decay) {
-        static CGFloat decayValue = 0.9f;
-        self.velocity = ccpMult(self.velocity, decayValue);
-        [self clipVelocity];
+    if ((minPos.y > self.scrollBounds.origin.y) &&
+        self.allowsScrollVertical)
+    {
+        hasDecayY = NO;
+        if (self.velocity.y > kClipSpeed) {
+            self.velocity = ccp(self.velocity.x, self.velocity.y * elasticDecay);
+        }
+        else {
+            CGFloat distance = minPos.y - self.scrollBounds.origin.y;
+            CGFloat dy = -[self elasticPull:distance];
+            self.velocity = ccp(self.velocity.x, dy);
+        }
     }
+    if ((maxPos.x < self.scrollBounds.origin.x + self.scrollBounds.size.width) &&
+        self.allowsScrollHorizontal)
+    {
+        hasDecayX = NO;
+        if (self.velocity.x < -kClipSpeed) {
+            self.velocity = ccp(self.velocity.x * elasticDecay, self.velocity.y);
+        }
+        else {
+            CGFloat distance = (self.scrollBounds.origin.x + self.scrollBounds.size.width) - maxPos.x;
+            CGFloat dx = [self elasticPull:distance];
+            self.velocity = ccp(dx, self.velocity.y);
+        }
+    }
+    if ((maxPos.y < self.scrollBounds.origin.y + self.scrollBounds.size.height) &&
+        self.allowsScrollHorizontal)
+    {
+        hasDecayY = NO;
+        if (self.velocity.y < -kClipSpeed) {
+            self.velocity = ccp(self.velocity.x, self.velocity.y * elasticDecay);
+        }
+        else {
+            CGFloat distance = (self.scrollBounds.origin.y + self.scrollBounds.size.height) - maxPos.y;
+            CGFloat dy = [self elasticPull:distance];
+            self.velocity = ccp(self.velocity.x, dy);
+        }
+    }
+
+    static CGFloat decayValue = 0.9f;
+    if (hasDecayX) {
+        self.velocity = ccp(self.velocity.x * decayValue, self.velocity.y);
+    }
+    if (hasDecayY) {
+        self.velocity = ccp(self.velocity.x, self.velocity.y * decayValue);
+    }
+    [self clipVelocity];
+
     self.position = ccpAdd(self.position, self.velocity);
 }
 
@@ -111,22 +159,49 @@ static CGFloat const kClipSpeed = 0.25f;
 
 - (void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent*)event
 {
+    // calculate elastic drag while touching
+    
 	CGPoint currentTouch = [self.parent convertTouchToNodeSpace:touch];
 	self.unfilteredVelocity = ccp(currentTouch.x - self.lastTouch.x, currentTouch.y - self.lastTouch.y);
     self.lastTouch = currentTouch;
     
     CGPoint minPos = self.position;
     CGPoint maxPos = ccp(self.position.x + self.contentSize.width, self.position.y + self.contentSize.height);
+    CGFloat strech = 20.0f;
     
-    if (minPos.x > self.scrollBounds.origin.x) {
-        if (self.unfilteredVelocity.x > kClipSpeed) {
-            CGFloat distance = minPos.x - self.scrollBounds.origin.x;
-            CGFloat dx = [self elasticPull:distance];
-            CGFloat normalized = 1.0f - (dx / 20.0f);
-            self.unfilteredVelocity = ccp(self.unfilteredVelocity.x * normalized, self.unfilteredVelocity.y);
-        }
+    if ((minPos.x > self.scrollBounds.origin.x) &&
+        (self.unfilteredVelocity.x > kClipSpeed))
+    {
+        CGFloat distance = minPos.x - self.scrollBounds.origin.x;
+        CGFloat dx = [self elasticPull:distance];
+        CGFloat normalized = 1.0f - (dx / strech);
+        self.unfilteredVelocity = ccp(self.unfilteredVelocity.x * normalized, self.unfilteredVelocity.y);
     }
-    
+    if ((minPos.y > self.scrollBounds.origin.y) &&
+        (self.unfilteredVelocity.y > kClipSpeed))
+    {
+        CGFloat distance = minPos.y - self.scrollBounds.origin.y;
+        CGFloat dy = [self elasticPull:distance];
+        CGFloat normalized = 1.0f - (dy / strech);
+        self.unfilteredVelocity = ccp(self.unfilteredVelocity.x, self.unfilteredVelocity.y * normalized);
+    }
+    if ((maxPos.x < self.scrollBounds.origin.x + self.scrollBounds.size.width) &&
+        (self.unfilteredVelocity.x < -kClipSpeed))
+    {
+        CGFloat distance = (self.scrollBounds.origin.x + self.scrollBounds.size.width) - maxPos.x;
+        CGFloat dx = [self elasticPull:distance];
+        CGFloat normalized = 1.0f - (dx / strech);
+        self.unfilteredVelocity = ccp(self.unfilteredVelocity.x  * normalized, self.unfilteredVelocity.y);
+    }
+    if ((maxPos.y < self.scrollBounds.origin.y + self.scrollBounds.size.height) &&
+        (self.unfilteredVelocity.y < -kClipSpeed))
+    {
+        CGFloat distance = (self.scrollBounds.origin.y + self.scrollBounds.size.height) - maxPos.y;
+        CGFloat dy = [self elasticPull:distance];
+        CGFloat normalized = 1.0f - (dy / strech);
+        self.unfilteredVelocity = ccp(self.unfilteredVelocity.x, self.unfilteredVelocity.y  * normalized);
+    }
+
     if (!self.allowsScrollHorizontal) {
         self.unfilteredVelocity = ccp(0.0f, self.unfilteredVelocity.y);
     }

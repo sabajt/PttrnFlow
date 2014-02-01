@@ -129,7 +129,7 @@ static CGFloat kSequenceInterval = 0.5f;
         NSArray *cells = [PuzzleUtils puzzleArea:sequence];
         
         self.maxCoord = [Coord maxCoord:cells];
-        self.contentSize = CGSizeMake((self.maxCoord.x + 1) * kSizeGridUnit, (self.maxCoord.y + 1)* kSizeGridUnit);
+        self.contentSize = CGSizeMake((self.maxCoord.x + 1) * kSizeGridUnit, (self.maxCoord.y + 1) * kSizeGridUnit);
         
         self.puzzleBounds = CGRectMake(kPuzzleBoundsMargin,
                                        (3 * kUIButtonUnitSize) + kPuzzleBoundsMargin,
@@ -153,7 +153,8 @@ static CGFloat kSequenceInterval = 0.5f;
             CGFloat padding = self.puzzleBounds.size.height - self.contentSize.height;
             self.position = ccp(self.position.x, self.puzzleBounds.origin.y + (padding / 2));
         }
-        self.scrollBounds = CGRectMake(self.position.x, self.position.y, self.screenSize.width - kPuzzleBoundsMargin, self.screenSize.height - kPuzzleBoundsMargin);
+        self.scrollBounds = CGRectMake(self.position.x, self.position.y, (self.screenSize.width - kPuzzleBoundsMargin) - self.position.x, (self.screenSize.height - kPuzzleBoundsMargin) - self.position.y);
+        NSLog(@"scroll bounds: %@", NSStringFromCGRect(self.scrollBounds));
         
         // audio touch dispatcher
         AudioTouchDispatcher *sharedTouchDispatcher = [AudioTouchDispatcher sharedAudioTouchDispatcher];
