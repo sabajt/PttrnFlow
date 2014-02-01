@@ -9,8 +9,11 @@
 #import "cocos2d.h"
 
 @protocol ScrollLayerDelegate <NSObject>
+
 @optional
+
 - (BOOL)shouldScroll;
+
 @end
 
 @interface ScrollLayer : CCLayer

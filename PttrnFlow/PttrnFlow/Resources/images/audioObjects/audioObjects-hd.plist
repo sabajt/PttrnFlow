@@ -4,6 +4,19 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>arrow_up.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{308,530},{40,40}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{40,40}}</string>
+                <key>sourceSize</key>
+                <string>{40,40}</string>
+            </dict>
             <key>arrow_up_off.png</key>
             <dict>
                 <key>frame</key>
@@ -433,6 +446,19 @@
                 <key>sourceSize</key>
                 <string>{40,40}</string>
             </dict>
+            <key>glyph_circle.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{264,564},{38,38}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,1},{38,38}}</string>
+                <key>sourceSize</key>
+                <string>{40,40}</string>
+            </dict>
             <key>pad_border_corner.png</key>
             <dict>
                 <key>frame</key>
@@ -540,7 +566,7 @@
             <key>tone_primary_1_4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{346,530},{36,36}}</string>
+                <string>{{350,568},{36,36}}</string>
                 <key>offset</key>
                 <string>{16,16}</string>
                 <key>rotated</key>
@@ -553,7 +579,7 @@
             <key>tone_primary_1_5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{264,564},{36,36}}</string>
+                <string>{{388,552},{36,36}}</string>
                 <key>offset</key>
                 <string>{15,16}</string>
                 <key>rotated</key>
@@ -670,7 +696,7 @@
             <key>tone_primary_2_8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{308,530},{36,36}}</string>
+                <string>{{350,530},{36,36}}</string>
                 <key>offset</key>
                 <string>{16,16}</string>
                 <key>rotated</key>
@@ -898,7 +924,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9b58b148981b25c8a71c99f90543bb5c:c0eed86a35c0dae09277aa1956c3705f:b365ed0847c6905af74912c7dbbb1edb$</string>
+            <string>$TexturePacker:SmartUpdate:aaec9f4f1ef71536f39c9a27ff903419:b32c619e4dcee420ed2519b818d713e6:b365ed0847c6905af74912c7dbbb1edb$</string>
             <key>textureFileName</key>
             <string>audioObjects-hd.png</string>
         </dict>

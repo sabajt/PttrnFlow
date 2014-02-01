@@ -1,11 +1,19 @@
 PttrnFlow todo
 
 * ASSETS
+- tintable center glyph components (fill + outline)
+- tintable entry  
+- tintable arrow
+- tintable audio blocks
+- tintable audio block backlight
+- tintable pad border / container components (fill + edges)
 - animated dotted line for selected blocks
 - new play and speaker buttons
 - tweak drum assets to look beter
 
 * DEV
+- refactor glyphs to use purely dynamic coloring
+- entry glyph
 - simplify solution sequence and place in puzzle file
 - correctly position timeline panels (just states for 4, 8 or 16...?)
 - fix touch highlight states to be working correctly
