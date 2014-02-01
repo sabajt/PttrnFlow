@@ -158,6 +158,7 @@ static CGFloat kSequenceInterval = 0.5f;
         
         // audio touch dispatcher
         AudioTouchDispatcher *sharedTouchDispatcher = [AudioTouchDispatcher sharedAudioTouchDispatcher];
+        [sharedTouchDispatcher clearResponders];
         sharedTouchDispatcher.areaCells = [PuzzleUtils puzzleArea:sequence];
         self.scrollDelegate = sharedTouchDispatcher;
         [self addChild:sharedTouchDispatcher];

@@ -52,7 +52,7 @@
 
 - (void)clearResponders
 {
-    self.responders = nil;
+    [self.responders removeAllObjects];
 }
 
 - (void)hitCell:(Coord *)coord channel:(NSString *)channel
