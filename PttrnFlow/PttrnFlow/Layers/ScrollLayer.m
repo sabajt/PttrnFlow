@@ -123,7 +123,7 @@ static CGFloat const kClipSpeed = 0.25f;
         }
     }
     if ((maxPos.y < self.scrollBounds.origin.y + self.scrollBounds.size.height) &&
-        self.allowsScrollHorizontal)
+        self.allowsScrollVertical)
     {
         hasDecayY = NO;
         if (self.velocity.y < -kClipSpeed) {
