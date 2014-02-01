@@ -65,6 +65,12 @@ static CGFloat const kClipSpeed = 0.25f;
 
 - (void)update:(ccTime)dt
 {
+    if ([self.scrollDelegate respondsToSelector:@selector(shouldScroll)] && ![self.scrollDelegate shouldScroll]) {
+        self.velocity = CGPointZero;
+        self.unfilteredVelocity = CGPointZero;
+        return;
+    }
+    
 	if (self.isTouching) {
         const float kFilterAmount = 0.25f;
 		CGFloat xVelocity = (self.velocity.x * kFilterAmount) + (self.unfilteredVelocity.x * (1.0f - kFilterAmount));
@@ -162,6 +168,12 @@ static CGFloat const kClipSpeed = 0.25f;
 
 - (void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent*)event
 {
+    if ([self.scrollDelegate respondsToSelector:@selector(shouldScroll)] && ![self.scrollDelegate shouldScroll]) {
+        self.velocity = CGPointZero;
+        self.unfilteredVelocity = CGPointZero;
+        return;
+    }
+    
     // calculate elastic drag while touching
     
 	CGPoint currentTouch = [self.parent convertTouchToNodeSpace:touch];
