@@ -8,6 +8,14 @@
 
 #import "GameConstants.h"
 
+// sprite sheets
+NSString *const kTextureKeySamplePads = @"samplePads";
+NSString *const kTextureKeySynthPads = @"synthPads";
+NSString *const kTextureKeyOther = @"other";
+NSString *const kTextureKeyUILayer = @"uilayer";
+NSString *const kTextureKeyBackground = @"background";
+NSString *const kTextureKeyAudioObjects = @"audioObjects";
+
 // directions
 NSString *const kDirectionUp = @"up";
 NSString *const kDirectionRight = @"right";
