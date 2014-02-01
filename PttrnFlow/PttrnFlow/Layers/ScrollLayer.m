@@ -152,6 +152,9 @@ static CGFloat const kClipSpeed = 0.25f;
 
 - (BOOL)ccTouchBegan:(UITouch*)touch withEvent:(UIEvent*)event
 {
+    if (self.isTouching) {
+        return NO;
+    }
 	self.lastTouch = [self.parent convertTouchToNodeSpace:touch];
 	self.isTouching = YES;
     return YES;
