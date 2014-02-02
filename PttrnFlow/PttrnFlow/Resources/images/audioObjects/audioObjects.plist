@@ -7,58 +7,6 @@
             <key>arrow_up.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{114,282},{20,20}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{20,20}}</string>
-                <key>sourceSize</key>
-                <string>{20,20}</string>
-            </dict>
-            <key>arrow_up_off.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{92,282},{20,20}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{20,20}}</string>
-                <key>sourceSize</key>
-                <string>{20,20}</string>
-            </dict>
-            <key>arrow_up_off_static.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{36,284},{20,20}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{20,20}}</string>
-                <key>sourceSize</key>
-                <string>{20,20}</string>
-            </dict>
-            <key>arrow_up_on.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{70,274},{20,20}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{20,20}}</string>
-                <key>sourceSize</key>
-                <string>{20,20}</string>
-            </dict>
-            <key>arrow_up_on_static.png</key>
-            <dict>
-                <key>frame</key>
                 <string>{{70,252},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
@@ -566,7 +514,7 @@
             <key>tone_primary_1_4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,308},{18,18}}</string>
+                <string>{{90,282},{18,18}}</string>
                 <key>offset</key>
                 <string>{8,8}</string>
                 <key>rotated</key>
@@ -579,7 +527,7 @@
             <key>tone_primary_1_5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{36,306},{18,18}}</string>
+                <string>{{36,284},{18,18}}</string>
                 <key>offset</key>
                 <string>{8,8}</string>
                 <key>rotated</key>
@@ -696,7 +644,7 @@
             <key>tone_primary_2_8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{58,296},{18,18}}</string>
+                <string>{{70,274},{18,18}}</string>
                 <key>offset</key>
                 <string>{8,8}</string>
                 <key>rotated</key>
@@ -924,7 +872,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:aaec9f4f1ef71536f39c9a27ff903419:b32c619e4dcee420ed2519b818d713e6:b365ed0847c6905af74912c7dbbb1edb$</string>
+            <string>$TexturePacker:SmartUpdate:9bda6dae96062391a0d0ce8f91104583:b0e4332e2a1d43341dfbee1e093364ce:b365ed0847c6905af74912c7dbbb1edb$</string>
             <key>textureFileName</key>
             <string>audioObjects.png</string>
         </dict>

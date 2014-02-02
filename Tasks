@@ -1,9 +1,7 @@
 PttrnFlow todo
 
 * ASSETS
-- tintable center glyph components (fill + outline)
 - tintable entry  
-- tintable arrow
 - tintable audio blocks
 - tintable audio block backlight
 - tintable pad border / container components (fill + edges)

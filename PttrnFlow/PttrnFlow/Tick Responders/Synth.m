@@ -40,8 +40,7 @@
         // CCNode+Grid
         self.cell = cell;
         self.cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
-    
-            }
+    }
     return self;
 }
 
