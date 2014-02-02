@@ -245,6 +245,7 @@
 		339ACE7F1886C64100F3D839 /* SolutionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 339ACE7E1886C64100F3D839 /* SolutionCell.m */; };
 		33A64C45183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 33A64C43183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt */; };
 		33A64C46183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png in Resources */ = {isa = PBXBuildFile; fileRef = 33A64C44183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png */; };
+		33A7C4E9189ED8C3000EBCA7 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A7C4E8189ED8C3000EBCA7 /* Entry.m */; };
 		33A957E9188C561B006BF182 /* ToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957E8188C561B006BF182 /* ToggleButton.m */; };
 		33A957EC188C8236006BF182 /* BasicButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957EB188C8236006BF182 /* BasicButton.m */; };
 		33A957EF188D5B43006BF182 /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957EE188D5B43006BF182 /* Arrow.m */; };
@@ -707,6 +708,8 @@
 		339ACE7E1886C64100F3D839 /* SolutionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionCell.m; sourceTree = "<group>"; };
 		33A64C43183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "arial-rounded-mt-bold-12fnt.fnt"; sourceTree = "<group>"; };
 		33A64C44183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arial-rounded-mt-bold-12fnt.png"; sourceTree = "<group>"; };
+		33A7C4E7189ED8C3000EBCA7 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
+		33A7C4E8189ED8C3000EBCA7 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
 		33A957E7188C561B006BF182 /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleButton.h; sourceTree = "<group>"; };
 		33A957E8188C561B006BF182 /* ToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleButton.m; sourceTree = "<group>"; };
 		33A957EA188C8236006BF182 /* BasicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicButton.h; sourceTree = "<group>"; };
@@ -1384,6 +1387,8 @@
 				338112B1183D7E870012E528 /* Synth.m */,
 				33A957ED188D5B43006BF182 /* Arrow.h */,
 				33A957EE188D5B43006BF182 /* Arrow.m */,
+				33A7C4E7189ED8C3000EBCA7 /* Entry.h */,
+				33A7C4E8189ED8C3000EBCA7 /* Entry.m */,
 			);
 			path = "Tick Responders";
 			sourceTree = "<group>";
@@ -1838,6 +1843,7 @@
 				33C3B1D31876FA91008F5FA8 /* Coord.m in Sources */,
 				1608071D16B437A800039339 /* CCCamera.m in Sources */,
 				1608072116B437A800039339 /* CCConfiguration.m in Sources */,
+				33A7C4E9189ED8C3000EBCA7 /* Entry.m in Sources */,
 				1608072416B437A800039339 /* ccDeprecated.m in Sources */,
 				1608072716B437A800039339 /* CCDirector.m in Sources */,
 				1608072A16B437A800039339 /* CCDrawingPrimitives.m in Sources */,

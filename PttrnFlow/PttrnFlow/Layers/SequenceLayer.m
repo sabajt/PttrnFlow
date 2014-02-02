@@ -23,6 +23,7 @@
 #import "PuzzleUtils.h"
 #import "Coord.h"
 #import "PFGeometry.h"
+#import "Entry.h"
 
 typedef NS_ENUM(NSInteger, ZOrderAudioBatch)
 {
@@ -302,8 +303,8 @@ static CGFloat kSequenceInterval = 0.5f;
     for (NSDictionary *glyph in glyphs) {
         BOOL isStatic = [glyph[kStatic] boolValue];
         NSArray *cellArray = glyph[kCell];
-        NSString *entry = glyph[kEntry];
-        NSString *arrow = glyph[kArrow];
+        NSString *entryDirection = glyph[kEntry];
+        NSString *arrowDirection = glyph[kArrow];
         NSString *synthName = glyph[kSynth];
         NSNumber *midi = glyph[kMidi];
         NSString *sampleName = glyph[kSample];
@@ -325,13 +326,8 @@ static CGFloat kSequenceInterval = 0.5f;
         [self addAudioResponder:audioPadUnit];
         [self.audioObjectsBatchNode addChild:audioPadUnit z:ZOrderAudioBatchPad];
         
-        // ticker entry point
-        if (entry != NULL) {
-        }
-        
         // pd synth
         if (synthName != NULL && midi != NULL) {
-            
             NSDictionary *mappedImageSet = [imageSequenceKey objectForKey:imageSetBaseName];
             NSString *imageName = [mappedImageSet objectForKey:midi];
             Synth *synth = [[Synth alloc] initWithCell:cell synth:synthName midi:[midi stringValue] frameName:imageName];
@@ -359,14 +355,25 @@ static CGFloat kSequenceInterval = 0.5f;
         }
         
         // direction arrow
-        if (arrow != NULL) {
-            Arrow *arrowObj = [[Arrow alloc] initWithCell:cell direction:arrow isStatic:isStatic];
+        if (arrowDirection != NULL) {
+            Arrow *arrow = [[Arrow alloc] initWithCell:cell direction:arrowDirection isStatic:isStatic];
             
-            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:arrowObj];
-            [self addAudioResponder:arrowObj];
+            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:arrow];
+            [self addAudioResponder:arrow];
             
-            arrowObj.position = cellCenter;
-            [self.audioObjectsBatchNode addChild:arrowObj z:ZOrderAudioBatchGlyph];
+            arrow.position = cellCenter;
+            [self.audioObjectsBatchNode addChild:arrow z:ZOrderAudioBatchGlyph];
+        }
+        
+        // ticker entry point
+        if (entryDirection != NULL) {
+            Entry *entry = [[Entry alloc] initWithCell:cell direction:entryDirection isStatic:isStatic];
+            
+            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:entry];
+            [self addAudioResponder:entry];
+            
+            entry.position = cellCenter;
+            [self.audioObjectsBatchNode addChild:entry z:ZOrderAudioBatchGlyph];
         }
     }
     [[MainSynth sharedMainSynth] loadSamples:allSampleNames];
