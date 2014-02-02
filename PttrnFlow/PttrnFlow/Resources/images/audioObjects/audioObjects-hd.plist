@@ -7,7 +7,7 @@
             <key>arrow_up.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{410,510},{40,40}}</string>
+                <string>{{410,468},{40,40}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -342,46 +342,7 @@
                 <key>sourceSize</key>
                 <string>{68,68}</string>
             </dict>
-            <key>entry_up_off.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{338,488},{40,40}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{40,40}}</string>
-                <key>sourceSize</key>
-                <string>{40,40}</string>
-            </dict>
-            <key>entry_up_off_static.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{452,472},{40,40}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{40,40}}</string>
-                <key>sourceSize</key>
-                <string>{40,40}</string>
-            </dict>
-            <key>entry_up_on.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{410,468},{40,40}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{40,40}}</string>
-                <key>sourceSize</key>
-                <string>{40,40}</string>
-            </dict>
-            <key>entry_up_on_static.png</key>
+            <key>entry_up.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{456,430},{40,40}}</string>
@@ -397,7 +358,7 @@
             <key>glyph_circle.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{452,514},{38,38}}</string>
+                <string>{{452,472},{38,38}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -514,7 +475,7 @@
             <key>tone_primary_1_4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{408,552},{36,36}}</string>
+                <string>{{448,512},{36,36}}</string>
                 <key>offset</key>
                 <string>{16,16}</string>
                 <key>rotated</key>
@@ -527,7 +488,7 @@
             <key>tone_primary_1_5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{338,530},{36,36}}</string>
+                <string>{{410,510},{36,36}}</string>
                 <key>offset</key>
                 <string>{15,16}</string>
                 <key>rotated</key>
@@ -540,7 +501,7 @@
             <key>tone_primary_1_6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{304,522},{32,36}}</string>
+                <string>{{376,488},{32,36}}</string>
                 <key>offset</key>
                 <string>{14,16}</string>
                 <key>rotated</key>
@@ -553,11 +514,11 @@
             <key>tone_primary_1_7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{376,530},{30,36}}</string>
+                <string>{{266,522},{30,36}}</string>
                 <key>offset</key>
                 <string>{12,16}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{31,0},{30,36}}</string>
                 <key>sourceSize</key>
@@ -566,7 +527,7 @@
             <key>tone_primary_1_8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{380,488},{28,36}}</string>
+                <string>{{304,522},{28,36}}</string>
                 <key>offset</key>
                 <string>{11,16}</string>
                 <key>rotated</key>
@@ -644,7 +605,7 @@
             <key>tone_primary_2_8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{266,522},{36,36}}</string>
+                <string>{{338,488},{36,36}}</string>
                 <key>offset</key>
                 <string>{16,16}</string>
                 <key>rotated</key>
@@ -872,7 +833,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9bda6dae96062391a0d0ce8f91104583:b0e4332e2a1d43341dfbee1e093364ce:b365ed0847c6905af74912c7dbbb1edb$</string>
+            <string>$TexturePacker:SmartUpdate:f66b833066dfe973d8919ec1789bf352:93047ebf15b4cc6a6337b22b787e1fbd:b365ed0847c6905af74912c7dbbb1edb$</string>
             <key>textureFileName</key>
             <string>audioObjects-hd.png</string>
         </dict>
