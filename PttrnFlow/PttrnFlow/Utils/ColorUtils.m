@@ -32,4 +32,14 @@
     return ccc3(255, 212, 39);
 }
 
++ (ccColor3B)dimPurple
+{
+    return ccc3(155, 138, 159);
+}
+
++ (ccColor3B)defaultPurple
+{
+    return ccc3(157, 79, 140);
+}
+
 @end

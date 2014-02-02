@@ -9,11 +9,14 @@
 #import "Arrow.h"
 #import "NSString+Degrees.h"
 #import "CCNode+Grid.h"
+#import "ColorUtils.h"
 
 @interface Arrow ()
 
 @property (copy, nonatomic) NSString *direction;
-@property (weak, nonatomic) CCSprite *onSprite;
+@property (weak, nonatomic) CCSprite *detailSprite;
+@property (assign) ccColor3B defaultColor;
+@property (assign) ccColor3B activeColor;
 
 @end
 
@@ -21,22 +24,24 @@
 
 - (id)initWithCell:(Coord *)cell direction:(NSString *)direction isStatic:(BOOL)isStatic
 {
-    NSString *frameNameOff = @"arrow_up_off.png";
-    NSString *frameNameOn = @"arrow_up_on.png";
-    if (isStatic) {
-        frameNameOff = @"arrow_up_off_static.png";
-        frameNameOn = @"arrow_up_on_static.png";
-    }
-    self = [super initWithSpriteFrameName:frameNameOff];
+    self = [super initWithSpriteFrameName:@"glyph_circle.png"];
     if (self) {
+        self.defaultColor = [ColorUtils cream];
+        self.activeColor = [ColorUtils activeYellow];
+        self.color = self.defaultColor;
         self.direction = direction;
         self.rotation = [direction degrees];
         
-        CCSprite *onSprite = [CCSprite spriteWithSpriteFrameName:frameNameOn];
-        self.onSprite = onSprite;
-        onSprite.opacity = 0.0;
-        onSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
-        [self addChild:onSprite];
+        CCSprite *detailSprite = [CCSprite spriteWithSpriteFrameName:@"arrow_up.png"];
+        self.detailSprite = detailSprite;
+        detailSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
+        [self addChild:detailSprite];
+        if (isStatic) {
+            detailSprite.color = [ColorUtils dimPurple];
+        }
+        else {
+            detailSprite.color = [ColorUtils defaultPurple];
+        }
         
         // CCNode+Grid
         self.cell = cell;
@@ -54,8 +59,9 @@
 
 - (NSArray *)audioHit:(NSInteger)bpm
 {
-    CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
-    [self.onSprite runAction:fadeOut];
+    self.color = self.activeColor;
+    CCTintTo *tint = [CCTintTo actionWithDuration:1 red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
+    [self runAction:tint];
     
     return @[self.direction];
 }

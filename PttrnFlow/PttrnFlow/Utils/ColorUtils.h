@@ -20,6 +20,8 @@ static inline ccColor4B ccc4BFromccc3B(ccColor3B c)
 
 + (ccColor3B)cream;
 + (ccColor3B)activeYellow;
++ (ccColor3B)dimPurple;
++ (ccColor3B)defaultPurple;
 
 @end
 
