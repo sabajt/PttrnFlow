@@ -12,7 +12,8 @@
 
 @interface Sample ()
 
-@property (weak, nonatomic) CCSprite *onSprite;
+@property (assign) ccColor3B defaultColor;
+@property (assign) ccColor3B activeColor;
 // fragments
 @property (copy, nonatomic) NSString *sampleName;
 
@@ -24,15 +25,10 @@
 {
     self = [super initWithSpriteFrameName:frameName];
     if (self) {
-        self.color = [ColorUtils cream];
+        self.defaultColor = [ColorUtils cream];
+        self.activeColor = [ColorUtils activeYellow];
+        self.color = self.defaultColor;
         self.sampleName = sampleName;
-        
-        CCSprite *onSprite = [CCSprite spriteWithSpriteFrameName:frameName];
-        self.onSprite = onSprite;
-        onSprite.color = [ColorUtils activeYellow];
-        onSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
-        onSprite.opacity = 0.0;
-        [self addChild:onSprite];
         
         // CCNode+Grid
         self.cell = cell;
@@ -50,9 +46,10 @@
 
 - (NSArray *)audioHit:(NSInteger)bpm
 {
-    CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
-    [self.onSprite runAction:fadeOut];
-
+    self.color = self.activeColor;
+    CCTintTo *tint = [CCTintTo actionWithDuration:1 red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
+    [self runAction:tint];
+    
     return @[self.sampleName];
 }
 
