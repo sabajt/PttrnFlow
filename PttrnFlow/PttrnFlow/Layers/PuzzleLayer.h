@@ -1,5 +1,5 @@
 //
-//  SequenceLayer.h
+//  PuzzleLayer.h
 //  SequencerGame
 //
 //  Created by John Saba on 1/26/13.
@@ -7,7 +7,6 @@
 //
 
 #import "cocos2d.h"
-//#import "PanLayer.h"
 #import "ScrollLayer.h"
 #import "SequenceUILayer.h"
 

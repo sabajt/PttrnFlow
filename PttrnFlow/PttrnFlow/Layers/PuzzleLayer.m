@@ -1,5 +1,5 @@
 //
-//  SequenceLayer.m
+//  PuzzleLayer.m
 //  SequencerGame
 //
 //  Created by John Saba on 1/26/13.
