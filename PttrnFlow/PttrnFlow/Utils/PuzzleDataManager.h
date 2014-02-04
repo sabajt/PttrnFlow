@@ -1,5 +1,5 @@
 //
-//  PathUtils.h
+//  PuzzleDataManager.h
 //  SequencerGame
 //
 //  Created by John Saba on 4/17/13.
