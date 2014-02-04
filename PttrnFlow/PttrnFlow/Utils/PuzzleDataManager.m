@@ -47,7 +47,7 @@ static NSString *const kGlyphs = @"glyphs";
     return sharedManager;
 }
 
-- (NSArray *)puzzleFileNames
++ (NSArray *)puzzleFileNames
 {
     NSError *error = nil;
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[NSBundle mainBundle] resourcePath] error:&error];

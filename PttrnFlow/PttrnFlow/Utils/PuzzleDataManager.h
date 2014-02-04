@@ -25,7 +25,7 @@ FOUNDATION_EXPORT NSString *const kDrumSecondary;
 @interface PuzzleDataManager : NSObject
 
 + (PuzzleDataManager *)sharedManager;
-- (NSArray *)puzzleFileNames;
++ (NSArray *)puzzleFileNames;
 - (NSDictionary *)puzzle:(NSInteger)number;
 - (NSInteger)puzzleBpm:(NSInteger)number;
 - (NSArray *)puzzleArea:(NSInteger)number;
