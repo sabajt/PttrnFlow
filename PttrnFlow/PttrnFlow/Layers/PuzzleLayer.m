@@ -68,7 +68,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     PuzzleLayer *puzzleLayer = [[PuzzleLayer alloc] initWithSequence:sequence background:background topMargin:controlBarHeight];
     [scene addChild:puzzleLayer];
         
-    // hud layer -- controls / item menu
+    // controls layer
     SequenceControlsLayer *uiLayer = [[SequenceControlsLayer alloc] initWithPuzzle:sequence delegate:puzzleLayer.sequenceDispatcher];
     [scene addChild:uiLayer z:1];
     
@@ -160,6 +160,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         
         // sequence dispacher
         SequenceDispatcher *sequenceDispatcher = [[SequenceDispatcher alloc] init];
+        self.sequenceDispatcher = sequenceDispatcher;
         [sequenceDispatcher clearResponders];
         [self addChild:sequenceDispatcher];
         
@@ -359,11 +360,12 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             [self.audioObjectsBatchNode addChild:arrow z:ZOrderAudioBatchGlyph];
         }
         
-        // ticker entry point
+        // entry point
         if (entryDirection != NULL) {
             Entry *entry = [[Entry alloc] initWithCell:cell direction:entryDirection isStatic:isStatic];
             [self.audioTouchDispatcher addResponder:entry];
             [self.sequenceDispatcher addResponder:entry];
+            self.sequenceDispatcher.entry = entry;
             entry.position = cellCenter;
             [self.audioObjectsBatchNode addChild:entry z:ZOrderAudioBatchGlyph];
         }

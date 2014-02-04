@@ -8,6 +8,7 @@
 
 #import "SequenceDispatcher.h"
 #import "AudioResponder.h"
+#import "CCNode+Grid.h"
 
 static CGFloat kSequenceInterval = 0.5f;
 
@@ -65,7 +66,7 @@ static CGFloat kSequenceInterval = 0.5f;
 
 - (void)startUserSequence
 {
-    NSLog(@"start user seq...");
+    NSLog(@"start user seq at cell %@, direction: %@", self.entry.cell.stringRep, self.entry.direction);
     self.userSequenceIndex = 0;
     
     //    [self.dynamicChannels removeAllObjects];

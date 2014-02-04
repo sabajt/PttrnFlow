@@ -182,4 +182,11 @@ NSString *const kNeighborBelow = @"below";
     }
 }
 
+#pragma mark - Debug
+
+- (NSString *)stringRep
+{
+    return [NSString stringWithFormat:@"( %i, %i )", self.x, self.y];
+}
+
 @end

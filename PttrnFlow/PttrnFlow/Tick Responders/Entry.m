@@ -13,7 +13,6 @@
 
 @interface Entry ()
 
-@property (copy, nonatomic) NSString *direction;
 @property (weak, nonatomic) CCSprite *detailSprite;
 @property (assign) ccColor3B defaultColor;
 @property (assign) ccColor3B activeColor;

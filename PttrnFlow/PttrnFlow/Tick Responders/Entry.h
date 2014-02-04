@@ -13,6 +13,8 @@
 
 @interface Entry : CCSprite <AudioResponder>
 
+@property (copy, nonatomic) NSString *direction;
+
 - (id)initWithCell:(Coord *)cell direction:(NSString *)direction isStatic:(BOOL)isStatic;
 
 @end

@@ -47,4 +47,8 @@ FOUNDATION_EXPORT NSString *const kNeighborBelow;
 - (BOOL)isRight:(Coord *)coord;
 - (Coord *)stepInDirection:(NSString *)direction;
 
+#pragma mark - debug
+
+- (NSString *)stringRep;
+
 @end
