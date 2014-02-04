@@ -16,6 +16,7 @@ static CGFloat kSequenceInterval = 0.5f;
 @property (assign) NSInteger userSequenceIndex;
 @property (assign) NSInteger solutionSequenceIndex;
 @property (weak, nonatomic) NSMutableArray *responders;
+@property (strong, nonatomic) Coord *currentCell;
 
 @end
 
@@ -43,7 +44,8 @@ static CGFloat kSequenceInterval = 0.5f;
 
 - (void)stepUserSequence:(ccTime)dt
 {
-    NSLog(@"step user seq...");
+    CCLOG(@"step user sequence index: %i", self.userSequenceIndex);
+    self.userSequenceIndex++;
 }
 
 - (void)stepSolutionSequence
