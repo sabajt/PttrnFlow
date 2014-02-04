@@ -246,6 +246,7 @@
 		33A64C45183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 33A64C43183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt */; };
 		33A64C46183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png in Resources */ = {isa = PBXBuildFile; fileRef = 33A64C44183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png */; };
 		33A7C4E9189ED8C3000EBCA7 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A7C4E8189ED8C3000EBCA7 /* Entry.m */; };
+		33A7C50918A08896000EBCA7 /* SequenceDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A7C50818A08896000EBCA7 /* SequenceDispatcher.m */; };
 		33A957E9188C561B006BF182 /* ToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957E8188C561B006BF182 /* ToggleButton.m */; };
 		33A957EC188C8236006BF182 /* BasicButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957EB188C8236006BF182 /* BasicButton.m */; };
 		33A957EF188D5B43006BF182 /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957EE188D5B43006BF182 /* Arrow.m */; };
@@ -710,6 +711,8 @@
 		33A64C44183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arial-rounded-mt-bold-12fnt.png"; sourceTree = "<group>"; };
 		33A7C4E7189ED8C3000EBCA7 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
 		33A7C4E8189ED8C3000EBCA7 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
+		33A7C50718A08896000EBCA7 /* SequenceDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceDispatcher.h; sourceTree = "<group>"; };
+		33A7C50818A08896000EBCA7 /* SequenceDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceDispatcher.m; sourceTree = "<group>"; };
 		33A957E7188C561B006BF182 /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleButton.h; sourceTree = "<group>"; };
 		33A957E8188C561B006BF182 /* ToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleButton.m; sourceTree = "<group>"; };
 		33A957EA188C8236006BF182 /* BasicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicButton.h; sourceTree = "<group>"; };
@@ -1372,6 +1375,8 @@
 				3338A9CB17C307D80037DFE2 /* SolutionSequence.m */,
 				33EE316E17C92C3C004CC016 /* AudioTouchDispatcher.h */,
 				33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */,
+				33A7C50718A08896000EBCA7 /* SequenceDispatcher.h */,
+				33A7C50818A08896000EBCA7 /* SequenceDispatcher.m */,
 			);
 			path = "Sequence Model";
 			sourceTree = "<group>";
@@ -1909,6 +1914,7 @@
 				160807DA16B437A900039339 /* base64.c in Sources */,
 				160807DE16B437A900039339 /* CCArray.m in Sources */,
 				160807E116B437A900039339 /* ccCArray.m in Sources */,
+				33A7C50918A08896000EBCA7 /* SequenceDispatcher.m in Sources */,
 				160807E416B437AA00039339 /* CCFileUtils.m in Sources */,
 				160807E716B437AA00039339 /* CCProfiling.m in Sources */,
 				160807E916B437AA00039339 /* ccUtils.c in Sources */,

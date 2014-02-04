@@ -74,6 +74,7 @@
     [[MainSynth sharedMainSynth] receiveEvents:events ignoreAudioPad:NO];
 }
 
+// TODO: currently not being used
 - (void)releaseCell:(Coord *)cell channel:(NSString *)channel
 {
     for (id<AudioResponder> responder in self.responders) {
