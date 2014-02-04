@@ -1,18 +1,18 @@
 //
-//  NSObject+AudioDispatcher.m
+//  NSObject+AudioResponderUtils.m
 //  PttrnFlow
 //
 //  Created by John Saba on 1/10/14.
 //
 //
 
-#import "NSObject+AudioDispatcher.h"
+#import "NSObject+AudioResponderUtils.h"
 #import "AudioResponder.h"
 #import "Coord.h"
 
 #import "TickDispatcher.h" // TODO: for kBPM, need to change
 
-@implementation NSObject (AudioDispatcher)
+@implementation NSObject (AudioResponderUtils)
 
 - (NSArray *)responders:(NSArray *)responders atCoord:(Coord *)coord
 {

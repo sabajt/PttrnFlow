@@ -12,7 +12,7 @@
 #import "TickDispatcher.h"
 #import "AudioStopEvent.h"
 #import "Coord.h"
-#import "NSObject+AudioDispatcher.h"
+#import "NSObject+AudioResponderUtils.h"
 #import "AudioPad.h"
 #import "CCNode+Grid.h"
 

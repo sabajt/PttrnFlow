@@ -1,5 +1,5 @@
 //
-//  NSObject+AudioDispatcher.h
+//  NSObject+AudioResponderUtils.h
 //  PttrnFlow
 //
 //  Created by John Saba on 1/10/14.
@@ -10,7 +10,7 @@
 
 @class Coord;
 
-@interface NSObject (AudioDispatcher)
+@interface NSObject (AudioResponderUtils)
 
 - (NSArray *)responders:(NSArray *)responders atCoord:(Coord *)coord;
 
