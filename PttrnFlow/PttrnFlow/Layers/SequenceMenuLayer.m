@@ -7,7 +7,7 @@
 //
 
 #import "SequenceMenuLayer.h"
-#import "PuzzleUtils.h"
+#import "PuzzleDataManager.h"
 #import "PuzzleLayer.h"
 
 #import "AudioTouchDispatcher.h"
@@ -27,7 +27,7 @@
     self = [super init];
     if (self) {
         // map names from .tmx files
-        _mapNames = [PuzzleUtils puzzleFileNames];
+        _mapNames = [PuzzleDataManager puzzleFileNames];
          
         // create and layout cells
         CGSize sideMargins = CGSizeMake(50, 50);

@@ -6,7 +6,7 @@
 //
 //
 
-#import "PuzzleUtils.h"
+#import "PuzzleDataManager.h"
 #import "Coord.h"
 
 NSString *const kCell = @"cell";
@@ -28,7 +28,7 @@ static NSString *const kBpm = @"bpm";
 static NSString *const kArea = @"area";
 static NSString *const kGlyphs = @"glyphs";
 
-@implementation PuzzleUtils
+@implementation PuzzleDataManager
 
 + (NSArray *)puzzleFileNames
 {
@@ -56,13 +56,13 @@ static NSString *const kGlyphs = @"glyphs";
 
 + (NSInteger)puzzleBpm:(NSInteger)number
 {
-    NSDictionary *puzzle = [PuzzleUtils puzzle:number];
+    NSDictionary *puzzle = [PuzzleDataManager puzzle:number];
     return [puzzle[kBpm] integerValue];
 }
 
 + (NSArray *)puzzleArea:(NSInteger)number
 {
-    NSDictionary *puzzle = [PuzzleUtils puzzle:number];
+    NSDictionary *puzzle = [PuzzleDataManager puzzle:number];
     NSMutableArray *area = [NSMutableArray array];
     for (NSArray *coordArray in puzzle[kArea]) {
         Coord *coord = [Coord coordWithX:[coordArray[0] integerValue] Y:[coordArray[1] integerValue]];
@@ -73,7 +73,7 @@ static NSString *const kGlyphs = @"glyphs";
 
 + (NSArray *)puzzleGlyphs:(NSInteger)number
 {
-    NSDictionary *puzzle = [PuzzleUtils puzzle:number];
+    NSDictionary *puzzle = [PuzzleDataManager puzzle:number];
     return puzzle[kGlyphs];
 }
 
@@ -107,7 +107,7 @@ static NSString *const kGlyphs = @"glyphs";
     NSMutableSet *beatPrimaryValues = [NSMutableSet set];
     NSMutableSet *beatSecondaryValues = [NSMutableSet set];
     
-    NSArray *glyphs = [PuzzleUtils puzzleGlyphs:number];
+    NSArray *glyphs = [PuzzleDataManager puzzleGlyphs:number];
     for (NSDictionary *glyph in glyphs) {
         NSString *imageSet = glyph[kImageSet];
         NSString *synth = glyph[kSynth];

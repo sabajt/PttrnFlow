@@ -20,7 +20,7 @@
 #import "BackgroundLayer.h"
 #import "AudioTouchDispatcher.h"
 #import "AudioPad.h"
-#import "PuzzleUtils.h"
+#import "PuzzleDataManager.h"
 #import "Coord.h"
 #import "PFGeometry.h"
 #import "Entry.h"
@@ -120,7 +120,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         
         self.synth = [[MainSynth alloc] init];
         
-        NSArray *cells = [PuzzleUtils puzzleArea:sequence];
+        NSArray *cells = [PuzzleDataManager puzzleArea:sequence];
         
         self.maxCoord = [Coord maxCoord:cells];
         self.contentSize = CGSizeMake((self.maxCoord.x + 1) * kSizeGridUnit, (self.maxCoord.y + 1) * kSizeGridUnit);
@@ -155,7 +155,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         self.audioTouchDispatcher = audioTouchDispatcher;
         self.scrollDelegate = audioTouchDispatcher;
         [audioTouchDispatcher clearResponders];
-        audioTouchDispatcher.areaCells = [PuzzleUtils puzzleArea:sequence];
+        audioTouchDispatcher.areaCells = [PuzzleDataManager puzzleArea:sequence];
         [self addChild:audioTouchDispatcher];
         
         // sequence dispacher
@@ -164,7 +164,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         [self addChild:sequenceDispatcher];
         
         // create puzzle objects
-        self.areaCells = [PuzzleUtils puzzleArea:sequence];
+        self.areaCells = [PuzzleDataManager puzzleArea:sequence];
         [self createPuzzleBorder:sequence];
         [self createPuzzleObjects:sequence];
     }
@@ -295,8 +295,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 
 - (void)createPuzzleObjects:(NSInteger)puzzle
 {
-    NSArray *glyphs = [PuzzleUtils puzzleGlyphs:puzzle];
-    NSDictionary *imageSequenceKey = [PuzzleUtils puzzleImageSequenceKey:puzzle];
+    NSArray *glyphs = [PuzzleDataManager puzzleGlyphs:puzzle];
+    NSDictionary *imageSequenceKey = [PuzzleDataManager puzzleImageSequenceKey:puzzle];
     
     // collect sample names so we can load them in PD tables
     NSMutableArray *allSampleNames = [NSMutableArray array];

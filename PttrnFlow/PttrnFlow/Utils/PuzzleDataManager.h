@@ -22,7 +22,7 @@ FOUNDATION_EXPORT NSString *const kToneSecondary;
 FOUNDATION_EXPORT NSString *const kDrumPrimary;
 FOUNDATION_EXPORT NSString *const kDrumSecondary;
 
-@interface PuzzleUtils : NSObject
+@interface PuzzleDataManager : NSObject
 
 + (NSArray *)puzzleFileNames;
 + (NSDictionary *)puzzle:(NSInteger)number;

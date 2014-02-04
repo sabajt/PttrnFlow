@@ -11,7 +11,7 @@
 #import "ColorUtils.h"
 #import "TileSprite.h"
 #import "ClippingSprite.h"
-#import "PuzzleUtils.h"
+#import "PuzzleDataManager.h"
 #import "SolutionCell.h"
 
 CGFloat const kUIButtonUnitSize = 50;
