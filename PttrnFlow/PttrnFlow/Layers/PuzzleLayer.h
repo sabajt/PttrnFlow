@@ -8,7 +8,7 @@
 
 #import "cocos2d.h"
 #import "ScrollLayer.h"
-#import "SequenceUILayer.h"
+#import "SequenceControlsLayer.h"
 
 @class PdDispatcher, SequenceDispatcher, AudioTouchDispatcher;
 

@@ -22,7 +22,7 @@
 
 FOUNDATION_EXPORT CGFloat const kUIButtonUnitSize;
 
-@interface SequenceUILayer : CCLayer <ToggleButtonDelegate, BasicButtonDelegate>
+@interface SequenceControlsLayer : CCLayer <ToggleButtonDelegate, BasicButtonDelegate>
 
 - (id)initWithPuzzle:(NSUInteger)puzzle delegate:(id<SequenceControlDelegate>)delegate;
 

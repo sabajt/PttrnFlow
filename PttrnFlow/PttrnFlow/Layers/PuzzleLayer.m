@@ -7,7 +7,7 @@
 //
 
 #import "PuzzleLayer.h"
-#import "SequenceUILayer.h"
+#import "SequenceControlsLayer.h"
 #import "GameConstants.h"
 #import "SimpleAudioEngine.h"
 #import "Synth.h"
@@ -69,7 +69,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     [scene addChild:puzzleLayer];
         
     // hud layer -- controls / item menu
-    SequenceUILayer *uiLayer = [[SequenceUILayer alloc] initWithPuzzle:sequence delegate:puzzleLayer.sequenceDispatcher];
+    SequenceControlsLayer *uiLayer = [[SequenceControlsLayer alloc] initWithPuzzle:sequence delegate:puzzleLayer.sequenceDispatcher];
     [scene addChild:uiLayer z:1];
     
     return scene;

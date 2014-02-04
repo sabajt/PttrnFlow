@@ -6,7 +6,7 @@
 //
 //
 
-#import "SequenceUILayer.h"
+#import "SequenceControlsLayer.h"
 #import "TickDispatcher.h"
 #import "ColorUtils.h"
 #import "TileSprite.h"
@@ -19,7 +19,7 @@ CGFloat const kUITimelineStepWidth = 40;
 
 static NSInteger const kRowLength = 8;
 
-@interface SequenceUILayer ()
+@interface SequenceControlsLayer ()
 
 @property (weak, nonatomic) CCSpriteBatchNode *uiBatchNode;
 @property (weak, nonatomic) id<SequenceControlDelegate> delegate;
@@ -34,7 +34,7 @@ static NSInteger const kRowLength = 8;
 
 @end
 
-@implementation SequenceUILayer
+@implementation SequenceControlsLayer
 
 - (id)initWithPuzzle:(NSUInteger)puzzle delegate:(id<SequenceControlDelegate>)delegate
 {

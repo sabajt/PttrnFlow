@@ -158,7 +158,7 @@
 		1693C665177A628300FEB350 /* drum3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C663177A628200FEB350 /* drum3.wav */; };
 		1693C666177A628300FEB350 /* drum4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C664177A628200FEB350 /* drum4.wav */; };
 		1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */; };
-		16A4277C176BF0A100BEF13F /* SequenceUILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4277B176BF0A100BEF13F /* SequenceUILayer.m */; };
+		16A4277C176BF0A100BEF13F /* SequenceControlsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4277B176BF0A100BEF13F /* SequenceControlsLayer.m */; };
 		16A942B61777A2260052D5BD /* TouchNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A11777A2250052D5BD /* TouchNode.m */; };
 		16A942B71777A2260052D5BD /* MainSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A41777A2250052D5BD /* MainSynth.m */; };
 		16A942B81777A2260052D5BD /* TickDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A71777A2250052D5BD /* TickDispatcher.m */; };
@@ -603,8 +603,8 @@
 		1693C664177A628200FEB350 /* drum4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drum4.wav; sourceTree = "<group>"; };
 		1693C66A177B5C7E00FEB350 /* NSArray+CompareStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CompareStrings.h"; sourceTree = "<group>"; };
 		1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CompareStrings.m"; sourceTree = "<group>"; };
-		16A4277A176BF0A100BEF13F /* SequenceUILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceUILayer.h; sourceTree = "<group>"; };
-		16A4277B176BF0A100BEF13F /* SequenceUILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceUILayer.m; sourceTree = "<group>"; };
+		16A4277A176BF0A100BEF13F /* SequenceControlsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceControlsLayer.h; sourceTree = "<group>"; };
+		16A4277B176BF0A100BEF13F /* SequenceControlsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceControlsLayer.m; sourceTree = "<group>"; };
 		16A942A01777A2250052D5BD /* TouchNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchNode.h; sourceTree = "<group>"; };
 		16A942A11777A2250052D5BD /* TouchNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchNode.m; sourceTree = "<group>"; };
 		16A942A31777A2250052D5BD /* MainSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainSynth.h; sourceTree = "<group>"; };
@@ -1209,8 +1209,8 @@
 				1608088216B4416000039339 /* PuzzleLayer.m */,
 				163DBDFF17692C3000FCB89C /* SequenceMenuLayer.h */,
 				163DBE0017692C3100FCB89C /* SequenceMenuLayer.m */,
-				16A4277A176BF0A100BEF13F /* SequenceUILayer.h */,
-				16A4277B176BF0A100BEF13F /* SequenceUILayer.m */,
+				16A4277A176BF0A100BEF13F /* SequenceControlsLayer.h */,
+				16A4277B176BF0A100BEF13F /* SequenceControlsLayer.m */,
 				163091EE177DEDA9003155BB /* BackgroundLayer.h */,
 				163091EF177DEDA9003155BB /* BackgroundLayer.m */,
 				3317322C1892A89D005435D9 /* ScrollLayer.h */,
@@ -1953,7 +1953,7 @@
 				33B4F25E17C72600004D4C13 /* SampleEvent.m in Sources */,
 				163DBE0117692C3100FCB89C /* SequenceMenuLayer.m in Sources */,
 				163DBE081769325400FCB89C /* UIImage+Utils.m in Sources */,
-				16A4277C176BF0A100BEF13F /* SequenceUILayer.m in Sources */,
+				16A4277C176BF0A100BEF13F /* SequenceControlsLayer.m in Sources */,
 				33EE317017C92C3C004CC016 /* AudioTouchDispatcher.m in Sources */,
 				33B4F25B17C72600004D4C13 /* AudioStopEvent.m in Sources */,
 				16A942B61777A2260052D5BD /* TouchNode.m in Sources */,

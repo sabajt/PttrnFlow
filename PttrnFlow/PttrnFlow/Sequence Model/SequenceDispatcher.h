@@ -7,7 +7,7 @@
 //
 
 #import "CCNode.h"
-#import "SequenceUILayer.h"
+#import "SequenceControlsLayer.h"
 #import "AudioResponder.h"
 
 @interface SequenceDispatcher : CCNode <SequenceControlDelegate>
