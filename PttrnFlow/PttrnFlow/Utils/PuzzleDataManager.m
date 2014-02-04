@@ -28,9 +28,26 @@ static NSString *const kBpm = @"bpm";
 static NSString *const kArea = @"area";
 static NSString *const kGlyphs = @"glyphs";
 
+@interface PuzzleDataManager ()
+
+@property (strong, nonatomic) NSMutableDictionary *puzzles;
+
+@end
+
 @implementation PuzzleDataManager
 
-+ (NSArray *)puzzleFileNames
++ (PuzzleDataManager *)sharedManager
+{
+    static PuzzleDataManager *sharedManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[PuzzleDataManager alloc] init];
+        sharedManager.puzzles = [NSMutableDictionary dictionary];
+    });
+    return sharedManager;
+}
+
+- (NSArray *)puzzleFileNames
 {
     NSError *error = nil;
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[NSBundle mainBundle] resourcePath] error:&error];
@@ -41,28 +58,31 @@ static NSString *const kGlyphs = @"glyphs";
     return [contents filteredArrayUsingPredicate:predicate];
 }
 
-+ (NSDictionary *)puzzle:(NSInteger)number
+- (NSDictionary *)puzzle:(NSInteger)number
 {
-    NSString *resource = [NSString stringWithFormat:@"%@%i", kPuzzle, number];
-    NSString *path = [[NSBundle mainBundle] pathForResource:resource ofType:@".json"];
-    NSData* data = [NSData dataWithContentsOfFile:path];
-    NSError *error = nil;
-    NSDictionary *puzzle = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    if (error != nil) {
-        NSLog(@"error creating puzzle from json: %@", error);
+    if (self.puzzles[@(number)] == nil) {
+        NSString *resource = [NSString stringWithFormat:@"%@%i", kPuzzle, number];
+        NSString *path = [[NSBundle mainBundle] pathForResource:resource ofType:@".json"];
+        NSData* data = [NSData dataWithContentsOfFile:path];
+        NSError *error = nil;
+        NSDictionary *puzzle = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        if (error != nil) {
+            NSLog(@"error creating puzzle from json: %@", error);
+        }
+        self.puzzles[@(number)] = puzzle;
     }
-    return puzzle;
+    return self.puzzles[@(number)];
 }
 
-+ (NSInteger)puzzleBpm:(NSInteger)number
+- (NSInteger)puzzleBpm:(NSInteger)number
 {
-    NSDictionary *puzzle = [PuzzleDataManager puzzle:number];
+    NSDictionary *puzzle = [self puzzle:number];
     return [puzzle[kBpm] integerValue];
 }
 
-+ (NSArray *)puzzleArea:(NSInteger)number
+- (NSArray *)puzzleArea:(NSInteger)number
 {
-    NSDictionary *puzzle = [PuzzleDataManager puzzle:number];
+    NSDictionary *puzzle = [self puzzle:number];
     NSMutableArray *area = [NSMutableArray array];
     for (NSArray *coordArray in puzzle[kArea]) {
         Coord *coord = [Coord coordWithX:[coordArray[0] integerValue] Y:[coordArray[1] integerValue]];
@@ -71,9 +91,9 @@ static NSString *const kGlyphs = @"glyphs";
     return [NSArray arrayWithArray:area];
 }
 
-+ (NSArray *)puzzleGlyphs:(NSInteger)number
+- (NSArray *)puzzleGlyphs:(NSInteger)number
 {
-    NSDictionary *puzzle = [PuzzleDataManager puzzle:number];
+    NSDictionary *puzzle = [self puzzle:number];
     return puzzle[kGlyphs];
 }
 
@@ -99,7 +119,7 @@ static NSString *const kGlyphs = @"glyphs";
  order for pattern based samples is arbirary, but consistent for each puzzle
  
 */
-+ (NSDictionary *)puzzleImageSequenceKey:(NSInteger)number
+- (NSDictionary *)puzzleImageSequenceKey:(NSInteger)number
 {
     // extract glyph audio value and add to temporary collections
     NSMutableSet *tonePrimaryValues = [NSMutableSet set];
@@ -107,7 +127,7 @@ static NSString *const kGlyphs = @"glyphs";
     NSMutableSet *beatPrimaryValues = [NSMutableSet set];
     NSMutableSet *beatSecondaryValues = [NSMutableSet set];
     
-    NSArray *glyphs = [PuzzleDataManager puzzleGlyphs:number];
+    NSArray *glyphs = [self puzzleGlyphs:number];
     for (NSDictionary *glyph in glyphs) {
         NSString *imageSet = glyph[kImageSet];
         NSString *synth = glyph[kSynth];
@@ -147,18 +167,18 @@ static NSString *const kGlyphs = @"glyphs";
     NSMutableDictionary *imageSequenceKey = [NSMutableDictionary dictionary];
     
     if (tonePrimaryValues.count > 0) {
-        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:tonePrimaryValues] rootName:kTonePrimary];
+        NSDictionary *mappedSet = [PuzzleDataManager mappedImageSetForAudioValues:[NSSet setWithSet:tonePrimaryValues] rootName:kTonePrimary];
         [imageSequenceKey setObject:mappedSet forKey:kTonePrimary];
     }
     if (toneSecondaryValues.count > 0) {
-        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:toneSecondaryValues] rootName:kToneSecondary];
+        NSDictionary *mappedSet = [PuzzleDataManager mappedImageSetForAudioValues:[NSSet setWithSet:toneSecondaryValues] rootName:kToneSecondary];
         [imageSequenceKey setObject:mappedSet forKey:kToneSecondary];    }
     if (beatPrimaryValues.count > 0) {
-        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:beatPrimaryValues] rootName:kDrumPrimary];
+        NSDictionary *mappedSet = [PuzzleDataManager mappedImageSetForAudioValues:[NSSet setWithSet:beatPrimaryValues] rootName:kDrumPrimary];
         [imageSequenceKey setObject:mappedSet forKey:kDrumPrimary];
     }
     if (beatSecondaryValues.count > 0) {
-        NSDictionary *mappedSet = [self mappedImageSetForAudioValues:[NSSet setWithSet:beatSecondaryValues] rootName:kDrumSecondary];
+        NSDictionary *mappedSet = [PuzzleDataManager mappedImageSetForAudioValues:[NSSet setWithSet:beatSecondaryValues] rootName:kDrumSecondary];
         [imageSequenceKey setObject:mappedSet forKey:kDrumSecondary];
     }
     

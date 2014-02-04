@@ -27,7 +27,7 @@
     self = [super init];
     if (self) {
         // map names from .tmx files
-        _mapNames = [PuzzleDataManager puzzleFileNames];
+        _mapNames = [[PuzzleDataManager  sharedManager] puzzleFileNames];
          
         // create and layout cells
         CGSize sideMargins = CGSizeMake(50, 50);

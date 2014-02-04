@@ -120,7 +120,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         
         self.synth = [[MainSynth alloc] init];
         
-        NSArray *cells = [PuzzleDataManager puzzleArea:sequence];
+        NSArray *cells = [[PuzzleDataManager sharedManager] puzzleArea:sequence];
         
         self.maxCoord = [Coord maxCoord:cells];
         self.contentSize = CGSizeMake((self.maxCoord.x + 1) * kSizeGridUnit, (self.maxCoord.y + 1) * kSizeGridUnit);
@@ -155,7 +155,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         self.audioTouchDispatcher = audioTouchDispatcher;
         self.scrollDelegate = audioTouchDispatcher;
         [audioTouchDispatcher clearResponders];
-        audioTouchDispatcher.areaCells = [PuzzleDataManager puzzleArea:sequence];
+        audioTouchDispatcher.areaCells = [[PuzzleDataManager sharedManager] puzzleArea:sequence];
         [self addChild:audioTouchDispatcher];
         
         // sequence dispacher
@@ -164,7 +164,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         [self addChild:sequenceDispatcher];
         
         // create puzzle objects
-        self.areaCells = [PuzzleDataManager puzzleArea:sequence];
+        self.areaCells = [[PuzzleDataManager sharedManager] puzzleArea:sequence];
         [self createPuzzleBorder:sequence];
         [self createPuzzleObjects:sequence];
     }
@@ -295,8 +295,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 
 - (void)createPuzzleObjects:(NSInteger)puzzle
 {
-    NSArray *glyphs = [PuzzleDataManager puzzleGlyphs:puzzle];
-    NSDictionary *imageSequenceKey = [PuzzleDataManager puzzleImageSequenceKey:puzzle];
+    NSArray *glyphs = [[PuzzleDataManager sharedManager] puzzleGlyphs:puzzle];
+    NSDictionary *imageSequenceKey = [[PuzzleDataManager sharedManager] puzzleImageSequenceKey:puzzle];
     
     // collect sample names so we can load them in PD tables
     NSMutableArray *allSampleNames = [NSMutableArray array];

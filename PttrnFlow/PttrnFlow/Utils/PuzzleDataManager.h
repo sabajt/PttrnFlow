@@ -24,11 +24,12 @@ FOUNDATION_EXPORT NSString *const kDrumSecondary;
 
 @interface PuzzleDataManager : NSObject
 
-+ (NSArray *)puzzleFileNames;
-+ (NSDictionary *)puzzle:(NSInteger)number;
-+ (NSInteger)puzzleBpm:(NSInteger)number;
-+ (NSArray *)puzzleArea:(NSInteger)number;
-+ (NSArray *)puzzleGlyphs:(NSInteger)number;
-+ (NSDictionary *)puzzleImageSequenceKey:(NSInteger)number;
++ (PuzzleDataManager *)sharedManager;
+- (NSArray *)puzzleFileNames;
+- (NSDictionary *)puzzle:(NSInteger)number;
+- (NSInteger)puzzleBpm:(NSInteger)number;
+- (NSArray *)puzzleArea:(NSInteger)number;
+- (NSArray *)puzzleGlyphs:(NSInteger)number;
+- (NSDictionary *)puzzleImageSequenceKey:(NSInteger)number;
 
 @end
