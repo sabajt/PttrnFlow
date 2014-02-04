@@ -10,7 +10,7 @@
 #import "ToggleButton.h"
 #import "BasicButton.h"
 
-@protocol PuzzleControlsDelegate <NSObject>
+@protocol SequenceControlDelegate <NSObject>
 
 - (void)startUserSequence;
 - (void)stopUserSequence;
@@ -24,6 +24,6 @@ FOUNDATION_EXPORT CGFloat const kUIButtonUnitSize;
 
 @interface SequenceUILayer : CCLayer <ToggleButtonDelegate, BasicButtonDelegate>
 
-- (id)initWithPuzzle:(NSUInteger)puzzle delegate:(id<PuzzleControlsDelegate>)delegate;
+- (id)initWithPuzzle:(NSUInteger)puzzle delegate:(id<SequenceControlDelegate>)delegate;
 
 @end

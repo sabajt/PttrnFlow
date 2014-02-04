@@ -218,7 +218,6 @@
 		334E726017961FE400EFECC1 /* warp-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E725F17961FE400EFECC1 /* warp-ipad.png */; };
 		334E72671796260700EFECC1 /* itemButtonWarpOff-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E72651796260700EFECC1 /* itemButtonWarpOff-ipad.png */; };
 		334E72681796260700EFECC1 /* itemButtonWarpOn-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 334E72661796260700EFECC1 /* itemButtonWarpOn-ipad.png */; };
-		3350B17C186803E100F3BE57 /* PanLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3350B17B186803E100F3BE57 /* PanLayer.m */; };
 		3350B17F186A39A100F3BE57 /* puzzle3.json in Resources */ = {isa = PBXBuildFile; fileRef = 3350B17E186A39A100F3BE57 /* puzzle3.json */; };
 		3350B181186A3AC700F3BE57 /* solution3.json in Resources */ = {isa = PBXBuildFile; fileRef = 3350B180186A3AC700F3BE57 /* solution3.json */; };
 		3356075E17F8B67900ECD44B /* pf-oscSynth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 3356075C17F8B67900ECD44B /* pf-oscSynth.pd */; };
@@ -677,8 +676,6 @@
 		334E725F17961FE400EFECC1 /* warp-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warp-ipad.png"; sourceTree = "<group>"; };
 		334E72651796260700EFECC1 /* itemButtonWarpOff-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonWarpOff-ipad.png"; sourceTree = "<group>"; };
 		334E72661796260700EFECC1 /* itemButtonWarpOn-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemButtonWarpOn-ipad.png"; sourceTree = "<group>"; };
-		3350B17A186803E100F3BE57 /* PanLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanLayer.h; sourceTree = "<group>"; };
-		3350B17B186803E100F3BE57 /* PanLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanLayer.m; sourceTree = "<group>"; };
 		3350B17E186A39A100F3BE57 /* puzzle3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle3.json; sourceTree = "<group>"; };
 		3350B180186A3AC700F3BE57 /* solution3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = solution3.json; sourceTree = "<group>"; };
 		3356075C17F8B67900ECD44B /* pf-oscSynth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-oscSynth.pd"; sourceTree = "<group>"; };
@@ -1216,8 +1213,6 @@
 				16A4277B176BF0A100BEF13F /* SequenceUILayer.m */,
 				163091EE177DEDA9003155BB /* BackgroundLayer.h */,
 				163091EF177DEDA9003155BB /* BackgroundLayer.m */,
-				3350B17A186803E100F3BE57 /* PanLayer.h */,
-				3350B17B186803E100F3BE57 /* PanLayer.m */,
 				3317322C1892A89D005435D9 /* ScrollLayer.h */,
 				3317322D1892A89D005435D9 /* ScrollLayer.m */,
 			);
@@ -1971,7 +1966,6 @@
 				163091F0177DEDA9003155BB /* BackgroundLayer.m in Sources */,
 				33BF709617CBB2BB003E0A5F /* SpeedChangeEvent.m in Sources */,
 				162C291017821E0200CE480C /* SizeUtils.m in Sources */,
-				3350B17C186803E100F3BE57 /* PanLayer.m in Sources */,
 				33B4F25F17C72600004D4C13 /* SynthEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

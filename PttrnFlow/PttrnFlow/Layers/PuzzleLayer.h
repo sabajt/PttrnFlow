@@ -10,13 +10,16 @@
 #import "ScrollLayer.h"
 #import "SequenceUILayer.h"
 
-@class PdDispatcher;
+@class PdDispatcher, SequenceDispatcher, AudioTouchDispatcher;
 
-@interface PuzzleLayer : ScrollLayer <PuzzleControlsDelegate>
+@interface PuzzleLayer : ScrollLayer
 {
     PdDispatcher *_dispatcher;
     void *_patch;
 }
+
+@property (weak, nonatomic) SequenceDispatcher *sequenceDispatcher;
+@property (weak, nonatomic) AudioTouchDispatcher *audioTouchDispatcher;
 
 @property (weak, nonatomic) CCSpriteBatchNode *samplesBatchNode;
 @property (weak, nonatomic) CCSpriteBatchNode *synthBatchNode;

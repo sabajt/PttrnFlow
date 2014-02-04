@@ -24,6 +24,7 @@
 #import "Coord.h"
 #import "PFGeometry.h"
 #import "Entry.h"
+#import "SequenceDispatcher.h"
 
 typedef NS_ENUM(NSInteger, ZOrderAudioBatch)
 {
@@ -35,7 +36,6 @@ typedef NS_ENUM(NSInteger, ZOrderAudioBatch)
 };
 
 static CGFloat kPuzzleBoundsMargin = 10.0f;
-static CGFloat kSequenceInterval = 0.5f;
 
 @interface PuzzleLayer ()
 
@@ -47,11 +47,6 @@ static CGFloat kSequenceInterval = 0.5f;
 @property (strong, nonatomic) MainSynth *synth;
 @property (weak, nonatomic) Synth *pressedSynth;
 @property (weak, nonatomic) BackgroundLayer *backgroundLayer;
-@property (weak, nonatomic) NSMutableArray *responders;
-
-// sequence
-@property (assign) NSInteger userSequenceIndex;
-@property (assign) NSInteger solutionSequenceIndex;
 
 @end
 
@@ -70,11 +65,11 @@ static CGFloat kSequenceInterval = 0.5f;
     
     // gameplay layer
     static CGFloat controlBarHeight = 80;
-    PuzzleLayer *sequenceLayer = [[PuzzleLayer alloc] initWithSequence:sequence background:background topMargin:controlBarHeight];
-    [scene addChild:sequenceLayer];
-    
+    PuzzleLayer *puzzleLayer = [[PuzzleLayer alloc] initWithSequence:sequence background:background topMargin:controlBarHeight];
+    [scene addChild:puzzleLayer];
+        
     // hud layer -- controls / item menu
-    SequenceUILayer *uiLayer = [[SequenceUILayer alloc] initWithPuzzle:sequence delegate:sequenceLayer];
+    SequenceUILayer *uiLayer = [[SequenceUILayer alloc] initWithPuzzle:sequence delegate:puzzleLayer.sequenceDispatcher];
     [scene addChild:uiLayer z:1];
     
     return scene;
@@ -156,11 +151,17 @@ static CGFloat kSequenceInterval = 0.5f;
         NSLog(@"scroll bounds: %@", NSStringFromCGRect(self.scrollBounds));
         
         // audio touch dispatcher
-        AudioTouchDispatcher *sharedTouchDispatcher = [AudioTouchDispatcher sharedAudioTouchDispatcher];
-        [sharedTouchDispatcher clearResponders];
-        sharedTouchDispatcher.areaCells = [PuzzleUtils puzzleArea:sequence];
-        self.scrollDelegate = sharedTouchDispatcher;
-        [self addChild:sharedTouchDispatcher];
+        AudioTouchDispatcher *audioTouchDispatcher = [[AudioTouchDispatcher alloc] init];
+        self.audioTouchDispatcher = audioTouchDispatcher;
+        self.scrollDelegate = audioTouchDispatcher;
+        [audioTouchDispatcher clearResponders];
+        audioTouchDispatcher.areaCells = [PuzzleUtils puzzleArea:sequence];
+        [self addChild:audioTouchDispatcher];
+        
+        // sequence dispacher
+        SequenceDispatcher *sequenceDispatcher = [[SequenceDispatcher alloc] init];
+        [sequenceDispatcher clearResponders];
+        [self addChild:sequenceDispatcher];
         
         // create puzzle objects
         self.areaCells = [PuzzleUtils puzzleArea:sequence];
@@ -322,8 +323,8 @@ static CGFloat kSequenceInterval = 0.5f;
         AudioPad *audioPadUnit = [[AudioPad alloc] initWithPlaceholderFrameName:@"clear_rect_audio_batch.png" cell:cell isStatic:isStatic];
 
         audioPadUnit.position = cellCenter;
-        [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:audioPadUnit];
-        [self addAudioResponder:audioPadUnit];
+        [self.audioTouchDispatcher addResponder:audioPadUnit];
+        [self.sequenceDispatcher addResponder:audioPadUnit];
         [self.audioObjectsBatchNode addChild:audioPadUnit z:ZOrderAudioBatchPad];
         
         // pd synth
@@ -331,10 +332,8 @@ static CGFloat kSequenceInterval = 0.5f;
             NSDictionary *mappedImageSet = [imageSequenceKey objectForKey:imageSetBaseName];
             NSString *imageName = [mappedImageSet objectForKey:midi];
             Synth *synth = [[Synth alloc] initWithCell:cell synth:synthName midi:[midi stringValue] frameName:imageName];
-            
-            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:synth];
-            [self addAudioResponder:synth];
-            
+            [self.audioTouchDispatcher addResponder:synth];
+            [self.sequenceDispatcher addResponder:synth];
             synth.position = cellCenter;
             [self.audioObjectsBatchNode addChild:synth z:ZOrderAudioBatchGlyph];
         }
@@ -342,14 +341,11 @@ static CGFloat kSequenceInterval = 0.5f;
         // audio sample
         if (sampleName != NULL) {
             [allSampleNames addObject:sampleName];
-            
             NSDictionary *mappedImageSet = [imageSequenceKey objectForKey:imageSetBaseName];
             NSString *imageName = [mappedImageSet objectForKey:sampleName];
             Sample *sample = [[Sample alloc] initWithCell:cell sampleName:sampleName frameName:imageName];
-            
-            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:sample];
-            [self addAudioResponder:sample];
-            
+            [self.audioTouchDispatcher addResponder:sample];
+            [self.sequenceDispatcher addResponder:sample];
             sample.position = cellCenter;
             [self.audioObjectsBatchNode addChild:sample z:ZOrderAudioBatchGlyph];
         }
@@ -357,10 +353,8 @@ static CGFloat kSequenceInterval = 0.5f;
         // direction arrow
         if (arrowDirection != NULL) {
             Arrow *arrow = [[Arrow alloc] initWithCell:cell direction:arrowDirection isStatic:isStatic];
-            
-            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:arrow];
-            [self addAudioResponder:arrow];
-            
+            [self.audioTouchDispatcher addResponder:arrow];
+            [self.sequenceDispatcher addResponder:arrow];
             arrow.position = cellCenter;
             [self.audioObjectsBatchNode addChild:arrow z:ZOrderAudioBatchGlyph];
         }
@@ -368,111 +362,13 @@ static CGFloat kSequenceInterval = 0.5f;
         // ticker entry point
         if (entryDirection != NULL) {
             Entry *entry = [[Entry alloc] initWithCell:cell direction:entryDirection isStatic:isStatic];
-            
-            [[AudioTouchDispatcher sharedAudioTouchDispatcher] addResponder:entry];
-            [self addAudioResponder:entry];
-            
+            [self.audioTouchDispatcher addResponder:entry];
+            [self.sequenceDispatcher addResponder:entry];
             entry.position = cellCenter;
             [self.audioObjectsBatchNode addChild:entry z:ZOrderAudioBatchGlyph];
         }
     }
     [[MainSynth sharedMainSynth] loadSamples:allSampleNames];
-}
-
-#pragma mark - PuzzleControlsDelegate
-
-- (void)startUserSequence
-{
-    NSLog(@"start user seq...");
-    self.userSequenceIndex = 0;
-    
-//    [self.dynamicChannels removeAllObjects];
-//    [self.hits removeAllObjects];
-    
-//    for (TickChannel *channel in self.channels) {
-//        [channel reset];
-//    }
-    
-    [self schedule:@selector(stepUserSequence:) interval:kSequenceInterval];
-}
-
-- (void)stopUserSequence
-{
-    NSLog(@"stop user seq...");
-    [self unschedule:@selector(stepUserSequence:)];
-    
-    //    NSMutableSet *channels = [NSMutableSet set];
-    //    NSSet *tickChannels = [self.channels setByAddingObjectsFromSet:self.dynamicChannels];
-    //    for (TickChannel *ch in tickChannels) {
-    //        [channels addObject:ch.channel];
-    //    }
-    //    [self stopAudioForChannels:channels];
-}
-
-- (void)startSolutionSequence
-{
-    NSLog(@"start sol seq...");
-    self.solutionSequenceIndex = 0;
-//    [self.solutionChannels removeAllObjects];
-    [self schedule:@selector(stepSolutionSequence) interval:kSequenceInterval];
-}
-
-- (void)stopSolutionSequence
-{
-    NSLog(@"stop sol seq...");
-    [self unschedule:@selector(stepSolutionSequence)];
-}
-
-- (void)playSolutionIndex:(NSInteger)index
-{
-    NSLog(@"play sol index: %i", index);
-//    if ((index >= self.solutionSequence.sequence.count) || (index < 0)) {
-//        NSLog(@"warning: index out of TickDispatcher range");
-//        return;
-//    }
-//    
-//    NSArray *events = [self.solutionSequence.sequence objectAtIndex:index];
-//    [[MainSynth sharedMainSynth] receiveEvents:events ignoreAudioPad:YES];
-//    
-//    for (TickEvent *event in events) {
-//        [self.solutionChannels addObject:event.channel];
-//    }
-}
-
-
-#pragma mark - Other sequence stuff
-
-- (void)addAudioResponder:(id<AudioResponder>)responder
-{
-    [self.responders addObject:responder];
-}
-
-//- (void)stopAudioForChannels:(NSSet *)channels
-//{
-//    NSMutableArray *combined = [NSMutableArray array];
-//    for (NSString *channel in channels) {
-//        AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES];
-//        [combined addObject:audioStop];
-//    }
-//    [[MainSynth sharedMainSynth] receiveEvents:combined ignoreAudioPad:YES];
-//}
-
-- (void)stepUserSequence:(ccTime)dt
-{
-    NSLog(@"step user seq...");
-}
-
-- (void)stepSolutionSequence
-{
-    NSLog(@"step sol seq...");
-//    if (self.sequenceIndex >= self.sequenceLength) {
-//        [self unschedule:@selector(advanceSequence)];
-//        [self stopAudioForChannels:self.solutionChannels];
-//        return;
-//    }
-//    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationAdvancedSequence object:nil userInfo:@{kKeySequenceIndex:@(self.sequenceIndex)}];
-//    [self play:self.sequenceIndex];
-//    self.sequenceIndex++;
 }
 
 #pragma mark - scene management

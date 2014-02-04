@@ -14,8 +14,6 @@
 @property (assign) BOOL allowScrolling;
 @property (strong, nonatomic) NSArray *areaCells;
 
-+ (AudioTouchDispatcher *)sharedAudioTouchDispatcher;
-
 - (void)addResponder:(id<AudioResponder>)responder;
 - (void)clearResponders;
 

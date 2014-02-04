@@ -22,7 +22,7 @@ static NSInteger const kRowLength = 8;
 @interface SequenceUILayer ()
 
 @property (weak, nonatomic) CCSpriteBatchNode *uiBatchNode;
-@property (weak, nonatomic) id<PuzzleControlsDelegate> delegate;
+@property (weak, nonatomic) id<SequenceControlDelegate> delegate;
 
 // size and positions
 @property (assign) NSInteger steps;
@@ -36,7 +36,7 @@ static NSInteger const kRowLength = 8;
 
 @implementation SequenceUILayer
 
-- (id)initWithPuzzle:(NSUInteger)puzzle delegate:(id<PuzzleControlsDelegate>)delegate
+- (id)initWithPuzzle:(NSUInteger)puzzle delegate:(id<SequenceControlDelegate>)delegate
 {
     self = [super init];
     if (self) {

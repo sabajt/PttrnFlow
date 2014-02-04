@@ -25,16 +25,6 @@
 
 @implementation AudioTouchDispatcher
 
-+ (AudioTouchDispatcher *)sharedAudioTouchDispatcher
-{
-    static AudioTouchDispatcher *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[AudioTouchDispatcher alloc] init];
-    });
-    return sharedInstance;
-}
-
 - (id)init
 {
     self = [super init];
