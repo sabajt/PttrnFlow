@@ -8,7 +8,7 @@
 
 #import "SequenceMenuLayer.h"
 #import "PuzzleUtils.h"
-#import "SequenceLayer.h"
+#import "PuzzleLayer.h"
 
 #import "AudioTouchDispatcher.h"
 
@@ -50,7 +50,7 @@
 
 - (void)sequenceMenuCellTouchUpInside:(SequenceMenuCell *)cell index:(int)index
 {
-    [[CCDirector sharedDirector] pushScene:[SequenceLayer sceneWithSequence:index]];
+    [[CCDirector sharedDirector] pushScene:[PuzzleLayer sceneWithSequence:index]];
 }
 
 

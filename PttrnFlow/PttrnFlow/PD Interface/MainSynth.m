@@ -8,7 +8,7 @@
 
 #import "MainSynth.h"
 #import "PdDispatcher.h"
-#import "SequenceLayer.h"
+#import "PuzzleLayer.h"
 #import "TickDispatcher.h"
 #import "TickEvent.h"
 #import "SynthEvent.h"

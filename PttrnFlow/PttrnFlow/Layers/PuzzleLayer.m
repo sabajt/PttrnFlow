@@ -6,7 +6,7 @@
 //  Copyright 2013 __MyCompanyName__. All rights reserved.
 //
 
-#import "SequenceLayer.h"
+#import "PuzzleLayer.h"
 #import "SequenceUILayer.h"
 #import "GameConstants.h"
 #import "SimpleAudioEngine.h"
@@ -37,7 +37,7 @@ typedef NS_ENUM(NSInteger, ZOrderAudioBatch)
 static CGFloat kPuzzleBoundsMargin = 10.0f;
 static CGFloat kSequenceInterval = 0.5f;
 
-@interface SequenceLayer ()
+@interface PuzzleLayer ()
 
 @property (assign) CGSize screenSize;
 @property (assign) Coord *maxCoord;
@@ -56,7 +56,7 @@ static CGFloat kSequenceInterval = 0.5f;
 @end
 
 
-@implementation SequenceLayer
+@implementation PuzzleLayer
 
 #pragma mark - setup
 
@@ -70,7 +70,7 @@ static CGFloat kSequenceInterval = 0.5f;
     
     // gameplay layer
     static CGFloat controlBarHeight = 80;
-    SequenceLayer *sequenceLayer = [[SequenceLayer alloc] initWithSequence:sequence background:background topMargin:controlBarHeight];
+    PuzzleLayer *sequenceLayer = [[PuzzleLayer alloc] initWithSequence:sequence background:background topMargin:controlBarHeight];
     [scene addChild:sequenceLayer];
     
     // hud layer -- controls / item menu

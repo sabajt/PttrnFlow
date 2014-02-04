@@ -13,7 +13,7 @@
 
 @class PdDispatcher;
 
-@interface SequenceLayer : ScrollLayer <PuzzleControlsDelegate>
+@interface PuzzleLayer : ScrollLayer <PuzzleControlsDelegate>
 {
     PdDispatcher *_dispatcher;
     void *_patch;
