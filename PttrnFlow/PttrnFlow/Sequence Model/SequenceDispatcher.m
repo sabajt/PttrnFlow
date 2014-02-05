@@ -10,6 +10,9 @@
 #import "AudioResponder.h"
 #import "CCNode+Grid.h"
 #import "NSObject+AudioResponderUtils.h"
+#import "TickEvent.h"
+#import "MainSynth.h"
+#import "DirectionEvent.h"
 
 static CGFloat kSequenceInterval = 0.5f;
 
@@ -17,13 +20,22 @@ static CGFloat kSequenceInterval = 0.5f;
 
 @property (assign) NSInteger userSequenceIndex;
 @property (assign) NSInteger solutionSequenceIndex;
-@property (weak, nonatomic) NSMutableArray *responders;
+@property (strong, nonatomic) NSMutableArray *responders;
 @property (strong, nonatomic) Coord *currentCell;
 @property (copy, nonatomic) NSString *currentDirection;
 
 @end
 
 @implementation SequenceDispatcher
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _responders = [NSMutableArray array];
+    }
+    return self;
+}
 
 - (void)addResponder:(id<AudioResponder>)responder
 {
@@ -47,7 +59,25 @@ static CGFloat kSequenceInterval = 0.5f;
 
 - (void)stepUserSequence:(ccTime)dt
 {
-    CCLOG(@"step user sequence index: %i", self.userSequenceIndex);
+    CCLOG(@"step user sequence index: %i, at cell: %@", self.userSequenceIndex, self.currentCell.stringRep);
+    
+    // get events
+    NSArray *fragments = [self hitResponders:self.responders atCoord:self.currentCell];
+    NSArray *events = [TickEvent eventsFromFragments:fragments channel:0 lastLinkedEvents:nil];
+    
+    // send events to pd
+    [[MainSynth sharedMainSynth] receiveEvents:events ignoreAudioPad:NO];
+    
+    // change direction if needed
+    for (TickEvent *e in events) {
+        if ([e isKindOfClass:[DirectionEvent class]]) {
+            DirectionEvent *directionEvent = (DirectionEvent *)e;
+            self.currentDirection = directionEvent.direction;
+            CCLOG(@"changed direction: %@", directionEvent.direction);
+        }
+    }
+    
+    self.currentCell = [self.currentCell stepInDirection:self.currentDirection];
     self.userSequenceIndex++;
 }
 

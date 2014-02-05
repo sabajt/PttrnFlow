@@ -80,6 +80,7 @@ static NSString *const kStageSample = @"stageSample";
     }
 }
 
+// TODO: refactor to take out 'ignore audio pad' - there will never be a glyph without an audio pad
 - (void)receiveEvents:(NSArray *)events ignoreAudioPad:(BOOL)ignoreAudioPad
 {
     if ((events == nil) || (events.count < 1)) {

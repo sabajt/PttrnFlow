@@ -24,6 +24,7 @@
         }
         
         Coord *responderCoord = [responder audioCell];
+        CCLOG(@"responder coord: %@", responderCoord.stringRep);
         if ([responderCoord isEqualToCoord:coord]) {
             [results addObject:responder];
         }

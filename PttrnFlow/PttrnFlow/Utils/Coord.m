@@ -164,16 +164,16 @@ NSString *const kNeighborBelow = @"below";
 
 - (Coord *)stepInDirection:(NSString *)direction
 {
-    if (direction == kDirectionUp) {
+    if ([direction isEqualToString:kDirectionUp]) {
         return [self neighbors][kNeighborAbove];
     }
-    else if (direction == kDirectionRight) {
+    else if ([direction isEqualToString:kDirectionRight]) {
         return [self neighbors][kNeighborRight];
     }
-    else if (direction == kDirectionDown) {
+    else if ([direction isEqualToString:kDirectionDown]) {
         return [self neighbors][kNeighborBelow];
     }
-    else if (direction == kDirectionLeft) {
+    else if ([direction isEqualToString:kDirectionLeft]) {
         return [self neighbors][kNeighborLeft];
     }
     else {
