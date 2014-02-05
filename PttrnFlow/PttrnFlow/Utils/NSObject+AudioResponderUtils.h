@@ -13,5 +13,6 @@
 @interface NSObject (AudioResponderUtils)
 
 - (NSArray *)responders:(NSArray *)responders atCoord:(Coord *)coord;
+- (NSArray *)hitResponders:(NSArray *)responders atCoord:(Coord *)coord;
 
 @end

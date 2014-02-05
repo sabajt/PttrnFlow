@@ -48,11 +48,7 @@
 - (void)hitCell:(Coord *)coord channel:(NSString *)channel
 {
     // collect fragments from all hit cells
-    NSArray *fragments = [NSMutableArray array];
-    NSArray *hitResponders = [self responders:self.responders atCoord:coord];
-    for (id<AudioResponder> responder in hitResponders) {
-        fragments = [fragments arrayByAddingObjectsFromArray:[responder audioHit:kBPM]];
-    }
+    NSArray *fragments = [self hitResponders:self.responders atCoord:coord];
     
     // crunch fragments into events and send to pd
     NSArray *events = [TickEvent eventsFromFragments:fragments channel:channel lastLinkedEvents:nil];

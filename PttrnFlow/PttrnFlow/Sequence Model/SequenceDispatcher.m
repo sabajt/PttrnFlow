@@ -9,6 +9,7 @@
 #import "SequenceDispatcher.h"
 #import "AudioResponder.h"
 #import "CCNode+Grid.h"
+#import "NSObject+AudioResponderUtils.h"
 
 static CGFloat kSequenceInterval = 0.5f;
 
@@ -18,6 +19,7 @@ static CGFloat kSequenceInterval = 0.5f;
 @property (assign) NSInteger solutionSequenceIndex;
 @property (weak, nonatomic) NSMutableArray *responders;
 @property (strong, nonatomic) Coord *currentCell;
+@property (copy, nonatomic) NSString *currentDirection;
 
 @end
 
@@ -51,7 +53,7 @@ static CGFloat kSequenceInterval = 0.5f;
 
 - (void)stepSolutionSequence
 {
-    NSLog(@"step sol seq...");
+    CCLOG(@"step sol seq...");
     //    if (self.sequenceIndex >= self.sequenceLength) {
     //        [self unschedule:@selector(advanceSequence)];
     //        [self stopAudioForChannels:self.solutionChannels];
@@ -66,8 +68,11 @@ static CGFloat kSequenceInterval = 0.5f;
 
 - (void)startUserSequence
 {
-    NSLog(@"start user seq at cell %@, direction: %@", self.entry.cell.stringRep, self.entry.direction);
+    CCLOG(@"start user seq at cell %@, direction: %@", self.entry.cell.stringRep, self.entry.direction);
+    
     self.userSequenceIndex = 0;
+    self.currentCell = self.entry.cell;
+    self.currentDirection = self.entry.direction;
     
     //    [self.dynamicChannels removeAllObjects];
     //    [self.hits removeAllObjects];
@@ -81,7 +86,7 @@ static CGFloat kSequenceInterval = 0.5f;
 
 - (void)stopUserSequence
 {
-    NSLog(@"stop user seq...");
+    CCLOG(@"stop user seq...");
     [self unschedule:@selector(stepUserSequence:)];
     
     //    NSMutableSet *channels = [NSMutableSet set];
@@ -94,7 +99,7 @@ static CGFloat kSequenceInterval = 0.5f;
 
 - (void)startSolutionSequence
 {
-    NSLog(@"start sol seq...");
+    CCLOG(@"start sol seq...");
     self.solutionSequenceIndex = 0;
     //    [self.solutionChannels removeAllObjects];
     [self schedule:@selector(stepSolutionSequence) interval:kSequenceInterval];
@@ -102,13 +107,13 @@ static CGFloat kSequenceInterval = 0.5f;
 
 - (void)stopSolutionSequence
 {
-    NSLog(@"stop sol seq...");
+    CCLOG(@"stop sol seq...");
     [self unschedule:@selector(stepSolutionSequence)];
 }
 
 - (void)playSolutionIndex:(NSInteger)index
 {
-    NSLog(@"play sol index: %i", index);
+    CCLOG(@"play sol index: %i", index);
     //    if ((index >= self.solutionSequence.sequence.count) || (index < 0)) {
     //        NSLog(@"warning: index out of TickDispatcher range");
     //        return;

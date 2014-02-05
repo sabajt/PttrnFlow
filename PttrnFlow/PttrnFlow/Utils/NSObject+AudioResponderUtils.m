@@ -31,4 +31,20 @@
     return [NSArray arrayWithArray:results];
 }
 
+- (NSArray *)hitResponders:(NSArray *)responders atCoord:(Coord *)coord
+{
+    // collect fragments from all hit cells
+    NSArray *fragments = [NSArray array];
+    NSArray *hitResponders = [self responders:responders atCoord:coord];
+    for (id<AudioResponder> responder in hitResponders) {
+        if (![responder conformsToProtocol:@protocol(AudioResponder)]) {
+            NSLog(@"warning: %@ does not conform to AudioResponder, aborting.", responder);
+            return nil;
+        }
+
+        fragments = [fragments arrayByAddingObjectsFromArray:[responder audioHit:kBPM]];
+    }
+    return fragments;
+}
+
 @end
