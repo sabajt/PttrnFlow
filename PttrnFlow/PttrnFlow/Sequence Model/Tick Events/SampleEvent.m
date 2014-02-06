@@ -12,7 +12,7 @@
 
 - (id)initWithChannel:(NSString *)channel sampleName:(NSString *)name
 {
-    self = [super initWithChannel:channel isAudioEvent:YES isLinkedEvent:YES lastLinkedEvent:nil fragments:@[name]];
+    self = [super initAsAudioEvent:YES];
     if (self) {
         NSAssert([SampleEvent isSampleName:name], @"'%@' is not a valid sample name", name);
         _fileName = name;

@@ -9,7 +9,6 @@
 #import "AudioTouchDispatcher.h"
 #import "TickEvent.h"
 #import "MainSynth.h"
-#import "TickDispatcher.h"
 #import "AudioStopEvent.h"
 #import "Coord.h"
 #import "NSObject+AudioResponderUtils.h"
@@ -163,7 +162,7 @@
     // get channel
     NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.trackingTouches, (__bridge void *)touch);
     NSString *channel = [touchInfo objectForKey:@"channel"];
-    AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES];
+    AudioStopEvent *audioStop = [[AudioStopEvent alloc] initAsAudioEvent:YES];
     [[MainSynth sharedMainSynth] receiveEvents:@[audioStop] ignoreAudioPad:YES];
     
     // get grid cell of touch
@@ -179,7 +178,7 @@
     // get channel
     NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.trackingTouches, (__bridge void *)touch);
     NSString *channel = [touchInfo objectForKey:@"channel"];
-    AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES];
+    AudioStopEvent *audioStop = [[AudioStopEvent alloc] initAsAudioEvent:YES];
     [[MainSynth sharedMainSynth] receiveEvents:@[audioStop] ignoreAudioPad:YES];
     
     // get grid cell of touch

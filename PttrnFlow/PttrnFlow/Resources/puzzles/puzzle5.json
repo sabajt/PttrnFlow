@@ -29,13 +29,13 @@
           {
                "static" : 0,
                "cell" : [0, 3],
-               "sample" : "basic_5",
+               "sample" : "basic_5.wav",
                "image_set" : "drum_primary"
           },
           {
                "static" : 0,
                "cell" : [0, 6],
-               "sample" : "basic_4",
+               "sample" : "basic_4.wav",
                "image_set" : "drum_primary"
           },
           {

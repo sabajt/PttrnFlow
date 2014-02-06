@@ -77,23 +77,7 @@
         
         return event;
     }
-    else if ([eventType isEqualToString:@"audio_stop"]) {
-        NSString *channel = [eventData objectForKey:@"channel"];
-        
-        // audio stop may share channel with synth and samples so also needs to track last event
-        TickEvent *lastLinkedEvent = self.trackedEvents[channel];
-        AudioStopEvent *event = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES isLinkedEvent:YES lastLinkedEvent:lastLinkedEvent fragments:nil];
-        self.trackedEvents[channel] = event;
-        
-        return event;
-    }
-    // TODO: add last linked event
-    else if ([eventType isEqualToString:@"sample"]) {
-        NSString *channel = [eventData objectForKey:@"channel"];
-        NSString *fileName = [eventData objectForKey:@"file_name"];
-        
-        return [[SampleEvent alloc] initWithChannel:channel sampleName:fileName];
-    }
+
     return nil;
 }
 

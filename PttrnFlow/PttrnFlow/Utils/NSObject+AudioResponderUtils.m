@@ -10,8 +10,6 @@
 #import "AudioResponder.h"
 #import "Coord.h"
 
-#import "TickDispatcher.h" // TODO: for kBPM, need to change
-
 @implementation NSObject (AudioResponderUtils)
 
 - (NSArray *)responders:(NSArray *)responders atCoord:(Coord *)coord

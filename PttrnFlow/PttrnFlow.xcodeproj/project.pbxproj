@@ -160,7 +160,6 @@
 		1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */; };
 		16A4277C176BF0A100BEF13F /* SequenceControlsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4277B176BF0A100BEF13F /* SequenceControlsLayer.m */; };
 		16A942B71777A2260052D5BD /* MainSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A41777A2250052D5BD /* MainSynth.m */; };
-		16A942B81777A2260052D5BD /* TickDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A71777A2250052D5BD /* TickDispatcher.m */; };
 		16A942BA1777A2260052D5BD /* Sample.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942AC1777A2260052D5BD /* Sample.m */; };
 		16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */; };
 		16A942DF1778C5A50052D5BD /* drum1-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942D71778C5A50052D5BD /* drum1-ipad.png */; };
@@ -261,7 +260,6 @@
 		33BA5F22185E3385005A0452 /* puzzle0.json in Resources */ = {isa = PBXBuildFile; fileRef = 33BA5F1F185E3385005A0452 /* puzzle0.json */; };
 		33BA5F23185E3385005A0452 /* puzzle1.json in Resources */ = {isa = PBXBuildFile; fileRef = 33BA5F20185E3385005A0452 /* puzzle1.json */; };
 		33BA5F24185E3385005A0452 /* puzzle2.json in Resources */ = {isa = PBXBuildFile; fileRef = 33BA5F21185E3385005A0452 /* puzzle2.json */; };
-		33BF709617CBB2BB003E0A5F /* SpeedChangeEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BF709517CBB2BB003E0A5F /* SpeedChangeEvent.m */; };
 		33C3B1C61874E9E7008F5FA8 /* pf-sample.pd in Resources */ = {isa = PBXBuildFile; fileRef = 33C3B1C51874E9E7008F5FA8 /* pf-sample.pd */; };
 		33C3B1CA1874F591008F5FA8 /* pttrn1-01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33C3B1C81874F591008F5FA8 /* pttrn1-01.wav */; };
 		33C3B1CB1874F591008F5FA8 /* pttrn1-02.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33C3B1C91874F591008F5FA8 /* pttrn1-02.wav */; };
@@ -606,8 +604,6 @@
 		16A4277B176BF0A100BEF13F /* SequenceControlsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceControlsLayer.m; sourceTree = "<group>"; };
 		16A942A31777A2250052D5BD /* MainSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainSynth.h; sourceTree = "<group>"; };
 		16A942A41777A2250052D5BD /* MainSynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainSynth.m; sourceTree = "<group>"; };
-		16A942A61777A2250052D5BD /* TickDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickDispatcher.h; sourceTree = "<group>"; };
-		16A942A71777A2250052D5BD /* TickDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickDispatcher.m; sourceTree = "<group>"; };
 		16A942AB1777A2260052D5BD /* Sample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sample.h; sourceTree = "<group>"; };
 		16A942AC1777A2260052D5BD /* Sample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sample.m; sourceTree = "<group>"; };
 		16A942C11777ABFA0052D5BD /* SequenceMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceMenuCell.h; sourceTree = "<group>"; };
@@ -735,8 +731,6 @@
 		33BA5F1F185E3385005A0452 /* puzzle0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle0.json; sourceTree = "<group>"; };
 		33BA5F20185E3385005A0452 /* puzzle1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle1.json; sourceTree = "<group>"; };
 		33BA5F21185E3385005A0452 /* puzzle2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle2.json; sourceTree = "<group>"; };
-		33BF709417CBB2BB003E0A5F /* SpeedChangeEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedChangeEvent.h; sourceTree = "<group>"; };
-		33BF709517CBB2BB003E0A5F /* SpeedChangeEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedChangeEvent.m; sourceTree = "<group>"; };
 		33C3B1C51874E9E7008F5FA8 /* pf-sample.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-sample.pd"; sourceTree = "<group>"; };
 		33C3B1C81874F591008F5FA8 /* pttrn1-01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "pttrn1-01.wav"; sourceTree = "<group>"; };
 		33C3B1C91874F591008F5FA8 /* pttrn1-02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "pttrn1-02.wav"; sourceTree = "<group>"; };
@@ -1359,8 +1353,6 @@
 			isa = PBXGroup;
 			children = (
 				33B4F24E17C72600004D4C13 /* Tick Events */,
-				16A942A61777A2250052D5BD /* TickDispatcher.h */,
-				16A942A71777A2250052D5BD /* TickDispatcher.m */,
 				3338A9CA17C307D80037DFE2 /* SolutionSequence.h */,
 				3338A9CB17C307D80037DFE2 /* SolutionSequence.m */,
 				33EE316E17C92C3C004CC016 /* AudioTouchDispatcher.h */,
@@ -1541,8 +1533,6 @@
 				33B4F25017C72600004D4C13 /* AudioStopEvent.m */,
 				33AF255C17CB0B3F00643CB2 /* AudioPadEvent.h */,
 				33AF255D17CB0B3F00643CB2 /* AudioPadEvent.m */,
-				33BF709417CBB2BB003E0A5F /* SpeedChangeEvent.h */,
-				33BF709517CBB2BB003E0A5F /* SpeedChangeEvent.m */,
 			);
 			path = "Tick Events";
 			sourceTree = "<group>";
@@ -1952,13 +1942,11 @@
 				33EE317017C92C3C004CC016 /* AudioTouchDispatcher.m in Sources */,
 				33B4F25B17C72600004D4C13 /* AudioStopEvent.m in Sources */,
 				16A942B71777A2260052D5BD /* MainSynth.m in Sources */,
-				16A942B81777A2260052D5BD /* TickDispatcher.m in Sources */,
 				16A942BA1777A2260052D5BD /* Sample.m in Sources */,
 				334B2ADD181C2F4B00865510 /* TouchSprite.m in Sources */,
 				16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */,
 				1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */,
 				163091F0177DEDA9003155BB /* BackgroundLayer.m in Sources */,
-				33BF709617CBB2BB003E0A5F /* SpeedChangeEvent.m in Sources */,
 				162C291017821E0200CE480C /* SizeUtils.m in Sources */,
 				33B4F25F17C72600004D4C13 /* SynthEvent.m in Sources */,
 			);

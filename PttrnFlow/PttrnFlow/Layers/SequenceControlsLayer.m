@@ -7,12 +7,12 @@
 //
 
 #import "SequenceControlsLayer.h"
-#import "TickDispatcher.h"
 #import "ColorUtils.h"
 #import "TileSprite.h"
 #import "ClippingSprite.h"
 #import "PuzzleDataManager.h"
 #import "SolutionCell.h"
+#import "GameConstants.h"
 
 CGFloat const kUIButtonUnitSize = 50;
 CGFloat const kUITimelineStepWidth = 40;

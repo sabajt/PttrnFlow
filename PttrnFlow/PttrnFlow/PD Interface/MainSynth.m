@@ -9,7 +9,6 @@
 #import "MainSynth.h"
 #import "PdDispatcher.h"
 #import "PuzzleLayer.h"
-#import "TickDispatcher.h"
 #import "TickEvent.h"
 #import "SynthEvent.h"
 #import "AudioStopEvent.h"
@@ -104,9 +103,8 @@ static NSString *const kStageSample = @"stageSample";
         if ([event isKindOfClass:[SynthEvent class]]) {
             SynthEvent *synth = (SynthEvent *)event;
             NSNumber *midiValue = [NSNumber numberWithInt:[synth.midiValue intValue]];
-            NSNumber *channel = [NSNumber numberWithInt:[synth.channel intValue]];
             NSNumber *synthType = [NSNumber numberWithInt:[MainSynth pfSynthTypeForStringRep:synth.synthType]];
-            [PdBase sendList:@[synthType, midiValue, channel] toReceiver:kSynthEvent];
+            [PdBase sendList:@[synthType, midiValue, @0] toReceiver:kSynthEvent];
         }
         
         if ([event isKindOfClass:[SampleEvent class]]) {
@@ -117,14 +115,12 @@ static NSString *const kStageSample = @"stageSample";
         }
         
         if ([event isKindOfClass:[AudioStopEvent class]]) {
-            AudioStopEvent *audioStop = (AudioStopEvent *)event;
-            [PdBase sendFloat:[audioStop.channel floatValue] toReceiver:kAudioStop];
+            [PdBase sendFloat:[@0 floatValue] toReceiver:kAudioStop];
         }
         
         if ([event isKindOfClass:[ExitEvent class]]) {
             // first stop audio
-            AudioStopEvent *audioStop = (AudioStopEvent *)event;
-            [PdBase sendFloat:[audioStop.channel floatValue] toReceiver:kAudioStop];
+            [PdBase sendFloat:[@0 floatValue] toReceiver:kAudioStop];
             
             // noise for exit event (currently channel independendant)
             ExitEvent *exitEvent = (ExitEvent *)exitEvent;

@@ -15,7 +15,7 @@ NSString *const kDefaultSynthType = @"osc";
 
 - (id)initWithChannel:(NSString *)channel lastLinkedEvent:(TickEvent *)lastEvent midiValue:(NSString *)midiValue synthType:(NSString *)synthType
 {
-    self = [super initWithChannel:channel isAudioEvent:YES isLinkedEvent:YES lastLinkedEvent:lastEvent fragments:@[midiValue, synthType]];
+    self = [super initAsAudioEvent:YES];
     if (self) {
         NSAssert([SynthEvent isMidiValue:midiValue], @"'%@' is not a valid midi value", midiValue);
         NSAssert([SynthEvent isSynthType:synthType], @"'%@' is not a valid synth type", synthType);

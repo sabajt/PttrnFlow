@@ -8,18 +8,9 @@
 
 #import "TickEvent.h"
 #import "NSArray+CompareStrings.h"
-#import "SynthEvent.h"
-#import "SampleEvent.h"
-#import "DirectionEvent.h"
-#import "AudioStopEvent.h"
-#import "AudioPad.h"
-#import "AudioPadEvent.h"
-#import "SpeedChangeEvent.h"
 #import "NSArray+CompareStrings.h"
 
 NSString *const kChannelNone = @"ChannelNone";
-
-#pragma mark - NSArray (TickEvents)
 
 @implementation NSArray (TickEvents)
 
@@ -38,7 +29,7 @@ NSString *const kChannelNone = @"ChannelNone";
     
     // find index of matching event if there is one
     NSUInteger targetIndex = [events indexOfObjectPassingTest:^BOOL(TickEvent *event, NSUInteger idx, BOOL *stop) {
-        return ([event isKindOfClass:[TickEvent class]] && [event isEqualToEvent:targetEvent checkLastLinkedEvent:YES]);
+        return ([event isKindOfClass:[TickEvent class]] && [event isEqualToEvent:targetEvent]);
     }];
     
     // no match
@@ -69,67 +60,28 @@ NSString *const kChannelNone = @"ChannelNone";
 
 @end
 
-#pragma mark - TickEvents
-// TickEvents store relevant parameters that we will send in to our PD patches.
-// Events may be constructed in different ways:
-//  - directly from a pre-constructed datasource (solution sequences are collections of events constructed from a JSON file)
-//  - on the fly from a collection of fragments associated with a channel (ticking, touching)
-//  - on the fly triggered by some other game logic (for example, receiving 0 events constructs an ExitEvent with no fragments)
-// If channel is irrelevant to an event (for example global events like slow down, or any solution seq event), use kChannelNone
-
 @interface TickEvent ()
 
 @property (strong, nonatomic) NSArray *fragments;
 
 @end
 
-
 @implementation TickEvent
 
-- (id)initWithChannel:(NSString *)channel isAudioEvent:(BOOL)isAudioEvent isLinkedEvent:(BOOL)isLinkedEvent lastLinkedEvent:(TickEvent *)lastLinkedEvent fragments:(NSArray *)fragments
+- (id)initAsAudioEvent:(BOOL)isAudioEvent
 {
     self = [super init];
     if (self) {
-        _channel = channel;
         _isAudioEvent = isAudioEvent;
-        _lastLinkedEvent = lastLinkedEvent;
-        _fragments = fragments;
     }
     return self;
 }
 
-- (id)initWithChannel:(NSString *)channel isAudioEvent:(BOOL)isAudioEvent
-{
-    return [self initWithChannel:channel isAudioEvent:isAudioEvent isLinkedEvent:NO lastLinkedEvent:nil fragments:nil];
-}
-
 #pragma mark - Comparison
 
-- (BOOL)isEqualToEvent:(TickEvent *)event checkLastLinkedEvent:(BOOL)checkLastLinkedEvent
+- (BOOL)isEqualToEvent:(TickEvent *)event
 {
-    // must share same class
-    if ([self isKindOfClass:[event class]]) {
-        
-        // must share all fragments types and count (or none at all)
-        BOOL containsNoFragments = (self.fragments == nil) && (event.fragments == nil);
-        if (containsNoFragments || [self.fragments hasSameNumberOfSameStrings:event.fragments]) {
-            
-            // our linked events must share class and same fragments (or none at all)
-            if (checkLastLinkedEvent) {
-                BOOL containsNoLinkedEvent = (self.lastLinkedEvent == nil) && (event.lastLinkedEvent == nil);
-
-                // recursive call is only ever 1 deep (for comparing to linked event)
-                BOOL sameLastLinkedEvent = [self.lastLinkedEvent isEqualToEvent:event.lastLinkedEvent checkLastLinkedEvent:NO];
-                if (containsNoLinkedEvent || sameLastLinkedEvent) {
-                    return YES;
-                }
-            }
-            // we haven't requested to check last linked (so probably an internal call)
-            else {
-                return YES;
-            }
-        }
-    }
+    // needs implementation
     return NO;
 }
 
