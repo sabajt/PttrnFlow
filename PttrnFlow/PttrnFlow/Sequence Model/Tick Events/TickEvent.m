@@ -26,24 +26,6 @@ NSString *const kChannelNone = @"ChannelNone";
 
 @implementation NSString (Fragment)
 
-- (BOOL)isMidiValue
-{
-    static int low = 48;
-    static int high = 59;
-
-    for (int i = low; i <= high; i++) {
-        if ([self isEqualToString:[@(i) stringValue]]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-- (BOOL)isSynthType
-{
-    return [@[@"osc", @"phasor"] hasString:self];
-}
-
 - (BOOL)isSampleName
 {
     static NSString *kWav = @"wav";
