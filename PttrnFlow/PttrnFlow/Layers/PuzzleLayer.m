@@ -90,7 +90,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         [PdBase setDelegate:_dispatcher];
         _patch = [PdBase openFile:@"pf-main.pd" path:[[NSBundle mainBundle] resourcePath]];
         if (!_patch) {
-            NSLog(@"Failed to open patch");
+            CCLOG(@"Failed to open patch");
         }
         
         // Sprite sheet batch nodes
@@ -147,7 +147,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             self.position = ccp(self.position.x, self.puzzleBounds.origin.y + (padding / 2));
         }
         self.scrollBounds = CGRectMake(self.position.x, self.position.y, (self.screenSize.width - kPuzzleBoundsMargin) - self.position.x, (self.screenSize.height - kPuzzleBoundsMargin) - self.position.y);
-        NSLog(@"scroll bounds: %@", NSStringFromCGRect(self.scrollBounds));
+        CCLOG(@"scroll bounds: %@", NSStringFromCGRect(self.scrollBounds));
         
         // audio touch dispatcher
         AudioTouchDispatcher *audioTouchDispatcher = [[AudioTouchDispatcher alloc] init];
@@ -314,7 +314,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
      
         // cell is the only mandatory field to create an audio pad (empty pad can be used as a puzzle object to just take up space)
         if (cellArray == NULL) {
-            NSLog(@"SequenceLayer createPuzzleObjects error: 'cell' must not be null on audio pads");
+            CCLOG(@"SequenceLayer createPuzzleObjects error: 'cell' must not be null on audio pads");
             return;
         }
         Coord *cell = [Coord coordWithX:[cellArray[0] integerValue] Y:[cellArray[1] integerValue]];
@@ -431,12 +431,12 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 
 - (void)reportSize:(ccTime)deltaTime
 {
-    NSLog(@"\n\n--debug------------------------");
-    NSLog(@"seq layer content size: %@", NSStringFromCGSize(self.contentSize));
-    NSLog(@"seq layer bounding box: %@", NSStringFromCGRect(self.boundingBox));
-    NSLog(@"seq layer position: %@", NSStringFromCGPoint(self.position));
-    NSLog(@"seq layer scale: %g", self.scale);
-    NSLog(@"--end debug------------------------\n");
+    CCLOG(@"\n\n--debug------------------------");
+    CCLOG(@"seq layer content size: %@", NSStringFromCGSize(self.contentSize));
+    CCLOG(@"seq layer bounding box: %@", NSStringFromCGRect(self.boundingBox));
+    CCLOG(@"seq layer position: %@", NSStringFromCGPoint(self.position));
+    CCLOG(@"seq layer scale: %g", self.scale);
+    CCLOG(@"--end debug------------------------\n");
 }
 
 //- (void)draw

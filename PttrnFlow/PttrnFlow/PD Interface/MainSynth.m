@@ -84,7 +84,7 @@ static NSString *const kStageSample = @"stageSample";
 - (void)receiveEvents:(NSArray *)events ignoreAudioPad:(BOOL)ignoreAudioPad
 {
     if ((events == nil) || (events.count < 1)) {
-        NSLog(@"no events sent to synth");
+        CCLOG(@"no events sent to synth");
         return;
     }
     

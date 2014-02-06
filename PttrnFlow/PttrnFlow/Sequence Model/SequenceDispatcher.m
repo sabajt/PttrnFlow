@@ -150,7 +150,7 @@ static CGFloat kSequenceInterval = 0.5f;
 {
     CCLOG(@"play sol index: %i", index);
     //    if ((index >= self.solutionSequence.sequence.count) || (index < 0)) {
-    //        NSLog(@"warning: index out of TickDispatcher range");
+    //        CCLOG(@"warning: index out of TickDispatcher range");
     //        return;
     //    }
     //

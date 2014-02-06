@@ -177,7 +177,7 @@ NSString *const kNeighborBelow = @"below";
         return [self neighbors][kNeighborLeft];
     }
     else {
-        NSLog(@"warning: unrecognized direction");
+        CCLOG(@"warning: unrecognized direction");
         return nil;
     }
 }

@@ -19,12 +19,11 @@
     NSMutableArray *results = [NSMutableArray array];
     for (id<AudioResponder> responder in responders) {
         if (![responder conformsToProtocol:@protocol(AudioResponder)]) {
-            NSLog(@"warning: %@ does not conform to AudioResponder, aborting.", responder);
+            CCLOG(@"warning: %@ does not conform to AudioResponder, aborting.", responder);
             return nil;
         }
         
         Coord *responderCoord = [responder audioCell];
-        CCLOG(@"responder coord: %@", responderCoord.stringRep);
         if ([responderCoord isEqualToCoord:coord]) {
             [results addObject:responder];
         }
@@ -39,7 +38,7 @@
     NSArray *hitResponders = [self responders:responders atCoord:coord];
     for (id<AudioResponder> responder in hitResponders) {
         if (![responder conformsToProtocol:@protocol(AudioResponder)]) {
-            NSLog(@"warning: %@ does not conform to AudioResponder, aborting.", responder);
+            CCLOG(@"warning: %@ does not conform to AudioResponder, aborting.", responder);
             return nil;
         }
 

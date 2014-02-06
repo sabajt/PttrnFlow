@@ -9,7 +9,6 @@ PttrnFlow todo
 - tweak drum assets to look beter
 
 * DEV
-- entry glyph
 - refactor audio blocks to use dynamic coloring
 - simplify solution sequence and place in puzzle file
 - correctly position timeline panels (just states for 4, 8 or 16...?)

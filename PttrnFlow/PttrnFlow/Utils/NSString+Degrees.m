@@ -25,7 +25,7 @@
     else if ([self isEqualToString:kDirectionLeft]) {
         return 270.0;
     }
-    NSLog(@"warning: %@ is an invalid direction, returning 0", self);
+    CCLOG(@"warning: %@ is an invalid direction, returning 0", self);
     return 0;
 }
 

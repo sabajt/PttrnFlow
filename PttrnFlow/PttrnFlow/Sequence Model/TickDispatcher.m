@@ -147,7 +147,7 @@ CGFloat const kTickInterval = 0.12;
 - (void)play:(int)index
 {
     if ((index >= self.solutionSequence.sequence.count) || (index < 0)) {
-        NSLog(@"warning: index out of TickDispatcher range");
+        CCLOG(@"warning: index out of TickDispatcher range");
         return;
     }
     
@@ -305,11 +305,11 @@ CGFloat const kTickInterval = 0.12;
 //    
 //    // check for a hit (collected audio events for this tick match solution events for this tick)
 //    if ([self.solutionSequence tick:self.currentTick doesMatchAudioEventsInGroup:combinedEvents]) {
-//        NSLog(@"HIT");
+//        CCLOG(@"HIT");
 //        [self.hits addObject:@(YES)];
 //    }
 //    else {
-//        NSLog(@"MISS");
+//        CCLOG(@"MISS");
 //        [self.hits addObject:@(NO)];
 //    }
 //    

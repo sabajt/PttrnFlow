@@ -52,7 +52,7 @@ static NSString *const kGlyphs = @"glyphs";
     NSError *error = nil;
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[NSBundle mainBundle] resourcePath] error:&error];
     if (error) {
-        NSLog(@"error: %@", error);
+        CCLOG(@"error: %@", error);
     }
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF BEGINSWITH 'puzzle' AND pathExtension ENDSWITH 'json'"];
     return [contents filteredArrayUsingPredicate:predicate];
@@ -67,7 +67,7 @@ static NSString *const kGlyphs = @"glyphs";
         NSError *error = nil;
         NSDictionary *puzzle = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         if (error != nil) {
-            NSLog(@"error creating puzzle from json: %@", error);
+            CCLOG(@"error creating puzzle from json: %@", error);
         }
         self.puzzles[@(number)] = puzzle;
     }
@@ -182,7 +182,7 @@ static NSString *const kGlyphs = @"glyphs";
         [imageSequenceKey setObject:mappedSet forKey:kDrumSecondary];
     }
     
-    NSLog(@"image seq: %@", imageSequenceKey);
+    CCLOG(@"image seq: %@", imageSequenceKey);
     return [NSDictionary dictionaryWithDictionary:imageSequenceKey];
 }
 

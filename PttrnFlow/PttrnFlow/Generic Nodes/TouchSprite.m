@@ -32,7 +32,7 @@
 
 - (void)longPress:(ccTime)deltaTime
 {
-    NSLog(@"long press needs implementation");
+    CCLOG(@"long press needs implementation");
 }
 
 #pragma mark CCSprite SceneManagement
