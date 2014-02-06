@@ -28,7 +28,4 @@ FOUNDATION_EXPORT NSString *const kChannelNone;
 - (id)initWithChannel:(NSString *)channel isAudioEvent:(BOOL)isAudioEvent;
 - (BOOL)isEqualToEvent:(TickEvent *)event checkLastLinkedEvent:(BOOL)checkLastLinkedEvent;
 
-#pragma mark - Creation Utils
-+ (NSArray *)eventsFromFragments:(NSArray *)fragments channel:(NSString *)channel lastLinkedEvents:(NSDictionary *)lastLinkedEvents;
-
 @end
