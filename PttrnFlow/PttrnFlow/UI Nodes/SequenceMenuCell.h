@@ -6,7 +6,7 @@
 //
 //
 
-#import "TouchNode.h"
+#import "TouchSprite.h"
 
 @class SequenceMenuCell;
 
@@ -17,7 +17,7 @@
 @end
 
 
-@interface SequenceMenuCell : TouchNode <TouchNodeDelegate>
+@interface SequenceMenuCell : TouchSprite
 
 @property (weak, nonatomic) id<SequenceMenuCellDelegate> menuCellDelegate;
 

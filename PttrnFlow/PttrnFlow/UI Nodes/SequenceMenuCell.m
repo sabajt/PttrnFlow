@@ -22,8 +22,6 @@
 {
     self = [super init];
     if (self) {
-        self.touchNodeDelegate = self;
-        
         self.contentSize = CGSizeMake(320, 50);
         self.swallowsTouches = YES;
         _index = index;
@@ -51,7 +49,7 @@
 {
     [super ccTouchEnded:touch withEvent:event];
     
-    if ([self.touchNodeDelegate containsTouch:touch]) {
+    if ([self containsTouch:touch]) {
         [self.menuCellDelegate sequenceMenuCellTouchUpInside:self index:self.index];
     }
 }
