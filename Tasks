@@ -26,3 +26,10 @@ PttrnFlow todo
 * BUGS
 - drag directly to diagonal cell, glyphs may illegally move
 
+***************
+
+GlyphResponder
+GlyphTouchDispatcher
+GlyphSequenceDispatcher
+GlyphEvent
+

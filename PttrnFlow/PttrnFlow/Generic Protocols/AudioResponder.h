@@ -19,7 +19,7 @@
 // triggered on touch down or step
 // responder may return an array of 1 or many fragments
 // TODO: refactor responder's implementations to just return events
-- (NSArray *)audioHit:(NSInteger)bpm;
+- (TickEvent *)audioHit:(NSInteger)bpm;
 
 @optional
 

@@ -9,10 +9,12 @@
 #import "AudioPad.h"
 #import "CCNode+Grid.h"
 #import "GameConstants.h"
+#import "AudioPadEvent.h"
 
 @interface AudioPad ()
 
 @property (strong, nonatomic) CCSprite *highlightSprite;
+@property (strong, nonatomic) AudioPadEvent *event;
 
 @end
 
@@ -32,6 +34,8 @@
         highlightSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
         [self addChild:highlightSprite];
         
+        self.event = [[AudioPadEvent alloc] init];
+        
         NSString *boxFrameName = @"audio_box_static.png";
         if (!isStatic) {
             boxFrameName = @"audio_box.png";
@@ -49,12 +53,12 @@
 
 #pragma mark - AudioResponder
 
-- (NSArray *)audioHit:(NSInteger)bpm
+- (TickEvent *)audioHit:(NSInteger)bpm
 {
     CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
     [self.highlightSprite runAction:fadeOut];
     
-    return @[@"audio_pad"];
+    return self.event;
 }
 
 - (Coord *)audioCell

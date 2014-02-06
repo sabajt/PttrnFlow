@@ -9,14 +9,13 @@
 #import "Synth.h"
 #import "CCNode+Grid.h"
 #import "ColorUtils.h"
+#import "SynthEvent.h"
 
 @interface Synth ()
 
 @property (assign) ccColor3B defaultColor;
 @property (assign) ccColor3B activeColor;
-// fragments
-@property (copy, nonatomic) NSString *synth;
-@property (copy, nonatomic) NSString *midi;
+@property (strong, nonatomic) SynthEvent *event;
 
 @end
 
@@ -30,8 +29,7 @@
         self.activeColor = [ColorUtils activeYellow];
         self.color = self.defaultColor;
         
-        _synth = synth;
-        _midi = midi;
+        self.event = [[SynthEvent alloc] initWithChannel:0 lastLinkedEvent:nil midiValue:midi synthType:synth];
         
         // CCNode+Grid
         self.cell = cell;
@@ -47,13 +45,13 @@
     return self.cell;
 }
 
-- (NSArray *)audioHit:(NSInteger)bpm
+- (TickEvent *)audioHit:(NSInteger)bpm
 {
     self.color = self.activeColor;
     CCTintTo *tint = [CCTintTo actionWithDuration:1 red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
     [self runAction:tint];
     
-    return @[self.midi, self.synth];
+    return self.event;
 }
 
 @end

@@ -62,8 +62,7 @@ static CGFloat kSequenceInterval = 0.5f;
     CCLOG(@"step user sequence index: %i, at cell: %@", self.userSequenceIndex, self.currentCell.stringRep);
     
     // get events
-    NSArray *fragments = [self hitResponders:self.responders atCoord:self.currentCell];
-    NSArray *events = [TickEvent eventsFromFragments:fragments channel:0 lastLinkedEvents:nil];
+    NSArray *events = [self hitResponders:self.responders atCoord:self.currentCell];
     
     // send events to pd
     [[MainSynth sharedMainSynth] receiveEvents:events ignoreAudioPad:NO];

@@ -10,13 +10,14 @@
 #import "NSString+Degrees.h"
 #import "CCNode+Grid.h"
 #import "ColorUtils.h"
+#import "DirectionEvent.h"
 
 @interface Arrow ()
 
-@property (copy, nonatomic) NSString *direction;
 @property (weak, nonatomic) CCSprite *detailSprite;
 @property (assign) ccColor3B defaultColor;
 @property (assign) ccColor3B activeColor;
+@property (strong, nonatomic) DirectionEvent *event;
 
 @end
 
@@ -29,8 +30,9 @@
         self.defaultColor = [ColorUtils cream];
         self.activeColor = [ColorUtils activeYellow];
         self.color = self.defaultColor;
-        self.direction = direction;
         self.rotation = [direction degrees];
+        
+        self.event = [[DirectionEvent alloc] initWithChannel:0 direction:direction];
         
         CCSprite *detailSprite = [CCSprite spriteWithSpriteFrameName:@"arrow_up.png"];
         self.detailSprite = detailSprite;
@@ -57,13 +59,13 @@
     return self.cell;
 }
 
-- (NSArray *)audioHit:(NSInteger)bpm
+- (TickEvent *)audioHit:(NSInteger)bpm
 {
     self.color = self.activeColor;
     CCTintTo *tint = [CCTintTo actionWithDuration:1 red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
     [self runAction:tint];
     
-    return @[self.direction];
+    return self.event;
 }
 
 @end

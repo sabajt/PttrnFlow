@@ -42,7 +42,7 @@
             return nil;
         }
 
-        fragments = [fragments arrayByAddingObjectsFromArray:[responder audioHit:kBPM]];
+        fragments = [fragments arrayByAddingObject:[responder audioHit:kBPM]];
     }
     return fragments;
 }

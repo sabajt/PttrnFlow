@@ -47,11 +47,8 @@
 
 - (void)hitCell:(Coord *)coord channel:(NSString *)channel
 {
-    // collect fragments from all hit cells
-    NSArray *fragments = [self hitResponders:self.responders atCoord:coord];
-    
-    // crunch fragments into events and send to pd
-    NSArray *events = [TickEvent eventsFromFragments:fragments channel:channel lastLinkedEvents:nil];
+    // collect events from all hit cells
+    NSArray *events = [self hitResponders:self.responders atCoord:coord];
     
     // block scrolling the puzzle if there are any events
     self.allowScrolling = (events.count == 0);

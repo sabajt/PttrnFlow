@@ -9,13 +9,13 @@
 #import "Sample.h"
 #import "CCNode+Grid.h"
 #import "ColorUtils.h"
+#import "SampleEvent.h"
 
 @interface Sample ()
 
 @property (assign) ccColor3B defaultColor;
 @property (assign) ccColor3B activeColor;
-// fragments
-@property (copy, nonatomic) NSString *sampleName;
+@property (strong, nonatomic) SampleEvent *event;
 
 @end
 
@@ -28,7 +28,8 @@
         self.defaultColor = [ColorUtils cream];
         self.activeColor = [ColorUtils activeYellow];
         self.color = self.defaultColor;
-        self.sampleName = sampleName;
+        
+        self.event = [[SampleEvent alloc] initWithChannel:0 sampleName:sampleName];
         
         // CCNode+Grid
         self.cell = cell;
@@ -44,13 +45,13 @@
     return self.cell;
 }
 
-- (NSArray *)audioHit:(NSInteger)bpm
+- (TickEvent *)audioHit:(NSInteger)bpm
 {
     self.color = self.activeColor;
     CCTintTo *tint = [CCTintTo actionWithDuration:1 red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
     [self runAction:tint];
     
-    return @[self.sampleName];
+    return self.event;
 }
 
 @end
