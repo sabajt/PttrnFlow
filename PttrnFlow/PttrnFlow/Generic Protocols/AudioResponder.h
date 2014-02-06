@@ -16,15 +16,14 @@
 // responder must have a cell
 - (Coord *)audioCell;
 
-// triggered on touch down or step
-// responder may return an array of 1 or many fragments
-// TODO: refactor responder's implementations to just return events
+// Triggered on touch down or step
+// Handle glyph actions here, like highlighting / animation
+// Responder may return and event to be processed as sound, or sequence logic
 - (TickEvent *)audioHit:(NSInteger)bpm;
 
 @optional
 
 // triggered after touch up or after a step
-// responder may return an aray of 1 or many fragments
 - (NSArray *)audioRelease:(NSInteger)bpm;
 
 @end

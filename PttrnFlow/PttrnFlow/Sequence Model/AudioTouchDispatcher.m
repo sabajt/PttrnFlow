@@ -118,7 +118,7 @@
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
     Coord *cell = [Coord coordForRelativePosition:touchPosition];
     
-    // track touch so we know which fragments / cell to associate
+    // track touch so we know which events / cell to associate
     CFIndex count = CFDictionaryGetCount(self.trackingTouches);
     NSString *channel = [NSString stringWithFormat:@"%ld", count];
     NSDictionary *touchInfo = @{@"channel" : channel, @"x" : @(cell.x), @"y" : @(cell.y)};

@@ -33,8 +33,8 @@
 
 - (NSArray *)hitResponders:(NSArray *)responders atCoord:(Coord *)coord
 {
-    // collect fragments from all hit cells
-    NSArray *fragments = [NSArray array];
+    // collect events from all hit cells
+    NSArray *events = [NSArray array];
     NSArray *hitResponders = [self responders:responders atCoord:coord];
     for (id<AudioResponder> responder in hitResponders) {
         if (![responder conformsToProtocol:@protocol(AudioResponder)]) {
@@ -42,9 +42,9 @@
             return nil;
         }
 
-        fragments = [fragments arrayByAddingObject:[responder audioHit:kBPM]];
+        events = [events arrayByAddingObject:[responder audioHit:kBPM]];
     }
-    return fragments;
+    return events;
 }
 
 @end
