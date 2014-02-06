@@ -19,30 +19,6 @@
 
 NSString *const kChannelNone = @"ChannelNone";
 
-#pragma mark - NSString (Fragment)
-// Fragments are just strings with known values returned from game objects,
-// organized by association with a certain sound or game action.
-// The idea is to have a flexible way to construct TickEvents on the fly.
-
-@implementation NSString (Fragment)
-
-- (BOOL)isAudioStop
-{
-    return [self isEqualToString:@"audio_stop"];
-}
-
-- (BOOL)isAudioPad
-{
-    return [self isEqualToString:@"audio_pad"];
-}
-
-- (BOOL)isSpeedChange
-{
-    return [@[@"1X", @"2X", @"4X"] hasString:self];
-}
-
-@end
-
 #pragma mark - NSArray (TickEvents)
 
 @implementation NSArray (TickEvents)
