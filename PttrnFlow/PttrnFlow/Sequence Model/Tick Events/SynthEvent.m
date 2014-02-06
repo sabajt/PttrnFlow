@@ -26,6 +26,8 @@ NSString *const kDefaultSynthType = @"osc";
     return self;
 }
 
+#pragma mark - Value checks
+
 + (BOOL)isMidiValue:(NSString *)midiValue
 {
     static int low = 48;
