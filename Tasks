@@ -22,4 +22,7 @@ PttrnFlow todo
 - figure out what timeline will look like in diffrent states
 - design menu 
 
+* BUGS
+- drag directly to diagonal cell, glyphs may illegally move
+
 

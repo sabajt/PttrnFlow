@@ -24,13 +24,12 @@
 #import "Coord.h"
 #import "PFGeometry.h"
 #import "Entry.h"
-#import "SequenceDispatcher.h"
 
 typedef NS_ENUM(NSInteger, ZOrderAudioBatch)
 {
     ZOrderAudioBatchPanelFill = 0,
     ZOrderAudioBatchPanelBorder,
-    ZOrderAudioBatchPadConnector,
+    ZOrderAudioBatchPadBacklight,
     ZOrderAudioBatchPad,
     ZOrderAudioBatchGlyph
 };
@@ -161,6 +160,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         // sequence dispacher
         SequenceDispatcher *sequenceDispatcher = [[SequenceDispatcher alloc] init];
         self.sequenceDispatcher = sequenceDispatcher;
+        sequenceDispatcher.delegate = self;
         [sequenceDispatcher clearResponders];
         [self addChild:sequenceDispatcher];
         
@@ -391,18 +391,20 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     [super onExit];
 }
 
-//#pragma mark - TickDispatcherDelegate
-//
-//- (void)tickExit:(Coord *)cell
-//{
-////    // create the exit animation -- don't send an event to synth, TickDispatcher handles in this case
-////    [self addChild:[SequenceLayer exitFader:cell]];
-//}
-//
-//- (void)win
-//{
-//    [self.backgroundLayer tintToColor:ccGREEN duration:kTickInterval];
-//}
+#pragma mark - SequenceDispatcherDelegate
+
+- (void)hitCoordWithNoEvents:(Coord *)coord
+{
+    CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:@"audio_box_highlight.png"];
+    highlightSprite.position = [coord relativeMidpoint];
+    [self.audioObjectsBatchNode addChild:highlightSprite z:ZOrderAudioBatchPadBacklight];
+    
+    CCCallBlock *completion = [CCCallBlock actionWithBlock:^{
+        [highlightSprite removeFromParentAndCleanup:YES];
+    }];
+    CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
+    [highlightSprite runAction:[CCSequence actions:fadeOut, completion, nil]];
+}
 
 #pragma mark - debug methods
 

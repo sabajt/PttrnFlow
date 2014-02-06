@@ -77,6 +77,11 @@ static CGFloat kSequenceInterval = 0.5f;
         }
     }
     
+    // hit empty cell
+    if (events.count == 0) {
+        [self.delegate hitCoordWithNoEvents:self.currentCell];
+    }
+    
     self.currentCell = [self.currentCell stepInDirection:self.currentDirection];
     self.userSequenceIndex++;
 }
