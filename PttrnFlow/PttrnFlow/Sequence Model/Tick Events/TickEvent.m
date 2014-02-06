@@ -26,11 +26,6 @@ NSString *const kChannelNone = @"ChannelNone";
 
 @implementation NSString (Fragment)
 
-- (BOOL)isDirection
-{
-    return [@[@"up", @"down", @"right", @"left"] hasString:self];
-}
-
 - (BOOL)isAudioStop
 {
     return [self isEqualToString:@"audio_stop"];

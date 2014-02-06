@@ -7,6 +7,8 @@
 //
 
 #import "DirectionEvent.h"
+#import "GameConstants.h"
+#import "NSArray+CompareStrings.h"
 
 @implementation DirectionEvent
 
@@ -17,6 +19,13 @@
         _direction = direction;
     }
     return self;
+}
+
+#pragma mark - Value checks
+
++ (BOOL)isDirection:(NSString *)direction
+{
+    return [@[kDirectionDown, kDirectionLeft, kDirectionRight, kDirectionUp] hasString:direction];
 }
 
 @end
