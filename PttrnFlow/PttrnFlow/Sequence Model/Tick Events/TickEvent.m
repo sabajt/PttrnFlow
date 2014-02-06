@@ -26,16 +26,6 @@ NSString *const kChannelNone = @"ChannelNone";
 
 @implementation NSString (Fragment)
 
-- (BOOL)isSampleName
-{
-    static NSString *kWav = @"wav";
-    if (self.length < (kWav.length + 2)) {
-        return NO;
-    }
-    NSString *extension = [[self componentsSeparatedByString:@"."] lastObject];
-    return ([extension isEqualToString:kWav]);
-}
-
 - (BOOL)isDirection
 {
     return [@[@"up", @"down", @"right", @"left"] hasString:self];
