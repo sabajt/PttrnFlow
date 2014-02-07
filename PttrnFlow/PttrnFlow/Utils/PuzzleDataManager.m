@@ -27,6 +27,7 @@ static NSString *const kPuzzle = @"puzzle";
 static NSString *const kBpm = @"bpm";
 static NSString *const kArea = @"area";
 static NSString *const kGlyphs = @"glyphs";
+static NSString *const kSolution = @"solution";
 
 @interface PuzzleDataManager ()
 
@@ -95,6 +96,12 @@ static NSString *const kGlyphs = @"glyphs";
 {
     NSDictionary *puzzle = [self puzzle:number];
     return puzzle[kGlyphs];
+}
+
+- (NSArray *)puzzleSolution:(NSInteger)number
+{
+    NSDictionary *puzzle = [self puzzle:number];
+    return puzzle[kSolution];
 }
 
 /* image sequence keys take the following form:

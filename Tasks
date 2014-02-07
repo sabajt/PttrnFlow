@@ -9,8 +9,6 @@ PttrnFlow todo
 - tweak drum assets to look beter
 
 * DEV
-- simplify and refactor TickEvent => SequenceEvent ?
-- remove fragments as middleman - responders should just return events (implies AudioResponder to be coupled with SequenceEvent)
 - play solution sequence
 - refactor audio blocks to use dynamic coloring
 - correctly position timeline panels (just states for 4, 8 or 16...?)

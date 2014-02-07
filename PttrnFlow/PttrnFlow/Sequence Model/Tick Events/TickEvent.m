@@ -77,7 +77,7 @@ NSString *const kChannelNone = @"ChannelNone";
     return self;
 }
 
-#pragma mark - Comparison
+#pragma mark - Subclass hooks
 
 - (BOOL)isEqualToEvent:(TickEvent *)event
 {
