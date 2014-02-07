@@ -95,7 +95,7 @@ static NSInteger const kRowLength = 8;
         BasicButton *exitButton = [[BasicButton alloc] initWithPlaceholderFrameName:@"clear_rect_uilayer.png" offFrameName:@"exit_off.png" onFrameName:@"exit_on.png" delegate:self];
         self.exitButton = exitButton;
         exitButton.position = ccp(kUITimelineStepWidth / 2, self.contentSize.height - 25);
-        [self addChild:exitButton];
+        [self.uiBatchNode addChild:exitButton];
         
         // solution cells
         for (NSInteger i = 0; i < steps; i++) {
