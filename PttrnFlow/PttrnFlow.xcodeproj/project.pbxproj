@@ -239,7 +239,7 @@
 		339ACE6D1884E22600F3D839 /* solution5.json in Resources */ = {isa = PBXBuildFile; fileRef = 339ACE6B1884E22600F3D839 /* solution5.json */; };
 		339ACE711884E23700F3D839 /* puzzle4.json in Resources */ = {isa = PBXBuildFile; fileRef = 339ACE6F1884E23700F3D839 /* puzzle4.json */; };
 		339ACE721884E23700F3D839 /* puzzle5.json in Resources */ = {isa = PBXBuildFile; fileRef = 339ACE701884E23700F3D839 /* puzzle5.json */; };
-		339ACE7F1886C64100F3D839 /* SolutionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 339ACE7E1886C64100F3D839 /* SolutionCell.m */; };
+		339ACE7F1886C64100F3D839 /* SolutionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 339ACE7E1886C64100F3D839 /* SolutionButton.m */; };
 		33A64C45183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 33A64C43183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt */; };
 		33A64C46183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png in Resources */ = {isa = PBXBuildFile; fileRef = 33A64C44183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png */; };
 		33A7C4E9189ED8C3000EBCA7 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A7C4E8189ED8C3000EBCA7 /* Entry.m */; };
@@ -695,8 +695,8 @@
 		339ACE6B1884E22600F3D839 /* solution5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = solution5.json; sourceTree = "<group>"; };
 		339ACE6F1884E23700F3D839 /* puzzle4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle4.json; sourceTree = "<group>"; };
 		339ACE701884E23700F3D839 /* puzzle5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle5.json; sourceTree = "<group>"; };
-		339ACE7D1886C64100F3D839 /* SolutionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolutionCell.h; sourceTree = "<group>"; };
-		339ACE7E1886C64100F3D839 /* SolutionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionCell.m; sourceTree = "<group>"; };
+		339ACE7D1886C64100F3D839 /* SolutionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolutionButton.h; sourceTree = "<group>"; };
+		339ACE7E1886C64100F3D839 /* SolutionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionButton.m; sourceTree = "<group>"; };
 		33A64C43183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "arial-rounded-mt-bold-12fnt.fnt"; sourceTree = "<group>"; };
 		33A64C44183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arial-rounded-mt-bold-12fnt.png"; sourceTree = "<group>"; };
 		33A7C4E7189ED8C3000EBCA7 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
@@ -1385,8 +1385,8 @@
 			children = (
 				16A942C11777ABFA0052D5BD /* SequenceMenuCell.h */,
 				16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */,
-				339ACE7D1886C64100F3D839 /* SolutionCell.h */,
-				339ACE7E1886C64100F3D839 /* SolutionCell.m */,
+				339ACE7D1886C64100F3D839 /* SolutionButton.h */,
+				339ACE7E1886C64100F3D839 /* SolutionButton.m */,
 			);
 			path = "UI Nodes";
 			sourceTree = "<group>";
@@ -1877,7 +1877,7 @@
 				160807A516B437A900039339 /* CCTMXTiledMap.m in Sources */,
 				160807A816B437A900039339 /* CCTMXXMLParser.m in Sources */,
 				160807AB16B437A900039339 /* CCTransition.m in Sources */,
-				339ACE7F1886C64100F3D839 /* SolutionCell.m in Sources */,
+				339ACE7F1886C64100F3D839 /* SolutionButton.m in Sources */,
 				160807AE16B437A900039339 /* CCTransitionPageTurn.m in Sources */,
 				160807B116B437A900039339 /* CCTransitionProgress.m in Sources */,
 				160807B516B437A900039339 /* cocos2d.m in Sources */,

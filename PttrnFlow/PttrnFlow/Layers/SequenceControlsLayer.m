@@ -11,7 +11,6 @@
 #import "TileSprite.h"
 #import "ClippingSprite.h"
 #import "PuzzleDataManager.h"
-#import "SolutionCell.h"
 #import "GameConstants.h"
 
 CGFloat const kUIButtonUnitSize = 50;
@@ -97,11 +96,11 @@ static NSInteger const kRowLength = 8;
         exitButton.position = ccp(kUITimelineStepWidth / 2, self.contentSize.height - 25);
         [self.uiBatchNode addChild:exitButton];
         
-        // solution cells
+        // solution buttons
         for (NSInteger i = 0; i < steps; i++) {
-            SolutionCell *cell = [[SolutionCell alloc] initWithIndex:i];
-            cell.position = ccp((i * kUITimelineStepWidth) + (cell.contentSize.width / 2), cell.contentSize.height / 2);
-            [self addChild:cell];
+            SolutionButton *solutionButton = [[SolutionButton alloc] initWithIndex:i delegate:self];
+            solutionButton.position = ccp((i * kUITimelineStepWidth) + (solutionButton.contentSize.width / 2), solutionButton.contentSize.height / 2);
+            [self addChild:solutionButton];
         }
     }
     return self;
@@ -136,6 +135,13 @@ static NSInteger const kRowLength = 8;
     if ([sender isEqual:self.exitButton]) {
         [[CCDirector sharedDirector] popScene];
     }
+}
+
+#pragma mark - SolutionButtonDelegate
+
+- (void)solutionButtonPressed:(SolutionButton *)button
+{
+    CCLOG(@"solution index %i pressed", button.index);
 }
 
 @end

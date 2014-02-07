@@ -1,25 +1,27 @@
 //
-//  SolutionCell.m
+//  SolutionButton.m
 //  PttrnFlow
 //
 //  Created by John Saba on 1/15/14.
 //
 //
 
-#import "SolutionCell.h"
+#import "SolutionButton.h"
 
-@interface SolutionCell ()
+@interface SolutionButton ()
 
+@property (weak, nonatomic) id<SolutionButtonDelegate> delegate;
 @property (weak, nonatomic) CCSprite *hitDot;
 
 @end
 
-@implementation SolutionCell
+@implementation SolutionButton
 
-- (id)initWithIndex:(NSInteger)index
+- (id)initWithIndex:(NSInteger)index delegate:(id<SolutionButtonDelegate>)delegate
 {
     self = [super initWithSpriteFrameName:@"clear_rect_uilayer.png"];
     if (self) {
+        self.delegate = delegate;
         self.index = index;
         
         // will want to pass in size later - at least to base off of screen size
@@ -49,6 +51,7 @@
     if ([super ccTouchBegan:touch withEvent:event]) {
         CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
         [self.hitDot runAction:fadeOut];
+        [self.delegate solutionButtonPressed:self];
         return YES;
     }
     return NO;
