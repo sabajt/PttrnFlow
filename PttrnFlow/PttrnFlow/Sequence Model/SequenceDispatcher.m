@@ -59,16 +59,6 @@ static CGFloat kSequenceInterval = 0.5f;
     [self.responders removeAllObjects];
 }
 
-//- (void)stopAudioForChannels:(NSSet *)channels
-//{
-//    NSMutableArray *combined = [NSMutableArray array];
-//    for (NSString *channel in channels) {
-//        AudioStopEvent *audioStop = [[AudioStopEvent alloc] initWithChannel:channel isAudioEvent:YES];
-//        [combined addObject:audioStop];
-//    }
-//    [[MainSynth sharedMainSynth] receiveEvents:combined ignoreAudioPad:YES];
-//}
-
 - (void)createSolutionEvents:(NSInteger)puzzle
 {
     self.solutionEvents = [NSMutableArray array];
@@ -113,7 +103,6 @@ static CGFloat kSequenceInterval = 0.5f;
         if ([e isKindOfClass:[DirectionEvent class]]) {
             DirectionEvent *directionEvent = (DirectionEvent *)e;
             self.currentDirection = directionEvent.direction;
-            CCLOG(@"changed direction: %@", directionEvent.direction);
         }
     }
     
@@ -128,48 +117,27 @@ static CGFloat kSequenceInterval = 0.5f;
 
 - (void)stepSolutionSequence
 {
-    CCLOG(@"step sol seq...");
-    //    if (self.sequenceIndex >= self.sequenceLength) {
-    //        [self unschedule:@selector(advanceSequence)];
-    //        [self stopAudioForChannels:self.solutionChannels];
-    //        return;
-    //    }
-    //    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationAdvancedSequence object:nil userInfo:@{kKeySequenceIndex:@(self.sequenceIndex)}];
-    //    [self play:self.sequenceIndex];
-    //    self.sequenceIndex++;
+    if (self.solutionSequenceIndex >= self.solutionEvents.count) {
+        [self stopUserSequence];
+        return;
+    }
+    [self playSolutionIndex:self.solutionSequenceIndex];
+    self.solutionSequenceIndex++;
 }
 
 #pragma mark - SequenceControlDelegate
 
 - (void)startUserSequence
 {
-    CCLOG(@"start user seq at cell %@, direction: %@", self.entry.cell.stringRep, self.entry.direction);
-    
     self.userSequenceIndex = 0;
     self.currentCell = self.entry.cell;
     self.currentDirection = self.entry.direction;
-    
-    //    [self.dynamicChannels removeAllObjects];
-    //    [self.hits removeAllObjects];
-    
-    //    for (TickChannel *channel in self.channels) {
-    //        [channel reset];
-    //    }
-    
     [self schedule:@selector(stepUserSequence:) interval:kSequenceInterval];
 }
 
 - (void)stopUserSequence
 {
-    CCLOG(@"stop user seq...");
     [self unschedule:@selector(stepUserSequence:)];
-    
-    //    NSMutableSet *channels = [NSMutableSet set];
-    //    NSSet *tickChannels = [self.channels setByAddingObjectsFromSet:self.dynamicChannels];
-    //    for (TickChannel *ch in tickChannels) {
-    //        [channels addObject:ch.channel];
-    //    }
-    //    [self stopAudioForChannels:channels];
 }
 
 - (void)startSolutionSequence
