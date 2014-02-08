@@ -72,7 +72,7 @@
         // but for solution checking, the channel itself is arbitrary: channel is how the applicaiton
         // keeps track of last linked events, which is how we check if the solution is correct.
         TickEvent *lastLinkedEvent = self.trackedEvents[channel];
-        SynthEvent *event = [[SynthEvent alloc] initWithChannel:channel lastLinkedEvent:lastLinkedEvent midiValue:midiValue synthType:synthType];
+        SynthEvent *event = [[SynthEvent alloc] initWithMidiValue:midiValue synthType:synthType];
         self.trackedEvents[channel] = event;
         
         return event;

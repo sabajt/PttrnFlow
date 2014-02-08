@@ -710,7 +710,7 @@
 		33A957ED188D5B43006BF182 /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arrow.h; sourceTree = "<group>"; };
 		33A957EE188D5B43006BF182 /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Arrow.m; sourceTree = "<group>"; };
 		33A957F0188D624A006BF182 /* NSString+Degrees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Degrees.h"; sourceTree = "<group>"; };
-		33A957F1188D624A006BF182 /* NSString+Degrees.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Degrees.m"; sourceTree = "<group>"; };
+		33A957F1188D624A006BF182 /* NSString+Degrees.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Degrees.m"; path = "Utils/NSString+Degrees.m"; sourceTree = "<group>"; };
 		33AF255517CB069700643CB2 /* AudioPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPad.h; sourceTree = "<group>"; };
 		33AF255617CB069700643CB2 /* AudioPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPad.m; sourceTree = "<group>"; };
 		33AF255C17CB0B3F00643CB2 /* AudioPadEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPadEvent.h; sourceTree = "<group>"; };
@@ -828,6 +828,7 @@
 				1608086016B43CEF00039339 /* Utils */,
 				1608087E16B43FE500039339 /* AppDelegate.h */,
 				1608087F16B43FE500039339 /* AppDelegate.m */,
+				33A957F1188D624A006BF182 /* NSString+Degrees.m */,
 				160806CF16B437A700039339 /* Resources */,
 				160806E916B437A800039339 /* libs */,
 				1608084216B437AA00039339 /* Supporting Files */,
@@ -1234,7 +1235,6 @@
 				3302EF6C1879C92C0032AD58 /* PFGeometry.h */,
 				3302EF6D1879C92C0032AD58 /* PFGeometry.m */,
 				33A957F0188D624A006BF182 /* NSString+Degrees.h */,
-				33A957F1188D624A006BF182 /* NSString+Degrees.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";

@@ -14,8 +14,7 @@ FOUNDATION_EXPORT NSString *const kDefaultSynthType;
 
 @property (copy, nonatomic) NSString *midiValue;
 @property (copy, nonatomic) NSString *synthType;
-@property (strong, nonatomic) TickEvent *lastEvent;
 
-- (id)initWithChannel:(NSString *)channel lastLinkedEvent:(TickEvent *)lastEvent midiValue:(NSString *)midiValue synthType:(NSString *)synthType;
+- (id)initWithMidiValue:(NSString *)midiValue synthType:(NSString *)synthType;
 
 @end

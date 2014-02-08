@@ -85,4 +85,9 @@ NSString *const kChannelNone = @"ChannelNone";
     return NO;
 }
 
+- (NSString *)eventDescription
+{
+    return [NSString stringWithFormat:@"%@ provides no implementation for %s", self, __PRETTY_FUNCTION__];
+}
+
 @end

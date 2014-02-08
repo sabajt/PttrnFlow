@@ -29,7 +29,7 @@
         self.activeColor = [ColorUtils activeYellow];
         self.color = self.defaultColor;
         
-        self.event = [[SampleEvent alloc] initWithChannel:0 sampleName:sampleName];
+        self.event = [[SampleEvent alloc] initWithSampleName:sampleName];
         
         // CCNode+Grid
         self.cell = cell;

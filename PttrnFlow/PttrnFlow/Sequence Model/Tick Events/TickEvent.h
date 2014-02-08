@@ -23,5 +23,6 @@ FOUNDATION_EXPORT NSString *const kChannelNone;
 
 - (id)initAsAudioEvent:(BOOL)isAudioEvent;
 - (BOOL)isEqualToEvent:(TickEvent *)event;
+- (NSString *)eventDescription;
 
 @end

@@ -13,7 +13,7 @@ NSString *const kDefaultSynthType = @"osc";
 
 @implementation SynthEvent
 
-- (id)initWithChannel:(NSString *)channel lastLinkedEvent:(TickEvent *)lastEvent midiValue:(NSString *)midiValue synthType:(NSString *)synthType
+- (id)initWithMidiValue:(NSString *)midiValue synthType:(NSString *)synthType
 {
     self = [super initAsAudioEvent:YES];
     if (self) {
@@ -21,7 +21,6 @@ NSString *const kDefaultSynthType = @"osc";
         NSAssert([SynthEvent isSynthType:synthType], @"'%@' is not a valid synth type", synthType);
         _midiValue = midiValue;
         _synthType = synthType;
-        _lastEvent = lastEvent;
     }
     return self;
 }
@@ -44,6 +43,13 @@ NSString *const kDefaultSynthType = @"osc";
 + (BOOL)isSynthType:(NSString *)synthType
 {
     return [@[@"osc", @"phasor"] hasString:synthType];
+}
+
+#pragma mark - Subclass hooks
+
+- (NSString *)eventDescription
+{
+    return [NSString stringWithFormat:@"%@ : { synth type : %@ } { midi type : %@ } { is audio event : %i }", self, self.synthType, self.midiValue, self.isAudioEvent];
 }
 
 @end

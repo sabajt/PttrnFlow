@@ -29,7 +29,7 @@
         self.activeColor = [ColorUtils activeYellow];
         self.color = self.defaultColor;
         
-        self.event = [[SynthEvent alloc] initWithChannel:0 lastLinkedEvent:nil midiValue:midi synthType:synth];
+        self.event = [[SynthEvent alloc] initWithMidiValue:midi synthType:synth];
         
         // CCNode+Grid
         self.cell = cell;

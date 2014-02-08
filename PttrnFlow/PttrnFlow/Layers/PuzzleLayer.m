@@ -24,6 +24,8 @@
 #import "Coord.h"
 #import "PFGeometry.h"
 #import "Entry.h"
+#import "SynthEvent.h"
+#import "SampleEvent.h"
 
 typedef NS_ENUM(NSInteger, ZOrderAudioBatch)
 {
@@ -46,6 +48,12 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 @property (strong, nonatomic) MainSynth *synth;
 @property (weak, nonatomic) Synth *pressedSynth;
 @property (weak, nonatomic) BackgroundLayer *backgroundLayer;
+
+/*
+ audio events representing solutions at index - ex:
+[ [ event, event ], [ event ], [ event ], [ event, event] ]
+ */
+@property (strong, nonatomic) NSMutableArray *solutionEvents;
 
 @end
 
@@ -168,8 +176,40 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         self.areaCells = [[PuzzleDataManager sharedManager] puzzleArea:sequence];
         [self createPuzzleBorder:sequence];
         [self createPuzzleObjects:sequence];
+        
+        // create solution audio events
+        [self createSolutionEvents:sequence];
     }
     return self;
+}
+
+- (void)createSolutionEvents:(NSInteger)puzzle
+{
+    self.solutionEvents = [NSMutableArray array];
+    NSArray *solution = [[PuzzleDataManager sharedManager] puzzleSolution:puzzle];
+    NSInteger i = 0;
+    
+    for (NSDictionary *s in solution) {
+        NSString *synthName = s[kSynth];
+        NSNumber *midiValue = s[kMidi];
+        NSString *sampleName = s[kSample];
+        NSMutableArray *currentSolution = [NSMutableArray array];
+        
+        // pd synth
+        if (synthName != NULL && midiValue != NULL) {
+            SynthEvent *event = [[SynthEvent alloc] initWithMidiValue:[midiValue stringValue] synthType:synthName];
+            [currentSolution addObject:event];
+        }
+        
+        // audio sample
+        if (sampleName != NULL) {
+            SampleEvent *event = [[SampleEvent alloc] initWithSampleName:sampleName];
+            [currentSolution addObject:event];
+        }
+        
+        [self.solutionEvents addObject:currentSolution];
+        i++;
+    }
 }
 
 - (void)createPuzzleBorder:(NSInteger)puzzle

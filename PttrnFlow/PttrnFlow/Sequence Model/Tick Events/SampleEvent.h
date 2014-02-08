@@ -12,6 +12,6 @@
 
 @property (copy, nonatomic) NSString *fileName;
 
-- (id)initWithChannel:(NSString *)channel sampleName:(NSString *)name;
+- (id)initWithSampleName:(NSString *)name;
 
 @end

@@ -10,7 +10,7 @@
 
 @implementation SampleEvent
 
-- (id)initWithChannel:(NSString *)channel sampleName:(NSString *)name
+- (id)initWithSampleName:(NSString *)name
 {
     self = [super initAsAudioEvent:YES];
     if (self) {
@@ -30,6 +30,13 @@
     }
     NSString *extension = [[sampleName componentsSeparatedByString:@"."] lastObject];
     return ([extension isEqualToString:kWav]);
+}
+
+#pragma mark - Subclass hooks
+
+- (NSString *)eventDescription
+{
+    return [NSString stringWithFormat:@"%@ : { sample file : %@ } { is audio event : %i }", self, self.fileName, self.isAudioEvent];
 }
 
 @end

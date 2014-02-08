@@ -141,7 +141,7 @@ static NSInteger const kRowLength = 8;
 
 - (void)solutionButtonPressed:(SolutionButton *)button
 {
-    CCLOG(@"solution index %i pressed", button.index);
+    [self.delegate playSolutionIndex:button.index];
 }
 
 @end
