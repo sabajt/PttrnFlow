@@ -22,6 +22,7 @@
 @property (weak, nonatomic) id<SequenceDispatcherDelegate> delegate;
 @property (weak, nonatomic) Entry *entry;
 
+- (id)initWithPuzzle:(NSInteger)puzzle;
 - (void)addResponder:(id<AudioResponder>)responder;
 - (void)clearResponders;
 
