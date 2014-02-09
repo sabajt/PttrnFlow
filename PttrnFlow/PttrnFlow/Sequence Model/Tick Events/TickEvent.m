@@ -16,35 +16,30 @@ NSString *const kChannelNone = @"ChannelNone";
 
 - (BOOL)hasSameNumberOfSameEvents:(NSArray *)events
 {
-    // base case: we have succesfully matched every occurance of every string
+    // base case: we have succesfully matched all events, or there were never events in either array
     if (self.count == 0 && events.count == 0) {
         return YES;
     }
     
-    // pick one of our events to check
-    TickEvent *targetEvent = [self lastObject];
-    if (![targetEvent isKindOfClass:[TickEvent class]]) {
-        return NO;
-    }
-    
-    // find index of matching event if there is one
-    NSUInteger targetIndex = [events indexOfObjectPassingTest:^BOOL(TickEvent *event, NSUInteger idx, BOOL *stop) {
-        return ([event isKindOfClass:[TickEvent class]] && [event isEqualToEvent:targetEvent]);
+    // pick one of our events to check for a match
+    TickEvent *targetEvent = [self firstObject];
+    NSUInteger matchIndex = [events indexOfObjectPassingTest:^BOOL(TickEvent *event, NSUInteger idx, BOOL *stop) {
+        return ([event isEqualToEvent:targetEvent]);
     }];
     
     // no match
-    if (targetIndex == NSNotFound) {
+    if (matchIndex == NSNotFound) {
         return NO;
     }
     
-    // if we've found a match, remove matches in mutable copies of both arrays
+    // if we've found a match, remove matches copies of both arrays
     NSMutableArray *mutableSelf = [NSMutableArray arrayWithArray:self];
-    NSMutableArray *mutableEvents = [NSMutableArray arrayWithArray:events];
+    NSMutableArray *mutableTargets = [NSMutableArray arrayWithArray:events];
     [mutableSelf removeObjectAtIndex:0];
-    [mutableEvents removeObjectAtIndex:targetIndex];
+    [mutableTargets removeObjectAtIndex:matchIndex];
     
     // recursive call to new, shortened arrays
-    return [mutableSelf hasSameNumberOfSameEvents:mutableEvents];
+    return [[NSArray arrayWithArray:mutableSelf] hasSameNumberOfSameEvents:[NSArray arrayWithArray:mutableTargets]];
 }
 
 - (NSArray *)audioEvents
