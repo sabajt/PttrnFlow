@@ -17,6 +17,10 @@
 #import "SynthEvent.h"
 #import "SampleEvent.h"
 
+NSString *const kNotificationStepUserSequence = @"stepUserSequence";
+NSString *const kNotificationStepSolutionSequence = @"stepSolutionSequence";
+NSString *const kKeyIndex = @"index";
+
 static CGFloat kSequenceInterval = 0.5f;
 
 @interface SequenceDispatcher ()
@@ -90,8 +94,6 @@ static CGFloat kSequenceInterval = 0.5f;
 
 - (void)stepUserSequence:(ccTime)dt
 {
-    CCLOG(@"step user sequence index: %i, at cell: %@", self.userSequenceIndex, self.currentCell.stringRep);
-    
     // get events
     NSArray *events = [self hitResponders:self.responders atCoord:self.currentCell];
     
@@ -121,7 +123,9 @@ static CGFloat kSequenceInterval = 0.5f;
         [self stopUserSequence];
         return;
     }
-    [self playSolutionIndex:self.solutionSequenceIndex];
+    // use notification instead of playSolutionIndex so we can get the button highlight too.
+    NSDictionary *info = @{ kKeyIndex : @(self.solutionSequenceIndex) };
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStepSolutionSequence object:nil userInfo:info];
     self.solutionSequenceIndex++;
 }
 

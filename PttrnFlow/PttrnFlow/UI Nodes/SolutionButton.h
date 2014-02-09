@@ -21,5 +21,6 @@
 @property (assign) NSInteger index;
 
 - (id)initWithIndex:(NSInteger)index delegate:(id<SolutionButtonDelegate>)delegate;
+- (void)press;
 
 @end

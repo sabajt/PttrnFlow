@@ -44,14 +44,19 @@
     return self;
 }
 
-#pragma mark -
+- (void)press
+{
+    CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
+    [self.hitDot runAction:fadeOut];
+    [self.delegate solutionButtonPressed:self];
+}
+
+#pragma mark - CCTargetedTouchDelegate
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     if ([super ccTouchBegan:touch withEvent:event]) {
-        CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
-        [self.hitDot runAction:fadeOut];
-        [self.delegate solutionButtonPressed:self];
+        [self press];
         return YES;
     }
     return NO;

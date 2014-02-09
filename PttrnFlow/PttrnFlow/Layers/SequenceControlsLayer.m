@@ -12,6 +12,7 @@
 #import "ClippingSprite.h"
 #import "PuzzleDataManager.h"
 #import "GameConstants.h"
+#import "SequenceDispatcher.h"
 
 CGFloat const kUIButtonUnitSize = 50;
 CGFloat const kUITimelineStepWidth = 40;
@@ -22,6 +23,7 @@ static NSInteger const kRowLength = 8;
 
 @property (weak, nonatomic) CCSpriteBatchNode *uiBatchNode;
 @property (weak, nonatomic) id<SequenceControlDelegate> delegate;
+@property (strong, nonatomic) NSMutableArray *solutionButtons;
 
 // size and positions
 @property (assign) NSInteger steps;
@@ -97,13 +99,42 @@ static NSInteger const kRowLength = 8;
         [self.uiBatchNode addChild:exitButton];
         
         // solution buttons
+        self.solutionButtons = [NSMutableArray array];
         for (NSInteger i = 0; i < steps; i++) {
             SolutionButton *solutionButton = [[SolutionButton alloc] initWithIndex:i delegate:self];
+            [self.solutionButtons addObject:solutionButton];
             solutionButton.position = ccp((i * kUITimelineStepWidth) + (solutionButton.contentSize.width / 2), solutionButton.contentSize.height / 2);
             [self addChild:solutionButton];
         }
     }
     return self;
+}
+
+#pragma mark - 
+
+- (void)onEnter
+{
+    [super onEnter];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStepSolutionSequence:) name:kNotificationStepSolutionSequence object:nil];
+}
+
+- (void)onExit
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super onExit];
+}
+
+#pragma mark - Notifications
+
+- (void)handleStepSolutionSequence:(NSNotification *)notification
+{
+    NSNumber *number = notification.userInfo[kKeyIndex];
+    for (SolutionButton *button in self.solutionButtons) {
+        if (button.index == [number integerValue]) {
+            [button press];
+            return;
+        }
+    }
 }
 
 #pragma mark - ToggleButtonDelegate

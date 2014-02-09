@@ -11,6 +11,10 @@
 #import "AudioResponder.h"
 #import "Entry.h"
 
+FOUNDATION_EXPORT NSString *const kNotificationStepUserSequence;
+FOUNDATION_EXPORT NSString *const kNotificationStepSolutionSequence;
+FOUNDATION_EXPORT NSString *const kKeyIndex;
+
 @protocol SequenceDispatcherDelegate <NSObject>
 
 - (void)hitCoordWithNoEvents:(Coord *)coord;
