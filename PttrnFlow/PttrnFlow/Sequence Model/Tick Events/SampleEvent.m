@@ -34,6 +34,15 @@
 
 #pragma mark - Subclass hooks
 
+- (BOOL)isEqualToEvent:(TickEvent *)event
+{
+    if (![event isKindOfClass:self.class]) {
+        return NO;
+    }
+    SampleEvent *sampleEvent = (SampleEvent *)event;
+    return ([sampleEvent.fileName isEqualToString:self.fileName]);
+}
+
 - (NSString *)eventDescription
 {
     return [NSString stringWithFormat:@"%@ : { sample file : %@ } { is audio event : %i }", self, self.fileName, self.isAudioEvent];

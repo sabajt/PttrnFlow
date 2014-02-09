@@ -7,6 +7,7 @@
 //
 
 #import "TickEvent.h"
+#import "cocos2d.h"
 #import "NSArray+CompareStrings.h"
 #import "NSArray+CompareStrings.h"
 
@@ -76,7 +77,7 @@ NSString *const kChannelNone = @"ChannelNone";
 
 - (BOOL)isEqualToEvent:(TickEvent *)event
 {
-    // needs implementation
+    CCLOG(@"%@ provides no implementation for %s, returning NO", self, __PRETTY_FUNCTION__);
     return NO;
 }
 
