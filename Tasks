@@ -9,17 +9,24 @@ PttrnFlow todo
 - tweak drum assets to look beter
 
 * DEV
-- play solution sequence
+- 'empty' audio event for checking spaces
+- recognize hit or miss and display on timeline
+- sync sequence with backing audio track
 - refactor audio blocks to use dynamic coloring
 - correctly position timeline panels (just states for 4, 8 or 16...?)
-- fix touch highlight states to be working correctly
-- recognize hit or miss and display on timeline
 - side out menu
 - paralax background tiles
 
-* DESIGN
+* APP DESIGN
 - figure out what timeline will look like in diffrent states
 - design menu 
+- user sequence countdown?
+- solution sequence countdown?
+
+* SOUND DESIGN
+- make a standard behavior PD synth
+- try a sample based tonal instrument
+- try a backing beat
 
 * BUGS
 - drag directly to diagonal cell, glyphs may illegally move
