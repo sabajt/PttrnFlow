@@ -77,8 +77,6 @@
                "sample" : "drum1.wav"
           },
           {
-               "synth" : "osc",
-               "midi" : 52
           },
           {
                "sample" : "drum2.wav"
