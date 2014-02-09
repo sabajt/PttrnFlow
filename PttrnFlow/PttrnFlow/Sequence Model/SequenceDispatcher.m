@@ -113,6 +113,14 @@ static CGFloat kSequenceInterval = 0.5f;
         [self.delegate hitCoordWithNoEvents:self.currentCell];
     }
     
+    NSArray *solutionEvents = self.solutionEvents[self.userSequenceIndex];
+    if ([[events audioEvents] hasSameNumberOfSameEvents:solutionEvents]) {
+        CCLOG(@"hit");
+    }
+    else {
+        CCLOG(@"miss");
+    }
+
     self.currentCell = [self.currentCell stepInDirection:self.currentDirection];
     self.userSequenceIndex++;
 }
