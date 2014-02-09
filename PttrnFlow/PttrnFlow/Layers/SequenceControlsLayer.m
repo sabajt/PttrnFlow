@@ -49,6 +49,7 @@ static NSInteger const kRowLength = 8;
         // batch node
         CCSpriteBatchNode *uiBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyUILayer stringByAppendingString:@".png"]];
         self.uiBatchNode = uiBatch;
+        [self addChild:uiBatch];
         
         // right controls panel
         CCSprite *rightControlsPanel = [CCSprite spriteWithSpriteFrameName:@"controls_panel_right_bottom.png"];
@@ -77,8 +78,6 @@ static NSInteger const kRowLength = 8;
         topLeftControlsPanel.position = ccp(0, self.contentSize.height);
         [self.uiBatchNode addChild:topLeftControlsPanel];
         
-        // add ui batch below buttons (ccmenu not compatible with batch) and pan sprite (clipping using glscissor also not compatible with batch)
-        [self addChild:uiBatch];
         
         // speaker (solution sequence) button
         ToggleButton *speakerButton = [[ToggleButton alloc] initWithPlaceholderFrameName:@"clear_rect_uilayer.png" offFrameName:@"speaker_off.png" onFrameName:@"speaker_on.png" delegate:self];
