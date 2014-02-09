@@ -43,13 +43,20 @@
     return self;
 }
 
+- (void)toggle
+{
+    self.isOn = !self.isOn;
+    self.offSprite.visible = !self.isOn;
+    self.onSprite.visible = self.isOn;
+    [self.delegate toggleButtonPressed:self];
+}
+
+#pragma mark - CCTargetedTouchDelegate
+
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     if ([super ccTouchBegan:touch withEvent:event]) {
-        self.isOn = !self.isOn;
-        self.offSprite.visible = !self.isOn;
-        self.onSprite.visible = self.isOn;
-        [self.delegate toggleButtonPressed:self];
+        [self toggle];
         return YES;
     }
     return NO;

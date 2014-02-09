@@ -19,6 +19,7 @@
 
 NSString *const kNotificationStepUserSequence = @"stepUserSequence";
 NSString *const kNotificationStepSolutionSequence = @"stepSolutionSequence";
+NSString *const kNotificationEndUserSequence = @"endUserSequence";
 NSString *const kKeyIndex = @"index";
 
 static CGFloat kSequenceInterval = 0.5f;
@@ -94,6 +95,12 @@ static CGFloat kSequenceInterval = 0.5f;
 
 - (void)stepUserSequence:(ccTime)dt
 {
+    if (self.userSequenceIndex >= self.solutionEvents.count) {
+        // use notification instead of stopUserSequence so SequenceControlsLayer can toggle button off
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationEndUserSequence object:nil];
+        return;
+    }
+    
     // get events
     NSArray *events = [self hitResponders:self.responders atCoord:self.currentCell];
     

@@ -110,12 +110,14 @@ static NSInteger const kRowLength = 8;
     return self;
 }
 
-#pragma mark - 
+#pragma mark - Scene management
 
 - (void)onEnter
 {
     [super onEnter];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStepSolutionSequence:) name:kNotificationStepSolutionSequence object:nil];
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(handleStepSolutionSequence:) name:kNotificationStepSolutionSequence object:nil];
+    [notificationCenter addObserver:self selector:@selector(handleEndUserSequence:) name:kNotificationEndUserSequence object:nil];
 }
 
 - (void)onExit
@@ -135,6 +137,11 @@ static NSInteger const kRowLength = 8;
             return;
         }
     }
+}
+
+- (void)handleEndUserSequence:(NSNotification *)notification
+{
+    [self.playButton toggle];
 }
 
 #pragma mark - ToggleButtonDelegate

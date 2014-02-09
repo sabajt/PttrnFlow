@@ -21,5 +21,6 @@
 @property (assign) BOOL isOn;
 
 - (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName offFrameName:(NSString *)offFrameName onFrameName:(NSString *)onFrameName delegate:(id<ToggleButtonDelegate>)delegate;
+- (void)toggle;
 
 @end
