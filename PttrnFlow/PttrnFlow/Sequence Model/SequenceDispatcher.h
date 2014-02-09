@@ -14,6 +14,7 @@
 FOUNDATION_EXPORT NSString *const kNotificationStepUserSequence;
 FOUNDATION_EXPORT NSString *const kNotificationStepSolutionSequence;
 FOUNDATION_EXPORT NSString *const kNotificationEndUserSequence;
+FOUNDATION_EXPORT NSString *const kNotificationEndSolutionSequence;
 FOUNDATION_EXPORT NSString *const kKeyIndex;
 
 @protocol SequenceDispatcherDelegate <NSObject>

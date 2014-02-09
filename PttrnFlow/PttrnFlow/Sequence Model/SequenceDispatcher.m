@@ -20,6 +20,7 @@
 NSString *const kNotificationStepUserSequence = @"stepUserSequence";
 NSString *const kNotificationStepSolutionSequence = @"stepSolutionSequence";
 NSString *const kNotificationEndUserSequence = @"endUserSequence";
+NSString *const kNotificationEndSolutionSequence = @"endSolutionSequence";
 NSString *const kKeyIndex = @"index";
 
 static CGFloat kSequenceInterval = 0.5f;
@@ -135,7 +136,8 @@ static CGFloat kSequenceInterval = 0.5f;
 - (void)stepSolutionSequence
 {
     if (self.solutionSequenceIndex >= self.solutionEvents.count) {
-        [self stopUserSequence];
+        // use notification instead of stopSolutionSequence so SequenceControlsLayer can toggle button off
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationEndSolutionSequence object:nil];
         return;
     }
     // use notification instead of playSolutionIndex so we can get the button highlight too.

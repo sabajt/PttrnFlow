@@ -117,6 +117,7 @@ static NSInteger const kRowLength = 8;
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(handleStepSolutionSequence:) name:kNotificationStepSolutionSequence object:nil];
     [notificationCenter addObserver:self selector:@selector(handleEndUserSequence:) name:kNotificationEndUserSequence object:nil];
+    [notificationCenter addObserver:self selector:@selector(handleEndSolutionSequence:) name:kNotificationEndSolutionSequence object:nil];
 }
 
 - (void)onExit
@@ -127,6 +128,7 @@ static NSInteger const kRowLength = 8;
 
 #pragma mark - Notifications
 
+// SequenceDispatcher needs us to press the solution button
 - (void)handleStepSolutionSequence:(NSNotification *)notification
 {
     NSNumber *number = notification.userInfo[kKeyIndex];
@@ -138,9 +140,16 @@ static NSInteger const kRowLength = 8;
     }
 }
 
+// SequenceDispatcher needs us to toggle off the the play button
 - (void)handleEndUserSequence:(NSNotification *)notification
 {
     [self.playButton toggle];
+}
+
+// SequenceDispatcher needs us to toggle off the the speaker button
+- (void)handleEndSolutionSequence:(NSNotification *)notification
+{
+    [self.speakerButton toggle];
 }
 
 #pragma mark - ToggleButtonDelegate
