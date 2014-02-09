@@ -24,6 +24,8 @@
 #import "Coord.h"
 #import "PFGeometry.h"
 #import "Entry.h"
+#import "SequenceDispatcher.h"
+
 
 typedef NS_ENUM(NSInteger, ZOrderAudioBatch)
 {
@@ -160,7 +162,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         // sequence dispacher
         SequenceDispatcher *sequenceDispatcher = [[SequenceDispatcher alloc] initWithPuzzle:sequence];
         self.sequenceDispatcher = sequenceDispatcher;
-        sequenceDispatcher.delegate = self;
         [sequenceDispatcher clearResponders];
         [self addChild:sequenceDispatcher];
         
@@ -380,6 +381,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 - (void)onEnter
 {
     [super onEnter];
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(handleStepUserSequence:) name:kNotificationStepUserSequence object:nil];
     [self setupDebug];
 }
 
@@ -387,14 +390,16 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 {    
     [PdBase closeFile:_patch];
     [PdBase setDelegate:nil];
-
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super onExit];
 }
 
 #pragma mark - SequenceDispatcherDelegate
 
-- (void)hitCoordWithNoEvents:(Coord *)coord
+- (void)handleStepUserSequence:(NSNotification *)notification
 {
+    Coord *coord = notification.userInfo[kKeyCoord];
+    
     CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:@"audio_box_highlight.png"];
     highlightSprite.position = [coord relativeMidpoint];
     [self.audioObjectsBatchNode addChild:highlightSprite z:ZOrderAudioBatchPadBacklight];

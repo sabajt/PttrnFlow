@@ -16,16 +16,10 @@ FOUNDATION_EXPORT NSString *const kNotificationStepSolutionSequence;
 FOUNDATION_EXPORT NSString *const kNotificationEndUserSequence;
 FOUNDATION_EXPORT NSString *const kNotificationEndSolutionSequence;
 FOUNDATION_EXPORT NSString *const kKeyIndex;
-
-@protocol SequenceDispatcherDelegate <NSObject>
-
-- (void)hitCoordWithNoEvents:(Coord *)coord;
-
-@end
+FOUNDATION_EXPORT NSString *const kKeyCoord;
 
 @interface SequenceDispatcher : CCNode <SequenceControlDelegate>
 
-@property (weak, nonatomic) id<SequenceDispatcherDelegate> delegate;
 @property (weak, nonatomic) Entry *entry;
 
 - (id)initWithPuzzle:(NSInteger)puzzle;

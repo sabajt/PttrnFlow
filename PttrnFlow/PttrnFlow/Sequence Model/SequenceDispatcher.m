@@ -22,6 +22,7 @@ NSString *const kNotificationStepSolutionSequence = @"stepSolutionSequence";
 NSString *const kNotificationEndUserSequence = @"endUserSequence";
 NSString *const kNotificationEndSolutionSequence = @"endSolutionSequence";
 NSString *const kKeyIndex = @"index";
+NSString *const kKeyCoord = @"coord";
 
 static CGFloat kSequenceInterval = 0.5f;
 
@@ -118,7 +119,8 @@ static CGFloat kSequenceInterval = 0.5f;
     
     // hit empty cell
     if (events.count == 0) {
-        [self.delegate hitCoordWithNoEvents:self.currentCell];
+        NSDictionary *info = @ { kKeyCoord : self.currentCell };
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStepUserSequence object:nil userInfo:info];
     }
     
     NSArray *solutionEvents = self.solutionEvents[self.userSequenceIndex];
