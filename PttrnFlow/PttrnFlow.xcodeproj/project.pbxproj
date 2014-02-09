@@ -172,7 +172,6 @@
 		16A942E61778C5A50052D5BD /* drum4on-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 16A942DE1778C5A50052D5BD /* drum4on-ipad.png */; };
 		3302EF6E1879C92C0032AD58 /* PFGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302EF6D1879C92C0032AD58 /* PFGeometry.m */; };
 		3317322E1892A89D005435D9 /* ScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3317322D1892A89D005435D9 /* ScrollLayer.m */; };
-		3338A9CC17C307D80037DFE2 /* SolutionSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3338A9CB17C307D80037DFE2 /* SolutionSequence.m */; };
 		3339C03118397638005771BC /* audioObjects-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02D18397638005771BC /* audioObjects-hd.plist */; };
 		3339C03218397638005771BC /* audioObjects-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02E18397638005771BC /* audioObjects-hd.png */; };
 		3339C03318397638005771BC /* audioObjects.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02F18397638005771BC /* audioObjects.plist */; };
@@ -620,8 +619,6 @@
 		3302EF6D1879C92C0032AD58 /* PFGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGeometry.m; sourceTree = "<group>"; };
 		3317322C1892A89D005435D9 /* ScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollLayer.h; sourceTree = "<group>"; };
 		3317322D1892A89D005435D9 /* ScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollLayer.m; sourceTree = "<group>"; };
-		3338A9CA17C307D80037DFE2 /* SolutionSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolutionSequence.h; sourceTree = "<group>"; };
-		3338A9CB17C307D80037DFE2 /* SolutionSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionSequence.m; sourceTree = "<group>"; };
 		3339C02D18397638005771BC /* audioObjects-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "audioObjects-hd.plist"; sourceTree = "<group>"; };
 		3339C02E18397638005771BC /* audioObjects-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audioObjects-hd.png"; sourceTree = "<group>"; };
 		3339C02F18397638005771BC /* audioObjects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = audioObjects.plist; sourceTree = "<group>"; };
@@ -1353,8 +1350,6 @@
 			isa = PBXGroup;
 			children = (
 				33B4F24E17C72600004D4C13 /* Tick Events */,
-				3338A9CA17C307D80037DFE2 /* SolutionSequence.h */,
-				3338A9CB17C307D80037DFE2 /* SolutionSequence.m */,
 				33EE316E17C92C3C004CC016 /* AudioTouchDispatcher.h */,
 				33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */,
 				33A7C50718A08896000EBCA7 /* SequenceDispatcher.h */,
@@ -1845,7 +1840,6 @@
 				1608074216B437A800039339 /* CCLayer.m in Sources */,
 				1608074616B437A800039339 /* CCMenu.m in Sources */,
 				1608074916B437A800039339 /* CCMenuItem.m in Sources */,
-				3338A9CC17C307D80037DFE2 /* SolutionSequence.m in Sources */,
 				1608074C16B437A800039339 /* CCMotionStreak.m in Sources */,
 				1608074F16B437A800039339 /* CCNode+Debug.m in Sources */,
 				1608075216B437A800039339 /* CCNode.m in Sources */,
