@@ -136,13 +136,13 @@ static NSInteger const kRowLength = 8;
     
     SolutionButton *button = self.solutionButtons[index];
     
-    CGFloat  offset = -10.0f;
+    CGFloat  offset = -8.0f;
     if (correct) {
         offset *= -1.0f;
     }
     
     CCMoveTo *moveTo = [CCMoveTo actionWithDuration:1.0f position:ccp(button.position.x, (button.contentSize.height / 2) + offset)];
-    CCEaseElasticInOut *ease = [CCEaseElasticOut actionWithAction:moveTo];
+    CCEaseElasticOut *ease = [CCEaseElasticOut actionWithAction:moveTo];
     
     [button runAction:ease];
 }
