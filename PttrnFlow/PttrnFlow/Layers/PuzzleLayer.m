@@ -374,6 +374,19 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     [[MainSynth sharedMainSynth] loadSamples:allSampleNames];
 }
 
+- (void)animateEmptyHitHighlight:(Coord *)coord
+{
+    CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:@"audio_box_highlight.png"];
+    highlightSprite.position = [coord relativeMidpoint];
+    [self.audioObjectsBatchNode addChild:highlightSprite z:ZOrderAudioBatchPadBacklight];
+    
+    CCCallBlock *completion = [CCCallBlock actionWithBlock:^{
+        [highlightSprite removeFromParentAndCleanup:YES];
+    }];
+    CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
+    [highlightSprite runAction:[CCSequence actions:fadeOut, completion, nil]];
+}
+
 #pragma mark - scene management
 // TODO: opening and closing pd patch not matched with onEnter / onExit would cause pd patch to not be opened if
 // TODO: leaving scene but keeping sequence layer around then coming back to seq layer
@@ -399,16 +412,11 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 - (void)handleStepUserSequence:(NSNotification *)notification
 {
     Coord *coord = notification.userInfo[kKeyCoord];
+    BOOL empty = [notification.userInfo[kKeyEmpty] boolValue];
     
-    CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:@"audio_box_highlight.png"];
-    highlightSprite.position = [coord relativeMidpoint];
-    [self.audioObjectsBatchNode addChild:highlightSprite z:ZOrderAudioBatchPadBacklight];
-    
-    CCCallBlock *completion = [CCCallBlock actionWithBlock:^{
-        [highlightSprite removeFromParentAndCleanup:YES];
-    }];
-    CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
-    [highlightSprite runAction:[CCSequence actions:fadeOut, completion, nil]];
+    if (empty) {
+        [self animateEmptyHitHighlight:coord];
+    }
 }
 
 #pragma mark - debug methods

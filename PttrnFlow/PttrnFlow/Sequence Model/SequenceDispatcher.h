@@ -17,6 +17,8 @@ FOUNDATION_EXPORT NSString *const kNotificationEndUserSequence;
 FOUNDATION_EXPORT NSString *const kNotificationEndSolutionSequence;
 FOUNDATION_EXPORT NSString *const kKeyIndex;
 FOUNDATION_EXPORT NSString *const kKeyCoord;
+FOUNDATION_EXPORT NSString *const kKeyCorrectHit;
+FOUNDATION_EXPORT NSString *const kKeyEmpty;
 
 @interface SequenceDispatcher : CCNode <SequenceControlDelegate>
 

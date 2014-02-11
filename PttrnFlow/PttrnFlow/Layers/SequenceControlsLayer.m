@@ -115,6 +115,7 @@ static NSInteger const kRowLength = 8;
 {
     [super onEnter];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(handleStepUserSequence:) name:kNotificationStepUserSequence object:nil];
     [notificationCenter addObserver:self selector:@selector(handleStepSolutionSequence:) name:kNotificationStepSolutionSequence object:nil];
     [notificationCenter addObserver:self selector:@selector(handleEndUserSequence:) name:kNotificationEndUserSequence object:nil];
     [notificationCenter addObserver:self selector:@selector(handleEndSolutionSequence:) name:kNotificationEndSolutionSequence object:nil];
@@ -128,16 +129,29 @@ static NSInteger const kRowLength = 8;
 
 #pragma mark - Notifications
 
+- (void)handleStepUserSequence:(NSNotification *)notification
+{
+    NSInteger index = [notification.userInfo[kKeyIndex] integerValue];
+    BOOL correct = [notification.userInfo[kKeyCorrectHit] boolValue];
+    
+    SolutionButton *button = self.solutionButtons[index];
+    
+    CGFloat  offset = -10.0f;
+    if (correct) {
+        offset *= -1.0f;
+    }
+    
+    CCMoveTo *moveTo = [CCMoveTo actionWithDuration:1.0f position:ccp(button.position.x, (button.contentSize.height / 2) + offset)];
+    CCEaseElasticInOut *ease = [CCEaseElasticOut actionWithAction:moveTo];
+    
+    [button runAction:ease];
+}
+
 // SequenceDispatcher needs us to press the solution button
 - (void)handleStepSolutionSequence:(NSNotification *)notification
 {
-    NSNumber *number = notification.userInfo[kKeyIndex];
-    for (SolutionButton *button in self.solutionButtons) {
-        if (button.index == [number integerValue]) {
-            [button press];
-            return;
-        }
-    }
+    SolutionButton *button = self.solutionButtons[[notification.userInfo[kKeyIndex] integerValue]];
+    [button press];
 }
 
 // SequenceDispatcher needs us to toggle off the the play button

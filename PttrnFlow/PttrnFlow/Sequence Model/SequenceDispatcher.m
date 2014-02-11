@@ -23,6 +23,8 @@ NSString *const kNotificationEndUserSequence = @"endUserSequence";
 NSString *const kNotificationEndSolutionSequence = @"endSolutionSequence";
 NSString *const kKeyIndex = @"index";
 NSString *const kKeyCoord = @"coord";
+NSString *const kKeyCorrectHit = @"correctHit";
+NSString *const kKeyEmpty = @"empty";
 
 static CGFloat kSequenceInterval = 0.5f;
 
@@ -117,19 +119,23 @@ static CGFloat kSequenceInterval = 0.5f;
         }
     }
     
-    // hit empty cell
-    if (events.count == 0) {
-        NSDictionary *info = @ { kKeyCoord : self.currentCell };
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStepUserSequence object:nil userInfo:info];
-    }
-    
+    BOOL correctHit = NO;
     NSArray *solutionEvents = self.solutionEvents[self.userSequenceIndex];
     if ([[events audioEvents] hasSameNumberOfSameEvents:solutionEvents]) {
         CCLOG(@"hit");
+        correctHit = YES;
     }
     else {
         CCLOG(@"miss");
     }
+    
+    NSDictionary *info = @{
+        kKeyIndex : @(self.userSequenceIndex),
+        kKeyCoord : self.currentCell,
+        kKeyCorrectHit : @(correctHit),
+        kKeyEmpty : @(events.count == 0)
+    };
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStepUserSequence object:nil userInfo:info];
 
     self.currentCell = [self.currentCell stepInDirection:self.currentDirection];
     self.userSequenceIndex++;
