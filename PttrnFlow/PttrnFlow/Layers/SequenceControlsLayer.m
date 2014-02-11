@@ -24,6 +24,7 @@ static NSInteger const kRowLength = 8;
 @property (weak, nonatomic) CCSpriteBatchNode *uiBatchNode;
 @property (weak, nonatomic) id<SequenceControlDelegate> delegate;
 @property (strong, nonatomic) NSMutableArray *solutionButtons;
+@property (strong, nonatomic) NSMutableArray *solutionFlags;
 
 // size and positions
 @property (assign) NSInteger steps;
@@ -99,6 +100,7 @@ static NSInteger const kRowLength = 8;
         
         // solution buttons
         self.solutionButtons = [NSMutableArray array];
+        self.solutionFlags = [NSMutableArray array];
         for (NSInteger i = 0; i < steps; i++) {
             SolutionButton *solutionButton = [[SolutionButton alloc] initWithIndex:i delegate:self];
             [self.solutionButtons addObject:solutionButton];
@@ -119,6 +121,11 @@ static NSInteger const kRowLength = 8;
             button.isDisplaced = NO;
         }
     }
+    
+    for (CCSprite *flag in self.solutionFlags) {
+        [flag removeFromParentAndCleanup:YES];
+    }
+    [self.solutionFlags removeAllObjects];
 }
 
 #pragma mark - Scene management
@@ -149,15 +156,29 @@ static NSInteger const kRowLength = 8;
     SolutionButton *button = self.solutionButtons[index];
     
     CGFloat  offset = -8.0f;
+    NSString *flagName = @"x.png";
     if (correct) {
         offset *= -1.0f;
+        flagName = @"check.png";
     }
     
-    CCMoveTo *moveTo = [CCMoveTo actionWithDuration:1.0f position:ccp(button.position.x, (button.contentSize.height / 2) + offset)];
-    CCEaseElasticOut *ease = [CCEaseElasticOut actionWithAction:moveTo];
-    
-    [button runAction:ease];
+    // animate button
+    CCMoveTo *buttonMoveTo = [CCMoveTo actionWithDuration:1.0f position:ccp(button.position.x, (button.contentSize.height / 2) + offset)];
+    CCEaseElasticOut *buttonEase = [CCEaseElasticOut actionWithAction:buttonMoveTo];
+    [button runAction:buttonEase];
     button.isDisplaced = YES;
+    
+    // create and animate solution flag (check or x)
+    CCSprite *flag = [CCSprite spriteWithSpriteFrameName:flagName];
+    [self.solutionFlags addObject:flag];
+    [self.uiBatchNode addChild:flag];
+    flag.position = ccp(button.position.x, button.contentSize.height / 2);
+    flag.opacity = 0.0f;
+    CCMoveTo *flagMoveTo = [CCMoveTo actionWithDuration:1.0f position:ccp(flag.position.x, (button.contentSize.height / 2) - offset)];
+    CCEaseElasticOut *flagEase = [CCEaseElasticOut actionWithAction:flagMoveTo];
+    [flag runAction:flagEase];
+    CCFadeIn *flagFadeIn = [CCFadeIn actionWithDuration:0.5f];
+    [flag runAction:flagFadeIn];
 }
 
 // SequenceDispatcher needs us to press the solution button

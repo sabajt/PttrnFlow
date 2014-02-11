@@ -9,8 +9,6 @@ PttrnFlow todo
 - tweak drum assets to look beter
 
 * DEV
-- 'empty' audio event for checking spaces
-- recognize hit or miss and display on timeline
 - sync sequence with backing audio track
 - refactor audio blocks to use dynamic coloring
 - correctly position timeline panels (just states for 4, 8 or 16...?)
