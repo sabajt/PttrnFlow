@@ -109,6 +109,18 @@ static NSInteger const kRowLength = 8;
     return self;
 }
 
+// TODO: if this becomes a custom animation (crossfade?) will probably need to use with a completion callback
+- (void)resetSolutionButtons
+{
+    for (SolutionButton *button in self.solutionButtons) {
+        if (button.isDisplaced) {
+            [button stopAllActions];
+            button.position = ccp(button.position.x, button.contentSize.height / 2);
+            button.isDisplaced = NO;
+        }
+    }
+}
+
 #pragma mark - Scene management
 
 - (void)onEnter
@@ -145,6 +157,7 @@ static NSInteger const kRowLength = 8;
     CCEaseElasticOut *ease = [CCEaseElasticOut actionWithAction:moveTo];
     
     [button runAction:ease];
+    button.isDisplaced = YES;
 }
 
 // SequenceDispatcher needs us to press the solution button
@@ -180,6 +193,7 @@ static NSInteger const kRowLength = 8;
     }
     else if ([sender isEqual:self.playButton]) {
         if (self.playButton.isOn) {
+            [self resetSolutionButtons];
             [self.delegate startUserSequence];
         }
         else {

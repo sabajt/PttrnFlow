@@ -19,6 +19,7 @@
 @interface SolutionButton : TouchSprite
 
 @property (assign) NSInteger index;
+@property (assign) BOOL isDisplaced;
 
 - (id)initWithIndex:(NSInteger)index delegate:(id<SolutionButtonDelegate>)delegate;
 - (void)press;
