@@ -81,13 +81,13 @@ static NSInteger const kRowLength = 8;
         
         
         // speaker (solution sequence) button
-        ToggleButton *speakerButton = [[ToggleButton alloc] initWithPlaceholderFrameName:@"clear_rect_uilayer.png" offFrameName:@"speaker_off.png" onFrameName:@"speaker_on.png" delegate:self];
+        ToggleButton *speakerButton = [[ToggleButton alloc] initWithFrameName:@"speaker.png" defaultColor:[ColorUtils dimPurple] activeColor:[ColorUtils activeYellow] delegate:self];
         self.speakerButton = speakerButton;
         speakerButton.position = ccp(kUITimelineStepWidth / 2, 75); // FIX ME LATER
         [self.uiBatchNode addChild:speakerButton];
         
         // play (user sequence) button
-        ToggleButton *playButton = [[ToggleButton alloc] initWithPlaceholderFrameName:@"clear_rect_uilayer.png" offFrameName:@"play_off.png" onFrameName:@"play_on.png" delegate:self];
+        ToggleButton *playButton = [[ToggleButton alloc] initWithFrameName:@"play.png" defaultColor:[ColorUtils dimPurple] activeColor:[ColorUtils activeYellow] delegate:self];
         self.playButton = playButton;
         playButton.position = ccp(speakerButton.position.x + kUITimelineStepWidth, speakerButton.position.y);
         [self.uiBatchNode addChild:playButton];

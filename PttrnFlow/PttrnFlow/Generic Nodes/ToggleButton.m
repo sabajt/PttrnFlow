@@ -11,15 +11,24 @@
 
 @interface ToggleButton ()
 
+@property (weak, nonatomic) id<ToggleButtonDelegate> delegate;
+
+// using different sprites for on / off state
 @property (weak, nonatomic) CCSprite *offSprite;
 @property (weak, nonatomic) CCSprite *onSprite;
-@property (weak, nonatomic) id<ToggleButtonDelegate> delegate;
+
+// using tint colors with one sprite for on / off state
+@property (assign) ccColor3B defaultColor;
+@property (assign) ccColor3B activeColor;
 
 @end
 
 @implementation ToggleButton
 
-- (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName offFrameName:(NSString *)offFrameName onFrameName:(NSString *)onFrameName delegate:(id<ToggleButtonDelegate>)delegate
+- (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName
+                      offFrameName:(NSString *)offFrameName
+                       onFrameName:(NSString *)onFrameName
+                          delegate:(id<ToggleButtonDelegate>)delegate
 {
     self = [super initWithSpriteFrameName:placeholderFrameName];
     if (self) {
@@ -43,11 +52,38 @@
     return self;
 }
 
+- (id)initWithFrameName:(NSString *)frameName
+           defaultColor:(ccColor3B)defaultColor
+            activeColor:(ccColor3B)activeColor
+               delegate:(id<ToggleButtonDelegate>)delegate
+{
+    self = [super initWithSpriteFrameName:frameName];
+    if (self) {
+        self.delegate = delegate;
+        self.defaultColor = defaultColor;
+        self.activeColor = activeColor;
+        self.color = defaultColor;
+    }
+    return self;
+}
+
+
 - (void)toggle
 {
     self.isOn = !self.isOn;
-    self.offSprite.visible = !self.isOn;
-    self.onSprite.visible = self.isOn;
+    
+    if (self.offSprite) {
+        self.offSprite.visible = !self.isOn;
+        self.onSprite.visible = self.isOn;
+    }
+    else {
+        if (self.isOn) {
+            self.color = self.activeColor;
+        }
+        else {
+            self.color = self.defaultColor;
+        }
+    }
     [self.delegate toggleButtonPressed:self];
 }
 

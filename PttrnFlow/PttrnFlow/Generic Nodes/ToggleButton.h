@@ -20,7 +20,14 @@
 
 @property (assign) BOOL isOn;
 
-- (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName offFrameName:(NSString *)offFrameName onFrameName:(NSString *)onFrameName delegate:(id<ToggleButtonDelegate>)delegate;
+- (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName
+                      offFrameName:(NSString *)offFrameName
+                       onFrameName:(NSString *)onFrameName
+                          delegate:(id<ToggleButtonDelegate>)delegate;
+- (id)initWithFrameName:(NSString *)frameName
+           defaultColor:(ccColor3B)defaultColor
+            activeColor:(ccColor3B)activeColor
+               delegate:(id<ToggleButtonDelegate>)delegate;
 - (void)toggle;
 
 @end
