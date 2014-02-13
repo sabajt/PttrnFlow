@@ -19,7 +19,10 @@
 
 @implementation BasicButton
 
-- (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName offFrameName:(NSString *)offFrameName onFrameName:(NSString *)onFrameName delegate:(id<BasicButtonDelegate>)delegate
+- (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName
+                      offFrameName:(NSString *)offFrameName
+                       onFrameName:(NSString *)onFrameName
+                          delegate:(id<BasicButtonDelegate>)delegate
 {
     self = [super initWithSpriteFrameName:placeholderFrameName];
     if (self) {

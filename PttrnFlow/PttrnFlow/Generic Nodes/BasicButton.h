@@ -18,6 +18,9 @@
 
 @interface BasicButton : TouchSprite
 
-- (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName offFrameName:(NSString *)offFrameName onFrameName:(NSString *)onFrameName delegate:(id<BasicButtonDelegate>)delegate;
+- (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName
+                      offFrameName:(NSString *)offFrameName
+                       onFrameName:(NSString *)onFrameName
+                          delegate:(id<BasicButtonDelegate>)delegate;
 
 @end
