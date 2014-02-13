@@ -7,7 +7,7 @@
             <key>check.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{130,172},{20,14}}</string>
+                <string>{{106,190},{20,14}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +111,7 @@
             <key>exit_off.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{106,206},{16,14}}</string>
+                <string>{{124,216},{16,14}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +124,7 @@
             <key>exit_on.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{106,190},{16,14}}</string>
+                <string>{{106,206},{16,14}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -238,6 +238,19 @@
                 <key>sourceSize</key>
                 <string>{40,40}</string>
             </dict>
+            <key>numButtonHighlight.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{130,172},{22,22}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{9,9},{22,22}}</string>
+                <key>sourceSize</key>
+                <string>{40,40}</string>
+            </dict>
             <key>play.png</key>
             <dict>
                 <key>frame</key>
@@ -293,7 +306,7 @@
             <key>x.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{130,188},{18,18}}</string>
+                <string>{{128,196},{18,18}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -313,7 +326,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:50e65e893b748d17b960a394c44c6dba:bee550e73f068736397f833bc4e16ac0:842074752256af9eab1246752001c5a2$</string>
+            <string>$TexturePacker:SmartUpdate:32b1eca77056d02a0c1d5dce237423ac:15e652adb5d8ae115c524b83b1146298:842074752256af9eab1246752001c5a2$</string>
             <key>textureFileName</key>
             <string>uilayer.png</string>
         </dict>

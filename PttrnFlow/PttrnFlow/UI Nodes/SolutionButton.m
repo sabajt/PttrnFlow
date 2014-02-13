@@ -30,18 +30,19 @@
         self.index = index;
         self.delegate = delegate;
         
+        // dot that will appear and fade out when hit
+        CCSprite *hitDot = [CCSprite spriteWithSpriteFrameName:@"numButtonHighlight.png"];
+        self.hitDot = hitDot;
+        hitDot.color = [ColorUtils activeYellow];
+        hitDot.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
+        hitDot.opacity = 0;
+        [self addChild:hitDot];
+        
         CCSprite *numberSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"numButton%i.png", index + 1]];
         self.numberSprite = numberSprite;
         numberSprite.color = [ColorUtils dimPurple];
         numberSprite.position = ccp(size.width / 2.0f, size.height / 2.0f);
         [self addChild:numberSprite];
-        
-        // dot that will appear and fade out when hit
-        CCSprite *hitDot = [CCSprite spriteWithSpriteFrameName:@"tickdot_on.png"];
-        hitDot.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
-        hitDot.opacity = 0;
-        self.hitDot = hitDot;
-        [self addChild:hitDot];
     }
     return self;
 }

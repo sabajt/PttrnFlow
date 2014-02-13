@@ -238,6 +238,19 @@
                 <key>sourceSize</key>
                 <string>{80,80}</string>
             </dict>
+            <key>numButtonHighlight.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{460,454},{44,44}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{18,18},{44,44}}</string>
+                <key>sourceSize</key>
+                <string>{80,80}</string>
+            </dict>
             <key>play.png</key>
             <dict>
                 <key>frame</key>
@@ -313,7 +326,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:50e65e893b748d17b960a394c44c6dba:bee550e73f068736397f833bc4e16ac0:842074752256af9eab1246752001c5a2$</string>
+            <string>$TexturePacker:SmartUpdate:32b1eca77056d02a0c1d5dce237423ac:15e652adb5d8ae115c524b83b1146298:842074752256af9eab1246752001c5a2$</string>
             <key>textureFileName</key>
             <string>uilayer-hd.png</string>
         </dict>
