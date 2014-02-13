@@ -154,7 +154,7 @@ static NSInteger const kRowLength = 8;
     SolutionButton *button = self.solutionButtons[index];
     [button animateCorrectHit:correct];
     
-    CGFloat  offset = -8.0f;
+    CGFloat  offset = 6.0f;
     NSString *flagName = @"x.png";
     if (correct) {
         offset *= -1.0f;
@@ -165,9 +165,10 @@ static NSInteger const kRowLength = 8;
     CCSprite *flag = [CCSprite spriteWithSpriteFrameName:flagName];
     [self.solutionFlags addObject:flag];
     [self.uiBatchNode addChild:flag];
+    flag.color = [ColorUtils defaultPurple];
     flag.position = ccp(button.position.x, button.contentSize.height / 2);
     flag.opacity = 0.0f;
-    CCMoveTo *flagMoveTo = [CCMoveTo actionWithDuration:1.0f position:ccp(flag.position.x, (button.contentSize.height / 2) - offset)];
+    CCMoveTo *flagMoveTo = [CCMoveTo actionWithDuration:1.0f position:ccp(flag.position.x, (button.contentSize.height / 2) + offset)];
     CCEaseElasticOut *flagEase = [CCEaseElasticOut actionWithAction:flagMoveTo];
     [flag runAction:flagEase];
     CCFadeIn *flagFadeIn = [CCFadeIn actionWithDuration:0.5f];
