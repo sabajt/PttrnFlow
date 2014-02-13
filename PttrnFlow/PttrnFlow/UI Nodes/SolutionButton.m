@@ -7,32 +7,34 @@
 //
 
 #import "SolutionButton.h"
+#import "ColorUtils.h"
 
 @interface SolutionButton ()
 
 @property (weak, nonatomic) id<SolutionButtonDelegate> delegate;
+@property (weak, nonatomic) CCSprite *numberSprite;
 @property (weak, nonatomic) CCSprite *hitDot;
 
 @end
 
 @implementation SolutionButton
 
-- (id)initWithIndex:(NSInteger)index delegate:(id<SolutionButtonDelegate>)delegate
+- (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName
+                              size:(CGSize)size
+                             index:(NSInteger)index
+                          delegate:(id<SolutionButtonDelegate>)delegate
 {
-    self = [super initWithSpriteFrameName:@"clear_rect_uilayer.png"];
+    self = [super initWithSpriteFrameName:placeholderFrameName];
     if (self) {
-        self.delegate = delegate;
+        self.contentSize = size;
         self.index = index;
+        self.delegate = delegate;
         
-        // will want to pass in size later - at least to base off of screen size
-        self.contentSize = CGSizeMake(320 / 8, 50);
-        
-        // once it's clear how many numbers there will be (probably just 16) replace with sprites so we can use batch
-        CCLabelTTF *numberLabel = [CCLabelTTF labelWithString:[@(index + 1) stringValue] fontName:@"Helvetica" fontSize:20];
-        numberLabel.color = ccBLACK;
-        numberLabel.anchorPoint = ccp(0.5, 0.5);
-        numberLabel.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
-        [self addChild:numberLabel];
+        CCSprite *numberSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"numButton%i.png", index + 1]];
+        self.numberSprite = numberSprite;
+        numberSprite.color = [ColorUtils dimPurple];
+        numberSprite.position = ccp(size.width / 2.0f, size.height / 2.0f);
+        [self addChild:numberSprite];
         
         // dot that will appear and fade out when hit
         CCSprite *hitDot = [CCSprite spriteWithSpriteFrameName:@"tickdot_on.png"];
@@ -46,9 +48,30 @@
 
 - (void)press
 {
+    self.hitDot.position = self.numberSprite.position;
     CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
     [self.hitDot runAction:fadeOut];
     [self.delegate solutionButtonPressed:self];
+}
+
+- (void)animateCorrectHit:(BOOL)correct
+{
+    CGFloat  offset = -8.0f;
+    if (correct) {
+        offset *= -1.0f;
+    }
+
+    CCMoveTo *buttonMoveTo = [CCMoveTo actionWithDuration:1.0f position:ccp(self.numberSprite.position.x, (self.contentSize.height / 2) + offset)];
+    CCEaseElasticOut *buttonEase = [CCEaseElasticOut actionWithAction:buttonMoveTo];
+    [self.numberSprite runAction:buttonEase];
+    self.isDisplaced = YES;
+}
+
+- (void)reset
+{
+    [self.numberSprite stopAllActions];
+    self.numberSprite.position = ccp(self.numberSprite.position.x, self.numberSprite.contentSize.height / 2);
+    self.isDisplaced = NO;
 }
 
 #pragma mark - CCTargetedTouchDelegate

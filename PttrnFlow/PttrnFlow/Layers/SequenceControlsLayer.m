@@ -102,7 +102,7 @@ static NSInteger const kRowLength = 8;
         self.solutionButtons = [NSMutableArray array];
         self.solutionFlags = [NSMutableArray array];
         for (NSInteger i = 0; i < steps; i++) {
-            SolutionButton *solutionButton = [[SolutionButton alloc] initWithIndex:i delegate:self];
+            SolutionButton *solutionButton = [[SolutionButton alloc] initWithPlaceholderFrameName:@"clear_rect_uilayer.png" size:CGSizeMake(40.0f, 40.0f) index:i delegate:self];
             [self.solutionButtons addObject:solutionButton];
             solutionButton.position = ccp((i * kUITimelineStepWidth) + (solutionButton.contentSize.width / 2), solutionButton.contentSize.height / 2);
             [self addChild:solutionButton];
@@ -116,9 +116,7 @@ static NSInteger const kRowLength = 8;
 {
     for (SolutionButton *button in self.solutionButtons) {
         if (button.isDisplaced) {
-            [button stopAllActions];
-            button.position = ccp(button.position.x, button.contentSize.height / 2);
-            button.isDisplaced = NO;
+            [button reset];
         }
     }
     
@@ -154,6 +152,7 @@ static NSInteger const kRowLength = 8;
     BOOL correct = [notification.userInfo[kKeyCorrectHit] boolValue];
     
     SolutionButton *button = self.solutionButtons[index];
+    [button animateCorrectHit:correct];
     
     CGFloat  offset = -8.0f;
     NSString *flagName = @"x.png";
@@ -161,12 +160,6 @@ static NSInteger const kRowLength = 8;
         offset *= -1.0f;
         flagName = @"check.png";
     }
-    
-    // animate button
-    CCMoveTo *buttonMoveTo = [CCMoveTo actionWithDuration:1.0f position:ccp(button.position.x, (button.contentSize.height / 2) + offset)];
-    CCEaseElasticOut *buttonEase = [CCEaseElasticOut actionWithAction:buttonMoveTo];
-    [button runAction:buttonEase];
-    button.isDisplaced = YES;
     
     // create and animate solution flag (check or x)
     CCSprite *flag = [CCSprite spriteWithSpriteFrameName:flagName];
