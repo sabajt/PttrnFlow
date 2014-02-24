@@ -147,9 +147,8 @@ static NSString *const kSolution = @"solution";
                 [tonePrimaryValues addObject:midi];
             }
             if (sample != nil) {
-                NSString *value = [[sample componentsSeparatedByString:@"_"] lastObject];
-                NSNumber *numberValue = @([value integerValue]);
-                [tonePrimaryValues addObject:numberValue];
+                // following the naming convention 'sample-blah-whatever-1.wav', we will be able to sort by string
+                [tonePrimaryValues addObject:sample];
             }
         }
         else if ([imageSet isEqualToString:kToneSecondary]) {
@@ -158,7 +157,9 @@ static NSString *const kSolution = @"solution";
                 [toneSecondaryValues addObject:midi];
             }
             if (sample != nil) {
-                NSString *value = [[sample componentsSeparatedByString:@"_"] lastObject];
+                NSRange range = [sample rangeOfString:@"-" options:NSBackwardsSearch];
+                NSString *value = [sample substringFromIndex:sample.length - range.length];
+//                NSString *value = [[sample componentsSeparatedByString:@"_"] lastObject];
                 NSNumber *numberValue = @([value integerValue]);
                 [toneSecondaryValues addObject:numberValue];
             }

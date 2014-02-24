@@ -7,41 +7,153 @@
           [0, 2],
           [0, 3],
           [1, 0],
-          [3, 1],
-          [3, 2],
+          [1, 2],
+          [1, 3],
+          [2, 0],
+          [2, 1],
+          [2, 3],
+          [3, 0],
           [3, 3],
+          [4, 1],
+          [4, 2],
+          [4, 3],
+          [4, 4],
+          [5, 4]
      ],
-	"glyphs" :
-	[
+     "audio" :
+     [
           {
-               "static" : 0,
-               "cell" : [3, 1],
-               "synth" : "osc",
-               "midi" : 52,
-               "image_set" : "tone_primary"
+               "id" : 0,
+               "drums" : 
+               [
+                    {
+                         "sample" : "kick-01.wav",
+                         "image" : "drums-circle.png",
+                         "time" : 0.0
+                    },
+                    {
+                         "sample" : "kick-01.wav",
+                         "image" : "drums-circle.png",
+                         "time" : 0.5
+                    }
+               ]
           },
+          {
+               "id" : 1,
+               "drums" : 
+               [
+                    {
+                         "sample" : "kick-01.wav",
+                         "image" : "drums-circle.png",
+                         "time" : 0.0
+                    },
+                    {
+                         "sample" : "snare-01.wav",
+                         "image" : "drums-diamond.png",
+                         "time" : 0.5
+                    }
+               ]
+          },
+          {
+               "id" : 2,
+               "drums" : 
+               [
+                    {
+                         "sample" : "snare-01.wav",
+                         "image" : "drums-diamond.png",
+                         "time" : 0.0
+                    }
+               ]
+          },
+          {
+               "id" : 3,
+               "drums" : 
+               [
+                    {
+                         "sample" : "kick-01.wav",
+                         "image" : "drums-circle.png",
+                         "time" : 0.0
+                    },
+                    {
+                         "sample" : "kick-01.wav",
+                         "image" : "drums-circle.png",
+                         "time" : 0.33
+                    },
+                    {
+                         "sample" : "snare-01.wav",
+                         "image" : "drums-diamond.png",
+                         "time" : 0.66
+                    }
+               ]
+          },
+          {
+               "id" : 4,
+               "tone" :
+               {
+                    "sample" : "marimba",
+                     "midi" : 50
+               }
+          },
+          {
+               "id" : 5,
+               "tone" :
+               {
+                    "sample" : "marimba",
+                     "midi" : 51
+               }
+          }
+     ],
+     "glyphs" :
+     [
           {
                "static" : 0,
                "cell" : [0, 0],
-               "synth" : "osc",
-               "midi" : 48,
-               "image_set" : "tone_primary"
+               "entry" : "right",
+               "audio" : 0
           },
           {
                "static" : 0,
-               "cell" : [0, 3],
-               "synth" : "osc",
-               "midi" : 50,
-               "arrow" : "right",
-               "image_set" : "tone_primary"
+               "cell" : [1, 0],
+               "arrow" : "up",
+               "audio" : 1
           },
           {
                "static" : 1,
-               "cell" : [3, 3],
-               "synth" : "osc",
-               "midi" : 54,
-               "image_set" : "tone_primary"
+               "cell" : [2, 1],
+               "audio" : 2
+          },
+          {
+               "static" : 1,
+               "cell" : [3, 0],
+               "audio" : 3
+          },
+          {
+               "static" : 0,
+               "cell" : [1, 3],
+               "audio" : 4
+          },
+          {
+               "static" : 0,
+               "cell" : [2, 3],
+               "audio" : 5
           }
+     ],
+     "solution" :
+     [
+          [
+               0
+          ],
+          [
+               1,
+               4
+          ],
+          [
+               2
+          ],
+          [
+               3,
+               5
+          ]
      ]
 }
 
