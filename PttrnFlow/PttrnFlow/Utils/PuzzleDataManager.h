@@ -29,6 +29,7 @@ FOUNDATION_EXPORT NSString *const kDrumSecondary;
 - (NSDictionary *)puzzle:(NSInteger)number;
 - (NSInteger)puzzleBpm:(NSInteger)number;
 - (NSArray *)puzzleArea:(NSInteger)number;
+- (NSArray *)puzzleAudio:(NSInteger)number;
 - (NSArray *)puzzleGlyphs:(NSInteger)number;
 - (NSArray *)puzzleSolution:(NSInteger)number;
 - (NSDictionary *)puzzleImageSequenceKey:(NSInteger)number;

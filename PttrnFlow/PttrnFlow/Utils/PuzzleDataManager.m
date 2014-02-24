@@ -26,6 +26,7 @@ NSString *const kDrumSecondary = @"drum_secondary";
 static NSString *const kPuzzle = @"puzzle";
 static NSString *const kBpm = @"bpm";
 static NSString *const kArea = @"area";
+static NSString *const kAudio = @"audio";
 static NSString *const kGlyphs = @"glyphs";
 static NSString *const kSolution = @"solution";
 
@@ -90,6 +91,12 @@ static NSString *const kSolution = @"solution";
         [area addObject:coord];
     }
     return [NSArray arrayWithArray:area];
+}
+
+- (NSArray *)puzzleAudio:(NSInteger)number
+{
+    NSDictionary *puzzle = [self puzzle:number];
+    return puzzle[kAudio];
 }
 
 - (NSArray *)puzzleGlyphs:(NSInteger)number
