@@ -27,12 +27,12 @@
                [
                     {
                          "file" : "kick-01.wav",
-                         "image" : "drums_circle.png",
+                         "image" : "drums-circle.png",
                          "time" : 0.0
                     },
                     {
                          "file" : "kick-01.wav",
-                         "image" : "drums_circle.png",
+                         "image" : "drums-circle.png",
                          "time" : 0.5
                     }
                ]
@@ -42,12 +42,12 @@
                [
                     {
                          "file" : "kick-01.wav",
-                         "image" : "drums_circle.png",
+                         "image" : "drums-circle.png",
                          "time" : 0.0
                     },
                     {
                          "file" : "snare-01.wav",
-                         "image" : "drums_diamond.png",
+                         "image" : "drums-diamond.png",
                          "time" : 0.5
                     }
                ]
@@ -57,7 +57,7 @@
                [
                     {
                          "file" : "snare-01.wav",
-                         "image" : "drums_diamond.png",
+                         "image" : "drums-diamond.png",
                          "time" : 0.0
                     }
                ]
@@ -67,17 +67,17 @@
                [
                     {
                          "file" : "kick-01.wav",
-                         "image" : "drums_circle.png",
+                         "image" : "drums-circle.png",
                          "time" : 0.0
                     },
                     {
                          "file" : "kick-01.wav",
-                         "image" : "drums_circle.png",
+                         "image" : "drums-circle.png",
                          "time" : 0.33
                     },
                     {
                          "file" : "snare-01.wav",
-                         "image" : "drums_diamond.png",
+                         "image" : "drums-diamond.png",
                          "time" : 0.66
                     }
                ]
@@ -86,36 +86,24 @@
                "tone" :
                {
                     "instrument" : "marimba",
-                    "midi" : 48,
-                    "image" : "tone_primary_1_5.png",
-                    "decorator" : "marimba-decorator.png"
+                    "midi" : 53,
+                    "image" : "marimba-decorator.png"
                }
           },
-                    {
+          {
                "tone" :
                {
                     "instrument" : "marimba",
                     "midi" : 51,
-                    "image" : "tone_primary_2_5.png",
-                    "decorator" : "marimba-decorator.png"
+                    "image" : "marimba-decorator.png"
                }
           },
           {
                "tone" :
                {
                     "instrument" : "marimba",
-                    "midi" : 53,
-                    "image" : "tone_primary_3_5.png",
-                    "decorator" : "marimba-decorator.png"
-               }
-          },
-          {
-               "tone" :
-               {
-                    "instrument" : "marimba",
-                    "midi" : 56,
-                    "image" : "tone_primary_4_5.png",
-                    "decorator" : "marimba-decorator.png"
+                    "midi" : 48,
+                    "image" : "marimba-decorator.png"
                }
           },
           {
@@ -123,8 +111,55 @@
                {
                     "instrument" : "marimba",
                     "midi" : 70,
-                    "image" : "tone_primary_full.png",
-                    "decorator" : "marimba-decorator.png"
+                    "image" : "marimba-decorator.png"
+               }
+          },
+          {
+               "tone" :
+               {
+                    "instrument" : "marimba",
+                    "midi" : 56,
+                    "image" : "marimba-decorator.png"
+               }
+          },
+          {
+               "tone" :
+               {
+                    "instrument" : "guitar",
+                    "midi" : 56,
+                    "image" : "guitar-decorator.png"
+               }
+          },
+          {
+               "tone" :
+               {
+                    "instrument" : "guitar",
+                    "midi" : 54,
+                    "image" : "guitar-decorator.png"
+               }
+          },
+          {
+               "tone" :
+               {
+                    "synth" : "osc",
+                    "midi" : 49,
+                    "image" : "osc-decorator.png"
+               }
+          },
+          {
+               "tone" :
+               {
+                    "synth" : "osc",
+                    "midi" : 58,
+                    "image" : "osc-decorator.png"
+               }
+          },
+          {
+               "tone" :
+               {
+                    "synth" : "osc",
+                    "midi" : 50,
+                    "image" : "osc-decorator.png"
                }
           },
      ],
@@ -134,33 +169,33 @@
                "static" : 0,
                "cell" : [0, 0],
                "entry" : "right",
-               "audio" : 4
+               "audio" : 0
           },
           {
                "static" : 0,
                "cell" : [1, 0],
                "arrow" : "up",
-               "audio" : 5
+               "audio" : 1
           },
           {
                "static" : 1,
                "cell" : [2, 1],
-               "audio" : 6
+               "audio" : 2
           },
           {
                "static" : 1,
                "cell" : [3, 0],
-               "audio" : 7
+               "audio" : 3
           },
           {
                "static" : 0,
                "cell" : [1, 3],
-               "audio" : 8
+               "audio" : 4
           },
           {
                "static" : 0,
                "cell" : [2, 3],
-               "audio" : 4
+               "audio" : 5
           }
      ],
      "solution" :

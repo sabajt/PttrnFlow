@@ -21,9 +21,13 @@
 
 @implementation Synth
 
-- (id)initWithCell:(Coord *)cell synth:(NSString *)synth midi:(NSString *)midi frameName:(NSString *)frameName
+- (id)initWithCell:(Coord *)cell
+             synth:(NSString *)synth
+              midi:(NSString *)midi
+     bodyFrameName:(NSString *)bodyFrameName
+    synthFrameName:(NSString *)synthFrameName
 {
-    self = [super initWithSpriteFrameName:frameName];
+    self = [super initWithSpriteFrameName:bodyFrameName];
     if (self) {
         self.defaultColor = [ColorUtils cream];
         self.activeColor = [ColorUtils activeYellow];

@@ -70,31 +70,31 @@ static CGFloat kSequenceInterval = 0.5f;
 
 - (void)createSolutionEvents:(NSInteger)puzzle
 {
-    self.solutionEvents = [NSMutableArray array];
-    NSArray *solution = [[PuzzleDataManager sharedManager] puzzleSolution:puzzle];
-    NSInteger i = 0;
-    
-    for (NSDictionary *s in solution) {
-        NSString *synthName = s[kSynth];
-        NSNumber *midiValue = s[kMidi];
-        NSString *sampleName = s[kSample];
-        NSMutableArray *currentSolution = [NSMutableArray array];
-        
-        // pd synth
-        if (synthName != NULL && midiValue != NULL) {
-            SynthEvent *event = [[SynthEvent alloc] initWithMidiValue:[midiValue stringValue] synthType:synthName];
-            [currentSolution addObject:event];
-        }
-        
-        // audio sample
-        if (sampleName != NULL) {
-            SampleEvent *event = [[SampleEvent alloc] initWithSampleName:sampleName];
-            [currentSolution addObject:event];
-        }
-        
-        [self.solutionEvents addObject:currentSolution];
-        i++;
-    }
+//    self.solutionEvents = [NSMutableArray array];
+//    NSArray *solution = [[PuzzleDataManager sharedManager] puzzleSolution:puzzle];
+//    NSInteger i = 0;
+//    
+//    for (NSDictionary *s in solution) {
+//        NSString *synthName = s[kSynth];
+//        NSNumber *midiValue = s[kMidi];
+//        NSString *sampleName = s[kSample];
+//        NSMutableArray *currentSolution = [NSMutableArray array];
+//        
+//        // pd synth
+//        if (synthName != NULL && midiValue != NULL) {
+//            SynthEvent *event = [[SynthEvent alloc] initWithMidiValue:[midiValue stringValue] synthType:synthName];
+//            [currentSolution addObject:event];
+//        }
+//        
+//        // audio sample
+//        if (sampleName != NULL) {
+//            SampleEvent *event = [[SampleEvent alloc] initWithSampleName:sampleName];
+//            [currentSolution addObject:event];
+//        }
+//        
+//        [self.solutionEvents addObject:currentSolution];
+//        i++;
+//    }
 }
 
 - (void)stepUserSequence:(ccTime)dt

@@ -298,7 +298,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 - (void)createPuzzleObjects:(NSInteger)puzzle
 {
     NSArray *glyphs = [[PuzzleDataManager sharedManager] puzzleGlyphs:puzzle];
-    NSDictionary *imageSequenceKey = [[PuzzleDataManager sharedManager] puzzleImageSequenceKey:puzzle];
     
     // collect sample names so we can load them in PD tables
     NSMutableArray *allSampleNames = [NSMutableArray array];
@@ -308,52 +307,70 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         NSArray *cellArray = glyph[kCell];
         NSString *entryDirection = glyph[kEntry];
         NSString *arrowDirection = glyph[kArrow];
-        NSString *synthName = glyph[kSynth];
-        NSNumber *midi = glyph[kMidi];
-        NSString *sampleName = glyph[kSample];
-        NSString *imageSetBaseName = glyph[kImageSet];
-     
+        NSNumber *audioID = glyph[kAudio];
+        
         // cell is the only mandatory field to create an audio pad (empty pad can be used as a puzzle object to just take up space)
-        if (cellArray == NULL) {
+        if (!cellArray) {
             CCLOG(@"SequenceLayer createPuzzleObjects error: 'cell' must not be null on audio pads");
             return;
         }
         Coord *cell = [Coord coordWithX:[cellArray[0] integerValue] Y:[cellArray[1] integerValue]];
         CGPoint cellCenter = [cell relativeMidpoint];
         
-        // audio pad unit sprite
-        AudioPad *audioPadUnit = [[AudioPad alloc] initWithPlaceholderFrameName:@"clear_rect_audio_batch.png" cell:cell isStatic:isStatic];
+        // audio pad sprite
+        AudioPad *audioPad = [[AudioPad alloc] initWithPlaceholderFrameName:@"clear_rect_audio_batch.png" cell:cell isStatic:isStatic];
 
-        audioPadUnit.position = cellCenter;
-        [self.audioTouchDispatcher addResponder:audioPadUnit];
-        [self.sequenceDispatcher addResponder:audioPadUnit];
-        [self.audioObjectsBatchNode addChild:audioPadUnit z:ZOrderAudioBatchPad];
+        audioPad.position = cellCenter;
+        [self.audioTouchDispatcher addResponder:audioPad];
+        [self.sequenceDispatcher addResponder:audioPad];
+        [self.audioObjectsBatchNode addChild:audioPad z:ZOrderAudioBatchPad];
         
-        // pd synth
-        if (synthName != NULL && midi != NULL) {
-            NSDictionary *mappedImageSet = [imageSequenceKey objectForKey:imageSetBaseName];
-            NSString *imageName = [mappedImageSet objectForKey:midi];
-            Synth *synth = [[Synth alloc] initWithCell:cell synth:synthName midi:[midi stringValue] frameName:imageName];
-            [self.audioTouchDispatcher addResponder:synth];
-            [self.sequenceDispatcher addResponder:synth];
-            synth.position = cellCenter;
-            [self.audioObjectsBatchNode addChild:synth z:ZOrderAudioBatchGlyph];
-        }
-        
-        // audio sample
-        if (sampleName != NULL) {
-            [allSampleNames addObject:sampleName];
-            NSDictionary *mappedImageSet = [imageSequenceKey objectForKey:imageSetBaseName];
-            NSString *imageName = [mappedImageSet objectForKey:sampleName];
-            Sample *sample = [[Sample alloc] initWithCell:cell sampleName:sampleName frameName:imageName];
-            [self.audioTouchDispatcher addResponder:sample];
-            [self.sequenceDispatcher addResponder:sample];
-            sample.position = cellCenter;
-            [self.audioObjectsBatchNode addChild:sample z:ZOrderAudioBatchGlyph];
+        if (audioID) {
+            NSDictionary *audioData = [[PuzzleDataManager sharedManager] puzzle:puzzle audioID:[audioID integerValue]];
+            NSAssert(audioData != nil, @"No audio data found for audio id: %@", audioID);
+            
+            NSDictionary *toneData = audioData[kTone];
+            NSDictionary *drumsData = audioData[kDrums];
+            
+            if (toneData) {
+                NSString *instrumentName = toneData[kInstrument];
+                NSString *synthName = toneData[kSynth];
+                NSNumber *midi = toneData[kMidi];
+                NSString *imageName = toneData[kImage];
+                NSString *decoratorImageName = toneData[kDecorator];
+                
+                // pd synth tonal instrument
+                if (synthName && midi) {
+                    Synth *synth = [[Synth alloc] initWithCell:cell synth:synthName midi:[midi stringValue] bodyFrameName:imageName synthFrameName:decoratorImageName];
+                    [self.audioTouchDispatcher addResponder:synth];
+                    [self.sequenceDispatcher addResponder:synth];
+                    synth.position = cellCenter;
+                    [self.audioObjectsBatchNode addChild:synth z:ZOrderAudioBatchGlyph];
+                }
+                // sample-based tonal instrument
+                else if (instrumentName && midi) {
+                    [allSampleNames addObject:instrumentName];
+                    Sample *sample = [[Sample alloc] initWithCell:cell toneData:toneData];
+                    [self.audioTouchDispatcher addResponder:sample];
+                    [self.sequenceDispatcher addResponder:sample];
+                    sample.position = cellCenter;
+                    [self.audioObjectsBatchNode addChild:sample z:ZOrderAudioBatchGlyph];
+                }
+                else {
+                    CCLOG(@"\n\nWARNING: tone data is not formatted correctly: \n%@\n\n", toneData);
+                }
+            }
+            // a percussion instrument
+            else if (drumsData) {
+
+            }
+            else {
+                CCLOG(@"\n\nWARNING: audio data does not contain supported types '%@' or '%@':\n%@\n\n", kTone, kDrums, audioData);
+            }
         }
         
         // direction arrow
-        if (arrowDirection != NULL) {
+        if (arrowDirection) {
             Arrow *arrow = [[Arrow alloc] initWithCell:cell direction:arrowDirection isStatic:isStatic];
             [self.audioTouchDispatcher addResponder:arrow];
             [self.sequenceDispatcher addResponder:arrow];
@@ -362,7 +379,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         }
         
         // entry point
-        if (entryDirection != NULL) {
+        if (entryDirection) {
             Entry *entry = [[Entry alloc] initWithCell:cell direction:entryDirection isStatic:isStatic];
             [self.audioTouchDispatcher addResponder:entry];
             [self.sequenceDispatcher addResponder:entry];

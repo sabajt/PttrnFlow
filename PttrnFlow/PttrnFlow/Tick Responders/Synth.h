@@ -11,6 +11,10 @@
 
 @interface Synth : CCSprite <AudioResponder>
 
-- (id)initWithCell:(Coord *)cell synth:(NSString *)synth midi:(NSString *)midi frameName:(NSString *)frameName;
+- (id)initWithCell:(Coord *)cell
+             synth:(NSString *)synth
+              midi:(NSString *)midi
+     bodyFrameName:(NSString *)bodyFrameName
+    synthFrameName:(NSString *)synthFrameName;
 
 @end

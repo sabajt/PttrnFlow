@@ -9,29 +9,31 @@
 #import <Foundation/Foundation.h>
 
 FOUNDATION_EXPORT NSString *const kCell;
-FOUNDATION_EXPORT NSString *const kSynth;
-FOUNDATION_EXPORT NSString *const kMidi;
+FOUNDATION_EXPORT NSString *const kStatic;
 FOUNDATION_EXPORT NSString *const kArrow;
 FOUNDATION_EXPORT NSString *const kEntry;
-FOUNDATION_EXPORT NSString *const kSample;
-FOUNDATION_EXPORT NSString *const kStatic;
-FOUNDATION_EXPORT NSString *const kImageSet;
+FOUNDATION_EXPORT NSString *const kAudio;
 
-FOUNDATION_EXPORT NSString *const kTonePrimary;
-FOUNDATION_EXPORT NSString *const kToneSecondary;
-FOUNDATION_EXPORT NSString *const kDrumPrimary;
-FOUNDATION_EXPORT NSString *const kDrumSecondary;
+FOUNDATION_EXPORT NSString *const kTone;
+FOUNDATION_EXPORT NSString *const kDrums;
+
+FOUNDATION_EXPORT NSString *const kSynth;
+FOUNDATION_EXPORT NSString *const kMidi;
+FOUNDATION_EXPORT NSString *const kFile;
+FOUNDATION_EXPORT NSString *const kInstrument;
+FOUNDATION_EXPORT NSString *const kImage;
+FOUNDATION_EXPORT NSString *const kDecorator;
+FOUNDATION_EXPORT NSString *const kTime;
 
 @interface PuzzleDataManager : NSObject
 
 + (PuzzleDataManager *)sharedManager;
 + (NSArray *)puzzleFileNames;
-- (NSDictionary *)puzzle:(NSInteger)number;
 - (NSInteger)puzzleBpm:(NSInteger)number;
 - (NSArray *)puzzleArea:(NSInteger)number;
-- (NSArray *)puzzleAudio:(NSInteger)number;
+- (NSDictionary *)puzzle:(NSInteger)number audioID:(NSInteger)audioID;
 - (NSArray *)puzzleGlyphs:(NSInteger)number;
 - (NSArray *)puzzleSolution:(NSInteger)number;
-- (NSDictionary *)puzzleImageSequenceKey:(NSInteger)number;
+- (NSDictionary *)puzzleToneMap:(NSInteger)number;
 
 @end

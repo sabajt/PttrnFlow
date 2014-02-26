@@ -10,6 +10,7 @@
 #import "CCNode+Grid.h"
 #import "ColorUtils.h"
 #import "SampleEvent.h"
+#import "PuzzleDataManager.h"
 
 @interface Sample ()
 
@@ -21,15 +22,16 @@
 
 @implementation Sample
 
-- (id)initWithCell:(Coord *)cell sampleName:(NSString *)sampleName frameName:(NSString *)frameName
+- (id)initWithCell:(Coord *)cell toneData:(NSDictionary *)toneData
 {
-    self = [super initWithSpriteFrameName:frameName];
+    self = [super initWithSpriteFrameName:toneData[kImage]];
     if (self) {
         self.defaultColor = [ColorUtils cream];
         self.activeColor = [ColorUtils activeYellow];
         self.color = self.defaultColor;
         
-        self.event = [[SampleEvent alloc] initWithSampleName:sampleName];
+        NSString *sample = [NSString stringWithFormat:@"%@-%@.wav", toneData[kInstrument], toneData[kMidi]];
+        self.event = [[SampleEvent alloc] initWithSampleName:sample];
         
         // CCNode+Grid
         self.cell = cell;

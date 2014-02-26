@@ -10,12 +10,22 @@
 #import "Coord.h"
 
 NSString *const kCell = @"cell";
-NSString *const kSynth = @"synth";
-NSString *const kMidi = @"midi";
+NSString *const kStatic = @"static";
 NSString *const kArrow = @"arrow";
 NSString *const kEntry = @"entry";
-NSString *const kSample = @"sample";
-NSString *const kStatic = @"static";
+NSString *const kAudio = @"audio";
+
+NSString *const kTone = @"tone";
+NSString *const kDrums = @"drums";
+
+NSString *const kSynth = @"synth";
+NSString *const kMidi = @"midi";
+NSString *const kFile = @"file";
+NSString *const kInstrument = @"instrument";
+NSString *const kImage = @"image";
+NSString *const kDecorator = @"decorator";
+NSString *const kTime = @"time";
+
 NSString *const kImageSet = @"image_set";
 
 NSString *const kTonePrimary = @"tone_primary";
@@ -26,7 +36,6 @@ NSString *const kDrumSecondary = @"drum_secondary";
 static NSString *const kPuzzle = @"puzzle";
 static NSString *const kBpm = @"bpm";
 static NSString *const kArea = @"area";
-static NSString *const kAudio = @"audio";
 static NSString *const kGlyphs = @"glyphs";
 static NSString *const kSolution = @"solution";
 
@@ -65,7 +74,7 @@ static NSString *const kSolution = @"solution";
     if (self.puzzles[@(number)] == nil) {
         NSString *resource = [NSString stringWithFormat:@"%@%i", kPuzzle, number];
         NSString *path = [[NSBundle mainBundle] pathForResource:resource ofType:@".json"];
-        NSData* data = [NSData dataWithContentsOfFile:path];
+        NSData *data = [NSData dataWithContentsOfFile:path];
         NSError *error = nil;
         NSDictionary *puzzle = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         if (error != nil) {
@@ -99,6 +108,11 @@ static NSString *const kSolution = @"solution";
     return puzzle[kAudio];
 }
 
+- (NSDictionary *)puzzle:(NSInteger)number audioID:(NSInteger)audioID
+{
+    return [self puzzleAudio:number][audioID];
+}
+
 - (NSArray *)puzzleGlyphs:(NSInteger)number
 {
     NSDictionary *puzzle = [self puzzle:number];
@@ -111,125 +125,70 @@ static NSString *const kSolution = @"solution";
     return puzzle[kSolution];
 }
 
-/* image sequence keys take the following form:
-
- {
-    image_set : 
-    {
-        audio_value : frame_name,
-        ...
-    },
-    ...
- }
-
- image_set determines the sequence of images that will be used, (kTonePrimary, kToneSecondary, kDrumPrimary, kDrumSecondary)
- audio_value is the unique identifier for sequence based glyphs
- frame_name is the image frame name derived from 0 based indexing NSNumber that uniques each glyph value providing a key to a unique image
-
- value for synths are midi values (NSNumber)
- values for samples are unique id's (NSStrings)
- order for synths ascends from lower to higher frequencies.
- order for tonal sample collections ascends in the same way.
- order for pattern based samples is arbirary, but consistent for each puzzle
- 
-*/
-- (NSDictionary *)puzzleImageSequenceKey:(NSInteger)number
+#pragma mark - currently not used, but will do something similar when the editor is made
+// provides a dictionary in
+// <instrument or synth> :
+//   <midi> : <image name>,
+//   <midi> : <image name>...
+- (NSDictionary *)puzzleToneMap:(NSInteger)number
 {
-    // extract glyph audio value and add to temporary collections
-    NSMutableSet *tonePrimaryValues = [NSMutableSet set];
-    NSMutableSet *toneSecondaryValues = [NSMutableSet set];
-    NSMutableSet *beatPrimaryValues = [NSMutableSet set];
-    NSMutableSet *beatSecondaryValues = [NSMutableSet set];
+    NSMutableDictionary *midiMap = [NSMutableDictionary dictionary];
     
-    NSArray *glyphs = [self puzzleGlyphs:number];
-    for (NSDictionary *glyph in glyphs) {
-        NSString *imageSet = glyph[kImageSet];
-        NSString *synth = glyph[kSynth];
-        NSNumber *midi = glyph[kMidi];
-        NSString *sample = glyph[kSample];
+    // collect all the midi keyed by instrument or synth
+    for (NSDictionary *audioUnit in [self puzzleAudio:number]) {
+        NSDictionary *tone = audioUnit[kTone];
         
-        if ([imageSet isEqualToString:kTonePrimary]) {
-            // tone image sequence can be used with either PD synths or tonal samples that follow naming format like: @"name_1";
-            if (synth != nil && midi != nil) {
-                [tonePrimaryValues addObject:midi];
+        if (tone) {
+            NSNumber *midi = tone[kMidi];
+            NSString *instrument = tone[kInstrument];
+            NSString *synth = tone[kSynth];
+            
+            if (instrument) {
+                if (!midiMap[instrument]) {
+                    midiMap[instrument] = [NSMutableArray array];
+                }
+                [midiMap[instrument] addObject:midi];
             }
-            if (sample != nil) {
-                // following the naming convention 'sample-blah-whatever-1.wav', we will be able to sort by string
-                [tonePrimaryValues addObject:sample];
+            else if (synth) {
+                if (!midiMap[synth]) {
+                    midiMap[synth] = [NSMutableSet set];
+                }
+                [midiMap[synth] addObject:midi];
             }
-        }
-        else if ([imageSet isEqualToString:kToneSecondary]) {
-            // tone image sequence can be used with either PD synths or tonal samples that follow naming format like: @"name_1";
-            if (synth != nil && midi != nil) {
-                [toneSecondaryValues addObject:midi];
-            }
-            if (sample != nil) {
-                NSRange range = [sample rangeOfString:@"-" options:NSBackwardsSearch];
-                NSString *value = [sample substringFromIndex:sample.length - range.length];
-//                NSString *value = [[sample componentsSeparatedByString:@"_"] lastObject];
-                NSNumber *numberValue = @([value integerValue]);
-                [toneSecondaryValues addObject:numberValue];
-            }
-        }
-        else if ([imageSet isEqualToString:kDrumPrimary]) {
-            [beatPrimaryValues addObject:sample];
-        }
-        else if ([imageSet isEqualToString:kDrumSecondary]) {
-            [beatSecondaryValues addObject:sample];
         }
     }
     
-    NSMutableDictionary *imageSequenceKey = [NSMutableDictionary dictionary];
+    static const NSInteger maxNotes = 8;
     
-    if (tonePrimaryValues.count > 0) {
-        NSDictionary *mappedSet = [PuzzleDataManager mappedImageSetForAudioValues:[NSSet setWithSet:tonePrimaryValues] rootName:kTonePrimary];
-        [imageSequenceKey setObject:mappedSet forKey:kTonePrimary];
-    }
-    if (toneSecondaryValues.count > 0) {
-        NSDictionary *mappedSet = [PuzzleDataManager mappedImageSetForAudioValues:[NSSet setWithSet:toneSecondaryValues] rootName:kToneSecondary];
-        [imageSequenceKey setObject:mappedSet forKey:kToneSecondary];    }
-    if (beatPrimaryValues.count > 0) {
-        NSDictionary *mappedSet = [PuzzleDataManager mappedImageSetForAudioValues:[NSSet setWithSet:beatPrimaryValues] rootName:kDrumPrimary];
-        [imageSequenceKey setObject:mappedSet forKey:kDrumPrimary];
-    }
-    if (beatSecondaryValues.count > 0) {
-        NSDictionary *mappedSet = [PuzzleDataManager mappedImageSetForAudioValues:[NSSet setWithSet:beatSecondaryValues] rootName:kDrumSecondary];
-        [imageSequenceKey setObject:mappedSet forKey:kDrumSecondary];
-    }
+    // sort the keyed midi values
+    NSMutableDictionary *sortedMidiMap = [NSMutableDictionary dictionary];
+    [midiMap enumerateKeysAndObjectsUsingBlock:^(NSString *instrumentOrSynth, NSMutableSet *midiSet, BOOL *stop) {
+        NSAssert(midiSet.count < maxNotes, @"There cannot be more than %i values in a tonal instrument set per puzzle", midiSet.count);
+        NSSortDescriptor *ascending = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+        NSArray *sortedMidi = [midiSet sortedArrayUsingDescriptors:@[ascending]];
+        sortedMidiMap[instrumentOrSynth] = sortedMidi;
+    }];
     
-    CCLOG(@"image seq: %@", imageSequenceKey);
-    return [NSDictionary dictionaryWithDictionary:imageSequenceKey];
-}
-
-// create a mapping of sequence image set consisting of audio value (key) and frame name (value)
-+ (NSDictionary *)mappedImageSetForAudioValues:(NSSet *)audioValues rootName:(NSString *)rootName
-{
-    // sort audio values if needed
-    NSArray *sortedAudioValues;
-    if ([rootName isEqualToString:kTonePrimary]) {
-        NSSortDescriptor *ascendingNumbers = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-        sortedAudioValues = [audioValues sortedArrayUsingDescriptors:@[ascendingNumbers]];
-    }
-    else {
-        sortedAudioValues  = [audioValues allObjects];
-    }
-
-    // create mapped image set
-    NSMutableDictionary *mappedImageSet = [NSMutableDictionary dictionary];
-    NSInteger i = 1;
-    for (NSNumber *value in sortedAudioValues) {
-        NSString *frameName;
-        if ((i == sortedAudioValues.count) && ([rootName isEqualToString:kTonePrimary] || [rootName isEqualToString:kToneSecondary])) {
-            frameName = [NSString stringWithFormat:@"%@_full.png", rootName];
+    // create the midi to image map, keyed by instrument / synth
+    NSMutableDictionary *finalMap = [NSMutableDictionary dictionary];
+    [sortedMidiMap enumerateKeysAndObjectsUsingBlock:^(NSString *instrumentOrSynth, NSArray *sortedMidi, BOOL *stop) {
+        NSMutableDictionary *toneImageMap = [NSMutableDictionary dictionary];
+        NSInteger i = 1;
+        for (NSNumber *midi in sortedMidi) {
+            NSString *name;
+            if (i == sortedMidi.count) {
+                name = [NSString stringWithFormat:@"tone_primary_full.png"];
+            }
+            else {
+                name = [NSString stringWithFormat:@"tone_primary_%i_%i.png", i, sortedMidi.count];
+            }
+            toneImageMap[midi] = name;
+            i++;
         }
-        else {
-            frameName = [NSString stringWithFormat:@"%@_%i_%i.png", rootName, i, sortedAudioValues.count];
-        }
-        [mappedImageSet setObject:frameName forKey:value];
-        i++;
-    }
-
-    return [NSDictionary dictionaryWithDictionary:mappedImageSet];
+        finalMap[instrumentOrSynth] = toneImageMap;
+    }];
+    
+    return [NSDictionary dictionaryWithDictionary:finalMap];
 }
 
 @end

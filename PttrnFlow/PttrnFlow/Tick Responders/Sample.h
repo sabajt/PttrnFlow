@@ -11,6 +11,6 @@
 
 @interface Sample : CCSprite <AudioResponder>
 
-- (id)initWithCell:(Coord *)cell sampleName:(NSString *)sampleName frameName:(NSString *)frameName;
+- (id)initWithCell:(Coord *)cell toneData:(NSDictionary *)toneData;
 
 @end
