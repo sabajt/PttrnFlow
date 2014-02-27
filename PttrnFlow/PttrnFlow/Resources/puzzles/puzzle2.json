@@ -122,7 +122,7 @@
                "tone" :
                {
                     "instrument" : "marimba",
-                    "midi" : 70,
+                    "midi" : 63,
                     "image" : "tone_primary_full.png",
                     "decorator" : "marimba-decorator.png"
                }

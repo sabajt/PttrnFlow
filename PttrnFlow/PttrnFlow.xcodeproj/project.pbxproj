@@ -172,6 +172,22 @@
 		3356075F17F8B67900ECD44B /* pf-phasorSynth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 3356075D17F8B67900ECD44B /* pf-phasorSynth.pd */; };
 		335836A5181F486100921270 /* white_rect.png in Resources */ = {isa = PBXBuildFile; fileRef = 335836A4181F486100921270 /* white_rect.png */; };
 		335836B81826CF4700921270 /* TileSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 335836B71826CF4700921270 /* TileSprite.m */; };
+		335F5E1D18BEE90000BF14DD /* marimba-52.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E0D18BEE90000BF14DD /* marimba-52.wav */; };
+		335F5E1E18BEE90000BF14DD /* marimba-53.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E0E18BEE90000BF14DD /* marimba-53.wav */; };
+		335F5E1F18BEE90000BF14DD /* marimba-54.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E0F18BEE90000BF14DD /* marimba-54.wav */; };
+		335F5E2018BEE90000BF14DD /* marimba-55.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E1018BEE90000BF14DD /* marimba-55.wav */; };
+		335F5E2118BEE90000BF14DD /* marimba-48.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E1118BEE90000BF14DD /* marimba-48.wav */; };
+		335F5E2218BEE90000BF14DD /* marimba-49.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E1218BEE90000BF14DD /* marimba-49.wav */; };
+		335F5E2318BEE90000BF14DD /* marimba-50.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E1318BEE90000BF14DD /* marimba-50.wav */; };
+		335F5E2418BEE90000BF14DD /* marimba-51.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E1418BEE90000BF14DD /* marimba-51.wav */; };
+		335F5E2518BEE90000BF14DD /* marimba-59.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E1518BEE90000BF14DD /* marimba-59.wav */; };
+		335F5E2618BEE90000BF14DD /* marimba-60.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E1618BEE90000BF14DD /* marimba-60.wav */; };
+		335F5E2718BEE90000BF14DD /* marimba-61.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E1718BEE90000BF14DD /* marimba-61.wav */; };
+		335F5E2818BEE90000BF14DD /* marimba-62.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E1818BEE90000BF14DD /* marimba-62.wav */; };
+		335F5E2918BEE90000BF14DD /* marimba-63.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E1918BEE90000BF14DD /* marimba-63.wav */; };
+		335F5E2A18BEE90000BF14DD /* marimba-56.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E1A18BEE90000BF14DD /* marimba-56.wav */; };
+		335F5E2B18BEE90000BF14DD /* marimba-57.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E1B18BEE90000BF14DD /* marimba-57.wav */; };
+		335F5E2C18BEE90000BF14DD /* marimba-58.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E1C18BEE90000BF14DD /* marimba-58.wav */; };
 		33630CBC1804E52200A9F9EE /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 33630CBB1804E52200A9F9EE /* Default-568h.png */; };
 		338112B2183D7E870012E528 /* Synth.m in Sources */ = {isa = PBXBuildFile; fileRef = 338112B1183D7E870012E528 /* Synth.m */; };
 		338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */; };
@@ -202,14 +218,6 @@
 		33C3B1CA1874F591008F5FA8 /* pttrn1-01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33C3B1C81874F591008F5FA8 /* pttrn1-01.wav */; };
 		33C3B1CB1874F591008F5FA8 /* pttrn1-02.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33C3B1C91874F591008F5FA8 /* pttrn1-02.wav */; };
 		33C3B1D31876FA91008F5FA8 /* Coord.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C3B1D21876FA91008F5FA8 /* Coord.m */; };
-		33D1D97018AD132D00A241C9 /* marimba-a-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33D1D96818AD132D00A241C9 /* marimba-a-1.wav */; };
-		33D1D97118AD132D00A241C9 /* marimba-a-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33D1D96918AD132D00A241C9 /* marimba-a-2.wav */; };
-		33D1D97218AD132D00A241C9 /* marimba-a-3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33D1D96A18AD132D00A241C9 /* marimba-a-3.wav */; };
-		33D1D97318AD132D00A241C9 /* marimba-a-4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33D1D96B18AD132D00A241C9 /* marimba-a-4.wav */; };
-		33D1D97418AD132D00A241C9 /* marimba-a-5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33D1D96C18AD132D00A241C9 /* marimba-a-5.wav */; };
-		33D1D97518AD132D00A241C9 /* marimba-a-6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33D1D96D18AD132D00A241C9 /* marimba-a-6.wav */; };
-		33D1D97618AD132D00A241C9 /* marimba-a-7.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33D1D96E18AD132D00A241C9 /* marimba-a-7.wav */; };
-		33D1D97718AD132D00A241C9 /* marimba-a-8.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33D1D96F18AD132D00A241C9 /* marimba-a-8.wav */; };
 		33E4F6F618788CF6005571F4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E4F6F518788CF6005571F4 /* XCTest.framework */; };
 		33E4F6F718788CF6005571F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160806C816B437A700039339 /* Foundation.framework */; };
 		33E4F6F818788CF6005571F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160806C616B437A700039339 /* UIKit.framework */; };
@@ -570,6 +578,22 @@
 		335836A4181F486100921270 /* white_rect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_rect.png; sourceTree = "<group>"; };
 		335836B61826CF4700921270 /* TileSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileSprite.h; sourceTree = "<group>"; };
 		335836B71826CF4700921270 /* TileSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileSprite.m; sourceTree = "<group>"; };
+		335F5E0D18BEE90000BF14DD /* marimba-52.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-52.wav"; sourceTree = "<group>"; };
+		335F5E0E18BEE90000BF14DD /* marimba-53.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-53.wav"; sourceTree = "<group>"; };
+		335F5E0F18BEE90000BF14DD /* marimba-54.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-54.wav"; sourceTree = "<group>"; };
+		335F5E1018BEE90000BF14DD /* marimba-55.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-55.wav"; sourceTree = "<group>"; };
+		335F5E1118BEE90000BF14DD /* marimba-48.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-48.wav"; sourceTree = "<group>"; };
+		335F5E1218BEE90000BF14DD /* marimba-49.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-49.wav"; sourceTree = "<group>"; };
+		335F5E1318BEE90000BF14DD /* marimba-50.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-50.wav"; sourceTree = "<group>"; };
+		335F5E1418BEE90000BF14DD /* marimba-51.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-51.wav"; sourceTree = "<group>"; };
+		335F5E1518BEE90000BF14DD /* marimba-59.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-59.wav"; sourceTree = "<group>"; };
+		335F5E1618BEE90000BF14DD /* marimba-60.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-60.wav"; sourceTree = "<group>"; };
+		335F5E1718BEE90000BF14DD /* marimba-61.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-61.wav"; sourceTree = "<group>"; };
+		335F5E1818BEE90000BF14DD /* marimba-62.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-62.wav"; sourceTree = "<group>"; };
+		335F5E1918BEE90000BF14DD /* marimba-63.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-63.wav"; sourceTree = "<group>"; };
+		335F5E1A18BEE90000BF14DD /* marimba-56.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-56.wav"; sourceTree = "<group>"; };
+		335F5E1B18BEE90000BF14DD /* marimba-57.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-57.wav"; sourceTree = "<group>"; };
+		335F5E1C18BEE90000BF14DD /* marimba-58.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-58.wav"; sourceTree = "<group>"; };
 		33630CBB1804E52200A9F9EE /* Default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h.png"; path = "Resources/Default-568h.png"; sourceTree = "<group>"; };
 		338112B0183D7E870012E528 /* Synth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Synth.h; sourceTree = "<group>"; };
 		338112B1183D7E870012E528 /* Synth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Synth.m; sourceTree = "<group>"; };
@@ -619,14 +643,6 @@
 		33C3B1C91874F591008F5FA8 /* pttrn1-02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "pttrn1-02.wav"; sourceTree = "<group>"; };
 		33C3B1D11876FA91008F5FA8 /* Coord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coord.h; sourceTree = "<group>"; };
 		33C3B1D21876FA91008F5FA8 /* Coord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coord.m; sourceTree = "<group>"; };
-		33D1D96818AD132D00A241C9 /* marimba-a-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-a-1.wav"; sourceTree = "<group>"; };
-		33D1D96918AD132D00A241C9 /* marimba-a-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-a-2.wav"; sourceTree = "<group>"; };
-		33D1D96A18AD132D00A241C9 /* marimba-a-3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-a-3.wav"; sourceTree = "<group>"; };
-		33D1D96B18AD132D00A241C9 /* marimba-a-4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-a-4.wav"; sourceTree = "<group>"; };
-		33D1D96C18AD132D00A241C9 /* marimba-a-5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-a-5.wav"; sourceTree = "<group>"; };
-		33D1D96D18AD132D00A241C9 /* marimba-a-6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-a-6.wav"; sourceTree = "<group>"; };
-		33D1D96E18AD132D00A241C9 /* marimba-a-7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-a-7.wav"; sourceTree = "<group>"; };
-		33D1D96F18AD132D00A241C9 /* marimba-a-8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-a-8.wav"; sourceTree = "<group>"; };
 		33E4F6F418788CF6005571F4 /* PttrnFlow Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PttrnFlow Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33E4F6F518788CF6005571F4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		33E4F6FB18788CF6005571F4 /* PttrnFlow Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PttrnFlow Tests-Info.plist"; sourceTree = "<group>"; };
@@ -1130,14 +1146,22 @@
 		16284C94173A072B00B058D2 /* patches */ = {
 			isa = PBXGroup;
 			children = (
-				33D1D96818AD132D00A241C9 /* marimba-a-1.wav */,
-				33D1D96918AD132D00A241C9 /* marimba-a-2.wav */,
-				33D1D96A18AD132D00A241C9 /* marimba-a-3.wav */,
-				33D1D96B18AD132D00A241C9 /* marimba-a-4.wav */,
-				33D1D96C18AD132D00A241C9 /* marimba-a-5.wav */,
-				33D1D96D18AD132D00A241C9 /* marimba-a-6.wav */,
-				33D1D96E18AD132D00A241C9 /* marimba-a-7.wav */,
-				33D1D96F18AD132D00A241C9 /* marimba-a-8.wav */,
+				335F5E0D18BEE90000BF14DD /* marimba-52.wav */,
+				335F5E0E18BEE90000BF14DD /* marimba-53.wav */,
+				335F5E0F18BEE90000BF14DD /* marimba-54.wav */,
+				335F5E1018BEE90000BF14DD /* marimba-55.wav */,
+				335F5E1118BEE90000BF14DD /* marimba-48.wav */,
+				335F5E1218BEE90000BF14DD /* marimba-49.wav */,
+				335F5E1318BEE90000BF14DD /* marimba-50.wav */,
+				335F5E1418BEE90000BF14DD /* marimba-51.wav */,
+				335F5E1518BEE90000BF14DD /* marimba-59.wav */,
+				335F5E1618BEE90000BF14DD /* marimba-60.wav */,
+				335F5E1718BEE90000BF14DD /* marimba-61.wav */,
+				335F5E1818BEE90000BF14DD /* marimba-62.wav */,
+				335F5E1918BEE90000BF14DD /* marimba-63.wav */,
+				335F5E1A18BEE90000BF14DD /* marimba-56.wav */,
+				335F5E1B18BEE90000BF14DD /* marimba-57.wav */,
+				335F5E1C18BEE90000BF14DD /* marimba-58.wav */,
 				33C3B1C81874F591008F5FA8 /* pttrn1-01.wav */,
 				33C3B1C91874F591008F5FA8 /* pttrn1-02.wav */,
 				33C3B1C51874E9E7008F5FA8 /* pf-sample.pd */,
@@ -1469,35 +1493,41 @@
 			files = (
 				334B2AD6181B03F000865510 /* background.plist in Resources */,
 				334B2ACD181B02CA00865510 /* uilayer.plist in Resources */,
+				335F5E2818BEE90000BF14DD /* marimba-62.wav in Resources */,
+				335F5E2B18BEE90000BF14DD /* marimba-57.wav in Resources */,
 				1608082616B437AA00039339 /* ChangeLog in Resources */,
 				335836A5181F486100921270 /* white_rect.png in Resources */,
+				335F5E2118BEE90000BF14DD /* marimba-48.wav in Resources */,
 				168FA4E8173A08C7004C26AD /* blank.png in Resources */,
 				33A64C45183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt in Resources */,
+				335F5E1D18BEE90000BF14DD /* marimba-52.wav in Resources */,
 				168FA4E9173A08C7004C26AD /* Default-Landscape~ipad.png in Resources */,
 				168FA4EA173A08C7004C26AD /* Default.png in Resources */,
 				168FA4EB173A08C7004C26AD /* fps_images-hd.png in Resources */,
-				33D1D97218AD132D00A241C9 /* marimba-a-3.wav in Resources */,
 				334B2AD7181B03F000865510 /* background.png in Resources */,
 				168FA4EC173A08C7004C26AD /* fps_images-ipadhd.png in Resources */,
+				335F5E2C18BEE90000BF14DD /* marimba-58.wav in Resources */,
+				335F5E2218BEE90000BF14DD /* marimba-49.wav in Resources */,
 				168FA4ED173A08C7004C26AD /* fps_images.png in Resources */,
 				168FA4EE173A08C7004C26AD /* Icon-72.png in Resources */,
-				33D1D97418AD132D00A241C9 /* marimba-a-5.wav in Resources */,
+				335F5E2518BEE90000BF14DD /* marimba-59.wav in Resources */,
 				168FA4EF173A08C7004C26AD /* Icon-Small-50.png in Resources */,
+				335F5E1F18BEE90000BF14DD /* marimba-54.wav in Resources */,
+				335F5E2718BEE90000BF14DD /* marimba-61.wav in Resources */,
 				168FA4F0173A08C7004C26AD /* Icon-Small.png in Resources */,
 				334B2ACE181B02CA00865510 /* uilayer.png in Resources */,
 				33BA5F22185E3385005A0452 /* puzzle0.json in Resources */,
-				33D1D97618AD132D00A241C9 /* marimba-a-7.wav in Resources */,
-				33D1D97118AD132D00A241C9 /* marimba-a-2.wav in Resources */,
 				33C3B1CA1874F591008F5FA8 /* pttrn1-01.wav in Resources */,
-				33D1D97518AD132D00A241C9 /* marimba-a-6.wav in Resources */,
 				168FA4F1173A08C7004C26AD /* Icon-Small@2x.png in Resources */,
 				334B2AD5181B03F000865510 /* background-hd.png in Resources */,
+				335F5E2418BEE90000BF14DD /* marimba-51.wav in Resources */,
 				168FA4F2173A08C7004C26AD /* Icon.png in Resources */,
 				3339C03418397638005771BC /* audioObjects.png in Resources */,
-				33D1D97018AD132D00A241C9 /* marimba-a-1.wav in Resources */,
 				168FA4F3173A08C7004C26AD /* Icon@2x.png in Resources */,
+				335F5E2A18BEE90000BF14DD /* marimba-56.wav in Resources */,
 				168FA4F4173A08C7004C26AD /* iTunesArtwork in Resources */,
 				33630CBC1804E52200A9F9EE /* Default-568h.png in Resources */,
+				335F5E2318BEE90000BF14DD /* marimba-50.wav in Resources */,
 				339ACE711884E23700F3D839 /* puzzle4.json in Resources */,
 				334B2ACB181B02CA00865510 /* uilayer-hd.plist in Resources */,
 				33A64C46183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png in Resources */,
@@ -1505,16 +1535,18 @@
 				334B2AD4181B03F000865510 /* background-hd.plist in Resources */,
 				33BA5F23185E3385005A0452 /* puzzle1.json in Resources */,
 				3356075E17F8B67900ECD44B /* pf-oscSynth.pd in Resources */,
-				33D1D97318AD132D00A241C9 /* marimba-a-4.wav in Resources */,
 				339ACE721884E23700F3D839 /* puzzle5.json in Resources */,
 				334B2ACC181B02CA00865510 /* uilayer-hd.png in Resources */,
+				335F5E2018BEE90000BF14DD /* marimba-55.wav in Resources */,
 				33C3B1C61874E9E7008F5FA8 /* pf-sample.pd in Resources */,
 				3356075F17F8B67900ECD44B /* pf-phasorSynth.pd in Resources */,
 				1693C661177A0C9300FEB350 /* drum1.wav in Resources */,
 				1693C662177A0C9300FEB350 /* drum2.wav in Resources */,
+				335F5E2618BEE90000BF14DD /* marimba-60.wav in Resources */,
 				33C3B1CB1874F591008F5FA8 /* pttrn1-02.wav in Resources */,
+				335F5E1E18BEE90000BF14DD /* marimba-53.wav in Resources */,
+				335F5E2918BEE90000BF14DD /* marimba-63.wav in Resources */,
 				3339C03318397638005771BC /* audioObjects.plist in Resources */,
-				33D1D97718AD132D00A241C9 /* marimba-a-8.wav in Resources */,
 				1693C665177A628300FEB350 /* drum3.wav in Resources */,
 				3350B17F186A39A100F3BE57 /* puzzle3.json in Resources */,
 				3339C03218397638005771BC /* audioObjects-hd.png in Resources */,
