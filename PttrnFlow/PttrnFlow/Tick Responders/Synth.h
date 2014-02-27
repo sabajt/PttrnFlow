@@ -14,7 +14,7 @@
 - (id)initWithCell:(Coord *)cell
            audioID:(NSNumber *)audioID
              synth:(NSString *)synth
-              midi:(NSString *)midi
+              midi:(NSNumber *)midi
              image:(NSString *)image
          decorator:(NSString *)decorator;
 

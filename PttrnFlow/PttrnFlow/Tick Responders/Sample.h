@@ -14,6 +14,5 @@
 - (id)initWithCell:(Coord *)cell
            audioID:(NSNumber *)audioID
              image:(NSString *)image
-        instrument:(NSString *)instrument
-              midi:(NSNumber *)midi;
+              file:(NSString *)file;
 @end

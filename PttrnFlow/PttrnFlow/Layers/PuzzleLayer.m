@@ -349,8 +349,9 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
                 }
                 // sample-based tonal instrument
                 else if (instrumentName && midi) {
-                    [allSampleNames addObject:instrumentName];
-                    Sample *sample = [[Sample alloc] initWithCell:cell audioID:audioID image:imageName instrument:instrumentName midi:midi];
+                    NSString *fileName = [NSString stringWithFormat:@"%@-%@.wav", instrumentName, midi];
+                    [allSampleNames addObject:fileName];
+                    Sample *sample = [[Sample alloc] initWithCell:cell audioID:audioID image:imageName file:fileName];
                     [self.audioTouchDispatcher addResponder:sample];
                     [self.sequenceDispatcher addResponder:sample];
                     sample.position = cellCenter;

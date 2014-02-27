@@ -25,8 +25,7 @@
 - (id)initWithCell:(Coord *)cell
            audioID:(NSNumber *)audioID
              image:(NSString *)image
-        instrument:(NSString *)instrument
-              midi:(NSNumber *)midi
+              file:(NSString *)file
 {
     self = [super initWithSpriteFrameName:image];
     if (self) {
@@ -34,8 +33,7 @@
         self.activeColor = [ColorUtils activeYellow];
         self.color = self.defaultColor;
         
-        NSString *sample = [NSString stringWithFormat:@"%@-%@.wav", instrument, midi];
-        self.event = [[SampleEvent alloc] initWithAudioID:audioID sampleName:sample];
+        self.event = [[SampleEvent alloc] initWithAudioID:audioID sampleName:file];
         
         // CCNode+Grid
         self.cell = cell;
