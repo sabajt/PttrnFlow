@@ -22,15 +22,19 @@
 
 @implementation Sample
 
-- (id)initWithCell:(Coord *)cell toneData:(NSDictionary *)toneData
+- (id)initWithCell:(Coord *)cell
+           audioID:(NSNumber *)audioID
+             image:(NSString *)image
+        instrument:(NSString *)instrument
+              midi:(NSNumber *)midi
 {
-    self = [super initWithSpriteFrameName:toneData[kImage]];
+    self = [super initWithSpriteFrameName:image];
     if (self) {
         self.defaultColor = [ColorUtils cream];
         self.activeColor = [ColorUtils activeYellow];
         self.color = self.defaultColor;
         
-        NSString *sample = [NSString stringWithFormat:@"%@-%@.wav", toneData[kInstrument], toneData[kMidi]];
+        NSString *sample = [NSString stringWithFormat:@"%@-%@.wav", instrument, midi];
         self.event = [[SampleEvent alloc] initWithSampleName:sample];
         
         // CCNode+Grid

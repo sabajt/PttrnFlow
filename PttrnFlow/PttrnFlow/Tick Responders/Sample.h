@@ -11,6 +11,9 @@
 
 @interface Sample : CCSprite <AudioResponder>
 
-- (id)initWithCell:(Coord *)cell toneData:(NSDictionary *)toneData;
-
+- (id)initWithCell:(Coord *)cell
+           audioID:(NSNumber *)audioID
+             image:(NSString *)image
+        instrument:(NSString *)instrument
+              midi:(NSNumber *)midi;
 @end

@@ -350,7 +350,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
                 // sample-based tonal instrument
                 else if (instrumentName && midi) {
                     [allSampleNames addObject:instrumentName];
-                    Sample *sample = [[Sample alloc] initWithCell:cell toneData:toneData];
+                    Sample *sample = [[Sample alloc] initWithCell:cell audioID:audioID image:toneData[kImage] instrument:toneData[kInstrument] midi:toneData[kMidi]];
                     [self.audioTouchDispatcher addResponder:sample];
                     [self.sequenceDispatcher addResponder:sample];
                     sample.position = cellCenter;
