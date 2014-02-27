@@ -20,7 +20,6 @@ FOUNDATION_EXPORT NSString *const kDrums;
 FOUNDATION_EXPORT NSString *const kSynth;
 FOUNDATION_EXPORT NSString *const kMidi;
 FOUNDATION_EXPORT NSString *const kFile;
-FOUNDATION_EXPORT NSString *const kInstrument;
 FOUNDATION_EXPORT NSString *const kImage;
 FOUNDATION_EXPORT NSString *const kDecorator;
 FOUNDATION_EXPORT NSString *const kTime;
@@ -34,6 +33,5 @@ FOUNDATION_EXPORT NSString *const kTime;
 - (NSDictionary *)puzzle:(NSInteger)number audioID:(NSInteger)audioID;
 - (NSArray *)puzzleGlyphs:(NSInteger)number;
 - (NSArray *)puzzleSolution:(NSInteger)number;
-- (NSDictionary *)puzzleToneMap:(NSInteger)number;
 
 @end

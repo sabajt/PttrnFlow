@@ -85,8 +85,7 @@
           {
                "tone" :
                {
-                    "instrument" : "marimba",
-                    "midi" : 48,
+                    "file" : "marimba-48.wav",
                     "image" : "tone_primary_1_5.png",
                     "decorator" : "marimba-decorator.png"
                }
@@ -94,8 +93,7 @@
                     {
                "tone" :
                {
-                    "instrument" : "marimba",
-                    "midi" : 51,
+                    "file" : "marimba-51.wav",
                     "image" : "tone_primary_2_5.png",
                     "decorator" : "marimba-decorator.png"
                }
@@ -103,8 +101,7 @@
           {
                "tone" :
                {
-                    "instrument" : "marimba",
-                    "midi" : 53,
+                    "file" : "marimba-53.wav",
                     "image" : "tone_primary_3_5.png",
                     "decorator" : "marimba-decorator.png"
                }
@@ -112,8 +109,7 @@
           {
                "tone" :
                {
-                    "instrument" : "marimba",
-                    "midi" : 56,
+                    "file" : "marimba-56.wav",
                     "image" : "tone_primary_4_5.png",
                     "decorator" : "marimba-decorator.png"
                }
@@ -121,8 +117,7 @@
           {
                "tone" :
                {
-                    "instrument" : "marimba",
-                    "midi" : 63,
+                    "file" : "marimba-60.wav",
                     "image" : "tone_primary_full.png",
                     "decorator" : "marimba-decorator.png"
                }

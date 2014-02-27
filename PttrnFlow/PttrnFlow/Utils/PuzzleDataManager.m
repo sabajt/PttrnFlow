@@ -21,7 +21,6 @@ NSString *const kDrums = @"drums";
 NSString *const kSynth = @"synth";
 NSString *const kMidi = @"midi";
 NSString *const kFile = @"file";
-NSString *const kInstrument = @"instrument";
 NSString *const kImage = @"image";
 NSString *const kDecorator = @"decorator";
 NSString *const kTime = @"time";
@@ -123,72 +122,6 @@ static NSString *const kSolution = @"solution";
 {
     NSDictionary *puzzle = [self puzzle:number];
     return puzzle[kSolution];
-}
-
-#pragma mark - currently not used, but will do something similar when the editor is made
-// provides a dictionary in
-// <instrument or synth> :
-//   <midi> : <image name>,
-//   <midi> : <image name>...
-- (NSDictionary *)puzzleToneMap:(NSInteger)number
-{
-    NSMutableDictionary *midiMap = [NSMutableDictionary dictionary];
-    
-    // collect all the midi keyed by instrument or synth
-    for (NSDictionary *audioUnit in [self puzzleAudio:number]) {
-        NSDictionary *tone = audioUnit[kTone];
-        
-        if (tone) {
-            NSNumber *midi = tone[kMidi];
-            NSString *instrument = tone[kInstrument];
-            NSString *synth = tone[kSynth];
-            
-            if (instrument) {
-                if (!midiMap[instrument]) {
-                    midiMap[instrument] = [NSMutableArray array];
-                }
-                [midiMap[instrument] addObject:midi];
-            }
-            else if (synth) {
-                if (!midiMap[synth]) {
-                    midiMap[synth] = [NSMutableSet set];
-                }
-                [midiMap[synth] addObject:midi];
-            }
-        }
-    }
-    
-    static const NSInteger maxNotes = 8;
-    
-    // sort the keyed midi values
-    NSMutableDictionary *sortedMidiMap = [NSMutableDictionary dictionary];
-    [midiMap enumerateKeysAndObjectsUsingBlock:^(NSString *instrumentOrSynth, NSMutableSet *midiSet, BOOL *stop) {
-        NSAssert(midiSet.count < maxNotes, @"There cannot be more than %i values in a tonal instrument set per puzzle", midiSet.count);
-        NSSortDescriptor *ascending = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-        NSArray *sortedMidi = [midiSet sortedArrayUsingDescriptors:@[ascending]];
-        sortedMidiMap[instrumentOrSynth] = sortedMidi;
-    }];
-    
-    // create the midi to image map, keyed by instrument / synth
-    NSMutableDictionary *finalMap = [NSMutableDictionary dictionary];
-    [sortedMidiMap enumerateKeysAndObjectsUsingBlock:^(NSString *instrumentOrSynth, NSArray *sortedMidi, BOOL *stop) {
-        NSMutableDictionary *toneImageMap = [NSMutableDictionary dictionary];
-        NSInteger i = 1;
-        for (NSNumber *midi in sortedMidi) {
-            NSString *name;
-            if (i == sortedMidi.count) {
-                name = [NSString stringWithFormat:@"tone_primary_full.png"];
-            }
-            else {
-                name = [NSString stringWithFormat:@"tone_primary_%i_%i.png", i, sortedMidi.count];
-            }
-            toneImageMap[midi] = name;
-            i++;
-        }
-        finalMap[instrumentOrSynth] = toneImageMap;
-    }];
-    
-    return [NSDictionary dictionaryWithDictionary:finalMap];
 }
 
 @end

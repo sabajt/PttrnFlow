@@ -10,4 +10,13 @@
 
 @implementation AudioStopEvent
 
+- (id)initWithAudioID:(NSNumber *)audioID
+{
+    self = [super init];
+    if (self) {
+        self.audioID = audioID;
+    }
+    return self;
+}
+
 @end

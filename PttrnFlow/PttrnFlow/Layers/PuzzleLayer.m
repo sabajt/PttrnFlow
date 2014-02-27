@@ -333,7 +333,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             NSDictionary *drumsData = audioData[kDrums];
             
             if (toneData) {
-                NSString *instrumentName = toneData[kInstrument];
+                NSString *fileName = toneData[kFile];
                 NSString *synthName = toneData[kSynth];
                 NSNumber *midi = toneData[kMidi];
                 NSString *imageName = toneData[kImage];
@@ -348,8 +348,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
                     [self.audioObjectsBatchNode addChild:synth z:ZOrderAudioBatchGlyph];
                 }
                 // sample-based tonal instrument
-                else if (instrumentName && midi) {
-                    NSString *fileName = [NSString stringWithFormat:@"%@-%@.wav", instrumentName, midi];
+                else if (fileName) {
                     [allSampleNames addObject:fileName];
                     Sample *sample = [[Sample alloc] initWithCell:cell audioID:audioID image:imageName file:fileName];
                     [self.audioTouchDispatcher addResponder:sample];

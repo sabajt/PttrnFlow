@@ -16,9 +16,13 @@ NSString *const kChannelNone = @"ChannelNone";
 
 - (BOOL)hasSameNumberOfSameEvents:(NSArray *)events
 {
-    // base case: we have succesfully matched all events, or there were never events in either array
-    if (self.count == 0 && events.count == 0) {
-        return YES;
+    if (self.count == 0) {
+        // we have succesfully matched all events, or there were never events in either array
+        if (events.count == 0) {
+            return YES;
+        }
+        // not the same number of events
+        return NO;
     }
     
     // pick one of our events to check for a match

@@ -16,6 +16,7 @@
 #import "PuzzleDataManager.h"
 #import "SynthEvent.h"
 #import "SampleEvent.h"
+#import "AudioStopEvent.h"
 
 NSString *const kNotificationStepUserSequence = @"stepUserSequence";
 NSString *const kNotificationStepSolutionSequence = @"stepSolutionSequence";
@@ -70,31 +71,38 @@ static CGFloat kSequenceInterval = 0.5f;
 
 - (void)createSolutionEvents:(NSInteger)puzzle
 {
-//    self.solutionEvents = [NSMutableArray array];
-//    NSArray *solution = [[PuzzleDataManager sharedManager] puzzleSolution:puzzle];
-//    NSInteger i = 0;
-//    
-//    for (NSDictionary *s in solution) {
-//        NSString *synthName = s[kSynth];
-//        NSNumber *midiValue = s[kMidi];
-//        NSString *sampleName = s[kSample];
-//        NSMutableArray *currentSolution = [NSMutableArray array];
-//        
-//        // pd synth
-//        if (synthName != NULL && midiValue != NULL) {
-//            SynthEvent *event = [[SynthEvent alloc] initWithMidiValue:[midiValue stringValue] synthType:synthName];
-//            [currentSolution addObject:event];
-//        }
-//        
-//        // audio sample
-//        if (sampleName != NULL) {
-//            SampleEvent *event = [[SampleEvent alloc] initWithSampleName:sampleName];
-//            [currentSolution addObject:event];
-//        }
-//        
-//        [self.solutionEvents addObject:currentSolution];
-//        i++;
-//    }
+    self.solutionEvents = [NSMutableArray array];
+    NSArray *solution = [[PuzzleDataManager sharedManager] puzzleSolution:puzzle];
+
+    for (NSDictionary *s in solution) {
+        NSMutableArray *currentSolution = [NSMutableArray array];
+        
+        for (NSNumber *audioID in s) {
+            NSDictionary *data = [[PuzzleDataManager sharedManager] puzzle:puzzle audioID:[audioID integerValue]];
+            NSDictionary *tone = data[kTone];
+            NSDictionary *drums = data[kDrums];
+            
+            if (tone) {
+                NSString *file = tone[kFile];
+                NSString *synth = tone[kSynth];
+                NSNumber *midi = tone[kMidi];
+                if (file) {
+                    SampleEvent *event = [[SampleEvent alloc] initWithAudioID:audioID sampleName:file];
+                    [currentSolution addObject:event];
+                }
+                else if (synth && midi) {
+                    SynthEvent *event = [[SynthEvent alloc] initWithAudioID:audioID midiValue:[midi stringValue] synthType:synth];
+                    [currentSolution addObject:event];
+                }
+            }
+            else if (drums) {
+                // TODO: placeholder event until drums are implemented
+                AudioStopEvent *event = [[AudioStopEvent alloc] initWithAudioID:audioID];
+                [currentSolution addObject:event];
+            }
+        }
+        [self.solutionEvents addObject:currentSolution];
+    }
 }
 
 - (void)stepUserSequence:(ccTime)dt

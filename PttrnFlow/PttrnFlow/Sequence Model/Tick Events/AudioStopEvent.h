@@ -10,4 +10,6 @@
 
 @interface AudioStopEvent : TickEvent
 
+- (id)initWithAudioID:(NSNumber *)audioID;
+
 @end
