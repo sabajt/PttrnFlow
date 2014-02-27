@@ -10,10 +10,11 @@
 
 @implementation SampleEvent
 
-- (id)initWithSampleName:(NSString *)name
+- (id)initWithAudioID:(NSNumber *)audioID sampleName:(NSString *)name
 {
-    self = [super initAsAudioEvent:YES];
+    self = [super init];
     if (self) {
+        self.audioID = audioID;
         NSAssert([SampleEvent isSampleName:name], @"'%@' is not a valid sample name", name);
         _fileName = name;
     }
@@ -45,7 +46,7 @@
 
 - (NSString *)eventDescription
 {
-    return [NSString stringWithFormat:@"%@ : { sample file : %@ } { is audio event : %i }", self, self.fileName, self.isAudioEvent];
+    return [NSString stringWithFormat:@"%@ : { sample file : %@ } { audio ID : %@ }", self, self.fileName, self.audioID];
 }
 
 @end

@@ -12,6 +12,6 @@
 
 @property (copy, nonatomic) NSString *fileName;
 
-- (id)initWithSampleName:(NSString *)name;
+- (id)initWithAudioID:(NSNumber *)audioID sampleName:(NSString *)name;
 
 @end

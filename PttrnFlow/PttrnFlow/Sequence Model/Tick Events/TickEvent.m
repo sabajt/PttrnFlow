@@ -9,7 +9,6 @@
 #import "TickEvent.h"
 #import "cocos2d.h"
 #import "NSArray+CompareStrings.h"
-#import "NSArray+CompareStrings.h"
 
 NSString *const kChannelNone = @"ChannelNone";
 
@@ -25,7 +24,7 @@ NSString *const kChannelNone = @"ChannelNone";
     // pick one of our events to check for a match
     TickEvent *targetEvent = [self firstObject];
     NSUInteger matchIndex = [events indexOfObjectPassingTest:^BOOL(TickEvent *event, NSUInteger idx, BOOL *stop) {
-        return ([event isEqualToEvent:targetEvent]);
+        return ([event.audioID isEqualToNumber:targetEvent.audioID]);
     }];
     
     // no match
@@ -47,7 +46,7 @@ NSString *const kChannelNone = @"ChannelNone";
 {
     NSMutableArray *filtered = [NSMutableArray array];
     for (TickEvent *event in self) {
-        if ([event isKindOfClass:[TickEvent class]] && event.isAudioEvent) {
+        if ([event isKindOfClass:[TickEvent class]] && event.audioID) {
             [filtered addObject:event];
         }
     }
@@ -58,28 +57,11 @@ NSString *const kChannelNone = @"ChannelNone";
 
 @interface TickEvent ()
 
-@property (strong, nonatomic) NSArray *fragments;
-
 @end
 
 @implementation TickEvent
 
-- (id)initAsAudioEvent:(BOOL)isAudioEvent
-{
-    self = [super init];
-    if (self) {
-        _isAudioEvent = isAudioEvent;
-    }
-    return self;
-}
-
 #pragma mark - Subclass hooks
-
-- (BOOL)isEqualToEvent:(TickEvent *)event
-{
-    CCLOG(@"%@ provides no implementation for %s, returning NO", self, __PRETTY_FUNCTION__);
-    return NO;
-}
 
 - (NSString *)eventDescription
 {

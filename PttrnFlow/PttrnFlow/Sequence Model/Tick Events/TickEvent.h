@@ -19,10 +19,8 @@ FOUNDATION_EXPORT NSString *const kChannelNone;
 
 @interface TickEvent : NSObject
 
-@property (assign) BOOL isAudioEvent;
+@property (strong, nonatomic) NSNumber *audioID;
 
-- (id)initAsAudioEvent:(BOOL)isAudioEvent;
-- (BOOL)isEqualToEvent:(TickEvent *)event;
 - (NSString *)eventDescription;
 
 @end

@@ -35,7 +35,7 @@
         self.color = self.defaultColor;
         
         NSString *sample = [NSString stringWithFormat:@"%@-%@.wav", instrument, midi];
-        self.event = [[SampleEvent alloc] initWithSampleName:sample];
+        self.event = [[SampleEvent alloc] initWithAudioID:audioID sampleName:sample];
         
         // CCNode+Grid
         self.cell = cell;

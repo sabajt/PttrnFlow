@@ -14,7 +14,7 @@
 
 - (id)initWithChannel:(NSString *)channel direction:(NSString *)direction
 {
-    self = [super initAsAudioEvent:NO];
+    self = [super init];
     if (self) {
         _direction = direction;
     }

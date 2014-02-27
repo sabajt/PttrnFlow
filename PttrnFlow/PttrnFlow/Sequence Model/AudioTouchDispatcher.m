@@ -162,7 +162,7 @@
     // get channel
     NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.trackingTouches, (__bridge void *)touch);
     NSString *channel = [touchInfo objectForKey:@"channel"];
-    AudioStopEvent *audioStop = [[AudioStopEvent alloc] initAsAudioEvent:YES];
+    AudioStopEvent *audioStop = [[AudioStopEvent alloc] init];
     [[MainSynth sharedMainSynth] receiveEvents:@[audioStop] ignoreAudioPad:YES];
     
     // get grid cell of touch
@@ -178,7 +178,7 @@
     // get channel
     NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.trackingTouches, (__bridge void *)touch);
     NSString *channel = [touchInfo objectForKey:@"channel"];
-    AudioStopEvent *audioStop = [[AudioStopEvent alloc] initAsAudioEvent:YES];
+    AudioStopEvent *audioStop = [[AudioStopEvent alloc] init];
     [[MainSynth sharedMainSynth] receiveEvents:@[audioStop] ignoreAudioPad:YES];
     
     // get grid cell of touch

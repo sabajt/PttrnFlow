@@ -341,7 +341,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
                 
                 // pd synth tonal instrument
                 if (synthName && midi) {
-                    Synth *synth = [[Synth alloc] initWithCell:cell synth:synthName midi:[midi stringValue] bodyFrameName:imageName synthFrameName:decoratorImageName];
+                    Synth *synth = [[Synth alloc] initWithCell:cell audioID:audioID synth:synthName midi:midi image:imageName decorator:decoratorImageName];
                     [self.audioTouchDispatcher addResponder:synth];
                     [self.sequenceDispatcher addResponder:synth];
                     synth.position = cellCenter;
@@ -350,7 +350,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
                 // sample-based tonal instrument
                 else if (instrumentName && midi) {
                     [allSampleNames addObject:instrumentName];
-                    Sample *sample = [[Sample alloc] initWithCell:cell audioID:audioID image:toneData[kImage] instrument:toneData[kInstrument] midi:toneData[kMidi]];
+                    Sample *sample = [[Sample alloc] initWithCell:cell audioID:audioID image:imageName instrument:instrumentName midi:midi];
                     [self.audioTouchDispatcher addResponder:sample];
                     [self.sequenceDispatcher addResponder:sample];
                     sample.position = cellCenter;

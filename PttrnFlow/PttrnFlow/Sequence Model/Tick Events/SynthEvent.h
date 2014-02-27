@@ -15,6 +15,6 @@ FOUNDATION_EXPORT NSString *const kDefaultSynthType;
 @property (copy, nonatomic) NSString *midiValue;
 @property (copy, nonatomic) NSString *synthType;
 
-- (id)initWithMidiValue:(NSString *)midiValue synthType:(NSString *)synthType;
+- (id)initWithAudioID:(NSNumber *)audioID midiValue:(NSString *)midiValue synthType:(NSString *)synthType;
 
 @end

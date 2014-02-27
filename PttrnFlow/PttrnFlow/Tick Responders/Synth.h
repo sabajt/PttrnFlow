@@ -12,9 +12,10 @@
 @interface Synth : CCSprite <AudioResponder>
 
 - (id)initWithCell:(Coord *)cell
+           audioID:(NSNumber *)audioID
              synth:(NSString *)synth
               midi:(NSString *)midi
-     bodyFrameName:(NSString *)bodyFrameName
-    synthFrameName:(NSString *)synthFrameName;
+             image:(NSString *)image
+         decorator:(NSString *)decorator;
 
 @end

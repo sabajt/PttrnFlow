@@ -13,10 +13,11 @@ NSString *const kDefaultSynthType = @"osc";
 
 @implementation SynthEvent
 
-- (id)initWithMidiValue:(NSString *)midiValue synthType:(NSString *)synthType
+- (id)initWithAudioID:(NSNumber *)audioID midiValue:(NSString *)midiValue synthType:(NSString *)synthType
 {
-    self = [super initAsAudioEvent:YES];
+    self = [super init];
     if (self) {
+        self.audioID = audioID;
         NSAssert([SynthEvent isMidiValue:midiValue], @"'%@' is not a valid midi value", midiValue);
         NSAssert([SynthEvent isSynthType:synthType], @"'%@' is not a valid synth type", synthType);
         _midiValue = midiValue;
@@ -59,7 +60,7 @@ NSString *const kDefaultSynthType = @"osc";
 
 - (NSString *)eventDescription
 {
-    return [NSString stringWithFormat:@"%@ : { synth type : %@ } { midi type : %@ } { is audio event : %i }", self, self.synthType, self.midiValue, self.isAudioEvent];
+    return [NSString stringWithFormat:@"%@ : { synth type : %@ } { midi type : %@ } { audio ID : %i }", self, self.synthType, self.midiValue, self.audioID];
 }
 
 @end

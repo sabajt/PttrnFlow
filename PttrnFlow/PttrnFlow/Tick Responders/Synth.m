@@ -22,18 +22,19 @@
 @implementation Synth
 
 - (id)initWithCell:(Coord *)cell
+           audioID:(NSNumber *)audioID
              synth:(NSString *)synth
-              midi:(NSString *)midi
-     bodyFrameName:(NSString *)bodyFrameName
-    synthFrameName:(NSString *)synthFrameName
+              midi:(NSNumber *)midi
+             image:(NSString *)image
+         decorator:(NSString *)decorator
 {
-    self = [super initWithSpriteFrameName:bodyFrameName];
+    self = [super initWithSpriteFrameName:image];
     if (self) {
         self.defaultColor = [ColorUtils cream];
         self.activeColor = [ColorUtils activeYellow];
         self.color = self.defaultColor;
         
-        self.event = [[SynthEvent alloc] initWithMidiValue:midi synthType:synth];
+        self.event = [[SynthEvent alloc] initWithAudioID:audioID midiValue:[midi stringValue] synthType:synth];
         
         // CCNode+Grid
         self.cell = cell;
