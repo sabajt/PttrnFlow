@@ -48,16 +48,6 @@ NSString *const kDefaultSynthType = @"osc";
 
 #pragma mark - Subclass hooks
 
-- (BOOL)isEqualToEvent:(TickEvent *)event
-{
-    if (![event isKindOfClass:self.class]) {
-        return NO;
-    }
-    SynthEvent *synthEvent = (SynthEvent *)event;
-    return ([synthEvent.midiValue isEqualToString:self.midiValue] &&
-            [synthEvent.synthType isEqualToString:self.synthType]);
-}
-
 - (NSString *)eventDescription
 {
     return [NSString stringWithFormat:@"%@ : { synth type : %@ } { midi type : %@ } { audio ID : %@ }", self, self.synthType, self.midiValue, self.audioID];
