@@ -31,7 +31,7 @@ NSString *const kDefaultSynthType = @"osc";
 + (BOOL)isMidiValue:(NSString *)midiValue
 {
     static int low = 48;
-    static int high = 59;
+    static int high = 71;
     
     for (int i = low; i <= high; i++) {
         if ([midiValue isEqualToString:[@(i) stringValue]]) {
@@ -60,7 +60,7 @@ NSString *const kDefaultSynthType = @"osc";
 
 - (NSString *)eventDescription
 {
-    return [NSString stringWithFormat:@"%@ : { synth type : %@ } { midi type : %@ } { audio ID : %i }", self, self.synthType, self.midiValue, self.audioID];
+    return [NSString stringWithFormat:@"%@ : { synth type : %@ } { midi type : %@ } { audio ID : %@ }", self, self.synthType, self.midiValue, self.audioID];
 }
 
 @end
