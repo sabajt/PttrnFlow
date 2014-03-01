@@ -6,7 +6,7 @@
 //
 //
 
-#import <Foundation/Foundation.h>
+#import "cocos2d.h"
 
 FOUNDATION_EXPORT NSString *const kChannelNone;
 
@@ -17,7 +17,7 @@ FOUNDATION_EXPORT NSString *const kChannelNone;
 
 @end
 
-@interface TickEvent : NSObject
+@interface TickEvent : CCNode
 
 @property (strong, nonatomic) NSNumber *audioID;
 
