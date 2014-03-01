@@ -365,7 +365,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
                     [allSampleNames addObject:unit[kFile]];
                 }
                 Drum *drum = [[Drum alloc] initWithCell:cell audioID:audioID data:drumsData isStatic:isStatic];
-                
+                [self.audioTouchDispatcher addResponder:drum];
+                [self.sequenceDispatcher addResponder:drum];
                 drum.position = cellCenter;
                 [self.audioObjectsBatchNode addChild:drum z:ZOrderAudioBatchGlyph];
             }

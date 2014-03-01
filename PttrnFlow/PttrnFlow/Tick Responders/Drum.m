@@ -11,10 +11,13 @@
 #import "Drum.h"
 #import "PuzzleDataManager.h"
 
+#import "TickEvent.h"
+
 @interface Drum ()
 
 @property (assign) ccColor3B defaultColor;
 @property (assign) ccColor3B activeColor;
+@property (strong, nonatomic) NSMutableArray *drumUnits;
 
 @end
 
@@ -33,6 +36,7 @@
         self.cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
         
         // units (beats)
+        self.drumUnits = [NSMutableArray array];
         for (NSDictionary *unit in data) {
             CCSprite *drumUnit = [CCSprite spriteWithSpriteFrameName:@"drum_unit.png"];
             drumUnit.color = [ColorUtils cream];
@@ -54,10 +58,32 @@
             [drumUnit addChild:unitSymbol];
             
             [self addChild:drumUnit];
+            [self.drumUnits addObject:drumUnit];
         }
     }
     return self;
+}
 
+#pragma mark - AudioResponder
+
+- (Coord *)audioCell
+{
+    return self.cell;
+}
+
+- (TickEvent *)audioHit:(NSInteger)bpm
+{
+    self.color = self.activeColor;
+    CCTintTo *tint1 = [CCTintTo actionWithDuration:1 red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
+    [self runAction:tint1];
+    
+    for (CCSprite *unit in self.drumUnits) {
+        unit.color = self.activeColor;
+        CCTintTo *tint2 = [CCTintTo actionWithDuration:1 red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
+        [unit runAction:tint2];
+    }
+    
+    return [[TickEvent alloc] init];
 }
 
 @end
