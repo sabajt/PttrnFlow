@@ -151,6 +151,7 @@
 		16A942BA1777A2260052D5BD /* Sample.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942AC1777A2260052D5BD /* Sample.m */; };
 		16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */; };
 		3302EF6E1879C92C0032AD58 /* PFGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302EF6D1879C92C0032AD58 /* PFGeometry.m */; };
+		330A57B818C27C5B00DC97B7 /* MultiSampleEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 330A57B718C27C5B00DC97B7 /* MultiSampleEvent.m */; };
 		3317322E1892A89D005435D9 /* ScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3317322D1892A89D005435D9 /* ScrollLayer.m */; };
 		332C199118C0D2150081FE1D /* Drum.m in Sources */ = {isa = PBXBuildFile; fileRef = 332C199018C0D2150081FE1D /* Drum.m */; };
 		3339C03118397638005771BC /* audioObjects-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02D18397638005771BC /* audioObjects-hd.plist */; };
@@ -553,6 +554,8 @@
 		16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceMenuCell.m; sourceTree = "<group>"; };
 		3302EF6C1879C92C0032AD58 /* PFGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGeometry.h; sourceTree = "<group>"; };
 		3302EF6D1879C92C0032AD58 /* PFGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGeometry.m; sourceTree = "<group>"; };
+		330A57B618C27C5B00DC97B7 /* MultiSampleEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiSampleEvent.h; sourceTree = "<group>"; };
+		330A57B718C27C5B00DC97B7 /* MultiSampleEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiSampleEvent.m; sourceTree = "<group>"; };
 		3317322C1892A89D005435D9 /* ScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollLayer.h; sourceTree = "<group>"; };
 		3317322D1892A89D005435D9 /* ScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollLayer.m; sourceTree = "<group>"; };
 		332C198F18C0D2150081FE1D /* Drum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drum.h; sourceTree = "<group>"; };
@@ -1361,6 +1364,8 @@
 				33B4F25017C72600004D4C13 /* AudioStopEvent.m */,
 				33AF255C17CB0B3F00643CB2 /* AudioPadEvent.h */,
 				33AF255D17CB0B3F00643CB2 /* AudioPadEvent.m */,
+				330A57B618C27C5B00DC97B7 /* MultiSampleEvent.h */,
+				330A57B718C27C5B00DC97B7 /* MultiSampleEvent.m */,
 			);
 			path = "Tick Events";
 			sourceTree = "<group>";
@@ -1715,6 +1720,7 @@
 				16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */,
 				1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */,
 				163091F0177DEDA9003155BB /* BackgroundLayer.m in Sources */,
+				330A57B818C27C5B00DC97B7 /* MultiSampleEvent.m in Sources */,
 				332C199118C0D2150081FE1D /* Drum.m in Sources */,
 				162C291017821E0200CE480C /* SizeUtils.m in Sources */,
 				33B4F25F17C72600004D4C13 /* SynthEvent.m in Sources */,
