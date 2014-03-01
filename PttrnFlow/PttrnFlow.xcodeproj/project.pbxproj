@@ -152,6 +152,7 @@
 		16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */; };
 		3302EF6E1879C92C0032AD58 /* PFGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302EF6D1879C92C0032AD58 /* PFGeometry.m */; };
 		3317322E1892A89D005435D9 /* ScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3317322D1892A89D005435D9 /* ScrollLayer.m */; };
+		332C199118C0D2150081FE1D /* Drum.m in Sources */ = {isa = PBXBuildFile; fileRef = 332C199018C0D2150081FE1D /* Drum.m */; };
 		3339C03118397638005771BC /* audioObjects-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02D18397638005771BC /* audioObjects-hd.plist */; };
 		3339C03218397638005771BC /* audioObjects-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02E18397638005771BC /* audioObjects-hd.png */; };
 		3339C03318397638005771BC /* audioObjects.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02F18397638005771BC /* audioObjects.plist */; };
@@ -554,6 +555,8 @@
 		3302EF6D1879C92C0032AD58 /* PFGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGeometry.m; sourceTree = "<group>"; };
 		3317322C1892A89D005435D9 /* ScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollLayer.h; sourceTree = "<group>"; };
 		3317322D1892A89D005435D9 /* ScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollLayer.m; sourceTree = "<group>"; };
+		332C198F18C0D2150081FE1D /* Drum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drum.h; sourceTree = "<group>"; };
+		332C199018C0D2150081FE1D /* Drum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Drum.m; sourceTree = "<group>"; };
 		3339C02D18397638005771BC /* audioObjects-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "audioObjects-hd.plist"; sourceTree = "<group>"; };
 		3339C02E18397638005771BC /* audioObjects-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audioObjects-hd.png"; sourceTree = "<group>"; };
 		3339C02F18397638005771BC /* audioObjects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = audioObjects.plist; sourceTree = "<group>"; };
@@ -1247,6 +1250,8 @@
 				33A957EE188D5B43006BF182 /* Arrow.m */,
 				33A7C4E7189ED8C3000EBCA7 /* Entry.h */,
 				33A7C4E8189ED8C3000EBCA7 /* Entry.m */,
+				332C198F18C0D2150081FE1D /* Drum.h */,
+				332C199018C0D2150081FE1D /* Drum.m */,
 			);
 			path = "Tick Responders";
 			sourceTree = "<group>";
@@ -1710,6 +1715,7 @@
 				16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */,
 				1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */,
 				163091F0177DEDA9003155BB /* BackgroundLayer.m in Sources */,
+				332C199118C0D2150081FE1D /* Drum.m in Sources */,
 				162C291017821E0200CE480C /* SizeUtils.m in Sources */,
 				33B4F25F17C72600004D4C13 /* SynthEvent.m in Sources */,
 			);

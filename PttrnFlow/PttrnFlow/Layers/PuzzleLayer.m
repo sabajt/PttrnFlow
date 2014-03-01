@@ -6,26 +6,25 @@
 //  Copyright 2013 __MyCompanyName__. All rights reserved.
 //
 
-#import "PuzzleLayer.h"
-#import "SequenceControlsLayer.h"
+#import "Arrow.h"
+#import "AudioPad.h"
+#import "AudioTouchDispatcher.h"
+#import "BackgroundLayer.h"
+#import "ColorUtils.h"
+#import "Coord.h"
+#import "Drum.h"
+#import "Entry.h"
 #import "GameConstants.h"
+#import "MainSynth.h"
+#import "PdDispatcher.h"
+#import "PFGeometry.h"
+#import "PuzzleDataManager.h"
+#import "PuzzleLayer.h"
+#import "Sample.h"
+#import "SequenceControlsLayer.h"
+#import "SequenceDispatcher.h"
 #import "SimpleAudioEngine.h"
 #import "Synth.h"
-#import "Arrow.h"
-#import "MainSynth.h"
-#import "ColorUtils.h"
-#import "PdDispatcher.h"
-#import "Sample.h"
-#import "ColorUtils.h"
-#import "BackgroundLayer.h"
-#import "AudioTouchDispatcher.h"
-#import "AudioPad.h"
-#import "PuzzleDataManager.h"
-#import "Coord.h"
-#import "PFGeometry.h"
-#import "Entry.h"
-#import "SequenceDispatcher.h"
-
 
 typedef NS_ENUM(NSInteger, ZOrderAudioBatch)
 {
@@ -330,7 +329,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             NSAssert(audioData != nil, @"No audio data found for audio id: %@", audioID);
             
             NSDictionary *toneData = audioData[kTone];
-            NSDictionary *drumsData = audioData[kDrums];
+            NSArray *drumsData = audioData[kDrums];
             
             if (toneData) {
                 NSString *fileName = toneData[kFile];
@@ -362,7 +361,13 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             }
             // a percussion instrument
             else if (drumsData) {
-
+                for (NSDictionary *unit in drumsData) {
+                    [allSampleNames addObject:unit[kFile]];
+                }
+                Drum *drum = [[Drum alloc] initWithCell:cell audioID:audioID data:drumsData isStatic:isStatic];
+                
+                drum.position = cellCenter;
+                [self.audioObjectsBatchNode addChild:drum z:ZOrderAudioBatchGlyph];
             }
             else {
                 CCLOG(@"\n\nWARNING: audio data does not contain supported types '%@' or '%@':\n%@\n\n", kTone, kDrums, audioData);

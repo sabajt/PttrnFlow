@@ -26,13 +26,13 @@
                "drums" : 
                [
                     {
-                         "file" : "kick-01.wav",
-                         "image" : "drums_circle.png",
+                         "file" : "marimba-54.wav",
+                         "image" : "drum_bullseye.png",
                          "time" : 0.0
                     },
                     {
-                         "file" : "kick-01.wav",
-                         "image" : "drums_circle.png",
+                         "file" : "marimba-54.wav",
+                         "image" : "drum_bullseye.png",
                          "time" : 0.5
                     }
                ]
@@ -41,13 +41,13 @@
                "drums" : 
                [
                     {
-                         "file" : "kick-01.wav",
-                         "image" : "drums_circle.png",
+                         "file" : "marimba-54.wav",
+                         "image" : "drum_bullseye.png",
                          "time" : 0.0
                     },
                     {
-                         "file" : "snare-01.wav",
-                         "image" : "drums_diamond.png",
+                         "file" : "marimba-55.wav",
+                         "image" : "drum_diamond.png",
                          "time" : 0.5
                     }
                ]
@@ -56,8 +56,8 @@
                "drums" : 
                [
                     {
-                         "file" : "snare-01.wav",
-                         "image" : "drums_diamond.png",
+                         "file" : "marimba-55.wav",
+                         "image" : "drum_diamond.png",
                          "time" : 0.0
                     }
                ]
@@ -66,18 +66,18 @@
                "drums" : 
                [
                     {
-                         "file" : "kick-01.wav",
-                         "image" : "drums_circle.png",
+                         "file" : "marimba-54.wav",
+                         "image" : "drum_bullseye.png",
                          "time" : 0.0
                     },
                     {
-                         "file" : "kick-01.wav",
-                         "image" : "drums_circle.png",
+                         "file" : "marimba-54.wav",
+                         "image" : "drum_bullseye.png",
                          "time" : 0.33
                     },
                     {
-                         "file" : "snare-01.wav",
-                         "image" : "drums_diamond.png",
+                         "file" : "marimba-55.wav",
+                         "image" : "drum_diamond.png",
                          "time" : 0.66
                     }
                ]
@@ -140,22 +140,23 @@
           {
                "static" : 1,
                "cell" : [2, 1],
-               "audio" : 6
+               "arrow" : "left",
+               "audio" : 0
           },
           {
                "static" : 1,
                "cell" : [3, 0],
-               "audio" : 7
+               "audio" : 1
           },
           {
                "static" : 0,
                "cell" : [1, 3],
-               "audio" : 8
+               "audio" : 2
           },
           {
                "static" : 0,
                "cell" : [2, 3],
-               "audio" : 4
+               "audio" : 3
           }
      ],
      "solution" :
