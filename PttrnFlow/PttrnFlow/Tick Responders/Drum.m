@@ -10,14 +10,15 @@
 #import "CCNode+Grid.h"
 #import "Drum.h"
 #import "PuzzleDataManager.h"
-
-#import "TickEvent.h"
+#import "MultiSampleEvent.h"
+#import "MainSynth.h"
 
 @interface Drum ()
 
 @property (assign) ccColor3B defaultColor;
 @property (assign) ccColor3B activeColor;
 @property (strong, nonatomic) NSMutableArray *drumUnits;
+@property (strong, nonatomic) MultiSampleEvent *multiSampleEvent;
 
 @end
 
@@ -31,19 +32,22 @@
         self.activeColor = [ColorUtils activeYellow];
         self.color = self.defaultColor;
         
+        self.delegate = [MainSynth sharedMainSynth];
+        
         // CCNode+Grid
         self.cell = cell;
         self.cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
         
         // units (beats)
+        NSMutableDictionary *multiSampleData = [NSMutableDictionary dictionary];
         self.drumUnits = [NSMutableArray array];
         for (NSDictionary *unit in data) {
             CCSprite *drumUnit = [CCSprite spriteWithSpriteFrameName:@"drum_unit.png"];
             drumUnit.color = [ColorUtils cream];
     
             CGFloat radius = self.contentSize.width / 2.0f;
-            CGFloat time = [unit[kTime] floatValue];
-            CGFloat radians = (90.0f - (time * 360.0f)) * (M_PI / 180.0f);
+            NSNumber *time = unit[kTime];
+            CGFloat radians = (90.0f - ([time floatValue] * 360.0f)) * (M_PI / 180.0f);
             CGPoint circularPos = ccp(cosf(radians) * radius, sinf(radians) * radius);
             drumUnit.position = ccp((self.contentSize.width / 2.0f) + circularPos.x, (self.contentSize.height / 2.0f) + circularPos.y);
             
@@ -59,7 +63,12 @@
             
             [self addChild:drumUnit];
             [self.drumUnits addObject:drumUnit];
+            
+            // add data for our multi-sample event
+            multiSampleData[time] = unit[kFile];
         }
+        
+        self.multiSampleEvent = [[MultiSampleEvent alloc] initWithAudioID:audioID timedSamplesData:[NSDictionary dictionaryWithDictionary:multiSampleData]];
     }
     return self;
 }
@@ -83,7 +92,15 @@
         [unit runAction:tint2];
     }
     
-    return [[TickEvent alloc] init];
+    [self.multiSampleEvent.samples enumerateKeysAndObjectsUsingBlock:^(NSNumber *time, SampleEvent *event, BOOL *stop) {
+        CCCallBlock *action = [CCCallBlock actionWithBlock:^{
+            [self.delegate receiveSampleEvent:event];
+        }];
+        CCSequence *seq = [CCSequence actions:[CCDelayTime actionWithDuration:[time floatValue]], action, nil];
+        [self runAction:seq];
+    }];
+    
+    return self.multiSampleEvent;
 }
 
 @end

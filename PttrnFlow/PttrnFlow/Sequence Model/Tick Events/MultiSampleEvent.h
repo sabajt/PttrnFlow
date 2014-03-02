@@ -8,16 +8,10 @@
 
 #import "TickEvent.h"
 
-@class SampleEvent;
-
-@protocol MultiSampleEventDelegate <NSObject>
-
-- (void)receiveSampleEvent:(SampleEvent *)event;
-
-@end
-
 @interface MultiSampleEvent : TickEvent
 
-@property (weak, nonatomic) id<MultiSampleEventDelegate> delegate;
+- (id)initWithAudioID:(NSNumber *)audioID timedSamplesData:(NSDictionary *)timedSamplesData;
+
+@property (strong, nonatomic) NSMutableDictionary *samples;
 
 @end

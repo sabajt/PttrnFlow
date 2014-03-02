@@ -9,12 +9,6 @@
 #import "MultiSampleEvent.h"
 #import "SampleEvent.h"
 
-@interface MultiSampleEvent ()
-
-@property (strong, nonatomic) NSMutableDictionary *samples;
-
-@end
-
 @implementation MultiSampleEvent
 
 - (id)initWithAudioID:(NSNumber *)audioID timedSamplesData:(NSDictionary *)timedSamplesData
@@ -30,6 +24,17 @@
         }];
     }
     return self;
+}
+
+#pragma mark - Subclass hooks
+
+- (NSString *)eventDescription
+{
+    __block NSString *sampleDescriptions = @"";
+    [self.samples enumerateKeysAndObjectsUsingBlock:^(id key, SampleEvent *event, BOOL *stop) {
+        sampleDescriptions = [sampleDescriptions stringByAppendingFormat:@"%@\n", [event eventDescription]];
+    }];
+    return [NSString stringWithFormat:@"%@: { audio ID : %@ } { containing sample events :\n%@\n}", self, self.audioID, sampleDescriptions];
 }
 
 @end

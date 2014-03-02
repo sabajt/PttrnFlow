@@ -137,4 +137,11 @@ static NSString *const kStageSample = @"stageSample";
     }
 }
 
+#pragma mark - DrumDelegate
+
+- (void)receiveSampleEvent:(SampleEvent *)event
+{
+    [self receiveEvents:@[event] ignoreAudioPad:YES];
+}
+
 @end
