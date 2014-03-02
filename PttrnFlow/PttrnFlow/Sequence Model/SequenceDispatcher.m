@@ -6,17 +6,18 @@
 //
 //
 
-#import "SequenceDispatcher.h"
 #import "AudioResponder.h"
-#import "CCNode+Grid.h"
-#import "NSObject+AudioResponderUtils.h"
-#import "TickEvent.h"
-#import "MainSynth.h"
-#import "DirectionEvent.h"
-#import "PuzzleDataManager.h"
-#import "SynthEvent.h"
-#import "SampleEvent.h"
 #import "AudioStopEvent.h"
+#import "SequenceDispatcher.h"
+#import "CCNode+Grid.h"
+#import "DirectionEvent.h"
+#import "MainSynth.h"
+#import "MultiSampleEvent.h"
+#import "NSObject+AudioResponderUtils.h"
+#import "PuzzleDataManager.h"
+#import "SampleEvent.h"
+#import "SynthEvent.h"
+#import "TickEvent.h"
 
 NSString *const kNotificationStepUserSequence = @"stepUserSequence";
 NSString *const kNotificationStepSolutionSequence = @"stepSolutionSequence";
@@ -96,9 +97,14 @@ static CGFloat kSequenceInterval = 0.5f;
                 }
             }
             else if (drums) {
-                // TODO: placeholder event until drums are implemented
-                AudioStopEvent *event = [[AudioStopEvent alloc] initWithAudioID:audioID];
+                NSMutableDictionary *multiSampleData = [NSMutableDictionary dictionary];
+                for (NSDictionary *unit in drums) {
+                    multiSampleData[unit[kTime]] = unit[kFile];
+                }
+                MultiSampleEvent *event = [[MultiSampleEvent alloc] initWithAudioID:audioID timedSamplesData:multiSampleData];
                 [currentSolution addObject:event];
+                // must add multi-sample as some child of running scene layer to run CC actions
+                [self addChild:event];
             }
         }
         [self.solutionEvents addObject:currentSolution];
