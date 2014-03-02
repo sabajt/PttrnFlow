@@ -364,7 +364,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
                 for (NSDictionary *unit in drumsData) {
                     [allSampleNames addObject:unit[kFile]];
                 }
-                Drum *drum = [[Drum alloc] initWithCell:cell audioID:audioID data:drumsData isStatic:isStatic];
+                Drum *drum = [[Drum alloc] initWithCell:cell audioID:audioID data:drumsData isStatic:isStatic eventActionRunner:self];
                 [self.audioTouchDispatcher addResponder:drum];
                 [self.sequenceDispatcher addResponder:drum];
                 drum.position = cellCenter;

@@ -24,15 +24,13 @@
 
 @implementation Drum
 
-- (id)initWithCell:(Coord *)cell audioID:(NSNumber *)audioID data:(NSArray *)data isStatic:(BOOL)isStatic
+- (id)initWithCell:(Coord *)cell audioID:(NSNumber *)audioID data:(NSArray *)data isStatic:(BOOL)isStatic eventActionRunner:(CCNode *)actionRunner
 {
     self = [super initWithSpriteFrameName:@"drum_ring.png"];
     if (self) {
         self.defaultColor = [ColorUtils cream];
         self.activeColor = [ColorUtils activeYellow];
         self.color = self.defaultColor;
-        
-        self.delegate = [MainSynth sharedMainSynth];
         
         // CCNode+Grid
         self.cell = cell;
@@ -69,6 +67,8 @@
         }
         
         self.multiSampleEvent = [[MultiSampleEvent alloc] initWithAudioID:audioID timedSamplesData:[NSDictionary dictionaryWithDictionary:multiSampleData]];
+        // must add multi-sample as some child of running scene layer to run CC actions
+        [actionRunner addChild:self.multiSampleEvent];
     }
     return self;
 }
@@ -91,14 +91,6 @@
         CCTintTo *tint2 = [CCTintTo actionWithDuration:1 red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
         [unit runAction:tint2];
     }
-    
-    [self.multiSampleEvent.samples enumerateKeysAndObjectsUsingBlock:^(NSNumber *time, SampleEvent *event, BOOL *stop) {
-        CCCallBlock *action = [CCCallBlock actionWithBlock:^{
-            [self.delegate receiveSampleEvent:event];
-        }];
-        CCSequence *seq = [CCSequence actions:[CCDelayTime actionWithDuration:[time floatValue]], action, nil];
-        [self runAction:seq];
-    }];
     
     return self.multiSampleEvent;
 }

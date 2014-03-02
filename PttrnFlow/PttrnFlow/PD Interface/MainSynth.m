@@ -114,6 +114,11 @@ static NSString *const kStageSample = @"stageSample";
             [PdBase sendBangToReceiver:receiver];
         }
         
+        if([event isKindOfClass:[MultiSampleEvent class]]) {
+            MultiSampleEvent *multiSample = (MultiSampleEvent *)event;
+            [multiSample scheduleSamples];
+        }
+        
         if ([event isKindOfClass:[AudioStopEvent class]]) {
             [PdBase sendFloat:[@0 floatValue] toReceiver:kAudioStop];
         }
@@ -137,7 +142,7 @@ static NSString *const kStageSample = @"stageSample";
     }
 }
 
-#pragma mark - DrumDelegate
+#pragma mark - MultiSampleEventDelegate
 
 - (void)receiveSampleEvent:(SampleEvent *)event
 {

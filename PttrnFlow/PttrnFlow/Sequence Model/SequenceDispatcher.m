@@ -106,7 +106,7 @@ static CGFloat kSequenceInterval = 0.5f;
 }
 
 - (void)stepUserSequence:(ccTime)dt
-{
+{    
     if (self.userSequenceIndex >= self.solutionEvents.count) {
         // use notification instead of stopUserSequence so SequenceControlsLayer can toggle button off
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationEndUserSequence object:nil];

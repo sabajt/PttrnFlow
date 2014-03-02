@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Drum.h"
+#import "MultiSampleEvent.h"
 
 typedef enum
 {
@@ -15,7 +15,7 @@ typedef enum
     PFSynthTypeOsc,
 } PFSynthType;
 
-@interface MainSynth : NSObject <DrumDelegate>
+@interface MainSynth : NSObject <MultiSampleEventDelegate>
 
 + (MainSynth *)sharedMainSynth;
 + (void)mute:(BOOL)mute;

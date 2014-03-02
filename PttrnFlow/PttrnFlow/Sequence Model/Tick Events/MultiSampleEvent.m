@@ -8,6 +8,13 @@
 
 #import "MultiSampleEvent.h"
 #import "SampleEvent.h"
+#import "MainSynth.h"
+
+@interface MultiSampleEvent ()
+
+@property (strong, nonatomic) NSMutableDictionary *samples;
+
+@end
 
 @implementation MultiSampleEvent
 
@@ -16,6 +23,7 @@
     self = [super init];
     if (self) {
         self.audioID = audioID;
+        self.delegate = [MainSynth sharedMainSynth];
         
         self.samples = [NSMutableDictionary dictionary];
         [timedSamplesData enumerateKeysAndObjectsUsingBlock:^(NSNumber *time, NSString *file, BOOL *stop) {
@@ -24,6 +32,19 @@
         }];
     }
     return self;
+}
+
+- (void)scheduleSamples
+{
+    // set up samples to be sent out with time delays
+    [self.samples enumerateKeysAndObjectsUsingBlock:^(NSNumber *time, SampleEvent *event, BOOL *stop) {
+        CCCallBlock *action = [CCCallBlock actionWithBlock:^{
+            [self.delegate receiveSampleEvent:event];
+        }];
+        CCSequence *seq = [CCSequence actions:[CCDelayTime actionWithDuration:[time floatValue]], action, nil];
+        [self runAction:seq];
+    }];
+
 }
 
 #pragma mark - Subclass hooks
