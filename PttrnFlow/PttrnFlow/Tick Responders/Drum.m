@@ -24,7 +24,7 @@
 
 @implementation Drum
 
-- (id)initWithCell:(Coord *)cell audioID:(NSNumber *)audioID data:(NSArray *)data isStatic:(BOOL)isStatic eventActionRunner:(CCNode *)actionRunner
+- (id)initWithCell:(Coord *)cell audioID:(NSNumber *)audioID data:(NSArray *)data isStatic:(BOOL)isStatic
 {
     self = [super initWithSpriteFrameName:@"drum_ring.png"];
     if (self) {
@@ -67,8 +67,6 @@
         }
         
         self.multiSampleEvent = [[MultiSampleEvent alloc] initWithAudioID:audioID timedSamplesData:[NSDictionary dictionaryWithDictionary:multiSampleData]];
-        // must add multi-sample as some child of running scene layer to run CC actions
-        [actionRunner addChild:self.multiSampleEvent];
     }
     return self;
 }

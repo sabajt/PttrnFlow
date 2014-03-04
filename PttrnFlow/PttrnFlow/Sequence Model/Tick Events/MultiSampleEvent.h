@@ -10,17 +10,10 @@
 
 @class SampleEvent;
 
-@protocol MultiSampleEventDelegate <NSObject>
-
-- (void)receiveSampleEvent:(SampleEvent *)event;
-
-@end
-
 @interface MultiSampleEvent : TickEvent
 
-@property (weak, nonatomic) id<MultiSampleEventDelegate> delegate;
+@property (strong, nonatomic) NSMutableDictionary *samples;
 
 - (id)initWithAudioID:(NSNumber *)audioID timedSamplesData:(NSDictionary *)timedSamplesData;
-- (void)scheduleSamples;
 
 @end

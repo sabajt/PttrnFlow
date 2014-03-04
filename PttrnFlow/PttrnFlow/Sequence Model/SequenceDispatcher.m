@@ -103,8 +103,6 @@ static CGFloat kSequenceInterval = 0.5f;
                 }
                 MultiSampleEvent *event = [[MultiSampleEvent alloc] initWithAudioID:audioID timedSamplesData:multiSampleData];
                 [currentSolution addObject:event];
-                // must add multi-sample as some child of running scene layer to run CC actions
-                [self addChild:event];
             }
         }
         [self.solutionEvents addObject:currentSolution];

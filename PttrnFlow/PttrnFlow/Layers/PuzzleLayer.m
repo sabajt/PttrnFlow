@@ -47,7 +47,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 @property (assign) CGRect puzzleBounds;
 @property (assign) CGSize screenSize;
 @property (assign) BOOL shouldDrawGrid; // debugging
-@property (strong, nonatomic) MainSynth *synth;
 
 @end
 
@@ -83,8 +82,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         // would be better to do figure out best practice and get screen size more explicitly
         self.screenSize = self.contentSize;
         
-        self.isTouchEnabled = NO;
-        
         // Initialize Pure Data stuff
         
         _dispatcher = [[PdDispatcher alloc] init];
@@ -113,12 +110,9 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         _audioObjectsBatchNode = audioObjectsBatch;
 
         // Setup
-        
+        [self addChild:[MainSynth sharedMainSynth]]; // must add main synth so it can run actions
         self.isTouchEnabled = YES;
-        
         self.backgroundLayer = backgroundLayer;
-        
-        self.synth = [[MainSynth alloc] init];
         
         NSArray *cells = [[PuzzleDataManager sharedManager] puzzleArea:sequence];
         
@@ -363,7 +357,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
                 for (NSDictionary *unit in drumsData) {
                     [allSampleNames addObject:unit[kFile]];
                 }
-                Drum *drum = [[Drum alloc] initWithCell:cell audioID:audioID data:drumsData isStatic:isStatic eventActionRunner:self];
+                Drum *drum = [[Drum alloc] initWithCell:cell audioID:audioID data:drumsData isStatic:isStatic];
                 [self.audioTouchDispatcher addResponder:drum];
                 [self.sequenceDispatcher addResponder:drum];
                 drum.position = cellCenter;

@@ -13,6 +13,6 @@
 
 @interface Drum : CCSprite <AudioResponder>
 
-- (id)initWithCell:(Coord *)cell audioID:(NSNumber *)audioID data:(NSArray *)data isStatic:(BOOL)isStatic eventActionRunner:(CCNode *)actionRunner;
+- (id)initWithCell:(Coord *)cell audioID:(NSNumber *)audioID data:(NSArray *)data isStatic:(BOOL)isStatic;
 
 @end

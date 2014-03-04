@@ -6,7 +6,7 @@
 //
 //
 
-#import <Foundation/Foundation.h>
+#import "cocos2d.h"
 #import "MultiSampleEvent.h"
 
 typedef enum
@@ -15,7 +15,7 @@ typedef enum
     PFSynthTypeOsc,
 } PFSynthType;
 
-@interface MainSynth : NSObject <MultiSampleEventDelegate>
+@interface MainSynth : CCNode
 
 + (MainSynth *)sharedMainSynth;
 + (void)mute:(BOOL)mute;

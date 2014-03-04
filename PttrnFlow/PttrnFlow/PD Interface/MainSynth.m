@@ -116,7 +116,15 @@ static NSString *const kStageSample = @"stageSample";
         
         if([event isKindOfClass:[MultiSampleEvent class]]) {
             MultiSampleEvent *multiSample = (MultiSampleEvent *)event;
-            [multiSample scheduleSamples];
+            
+            // set up samples to be recieved with time delays
+            [multiSample.samples enumerateKeysAndObjectsUsingBlock:^(NSNumber *time, SampleEvent *event, BOOL *stop) {
+                CCCallBlock *action = [CCCallBlock actionWithBlock:^{
+                    [self receiveEvents:@[event] ignoreAudioPad:YES];
+                }];
+                CCSequence *seq = [CCSequence actions:[CCDelayTime actionWithDuration:[time floatValue]], action, nil];
+                [self runAction:seq];
+            }];
         }
         
         if ([event isKindOfClass:[AudioStopEvent class]]) {
@@ -140,13 +148,6 @@ static NSString *const kStageSample = @"stageSample";
     if (onAudioPad) {
         [PdBase sendBangToReceiver:kTrigger];
     }
-}
-
-#pragma mark - MultiSampleEventDelegate
-
-- (void)receiveSampleEvent:(SampleEvent *)event
-{
-    [self receiveEvents:@[event] ignoreAudioPad:YES];
 }
 
 @end
