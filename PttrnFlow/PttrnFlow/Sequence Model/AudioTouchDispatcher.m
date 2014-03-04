@@ -24,12 +24,13 @@
 
 @implementation AudioTouchDispatcher
 
-- (id)init
+- (id)initWithBeatDuration:(CGFloat)duration
 {
     self = [super init];
     if (self) {
         _responders = [NSMutableArray array];
         _trackingTouches = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+        self.beatDuration = duration;
     }
     return self;
 }
@@ -63,7 +64,7 @@
         if (([cell isEqualToCoord:[responder audioCell]]) &&
             [responder respondsToSelector:@selector(audioRelease:)])
         {
-            [responder audioRelease:kBPM];
+            [responder audioRelease:1];
         }
     }
 }

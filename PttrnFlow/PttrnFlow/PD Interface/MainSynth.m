@@ -7,6 +7,8 @@
 //
 
 #import "MainSynth.h"
+
+#import "PuzzleDataManager.h"
 #import "PdDispatcher.h"
 #import "PuzzleLayer.h"
 #import "TickEvent.h"
@@ -122,7 +124,7 @@ static NSString *const kStageSample = @"stageSample";
                 CCCallBlock *action = [CCCallBlock actionWithBlock:^{
                     [self receiveEvents:@[event] ignoreAudioPad:YES];
                 }];
-                CCSequence *seq = [CCSequence actions:[CCDelayTime actionWithDuration:[time floatValue]], action, nil];
+                CCSequence *seq = [CCSequence actions:[CCDelayTime actionWithDuration:[time floatValue] * self.beatDuration], action, nil];
                 [self runAction:seq];
             }];
         }

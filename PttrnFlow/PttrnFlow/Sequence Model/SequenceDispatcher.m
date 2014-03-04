@@ -28,8 +28,6 @@ NSString *const kKeyCoord = @"coord";
 NSString *const kKeyCorrectHit = @"correctHit";
 NSString *const kKeyEmpty = @"empty";
 
-static CGFloat kSequenceInterval = 0.5f;
-
 @interface SequenceDispatcher ()
 
 @property (assign) NSInteger puzzle;
@@ -55,6 +53,7 @@ static CGFloat kSequenceInterval = 0.5f;
     if (self) {
         _puzzle = puzzle;
         _responders = [NSMutableArray array];
+        self.beatDuration = [[PuzzleDataManager sharedManager] puzzleBeatDuration:puzzle];
         [self createSolutionEvents:puzzle];
     }
     return self;
@@ -173,7 +172,7 @@ static CGFloat kSequenceInterval = 0.5f;
     self.userSequenceIndex = 0;
     self.currentCell = self.entry.cell;
     self.currentDirection = self.entry.direction;
-    [self schedule:@selector(stepUserSequence:) interval:kSequenceInterval];
+    [self schedule:@selector(stepUserSequence:) interval:self.beatDuration];
 }
 
 - (void)stopUserSequence
@@ -184,7 +183,7 @@ static CGFloat kSequenceInterval = 0.5f;
 - (void)startSolutionSequence
 {
     self.solutionSequenceIndex = 0;
-    [self schedule:@selector(stepSolutionSequence) interval:kSequenceInterval];
+    [self schedule:@selector(stepSolutionSequence) interval:self.beatDuration];
 }
 
 - (void)stopSolutionSequence

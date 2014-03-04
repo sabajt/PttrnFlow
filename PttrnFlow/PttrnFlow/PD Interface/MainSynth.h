@@ -17,8 +17,11 @@ typedef enum
 
 @interface MainSynth : CCNode
 
+@property (assign) CGFloat beatDuration;
+
 + (MainSynth *)sharedMainSynth;
 + (void)mute:(BOOL)mute;
+
 - (void)loadSamples:(NSArray *)samples;
 - (void)receiveEvents:(NSArray *)events ignoreAudioPad:(BOOL)ignoreAudioPad;
 

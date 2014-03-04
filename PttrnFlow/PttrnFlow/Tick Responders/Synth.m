@@ -50,10 +50,10 @@
     return self.cell;
 }
 
-- (TickEvent *)audioHit:(NSInteger)bpm
+- (TickEvent *)audioHit:(CGFloat)beatDuration
 {
     self.color = self.activeColor;
-    CCTintTo *tint = [CCTintTo actionWithDuration:1 red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
+    CCTintTo *tint = [CCTintTo actionWithDuration:beatDuration red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
     [self runAction:tint];
     
     return self.event;

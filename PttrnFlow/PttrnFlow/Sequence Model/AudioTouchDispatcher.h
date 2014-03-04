@@ -14,6 +14,7 @@
 @property (assign) BOOL allowScrolling;
 @property (strong, nonatomic) NSArray *areaCells;
 
+- (id)initWithBeatDuration:(CGFloat)duration;
 - (void)addResponder:(id<AudioResponder>)responder;
 - (void)clearResponders;
 

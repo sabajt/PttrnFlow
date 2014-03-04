@@ -6,11 +6,24 @@
 //
 //
 
-#import "NSObject+AudioResponderUtils.h"
 #import "AudioResponder.h"
 #import "Coord.h"
+#import "NSObject+AudioResponderUtils.h"
+#import <objc/runtime.h>
 
 @implementation NSObject (AudioResponderUtils)
+
+@dynamic beatDuration;
+
+- (void)setBeatDuration:(CGFloat)beatDuration
+{
+    objc_setAssociatedObject(self, @selector(beatDuration), @(beatDuration), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (CGFloat)beatDuration
+{
+    return [objc_getAssociatedObject(self, @selector(beatDuration)) floatValue];
+}
 
 - (NSArray *)responders:(NSArray *)responders atCoord:(Coord *)coord
 {
@@ -40,7 +53,7 @@
             return nil;
         }
 
-        events = [events arrayByAddingObject:[responder audioHit:kBPM]];
+        events = [events arrayByAddingObject:[responder audioHit:self.beatDuration]];
     }
     return events;
 }

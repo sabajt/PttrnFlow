@@ -28,7 +28,10 @@ FOUNDATION_EXPORT NSString *const kTime;
 
 + (PuzzleDataManager *)sharedManager;
 + (NSArray *)puzzleFileNames;
-- (NSInteger)puzzleBpm:(NSInteger)number;
+- (NSDictionary *)puzzleConfig;
+- (NSDictionary *)puzzleSet:(NSInteger)number;
+- (NSNumber *)puzzleBpm:(NSInteger)number;
+- (CGFloat)puzzleBeatDuration:(NSInteger)number;
 - (NSArray *)puzzleArea:(NSInteger)number;
 - (NSDictionary *)puzzle:(NSInteger)number audioID:(NSInteger)audioID;
 - (NSArray *)puzzleGlyphs:(NSInteger)number;

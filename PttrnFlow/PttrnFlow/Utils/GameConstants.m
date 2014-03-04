@@ -27,7 +27,6 @@ CGFloat const kSizeGridUnit = 68.0;
 CGFloat const kStatusBarHeight = 20.0;
 
 // duration
-NSInteger const kBPM = 120;
 ccTime const kTransitionDuration = 0.25;
 
 // notifications

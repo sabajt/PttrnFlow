@@ -30,7 +30,6 @@ FOUNDATION_EXPORT CGFloat const kSizeGridUnit;
 FOUNDATION_EXPORT CGFloat const kStatusBarHeight;
 
 // duration
-FOUNDATION_EXPORT NSInteger const kBPM;
 FOUNDATION_EXPORT ccTime const kTransitionDuration;
 
 // notifications

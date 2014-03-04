@@ -32,7 +32,9 @@ NSString *const kToneSecondary = @"tone_secondary";
 NSString *const kDrumPrimary = @"drum_primary";
 NSString *const kDrumSecondary = @"drum_secondary";
 
+static NSString *const kPuzzles = @"puzzles";
 static NSString *const kPuzzle = @"puzzle";
+static NSString *const kSets = @"sets";
 static NSString *const kBpm = @"bpm";
 static NSString *const kArea = @"area";
 static NSString *const kGlyphs = @"glyphs";
@@ -41,6 +43,7 @@ static NSString *const kSolution = @"solution";
 @interface PuzzleDataManager ()
 
 @property (strong, nonatomic) NSMutableDictionary *puzzles;
+@property (strong, nonatomic) NSDictionary *puzzleConfig;
 
 @end
 
@@ -76,25 +79,60 @@ static NSString *const kSolution = @"solution";
         NSData *data = [NSData dataWithContentsOfFile:path];
         NSError *error = nil;
         NSDictionary *puzzle = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        if (error != nil) {
-            CCLOG(@"error creating puzzle from json: %@", error);
-        }
+        NSAssert(error == nil, @"Failed to deserialize %@.json with error: %@", resource, error.description);
         self.puzzles[@(number)] = puzzle;
     }
     return self.puzzles[@(number)];
 }
 
-- (NSInteger)puzzleBpm:(NSInteger)number
+- (NSDictionary *)puzzleConfig
 {
-    NSDictionary *puzzle = [self puzzle:number];
-    return [puzzle[kBpm] integerValue];
+    if (!_puzzleConfig) {
+        NSString *resource = @"puzzleConfig";
+        NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:resource ofType:@"json"];
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        NSError *error;
+        _puzzleConfig = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        NSAssert(error == nil, @"Failed to deserialize %@.json with error: %@", resource, error.description);
+    }
+    return _puzzleConfig;
+}
+
+// returns the set of puzzles at specified index
+- (NSDictionary *)puzzleSet:(NSInteger)number
+{
+    return self.puzzleConfig[kSets][number];
+}
+
+// returns the set of puzzles that specified puzzle is part of
+- (NSDictionary *)puzzleSetForPuzzle:(NSInteger)number
+{
+    for (NSDictionary *s in self.puzzleConfig[kSets]) {
+        for (NSNumber *p in s[kPuzzles]) {
+            if ([p isEqualToNumber:@(number)]) {
+                return s;
+            }
+        }
+    }
+    CCLOG(@"Set not found for puzzle '%i' in puzzle config file", number);
+    return nil;
+}
+
+- (NSNumber *)puzzleBpm:(NSInteger)number
+{
+    return [self puzzleSetForPuzzle:number][kBpm];
+}
+
+// length of 1 beat, in seconds { e.g. 120 bpm = 1 second / ( 120 bpm / 60 fps ) = 0.5 seconds }
+- (CGFloat)puzzleBeatDuration:(NSInteger)number
+{
+    return 1.0f / ([[self puzzleBpm:number] floatValue] / 60.0f);
 }
 
 - (NSArray *)puzzleArea:(NSInteger)number
 {
-    NSDictionary *puzzle = [self puzzle:number];
     NSMutableArray *area = [NSMutableArray array];
-    for (NSArray *coordArray in puzzle[kArea]) {
+    for (NSArray *coordArray in [self puzzle:number][kArea]) {
         Coord *coord = [Coord coordWithX:[coordArray[0] integerValue] Y:[coordArray[1] integerValue]];
         [area addObject:coord];
     }

@@ -19,7 +19,7 @@
 // Triggered on touch down or step
 // Handle glyph actions here, like highlighting / animation
 // Responder may return and event to be processed as sound, or sequence logic
-- (TickEvent *)audioHit:(NSInteger)bpm;
+- (TickEvent *)audioHit:(CGFloat)beatDuration;
 
 @optional
 

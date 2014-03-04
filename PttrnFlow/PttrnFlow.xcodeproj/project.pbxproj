@@ -152,6 +152,8 @@
 		16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */; };
 		3302EF6E1879C92C0032AD58 /* PFGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302EF6D1879C92C0032AD58 /* PFGeometry.m */; };
 		330A57B818C27C5B00DC97B7 /* MultiSampleEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 330A57B718C27C5B00DC97B7 /* MultiSampleEvent.m */; };
+		330A580118C5A82A00DC97B7 /* puzzleConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 330A57FF18C5A82A00DC97B7 /* puzzleConfig.json */; };
+		330A580218C5A82A00DC97B7 /* puzzle6.json in Resources */ = {isa = PBXBuildFile; fileRef = 330A580018C5A82A00DC97B7 /* puzzle6.json */; };
 		3317322E1892A89D005435D9 /* ScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3317322D1892A89D005435D9 /* ScrollLayer.m */; };
 		332C199118C0D2150081FE1D /* Drum.m in Sources */ = {isa = PBXBuildFile; fileRef = 332C199018C0D2150081FE1D /* Drum.m */; };
 		3339C03118397638005771BC /* audioObjects-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02D18397638005771BC /* audioObjects-hd.plist */; };
@@ -556,6 +558,8 @@
 		3302EF6D1879C92C0032AD58 /* PFGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGeometry.m; sourceTree = "<group>"; };
 		330A57B618C27C5B00DC97B7 /* MultiSampleEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiSampleEvent.h; sourceTree = "<group>"; };
 		330A57B718C27C5B00DC97B7 /* MultiSampleEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiSampleEvent.m; sourceTree = "<group>"; };
+		330A57FF18C5A82A00DC97B7 /* puzzleConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzleConfig.json; sourceTree = "<group>"; };
+		330A580018C5A82A00DC97B7 /* puzzle6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle6.json; sourceTree = "<group>"; };
 		3317322C1892A89D005435D9 /* ScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollLayer.h; sourceTree = "<group>"; };
 		3317322D1892A89D005435D9 /* ScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollLayer.m; sourceTree = "<group>"; };
 		332C198F18C0D2150081FE1D /* Drum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drum.h; sourceTree = "<group>"; };
@@ -1373,6 +1377,8 @@
 		33BA5F1E185E3385005A0452 /* puzzles */ = {
 			isa = PBXGroup;
 			children = (
+				330A57FF18C5A82A00DC97B7 /* puzzleConfig.json */,
+				330A580018C5A82A00DC97B7 /* puzzle6.json */,
 				339ACE6F1884E23700F3D839 /* puzzle4.json */,
 				339ACE701884E23700F3D839 /* puzzle5.json */,
 				3350B17E186A39A100F3BE57 /* puzzle3.json */,
@@ -1521,6 +1527,7 @@
 				168FA4ED173A08C7004C26AD /* fps_images.png in Resources */,
 				168FA4EE173A08C7004C26AD /* Icon-72.png in Resources */,
 				335F5E2518BEE90000BF14DD /* marimba-59.wav in Resources */,
+				330A580218C5A82A00DC97B7 /* puzzle6.json in Resources */,
 				168FA4EF173A08C7004C26AD /* Icon-Small-50.png in Resources */,
 				335F5E1F18BEE90000BF14DD /* marimba-54.wav in Resources */,
 				335F5E2718BEE90000BF14DD /* marimba-61.wav in Resources */,
@@ -1553,6 +1560,7 @@
 				1693C661177A0C9300FEB350 /* drum1.wav in Resources */,
 				1693C662177A0C9300FEB350 /* drum2.wav in Resources */,
 				335F5E2618BEE90000BF14DD /* marimba-60.wav in Resources */,
+				330A580118C5A82A00DC97B7 /* puzzleConfig.json in Resources */,
 				33C3B1CB1874F591008F5FA8 /* pttrn1-02.wav in Resources */,
 				335F5E1E18BEE90000BF14DD /* marimba-53.wav in Resources */,
 				335F5E2918BEE90000BF14DD /* marimba-63.wav in Resources */,

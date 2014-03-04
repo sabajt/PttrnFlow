@@ -78,15 +78,15 @@
     return self.cell;
 }
 
-- (TickEvent *)audioHit:(NSInteger)bpm
+- (TickEvent *)audioHit:(CGFloat)beatDuration
 {
     self.color = self.activeColor;
-    CCTintTo *tint1 = [CCTintTo actionWithDuration:1 red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
+    CCTintTo *tint1 = [CCTintTo actionWithDuration:beatDuration red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
     [self runAction:tint1];
     
     for (CCSprite *unit in self.drumUnits) {
         unit.color = self.activeColor;
-        CCTintTo *tint2 = [CCTintTo actionWithDuration:1 red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
+        CCTintTo *tint2 = [CCTintTo actionWithDuration:beatDuration red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
         [unit runAction:tint2];
     }
     

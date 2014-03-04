@@ -12,6 +12,8 @@
 
 @interface NSObject (AudioResponderUtils)
 
+@property (assign) CGFloat beatDuration;
+
 - (NSArray *)responders:(NSArray *)responders atCoord:(Coord *)coord;
 - (NSArray *)hitResponders:(NSArray *)responders atCoord:(Coord *)coord;
 

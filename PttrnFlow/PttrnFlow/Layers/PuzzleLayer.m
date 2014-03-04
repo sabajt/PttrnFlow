@@ -40,7 +40,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 @interface PuzzleLayer ()
 
 @property (weak, nonatomic) BackgroundLayer *backgroundLayer;
-@property (assign) CGFloat beatDuration; // length of 1 beat, in seconds [e.g. 120bpm = 1 / ( 120 / 60 ) = 0.5 ]
 @property (assign) CGPoint gridOrigin; // TODO: using grid origin except for drawing debug grid?
 @property (assign) Coord *maxCoord;
 @property (weak, nonatomic) Synth *pressedSynth;
@@ -90,6 +89,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         if (!_patch) {
             CCLOG(@"Failed to open patch");
         }
+        [MainSynth sharedMainSynth].beatDuration = [[PuzzleDataManager sharedManager] puzzleBeatDuration:sequence];
         
         // Sprite sheet batch nodes
         
@@ -145,7 +145,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         CCLOG(@"scroll bounds: %@", NSStringFromCGRect(self.scrollBounds));
         
         // audio touch dispatcher
-        AudioTouchDispatcher *audioTouchDispatcher = [[AudioTouchDispatcher alloc] init];
+        CGFloat beatDuration = [[PuzzleDataManager sharedManager] puzzleBeatDuration:sequence];
+        AudioTouchDispatcher *audioTouchDispatcher = [[AudioTouchDispatcher alloc] initWithBeatDuration:beatDuration];
         self.audioTouchDispatcher = audioTouchDispatcher;
         self.scrollDelegate = audioTouchDispatcher;
         [audioTouchDispatcher clearResponders];
