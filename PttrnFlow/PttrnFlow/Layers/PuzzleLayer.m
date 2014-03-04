@@ -39,17 +39,17 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 
 @interface PuzzleLayer ()
 
-@property (assign) CGSize screenSize;
-@property (assign) Coord *maxCoord;
+@property (weak, nonatomic) BackgroundLayer *backgroundLayer;
+@property (assign) CGFloat beatDuration; // length of 1 beat, in seconds [e.g. 120bpm = 1 / ( 120 / 60 ) = 0.5 ]
 @property (assign) CGPoint gridOrigin; // TODO: using grid origin except for drawing debug grid?
+@property (assign) Coord *maxCoord;
+@property (weak, nonatomic) Synth *pressedSynth;
 @property (assign) CGRect puzzleBounds;
+@property (assign) CGSize screenSize;
 @property (assign) BOOL shouldDrawGrid; // debugging
 @property (strong, nonatomic) MainSynth *synth;
-@property (weak, nonatomic) Synth *pressedSynth;
-@property (weak, nonatomic) BackgroundLayer *backgroundLayer;
 
 @end
-
 
 @implementation PuzzleLayer
 
@@ -178,7 +178,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     static NSString *padBorderCornerInside = @"pad_border_corner_inside.png";
     static NSString *padBorderCornerOutside = @"pad_border_corner_outside.png";
 
-    // 0-base index against 1-base index grid size will give us the corner points to create border images
     for (NSInteger x = -1; x <= self.maxCoord.x; x++) {
         for (NSInteger y = -1; y <= self.maxCoord.y; y++) {
             
