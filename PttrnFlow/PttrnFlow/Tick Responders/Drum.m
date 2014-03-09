@@ -26,7 +26,7 @@
 
 - (id)initWithCell:(Coord *)cell audioID:(NSNumber *)audioID data:(NSArray *)data isStatic:(BOOL)isStatic
 {
-    self = [super initWithSpriteFrameName:@"drum_ring.png"];
+    self = [super initWithSpriteFrameName:@"audio_circle.png"];
     if (self) {
         self.defaultColor = [ColorUtils cream];
         self.activeColor = [ColorUtils activeYellow];
@@ -55,14 +55,16 @@
             audioUnit.color = [ColorUtils cream];
             
             // unit symbol
-            CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:unit[kImage]];
+            CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:@"tone_low_3.png"];
+//            CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:unit[kImage]];
             if (isStatic) {
                 unitSymbol.color = [ColorUtils dimPurple];
             }
             else {
                 unitSymbol.color = [ColorUtils defaultPurple];
             }
-            unitSymbol.position = ccp(audioUnit.contentSize.width / 2.0f, audioUnit.contentSize.height / 2.0f);
+            CGFloat symbolPadding = 2.0f;
+            unitSymbol.position = ccp(audioUnit.contentSize.width / 2.0f, audioUnit.contentSize.height / 2.0f + symbolPadding);
             
             [audioUnit addChild:unitSymbol];
             [container addChild:audioUnit];

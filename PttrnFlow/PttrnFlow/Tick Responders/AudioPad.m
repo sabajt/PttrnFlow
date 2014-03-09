@@ -10,6 +10,7 @@
 #import "CCNode+Grid.h"
 #import "GameConstants.h"
 #import "AudioPadEvent.h"
+#import "ColorUtils.h"
 
 @interface AudioPad ()
 
@@ -36,13 +37,14 @@
         
         self.event = [[AudioPadEvent alloc] init];
         
-        NSString *boxFrameName = @"audio_box_static.png";
-        if (!isStatic) {
-            boxFrameName = @"audio_box.png";
-        }
+        NSString *boxFrameName = @"audio_box.png";
         CCSprite *boxSprite = [CCSprite spriteWithSpriteFrameName:boxFrameName];
         boxSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
         [self addChild:boxSprite];
+        boxSprite.color = [ColorUtils defaultPurple];
+        if (isStatic) {
+            boxSprite.color = [ColorUtils dimPurple];
+        }
 
         // CCNode+Grid
         self.cell = cell;
