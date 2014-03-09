@@ -69,7 +69,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     // controls layer
     SequenceControlsLayer *uiLayer = [[SequenceControlsLayer alloc] initWithPuzzle:sequence delegate:puzzleLayer.sequenceDispatcher];
     [scene addChild:uiLayer z:1];
-    
+        
     return scene;
 }
 

@@ -41,6 +41,7 @@ static NSString *const kGlyphs = @"glyphs";
 static NSString *const kSolution = @"solution";
 
 static NSString *const kID = @"id";
+static NSString *const kKeyframes = @"keyframes";
 
 @interface PuzzleDataManager ()
 
@@ -72,7 +73,7 @@ static NSString *const kID = @"id";
     return [contents filteredArrayUsingPredicate:predicate];
 }
 
-#pragma mark - main puzzle info
+#pragma mark - main puzzle data
 
 - (NSDictionary *)puzzle:(NSInteger)puzzle
 {
@@ -136,10 +137,23 @@ static NSString *const kID = @"id";
     return _puzzleConfig;
 }
 
-// returns the set of puzzles at specified index
-- (NSDictionary *)puzzleSet:(NSInteger)puzzle
+- (NSDictionary *)puzzleMetaData:(NSInteger)puzzle
 {
-    return self.puzzleConfig[puzzle];
+    for (NSDictionary *s in self.puzzleConfig) {
+        for (NSDictionary *p in s[kPuzzles]) {
+            if ([p[kID] isEqualToNumber:@(puzzle)]) {
+                return p;
+            }
+        }
+    }
+    CCLOG(@"Set not found for puzzle '%i' in puzzle config file", puzzle);
+    return nil;
+}
+
+// returns the set of puzzles at specified set index
+- (NSDictionary *)puzzleSet:(NSInteger)sIndex
+{
+    return self.puzzleConfig[sIndex];
 }
 
 // returns the set of puzzles that specified puzzle is part of
@@ -165,6 +179,11 @@ static NSString *const kID = @"id";
 - (CGFloat)puzzleBeatDuration:(NSInteger)puzzle
 {
     return 1.0f / ([[self puzzleBpm:puzzle] floatValue] / 60.0f);
+}
+
+- (NSDictionary *)puzzleKeyframes:(NSInteger)puzzle
+{
+    return [self puzzleMetaData:puzzle][kKeyframes];
 }
 
 @end
