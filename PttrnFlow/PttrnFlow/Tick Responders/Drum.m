@@ -17,7 +17,7 @@
 
 @property (assign) ccColor3B defaultColor;
 @property (assign) ccColor3B activeColor;
-@property (strong, nonatomic) NSMutableArray *drumUnits;
+@property (strong, nonatomic) NSMutableArray *audioUnits;
 @property (strong, nonatomic) MultiSampleEvent *multiSampleEvent;
 
 @end
@@ -38,17 +38,23 @@
         
         // units (beats)
         NSMutableDictionary *multiSampleData = [NSMutableDictionary dictionary];
-        self.drumUnits = [NSMutableArray array];
+        self.audioUnits = [NSMutableArray array];
         for (NSDictionary *unit in data) {
-            CCSprite *drumUnit = [CCSprite spriteWithSpriteFrameName:@"drum_unit.png"];
-            drumUnit.color = [ColorUtils cream];
-    
-            CGFloat radius = self.contentSize.width / 2.0f;
-            NSNumber *time = unit[kTime];
-            CGFloat radians = (90.0f - ([time floatValue] * 360.0f)) * (M_PI / 180.0f);
-            CGPoint circularPos = ccp(cosf(radians) * radius, sinf(radians) * radius);
-            drumUnit.position = ccp((self.contentSize.width / 2.0f) + circularPos.x, (self.contentSize.height / 2.0f) + circularPos.y);
             
+            // container
+            CCSprite *container = [CCSprite spriteWithSpriteFrameName:@"audio_box_empty.png"];
+            NSNumber *time = unit[kTime];
+            container.rotation = 360.0f * [time floatValue];
+            container.position = ccp(self.contentSize.width / 2.0f, self.contentSize.height / 2.0f);
+            container.color = ccORANGE;
+            
+            // audio unit
+            CCSprite *audioUnit = [CCSprite spriteWithSpriteFrameName:@"audio_unit.png"];
+            static CGFloat unitPadding = 4.0f;
+            audioUnit.position = ccp(container.contentSize.width / 2, (container.contentSize.height - audioUnit.contentSize.height / 2) - unitPadding);
+            audioUnit.color = [ColorUtils cream];
+            
+            // unit symbol
             CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:unit[kImage]];
             if (isStatic) {
                 unitSymbol.color = [ColorUtils dimPurple];
@@ -56,11 +62,13 @@
             else {
                 unitSymbol.color = [ColorUtils defaultPurple];
             }
-            unitSymbol.position = ccp(drumUnit.contentSize.width / 2.0f, drumUnit.contentSize.height / 2.0f);
-            [drumUnit addChild:unitSymbol];
+            unitSymbol.position = ccp(audioUnit.contentSize.width / 2.0f, audioUnit.contentSize.height / 2.0f);
             
-            [self addChild:drumUnit];
-            [self.drumUnits addObject:drumUnit];
+            [audioUnit addChild:unitSymbol];
+            [container addChild:audioUnit];
+            [self addChild:container];
+
+            [self.audioUnits addObject:audioUnit];
             
             // add data for our multi-sample event
             multiSampleData[time] = unit[kFile];
@@ -84,7 +92,7 @@
     CCTintTo *tint1 = [CCTintTo actionWithDuration:beatDuration red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
     [self runAction:tint1];
     
-    for (CCSprite *unit in self.drumUnits) {
+    for (CCSprite *unit in self.audioUnits) {
         unit.color = self.activeColor;
         CCTintTo *tint2 = [CCTintTo actionWithDuration:beatDuration red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
         [unit runAction:tint2];
