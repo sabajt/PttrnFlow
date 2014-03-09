@@ -72,19 +72,56 @@ static NSString *const kID = @"id";
     return [contents filteredArrayUsingPredicate:predicate];
 }
 
-- (NSDictionary *)puzzle:(NSInteger)number
+#pragma mark - main puzzle info
+
+- (NSDictionary *)puzzle:(NSInteger)puzzle
 {
-    if (self.puzzles[@(number)] == nil) {
-        NSString *resource = [NSString stringWithFormat:@"%@%i", kPuzzle, number];
+    if (self.puzzles[@(puzzle)] == nil) {
+        NSString *resource = [NSString stringWithFormat:@"%@%i", kPuzzle, puzzle];
         NSString *path = [[NSBundle mainBundle] pathForResource:resource ofType:@".json"];
         NSData *data = [NSData dataWithContentsOfFile:path];
         NSError *error = nil;
-        NSDictionary *puzzle = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        NSDictionary *p = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         NSAssert(error == nil, @"Failed to deserialize %@.json with error: %@", resource, error.description);
-        self.puzzles[@(number)] = puzzle;
+        self.puzzles[@(puzzle)] = p;
     }
-    return self.puzzles[@(number)];
+    return self.puzzles[@(puzzle)];
 }
+
+- (NSArray *)puzzleArea:(NSInteger)puzzle
+{
+    NSMutableArray *area = [NSMutableArray array];
+    for (NSArray *coordArray in [self puzzle:puzzle][kArea]) {
+        Coord *coord = [Coord coordWithX:[coordArray[0] integerValue] Y:[coordArray[1] integerValue]];
+        [area addObject:coord];
+    }
+    return [NSArray arrayWithArray:area];
+}
+
+- (NSArray *)puzzleAudio:(NSInteger)puzzle
+{
+    NSDictionary *p = [self puzzle:puzzle];
+    return p[kAudio];
+}
+
+- (NSDictionary *)puzzle:(NSInteger)puzzle audioID:(NSInteger)audioID
+{
+    return [self puzzleAudio:puzzle][audioID];
+}
+
+- (NSArray *)puzzleGlyphs:(NSInteger)puzzle
+{
+    NSDictionary *p = [self puzzle:puzzle];
+    return p[kGlyphs];
+}
+
+- (NSArray *)puzzleSolution:(NSInteger)puzzle
+{
+    NSDictionary *p = [self puzzle:puzzle];
+    return p[kSolution];
+}
+
+#pragma mark - puzzle config
 
 - (NSArray *)puzzleConfig
 {
@@ -100,67 +137,34 @@ static NSString *const kID = @"id";
 }
 
 // returns the set of puzzles at specified index
-- (NSDictionary *)puzzleSet:(NSInteger)number
+- (NSDictionary *)puzzleSet:(NSInteger)puzzle
 {
-    return self.puzzleConfig[number];
+    return self.puzzleConfig[puzzle];
 }
 
 // returns the set of puzzles that specified puzzle is part of
-- (NSDictionary *)puzzleSetForPuzzle:(NSInteger)number
+- (NSDictionary *)puzzleSetForPuzzle:(NSInteger)puzzle
 {
     for (NSDictionary *s in self.puzzleConfig) {
         for (NSDictionary *p in s[kPuzzles]) {
-            if ([p[kID] isEqualToNumber:[NSNumber numberWithInteger:number]]) {
+            if ([p[kID] isEqualToNumber:@(puzzle)]) {
                 return s;
             }
         }
     }
-    CCLOG(@"Set not found for puzzle '%i' in puzzle config file", number);
+    CCLOG(@"Set not found for puzzle '%i' in puzzle config file", puzzle);
     return nil;
 }
 
-- (NSNumber *)puzzleBpm:(NSInteger)number
+- (NSNumber *)puzzleBpm:(NSInteger)puzzle
 {
-    return [self puzzleSetForPuzzle:number][kBpm];
+    return [self puzzleSetForPuzzle:puzzle][kBpm];
 }
 
 // length of 1 beat, in seconds { e.g. 120 bpm = 1 second / ( 120 bpm / 60 fps ) = 0.5 seconds }
-- (CGFloat)puzzleBeatDuration:(NSInteger)number
+- (CGFloat)puzzleBeatDuration:(NSInteger)puzzle
 {
-    return 1.0f / ([[self puzzleBpm:number] floatValue] / 60.0f);
-}
-
-- (NSArray *)puzzleArea:(NSInteger)number
-{
-    NSMutableArray *area = [NSMutableArray array];
-    for (NSArray *coordArray in [self puzzle:number][kArea]) {
-        Coord *coord = [Coord coordWithX:[coordArray[0] integerValue] Y:[coordArray[1] integerValue]];
-        [area addObject:coord];
-    }
-    return [NSArray arrayWithArray:area];
-}
-
-- (NSArray *)puzzleAudio:(NSInteger)number
-{
-    NSDictionary *puzzle = [self puzzle:number];
-    return puzzle[kAudio];
-}
-
-- (NSDictionary *)puzzle:(NSInteger)number audioID:(NSInteger)audioID
-{
-    return [self puzzleAudio:number][audioID];
-}
-
-- (NSArray *)puzzleGlyphs:(NSInteger)number
-{
-    NSDictionary *puzzle = [self puzzle:number];
-    return puzzle[kGlyphs];
-}
-
-- (NSArray *)puzzleSolution:(NSInteger)number
-{
-    NSDictionary *puzzle = [self puzzle:number];
-    return puzzle[kSolution];
+    return 1.0f / ([[self puzzleBpm:puzzle] floatValue] / 60.0f);
 }
 
 @end
