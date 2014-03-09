@@ -1,32 +1,64 @@
-{
-	"sets" : 
-	[
-		{
-			"bpm" : 120,
-			"puzzles" :
-			[
-				0,
-				1,
-				2
-			],
-		},
-		{
-			"bpm" : 160,
-			"puzzles" :
-			[
-				3,
-				4
-			],
-		},
-		{
-			"bpm" : 90,
-			"puzzles" :
-			[
-				5,
-				6,
-				7,
-				8
-			],
-		},
-	],
-}
+[
+	{
+		"title" : "puzzle set 1",
+		"bpm" : 120,
+		"length" : 16,
+		"puzzles" : 
+		[	
+			{
+				"id" : 0,
+				"keyframes" :
+				[
+					{ "source_index" : 0, "target_index" : 0, "range" : 4 },
+					{ "source_index" : 0, "target_index" : 8, "range" : 4 } 
+				]
+			},
+			{
+				"id" : 1,
+				"keyframes" :
+				[
+					{ "source_index" : 0, "target_index" : 0, "range" : 16 },
+				]
+			},
+			{
+				"id" : 2,
+				"keyframes" :
+				[
+					{ "source_index" : 2, "target_index" : 0, "range" : 5 },
+					{ "source_index" : 0, "target_index" : 8, "range" : 4 } 
+				]
+			},
+		],
+	},
+	{
+		"title" : "puzzle set 2",
+		"bpm" : 160,
+		"length" : 16,
+		"puzzles" :
+		[
+			{
+				"id" : 3,
+				"keyframes" :
+				[
+					{ "source_index" : 0, "target_index" : 0, "range" : 4 },
+					{ "source_index" : 0, "target_index" : 8, "range" : 4 } 
+				]
+			},
+			{
+				"id" : 4,
+				"keyframes" :
+				[
+					{ "source_index" : 0, "target_index" : 0, "range" : 16 },
+				]
+			},
+			{
+				"id" : 5,
+				"keyframes" :
+				[
+					{ "source_index" : 2, "target_index" : 0, "range" : 5 },
+					{ "source_index" : 0, "target_index" : 8, "range" : 4 } 
+				]
+			},
+		],
+	}
+]

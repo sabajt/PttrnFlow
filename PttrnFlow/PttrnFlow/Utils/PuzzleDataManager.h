@@ -26,9 +26,10 @@ FOUNDATION_EXPORT NSString *const kTime;
 
 @interface PuzzleDataManager : NSObject
 
+@property (strong, nonatomic) NSArray *puzzleConfig;
+
 + (PuzzleDataManager *)sharedManager;
 + (NSArray *)puzzleFileNames;
-- (NSDictionary *)puzzleConfig;
 - (NSDictionary *)puzzleSet:(NSInteger)number;
 - (NSNumber *)puzzleBpm:(NSInteger)number;
 - (CGFloat)puzzleBeatDuration:(NSInteger)number;

@@ -40,10 +40,11 @@ static NSString *const kArea = @"area";
 static NSString *const kGlyphs = @"glyphs";
 static NSString *const kSolution = @"solution";
 
+static NSString *const kID = @"id";
+
 @interface PuzzleDataManager ()
 
 @property (strong, nonatomic) NSMutableDictionary *puzzles;
-@property (strong, nonatomic) NSDictionary *puzzleConfig;
 
 @end
 
@@ -85,7 +86,7 @@ static NSString *const kSolution = @"solution";
     return self.puzzles[@(number)];
 }
 
-- (NSDictionary *)puzzleConfig
+- (NSArray *)puzzleConfig
 {
     if (!_puzzleConfig) {
         NSString *resource = @"puzzleConfig";
@@ -101,15 +102,15 @@ static NSString *const kSolution = @"solution";
 // returns the set of puzzles at specified index
 - (NSDictionary *)puzzleSet:(NSInteger)number
 {
-    return self.puzzleConfig[kSets][number];
+    return self.puzzleConfig[number];
 }
 
 // returns the set of puzzles that specified puzzle is part of
 - (NSDictionary *)puzzleSetForPuzzle:(NSInteger)number
 {
-    for (NSDictionary *s in self.puzzleConfig[kSets]) {
-        for (NSNumber *p in s[kPuzzles]) {
-            if ([p isEqualToNumber:@(number)]) {
+    for (NSDictionary *s in self.puzzleConfig) {
+        for (NSDictionary *p in s[kPuzzles]) {
+            if ([p[kID] isEqualToNumber:[NSNumber numberWithInteger:number]]) {
                 return s;
             }
         }
