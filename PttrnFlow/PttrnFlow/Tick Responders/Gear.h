@@ -1,5 +1,5 @@
 //
-//  Drum.h
+//  Gear.h
 //  PttrnFlow
 //
 //  Created by John Saba on 2/28/14.
@@ -11,7 +11,7 @@
 
 @class SampleEvent;
 
-@interface Drum : CCSprite <AudioResponder>
+@interface Gear : CCSprite <AudioResponder>
 
 - (id)initWithCell:(Coord *)cell audioID:(NSNumber *)audioID data:(NSArray *)data isStatic:(BOOL)isStatic;
 

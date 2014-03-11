@@ -5,24 +5,35 @@
           [0, 1],
           [0, 2],
           [0, 3],
+          [0, 4],
           [1, 0],
+          [1, 1],
           [1, 2],
           [1, 3],
+          [1, 4],
           [2, 0],
           [2, 1],
+          [2, 2],
           [2, 3],
+          [2, 4],
           [3, 0],
+          [3, 1],
           [3, 3],
+          [3, 4],
+          [4, 0],
           [4, 1],
           [4, 2],
           [4, 3],
           [4, 4],
-          [5, 4]
+          [5, 2],
+          [6, 2],
+          [7, 2]
      ],
      "audio" :
      [
           {
-               "drums" : 
+               "id" : 0,
+               "samples" :
                [
                     {
                          "file" : "marimba-54.wav",
@@ -37,7 +48,8 @@
                ]
           },
           {
-               "drums" : 
+               "id" : 1,
+               "samples" :
                [
                     {
                          "file" : "marimba-54.wav",
@@ -52,7 +64,8 @@
                ]
           },
           {
-               "drums" : 
+               "id" : 2,
+               "samples" :
                [
                     {
                          "file" : "marimba-55.wav",
@@ -62,7 +75,8 @@
                ]
           },
           {
-               "drums" : 
+               "id" : 3,
+               "samples" :
                [
                     {
                          "file" : "marimba-54.wav",
@@ -82,44 +96,75 @@
                ]
           },
           {
-               "tone" :
-               {
-                    "file" : "marimba-48.wav",
-                    "image" : "tone_primary_1_5.png",
-                    "decorator" : "marimba-decorator.png"
-               }
-          },
+               "id" : 4,
+               "samples" :
+               [
                     {
-               "tone" :
-               {
-                    "file" : "marimba-51.wav",
-                    "image" : "tone_primary_2_5.png",
-                    "decorator" : "marimba-decorator.png"
-               }
+                         "file" : "marimba-48.wav",
+                         "image" : "tone_low_5.png",
+                         "time" : 0.0
+                    }
+               ]
+               
           },
           {
-               "tone" :
-               {
-                    "file" : "marimba-53.wav",
-                    "image" : "tone_primary_3_5.png",
-                    "decorator" : "marimba-decorator.png"
-               }
+               "id" : 5,
+               "samples" :
+               [
+                    {
+                         "file" : "marimba-49.wav",
+                         "image" : "tone_low_4.png",
+                         "time" : 0.0
+                    }
+               ]    
           },
           {
-               "tone" :
-               {
-                    "file" : "marimba-56.wav",
-                    "image" : "tone_primary_4_5.png",
-                    "decorator" : "marimba-decorator.png"
-               }
+               "id" : 6,
+               "samples" :
+               [
+                    {
+                         "file" : "marimba-50.wav",
+                         "image" : "tone_low_3.png",
+                         "time" : 0.0
+                    }
+               ]
           },
           {
-               "tone" :
-               {
-                    "file" : "marimba-60.wav",
-                    "image" : "tone_primary_full.png",
-                    "decorator" : "marimba-decorator.png"
-               }
+               "id" : 7,
+               "samples" :
+               [
+                    {
+                         "file" : "marimba-51.wav",
+                         "image" : "tone_low_2.png",
+                         "time" : 0.0
+                    }
+               ]
+          },
+          {
+               "id" : 8,
+               "samples" :
+               [
+                    {
+                         "file" : "marimba-55.wav",
+                         "image" : "tone_low_12.png",
+                         "time" : 0.0
+                    },
+                    {
+                         "file" : "marimba-57.wav",
+                         "image" : "tone_low_10.png",
+                         "time" : 0.25
+                    },
+                    {
+                         "file" : "marimba-59.wav",
+                         "image" : "tone_low_8.png",
+                         "time" : 0.5
+                    },
+                    {
+                         "file" : "marimba-61.wav",
+                         "image" : "tone_low_6.png",
+                         "time" : 0.75
+                    }
+               ]
           },
      ],
      "glyphs" :
@@ -128,34 +173,49 @@
                "static" : 0,
                "cell" : [0, 0],
                "entry" : "right",
+               "audio" : 0
+          },
+          {
+               "static" : 0,
+               "cell" : [0, 1],
+               "arrow" : "up",
+               "audio" : 1
+          },
+          {
+               "static" : 1,
+               "cell" : [0, 2],
+               "arrow" : "left",
+               "audio" : 2
+          },
+          {
+               "static" : 1,
+               "cell" : [0, 3],
+               "audio" : 3
+          },
+          {
+               "static" : 0,
+               "cell" : [0, 4],
                "audio" : 4
           },
           {
                "static" : 0,
                "cell" : [1, 0],
-               "arrow" : "up",
                "audio" : 5
           },
           {
-               "static" : 1,
-               "cell" : [2, 1],
-               "arrow" : "left",
-               "audio" : 0
+               "static" : 0,
+               "cell" : [1, 1],
+               "audio" : 6
           },
           {
-               "static" : 1,
-               "cell" : [3, 0],
-               "audio" : 1
+               "static" : 0,
+               "cell" : [1, 2],
+               "audio" : 7
           },
           {
                "static" : 0,
                "cell" : [1, 3],
-               "audio" : 2
-          },
-          {
-               "static" : 0,
-               "cell" : [2, 3],
-               "audio" : 3
+               "audio" : 8
           }
      ],
      "solution" :

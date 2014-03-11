@@ -14,8 +14,7 @@ FOUNDATION_EXPORT NSString *const kArrow;
 FOUNDATION_EXPORT NSString *const kEntry;
 FOUNDATION_EXPORT NSString *const kAudio;
 
-FOUNDATION_EXPORT NSString *const kTone;
-FOUNDATION_EXPORT NSString *const kDrums;
+FOUNDATION_EXPORT NSString *const kSamples;
 
 FOUNDATION_EXPORT NSString *const kSynth;
 FOUNDATION_EXPORT NSString *const kMidi;

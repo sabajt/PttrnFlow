@@ -12,7 +12,7 @@
 #import "BackgroundLayer.h"
 #import "ColorUtils.h"
 #import "Coord.h"
-#import "Drum.h"
+#import "Gear.h"
 #import "Entry.h"
 #import "GameConstants.h"
 #import "MainSynth.h"
@@ -20,7 +20,6 @@
 #import "PFGeometry.h"
 #import "PuzzleDataManager.h"
 #import "PuzzleLayer.h"
-#import "Sample.h"
 #import "SequenceControlsLayer.h"
 #import "SequenceDispatcher.h"
 #import "SimpleAudioEngine.h"
@@ -322,50 +321,17 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             NSDictionary *audioData = [[PuzzleDataManager sharedManager] puzzle:puzzle audioID:[audioID integerValue]];
             NSAssert(audioData != nil, @"No audio data found for audio id: %@", audioID);
             
-            NSDictionary *toneData = audioData[kTone];
-            NSArray *drumsData = audioData[kDrums];
+            NSArray *samplesData = audioData[kSamples];
             
-            if (toneData) {
-                NSString *fileName = toneData[kFile];
-                NSString *synthName = toneData[kSynth];
-                NSNumber *midi = toneData[kMidi];
-                NSString *imageName = toneData[kImage];
-                NSString *decoratorImageName = toneData[kDecorator];
-                
-                // pd synth tonal instrument
-                if (synthName && midi) {
-                    Synth *synth = [[Synth alloc] initWithCell:cell audioID:audioID synth:synthName midi:midi image:imageName decorator:decoratorImageName];
-                    [self.audioTouchDispatcher addResponder:synth];
-                    [self.sequenceDispatcher addResponder:synth];
-                    synth.position = cellCenter;
-                    [self.audioObjectsBatchNode addChild:synth z:ZOrderAudioBatchGlyph];
-                }
-                // sample-based tonal instrument
-                else if (fileName) {
-                    [allSampleNames addObject:fileName];
-                    Sample *sample = [[Sample alloc] initWithCell:cell audioID:audioID image:imageName file:fileName];
-                    [self.audioTouchDispatcher addResponder:sample];
-                    [self.sequenceDispatcher addResponder:sample];
-                    sample.position = cellCenter;
-                    [self.audioObjectsBatchNode addChild:sample z:ZOrderAudioBatchGlyph];
-                }
-                else {
-                    CCLOG(@"\n\nWARNING: tone data is not formatted correctly: \n%@\n\n", toneData);
-                }
-            }
-            // a percussion instrument
-            else if (drumsData) {
-                for (NSDictionary *unit in drumsData) {
+            if (samplesData) {
+                for (NSDictionary *unit in samplesData) {
                     [allSampleNames addObject:unit[kFile]];
                 }
-                Drum *drum = [[Drum alloc] initWithCell:cell audioID:audioID data:drumsData isStatic:isStatic];
+                Gear *drum = [[Gear alloc] initWithCell:cell audioID:audioID data:samplesData isStatic:isStatic];
                 [self.audioTouchDispatcher addResponder:drum];
                 [self.sequenceDispatcher addResponder:drum];
                 drum.position = cellCenter;
                 [self.audioObjectsBatchNode addChild:drum z:ZOrderAudioBatchGlyph];
-            }
-            else {
-                CCLOG(@"\n\nWARNING: audio data does not contain supported types '%@' or '%@':\n%@\n\n", kTone, kDrums, audioData);
             }
         }
         

@@ -79,25 +79,11 @@ NSString *const kKeyEmpty = @"empty";
         
         for (NSNumber *audioID in s) {
             NSDictionary *data = [[PuzzleDataManager sharedManager] puzzle:puzzle audioID:[audioID integerValue]];
-            NSDictionary *tone = data[kTone];
-            NSDictionary *drums = data[kDrums];
+            NSDictionary *samples = data[kSamples];
             
-            if (tone) {
-                NSString *file = tone[kFile];
-                NSString *synth = tone[kSynth];
-                NSNumber *midi = tone[kMidi];
-                if (file) {
-                    SampleEvent *event = [[SampleEvent alloc] initWithAudioID:audioID sampleName:file];
-                    [currentSolution addObject:event];
-                }
-                else if (synth && midi) {
-                    SynthEvent *event = [[SynthEvent alloc] initWithAudioID:audioID midiValue:[midi stringValue] synthType:synth];
-                    [currentSolution addObject:event];
-                }
-            }
-            else if (drums) {
+            if (samples) {
                 NSMutableDictionary *multiSampleData = [NSMutableDictionary dictionary];
-                for (NSDictionary *unit in drums) {
+                for (NSDictionary *unit in samples) {
                     multiSampleData[unit[kTime]] = unit[kFile];
                 }
                 MultiSampleEvent *event = [[MultiSampleEvent alloc] initWithAudioID:audioID timedSamplesData:multiSampleData];

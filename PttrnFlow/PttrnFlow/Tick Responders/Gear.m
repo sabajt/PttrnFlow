@@ -1,5 +1,5 @@
 //
-//  Drum.m
+//  Gear.m
 //  PttrnFlow
 //
 //  Created by John Saba on 2/28/14.
@@ -8,12 +8,12 @@
 
 #import "ColorUtils.h"
 #import "CCNode+Grid.h"
-#import "Drum.h"
+#import "Gear.h"
 #import "PuzzleDataManager.h"
 #import "MultiSampleEvent.h"
 #import "MainSynth.h"
 
-@interface Drum ()
+@interface Gear ()
 
 @property (assign) ccColor3B defaultColor;
 @property (assign) ccColor3B activeColor;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation Drum
+@implementation Gear
 
 - (id)initWithCell:(Coord *)cell audioID:(NSNumber *)audioID data:(NSArray *)data isStatic:(BOOL)isStatic
 {
@@ -55,8 +55,7 @@
             audioUnit.color = [ColorUtils cream];
             
             // unit symbol
-            CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:@"tone_low_3.png"];
-//            CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:unit[kImage]];
+            CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:unit[kImage]];
             if (isStatic) {
                 unitSymbol.color = [ColorUtils dimPurple];
             }

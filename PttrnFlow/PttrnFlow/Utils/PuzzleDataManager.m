@@ -15,8 +15,7 @@ NSString *const kArrow = @"arrow";
 NSString *const kEntry = @"entry";
 NSString *const kAudio = @"audio";
 
-NSString *const kTone = @"tone";
-NSString *const kDrums = @"drums";
+NSString *const kSamples = @"samples";
 
 NSString *const kSynth = @"synth";
 NSString *const kMidi = @"midi";
@@ -26,11 +25,6 @@ NSString *const kDecorator = @"decorator";
 NSString *const kTime = @"time";
 
 NSString *const kImageSet = @"image_set";
-
-NSString *const kTonePrimary = @"tone_primary";
-NSString *const kToneSecondary = @"tone_secondary";
-NSString *const kDrumPrimary = @"drum_primary";
-NSString *const kDrumSecondary = @"drum_secondary";
 
 static NSString *const kPuzzles = @"puzzles";
 static NSString *const kPuzzle = @"puzzle";
