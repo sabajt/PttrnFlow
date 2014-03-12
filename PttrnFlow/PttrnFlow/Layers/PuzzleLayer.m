@@ -39,6 +39,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 @interface PuzzleLayer ()
 
 @property (weak, nonatomic) BackgroundLayer *backgroundLayer;
+@property (assign) CGFloat beatDuration;
 @property (assign) CGPoint gridOrigin; // TODO: using grid origin except for drawing debug grid?
 @property (assign) Coord *maxCoord;
 @property (weak, nonatomic) Synth *pressedSynth;
@@ -88,7 +89,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         if (!_patch) {
             CCLOG(@"Failed to open patch");
         }
-        [MainSynth sharedMainSynth].beatDuration = [[PuzzleDataManager sharedManager] puzzleBeatDuration:sequence];
+        self.beatDuration = [[PuzzleDataManager sharedManager] puzzleBeatDuration:sequence];
+        [MainSynth sharedMainSynth].beatDuration = self.beatDuration;
         
         // Sprite sheet batch nodes
         
@@ -366,8 +368,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     CCCallBlock *completion = [CCCallBlock actionWithBlock:^{
         [highlightSprite removeFromParentAndCleanup:YES];
     }];
-    CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1];
-    [highlightSprite runAction:[CCSequence actions:fadeOut, completion, nil]];
+    CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:self.beatDuration];
+    [highlightSprite runAction:[CCSequence actions:[CCEaseSineOut actionWithAction:fadeOut], completion, nil]];
 }
 
 #pragma mark - scene management

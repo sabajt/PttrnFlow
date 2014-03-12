@@ -91,13 +91,16 @@
 {
     self.color = self.activeColor;
     CCTintTo *tint1 = [CCTintTo actionWithDuration:beatDuration red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
-    [self runAction:tint1];
+    [self runAction:[CCEaseSineOut actionWithAction:tint1]];
     
     for (CCSprite *unit in self.audioUnits) {
         unit.color = self.activeColor;
         CCTintTo *tint2 = [CCTintTo actionWithDuration:beatDuration red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
-        [unit runAction:tint2];
+        [unit runAction:[CCEaseSineOut actionWithAction:tint2]];
     }
+    
+    CCRotateBy *rotate = [CCRotateBy actionWithDuration:beatDuration angle:360.0f];
+    [self runAction:[CCEaseSineOut actionWithAction:rotate]];
     
     return self.multiSampleEvent;
 }

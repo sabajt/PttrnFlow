@@ -58,7 +58,7 @@
 - (TickEvent *)audioHit:(CGFloat)beatDuration
 {
     CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:beatDuration];
-    [self.highlightSprite runAction:fadeOut];
+    [self.highlightSprite runAction:[CCEaseSineOut actionWithAction:fadeOut]];
     
     return self.event;
 }

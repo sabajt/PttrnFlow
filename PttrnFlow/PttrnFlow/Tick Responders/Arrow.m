@@ -63,7 +63,7 @@
 {
     self.color = self.activeColor;
     CCTintTo *tint = [CCTintTo actionWithDuration:beatDuration red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
-    [self runAction:tint];
+    [self runAction:[CCEaseSineOut actionWithAction:tint]];
     
     return self.event;
 }
