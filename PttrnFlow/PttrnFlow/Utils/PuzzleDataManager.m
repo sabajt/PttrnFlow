@@ -72,7 +72,7 @@ static NSString *const kKeyframes = @"keyframes";
 - (NSDictionary *)puzzle:(NSInteger)puzzle
 {
     if (self.puzzles[@(puzzle)] == nil) {
-        NSString *resource = [NSString stringWithFormat:@"%@%i", kPuzzle, puzzle];
+        NSString *resource = [NSString stringWithFormat:@"%@%ld", kPuzzle, (long)puzzle];
         NSString *path = [[NSBundle mainBundle] pathForResource:resource ofType:@".json"];
         NSData *data = [NSData dataWithContentsOfFile:path];
         NSError *error = nil;
@@ -140,7 +140,7 @@ static NSString *const kKeyframes = @"keyframes";
             }
         }
     }
-    CCLOG(@"Set not found for puzzle '%i' in puzzle config file", puzzle);
+    CCLOG(@"Set not found for puzzle '%ld' in puzzle config file", (long)puzzle);
     return nil;
 }
 
@@ -160,7 +160,7 @@ static NSString *const kKeyframes = @"keyframes";
             }
         }
     }
-    CCLOG(@"Set not found for puzzle '%i' in puzzle config file", puzzle);
+    CCLOG(@"Set not found for puzzle '%ld' in puzzle config file", (long)puzzle);
     return nil;
 }
 
