@@ -41,7 +41,7 @@ NSString *const kKeyEmpty = @"empty";
  audio events representing solutions at index - ex:
  [ [ event, event ], [ event ], [ event ], [ event, event] ]
  */
-@property (strong, nonatomic) NSMutableArray *solutionEvents;
+@property (strong, nonatomic) NSArray *solutionEvents;
 
 @end
 
@@ -54,7 +54,7 @@ NSString *const kKeyEmpty = @"empty";
         _puzzle = puzzle;
         _responders = [NSMutableArray array];
         self.beatDuration = [[PuzzleDataManager sharedManager] puzzleBeatDuration:puzzle];
-        [self createSolutionEvents:puzzle];
+        self.solutionEvents = [TickEvent puzzleSolutionEvents:puzzle];
     }
     return self;
 }
@@ -67,31 +67,6 @@ NSString *const kKeyEmpty = @"empty";
 - (void)clearResponders
 {
     [self.responders removeAllObjects];
-}
-
-- (void)createSolutionEvents:(NSInteger)puzzle
-{
-    self.solutionEvents = [NSMutableArray array];
-    NSArray *solution = [[PuzzleDataManager sharedManager] puzzleSolution:puzzle];
-
-    for (NSDictionary *s in solution) {
-        NSMutableArray *currentSolution = [NSMutableArray array];
-        
-        for (NSNumber *audioID in s) {
-            NSDictionary *data = [[PuzzleDataManager sharedManager] puzzle:puzzle audioID:[audioID integerValue]];
-            NSDictionary *samples = data[kSamples];
-            
-            if (samples) {
-                NSMutableDictionary *multiSampleData = [NSMutableDictionary dictionary];
-                for (NSDictionary *unit in samples) {
-                    multiSampleData[unit[kTime]] = unit[kFile];
-                }
-                MultiSampleEvent *event = [[MultiSampleEvent alloc] initWithAudioID:audioID timedSamplesData:multiSampleData];
-                [currentSolution addObject:event];
-            }
-        }
-        [self.solutionEvents addObject:currentSolution];
-    }
 }
 
 - (void)stepUserSequence:(ccTime)dt

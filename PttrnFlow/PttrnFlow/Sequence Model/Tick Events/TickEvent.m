@@ -6,14 +6,17 @@
 //
 //
 
-#import "TickEvent.h"
 #import "cocos2d.h"
+#import "MultiSampleEvent.h"
 #import "NSArray+CompareStrings.h"
+#import "PuzzleDataManager.h"
+#import "TickEvent.h"
 
 NSString *const kChannelNone = @"ChannelNone";
 
 @implementation NSArray (TickEvents)
 
+// TODO: this could be abstracted out to a catagory with 'equals object' protocol
 - (BOOL)hasSameNumberOfSameEvents:(NSArray *)events
 {
     if (self.count == 0) {
@@ -64,6 +67,32 @@ NSString *const kChannelNone = @"ChannelNone";
 @end
 
 @implementation TickEvent
+
++ (NSArray *)puzzleSolutionEvents:(NSInteger)puzzle
+{
+    NSMutableArray *solutionEvents = [NSMutableArray array];
+    NSArray *solution = [[PuzzleDataManager sharedManager] puzzleSolution:puzzle];
+    
+    for (NSDictionary *s in solution) {
+        NSMutableArray *events = [NSMutableArray array];
+        
+        for (NSNumber *audioID in s) {
+            NSDictionary *data = [[PuzzleDataManager sharedManager] puzzle:puzzle audioID:[audioID integerValue]];
+            NSDictionary *samples = data[kSamples];
+            
+            if (samples) {
+                NSMutableDictionary *multiSampleData = [NSMutableDictionary dictionary];
+                for (NSDictionary *unit in samples) {
+                    multiSampleData[unit[kTime]] = unit[kFile];
+                }
+                MultiSampleEvent *event = [[MultiSampleEvent alloc] initWithAudioID:audioID timedSamplesData:multiSampleData];
+                [events addObject:event];
+            }
+        }
+        [solutionEvents addObject:events];
+    }
+    return solutionEvents;
+}
 
 #pragma mark - Subclass hooks
 

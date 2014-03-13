@@ -21,6 +21,8 @@ FOUNDATION_EXPORT NSString *const kChannelNone;
 
 @property (strong, nonatomic) NSNumber *audioID;
 
++ (NSArray *)puzzleSolutionEvents:(NSInteger)puzzle;
+
 - (NSString *)eventDescription;
 
 @end
