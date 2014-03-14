@@ -23,6 +23,12 @@ FOUNDATION_EXPORT NSString *const kImage;
 FOUNDATION_EXPORT NSString *const kDecorator;
 FOUNDATION_EXPORT NSString *const kTime;
 
+FOUNDATION_EXPORT NSString *const kPuzzleDataManagerSourceIndex;
+FOUNDATION_EXPORT NSString *const kPuzzleDataManagerTargetIndex;
+FOUNDATION_EXPORT NSString *const kPuzzleDataManagerRange;
+FOUNDATION_EXPORT NSString *const kPuzzleDataManagerStart;
+FOUNDATION_EXPORT NSString *const kPuzzleDataManagerLength;
+
 @interface PuzzleDataManager : NSObject
 
 @property (strong, nonatomic) NSArray *puzzleConfig;
@@ -42,6 +48,9 @@ FOUNDATION_EXPORT NSString *const kTime;
 - (NSDictionary *)puzzleSet:(NSInteger)number;
 - (NSNumber *)puzzleBpm:(NSInteger)number;
 - (CGFloat)puzzleBeatDuration:(NSInteger)number;
-- (NSDictionary *)puzzleKeyframes:(NSInteger)puzzle;
+- (NSArray *)puzzleKeyframes:(NSInteger)puzzle;
+
+- (NSInteger)puzzleSetStart:(NSInteger)puzzleSet;
+- (NSInteger)puzzleSetLength:(NSInteger)puzzleSet;
 
 @end
