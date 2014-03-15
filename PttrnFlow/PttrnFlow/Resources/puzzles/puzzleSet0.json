@@ -1,0 +1,31 @@
+{
+	"name" : "Kewl Puzzle Set",
+	"bpm" : 120,
+	"length" : 16,
+	"puzzles" : 
+	[	
+		{
+			"file" : "puzzle2",
+			"keyframes" :
+			[
+				{ "source_index" : 0, "target_index" : 0, "range" : 4 },
+				{ "source_index" : 0, "target_index" : 8, "range" : 4 } 
+			]
+		},
+		{
+			"file" : "puzzle3",
+			"keyframes" :
+			[
+				{ "source_index" : 0, "target_index" : 0, "range" : 16 },
+			]
+		},
+		{
+			"file" : "puzzle4",
+			"keyframes" :
+			[
+				{ "source_index" : 2, "target_index" : 0, "range" : 5 },
+				{ "source_index" : 0, "target_index" : 8, "range" : 4 } 
+			]
+		},
+	],
+}
