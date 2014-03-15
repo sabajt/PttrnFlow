@@ -16,4 +16,7 @@
 @property (strong, nonatomic) NSArray *glyphs;
 @property (strong, nonatomic) NSArray *solution;
 
++ (Puzzle *)puzzleFromResource:(NSString *)resource;
+- (id)initWithJson:(NSDictionary *)json;
+
 @end

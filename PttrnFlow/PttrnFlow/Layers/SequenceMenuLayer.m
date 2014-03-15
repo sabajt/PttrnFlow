@@ -9,7 +9,7 @@
 #import "SequenceMenuLayer.h"
 #import "PuzzleDataManager.h"
 #import "PuzzleLayer.h"
-
+#import "Puzzle.h"
 #import "AudioTouchDispatcher.h"
 
 @implementation SequenceMenuLayer
@@ -49,7 +49,11 @@
 
 - (void)sequenceMenuCellTouchUpInside:(SequenceMenuCell *)cell index:(int)index
 {
-    [[CCDirector sharedDirector] pushScene:[PuzzleLayer sceneWithSequence:index]];
+    // TODO: this deserialzes everytime.
+    NSString *resource = [NSString stringWithFormat:@"puzzle%i", index];
+    Puzzle *puzzle = [Puzzle puzzleFromResource:resource];
+    
+    [[CCDirector sharedDirector] pushScene:[PuzzleLayer sceneWithPuzzle:puzzle]];
 }
 
 

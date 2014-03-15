@@ -1,5 +1,6 @@
 {
      "name" : "Kewl Melody",
+     "bpm" : 120,
      "area" :
      [
           [0, 0],

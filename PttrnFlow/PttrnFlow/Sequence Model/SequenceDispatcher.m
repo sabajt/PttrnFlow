@@ -18,6 +18,7 @@
 #import "SampleEvent.h"
 #import "SynthEvent.h"
 #import "TickEvent.h"
+#import "Puzzle.h"
 
 NSString *const kNotificationStepUserSequence = @"stepUserSequence";
 NSString *const kNotificationStepSolutionSequence = @"stepSolutionSequence";
@@ -30,7 +31,7 @@ NSString *const kKeyEmpty = @"empty";
 
 @interface SequenceDispatcher ()
 
-@property (assign) NSInteger puzzle;
+@property (assign) Puzzle *puzzle;
 @property (assign) NSInteger userSequenceIndex;
 @property (assign) NSInteger solutionSequenceIndex;
 @property (strong, nonatomic) NSMutableArray *responders;
@@ -47,13 +48,14 @@ NSString *const kKeyEmpty = @"empty";
 
 @implementation SequenceDispatcher
 
-- (id)initWithPuzzle:(NSInteger)puzzle
+- (id)initWithPuzzle:(Puzzle *)puzzle
 {
     self = [super init];
     if (self) {
-        _puzzle = puzzle;
+        self.puzzle = puzzle;
         _responders = [NSMutableArray array];
-        self.beatDuration = [[PuzzleDataManager sharedManager] puzzleBeatDuration:puzzle];
+        // TODO: FIX ME
+        self.beatDuration = 0.5f;
         self.solutionEvents = [TickEvent puzzleSolutionEvents:puzzle];
     }
     return self;

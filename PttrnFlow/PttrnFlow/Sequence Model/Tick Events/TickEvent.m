@@ -11,6 +11,7 @@
 #import "NSArray+CompareStrings.h"
 #import "PuzzleDataManager.h"
 #import "TickEvent.h"
+#import "Puzzle.h"
 
 NSString *const kChannelNone = @"ChannelNone";
 
@@ -68,16 +69,16 @@ NSString *const kChannelNone = @"ChannelNone";
 
 @implementation TickEvent
 
-+ (NSArray *)puzzleSolutionEvents:(NSInteger)puzzle
++ (NSArray *)puzzleSolutionEvents:(Puzzle *)puzzle
 {
     NSMutableArray *solutionEvents = [NSMutableArray array];
-    NSArray *solution = [[PuzzleDataManager sharedManager] puzzleSolution:puzzle];
+    NSArray *solution = puzzle.solution;
     
     for (NSDictionary *s in solution) {
         NSMutableArray *events = [NSMutableArray array];
         
         for (NSNumber *audioID in s) {
-            NSDictionary *data = [[PuzzleDataManager sharedManager] puzzle:puzzle audioID:[audioID integerValue]];
+            NSDictionary *data = puzzle.audio[[audioID integerValue]];
             NSDictionary *samples = data[kSamples];
             
             if (samples) {
