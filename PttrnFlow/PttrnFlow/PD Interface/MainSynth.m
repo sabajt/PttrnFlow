@@ -8,7 +8,6 @@
 
 #import "MainSynth.h"
 
-#import "PuzzleDataManager.h"
 #import "PdDispatcher.h"
 #import "PuzzleLayer.h"
 #import "TickEvent.h"

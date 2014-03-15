@@ -9,23 +9,6 @@
 #import "PuzzleDataManager.h"
 #import "Coord.h"
 
-NSString *const kCell = @"cell";
-NSString *const kStatic = @"static";
-NSString *const kArrow = @"arrow";
-NSString *const kEntry = @"entry";
-NSString *const kAudio = @"audio";
-
-NSString *const kSamples = @"samples";
-
-NSString *const kSynth = @"synth";
-NSString *const kMidi = @"midi";
-NSString *const kFile = @"file";
-NSString *const kImage = @"image";
-NSString *const kDecorator = @"decorator";
-NSString *const kTime = @"time";
-
-NSString *const kImageSet = @"image_set";
-
 NSString *const kPuzzleDataManagerSourceIndex = @"source_index";
 NSString *const kPuzzleDataManagerTargetIndex = @"target_index";
 NSString *const kPuzzleDataManagerRange = @"range";

@@ -14,7 +14,6 @@
 #import "MainSynth.h"
 #import "MultiSampleEvent.h"
 #import "NSObject+AudioResponderUtils.h"
-#import "PuzzleDataManager.h"
 #import "SampleEvent.h"
 #import "SynthEvent.h"
 #import "TickEvent.h"

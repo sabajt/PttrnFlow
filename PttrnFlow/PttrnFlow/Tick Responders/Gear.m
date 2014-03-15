@@ -9,9 +9,9 @@
 #import "ColorUtils.h"
 #import "CCNode+Grid.h"
 #import "Gear.h"
-#import "PuzzleDataManager.h"
 #import "MultiSampleEvent.h"
 #import "MainSynth.h"
+#import "Puzzle.h"
 
 @interface Gear ()
 
@@ -43,7 +43,7 @@
             
             // container
             CCSprite *container = [CCSprite spriteWithSpriteFrameName:@"audio_box_empty.png"];
-            NSNumber *time = unit[kTime];
+            NSNumber *time = unit[kPuzzleTime];
             container.rotation = 360.0f * [time floatValue];
             container.position = ccp(self.contentSize.width / 2.0f, self.contentSize.height / 2.0f);
             container.color = ccORANGE;
@@ -55,7 +55,7 @@
             audioUnit.color = [ColorUtils cream];
             
             // unit symbol
-            CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:unit[kImage]];
+            CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:unit[kPuzzleImage]];
             if (isStatic) {
                 unitSymbol.color = [ColorUtils dimPurple];
             }
@@ -72,7 +72,7 @@
             [self.audioUnits addObject:audioUnit];
             
             // add data for our multi-sample event
-            multiSampleData[time] = unit[kFile];
+            multiSampleData[time] = unit[kPuzzleFile];
         }
         
         self.multiSampleEvent = [[MultiSampleEvent alloc] initWithAudioID:audioID timedSamplesData:[NSDictionary dictionaryWithDictionary:multiSampleData]];

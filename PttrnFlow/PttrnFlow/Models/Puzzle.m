@@ -8,6 +8,18 @@
 
 #import "Puzzle.h"
 
+NSString *const kPuzzleArrow = @"arrow";
+NSString *const kPuzzleAudio = @"audio";
+NSString *const kPuzzleCell = @"cell";
+NSString *const kPuzzleEntry = @"entry";
+NSString *const kPuzzleFile = @"file";
+NSString *const kPuzzleImage = @"image";
+NSString *const kPuzzleMidi = @"midi";
+NSString *const kPuzzleStatic = @"static";
+NSString *const kPuzzleSamples = @"samples";
+NSString *const kPuzzleSynth = @"synth";
+NSString *const kPuzzleTime = @"time";
+
 @implementation Puzzle
 
 + (Puzzle *)puzzleFromResource:(NSString *)resource

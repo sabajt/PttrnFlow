@@ -8,6 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXPORT NSString *const kPuzzleArrow;
+FOUNDATION_EXPORT NSString *const kPuzzleAudio;
+FOUNDATION_EXPORT NSString *const kPuzzleCell;
+FOUNDATION_EXPORT NSString *const kPuzzleEntry;
+FOUNDATION_EXPORT NSString *const kPuzzleFile;
+FOUNDATION_EXPORT NSString *const kPuzzleImage;
+FOUNDATION_EXPORT NSString *const kPuzzleMidi;
+FOUNDATION_EXPORT NSString *const kPuzzleStatic;
+FOUNDATION_EXPORT NSString *const kPuzzleSamples;
+FOUNDATION_EXPORT NSString *const kPuzzleSynth;
+FOUNDATION_EXPORT NSString *const kPuzzleTime;
+
 @interface Puzzle : NSObject
 
 @property (copy, nonatomic) NSString *name;

@@ -121,7 +121,6 @@
 		1608086D16B43CEF00039339 /* GameConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1608086416B43CEF00039339 /* GameConstants.m */; };
 		1608088016B43FE500039339 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1608087F16B43FE500039339 /* AppDelegate.m */; };
 		1608088316B4416000039339 /* PuzzleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1608088216B4416000039339 /* PuzzleLayer.m */; };
-		1624D1E71733807300851B45 /* PuzzleDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1624D1E61733807200851B45 /* PuzzleDataManager.m */; };
 		1624D1EA1733822C00851B45 /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1624D1E91733822B00851B45 /* ColorUtils.m */; };
 		162C291017821E0200CE480C /* SizeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 162C290F17821E0200CE480C /* SizeUtils.m */; };
 		163091F0177DEDA9003155BB /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091EF177DEDA9003155BB /* BackgroundLayer.m */; };
@@ -513,8 +512,6 @@
 		1608087F16B43FE500039339 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1608088116B4415F00039339 /* PuzzleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleLayer.h; sourceTree = "<group>"; };
 		1608088216B4416000039339 /* PuzzleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleLayer.m; sourceTree = "<group>"; };
-		1624D1E51733807100851B45 /* PuzzleDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleDataManager.h; sourceTree = "<group>"; };
-		1624D1E61733807200851B45 /* PuzzleDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleDataManager.m; sourceTree = "<group>"; };
 		1624D1E81733822A00851B45 /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
 		1624D1E91733822B00851B45 /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtils.m; sourceTree = "<group>"; };
 		16284CAA173A077600B058D2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
@@ -1135,8 +1132,6 @@
 				3391F54218A1A0A00096F5D3 /* NSObject+AudioResponderUtils.m */,
 				1624D1E81733822A00851B45 /* ColorUtils.h */,
 				1624D1E91733822B00851B45 /* ColorUtils.m */,
-				1624D1E51733807100851B45 /* PuzzleDataManager.h */,
-				1624D1E61733807200851B45 /* PuzzleDataManager.m */,
 				1608086316B43CEF00039339 /* GameConstants.h */,
 				1608086416B43CEF00039339 /* GameConstants.m */,
 				163DBE061769325400FCB89C /* UIImage+Utils.h */,
@@ -1727,7 +1722,6 @@
 				338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */,
 				33A957EF188D5B43006BF182 /* Arrow.m in Sources */,
 				334B2AE3181C47B900865510 /* ClippingSprite.m in Sources */,
-				1624D1E71733807300851B45 /* PuzzleDataManager.m in Sources */,
 				1624D1EA1733822C00851B45 /* ColorUtils.m in Sources */,
 				33B4F25E17C72600004D4C13 /* SampleEvent.m in Sources */,
 				163DBE0117692C3100FCB89C /* SequenceMenuLayer.m in Sources */,

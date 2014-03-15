@@ -10,7 +10,6 @@
 #import "ColorUtils.h"
 #import "TileSprite.h"
 #import "ClippingSprite.h"
-#import "PuzzleDataManager.h"
 #import "GameConstants.h"
 #import "SequenceDispatcher.h"
 

@@ -7,7 +7,6 @@
 //
 
 #import "SequenceMenuLayer.h"
-#import "PuzzleDataManager.h"
 #import "PuzzleLayer.h"
 #import "Puzzle.h"
 #import "AudioTouchDispatcher.h"
@@ -26,7 +25,7 @@
 {
     self = [super init];
     if (self) {
-        _mapNames = [PuzzleDataManager puzzleFileNames];
+        _mapNames = @[@"puzzle0", @"puzzle1", @"puzzle2", @"puzzle3"];
          
         // create and layout cells
         CGSize sideMargins = CGSizeMake(50, 50);

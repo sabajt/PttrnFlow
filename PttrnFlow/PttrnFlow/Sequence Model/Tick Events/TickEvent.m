@@ -9,7 +9,6 @@
 #import "cocos2d.h"
 #import "MultiSampleEvent.h"
 #import "NSArray+CompareStrings.h"
-#import "PuzzleDataManager.h"
 #import "TickEvent.h"
 #import "Puzzle.h"
 
@@ -79,12 +78,12 @@ NSString *const kChannelNone = @"ChannelNone";
         
         for (NSNumber *audioID in s) {
             NSDictionary *data = puzzle.audio[[audioID integerValue]];
-            NSDictionary *samples = data[kSamples];
+            NSDictionary *samples = data[kPuzzleSamples];
             
             if (samples) {
                 NSMutableDictionary *multiSampleData = [NSMutableDictionary dictionary];
                 for (NSDictionary *unit in samples) {
-                    multiSampleData[unit[kTime]] = unit[kFile];
+                    multiSampleData[unit[kPuzzleTime]] = unit[kPuzzleFile];
                 }
                 MultiSampleEvent *event = [[MultiSampleEvent alloc] initWithAudioID:audioID timedSamplesData:multiSampleData];
                 [events addObject:event];
