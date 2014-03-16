@@ -43,7 +43,7 @@
             
             // container
             CCSprite *container = [CCSprite spriteWithSpriteFrameName:@"audio_box_empty.png"];
-            NSNumber *time = unit[kPuzzleTime];
+            NSNumber *time = unit[kPFLPuzzleTime];
             container.rotation = 360.0f * [time floatValue];
             container.position = ccp(self.contentSize.width / 2.0f, self.contentSize.height / 2.0f);
             container.color = ccORANGE;
@@ -55,7 +55,7 @@
             audioUnit.color = [ColorUtils cream];
             
             // unit symbol
-            CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:unit[kPuzzleImage]];
+            CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:unit[kPFLPuzzleImage]];
             if (isStatic) {
                 unitSymbol.color = [ColorUtils dimPurple];
             }
@@ -72,7 +72,7 @@
             [self.audioUnits addObject:audioUnit];
             
             // add data for our multi-sample event
-            multiSampleData[time] = unit[kPuzzleFile];
+            multiSampleData[time] = unit[kPFLPuzzleFile];
         }
         
         self.multiSampleEvent = [[MultiSampleEvent alloc] initWithAudioID:audioID timedSamplesData:[NSDictionary dictionaryWithDictionary:multiSampleData]];

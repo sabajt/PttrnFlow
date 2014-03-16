@@ -299,11 +299,11 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     NSMutableArray *allSampleNames = [NSMutableArray array];
     
     for (NSDictionary *glyph in glyphs) {
-        BOOL isStatic = [glyph[kPuzzleStatic] boolValue];
-        NSArray *cellArray = glyph[kPuzzleCell];
-        NSString *entryDirection = glyph[kPuzzleEntry];
-        NSString *arrowDirection = glyph[kPuzzleArrow];
-        NSNumber *audioID = glyph[kPuzzleAudio];
+        BOOL isStatic = [glyph[kPFLPuzzleStatic] boolValue];
+        NSArray *cellArray = glyph[kPFLPuzzleCell];
+        NSString *entryDirection = glyph[kPFLPuzzleEntry];
+        NSString *arrowDirection = glyph[kPFLPuzzleArrow];
+        NSNumber *audioID = glyph[kPFLPuzzleAudio];
         
         // cell is the only mandatory field to create an audio pad (empty pad can be used as a puzzle object to just take up space)
         if (!cellArray) {
@@ -325,11 +325,11 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             NSDictionary *audioData = puzzle.audio[[audioID integerValue]];
             NSAssert(audioData != nil, @"No audio data found for audio id: %@", audioID);
             
-            NSArray *samplesData = audioData[kPuzzleSamples];
+            NSArray *samplesData = audioData[kPFLPuzzleSamples];
             
             if (samplesData) {
                 for (NSDictionary *unit in samplesData) {
-                    [allSampleNames addObject:unit[kPuzzleFile]];
+                    [allSampleNames addObject:unit[kPFLPuzzleFile]];
                 }
                 Gear *drum = [[Gear alloc] initWithCell:cell audioID:audioID data:samplesData isStatic:isStatic];
                 [self.audioTouchDispatcher addResponder:drum];

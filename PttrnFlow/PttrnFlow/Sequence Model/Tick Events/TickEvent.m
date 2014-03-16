@@ -78,12 +78,12 @@ NSString *const kChannelNone = @"ChannelNone";
         
         for (NSNumber *audioID in s) {
             NSDictionary *data = puzzle.audio[[audioID integerValue]];
-            NSDictionary *samples = data[kPuzzleSamples];
+            NSDictionary *samples = data[kPFLPuzzleSamples];
             
             if (samples) {
                 NSMutableDictionary *multiSampleData = [NSMutableDictionary dictionary];
                 for (NSDictionary *unit in samples) {
-                    multiSampleData[unit[kPuzzleTime]] = unit[kPuzzleFile];
+                    multiSampleData[unit[kPFLPuzzleTime]] = unit[kPFLPuzzleFile];
                 }
                 MultiSampleEvent *event = [[MultiSampleEvent alloc] initWithAudioID:audioID timedSamplesData:multiSampleData];
                 [events addObject:event];

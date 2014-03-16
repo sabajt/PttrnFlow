@@ -1,5 +1,5 @@
 //
-//  Puzzle.h
+//  PFLPuzzle.h
 //  PttrnFlow
 //
 //  Created by John Saba on 3/15/14.
@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-FOUNDATION_EXPORT NSString *const kPuzzleArrow;
-FOUNDATION_EXPORT NSString *const kPuzzleAudio;
-FOUNDATION_EXPORT NSString *const kPuzzleCell;
-FOUNDATION_EXPORT NSString *const kPuzzleEntry;
-FOUNDATION_EXPORT NSString *const kPuzzleFile;
-FOUNDATION_EXPORT NSString *const kPuzzleImage;
-FOUNDATION_EXPORT NSString *const kPuzzleMidi;
-FOUNDATION_EXPORT NSString *const kPuzzleStatic;
-FOUNDATION_EXPORT NSString *const kPuzzleSamples;
-FOUNDATION_EXPORT NSString *const kPuzzleSynth;
-FOUNDATION_EXPORT NSString *const kPuzzleTime;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleArrow;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleAudio;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleCell;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleEntry;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleFile;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleImage;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleMidi;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleStatic;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleSamples;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleSynth;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleTime;
 
 @interface PFLPuzzle : NSObject
 

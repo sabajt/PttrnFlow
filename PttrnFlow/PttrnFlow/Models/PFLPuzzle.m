@@ -1,5 +1,5 @@
 //
-//  Puzzle.m
+//  PFLPuzzle.m
 //  PttrnFlow
 //
 //  Created by John Saba on 3/15/14.
@@ -9,17 +9,17 @@
 #import "PFLPuzzle.h"
 #import "PFLJsonUtils.h"
 
-NSString *const kPuzzleArrow = @"arrow";
-NSString *const kPuzzleAudio = @"audio";
-NSString *const kPuzzleCell = @"cell";
-NSString *const kPuzzleEntry = @"entry";
-NSString *const kPuzzleFile = @"file";
-NSString *const kPuzzleImage = @"image";
-NSString *const kPuzzleMidi = @"midi";
-NSString *const kPuzzleStatic = @"static";
-NSString *const kPuzzleSamples = @"samples";
-NSString *const kPuzzleSynth = @"synth";
-NSString *const kPuzzleTime = @"time";
+NSString *const kPFLPuzzleArrow = @"arrow";
+NSString *const kPFLPuzzleAudio = @"audio";
+NSString *const kPFLPuzzleCell = @"cell";
+NSString *const kPFLPuzzleEntry = @"entry";
+NSString *const kPFLPuzzleFile = @"file";
+NSString *const kPFLPuzzleImage = @"image";
+NSString *const kPFLPuzzleMidi = @"midi";
+NSString *const kPFLPuzzleStatic = @"static";
+NSString *const kPFLPuzzleSamples = @"samples";
+NSString *const kPFLPuzzleSynth = @"synth";
+NSString *const kPFLPuzzleTime = @"time";
 
 @implementation PFLPuzzle
 
