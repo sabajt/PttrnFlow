@@ -7,6 +7,7 @@
 //
 
 #import "Puzzle.h"
+#import "PFLJsonUtils.h"
 
 NSString *const kPuzzleArrow = @"arrow";
 NSString *const kPuzzleAudio = @"audio";
@@ -24,12 +25,7 @@ NSString *const kPuzzleTime = @"time";
 
 + (Puzzle *)puzzleFromResource:(NSString *)resource
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:resource ofType:@".json"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    NSError *error = nil;
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    NSAssert(error == nil, @"Failed to deserialize %@.json with error: %@", resource, error.description);
-    return [[Puzzle alloc] initWithJson:json];
+    return [[Puzzle alloc] initWithJson:[PFLJsonUtils deserializeJsonObjectResource:resource]];
 }
 
 - (id)initWithJson:(NSDictionary *)json
