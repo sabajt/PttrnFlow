@@ -9,8 +9,10 @@
 #import "cocos2d.h"
 #import "MultiSampleEvent.h"
 #import "NSArray+CompareStrings.h"
-#import "TickEvent.h"
+#import "PFLKeyframe.h"
 #import "PFLPuzzle.h"
+#import "PFLPuzzleSet.h"
+#import "TickEvent.h"
 
 NSString *const kChannelNone = @"ChannelNone";
 
@@ -92,6 +94,20 @@ NSString *const kChannelNone = @"ChannelNone";
         [solutionEvents addObject:events];
     }
     return solutionEvents;
+}
+
++ (NSArray *)puzzleSetSolutionEvents:(PFLPuzzleSet *)puzzleSet
+{
+    NSInteger i = 0;
+    
+    for (PFLPuzzle *puzzle in puzzleSet.puzzles) {
+        NSArray *keyframes = puzzleSet.keyframeSets[i];
+        
+        for (PFLKeyframe *keyframe in keyframes) {
+            
+        }
+        i++;
+    }
 }
 
 #pragma mark - Subclass hooks

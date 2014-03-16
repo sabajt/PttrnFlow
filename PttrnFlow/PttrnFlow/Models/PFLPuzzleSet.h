@@ -8,15 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-NSString *const kPFLPuzzleSetBpm = @"bpm";
-NSString *const kPFLPuzzleSetFile = @"file";
-NSString *const kPFLPuzzleSetKeyframes = @"keyframes";
-NSString *const kPFLPuzzleSetLength = @"length";
-NSString *const kPFLPuzzleSetName = @"name";
-NSString *const kPFLPuzzleSetPuzzles = @"puzzles";
-NSString *const kPFLPuzzleSetRange = @"range";
-NSString *const kPFLPuzzleSetSourceIndex = @"source_index";
-NSString *const kPFLPuzzleSetTargetIndex = @"target_index";
+FOUNDATION_EXPORT NSString *const kPFLPuzzleSetName;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleSetBpm;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleSetLength;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleSetPuzzles;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleSetFile;
+FOUNDATION_EXPORT NSString *const kPFLPuzzleSetKeyframes;
 
 @interface PFLPuzzleSet : NSObject
 
@@ -24,6 +21,7 @@ NSString *const kPFLPuzzleSetTargetIndex = @"target_index";
 @property (assign) NSInteger length;
 @property (copy, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray *puzzles;
+@property (strong, nonatomic) NSArray *keyframeSets;
 
 + (PFLPuzzleSet *)puzzleSetFromResource:(NSString *)resource;
 - (id)initWithJson:(NSDictionary *)json;
