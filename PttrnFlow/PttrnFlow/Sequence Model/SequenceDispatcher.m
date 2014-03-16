@@ -17,7 +17,7 @@
 #import "SampleEvent.h"
 #import "SynthEvent.h"
 #import "TickEvent.h"
-#import "Puzzle.h"
+#import "PFLPuzzle.h"
 
 NSString *const kNotificationStepUserSequence = @"stepUserSequence";
 NSString *const kNotificationStepSolutionSequence = @"stepSolutionSequence";
@@ -30,7 +30,7 @@ NSString *const kKeyEmpty = @"empty";
 
 @interface SequenceDispatcher ()
 
-@property (assign) Puzzle *puzzle;
+@property (assign) PFLPuzzle *puzzle;
 @property (assign) NSInteger userSequenceIndex;
 @property (assign) NSInteger solutionSequenceIndex;
 @property (strong, nonatomic) NSMutableArray *responders;
@@ -47,7 +47,7 @@ NSString *const kKeyEmpty = @"empty";
 
 @implementation SequenceDispatcher
 
-- (id)initWithPuzzle:(Puzzle *)puzzle
+- (id)initWithPuzzle:(PFLPuzzle *)puzzle
 {
     self = [super init];
     if (self) {

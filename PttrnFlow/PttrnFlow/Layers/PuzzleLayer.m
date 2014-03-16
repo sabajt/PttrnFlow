@@ -18,7 +18,7 @@
 #import "MainSynth.h"
 #import "PdDispatcher.h"
 #import "PFGeometry.h"
-#import "Puzzle.h"
+#import "PFLPuzzle.h"
 #import "PuzzleLayer.h"
 #import "SequenceControlsLayer.h"
 #import "SequenceDispatcher.h"
@@ -53,7 +53,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 
 #pragma mark - setup
 
-+ (CCScene *)sceneWithPuzzle:(Puzzle *)puzzle
++ (CCScene *)sceneWithPuzzle:(PFLPuzzle *)puzzle
 {
     CCScene *scene = [CCScene node];
     
@@ -73,7 +73,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     return scene;
 }
 
-- (id)initWithPuzzle:(Puzzle *)puzzle background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
+- (id)initWithPuzzle:(PFLPuzzle *)puzzle background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
 {
     self = [super init];
     if (self) {
@@ -291,7 +291,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     }
 }
 
-- (void)createPuzzleObjects:(Puzzle *)puzzle
+- (void)createPuzzleObjects:(PFLPuzzle *)puzzle
 {
     NSArray *glyphs = puzzle.glyphs;
     

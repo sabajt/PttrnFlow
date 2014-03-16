@@ -37,7 +37,7 @@ static NSInteger const kRowLength = 8;
 
 @implementation SequenceControlsLayer
 
-- (id)initWithPuzzle:(Puzzle *)puzzle delegate:(id<SequenceControlDelegate>)delegate
+- (id)initWithPuzzle:(PFLPuzzle *)puzzle delegate:(id<SequenceControlDelegate>)delegate
 {
     self = [super init];
     if (self) {

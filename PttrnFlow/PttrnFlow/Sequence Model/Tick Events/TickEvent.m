@@ -10,7 +10,7 @@
 #import "MultiSampleEvent.h"
 #import "NSArray+CompareStrings.h"
 #import "TickEvent.h"
-#import "Puzzle.h"
+#import "PFLPuzzle.h"
 
 NSString *const kChannelNone = @"ChannelNone";
 
@@ -68,7 +68,7 @@ NSString *const kChannelNone = @"ChannelNone";
 
 @implementation TickEvent
 
-+ (NSArray *)puzzleSolutionEvents:(Puzzle *)puzzle
++ (NSArray *)puzzleSolutionEvents:(PFLPuzzle *)puzzle
 {
     NSMutableArray *solutionEvents = [NSMutableArray array];
     NSArray *solution = puzzle.solution;

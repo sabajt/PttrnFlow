@@ -11,7 +11,7 @@
 #import "Gear.h"
 #import "MultiSampleEvent.h"
 #import "MainSynth.h"
-#import "Puzzle.h"
+#import "PFLPuzzle.h"
 
 @interface Gear ()
 

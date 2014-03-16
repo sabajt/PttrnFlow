@@ -11,7 +11,7 @@
 #import "BasicButton.h"
 #import "SolutionButton.h"
 
-@class Puzzle;
+@class PFLPuzzle;
 
 @protocol SequenceControlDelegate <NSObject>
 
@@ -27,6 +27,6 @@ FOUNDATION_EXPORT CGFloat const kUIButtonUnitSize;
 
 @interface SequenceControlsLayer : CCLayer <ToggleButtonDelegate, BasicButtonDelegate, SolutionButtonDelegate>
 
-- (id)initWithPuzzle:(Puzzle *)puzzle delegate:(id<SequenceControlDelegate>)delegate;
+- (id)initWithPuzzle:(PFLPuzzle *)puzzle delegate:(id<SequenceControlDelegate>)delegate;
 
 @end

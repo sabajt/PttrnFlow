@@ -221,7 +221,7 @@
 		33C3B1D31876FA91008F5FA8 /* Coord.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C3B1D21876FA91008F5FA8 /* Coord.m */; };
 		33DD833E18D4C16F00EF90C7 /* puzzleSet0.json in Resources */ = {isa = PBXBuildFile; fileRef = 33DD833C18D4C16F00EF90C7 /* puzzleSet0.json */; };
 		33DD833F18D4C16F00EF90C7 /* puzzleSet1.json in Resources */ = {isa = PBXBuildFile; fileRef = 33DD833D18D4C16F00EF90C7 /* puzzleSet1.json */; };
-		33DD834618D4C8F800EF90C7 /* Puzzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD834518D4C8F800EF90C7 /* Puzzle.m */; };
+		33DD834618D4C8F800EF90C7 /* PFLPuzzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD834518D4C8F800EF90C7 /* PFLPuzzle.m */; };
 		33DD834C18D5ECFB00EF90C7 /* PFLPuzzleSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD834B18D5ECFB00EF90C7 /* PFLPuzzleSet.m */; };
 		33DD834F18D5EEDA00EF90C7 /* PFLJsonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD834E18D5EEDA00EF90C7 /* PFLJsonUtils.m */; };
 		33E4F6F618788CF6005571F4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E4F6F518788CF6005571F4 /* XCTest.framework */; };
@@ -652,8 +652,8 @@
 		33C3B1D21876FA91008F5FA8 /* Coord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coord.m; sourceTree = "<group>"; };
 		33DD833C18D4C16F00EF90C7 /* puzzleSet0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzleSet0.json; sourceTree = "<group>"; };
 		33DD833D18D4C16F00EF90C7 /* puzzleSet1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzleSet1.json; sourceTree = "<group>"; };
-		33DD834418D4C8F800EF90C7 /* Puzzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Puzzle.h; sourceTree = "<group>"; };
-		33DD834518D4C8F800EF90C7 /* Puzzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Puzzle.m; sourceTree = "<group>"; };
+		33DD834418D4C8F800EF90C7 /* PFLPuzzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLPuzzle.h; sourceTree = "<group>"; };
+		33DD834518D4C8F800EF90C7 /* PFLPuzzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLPuzzle.m; sourceTree = "<group>"; };
 		33DD834A18D5ECFB00EF90C7 /* PFLPuzzleSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLPuzzleSet.h; sourceTree = "<group>"; };
 		33DD834B18D5ECFB00EF90C7 /* PFLPuzzleSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLPuzzleSet.m; sourceTree = "<group>"; };
 		33DD834D18D5EEDA00EF90C7 /* PFLJsonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLJsonUtils.h; sourceTree = "<group>"; };
@@ -1398,8 +1398,8 @@
 		33DD834318D4C8F800EF90C7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				33DD834418D4C8F800EF90C7 /* Puzzle.h */,
-				33DD834518D4C8F800EF90C7 /* Puzzle.m */,
+				33DD834418D4C8F800EF90C7 /* PFLPuzzle.h */,
+				33DD834518D4C8F800EF90C7 /* PFLPuzzle.m */,
 				33DD834A18D5ECFB00EF90C7 /* PFLPuzzleSet.h */,
 				33DD834B18D5ECFB00EF90C7 /* PFLPuzzleSet.m */,
 			);
@@ -1694,7 +1694,7 @@
 				160807D716B437A900039339 /* CCWindow.m in Sources */,
 				335836B81826CF4700921270 /* TileSprite.m in Sources */,
 				160807DA16B437A900039339 /* base64.c in Sources */,
-				33DD834618D4C8F800EF90C7 /* Puzzle.m in Sources */,
+				33DD834618D4C8F800EF90C7 /* PFLPuzzle.m in Sources */,
 				160807DE16B437A900039339 /* CCArray.m in Sources */,
 				160807E116B437A900039339 /* ccCArray.m in Sources */,
 				33A7C50918A08896000EBCA7 /* SequenceDispatcher.m in Sources */,

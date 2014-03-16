@@ -20,7 +20,7 @@ FOUNDATION_EXPORT NSString *const kPuzzleSamples;
 FOUNDATION_EXPORT NSString *const kPuzzleSynth;
 FOUNDATION_EXPORT NSString *const kPuzzleTime;
 
-@interface Puzzle : NSObject
+@interface PFLPuzzle : NSObject
 
 @property (copy, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray *area;
@@ -28,7 +28,7 @@ FOUNDATION_EXPORT NSString *const kPuzzleTime;
 @property (strong, nonatomic) NSArray *glyphs;
 @property (strong, nonatomic) NSArray *solution;
 
-+ (Puzzle *)puzzleFromResource:(NSString *)resource;
++ (PFLPuzzle *)puzzleFromResource:(NSString *)resource;
 - (id)initWithJson:(NSDictionary *)json;
 
 @end

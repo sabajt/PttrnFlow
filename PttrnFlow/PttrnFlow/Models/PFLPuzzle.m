@@ -6,7 +6,7 @@
 //
 //
 
-#import "Puzzle.h"
+#import "PFLPuzzle.h"
 #import "PFLJsonUtils.h"
 
 NSString *const kPuzzleArrow = @"arrow";
@@ -21,11 +21,11 @@ NSString *const kPuzzleSamples = @"samples";
 NSString *const kPuzzleSynth = @"synth";
 NSString *const kPuzzleTime = @"time";
 
-@implementation Puzzle
+@implementation PFLPuzzle
 
-+ (Puzzle *)puzzleFromResource:(NSString *)resource
++ (PFLPuzzle *)puzzleFromResource:(NSString *)resource
 {
-    return [[Puzzle alloc] initWithJson:[PFLJsonUtils deserializeJsonObjectResource:resource]];
+    return [[PFLPuzzle alloc] initWithJson:[PFLJsonUtils deserializeJsonObjectResource:resource]];
 }
 
 - (id)initWithJson:(NSDictionary *)json

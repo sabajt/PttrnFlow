@@ -8,7 +8,7 @@
 
 #import "cocos2d.h"
 
-@class Puzzle;
+@class PFLPuzzle;
 
 FOUNDATION_EXPORT NSString *const kChannelNone;
 
@@ -23,7 +23,7 @@ FOUNDATION_EXPORT NSString *const kChannelNone;
 
 @property (strong, nonatomic) NSNumber *audioID;
 
-+ (NSArray *)puzzleSolutionEvents:(Puzzle *)puzzle;
++ (NSArray *)puzzleSolutionEvents:(PFLPuzzle *)puzzle;
 
 - (NSString *)eventDescription;
 

@@ -8,7 +8,7 @@
 
 #import "SequenceMenuLayer.h"
 #import "PuzzleLayer.h"
-#import "Puzzle.h"
+#import "PFLPuzzle.h"
 #import "AudioTouchDispatcher.h"
 
 @implementation SequenceMenuLayer
@@ -50,7 +50,7 @@
 {
     // TODO: this deserialzes everytime.
     NSString *resource = [NSString stringWithFormat:@"puzzle%i", index];
-    Puzzle *puzzle = [Puzzle puzzleFromResource:resource];
+    PFLPuzzle *puzzle = [PFLPuzzle puzzleFromResource:resource];
     
     [[CCDirector sharedDirector] pushScene:[PuzzleLayer sceneWithPuzzle:puzzle]];
 }
