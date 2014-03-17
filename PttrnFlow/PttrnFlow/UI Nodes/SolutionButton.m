@@ -19,12 +19,9 @@
 
 @implementation SolutionButton
 
-- (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName
-                              size:(CGSize)size
-                             index:(NSInteger)index
-                          delegate:(id<SolutionButtonDelegate>)delegate
+- (id)initWithPlaceholderImage:(NSString *)placeholderImage size:(CGSize)size index:(NSInteger)index delegate:(id<SolutionButtonDelegate>)delegate
 {
-    self = [super initWithSpriteFrameName:placeholderFrameName];
+    self = [super initWithSpriteFrameName:placeholderImage];
     if (self) {
         self.contentSize = size;
         self.index = index;

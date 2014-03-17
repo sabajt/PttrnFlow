@@ -25,18 +25,15 @@
 
 @implementation ToggleButton
 
-- (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName
-                      offFrameName:(NSString *)offFrameName
-                       onFrameName:(NSString *)onFrameName
-                          delegate:(id<ToggleButtonDelegate>)delegate
+- (id)initWithPlaceholderImage:(NSString *)placeholderImage offImage:(NSString *)offImage onImage:(NSString *)onImage delegate:(id<ToggleButtonDelegate>)delegate
 {
-    self = [super initWithSpriteFrameName:placeholderFrameName];
+    self = [super initWithSpriteFrameName:placeholderImage];
     if (self) {
         self.delegate = delegate;
         
-        CCSprite *offSprite = [CCSprite spriteWithSpriteFrameName:offFrameName];
+        CCSprite *offSprite = [CCSprite spriteWithSpriteFrameName:offImage];
         self.offSprite = offSprite;
-        CCSprite *onSprite = [CCSprite spriteWithSpriteFrameName:onFrameName];
+        CCSprite *onSprite = [CCSprite spriteWithSpriteFrameName:onImage];
         self.onSprite = onSprite;
         
         // minimum size to contain both sprites
@@ -52,12 +49,9 @@
     return self;
 }
 
-- (id)initWithFrameName:(NSString *)frameName
-           defaultColor:(ccColor3B)defaultColor
-            activeColor:(ccColor3B)activeColor
-               delegate:(id<ToggleButtonDelegate>)delegate
+- (id)initWithImage:(NSString *)image defaultColor:(ccColor3B)defaultColor activeColor:(ccColor3B)activeColor delegate:(id<ToggleButtonDelegate>)delegate
 {
-    self = [super initWithSpriteFrameName:frameName];
+    self = [super initWithSpriteFrameName:image];
     if (self) {
         self.delegate = delegate;
         self.defaultColor = defaultColor;
@@ -66,7 +60,6 @@
     }
     return self;
 }
-
 
 - (void)toggle
 {

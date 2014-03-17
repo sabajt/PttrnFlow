@@ -80,13 +80,13 @@ static NSInteger const kRowLength = 8;
         
         
         // speaker (solution sequence) button
-        ToggleButton *speakerButton = [[ToggleButton alloc] initWithFrameName:@"speaker.png" defaultColor:[ColorUtils dimPurple] activeColor:[ColorUtils activeYellow] delegate:self];
+        ToggleButton *speakerButton = [[ToggleButton alloc] initWithImage:@"speaker.png" defaultColor:[ColorUtils dimPurple] activeColor:[ColorUtils activeYellow] delegate:self];
         self.speakerButton = speakerButton;
         speakerButton.position = ccp(kUITimelineStepWidth / 2, 75); // FIX ME LATER
         [self.uiBatchNode addChild:speakerButton];
         
         // play (user sequence) button
-        ToggleButton *playButton = [[ToggleButton alloc] initWithFrameName:@"play.png" defaultColor:[ColorUtils dimPurple] activeColor:[ColorUtils activeYellow] delegate:self];
+        ToggleButton *playButton = [[ToggleButton alloc] initWithImage:@"play.png" defaultColor:[ColorUtils dimPurple] activeColor:[ColorUtils activeYellow] delegate:self];
         self.playButton = playButton;
         playButton.position = ccp(speakerButton.position.x + kUITimelineStepWidth, speakerButton.position.y);
         [self.uiBatchNode addChild:playButton];
@@ -101,7 +101,7 @@ static NSInteger const kRowLength = 8;
         self.solutionButtons = [NSMutableArray array];
         self.solutionFlags = [NSMutableArray array];
         for (NSInteger i = 0; i < steps; i++) {
-            SolutionButton *solutionButton = [[SolutionButton alloc] initWithPlaceholderFrameName:@"clear_rect_uilayer.png" size:CGSizeMake(40.0f, 40.0f) index:i delegate:self];
+            SolutionButton *solutionButton = [[SolutionButton alloc] initWithPlaceholderImage:@"clear_rect_uilayer.png" size:CGSizeMake(40.0f, 40.0f) index:i delegate:self];
             [self.solutionButtons addObject:solutionButton];
             solutionButton.position = ccp((i * kUITimelineStepWidth) + (solutionButton.contentSize.width / 2), solutionButton.contentSize.height / 2);
             [self addChild:solutionButton];
