@@ -78,7 +78,7 @@ static NSString *const kStageSample = @"stageSample";
     // send events (setup information) in
     for (PFLEvent *event in events) {
         
-        if (event.eventType == PFLSequenceEventSynth) {
+        if (event.eventType == PFLEventTypeSynth) {
             NSNumber *midiValue = @([event.midiValue integerValue]);
         
             // TODO: synth type needs to be an enum on event or basic model
@@ -86,13 +86,13 @@ static NSString *const kStageSample = @"stageSample";
             [PdBase sendList:@[synthType, midiValue, @0] toReceiver:kSynthEvent];
         }
         
-        if (event.eventType == PFLSequenceEventSample) {
+        if (event.eventType == PFLEventTypeSample) {
             NSString *sampleSuffix = self.sampleKey[event.file];
             NSString *receiver = [kStageSample stringByAppendingString:sampleSuffix];
             [PdBase sendBangToReceiver:receiver];
         }
         
-        if(event.eventType == PFLSequenceEventMultiSample) {
+        if(event.eventType == PFLEventTypeMultiSample) {
             
             // set up samples to be recieved with time delays
             for (PFLEvent *sampleEvent in event.sampleEvents) {
@@ -104,12 +104,12 @@ static NSString *const kStageSample = @"stageSample";
             };
         }
         
-        if (event.eventType == PFLSequenceEventAudioStop) {
+        if (event.eventType == PFLEventTypeAudioStop) {
             // TODO: was there a reason this is not 0.0f?
             [PdBase sendFloat:[@0 floatValue] toReceiver:kAudioStop];
         }
         
-        if (event.eventType == PFLSequenceEventExit) {
+        if (event.eventType == PFLEventTypeExit) {
             // TODO: was there a reason this is not 0.0f?
             [PdBase sendFloat:[@0 floatValue] toReceiver:kAudioStop];
         }

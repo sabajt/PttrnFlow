@@ -8,14 +8,14 @@
 
 #import "cocos2d.h"
 
-typedef NS_ENUM(NSInteger, PFLSequenceEvent)
+typedef NS_ENUM(NSInteger, PFLEventType)
 {
-    PFLSequenceEventAudioStop = 0,
-    PFLSequenceEventDirection,
-    PFLSequenceEventExit,
-    PFLSequenceEventMultiSample,
-    PFLSequenceEventSample,
-    PFLSequenceEventSynth,
+    PFLEventTypeAudioStop = 0,
+    PFLEventTypeDirection,
+    PFLEventTypeExit,
+    PFLEventTypeMultiSample,
+    PFLEventTypeSample,
+    PFLEventTypeSynth,
 };
 
 @class PFLPuzzle, PFLMultiSample;
@@ -31,7 +31,7 @@ FOUNDATION_EXPORT NSString *const kChannelNone;
 
 @interface PFLEvent : NSObject
 
-@property (assign) PFLSequenceEvent eventType;
+@property (assign) PFLEventType eventType;
 
 @property (strong, nonatomic) NSNumber *audioID;
 @property (copy, nonatomic) NSString *direction;

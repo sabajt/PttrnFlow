@@ -108,7 +108,7 @@ NSString *const kChannelNone = @"ChannelNone";
 + (id)synthEventWithAudioID:(NSNumber *)audioID midiValue:(NSString *)midiValue synthType:(NSString *)synthType
 {
     PFLEvent *event = [[PFLEvent alloc] init];
-    event.eventType = PFLSequenceEventSynth;
+    event.eventType = PFLEventTypeSynth;
     event.audioID = audioID;
     event.midiValue = midiValue;
     event.synthType = synthType;
@@ -118,7 +118,7 @@ NSString *const kChannelNone = @"ChannelNone";
 + (id)sampleEventWithAudioID:(NSNumber *)audioID file:(NSString *)file time:(NSNumber *)time
 {
     PFLEvent *event = [[PFLEvent alloc] init];
-    event.eventType = PFLSequenceEventSample;
+    event.eventType = PFLEventTypeSample;
     event.audioID = audioID;
     event.file = file;
     event.time = time;
@@ -128,7 +128,7 @@ NSString *const kChannelNone = @"ChannelNone";
 + (id)directionEventWithDirection:(NSString *)direction
 {
     PFLEvent *event = [[PFLEvent alloc] init];
-    event.eventType = PFLSequenceEventDirection;
+    event.eventType = PFLEventTypeDirection;
     event.direction = direction;
     return event;
 }
@@ -136,14 +136,14 @@ NSString *const kChannelNone = @"ChannelNone";
 + (id)exitEvent
 {
     PFLEvent *event = [[PFLEvent alloc] init];
-    event.eventType = PFLSequenceEventExit;
+    event.eventType = PFLEventTypeExit;
     return event;
 }
 
 + (id)audioStopEventWithAudioID:(NSNumber *)audioID
 {
     PFLEvent *event = [[PFLEvent alloc] init];
-    event.eventType = PFLSequenceEventAudioStop;
+    event.eventType = PFLEventTypeAudioStop;
     event.audioID = audioID;
     return event;
 }
@@ -151,7 +151,7 @@ NSString *const kChannelNone = @"ChannelNone";
 + (id)multiSampleEventWithAudioID:(NSNumber *)audioID sampleEvents:(NSArray *)sampleEvents
 {
     PFLEvent *event = [[PFLEvent alloc] init];
-    event.eventType = PFLSequenceEventMultiSample;
+    event.eventType = PFLEventTypeMultiSample;
     event.audioID = audioID;
     event.sampleEvents = sampleEvents;
     return event;

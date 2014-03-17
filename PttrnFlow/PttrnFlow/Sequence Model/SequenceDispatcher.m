@@ -81,7 +81,7 @@ NSString *const kKeyEmpty = @"empty";
     
     // change direction if needed
     for (PFLEvent *e in events) {
-        if (e.eventType == PFLSequenceEventDirection) {
+        if (e.eventType == PFLEventTypeDirection) {
             self.currentDirection = e.direction;
         }
     }
