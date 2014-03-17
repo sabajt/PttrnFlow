@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-FOUNDATION_EXPORT NSString *const kPFLKeyframeRange;
-FOUNDATION_EXPORT NSString *const kPFLKeyframeSourceIndex;
-FOUNDATION_EXPORT NSString *const kPFLKeyframeTargetIndex;
-
 @interface PFLKeyframe : NSObject
 
 @property (assign) NSInteger range;

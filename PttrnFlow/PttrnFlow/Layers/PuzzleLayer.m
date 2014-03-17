@@ -24,6 +24,9 @@
 #import "SequenceDispatcher.h"
 #import "SimpleAudioEngine.h"
 #import "Synth.h"
+#import "PFLGlyph.h"
+#import "PFLMultiSample.h"
+#import "PFLSample.h"
 
 typedef NS_ENUM(NSInteger, ZOrderAudioBatch)
 {
@@ -298,50 +301,43 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     // collect sample names so we can load them in PD tables
     NSMutableArray *allSampleNames = [NSMutableArray array];
     
-    for (NSDictionary *glyph in glyphs) {
-        BOOL isStatic = [glyph[kPFLPuzzleStatic] boolValue];
-        NSArray *cellArray = glyph[kPFLPuzzleCell];
-        NSString *entryDirection = glyph[kPFLPuzzleEntry];
-        NSString *arrowDirection = glyph[kPFLPuzzleArrow];
-        NSNumber *audioID = glyph[kPFLPuzzleAudio];
-        
+    for (PFLGlyph *glyph in glyphs) {
+
         // cell is the only mandatory field to create an audio pad (empty pad can be used as a puzzle object to just take up space)
-        if (!cellArray) {
+        if (!glyph.cell) {
             CCLOG(@"SequenceLayer createPuzzleObjects error: 'cell' must not be null on audio pads");
             return;
         }
-        Coord *cell = [Coord coordWithX:[cellArray[0] integerValue] Y:[cellArray[1] integerValue]];
-        CGPoint cellCenter = [cell relativeMidpoint];
+        CGPoint cellCenter = [glyph.cell relativeMidpoint];
         
         // audio pad sprite
-        AudioPad *audioPad = [[AudioPad alloc] initWithPlaceholderFrameName:@"clear_rect_audio_batch.png" cell:cell isStatic:isStatic];
+        AudioPad *audioPad = [[AudioPad alloc] initWithPlaceholderFrameName:@"clear_rect_audio_batch.png" cell:glyph.cell isStatic:glyph.isStatic];
 
         audioPad.position = cellCenter;
         [self.audioTouchDispatcher addResponder:audioPad];
         [self.sequenceDispatcher addResponder:audioPad];
         [self.audioObjectsBatchNode addChild:audioPad z:ZOrderAudioBatchPad];
         
-        if (audioID) {
-            NSDictionary *audioData = puzzle.audio[[audioID integerValue]];
-            NSAssert(audioData != nil, @"No audio data found for audio id: %@", audioID);
+        if (glyph.audioID) {
+            id object = puzzle.audio[[glyph.audioID integerValue]];
             
-            NSArray *samplesData = audioData[kPFLPuzzleSamples];
-            
-            if (samplesData) {
-                for (NSDictionary *unit in samplesData) {
-                    [allSampleNames addObject:unit[kPFLPuzzleFile]];
+            if ([object isKindOfClass:[PFLMultiSample class]]) {
+                PFLMultiSample *multiSample = (PFLMultiSample *)object;
+                Gear *gear = [[Gear alloc] initWithCell:glyph.cell audioID:glyph.audioID multiSample:multiSample isStatic:glyph.isStatic];
+                [self.audioTouchDispatcher addResponder:gear];
+                [self.sequenceDispatcher addResponder:gear];
+                gear.position = cellCenter;
+                [self.audioObjectsBatchNode addChild:gear z:ZOrderAudioBatchGlyph];
+                
+                for (PFLSample *sample in multiSample.samples) {
+                    [allSampleNames addObject:sample.file];
                 }
-                Gear *drum = [[Gear alloc] initWithCell:cell audioID:audioID data:samplesData isStatic:isStatic];
-                [self.audioTouchDispatcher addResponder:drum];
-                [self.sequenceDispatcher addResponder:drum];
-                drum.position = cellCenter;
-                [self.audioObjectsBatchNode addChild:drum z:ZOrderAudioBatchGlyph];
             }
         }
         
         // direction arrow
-        if (arrowDirection) {
-            Arrow *arrow = [[Arrow alloc] initWithCell:cell direction:arrowDirection isStatic:isStatic];
+        if (glyph.arrow) {
+            Arrow *arrow = [[Arrow alloc] initWithCell:glyph.cell direction:glyph.arrow isStatic:glyph.isStatic];
             [self.audioTouchDispatcher addResponder:arrow];
             [self.sequenceDispatcher addResponder:arrow];
             arrow.position = cellCenter;
@@ -349,8 +345,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         }
         
         // entry point
-        if (entryDirection) {
-            Entry *entry = [[Entry alloc] initWithCell:cell direction:entryDirection isStatic:isStatic];
+        if (glyph.entry) {
+            Entry *entry = [[Entry alloc] initWithCell:glyph.cell direction:glyph.entry isStatic:glyph.isStatic];
             [self.audioTouchDispatcher addResponder:entry];
             [self.sequenceDispatcher addResponder:entry];
             self.sequenceDispatcher.entry = entry;

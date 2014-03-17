@@ -9,7 +9,6 @@
 #import "AudioTouchDispatcher.h"
 #import "TickEvent.h"
 #import "MainSynth.h"
-#import "AudioStopEvent.h"
 #import "Coord.h"
 #import "NSObject+AudioResponderUtils.h"
 #import "AudioPad.h"
@@ -54,7 +53,7 @@
     self.allowScrolling = (events.count == 0);
     
     // send events to pd
-    [[MainSynth sharedMainSynth] receiveEvents:events ignoreAudioPad:NO];
+    [[MainSynth sharedMainSynth] receiveEvents:events];
 }
 
 // TODO: currently not being used
@@ -163,8 +162,8 @@
     // get channel
     NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.trackingTouches, (__bridge void *)touch);
     NSString *channel = [touchInfo objectForKey:@"channel"];
-    AudioStopEvent *audioStop = [[AudioStopEvent alloc] init];
-    [[MainSynth sharedMainSynth] receiveEvents:@[audioStop] ignoreAudioPad:YES];
+    TickEvent *audioStopEvent = [TickEvent audioStopEventWithAudioID:nil];
+    [[MainSynth sharedMainSynth] receiveEvents:@[audioStopEvent]];
     
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
@@ -179,8 +178,8 @@
     // get channel
     NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.trackingTouches, (__bridge void *)touch);
     NSString *channel = [touchInfo objectForKey:@"channel"];
-    AudioStopEvent *audioStop = [[AudioStopEvent alloc] init];
-    [[MainSynth sharedMainSynth] receiveEvents:@[audioStop] ignoreAudioPad:YES];
+    TickEvent *audioStopEvent = [TickEvent audioStopEventWithAudioID:nil];
+    [[MainSynth sharedMainSynth] receiveEvents:@[audioStopEvent]];
     
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];

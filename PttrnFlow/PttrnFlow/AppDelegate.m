@@ -79,8 +79,8 @@
     [application setStatusBarHidden:YES];
     
     // load sprite sheets (new method)
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeySamplePads stringByAppendingString:@".plist"]];
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeySynthPads stringByAppendingString:@".plist"]];
+//    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeySamplePads stringByAppendingString:@".plist"]];
+//    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeySynthPads stringByAppendingString:@".plist"]];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeyOther stringByAppendingString:@".plist"]];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeyUILayer stringByAppendingString:@".plist"]];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeyBackground stringByAppendingString:@".plist"]];

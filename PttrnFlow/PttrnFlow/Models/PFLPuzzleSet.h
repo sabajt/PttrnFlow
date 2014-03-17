@@ -8,13 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-FOUNDATION_EXPORT NSString *const kPFLPuzzleSetName;
-FOUNDATION_EXPORT NSString *const kPFLPuzzleSetBpm;
-FOUNDATION_EXPORT NSString *const kPFLPuzzleSetLength;
-FOUNDATION_EXPORT NSString *const kPFLPuzzleSetPuzzles;
-FOUNDATION_EXPORT NSString *const kPFLPuzzleSetFile;
-FOUNDATION_EXPORT NSString *const kPFLPuzzleSetKeyframes;
-
 @interface PFLPuzzleSet : NSObject
 
 @property (assign) NSInteger bpm;

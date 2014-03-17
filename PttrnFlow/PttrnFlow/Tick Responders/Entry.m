@@ -10,14 +10,14 @@
 #import "NSString+Degrees.h"
 #import "CCNode+Grid.h"
 #import "ColorUtils.h"
-#import "DirectionEvent.h"
+#import "TickEvent.h"
 
 @interface Entry ()
 
 @property (weak, nonatomic) CCSprite *detailSprite;
 @property (assign) ccColor3B defaultColor;
 @property (assign) ccColor3B activeColor;
-@property (strong, nonatomic) DirectionEvent *event;
+@property (strong, nonatomic) TickEvent *event;
 
 @end
 
@@ -33,7 +33,7 @@
         self.direction = direction;
         self.rotation = [direction degrees];
         
-        self.event = [[DirectionEvent alloc] initWithChannel:0 direction:direction];
+        self.event = [TickEvent directionEventWithDirection:direction];
         
         CCSprite *detailSprite = [CCSprite spriteWithSpriteFrameName:@"entry_up.png"];
         self.detailSprite = detailSprite;

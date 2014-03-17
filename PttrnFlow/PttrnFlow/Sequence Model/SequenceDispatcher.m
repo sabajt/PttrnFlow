@@ -7,15 +7,10 @@
 //
 
 #import "AudioResponder.h"
-#import "AudioStopEvent.h"
 #import "SequenceDispatcher.h"
 #import "CCNode+Grid.h"
-#import "DirectionEvent.h"
 #import "MainSynth.h"
-#import "MultiSampleEvent.h"
 #import "NSObject+AudioResponderUtils.h"
-#import "SampleEvent.h"
-#import "SynthEvent.h"
 #import "TickEvent.h"
 #import "PFLPuzzle.h"
 
@@ -82,13 +77,12 @@ NSString *const kKeyEmpty = @"empty";
     NSArray *events = [self hitResponders:self.responders atCoord:self.currentCell];
     
     // send events to pd
-    [[MainSynth sharedMainSynth] receiveEvents:events ignoreAudioPad:NO];
+    [[MainSynth sharedMainSynth] receiveEvents:events];
     
     // change direction if needed
     for (TickEvent *e in events) {
-        if ([e isKindOfClass:[DirectionEvent class]]) {
-            DirectionEvent *directionEvent = (DirectionEvent *)e;
-            self.currentDirection = directionEvent.direction;
+        if (e.eventType == PFLSequenceEventDirection) {
+            self.currentDirection = e.direction;
         }
     }
     
@@ -155,7 +149,7 @@ NSString *const kKeyEmpty = @"empty";
 
 - (void)playSolutionIndex:(NSInteger)index
 {
-    [[MainSynth sharedMainSynth] receiveEvents:self.solutionEvents[index] ignoreAudioPad:YES];
+    [[MainSynth sharedMainSynth] receiveEvents:self.solutionEvents[index]];
 }
 
 @end

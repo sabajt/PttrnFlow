@@ -149,7 +149,6 @@
 		16A942B71777A2260052D5BD /* MainSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A41777A2250052D5BD /* MainSynth.m */; };
 		16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */; };
 		3302EF6E1879C92C0032AD58 /* PFGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302EF6D1879C92C0032AD58 /* PFGeometry.m */; };
-		330A57B818C27C5B00DC97B7 /* MultiSampleEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 330A57B718C27C5B00DC97B7 /* MultiSampleEvent.m */; };
 		330A580218C5A82A00DC97B7 /* puzzle6.json in Resources */ = {isa = PBXBuildFile; fileRef = 330A580018C5A82A00DC97B7 /* puzzle6.json */; };
 		3317322E1892A89D005435D9 /* ScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3317322D1892A89D005435D9 /* ScrollLayer.m */; };
 		332C199118C0D2150081FE1D /* Gear.m in Sources */ = {isa = PBXBuildFile; fileRef = 332C199018C0D2150081FE1D /* Gear.m */; };
@@ -205,12 +204,6 @@
 		33A957EF188D5B43006BF182 /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957EE188D5B43006BF182 /* Arrow.m */; };
 		33A957F2188D624A006BF182 /* NSString+Degrees.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957F1188D624A006BF182 /* NSString+Degrees.m */; };
 		33AF255717CB069700643CB2 /* AudioPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255617CB069700643CB2 /* AudioPad.m */; };
-		33AF255E17CB0B3F00643CB2 /* AudioPadEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255D17CB0B3F00643CB2 /* AudioPadEvent.m */; };
-		33B4F25B17C72600004D4C13 /* AudioStopEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25017C72600004D4C13 /* AudioStopEvent.m */; };
-		33B4F25C17C72600004D4C13 /* DirectionEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25217C72600004D4C13 /* DirectionEvent.m */; };
-		33B4F25D17C72600004D4C13 /* ExitEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25417C72600004D4C13 /* ExitEvent.m */; };
-		33B4F25E17C72600004D4C13 /* SampleEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25617C72600004D4C13 /* SampleEvent.m */; };
-		33B4F25F17C72600004D4C13 /* SynthEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25817C72600004D4C13 /* SynthEvent.m */; };
 		33B4F26017C72600004D4C13 /* TickEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25A17C72600004D4C13 /* TickEvent.m */; };
 		33BA5F22185E3385005A0452 /* puzzle0.json in Resources */ = {isa = PBXBuildFile; fileRef = 33BA5F1F185E3385005A0452 /* puzzle0.json */; };
 		33BA5F23185E3385005A0452 /* puzzle1.json in Resources */ = {isa = PBXBuildFile; fileRef = 33BA5F20185E3385005A0452 /* puzzle1.json */; };
@@ -225,6 +218,9 @@
 		33DD834C18D5ECFB00EF90C7 /* PFLPuzzleSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD834B18D5ECFB00EF90C7 /* PFLPuzzleSet.m */; };
 		33DD834F18D5EEDA00EF90C7 /* PFLJsonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD834E18D5EEDA00EF90C7 /* PFLJsonUtils.m */; };
 		33DD835218D5FBE400EF90C7 /* PFLKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD835118D5FBE400EF90C7 /* PFLKeyframe.m */; };
+		33DD835518D60B6E00EF90C7 /* PFLSample.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD835418D60B6E00EF90C7 /* PFLSample.m */; };
+		33DD835818D60B7D00EF90C7 /* PFLMultiSample.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD835718D60B7D00EF90C7 /* PFLMultiSample.m */; };
+		33DD835B18D616D300EF90C7 /* PFLGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD835A18D616D300EF90C7 /* PFLGlyph.m */; };
 		33E4F6F618788CF6005571F4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E4F6F518788CF6005571F4 /* XCTest.framework */; };
 		33E4F6F718788CF6005571F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160806C816B437A700039339 /* Foundation.framework */; };
 		33E4F6F818788CF6005571F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160806C616B437A700039339 /* UIKit.framework */; };
@@ -555,8 +551,6 @@
 		16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceMenuCell.m; sourceTree = "<group>"; };
 		3302EF6C1879C92C0032AD58 /* PFGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGeometry.h; sourceTree = "<group>"; };
 		3302EF6D1879C92C0032AD58 /* PFGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGeometry.m; sourceTree = "<group>"; };
-		330A57B618C27C5B00DC97B7 /* MultiSampleEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiSampleEvent.h; sourceTree = "<group>"; };
-		330A57B718C27C5B00DC97B7 /* MultiSampleEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiSampleEvent.m; sourceTree = "<group>"; };
 		330A580018C5A82A00DC97B7 /* puzzle6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle6.json; sourceTree = "<group>"; };
 		3317322C1892A89D005435D9 /* ScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollLayer.h; sourceTree = "<group>"; };
 		3317322D1892A89D005435D9 /* ScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollLayer.m; sourceTree = "<group>"; };
@@ -629,18 +623,6 @@
 		33A957F1188D624A006BF182 /* NSString+Degrees.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Degrees.m"; path = "Utils/NSString+Degrees.m"; sourceTree = "<group>"; };
 		33AF255517CB069700643CB2 /* AudioPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPad.h; sourceTree = "<group>"; };
 		33AF255617CB069700643CB2 /* AudioPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPad.m; sourceTree = "<group>"; };
-		33AF255C17CB0B3F00643CB2 /* AudioPadEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPadEvent.h; sourceTree = "<group>"; };
-		33AF255D17CB0B3F00643CB2 /* AudioPadEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPadEvent.m; sourceTree = "<group>"; };
-		33B4F24F17C72600004D4C13 /* AudioStopEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStopEvent.h; sourceTree = "<group>"; };
-		33B4F25017C72600004D4C13 /* AudioStopEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStopEvent.m; sourceTree = "<group>"; };
-		33B4F25117C72600004D4C13 /* DirectionEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionEvent.h; sourceTree = "<group>"; };
-		33B4F25217C72600004D4C13 /* DirectionEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionEvent.m; sourceTree = "<group>"; };
-		33B4F25317C72600004D4C13 /* ExitEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExitEvent.h; sourceTree = "<group>"; };
-		33B4F25417C72600004D4C13 /* ExitEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExitEvent.m; sourceTree = "<group>"; };
-		33B4F25517C72600004D4C13 /* SampleEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleEvent.h; sourceTree = "<group>"; };
-		33B4F25617C72600004D4C13 /* SampleEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleEvent.m; sourceTree = "<group>"; };
-		33B4F25717C72600004D4C13 /* SynthEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthEvent.h; sourceTree = "<group>"; };
-		33B4F25817C72600004D4C13 /* SynthEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynthEvent.m; sourceTree = "<group>"; };
 		33B4F25917C72600004D4C13 /* TickEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickEvent.h; sourceTree = "<group>"; };
 		33B4F25A17C72600004D4C13 /* TickEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickEvent.m; sourceTree = "<group>"; };
 		33BA5F1F185E3385005A0452 /* puzzle0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle0.json; sourceTree = "<group>"; };
@@ -661,6 +643,12 @@
 		33DD834E18D5EEDA00EF90C7 /* PFLJsonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLJsonUtils.m; sourceTree = "<group>"; };
 		33DD835018D5FBE400EF90C7 /* PFLKeyframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLKeyframe.h; sourceTree = "<group>"; };
 		33DD835118D5FBE400EF90C7 /* PFLKeyframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLKeyframe.m; sourceTree = "<group>"; };
+		33DD835318D60B6E00EF90C7 /* PFLSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLSample.h; sourceTree = "<group>"; };
+		33DD835418D60B6E00EF90C7 /* PFLSample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLSample.m; sourceTree = "<group>"; };
+		33DD835618D60B7D00EF90C7 /* PFLMultiSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLMultiSample.h; sourceTree = "<group>"; };
+		33DD835718D60B7D00EF90C7 /* PFLMultiSample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLMultiSample.m; sourceTree = "<group>"; };
+		33DD835918D616D300EF90C7 /* PFLGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLGlyph.h; sourceTree = "<group>"; };
+		33DD835A18D616D300EF90C7 /* PFLGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLGlyph.m; sourceTree = "<group>"; };
 		33E4F6F418788CF6005571F4 /* PttrnFlow Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PttrnFlow Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33E4F6F518788CF6005571F4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		33E4F6FB18788CF6005571F4 /* PttrnFlow Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PttrnFlow Tests-Info.plist"; sourceTree = "<group>"; };
@@ -1363,20 +1351,6 @@
 			children = (
 				33B4F25917C72600004D4C13 /* TickEvent.h */,
 				33B4F25A17C72600004D4C13 /* TickEvent.m */,
-				33B4F25717C72600004D4C13 /* SynthEvent.h */,
-				33B4F25817C72600004D4C13 /* SynthEvent.m */,
-				33B4F25517C72600004D4C13 /* SampleEvent.h */,
-				33B4F25617C72600004D4C13 /* SampleEvent.m */,
-				33B4F25117C72600004D4C13 /* DirectionEvent.h */,
-				33B4F25217C72600004D4C13 /* DirectionEvent.m */,
-				33B4F25317C72600004D4C13 /* ExitEvent.h */,
-				33B4F25417C72600004D4C13 /* ExitEvent.m */,
-				33B4F24F17C72600004D4C13 /* AudioStopEvent.h */,
-				33B4F25017C72600004D4C13 /* AudioStopEvent.m */,
-				33AF255C17CB0B3F00643CB2 /* AudioPadEvent.h */,
-				33AF255D17CB0B3F00643CB2 /* AudioPadEvent.m */,
-				330A57B618C27C5B00DC97B7 /* MultiSampleEvent.h */,
-				330A57B718C27C5B00DC97B7 /* MultiSampleEvent.m */,
 			);
 			path = "Tick Events";
 			sourceTree = "<group>";
@@ -1407,6 +1381,12 @@
 				33DD834B18D5ECFB00EF90C7 /* PFLPuzzleSet.m */,
 				33DD835018D5FBE400EF90C7 /* PFLKeyframe.h */,
 				33DD835118D5FBE400EF90C7 /* PFLKeyframe.m */,
+				33DD835318D60B6E00EF90C7 /* PFLSample.h */,
+				33DD835418D60B6E00EF90C7 /* PFLSample.m */,
+				33DD835618D60B7D00EF90C7 /* PFLMultiSample.h */,
+				33DD835718D60B7D00EF90C7 /* PFLMultiSample.m */,
+				33DD835918D616D300EF90C7 /* PFLGlyph.h */,
+				33DD835A18D616D300EF90C7 /* PFLGlyph.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1622,7 +1602,7 @@
 				1608070216B437A800039339 /* CCActionInterval.m in Sources */,
 				1608070516B437A800039339 /* CCActionManager.m in Sources */,
 				1608070816B437A800039339 /* CCActionPageTurn3D.m in Sources */,
-				33B4F25D17C72600004D4C13 /* ExitEvent.m in Sources */,
+				33DD835B18D616D300EF90C7 /* PFLGlyph.m in Sources */,
 				1608070B16B437A800039339 /* CCActionProgressTimer.m in Sources */,
 				3391F54318A1A0A00096F5D3 /* NSObject+AudioResponderUtils.m in Sources */,
 				1608070E16B437A800039339 /* CCActionTiledGrid.m in Sources */,
@@ -1643,7 +1623,6 @@
 				1608073016B437A800039339 /* ccGLStateCache.m in Sources */,
 				1608073316B437A800039339 /* CCGrabber.m in Sources */,
 				1608073616B437A800039339 /* CCGrid.m in Sources */,
-				33AF255E17CB0B3F00643CB2 /* AudioPadEvent.m in Sources */,
 				1608073916B437A800039339 /* CCLabelAtlas.m in Sources */,
 				1608073C16B437A800039339 /* CCLabelBMFont.m in Sources */,
 				1608073F16B437A800039339 /* CCLabelTTF.m in Sources */,
@@ -1659,6 +1638,7 @@
 				1608075B16B437A800039339 /* CCParticleExamples.m in Sources */,
 				1608075E16B437A800039339 /* CCParticleSystem.m in Sources */,
 				1608076116B437A900039339 /* CCParticleSystemQuad.m in Sources */,
+				33DD835818D60B7D00EF90C7 /* PFLMultiSample.m in Sources */,
 				1608076416B437A900039339 /* CCProgressTimer.m in Sources */,
 				1608076816B437A900039339 /* CCRenderTexture.m in Sources */,
 				1608076B16B437A900039339 /* CCScene.m in Sources */,
@@ -1717,7 +1697,6 @@
 				3302EF6E1879C92C0032AD58 /* PFGeometry.m in Sources */,
 				33425EAB1841218C002B56DB /* CCNode+Grid.m in Sources */,
 				1608080416B437AA00039339 /* CDAudioManager.m in Sources */,
-				33B4F25C17C72600004D4C13 /* DirectionEvent.m in Sources */,
 				1608080816B437AA00039339 /* CDOpenALSupport.m in Sources */,
 				1608080B16B437AA00039339 /* CocosDenshion.m in Sources */,
 				1608080E16B437AA00039339 /* SimpleAudioEngine.m in Sources */,
@@ -1742,21 +1721,18 @@
 				33A957EF188D5B43006BF182 /* Arrow.m in Sources */,
 				334B2AE3181C47B900865510 /* ClippingSprite.m in Sources */,
 				1624D1EA1733822C00851B45 /* ColorUtils.m in Sources */,
-				33B4F25E17C72600004D4C13 /* SampleEvent.m in Sources */,
 				163DBE0117692C3100FCB89C /* SequenceMenuLayer.m in Sources */,
 				163DBE081769325400FCB89C /* UIImage+Utils.m in Sources */,
 				16A4277C176BF0A100BEF13F /* SequenceControlsLayer.m in Sources */,
 				33EE317017C92C3C004CC016 /* AudioTouchDispatcher.m in Sources */,
-				33B4F25B17C72600004D4C13 /* AudioStopEvent.m in Sources */,
 				16A942B71777A2260052D5BD /* MainSynth.m in Sources */,
 				334B2ADD181C2F4B00865510 /* TouchSprite.m in Sources */,
 				16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */,
 				1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */,
 				163091F0177DEDA9003155BB /* BackgroundLayer.m in Sources */,
-				330A57B818C27C5B00DC97B7 /* MultiSampleEvent.m in Sources */,
+				33DD835518D60B6E00EF90C7 /* PFLSample.m in Sources */,
 				332C199118C0D2150081FE1D /* Gear.m in Sources */,
 				162C291017821E0200CE480C /* SizeUtils.m in Sources */,
-				33B4F25F17C72600004D4C13 /* SynthEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

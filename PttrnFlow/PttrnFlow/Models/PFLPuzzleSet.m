@@ -11,12 +11,12 @@
 #import "PFLPuzzle.h"
 #import "PFLPuzzleSet.h"
 
-NSString *const kPFLPuzzleSetBpm = @"bpm";
-NSString *const kPFLPuzzleSetFile = @"file";
-NSString *const kPFLPuzzleSetKeyframes = @"keyframes";
-NSString *const kPFLPuzzleSetLength = @"length";
-NSString *const kPFLPuzzleSetName = @"name";
-NSString *const kPFLPuzzleSetPuzzles = @"puzzles";
+static NSString *const kBpm = @"bpm";
+static NSString *const kFile = @"file";
+static NSString *const kKeyframes = @"keyframes";
+static NSString *const kLength = @"length";
+static NSString *const kName = @"name";
+static NSString *const kPuzzles = @"puzzles";
 
 @implementation PFLPuzzleSet
 
@@ -29,19 +29,19 @@ NSString *const kPFLPuzzleSetPuzzles = @"puzzles";
 {
     self = [super init];
     if (self) {
-        self.bpm = [json[kPFLPuzzleSetBpm] integerValue];
-        self.length = [json[kPFLPuzzleSetLength] integerValue];
-        self.name = json[kPFLPuzzleSetName];
+        self.bpm = [json[kBpm] integerValue];
+        self.length = [json[kLength] integerValue];
+        self.name = json[kName];
         
-        NSArray *puzzleMetaData = json[kPFLPuzzleSetPuzzles];
+        NSArray *puzzleMetaData = json[kPuzzles];
         NSMutableArray *puzzles = [NSMutableArray array];
         NSMutableArray *keyframeSets = [NSMutableArray array];
         
         for (NSDictionary *meta in puzzleMetaData) {
-            PFLPuzzle *puzzle = [PFLPuzzle puzzleFromResource:meta[kPFLPuzzleSetFile]];
+            PFLPuzzle *puzzle = [PFLPuzzle puzzleFromResource:meta[kFile]];
             [puzzles addObject:puzzle];
             
-            NSArray *keyframes = [PFLKeyframe keyframesFromArray:meta[kPFLPuzzleSetKeyframes]];
+            NSArray *keyframes = [PFLKeyframe keyframesFromArray:meta[kKeyframes]];
             [keyframeSets addObject:keyframes];
         }
         self.puzzles = [NSArray arrayWithArray:puzzles];

@@ -9,22 +9,24 @@
 #import "ColorUtils.h"
 #import "CCNode+Grid.h"
 #import "Gear.h"
-#import "MultiSampleEvent.h"
+#import "TickEvent.h"
 #import "MainSynth.h"
 #import "PFLPuzzle.h"
+#import "PFLMultiSample.h"
+#import "PFLSample.h"
 
 @interface Gear ()
 
 @property (assign) ccColor3B defaultColor;
 @property (assign) ccColor3B activeColor;
 @property (strong, nonatomic) NSMutableArray *audioUnits;
-@property (strong, nonatomic) MultiSampleEvent *multiSampleEvent;
+@property (strong, nonatomic) TickEvent *multiSampleEvent;
 
 @end
 
 @implementation Gear
 
-- (id)initWithCell:(Coord *)cell audioID:(NSNumber *)audioID data:(NSArray *)data isStatic:(BOOL)isStatic
+- (id)initWithCell:(Coord *)cell audioID:(NSNumber *)audioID multiSample:(PFLMultiSample *)multiSample isStatic:(BOOL)isStatic
 {
     self = [super initWithSpriteFrameName:@"audio_circle.png"];
     if (self) {
@@ -37,14 +39,12 @@
         self.cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
         
         // units (beats)
-        NSMutableDictionary *multiSampleData = [NSMutableDictionary dictionary];
         self.audioUnits = [NSMutableArray array];
-        for (NSDictionary *unit in data) {
+        for (PFLSample *sample in multiSample.samples) {
             
             // container
             CCSprite *container = [CCSprite spriteWithSpriteFrameName:@"audio_box_empty.png"];
-            NSNumber *time = unit[kPFLPuzzleTime];
-            container.rotation = 360.0f * [time floatValue];
+            container.rotation = 360.0f * [sample.time floatValue];
             container.position = ccp(self.contentSize.width / 2.0f, self.contentSize.height / 2.0f);
             container.color = ccORANGE;
             
@@ -55,7 +55,7 @@
             audioUnit.color = [ColorUtils cream];
             
             // unit symbol
-            CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:unit[kPFLPuzzleImage]];
+            CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:sample.image];
             if (isStatic) {
                 unitSymbol.color = [ColorUtils dimPurple];
             }
@@ -70,12 +70,16 @@
             [self addChild:container];
 
             [self.audioUnits addObject:audioUnit];
-            
-            // add data for our multi-sample event
-            multiSampleData[time] = unit[kPFLPuzzleFile];
         }
         
-        self.multiSampleEvent = [[MultiSampleEvent alloc] initWithAudioID:audioID timedSamplesData:[NSDictionary dictionaryWithDictionary:multiSampleData]];
+        // TODO: this should be a convenience method, maybe basic models should know how to create event models?
+        NSMutableArray *sampleEvents = [NSMutableArray array];
+        for (PFLSample *sample in multiSample.samples) {
+            TickEvent *sampleEvent = [TickEvent sampleEventWithAudioID:audioID file:sample.file time:sample.time];
+            [sampleEvents addObject:sampleEvent];
+        }
+        self.multiSampleEvent = [TickEvent multiSampleEventWithAudioID:audioID sampleEvents:[NSArray arrayWithArray:sampleEvents]];
+        ///
     }
     return self;
 }

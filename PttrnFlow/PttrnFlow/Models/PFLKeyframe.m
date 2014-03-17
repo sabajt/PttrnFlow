@@ -8,9 +8,9 @@
 
 #import "PFLKeyframe.h"
 
-NSString *const kPFLKeyframeRange = @"range";
-NSString *const kPFLKeyframeSourceIndex = @"source_index";
-NSString *const kPFLKeyframeTargetIndex = @"target_index";
+static NSString *const kRange = @"range";
+static NSString *const kSourceIndex = @"source_index";
+static NSString *const kTargetIndex = @"target_index";
 
 @implementation PFLKeyframe
 
@@ -27,9 +27,9 @@ NSString *const kPFLKeyframeTargetIndex = @"target_index";
 {
     self = [super init];
     if (self) {
-        self.range = [object[kPFLKeyframeRange] integerValue];
-        self.sourceIndex = [object[kPFLKeyframeSourceIndex] integerValue];
-        self.targetIndex = [object[kPFLKeyframeTargetIndex] integerValue];
+        self.range = [object[kRange] integerValue];
+        self.sourceIndex = [object[kSourceIndex] integerValue];
+        self.targetIndex = [object[kTargetIndex] integerValue];
     }
     return self;
 }

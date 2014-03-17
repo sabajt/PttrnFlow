@@ -9,10 +9,10 @@
 #import "CCSprite.h"
 #import "AudioResponder.h"
 
-@class SampleEvent;
+@class PFLMultiSample;
 
 @interface Gear : CCSprite <AudioResponder>
 
-- (id)initWithCell:(Coord *)cell audioID:(NSNumber *)audioID data:(NSArray *)data isStatic:(BOOL)isStatic;
+- (id)initWithCell:(Coord *)cell audioID:(NSNumber *)audioID multiSample:(PFLMultiSample *)multiSample isStatic:(BOOL)isStatic;
 
 @end

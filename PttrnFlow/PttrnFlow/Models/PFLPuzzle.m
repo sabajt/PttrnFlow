@@ -6,20 +6,20 @@
 //
 //
 
-#import "PFLPuzzle.h"
+#import "PFLGlyph.h"
 #import "PFLJsonUtils.h"
+#import "PFLMultiSample.h"
+#import "PFLPuzzle.h"
+#import "PFLSample.h"
 
-NSString *const kPFLPuzzleArrow = @"arrow";
-NSString *const kPFLPuzzleAudio = @"audio";
-NSString *const kPFLPuzzleCell = @"cell";
-NSString *const kPFLPuzzleEntry = @"entry";
-NSString *const kPFLPuzzleFile = @"file";
-NSString *const kPFLPuzzleImage = @"image";
-NSString *const kPFLPuzzleMidi = @"midi";
-NSString *const kPFLPuzzleStatic = @"static";
-NSString *const kPFLPuzzleSamples = @"samples";
-NSString *const kPFLPuzzleSynth = @"synth";
-NSString *const kPFLPuzzleTime = @"time";
+static NSString *const kArea = @"area";
+static NSString *const kAudio = @"audio";
+static NSString *const kGlyphs = @"glyphs";
+static NSString *const kMidi = @"midi";
+static NSString *const kName = @"name";
+static NSString *const kSolution = @"solution";
+static NSString *const kSamples = @"samples";
+static NSString *const kSynth = @"synth";
 
 @implementation PFLPuzzle
 
@@ -32,11 +32,27 @@ NSString *const kPFLPuzzleTime = @"time";
 {
     self = [super init];
     if (self) {
-        self.name = json[@"name"];
-        self.area = json[@"area"];
-        self.audio = json[@"audio"];
-        self.glyphs = json[@"glyphs"];
-        self.solution = json[@"solution"];
+        self.area = json[kArea];
+        self.name = json[kName];
+        self.solution = json[kSolution];
+        
+        NSMutableArray *audio = [NSMutableArray array];
+        for (NSDictionary *a in json[kAudio]) {
+            NSArray *s = a[kSamples];
+            if (s) {
+                NSArray *samples = [PFLSample samplesFromArray:s];
+                PFLMultiSample *multiSample = [[PFLMultiSample alloc] initWithSamples:samples];
+                [audio addObject:multiSample];
+            }
+        }
+        self.audio = [NSArray arrayWithArray:audio];
+        
+        NSMutableArray *glyphs = [NSMutableArray array];
+        for (NSDictionary *g in json[kGlyphs]) {
+            PFLGlyph *glyph = [[PFLGlyph alloc] initWithObject:g];
+            [glyphs addObject:glyph];
+        }
+        self.glyphs = [NSArray arrayWithArray:glyphs];
     }
     return self;
 }
