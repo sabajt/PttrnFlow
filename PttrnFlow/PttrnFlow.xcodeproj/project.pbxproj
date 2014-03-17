@@ -204,7 +204,6 @@
 		33A957EF188D5B43006BF182 /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957EE188D5B43006BF182 /* Arrow.m */; };
 		33A957F2188D624A006BF182 /* NSString+Degrees.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957F1188D624A006BF182 /* NSString+Degrees.m */; };
 		33AF255717CB069700643CB2 /* AudioPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255617CB069700643CB2 /* AudioPad.m */; };
-		33B4F26017C72600004D4C13 /* TickEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B4F25A17C72600004D4C13 /* TickEvent.m */; };
 		33BA5F22185E3385005A0452 /* puzzle0.json in Resources */ = {isa = PBXBuildFile; fileRef = 33BA5F1F185E3385005A0452 /* puzzle0.json */; };
 		33BA5F23185E3385005A0452 /* puzzle1.json in Resources */ = {isa = PBXBuildFile; fileRef = 33BA5F20185E3385005A0452 /* puzzle1.json */; };
 		33BA5F24185E3385005A0452 /* puzzle2.json in Resources */ = {isa = PBXBuildFile; fileRef = 33BA5F21185E3385005A0452 /* puzzle2.json */; };
@@ -221,6 +220,7 @@
 		33DD835518D60B6E00EF90C7 /* PFLSample.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD835418D60B6E00EF90C7 /* PFLSample.m */; };
 		33DD835818D60B7D00EF90C7 /* PFLMultiSample.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD835718D60B7D00EF90C7 /* PFLMultiSample.m */; };
 		33DD835B18D616D300EF90C7 /* PFLGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD835A18D616D300EF90C7 /* PFLGlyph.m */; };
+		33DD836518D7BBE600EF90C7 /* PFLEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD836418D7BBE600EF90C7 /* PFLEvent.m */; };
 		33E4F6F618788CF6005571F4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E4F6F518788CF6005571F4 /* XCTest.framework */; };
 		33E4F6F718788CF6005571F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160806C816B437A700039339 /* Foundation.framework */; };
 		33E4F6F818788CF6005571F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160806C616B437A700039339 /* UIKit.framework */; };
@@ -546,7 +546,7 @@
 		16A4277A176BF0A100BEF13F /* SequenceControlsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceControlsLayer.h; sourceTree = "<group>"; };
 		16A4277B176BF0A100BEF13F /* SequenceControlsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceControlsLayer.m; sourceTree = "<group>"; };
 		16A942A31777A2250052D5BD /* MainSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainSynth.h; sourceTree = "<group>"; };
-		16A942A41777A2250052D5BD /* MainSynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainSynth.m; sourceTree = "<group>"; };
+		16A942A41777A2250052D5BD /* MainSynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MainSynth.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		16A942C11777ABFA0052D5BD /* SequenceMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceMenuCell.h; sourceTree = "<group>"; };
 		16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceMenuCell.m; sourceTree = "<group>"; };
 		3302EF6C1879C92C0032AD58 /* PFGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGeometry.h; sourceTree = "<group>"; };
@@ -555,7 +555,7 @@
 		3317322C1892A89D005435D9 /* ScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollLayer.h; sourceTree = "<group>"; };
 		3317322D1892A89D005435D9 /* ScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollLayer.m; sourceTree = "<group>"; };
 		332C198F18C0D2150081FE1D /* Gear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gear.h; sourceTree = "<group>"; };
-		332C199018C0D2150081FE1D /* Gear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gear.m; sourceTree = "<group>"; };
+		332C199018C0D2150081FE1D /* Gear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Gear.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3339C02D18397638005771BC /* audioObjects-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "audioObjects-hd.plist"; sourceTree = "<group>"; };
 		3339C02E18397638005771BC /* audioObjects-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audioObjects-hd.png"; sourceTree = "<group>"; };
 		3339C02F18397638005771BC /* audioObjects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = audioObjects.plist; sourceTree = "<group>"; };
@@ -598,11 +598,11 @@
 		335F5E1C18BEE90000BF14DD /* marimba-58.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-58.wav"; sourceTree = "<group>"; };
 		33630CBB1804E52200A9F9EE /* Default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h.png"; path = "Resources/Default-568h.png"; sourceTree = "<group>"; };
 		338112B0183D7E870012E528 /* Synth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Synth.h; sourceTree = "<group>"; };
-		338112B1183D7E870012E528 /* Synth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Synth.m; sourceTree = "<group>"; };
+		338112B1183D7E870012E528 /* Synth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Synth.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		338EE1B217A5F1D2005E98B1 /* NSArray+CompareNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CompareNumbers.h"; sourceTree = "<group>"; };
 		338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CompareNumbers.m"; sourceTree = "<group>"; };
 		3391F54118A1A0A00096F5D3 /* NSObject+AudioResponderUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AudioResponderUtils.h"; sourceTree = "<group>"; };
-		3391F54218A1A0A00096F5D3 /* NSObject+AudioResponderUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AudioResponderUtils.m"; sourceTree = "<group>"; };
+		3391F54218A1A0A00096F5D3 /* NSObject+AudioResponderUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSObject+AudioResponderUtils.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		339ACE6F1884E23700F3D839 /* puzzle4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle4.json; sourceTree = "<group>"; };
 		339ACE701884E23700F3D839 /* puzzle5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle5.json; sourceTree = "<group>"; };
 		339ACE7D1886C64100F3D839 /* SolutionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolutionButton.h; sourceTree = "<group>"; };
@@ -610,21 +610,19 @@
 		33A64C43183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "arial-rounded-mt-bold-12fnt.fnt"; sourceTree = "<group>"; };
 		33A64C44183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arial-rounded-mt-bold-12fnt.png"; sourceTree = "<group>"; };
 		33A7C4E7189ED8C3000EBCA7 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
-		33A7C4E8189ED8C3000EBCA7 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
+		33A7C4E8189ED8C3000EBCA7 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Entry.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		33A7C50718A08896000EBCA7 /* SequenceDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceDispatcher.h; sourceTree = "<group>"; };
-		33A7C50818A08896000EBCA7 /* SequenceDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceDispatcher.m; sourceTree = "<group>"; };
+		33A7C50818A08896000EBCA7 /* SequenceDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SequenceDispatcher.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		33A957E7188C561B006BF182 /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleButton.h; sourceTree = "<group>"; };
 		33A957E8188C561B006BF182 /* ToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleButton.m; sourceTree = "<group>"; };
 		33A957EA188C8236006BF182 /* BasicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicButton.h; sourceTree = "<group>"; };
 		33A957EB188C8236006BF182 /* BasicButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicButton.m; sourceTree = "<group>"; };
 		33A957ED188D5B43006BF182 /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arrow.h; sourceTree = "<group>"; };
-		33A957EE188D5B43006BF182 /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Arrow.m; sourceTree = "<group>"; };
+		33A957EE188D5B43006BF182 /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Arrow.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		33A957F0188D624A006BF182 /* NSString+Degrees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Degrees.h"; sourceTree = "<group>"; };
 		33A957F1188D624A006BF182 /* NSString+Degrees.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Degrees.m"; path = "Utils/NSString+Degrees.m"; sourceTree = "<group>"; };
 		33AF255517CB069700643CB2 /* AudioPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPad.h; sourceTree = "<group>"; };
-		33AF255617CB069700643CB2 /* AudioPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPad.m; sourceTree = "<group>"; };
-		33B4F25917C72600004D4C13 /* TickEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickEvent.h; sourceTree = "<group>"; };
-		33B4F25A17C72600004D4C13 /* TickEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickEvent.m; sourceTree = "<group>"; };
+		33AF255617CB069700643CB2 /* AudioPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AudioPad.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		33BA5F1F185E3385005A0452 /* puzzle0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle0.json; sourceTree = "<group>"; };
 		33BA5F20185E3385005A0452 /* puzzle1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle1.json; sourceTree = "<group>"; };
 		33BA5F21185E3385005A0452 /* puzzle2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle2.json; sourceTree = "<group>"; };
@@ -649,6 +647,8 @@
 		33DD835718D60B7D00EF90C7 /* PFLMultiSample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLMultiSample.m; sourceTree = "<group>"; };
 		33DD835918D616D300EF90C7 /* PFLGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLGlyph.h; sourceTree = "<group>"; };
 		33DD835A18D616D300EF90C7 /* PFLGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLGlyph.m; sourceTree = "<group>"; };
+		33DD836318D7BBE600EF90C7 /* PFLEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLEvent.h; sourceTree = "<group>"; };
+		33DD836418D7BBE600EF90C7 /* PFLEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLEvent.m; sourceTree = "<group>"; };
 		33E4F6F418788CF6005571F4 /* PttrnFlow Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PttrnFlow Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33E4F6F518788CF6005571F4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		33E4F6FB18788CF6005571F4 /* PttrnFlow Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PttrnFlow Tests-Info.plist"; sourceTree = "<group>"; };
@@ -656,7 +656,7 @@
 		33E4F6FF18788CF6005571F4 /* PttrnFlow_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PttrnFlow_Tests.m; sourceTree = "<group>"; };
 		33E4F70118788CF6005571F4 /* PttrnFlow Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PttrnFlow Tests-Prefix.pch"; sourceTree = "<group>"; };
 		33EE316E17C92C3C004CC016 /* AudioTouchDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTouchDispatcher.h; sourceTree = "<group>"; };
-		33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioTouchDispatcher.m; sourceTree = "<group>"; };
+		33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AudioTouchDispatcher.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		33F8A31117B9F104003B33E5 /* pf-main.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-main.pd"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1232,7 +1232,6 @@
 		16A942A51777A2250052D5BD /* Sequence Model */ = {
 			isa = PBXGroup;
 			children = (
-				33B4F24E17C72600004D4C13 /* Tick Events */,
 				33EE316E17C92C3C004CC016 /* AudioTouchDispatcher.h */,
 				33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */,
 				33A7C50718A08896000EBCA7 /* SequenceDispatcher.h */,
@@ -1346,15 +1345,6 @@
 			name = system;
 			sourceTree = "<group>";
 		};
-		33B4F24E17C72600004D4C13 /* Tick Events */ = {
-			isa = PBXGroup;
-			children = (
-				33B4F25917C72600004D4C13 /* TickEvent.h */,
-				33B4F25A17C72600004D4C13 /* TickEvent.m */,
-			);
-			path = "Tick Events";
-			sourceTree = "<group>";
-		};
 		33BA5F1E185E3385005A0452 /* puzzles */ = {
 			isa = PBXGroup;
 			children = (
@@ -1375,6 +1365,8 @@
 		33DD834318D4C8F800EF90C7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				33DD836318D7BBE600EF90C7 /* PFLEvent.h */,
+				33DD836418D7BBE600EF90C7 /* PFLEvent.m */,
 				33DD834418D4C8F800EF90C7 /* PFLPuzzle.h */,
 				33DD834518D4C8F800EF90C7 /* PFLPuzzle.m */,
 				33DD834A18D5ECFB00EF90C7 /* PFLPuzzleSet.h */,
@@ -1608,7 +1600,6 @@
 				1608070E16B437A800039339 /* CCActionTiledGrid.m in Sources */,
 				1608071116B437A800039339 /* CCActionTween.m in Sources */,
 				1608071416B437A800039339 /* CCAnimation.m in Sources */,
-				33B4F26017C72600004D4C13 /* TickEvent.m in Sources */,
 				1608071716B437A800039339 /* CCAnimationCache.m in Sources */,
 				1608071A16B437A800039339 /* CCAtlasNode.m in Sources */,
 				33C3B1D31876FA91008F5FA8 /* Coord.m in Sources */,
@@ -1701,6 +1692,7 @@
 				1608080B16B437AA00039339 /* CocosDenshion.m in Sources */,
 				1608080E16B437AA00039339 /* SimpleAudioEngine.m in Sources */,
 				1608082416B437AA00039339 /* aabb.c in Sources */,
+				33DD836518D7BBE600EF90C7 /* PFLEvent.m in Sources */,
 				1608082A16B437AA00039339 /* mat4stack.c in Sources */,
 				1608082C16B437AA00039339 /* matrix.c in Sources */,
 				1608082E16B437AA00039339 /* mat3.c in Sources */,

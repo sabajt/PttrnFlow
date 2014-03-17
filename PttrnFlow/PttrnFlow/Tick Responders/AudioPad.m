@@ -51,7 +51,7 @@
 
 #pragma mark - AudioResponder
 
-- (TickEvent *)audioHit:(CGFloat)beatDuration
+- (PFLEvent *)audioHit:(CGFloat)beatDuration
 {
     CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:beatDuration];
     [self.highlightSprite runAction:[CCEaseSineOut actionWithAction:fadeOut]];

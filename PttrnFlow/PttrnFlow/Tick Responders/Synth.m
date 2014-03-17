@@ -9,13 +9,13 @@
 #import "Synth.h"
 #import "CCNode+Grid.h"
 #import "ColorUtils.h"
-#import "TickEvent.h"
+#import "PFLEvent.h"
 
 @interface Synth ()
 
 @property (assign) ccColor3B defaultColor;
 @property (assign) ccColor3B activeColor;
-@property (strong, nonatomic) TickEvent *event;
+@property (strong, nonatomic) PFLEvent *event;
 
 @end
 
@@ -34,7 +34,7 @@
         self.activeColor = [ColorUtils activeYellow];
         self.color = self.defaultColor;
         
-        self.event = [TickEvent synthEventWithAudioID:audioID midiValue:[midi stringValue] synthType:synth];
+        self.event = [PFLEvent synthEventWithAudioID:audioID midiValue:[midi stringValue] synthType:synth];
         
         // CCNode+Grid
         self.cell = cell;
@@ -50,7 +50,7 @@
     return self.cell;
 }
 
-- (TickEvent *)audioHit:(CGFloat)beatDuration
+- (PFLEvent *)audioHit:(CGFloat)beatDuration
 {
     self.color = self.activeColor;
     CCTintTo *tint = [CCTintTo actionWithDuration:beatDuration red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];

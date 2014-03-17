@@ -10,14 +10,14 @@
 #import "NSString+Degrees.h"
 #import "CCNode+Grid.h"
 #import "ColorUtils.h"
-#import "TickEvent.h"
+#import "PFLEvent.h"
 
 @interface Entry ()
 
 @property (weak, nonatomic) CCSprite *detailSprite;
 @property (assign) ccColor3B defaultColor;
 @property (assign) ccColor3B activeColor;
-@property (strong, nonatomic) TickEvent *event;
+@property (strong, nonatomic) PFLEvent *event;
 
 @end
 
@@ -33,7 +33,7 @@
         self.direction = direction;
         self.rotation = [direction degrees];
         
-        self.event = [TickEvent directionEventWithDirection:direction];
+        self.event = [PFLEvent directionEventWithDirection:direction];
         
         CCSprite *detailSprite = [CCSprite spriteWithSpriteFrameName:@"entry_up.png"];
         self.detailSprite = detailSprite;
@@ -60,7 +60,7 @@
     return self.cell;
 }
 
-- (TickEvent *)audioHit:(CGFloat)beatDuration
+- (PFLEvent *)audioHit:(CGFloat)beatDuration
 {
     self.color = self.activeColor;
     CCTintTo *tint = [CCTintTo actionWithDuration:beatDuration red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];

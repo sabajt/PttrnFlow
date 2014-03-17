@@ -1,5 +1,5 @@
 //
-//  TickEvent.h
+//  PFLEvent.h
 //  PttrnFlow
 //
 //  Created by John Saba on 8/12/13.
@@ -22,14 +22,14 @@ typedef NS_ENUM(NSInteger, PFLSequenceEvent)
 
 FOUNDATION_EXPORT NSString *const kChannelNone;
 
-@interface NSArray (TickEvents)
+@interface NSArray (PFLEvent)
 
 - (BOOL)hasSameNumberOfSameEvents:(NSArray *)events;
 - (NSArray *)audioEvents;
 
 @end
 
-@interface TickEvent : CCNode
+@interface PFLEvent : NSObject
 
 @property (assign) PFLSequenceEvent eventType;
 

@@ -10,7 +10,7 @@
 
 #import "PdDispatcher.h"
 #import "PuzzleLayer.h"
-#import "TickEvent.h"
+#import "PFLEvent.h"
 
 static NSString *const kActivateNoise = @"activateNoise";
 static NSString *const kClear = @"clear";
@@ -76,7 +76,7 @@ static NSString *const kStageSample = @"stageSample";
     [PdBase sendBangToReceiver:kClear];
     
     // send events (setup information) in
-    for (TickEvent *event in events) {
+    for (PFLEvent *event in events) {
         
         if (event.eventType == PFLSequenceEventSynth) {
             NSNumber *midiValue = @([event.midiValue integerValue]);
@@ -95,7 +95,7 @@ static NSString *const kStageSample = @"stageSample";
         if(event.eventType == PFLSequenceEventMultiSample) {
             
             // set up samples to be recieved with time delays
-            for (TickEvent *sampleEvent in event.sampleEvents) {
+            for (PFLEvent *sampleEvent in event.sampleEvents) {
                 CCCallBlock *action = [CCCallBlock actionWithBlock:^{
                     [self receiveEvents:@[sampleEvent]];
                 }];

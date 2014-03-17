@@ -9,7 +9,7 @@
 #import "ColorUtils.h"
 #import "CCNode+Grid.h"
 #import "Gear.h"
-#import "TickEvent.h"
+#import "PFLEvent.h"
 #import "MainSynth.h"
 #import "PFLPuzzle.h"
 #import "PFLMultiSample.h"
@@ -20,7 +20,7 @@
 @property (assign) ccColor3B defaultColor;
 @property (assign) ccColor3B activeColor;
 @property (strong, nonatomic) NSMutableArray *audioUnits;
-@property (strong, nonatomic) TickEvent *multiSampleEvent;
+@property (strong, nonatomic) PFLEvent *multiSampleEvent;
 
 @end
 
@@ -75,10 +75,10 @@
         // TODO: this should be a convenience method, maybe basic models should know how to create event models?
         NSMutableArray *sampleEvents = [NSMutableArray array];
         for (PFLSample *sample in multiSample.samples) {
-            TickEvent *sampleEvent = [TickEvent sampleEventWithAudioID:audioID file:sample.file time:sample.time];
+            PFLEvent *sampleEvent = [PFLEvent sampleEventWithAudioID:audioID file:sample.file time:sample.time];
             [sampleEvents addObject:sampleEvent];
         }
-        self.multiSampleEvent = [TickEvent multiSampleEventWithAudioID:audioID sampleEvents:[NSArray arrayWithArray:sampleEvents]];
+        self.multiSampleEvent = [PFLEvent multiSampleEventWithAudioID:audioID sampleEvents:[NSArray arrayWithArray:sampleEvents]];
         ///
     }
     return self;
@@ -91,7 +91,7 @@
     return self.cell;
 }
 
-- (TickEvent *)audioHit:(CGFloat)beatDuration
+- (PFLEvent *)audioHit:(CGFloat)beatDuration
 {
     self.color = self.activeColor;
     CCTintTo *tint1 = [CCTintTo actionWithDuration:beatDuration red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];

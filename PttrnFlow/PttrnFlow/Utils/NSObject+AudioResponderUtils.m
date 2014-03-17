@@ -53,7 +53,7 @@
             return nil;
         }
         
-        TickEvent *event = [responder audioHit:self.beatDuration];
+        PFLEvent *event = [responder audioHit:self.beatDuration];
         if (event) {
             events = [events arrayByAddingObject:event];
         }

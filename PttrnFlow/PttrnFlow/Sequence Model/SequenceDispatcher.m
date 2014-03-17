@@ -11,7 +11,7 @@
 #import "CCNode+Grid.h"
 #import "MainSynth.h"
 #import "NSObject+AudioResponderUtils.h"
-#import "TickEvent.h"
+#import "PFLEvent.h"
 #import "PFLPuzzle.h"
 
 NSString *const kNotificationStepUserSequence = @"stepUserSequence";
@@ -50,7 +50,7 @@ NSString *const kKeyEmpty = @"empty";
         _responders = [NSMutableArray array];
         // TODO: FIX ME
         self.beatDuration = 0.5f;
-        self.solutionEvents = [TickEvent puzzleSolutionEvents:puzzle];
+        self.solutionEvents = [PFLEvent puzzleSolutionEvents:puzzle];
     }
     return self;
 }
@@ -80,7 +80,7 @@ NSString *const kKeyEmpty = @"empty";
     [[MainSynth sharedMainSynth] receiveEvents:events];
     
     // change direction if needed
-    for (TickEvent *e in events) {
+    for (PFLEvent *e in events) {
         if (e.eventType == PFLSequenceEventDirection) {
             self.currentDirection = e.direction;
         }

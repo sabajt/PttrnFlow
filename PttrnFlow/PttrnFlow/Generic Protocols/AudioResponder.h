@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Coord.h"
 
-@class TickEvent;
+@class PFLEvent;
 
 @protocol AudioResponder <NSObject>
 
@@ -19,7 +19,7 @@
 // Triggered on touch down or step
 // Handle glyph actions here, like highlighting / animation
 // Responder may return and event to be processed as sound, or sequence logic
-- (TickEvent *)audioHit:(CGFloat)beatDuration;
+- (PFLEvent *)audioHit:(CGFloat)beatDuration;
 
 @optional
 

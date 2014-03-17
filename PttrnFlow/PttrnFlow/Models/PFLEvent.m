@@ -1,23 +1,22 @@
 //
-//  TickEvent.m
+//  PFLEvent.m
 //  PttrnFlow
 //
 //  Created by John Saba on 8/12/13.
 //
 //
 
-#import "cocos2d.h"
 #import "NSArray+CompareStrings.h"
 #import "PFLKeyframe.h"
 #import "PFLPuzzle.h"
 #import "PFLPuzzleSet.h"
-#import "TickEvent.h"
+#import "PFLEvent.h"
 #import "PFLMultiSample.h"
 #import "PFLSample.h"
 
 NSString *const kChannelNone = @"ChannelNone";
 
-@implementation NSArray (TickEvents)
+@implementation NSArray (PFLEvent)
 
 // TODO: this could be abstracted out to a catagory with 'equals object' protocol
 - (BOOL)hasSameNumberOfSameEvents:(NSArray *)events
@@ -32,8 +31,8 @@ NSString *const kChannelNone = @"ChannelNone";
     }
     
     // pick one of our events to check for a match
-    TickEvent *targetEvent = [self firstObject];
-    NSUInteger matchIndex = [events indexOfObjectPassingTest:^BOOL(TickEvent *event, NSUInteger idx, BOOL *stop) {
+    PFLEvent *targetEvent = [self firstObject];
+    NSUInteger matchIndex = [events indexOfObjectPassingTest:^BOOL(PFLEvent *event, NSUInteger idx, BOOL *stop) {
         return ([event.audioID isEqualToNumber:targetEvent.audioID]);
     }];
     
@@ -55,8 +54,8 @@ NSString *const kChannelNone = @"ChannelNone";
 - (NSArray *)audioEvents
 {
     NSMutableArray *filtered = [NSMutableArray array];
-    for (TickEvent *event in self) {
-        if ([event isKindOfClass:[TickEvent class]] && event.audioID) {
+    for (PFLEvent *event in self) {
+        if ([event isKindOfClass:[PFLEvent class]] && event.audioID) {
             [filtered addObject:event];
         }
     }
@@ -65,11 +64,11 @@ NSString *const kChannelNone = @"ChannelNone";
 
 @end
 
-@interface TickEvent ()
+@interface PFLEvent ()
 
 @end
 
-@implementation TickEvent
+@implementation PFLEvent
 
 + (NSArray *)puzzleSolutionEvents:(PFLPuzzle *)puzzle
 {
@@ -87,10 +86,10 @@ NSString *const kChannelNone = @"ChannelNone";
                 // TODO: this should be a convenience method, maybe basic models should know how to create event models?
                 NSMutableArray *sampleEvents = [NSMutableArray array];
                 for (PFLSample *sample in multiSample.samples) {
-                    TickEvent *sampleEvent = [TickEvent sampleEventWithAudioID:audioID file:sample.file time:sample.time];
+                    PFLEvent *sampleEvent = [PFLEvent sampleEventWithAudioID:audioID file:sample.file time:sample.time];
                     [sampleEvents addObject:sampleEvent];
                 }
-                event = [TickEvent multiSampleEventWithAudioID:audioID sampleEvents:[NSArray arrayWithArray:sampleEvents]];
+                event = [PFLEvent multiSampleEventWithAudioID:audioID sampleEvents:[NSArray arrayWithArray:sampleEvents]];
                 ///
             }
             [events addObject:event];
@@ -117,7 +116,7 @@ NSString *const kChannelNone = @"ChannelNone";
 // Individual event constructors
 + (id)synthEventWithAudioID:(NSNumber *)audioID midiValue:(NSString *)midiValue synthType:(NSString *)synthType
 {
-    TickEvent *event = [[TickEvent alloc] init];
+    PFLEvent *event = [[PFLEvent alloc] init];
     event.eventType = PFLSequenceEventSynth;
     event.audioID = audioID;
     event.midiValue = midiValue;
@@ -127,7 +126,7 @@ NSString *const kChannelNone = @"ChannelNone";
 
 + (id)sampleEventWithAudioID:(NSNumber *)audioID file:(NSString *)file time:(NSNumber *)time
 {
-    TickEvent *event = [[TickEvent alloc] init];
+    PFLEvent *event = [[PFLEvent alloc] init];
     event.eventType = PFLSequenceEventSample;
     event.audioID = audioID;
     event.file = file;
@@ -137,7 +136,7 @@ NSString *const kChannelNone = @"ChannelNone";
 
 + (id)directionEventWithDirection:(NSString *)direction
 {
-    TickEvent *event = [[TickEvent alloc] init];
+    PFLEvent *event = [[PFLEvent alloc] init];
     event.eventType = PFLSequenceEventDirection;
     event.direction = direction;
     return event;
@@ -145,14 +144,14 @@ NSString *const kChannelNone = @"ChannelNone";
 
 + (id)exitEvent
 {
-    TickEvent *event = [[TickEvent alloc] init];
+    PFLEvent *event = [[PFLEvent alloc] init];
     event.eventType = PFLSequenceEventExit;
     return event;
 }
 
 + (id)audioStopEventWithAudioID:(NSNumber *)audioID
 {
-    TickEvent *event = [[TickEvent alloc] init];
+    PFLEvent *event = [[PFLEvent alloc] init];
     event.eventType = PFLSequenceEventAudioStop;
     event.audioID = audioID;
     return event;
@@ -160,7 +159,7 @@ NSString *const kChannelNone = @"ChannelNone";
 
 + (id)multiSampleEventWithAudioID:(NSNumber *)audioID sampleEvents:(NSArray *)sampleEvents
 {
-    TickEvent *event = [[TickEvent alloc] init];
+    PFLEvent *event = [[PFLEvent alloc] init];
     event.eventType = PFLSequenceEventMultiSample;
     event.audioID = audioID;
     event.sampleEvents = sampleEvents;
