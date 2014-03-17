@@ -21,10 +21,8 @@
 @property (assign) NSInteger index;
 @property (assign) BOOL isDisplaced;
 
-- (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName
-                              size:(CGSize)size
-                             index:(NSInteger)index
-                          delegate:(id<SolutionButtonDelegate>)delegate;
+- (id)initWithPlaceholderImage:(NSString *)placeholderImage size:(CGSize)size index:(NSInteger)index delegate:(id<SolutionButtonDelegate>)delegate;
+
 - (void)press;
 - (void)animateCorrectHit:(BOOL)correct;
 - (void)reset;
