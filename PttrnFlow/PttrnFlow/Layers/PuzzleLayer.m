@@ -18,12 +18,15 @@
 #import "MainSynth.h"
 #import "PdDispatcher.h"
 #import "PFGeometry.h"
-#import "PuzzleDataManager.h"
+#import "PFLPuzzle.h"
 #import "PuzzleLayer.h"
 #import "SequenceControlsLayer.h"
 #import "SequenceDispatcher.h"
 #import "SimpleAudioEngine.h"
 #import "Synth.h"
+#import "PFLGlyph.h"
+#import "PFLMultiSample.h"
+#import "PFLSample.h"
 
 typedef NS_ENUM(NSInteger, ZOrderAudioBatch)
 {
@@ -53,7 +56,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 
 #pragma mark - setup
 
-+ (CCScene *)sceneWithSequence:(int)sequence
++ (CCScene *)sceneWithPuzzle:(PFLPuzzle *)puzzle
 {
     CCScene *scene = [CCScene node];
     
@@ -63,17 +66,17 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     
     // gameplay layer
     static CGFloat controlBarHeight = 80.0f;
-    PuzzleLayer *puzzleLayer = [[PuzzleLayer alloc] initWithSequence:sequence background:background topMargin:controlBarHeight];
+    PuzzleLayer *puzzleLayer = [[PuzzleLayer alloc] initWithPuzzle:puzzle background:background topMargin:controlBarHeight];
     [scene addChild:puzzleLayer];
         
     // controls layer
-    SequenceControlsLayer *uiLayer = [[SequenceControlsLayer alloc] initWithPuzzle:sequence delegate:puzzleLayer.sequenceDispatcher];
+    SequenceControlsLayer *uiLayer = [[SequenceControlsLayer alloc] initWithPuzzle:puzzle delegate:puzzleLayer.sequenceDispatcher];
     [scene addChild:uiLayer z:1];
-        
+    
     return scene;
 }
 
-- (id)initWithSequence:(int)sequence background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
+- (id)initWithPuzzle:(PFLPuzzle *)puzzle background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
 {
     self = [super init];
     if (self) {
@@ -89,7 +92,10 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         if (!_patch) {
             CCLOG(@"Failed to open patch");
         }
-        self.beatDuration = [[PuzzleDataManager sharedManager] puzzleBeatDuration:sequence];
+        
+        // TODO: fix me with PuzzleSet
+        // TODO: fix me with PuzzleSet
+        self.beatDuration = 0.5f;
         [MainSynth sharedMainSynth].beatDuration = self.beatDuration;
         
         // Sprite sheet batch nodes
@@ -115,9 +121,9 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         self.isTouchEnabled = YES;
         self.backgroundLayer = backgroundLayer;
         
-        NSArray *cells = [[PuzzleDataManager sharedManager] puzzleArea:sequence];
+        NSArray *areaCells = [Coord coordsFromArrays:puzzle.area];
         
-        self.maxCoord = [Coord maxCoord:cells];
+        self.maxCoord = [Coord maxCoord:areaCells];
         self.contentSize = CGSizeMake((self.maxCoord.x + 1) * kSizeGridUnit, (self.maxCoord.y + 1) * kSizeGridUnit);
         
         self.puzzleBounds = CGRectMake(kPuzzleBoundsMargin,
@@ -146,29 +152,28 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         CCLOG(@"scroll bounds: %@", NSStringFromCGRect(self.scrollBounds));
         
         // audio touch dispatcher
-        CGFloat beatDuration = [[PuzzleDataManager sharedManager] puzzleBeatDuration:sequence];
+        CGFloat beatDuration = self.beatDuration;
         AudioTouchDispatcher *audioTouchDispatcher = [[AudioTouchDispatcher alloc] initWithBeatDuration:beatDuration];
         self.audioTouchDispatcher = audioTouchDispatcher;
         self.scrollDelegate = audioTouchDispatcher;
         [audioTouchDispatcher clearResponders];
-        audioTouchDispatcher.areaCells = [[PuzzleDataManager sharedManager] puzzleArea:sequence];
+        audioTouchDispatcher.areaCells = areaCells;
         [self addChild:audioTouchDispatcher];
         
         // sequence dispacher
-        SequenceDispatcher *sequenceDispatcher = [[SequenceDispatcher alloc] initWithPuzzle:sequence];
+        SequenceDispatcher *sequenceDispatcher = [[SequenceDispatcher alloc] initWithPuzzle:puzzle];
         self.sequenceDispatcher = sequenceDispatcher;
         [sequenceDispatcher clearResponders];
         [self addChild:sequenceDispatcher];
         
         // create puzzle objects
-        self.areaCells = [[PuzzleDataManager sharedManager] puzzleArea:sequence];
-        [self createPuzzleBorder:sequence];
-        [self createPuzzleObjects:sequence];
+        [self createBorderWithAreaCells:areaCells];
+        [self createPuzzleObjects:puzzle];
     }
     return self;
 }
 
-- (void)createPuzzleBorder:(NSInteger)puzzle
+- (void)createBorderWithAreaCells:(NSArray *)areaCells
 {
     static NSString *padBorderStraitRightFill = @"pad_border_strait_right_fill.png";
     static NSString *padBorderCornerInside = @"pad_border_corner_inside.png";
@@ -185,10 +190,10 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             Coord *bottomRight = [Coord coordWithX:x + 1 Y:y];
             Coord *topRight = [Coord coordWithX:x + 1 Y:y + 1];
             
-            BOOL hasBottomLeft = [bottomleft isCoordInGroup:self.areaCells];
-            BOOL hasTopLeft = [topLeft isCoordInGroup:self.areaCells];
-            BOOL hasBottomRight = [bottomRight isCoordInGroup:self.areaCells];
-            BOOL hasTopRight = [topRight isCoordInGroup:self.areaCells];
+            BOOL hasBottomLeft = [bottomleft isCoordInGroup:areaCells];
+            BOOL hasTopLeft = [topLeft isCoordInGroup:areaCells];
+            BOOL hasBottomRight = [bottomRight isCoordInGroup:areaCells];
+            BOOL hasTopRight = [topRight isCoordInGroup:areaCells];
             
             // cell on every side, fill panel instead of border needed
             if (hasBottomLeft && hasTopLeft && hasBottomRight && hasTopRight) {
@@ -289,57 +294,50 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     }
 }
 
-- (void)createPuzzleObjects:(NSInteger)puzzle
+- (void)createPuzzleObjects:(PFLPuzzle *)puzzle
 {
-    NSArray *glyphs = [[PuzzleDataManager sharedManager] puzzleGlyphs:puzzle];
+    NSArray *glyphs = puzzle.glyphs;
     
     // collect sample names so we can load them in PD tables
     NSMutableArray *allSampleNames = [NSMutableArray array];
     
-    for (NSDictionary *glyph in glyphs) {
-        BOOL isStatic = [glyph[kStatic] boolValue];
-        NSArray *cellArray = glyph[kCell];
-        NSString *entryDirection = glyph[kEntry];
-        NSString *arrowDirection = glyph[kArrow];
-        NSNumber *audioID = glyph[kAudio];
-        
+    for (PFLGlyph *glyph in glyphs) {
+
         // cell is the only mandatory field to create an audio pad (empty pad can be used as a puzzle object to just take up space)
-        if (!cellArray) {
+        if (!glyph.cell) {
             CCLOG(@"SequenceLayer createPuzzleObjects error: 'cell' must not be null on audio pads");
             return;
         }
-        Coord *cell = [Coord coordWithX:[cellArray[0] integerValue] Y:[cellArray[1] integerValue]];
-        CGPoint cellCenter = [cell relativeMidpoint];
+        CGPoint cellCenter = [glyph.cell relativeMidpoint];
         
         // audio pad sprite
-        AudioPad *audioPad = [[AudioPad alloc] initWithPlaceholderFrameName:@"clear_rect_audio_batch.png" cell:cell isStatic:isStatic];
+        AudioPad *audioPad = [[AudioPad alloc] initWithPlaceholderFrameName:@"clear_rect_audio_batch.png" cell:glyph.cell isStatic:glyph.isStatic];
 
         audioPad.position = cellCenter;
         [self.audioTouchDispatcher addResponder:audioPad];
         [self.sequenceDispatcher addResponder:audioPad];
         [self.audioObjectsBatchNode addChild:audioPad z:ZOrderAudioBatchPad];
         
-        if (audioID) {
-            NSDictionary *audioData = [[PuzzleDataManager sharedManager] puzzle:puzzle audioID:[audioID integerValue]];
-            NSAssert(audioData != nil, @"No audio data found for audio id: %@", audioID);
+        if (glyph.audioID) {
+            id object = puzzle.audio[[glyph.audioID integerValue]];
             
-            NSArray *samplesData = audioData[kSamples];
-            
-            if (samplesData) {
-                for (NSDictionary *unit in samplesData) {
-                    [allSampleNames addObject:unit[kFile]];
+            if ([object isKindOfClass:[PFLMultiSample class]]) {
+                PFLMultiSample *multiSample = (PFLMultiSample *)object;
+                Gear *gear = [[Gear alloc] initWithCell:glyph.cell audioID:glyph.audioID multiSample:multiSample isStatic:glyph.isStatic];
+                [self.audioTouchDispatcher addResponder:gear];
+                [self.sequenceDispatcher addResponder:gear];
+                gear.position = cellCenter;
+                [self.audioObjectsBatchNode addChild:gear z:ZOrderAudioBatchGlyph];
+                
+                for (PFLSample *sample in multiSample.samples) {
+                    [allSampleNames addObject:sample.file];
                 }
-                Gear *drum = [[Gear alloc] initWithCell:cell audioID:audioID data:samplesData isStatic:isStatic];
-                [self.audioTouchDispatcher addResponder:drum];
-                [self.sequenceDispatcher addResponder:drum];
-                drum.position = cellCenter;
-                [self.audioObjectsBatchNode addChild:drum z:ZOrderAudioBatchGlyph];
             }
         }
         
         // direction arrow
-        if (arrowDirection) {
-            Arrow *arrow = [[Arrow alloc] initWithCell:cell direction:arrowDirection isStatic:isStatic];
+        if (glyph.arrow) {
+            Arrow *arrow = [[Arrow alloc] initWithCell:glyph.cell direction:glyph.arrow isStatic:glyph.isStatic];
             [self.audioTouchDispatcher addResponder:arrow];
             [self.sequenceDispatcher addResponder:arrow];
             arrow.position = cellCenter;
@@ -347,8 +345,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         }
         
         // entry point
-        if (entryDirection) {
-            Entry *entry = [[Entry alloc] initWithCell:cell direction:entryDirection isStatic:isStatic];
+        if (glyph.entry) {
+            Entry *entry = [[Entry alloc] initWithCell:glyph.cell direction:glyph.entry isStatic:glyph.isStatic];
             [self.audioTouchDispatcher addResponder:entry];
             [self.sequenceDispatcher addResponder:entry];
             self.sequenceDispatcher.entry = entry;

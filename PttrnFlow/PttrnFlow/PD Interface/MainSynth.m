@@ -8,15 +8,9 @@
 
 #import "MainSynth.h"
 
-#import "PuzzleDataManager.h"
 #import "PdDispatcher.h"
 #import "PuzzleLayer.h"
 #import "TickEvent.h"
-#import "SynthEvent.h"
-#import "AudioStopEvent.h"
-#import "AudioPadEvent.h"
-#import "ExitEvent.h"
-#import "SampleEvent.h"
 
 static NSString *const kActivateNoise = @"activateNoise";
 static NSString *const kClear = @"clear";
@@ -56,16 +50,6 @@ static NSString *const kStageSample = @"stageSample";
     [PdBase sendFloat:muteVal toReceiver:kMute];
 }
 
-+ (PFSynthType)pfSynthTypeForStringRep:(NSString *)rep
-{
-    if ([rep isEqualToString:@"phasor"]) {
-        return PFSynthTypePhasor;
-    }
-    else {
-        return PFSynthTypeOsc;
-    }
-}
-
 #pragma mark - SoundEventReveiver
 
 - (void)loadSamples:(NSArray *)samples
@@ -81,8 +65,7 @@ static NSString *const kStageSample = @"stageSample";
     }
 }
 
-// TODO: refactor to take out 'ignore audio pad' - there will never be a glyph without an audio pad
-- (void)receiveEvents:(NSArray *)events ignoreAudioPad:(BOOL)ignoreAudioPad
+- (void)receiveEvents:(NSArray *)events
 {
     if ((events == nil) || (events.count < 1)) {
         CCLOG(@"no events sent to synth");
@@ -92,64 +75,47 @@ static NSString *const kStageSample = @"stageSample";
     // clearing blocks input for various pd components / channels unless we recieve an event for it below
     [PdBase sendBangToReceiver:kClear];
     
-    // audio pad is the 'island surface' where blocks live.  we ignore this for playing solution seq
-    BOOL onAudioPad = ignoreAudioPad;
-    
     // send events (setup information) in
     for (TickEvent *event in events) {
         
-        if ([event isKindOfClass:[AudioPadEvent class]]) {
-            onAudioPad = YES;
-        }
+        if (event.eventType == PFLSequenceEventSynth) {
+            NSNumber *midiValue = @([event.midiValue integerValue]);
         
-        if ([event isKindOfClass:[SynthEvent class]]) {
-            SynthEvent *synth = (SynthEvent *)event;
-            NSNumber *midiValue = [NSNumber numberWithInt:[synth.midiValue intValue]];
-            NSNumber *synthType = [NSNumber numberWithInt:[MainSynth pfSynthTypeForStringRep:synth.synthType]];
+            // TODO: synth type needs to be an enum on event or basic model
+            NSNumber *synthType = @0;
             [PdBase sendList:@[synthType, midiValue, @0] toReceiver:kSynthEvent];
         }
         
-        if ([event isKindOfClass:[SampleEvent class]]) {
-            SampleEvent *sample = (SampleEvent *)event;
-            NSString *sampleSuffix = self.sampleKey[sample.fileName];
+        if (event.eventType == PFLSequenceEventSample) {
+            NSString *sampleSuffix = self.sampleKey[event.file];
             NSString *receiver = [kStageSample stringByAppendingString:sampleSuffix];
             [PdBase sendBangToReceiver:receiver];
         }
         
-        if([event isKindOfClass:[MultiSampleEvent class]]) {
-            MultiSampleEvent *multiSample = (MultiSampleEvent *)event;
+        if(event.eventType == PFLSequenceEventMultiSample) {
             
             // set up samples to be recieved with time delays
-            [multiSample.samples enumerateKeysAndObjectsUsingBlock:^(NSNumber *time, SampleEvent *event, BOOL *stop) {
+            for (TickEvent *sampleEvent in event.sampleEvents) {
                 CCCallBlock *action = [CCCallBlock actionWithBlock:^{
-                    [self receiveEvents:@[event] ignoreAudioPad:YES];
+                    [self receiveEvents:@[sampleEvent]];
                 }];
-                CCSequence *seq = [CCSequence actions:[CCDelayTime actionWithDuration:[time floatValue] * self.beatDuration], action, nil];
+                CCSequence *seq = [CCSequence actions:[CCDelayTime actionWithDuration:[sampleEvent.time floatValue] * self.beatDuration], action, nil];
                 [self runAction:seq];
-            }];
+            };
         }
         
-        if ([event isKindOfClass:[AudioStopEvent class]]) {
+        if (event.eventType == PFLSequenceEventAudioStop) {
+            // TODO: was there a reason this is not 0.0f?
             [PdBase sendFloat:[@0 floatValue] toReceiver:kAudioStop];
         }
         
-        if ([event isKindOfClass:[ExitEvent class]]) {
-            // first stop audio
+        if (event.eventType == PFLSequenceEventExit) {
+            // TODO: was there a reason this is not 0.0f?
             [PdBase sendFloat:[@0 floatValue] toReceiver:kAudioStop];
-            
-            // noise for exit event (currently channel independendant)
-            ExitEvent *exitEvent = (ExitEvent *)exitEvent;
-            [PdBase sendBangToReceiver:kActivateNoise];
-            
-            // also set onAudioPad so we'll trigger these events
-            onAudioPad = YES;
         }
     }
     
-    // play the synth with everything setup the way we want if we are on an audio pad
-    if (onAudioPad) {
-        [PdBase sendBangToReceiver:kTrigger];
-    }
+    [PdBase sendBangToReceiver:kTrigger];
 }
 
 @end

@@ -19,6 +19,7 @@ FOUNDATION_EXPORT NSString *const kNeighborBelow;
 @property (assign) NSInteger x;
 @property (assign) NSInteger y;
 
++ (NSArray *)coordsFromArrays:(NSArray *)arrays;
 + (id)coordWithX:(NSInteger)x Y:(NSInteger)y;
 
 #pragma mark - position

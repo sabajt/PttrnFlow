@@ -10,7 +10,7 @@
 #import "ScrollLayer.h"
 #import "SequenceControlsLayer.h"
 
-@class PdDispatcher, SequenceDispatcher, AudioTouchDispatcher;
+@class PdDispatcher, SequenceDispatcher, AudioTouchDispatcher, PFLPuzzle;
 
 @interface PuzzleLayer : ScrollLayer
 {
@@ -26,8 +26,6 @@
 @property (weak, nonatomic) CCSpriteBatchNode *othersBatchNode;
 @property (weak, nonatomic) CCSpriteBatchNode *audioObjectsBatchNode;
 
-@property (strong, nonatomic) NSArray *areaCells;
-
-+ (CCScene *)sceneWithSequence:(int)sequence;
++ (CCScene *)sceneWithPuzzle:(PFLPuzzle *)puzzle;
 
 @end

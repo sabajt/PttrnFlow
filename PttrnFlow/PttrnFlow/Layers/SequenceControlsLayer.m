@@ -10,7 +10,6 @@
 #import "ColorUtils.h"
 #import "TileSprite.h"
 #import "ClippingSprite.h"
-#import "PuzzleDataManager.h"
 #import "GameConstants.h"
 #import "SequenceDispatcher.h"
 
@@ -38,7 +37,7 @@ static NSInteger const kRowLength = 8;
 
 @implementation SequenceControlsLayer
 
-- (id)initWithPuzzle:(NSUInteger)puzzle delegate:(id<SequenceControlDelegate>)delegate
+- (id)initWithPuzzle:(PFLPuzzle *)puzzle delegate:(id<SequenceControlDelegate>)delegate
 {
     self = [super init];
     if (self) {

@@ -52,8 +52,11 @@
             CCLOG(@"warning: %@ does not conform to AudioResponder, aborting.", responder);
             return nil;
         }
-
-        events = [events arrayByAddingObject:[responder audioHit:self.beatDuration]];
+        
+        TickEvent *event = [responder audioHit:self.beatDuration];
+        if (event) {
+            events = [events arrayByAddingObject:event];
+        }
     }
     return events;
 }

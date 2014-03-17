@@ -7,17 +7,12 @@
 //
 
 #import "AudioResponder.h"
-#import "AudioStopEvent.h"
 #import "SequenceDispatcher.h"
 #import "CCNode+Grid.h"
-#import "DirectionEvent.h"
 #import "MainSynth.h"
-#import "MultiSampleEvent.h"
 #import "NSObject+AudioResponderUtils.h"
-#import "PuzzleDataManager.h"
-#import "SampleEvent.h"
-#import "SynthEvent.h"
 #import "TickEvent.h"
+#import "PFLPuzzle.h"
 
 NSString *const kNotificationStepUserSequence = @"stepUserSequence";
 NSString *const kNotificationStepSolutionSequence = @"stepSolutionSequence";
@@ -30,7 +25,7 @@ NSString *const kKeyEmpty = @"empty";
 
 @interface SequenceDispatcher ()
 
-@property (assign) NSInteger puzzle;
+@property (assign) PFLPuzzle *puzzle;
 @property (assign) NSInteger userSequenceIndex;
 @property (assign) NSInteger solutionSequenceIndex;
 @property (strong, nonatomic) NSMutableArray *responders;
@@ -41,20 +36,21 @@ NSString *const kKeyEmpty = @"empty";
  audio events representing solutions at index - ex:
  [ [ event, event ], [ event ], [ event ], [ event, event] ]
  */
-@property (strong, nonatomic) NSMutableArray *solutionEvents;
+@property (strong, nonatomic) NSArray *solutionEvents;
 
 @end
 
 @implementation SequenceDispatcher
 
-- (id)initWithPuzzle:(NSInteger)puzzle
+- (id)initWithPuzzle:(PFLPuzzle *)puzzle
 {
     self = [super init];
     if (self) {
-        _puzzle = puzzle;
+        self.puzzle = puzzle;
         _responders = [NSMutableArray array];
-        self.beatDuration = [[PuzzleDataManager sharedManager] puzzleBeatDuration:puzzle];
-        [self createSolutionEvents:puzzle];
+        // TODO: FIX ME
+        self.beatDuration = 0.5f;
+        self.solutionEvents = [TickEvent puzzleSolutionEvents:puzzle];
     }
     return self;
 }
@@ -69,31 +65,6 @@ NSString *const kKeyEmpty = @"empty";
     [self.responders removeAllObjects];
 }
 
-- (void)createSolutionEvents:(NSInteger)puzzle
-{
-    self.solutionEvents = [NSMutableArray array];
-    NSArray *solution = [[PuzzleDataManager sharedManager] puzzleSolution:puzzle];
-
-    for (NSDictionary *s in solution) {
-        NSMutableArray *currentSolution = [NSMutableArray array];
-        
-        for (NSNumber *audioID in s) {
-            NSDictionary *data = [[PuzzleDataManager sharedManager] puzzle:puzzle audioID:[audioID integerValue]];
-            NSDictionary *samples = data[kSamples];
-            
-            if (samples) {
-                NSMutableDictionary *multiSampleData = [NSMutableDictionary dictionary];
-                for (NSDictionary *unit in samples) {
-                    multiSampleData[unit[kTime]] = unit[kFile];
-                }
-                MultiSampleEvent *event = [[MultiSampleEvent alloc] initWithAudioID:audioID timedSamplesData:multiSampleData];
-                [currentSolution addObject:event];
-            }
-        }
-        [self.solutionEvents addObject:currentSolution];
-    }
-}
-
 - (void)stepUserSequence:(ccTime)dt
 {    
     if (self.userSequenceIndex >= self.solutionEvents.count) {
@@ -106,13 +77,12 @@ NSString *const kKeyEmpty = @"empty";
     NSArray *events = [self hitResponders:self.responders atCoord:self.currentCell];
     
     // send events to pd
-    [[MainSynth sharedMainSynth] receiveEvents:events ignoreAudioPad:NO];
+    [[MainSynth sharedMainSynth] receiveEvents:events];
     
     // change direction if needed
     for (TickEvent *e in events) {
-        if ([e isKindOfClass:[DirectionEvent class]]) {
-            DirectionEvent *directionEvent = (DirectionEvent *)e;
-            self.currentDirection = directionEvent.direction;
+        if (e.eventType == PFLSequenceEventDirection) {
+            self.currentDirection = e.direction;
         }
     }
     
@@ -179,7 +149,7 @@ NSString *const kKeyEmpty = @"empty";
 
 - (void)playSolutionIndex:(NSInteger)index
 {
-    [[MainSynth sharedMainSynth] receiveEvents:self.solutionEvents[index] ignoreAudioPad:YES];
+    [[MainSynth sharedMainSynth] receiveEvents:self.solutionEvents[index]];
 }
 
 @end

@@ -9,22 +9,11 @@
 #import "PuzzleDataManager.h"
 #import "Coord.h"
 
-NSString *const kCell = @"cell";
-NSString *const kStatic = @"static";
-NSString *const kArrow = @"arrow";
-NSString *const kEntry = @"entry";
-NSString *const kAudio = @"audio";
-
-NSString *const kSamples = @"samples";
-
-NSString *const kSynth = @"synth";
-NSString *const kMidi = @"midi";
-NSString *const kFile = @"file";
-NSString *const kImage = @"image";
-NSString *const kDecorator = @"decorator";
-NSString *const kTime = @"time";
-
-NSString *const kImageSet = @"image_set";
+NSString *const kPuzzleDataManagerSourceIndex = @"source_index";
+NSString *const kPuzzleDataManagerTargetIndex = @"target_index";
+NSString *const kPuzzleDataManagerRange = @"range";
+NSString *const kPuzzleDataManagerStart = @"start";
+NSString *const kPuzzleDataManagerLength = @"length";
 
 static NSString *const kPuzzles = @"puzzles";
 static NSString *const kPuzzle = @"puzzle";
@@ -175,9 +164,23 @@ static NSString *const kKeyframes = @"keyframes";
     return 1.0f / ([[self puzzleBpm:puzzle] floatValue] / 60.0f);
 }
 
-- (NSDictionary *)puzzleKeyframes:(NSInteger)puzzle
+- (NSArray *)puzzleKeyframes:(NSInteger)puzzle
 {
     return [self puzzleMetaData:puzzle][kKeyframes];
+}
+
+//
+
+- (NSInteger)puzzleSetStart:(NSInteger)puzzleSet
+{
+    NSDictionary *puzzleSetData = [[PuzzleDataManager sharedManager] puzzleSet:puzzleSet];
+    return [puzzleSetData[kPuzzleDataManagerStart] integerValue];
+}
+
+- (NSInteger)puzzleSetLength:(NSInteger)puzzleSet
+{
+    NSDictionary *puzzleSetData = [[PuzzleDataManager sharedManager] puzzleSet:puzzleSet];
+    return [puzzleSetData[kPuzzleDataManagerLength] integerValue];
 }
 
 @end

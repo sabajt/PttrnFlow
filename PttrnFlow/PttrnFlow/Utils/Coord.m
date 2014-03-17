@@ -17,6 +17,15 @@ NSString *const kNeighborBelow = @"below";
 
 @implementation Coord
 
++ (NSArray *)coordsFromArrays:(NSArray *)arrays
+{
+    NSMutableArray *coords = [NSMutableArray array];
+    for (NSArray *a in arrays) {
+        [coords addObject:[Coord coordWithX:[a[0] integerValue] Y:[a[1] integerValue]]];
+    }
+    return [NSArray arrayWithArray:coords];
+}
+
 + (id)coordWithX:(NSInteger)x Y:(NSInteger)y
 {
     return [[Coord alloc] initWithX:x Y:y];
