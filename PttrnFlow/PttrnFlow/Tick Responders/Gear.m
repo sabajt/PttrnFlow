@@ -71,15 +71,7 @@
 
             [self.audioUnits addObject:audioUnit];
         }
-        
-        // TODO: this should be a convenience method, maybe basic models should know how to create event models?
-        NSMutableArray *sampleEvents = [NSMutableArray array];
-        for (PFLSample *sample in multiSample.samples) {
-            PFLEvent *sampleEvent = [PFLEvent sampleEventWithAudioID:audioID file:sample.file time:sample.time];
-            [sampleEvents addObject:sampleEvent];
-        }
-        self.multiSampleEvent = [PFLEvent multiSampleEventWithAudioID:audioID sampleEvents:[NSArray arrayWithArray:sampleEvents]];
-        ///
+        self.multiSampleEvent = [PFLEvent multiSampleEventWithAudioID:audioID multiSample:multiSample];
     }
     return self;
 }

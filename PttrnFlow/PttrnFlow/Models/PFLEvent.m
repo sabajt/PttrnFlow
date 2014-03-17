@@ -81,16 +81,7 @@ NSString *const kChannelNone = @"ChannelNone";
             id object = puzzle.audio[[audioID integerValue]];
             id event;
             if ([object isKindOfClass:[PFLMultiSample class]]) {
-                PFLMultiSample *multiSample = (PFLMultiSample *)object;
-                
-                // TODO: this should be a convenience method, maybe basic models should know how to create event models?
-                NSMutableArray *sampleEvents = [NSMutableArray array];
-                for (PFLSample *sample in multiSample.samples) {
-                    PFLEvent *sampleEvent = [PFLEvent sampleEventWithAudioID:audioID file:sample.file time:sample.time];
-                    [sampleEvents addObject:sampleEvent];
-                }
-                event = [PFLEvent multiSampleEventWithAudioID:audioID sampleEvents:[NSArray arrayWithArray:sampleEvents]];
-                ///
+                event = [PFLEvent multiSampleEventWithAudioID:audioID multiSample:(PFLMultiSample *)object];
             }
             [events addObject:event];
         }
@@ -164,6 +155,17 @@ NSString *const kChannelNone = @"ChannelNone";
     event.audioID = audioID;
     event.sampleEvents = sampleEvents;
     return event;
+}
+
++ (id)multiSampleEventWithAudioID:(NSNumber *)audioID multiSample:(PFLMultiSample *)multiSample
+{
+    // TODO: this should be a convenience method, maybe basic models should know how to create event models?
+    NSMutableArray *sampleEvents = [NSMutableArray array];
+    for (PFLSample *sample in multiSample.samples) {
+        PFLEvent *sampleEvent = [PFLEvent sampleEventWithAudioID:audioID file:sample.file time:sample.time];
+        [sampleEvents addObject:sampleEvent];
+    }
+    return [PFLEvent multiSampleEventWithAudioID:audioID sampleEvents:[NSArray arrayWithArray:sampleEvents]];
 }
 
 @end

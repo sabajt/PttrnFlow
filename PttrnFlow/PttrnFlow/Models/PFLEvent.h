@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, PFLSequenceEvent)
     PFLSequenceEventSynth,
 };
 
-@class PFLPuzzle;
+@class PFLPuzzle, PFLMultiSample;
 
 FOUNDATION_EXPORT NSString *const kChannelNone;
 
@@ -50,5 +50,6 @@ FOUNDATION_EXPORT NSString *const kChannelNone;
 + (id)exitEvent;
 + (id)audioStopEventWithAudioID:(NSNumber *)audioID;
 + (id)multiSampleEventWithAudioID:(NSNumber *)audioID sampleEvents:(NSArray *)sampleEvents;
++ (id)multiSampleEventWithAudioID:(NSNumber *)audioID multiSample:(PFLMultiSample *)multiSample;
 
 @end
