@@ -10,6 +10,7 @@
 #import "PuzzleLayer.h"
 #import "PFLPuzzle.h"
 #import "AudioTouchDispatcher.h"
+#import "PFLPuzzleSet.h"
 
 @implementation SequenceMenuLayer
 
@@ -40,6 +41,9 @@
             [self addChild:cell];
             i++;
         }
+        
+        PFLPuzzleSet *puzzeSet = [PFLPuzzleSet puzzleSetFromResource:@"puzzleSet0"];
+        NSArray *combinedSolutionEvents = puzzeSet.combinedSolutionEvents;
     };
     return self;
 }
