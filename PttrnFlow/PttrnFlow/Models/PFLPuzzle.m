@@ -6,6 +6,7 @@
 //
 //
 
+#import "PFLEvent.h"
 #import "PFLGlyph.h"
 #import "PFLJsonUtils.h"
 #import "PFLMultiSample.h"
@@ -55,6 +56,27 @@ static NSString *const kSynth = @"synth";
         self.glyphs = [NSArray arrayWithArray:glyphs];
     }
     return self;
+}
+
+- (NSArray *)solutionEvents
+{
+    if (!_solutionEvents) {
+        NSMutableArray *solutionEvents = [NSMutableArray array];
+        for (NSArray *s in self.solution) {
+            NSMutableArray *events = [NSMutableArray array];
+            for (NSNumber *audioID in s) {
+                id object = self.audio[[audioID integerValue]];
+                id event;
+                if ([object isKindOfClass:[PFLMultiSample class]]) {
+                    event = [PFLEvent multiSampleEventWithAudioID:audioID multiSample:(PFLMultiSample *)object];
+                }
+                [events addObject:event];
+            }
+            [solutionEvents addObject:events];
+        }
+        _solutionEvents = [NSArray arrayWithArray:solutionEvents];
+    }
+    return _solutionEvents;
 }
 
 @end

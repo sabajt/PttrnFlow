@@ -41,8 +41,6 @@ typedef NS_ENUM(NSInteger, PFLEventType)
 @property (copy, nonatomic) NSString *synthType;
 @property (strong, nonatomic) NSNumber *time;
 
-+ (NSArray *)puzzleSolutionEvents:(PFLPuzzle *)puzzle;
-
 // Individual event constructors
 + (id)synthEventWithAudioID:(NSNumber *)audioID midiValue:(NSString *)midiValue synthType:(NSString *)synthType;
 + (id)sampleEventWithAudioID:(NSNumber *)audioID file:(NSString *)file time:(NSNumber *)time;

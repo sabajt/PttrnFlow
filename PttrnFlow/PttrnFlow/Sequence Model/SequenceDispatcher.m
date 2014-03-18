@@ -25,18 +25,12 @@ NSString *const kKeyEmpty = @"empty";
 
 @interface SequenceDispatcher ()
 
-@property (assign) PFLPuzzle *puzzle;
+@property (strong, nonatomic) PFLPuzzle *puzzle;
 @property (assign) NSInteger userSequenceIndex;
 @property (assign) NSInteger solutionSequenceIndex;
 @property (strong, nonatomic) NSMutableArray *responders;
 @property (strong, nonatomic) Coord *currentCell;
 @property (copy, nonatomic) NSString *currentDirection;
-
-/*
- audio events representing solutions at index - ex:
- [ [ event, event ], [ event ], [ event ], [ event, event] ]
- */
-@property (strong, nonatomic) NSArray *solutionEvents;
 
 @end
 
@@ -50,7 +44,6 @@ NSString *const kKeyEmpty = @"empty";
         _responders = [NSMutableArray array];
         // TODO: FIX ME
         self.beatDuration = 0.5f;
-        self.solutionEvents = [PFLEvent puzzleSolutionEvents:puzzle];
     }
     return self;
 }
@@ -67,7 +60,7 @@ NSString *const kKeyEmpty = @"empty";
 
 - (void)stepUserSequence:(ccTime)dt
 {    
-    if (self.userSequenceIndex >= self.solutionEvents.count) {
+    if (self.userSequenceIndex >= self.puzzle.solutionEvents.count) {
         // use notification instead of stopUserSequence so SequenceControlsLayer can toggle button off
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationEndUserSequence object:nil];
         return;
@@ -87,8 +80,7 @@ NSString *const kKeyEmpty = @"empty";
     }
     
     BOOL correctHit = NO;
-    NSArray *solutionEvents = self.solutionEvents[self.userSequenceIndex];
-    if ([[events audioEvents] hasSameNumberOfSameObjects:solutionEvents]) {
+    if ([[events audioEvents] hasSameNumberOfSameObjects:self.puzzle.solutionEvents[self.userSequenceIndex]]) {
         CCLOG(@"hit");
         correctHit = YES;
     }
@@ -110,7 +102,7 @@ NSString *const kKeyEmpty = @"empty";
 
 - (void)stepSolutionSequence
 {
-    if (self.solutionSequenceIndex >= self.solutionEvents.count) {
+    if (self.solutionSequenceIndex >= self.puzzle.solutionEvents.count) {
         // use notification instead of stopSolutionSequence so SequenceControlsLayer can toggle button off
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationEndSolutionSequence object:nil];
         return;
@@ -149,7 +141,7 @@ NSString *const kKeyEmpty = @"empty";
 
 - (void)playSolutionIndex:(NSInteger)index
 {
-    [[MainSynth sharedMainSynth] receiveEvents:self.solutionEvents[index]];
+    [[MainSynth sharedMainSynth] receiveEvents:self.puzzle.solutionEvents[index]];
 }
 
 @end

@@ -18,6 +18,12 @@ static NSString *const kLength = @"length";
 static NSString *const kName = @"name";
 static NSString *const kPuzzles = @"puzzles";
 
+@interface PFLPuzzleSet ()
+
+@property (strong, nonatomic) NSArray *combinedSolutionEvents;
+
+@end
+
 @implementation PFLPuzzleSet
 
 + (PFLPuzzleSet *)puzzleSetFromResource:(NSString *)resource;
@@ -48,6 +54,14 @@ static NSString *const kPuzzles = @"puzzles";
         self.keyframeSets = [NSArray arrayWithArray:keyframeSets];
     }
     return self;
+}
+
+- (NSArray *)combinedSolutionEvents
+{
+    if (!_combinedSolutionEvents) {
+        // need implementation
+    }
+    return _combinedSolutionEvents;
 }
 
 @end

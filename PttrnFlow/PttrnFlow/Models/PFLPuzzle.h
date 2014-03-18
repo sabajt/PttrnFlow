@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSArray *audio;
 @property (strong, nonatomic) NSArray *glyphs;
 @property (strong, nonatomic) NSArray *solution;
+@property (strong, nonatomic) NSArray *solutionEvents;
 
 + (PFLPuzzle *)puzzleFromResource:(NSString *)resource;
 - (id)initWithJson:(NSDictionary *)json;

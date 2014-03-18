@@ -38,40 +38,6 @@ NSString *const kChannelNone = @"ChannelNone";
 
 @implementation PFLEvent
 
-+ (NSArray *)puzzleSolutionEvents:(PFLPuzzle *)puzzle
-{
-    NSMutableArray *solutionEvents = [NSMutableArray array];
-    NSArray *solution = puzzle.solution;
-    
-    for (NSArray *s in solution) {
-        NSMutableArray *events = [NSMutableArray array];
-        for (NSNumber *audioID in s) {
-            id object = puzzle.audio[[audioID integerValue]];
-            id event;
-            if ([object isKindOfClass:[PFLMultiSample class]]) {
-                event = [PFLEvent multiSampleEventWithAudioID:audioID multiSample:(PFLMultiSample *)object];
-            }
-            [events addObject:event];
-        }
-        [solutionEvents addObject:events];
-    }
-    return solutionEvents;
-}
-
-+ (NSArray *)puzzleSetSolutionEvents:(PFLPuzzleSet *)puzzleSet
-{
-    NSInteger i = 0;
-    
-    for (PFLPuzzle *puzzle in puzzleSet.puzzles) {
-        NSArray *keyframes = puzzleSet.keyframeSets[i];
-        
-        for (PFLKeyframe *keyframe in keyframes) {
-            
-        }
-        i++;
-    }
-}
-
 // Individual event constructors
 + (id)synthEventWithAudioID:(NSNumber *)audioID midiValue:(NSString *)midiValue synthType:(NSString *)synthType
 {
