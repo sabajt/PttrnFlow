@@ -88,7 +88,7 @@ NSString *const kKeyEmpty = @"empty";
     
     BOOL correctHit = NO;
     NSArray *solutionEvents = self.solutionEvents[self.userSequenceIndex];
-    if ([[events audioEvents] hasSameNumberOfSameEvents:solutionEvents]) {
+    if ([[events audioEvents] hasSameNumberOfSameObjects:solutionEvents]) {
         CCLOG(@"hit");
         correctHit = YES;
     }

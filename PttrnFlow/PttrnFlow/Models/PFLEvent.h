@@ -7,6 +7,9 @@
 //
 
 #import "cocos2d.h"
+#import "NSArray+PFLCompareObjects.h"
+
+FOUNDATION_EXPORT NSString *const kChannelNone;
 
 typedef NS_ENUM(NSInteger, PFLEventType)
 {
@@ -20,16 +23,13 @@ typedef NS_ENUM(NSInteger, PFLEventType)
 
 @class PFLPuzzle, PFLMultiSample;
 
-FOUNDATION_EXPORT NSString *const kChannelNone;
-
 @interface NSArray (PFLEvent)
 
-- (BOOL)hasSameNumberOfSameEvents:(NSArray *)events;
 - (NSArray *)audioEvents;
 
 @end
 
-@interface PFLEvent : NSObject
+@interface PFLEvent : NSObject <PFLCompareObjectsDelegate>
 
 @property (assign) PFLEventType eventType;
 

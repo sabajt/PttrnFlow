@@ -221,6 +221,7 @@
 		33DD835818D60B7D00EF90C7 /* PFLMultiSample.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD835718D60B7D00EF90C7 /* PFLMultiSample.m */; };
 		33DD835B18D616D300EF90C7 /* PFLGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD835A18D616D300EF90C7 /* PFLGlyph.m */; };
 		33DD836518D7BBE600EF90C7 /* PFLEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD836418D7BBE600EF90C7 /* PFLEvent.m */; };
+		33DD836E18D7C3A200EF90C7 /* NSArray+PFLCompareObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD836D18D7C3A200EF90C7 /* NSArray+PFLCompareObjects.m */; };
 		33E4F6F618788CF6005571F4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E4F6F518788CF6005571F4 /* XCTest.framework */; };
 		33E4F6F718788CF6005571F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160806C816B437A700039339 /* Foundation.framework */; };
 		33E4F6F818788CF6005571F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160806C616B437A700039339 /* UIKit.framework */; };
@@ -649,6 +650,8 @@
 		33DD835A18D616D300EF90C7 /* PFLGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLGlyph.m; sourceTree = "<group>"; };
 		33DD836318D7BBE600EF90C7 /* PFLEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLEvent.h; sourceTree = "<group>"; };
 		33DD836418D7BBE600EF90C7 /* PFLEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLEvent.m; sourceTree = "<group>"; };
+		33DD836C18D7C3A200EF90C7 /* NSArray+PFLCompareObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PFLCompareObjects.h"; sourceTree = "<group>"; };
+		33DD836D18D7C3A200EF90C7 /* NSArray+PFLCompareObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PFLCompareObjects.m"; sourceTree = "<group>"; };
 		33E4F6F418788CF6005571F4 /* PttrnFlow Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PttrnFlow Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33E4F6F518788CF6005571F4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		33E4F6FB18788CF6005571F4 /* PttrnFlow Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PttrnFlow Tests-Info.plist"; sourceTree = "<group>"; };
@@ -1146,6 +1149,8 @@
 				33A957F0188D624A006BF182 /* NSString+Degrees.h */,
 				33DD834D18D5EEDA00EF90C7 /* PFLJsonUtils.h */,
 				33DD834E18D5EEDA00EF90C7 /* PFLJsonUtils.m */,
+				33DD836C18D7C3A200EF90C7 /* NSArray+PFLCompareObjects.h */,
+				33DD836D18D7C3A200EF90C7 /* NSArray+PFLCompareObjects.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1712,6 +1717,7 @@
 				338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */,
 				33A957EF188D5B43006BF182 /* Arrow.m in Sources */,
 				334B2AE3181C47B900865510 /* ClippingSprite.m in Sources */,
+				33DD836E18D7C3A200EF90C7 /* NSArray+PFLCompareObjects.m in Sources */,
 				1624D1EA1733822C00851B45 /* ColorUtils.m in Sources */,
 				163DBE0117692C3100FCB89C /* SequenceMenuLayer.m in Sources */,
 				163DBE081769325400FCB89C /* UIImage+Utils.m in Sources */,

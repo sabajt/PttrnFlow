@@ -7,6 +7,7 @@
 //
 
 #import "NSArray+CompareStrings.h"
+#import "NSArray+PFLCompareObjects.h"
 #import "PFLKeyframe.h"
 #import "PFLPuzzle.h"
 #import "PFLPuzzleSet.h"
@@ -17,39 +18,6 @@
 NSString *const kChannelNone = @"ChannelNone";
 
 @implementation NSArray (PFLEvent)
-
-// TODO: this could be abstracted out to a catagory with 'equals object' protocol
-- (BOOL)hasSameNumberOfSameEvents:(NSArray *)events
-{
-    if (self.count == 0) {
-        // we have succesfully matched all events, or there were never events in either array
-        if (events.count == 0) {
-            return YES;
-        }
-        // not the same number of events
-        return NO;
-    }
-    
-    // pick one of our events to check for a match
-    PFLEvent *targetEvent = [self firstObject];
-    NSUInteger matchIndex = [events indexOfObjectPassingTest:^BOOL(PFLEvent *event, NSUInteger idx, BOOL *stop) {
-        return ([event.audioID isEqualToNumber:targetEvent.audioID]);
-    }];
-    
-    // no match
-    if (matchIndex == NSNotFound) {
-        return NO;
-    }
-    
-    // if we've found a match, remove matches copies of both arrays
-    NSMutableArray *mutableSelf = [NSMutableArray arrayWithArray:self];
-    NSMutableArray *mutableTargets = [NSMutableArray arrayWithArray:events];
-    [mutableSelf removeObjectAtIndex:0];
-    [mutableTargets removeObjectAtIndex:matchIndex];
-    
-    // recursive call to new, shortened arrays
-    return [[NSArray arrayWithArray:mutableSelf] hasSameNumberOfSameEvents:[NSArray arrayWithArray:mutableTargets]];
-}
 
 - (NSArray *)audioEvents
 {
@@ -159,13 +127,23 @@ NSString *const kChannelNone = @"ChannelNone";
 
 + (id)multiSampleEventWithAudioID:(NSNumber *)audioID multiSample:(PFLMultiSample *)multiSample
 {
-    // TODO: this should be a convenience method, maybe basic models should know how to create event models?
     NSMutableArray *sampleEvents = [NSMutableArray array];
     for (PFLSample *sample in multiSample.samples) {
         PFLEvent *sampleEvent = [PFLEvent sampleEventWithAudioID:audioID file:sample.file time:sample.time];
         [sampleEvents addObject:sampleEvent];
     }
     return [PFLEvent multiSampleEventWithAudioID:audioID sampleEvents:[NSArray arrayWithArray:sampleEvents]];
+}
+
+#pragma mark - PFLCompareObjectsDelegate
+
+- (BOOL)isEqualToObject:(id)object
+{
+    if ([object isKindOfClass:[PFLEvent class]]) {
+        PFLEvent *event = (PFLEvent *)object;
+        return [self.audioID isEqualToNumber:event.audioID];
+    }
+    return NO;
 }
 
 @end
