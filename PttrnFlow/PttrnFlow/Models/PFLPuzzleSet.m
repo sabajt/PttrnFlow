@@ -29,6 +29,7 @@ static NSString *const kPuzzles = @"puzzles";
 {
     self = [super init];
     if (self) {
+        self.beatDuration = (1.0f / ([json[kBpm] floatValue] / 60.0f));
         self.bpm = [json[kBpm] integerValue];
         self.length = [json[kLength] integerValue];
         self.name = json[kName];
@@ -38,7 +39,7 @@ static NSString *const kPuzzles = @"puzzles";
         NSMutableArray *keyframeSets = [NSMutableArray array];
         
         for (NSDictionary *meta in puzzleMetaData) {
-            PFLPuzzle *puzzle = [PFLPuzzle puzzleFromResource:meta[kFile]];
+            PFLPuzzle *puzzle = [PFLPuzzle puzzleFromResource:meta[kFile] puzzleSet:self];
             [puzzles addObject:puzzle];
             
             NSArray *keyframes = [PFLKeyframe keyframesFromArray:meta[kKeyframes]];

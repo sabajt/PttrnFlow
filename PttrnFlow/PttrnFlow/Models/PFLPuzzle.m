@@ -24,17 +24,18 @@ static NSString *const kSynth = @"synth";
 
 @implementation PFLPuzzle
 
-+ (PFLPuzzle *)puzzleFromResource:(NSString *)resource
++ (PFLPuzzle *)puzzleFromResource:(NSString *)resource puzzleSet:(PFLPuzzleSet *)puzzleSet
 {
-    return [[PFLPuzzle alloc] initWithJson:[PFLJsonUtils deserializeJsonObjectResource:resource]];
+    return [[PFLPuzzle alloc] initWithJson:[PFLJsonUtils deserializeJsonObjectResource:resource] puzzleSet:puzzleSet];
 }
 
-- (id)initWithJson:(NSDictionary *)json
+- (id)initWithJson:(NSDictionary *)json puzzleSet:(PFLPuzzleSet *)puzzleSet
 {
     self = [super init];
     if (self) {
         self.area = json[kArea];
         self.name = json[kName];
+        self.puzzleSet = puzzleSet;
         self.solution = json[kSolution];
         
         NSMutableArray *audio = [NSMutableArray array];

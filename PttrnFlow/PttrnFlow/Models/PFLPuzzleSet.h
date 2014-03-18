@@ -10,6 +10,7 @@
 
 @interface PFLPuzzleSet : NSObject
 
+@property (assign) CGFloat beatDuration;
 @property (assign) NSInteger bpm;
 @property (strong, nonatomic) NSArray *combinedSolutionEvents;
 @property (assign) NSInteger length;

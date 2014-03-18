@@ -12,6 +12,12 @@
 #import "AudioTouchDispatcher.h"
 #import "PFLPuzzleSet.h"
 
+@interface SequenceMenuLayer ()
+
+@property (strong, nonatomic) PFLPuzzleSet *puzzleSet;
+
+@end
+
 @implementation SequenceMenuLayer
 
 + (CCScene *)scene
@@ -26,13 +32,13 @@
 {
     self = [super init];
     if (self) {
-        _mapNames = @[@"puzzle0", @"puzzle1", @"puzzle2", @"puzzle3"];
-         
+        self.puzzleSet = [PFLPuzzleSet puzzleSetFromResource:@"puzzleSet0"];
+        
         // create and layout cells
         CGSize sideMargins = CGSizeMake(50, 50);
         CGSize padding = CGSizeMake(20, 20);
         int i = 0;
-        for (NSString *name in _mapNames) {
+        for (PFLPuzzle *puzzle in self.puzzleSet.puzzles) {
             SequenceMenuCell *cell = [[SequenceMenuCell alloc] initWithIndex:i];
             cell.anchorPoint = ccp(0.5, 0.5);
             CGFloat yPosition = sideMargins.height + ((i * cell.contentSize.height) + (i * padding.height));
@@ -41,9 +47,6 @@
             [self addChild:cell];
             i++;
         }
-        
-        PFLPuzzleSet *puzzeSet = [PFLPuzzleSet puzzleSetFromResource:@"puzzleSet0"];
-        NSArray *combinedSolutionEvents = puzzeSet.combinedSolutionEvents;
     };
     return self;
 }
@@ -52,11 +55,7 @@
 
 - (void)sequenceMenuCellTouchUpInside:(SequenceMenuCell *)cell index:(int)index
 {
-    // TODO: this deserialzes everytime.
-    NSString *resource = [NSString stringWithFormat:@"puzzle%i", index];
-    PFLPuzzle *puzzle = [PFLPuzzle puzzleFromResource:resource];
-    
-    [[CCDirector sharedDirector] pushScene:[PuzzleLayer sceneWithPuzzle:puzzle]];
+    [[CCDirector sharedDirector] pushScene:[PuzzleLayer sceneWithPuzzle:self.puzzleSet.puzzles[index]]];
 }
 
 
