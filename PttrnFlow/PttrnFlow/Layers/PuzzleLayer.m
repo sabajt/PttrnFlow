@@ -201,6 +201,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             if (hasBottomLeft && hasTopLeft && hasBottomRight && hasTopRight) {
                 CCSprite *padFill = [CCSprite spriteWithSpriteFrameName:@"pad_fill.png"];
                 padFill.position = [[[cell stepInDirection:kDirectionRight] stepInDirection:kDirectionUp] relativePosition];
+                padFill.color = [ColorUtils cream];
                 [self.audioObjectsBatchNode addChild:padFill z:ZOrderAudioBatchPanelFill];
                 continue;
             }
