@@ -86,12 +86,12 @@
 - (PFLEvent *)audioHit:(CGFloat)beatDuration
 {
     self.color = self.activeColor;
-    CCTintTo *tint1 = [CCTintTo actionWithDuration:beatDuration red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
+    CCTintTo *tint1 = [CCTintTo actionWithDuration:beatDuration * 2.0f red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
     [self runAction:[CCEaseSineOut actionWithAction:tint1]];
     
     for (CCSprite *unit in self.audioUnits) {
         unit.color = self.activeColor;
-        CCTintTo *tint2 = [CCTintTo actionWithDuration:beatDuration red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
+        CCTintTo *tint2 = [CCTintTo actionWithDuration:beatDuration * 2.0f red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
         [unit runAction:[CCEaseSineOut actionWithAction:tint2]];
     }
     

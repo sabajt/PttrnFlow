@@ -13,14 +13,17 @@
 
 - (void)backlight:(CGFloat)beatDuration completion:(void (^)(void))completion
 {
+    [self stopAllActions];
+    self.scale = 1.0f;
+    
     CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:beatDuration * 2.0f];
     [self runAction:[CCEaseSineOut actionWithAction:fadeOut]];
 
-    CGFloat originalScale = self.scale;
     CCScaleTo *scaleUp = [CCScaleTo actionWithDuration:beatDuration * 2.0f scale:self.scale + 0.5f];
     CCEaseSineOut *easeUp = [CCEaseSineOut actionWithAction:scaleUp];
+    
     CCCallBlock *resetScale = [CCCallBlock actionWithBlock:^{
-        self.scale = originalScale;
+        self.scale = 1.0f;
     }];
     
     CCCallBlock *completionAction = [CCCallBlock actionWithBlock:^{
