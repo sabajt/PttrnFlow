@@ -24,19 +24,9 @@
     NSInteger repeatHorizontal = (NSInteger)((layer.contentSize.width / tempTile.contentSize.width)) + 2;
     NSInteger repeatVertical = (NSInteger)((layer.contentSize.height / tempTile.contentSize.height)) + 2;
     
-    TileSprite *background1 = [[TileSprite alloc] initWithImage:@"background_tile.png" repeats:ccp(repeatHorizontal, repeatVertical) color1:[ColorUtils dimPurple] color2:[ColorUtils darkPurple]];
+    TileSprite *background1 = [[TileSprite alloc] initWithImage:@"background_tile.png" repeats:ccp(repeatHorizontal, repeatVertical) color1:[ColorUtils dimPurple] color2:[ColorUtils cream]];
     background1.position = ccp(layer.contentSize.width / 2, layer.contentSize.height / 2);
     [batchNode addChild:background1];
-    
-//    TileSprite *background1 = [[TileSprite alloc] initWithImage:@"background_tile.png" repeatHorizonal:repeatHorizontal repeatVertical:repeatVertical skip:1];
-//    background1.position = ccp(layer.contentSize.width / 2, layer.contentSize.height / 2);
-//    [batchNode addChild:background1];
-//
-//    TileSprite *background2 = [[TileSprite alloc] initWithImage:@"background_tile.png" repeatHorizonal:repeatHorizontal repeatVertical:repeatVertical skip:1];
-//    background2.position = ccp(background1.position.x - tempTile.contentSize.width, background1.position.y - tempTile.contentSize.height);
-//    [batchNode addChild:background2];
-    
-//    [TileSprite ]
     
     return layer;
 }
