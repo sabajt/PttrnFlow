@@ -11,25 +11,59 @@
 
 @implementation TileSprite
 
-- (id)initWithTileFrameName:(NSString *)name placeholderFrameName:(NSString *)placeholderName repeatHorizonal:(int)repeatHorizontal repeatVertical:(int)repeatVertical
+- (id)initWithImage:(NSString *)image repeats:(CGPoint)repeats skip:(NSInteger)skip
 {
-    return [self initWithTileFrameName:name placeholderFrameName:placeholderName repeatHorizonal:repeatHorizontal repeatVertical:repeatVertical skip:0];
-}
-
-- (id)initWithTileFrameName:(NSString *)name placeholderFrameName:(NSString *)placeholderName repeatHorizonal:(int)repeatHorizontal repeatVertical:(int)repeatVertical skip:(NSInteger)skip
-{
-    self = [super initWithSpriteFrameName:placeholderName];
+    self = [super initWithSpriteFrameName:image];
     if (self)
     {
-        CCSprite *tileSprite = [CCSprite spriteWithSpriteFrameName:name];
-        self.contentSize = CGSizeMake(tileSprite.contentSize.width * repeatHorizontal * (skip + 1), tileSprite.contentSize.height * repeatVertical * (skip + 1));
+        self.opacity = 0.0;
+        CCSprite *tileSprite = [CCSprite spriteWithSpriteFrameName:image];
+        self.contentSize = CGSizeMake(tileSprite.contentSize.width * repeats.x * (skip + 1), tileSprite.contentSize.height * repeats.y * (skip + 1));
         
-        for (int x = 0; x < repeatHorizontal; x++) {
-            for (int y = 0; y < repeatVertical; y++) {
-                CCSprite *spr = [CCSprite spriteWithSpriteFrameName:name];
+        for (int x = 0; x < repeats.x; x++) {
+            for (int y = 0; y < repeats.y; y++) {
+                CCSprite *spr = [CCSprite spriteWithSpriteFrameName:image];
                 spr.anchorPoint = ccp(0, 0);
                 spr.position = ccp(x * spr.contentSize.width * (skip + 1), y * spr.contentSize.height * (skip + 1));
                 [self addChild:spr];
+            }
+        }
+    }
+    return self;
+}
+
+- (id)initWithImage:(NSString *)image repeats:(CGPoint)repeats color1:(ccColor3B)color1 color2:(ccColor3B)color2
+{
+    self = [super initWithSpriteFrameName:image];
+    if (self)
+    {
+        self.opacity = 0.0;
+        CCSprite *tileSprite = [CCSprite spriteWithSpriteFrameName:image];
+        self.contentSize = CGSizeMake(tileSprite.contentSize.width * repeats.x, tileSprite.contentSize.height * repeats.y);
+        
+        for (int x = 0; x < repeats.x; x++) {
+            for (int y = 0; y < repeats.y; y++) {
+                CCSprite *spr = [CCSprite spriteWithSpriteFrameName:image];
+                spr.anchorPoint = ccp(0, 0);
+                spr.position = ccp(x * spr.contentSize.width, y * spr.contentSize.height);
+                [self addChild:spr];
+                
+                if (x % 2 == 0) {
+                    if (y % 2 == 0) {
+                        spr.color = color1;
+                    }
+                    else {
+                        spr.color = color2;
+                    }
+                }
+                else {
+                    if (y % 2 == 0) {
+                        spr.color = color2;
+                    }
+                    else {
+                        spr.color = color1;
+                    }
+                }
             }
         }
     }

@@ -17,11 +17,11 @@ static inline ccColor4B ccc4BFromccc3B(ccColor3B c)
 @interface ColorUtils : NSObject
 
 + (UIColor *)UIColorFor3B:(ccColor3B)color;
-
-+ (ccColor3B)cream;
 + (ccColor3B)activeYellow;
-+ (ccColor3B)dimPurple;
++ (ccColor3B)cream;
++ (ccColor3B)darkPurple;
 + (ccColor3B)defaultPurple;
++ (ccColor3B)dimPurple;
 
 @end
 

@@ -10,6 +10,7 @@
 #import "AudioPad.h"
 #import "AudioTouchDispatcher.h"
 #import "BackgroundLayer.h"
+#import "CCSprite+PFLEffects.h"
 #import "ColorUtils.h"
 #import "Coord.h"
 #import "Gear.h"
@@ -403,14 +404,13 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 - (void)animateEmptyHitHighlight:(Coord *)coord
 {
     CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:@"audio_box_highlight.png"];
+    highlightSprite.color = [ColorUtils activeYellow];
     highlightSprite.position = [coord relativeMidpoint];
     [self.audioObjectsBatchNode addChild:highlightSprite z:ZOrderAudioBatchPadBacklight];
     
-    CCCallBlock *completion = [CCCallBlock actionWithBlock:^{
+    [highlightSprite backlight:self.beatDuration completion:^{
         [highlightSprite removeFromParentAndCleanup:YES];
     }];
-    CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:self.beatDuration];
-    [highlightSprite runAction:[CCSequence actions:[CCEaseSineOut actionWithAction:fadeOut], completion, nil]];
 }
 
 #pragma mark - scene management

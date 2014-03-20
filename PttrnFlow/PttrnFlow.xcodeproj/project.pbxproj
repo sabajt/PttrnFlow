@@ -152,6 +152,7 @@
 		330A580218C5A82A00DC97B7 /* puzzle6.json in Resources */ = {isa = PBXBuildFile; fileRef = 330A580018C5A82A00DC97B7 /* puzzle6.json */; };
 		3317322E1892A89D005435D9 /* ScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3317322D1892A89D005435D9 /* ScrollLayer.m */; };
 		332C199118C0D2150081FE1D /* Gear.m in Sources */ = {isa = PBXBuildFile; fileRef = 332C199018C0D2150081FE1D /* Gear.m */; };
+		3333501518DB84F60046D47B /* CCSprite+PFLEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 3333501418DB84F60046D47B /* CCSprite+PFLEffects.m */; };
 		3339C03118397638005771BC /* audioObjects-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02D18397638005771BC /* audioObjects-hd.plist */; };
 		3339C03218397638005771BC /* audioObjects-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02E18397638005771BC /* audioObjects-hd.png */; };
 		3339C03318397638005771BC /* audioObjects.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02F18397638005771BC /* audioObjects.plist */; };
@@ -557,6 +558,8 @@
 		3317322D1892A89D005435D9 /* ScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollLayer.m; sourceTree = "<group>"; };
 		332C198F18C0D2150081FE1D /* Gear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gear.h; sourceTree = "<group>"; };
 		332C199018C0D2150081FE1D /* Gear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Gear.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3333501318DB84F60046D47B /* CCSprite+PFLEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCSprite+PFLEffects.h"; sourceTree = "<group>"; };
+		3333501418DB84F60046D47B /* CCSprite+PFLEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCSprite+PFLEffects.m"; sourceTree = "<group>"; };
 		3339C02D18397638005771BC /* audioObjects-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "audioObjects-hd.plist"; sourceTree = "<group>"; };
 		3339C02E18397638005771BC /* audioObjects-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audioObjects-hd.png"; sourceTree = "<group>"; };
 		3339C02F18397638005771BC /* audioObjects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = audioObjects.plist; sourceTree = "<group>"; };
@@ -1151,6 +1154,8 @@
 				33DD834E18D5EEDA00EF90C7 /* PFLJsonUtils.m */,
 				33DD836C18D7C3A200EF90C7 /* NSArray+PFLCompareObjects.h */,
 				33DD836D18D7C3A200EF90C7 /* NSArray+PFLCompareObjects.m */,
+				3333501318DB84F60046D47B /* CCSprite+PFLEffects.h */,
+				3333501418DB84F60046D47B /* CCSprite+PFLEffects.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1614,6 +1619,7 @@
 				1608072416B437A800039339 /* ccDeprecated.m in Sources */,
 				1608072716B437A800039339 /* CCDirector.m in Sources */,
 				1608072A16B437A800039339 /* CCDrawingPrimitives.m in Sources */,
+				3333501518DB84F60046D47B /* CCSprite+PFLEffects.m in Sources */,
 				1608072D16B437A800039339 /* CCGLProgram.m in Sources */,
 				338112B2183D7E870012E528 /* Synth.m in Sources */,
 				1608073016B437A800039339 /* ccGLStateCache.m in Sources */,

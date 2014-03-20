@@ -10,7 +10,7 @@
 
 @interface TileSprite : CCSprite
 
-- (id)initWithTileFrameName:(NSString *)name placeholderFrameName:(NSString *)placeholderName repeatHorizonal:(int)repeatHorizontal repeatVertical:(int)repeatVertical;
-- (id)initWithTileFrameName:(NSString *)name placeholderFrameName:(NSString *)placeholderName repeatHorizonal:(int)repeatHorizontal repeatVertical:(int)repeatVertical skip:(NSInteger)skip;
+- (id)initWithImage:(NSString *)image repeats:(CGPoint)repeats skip:(NSInteger)skip;
+- (id)initWithImage:(NSString *)image repeats:(CGPoint)repeats color1:(ccColor3B)color1 color2:(ccColor3B)color2;
 
 @end
