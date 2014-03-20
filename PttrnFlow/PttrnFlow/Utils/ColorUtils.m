@@ -24,7 +24,8 @@
 
 + (ccColor3B)cream
 {
-    return ccc3(252, 251, 247);
+//    return ccc3(252, 251, 247); // original
+    return ccc3(232, 231, 227);
 }
 
 + (ccColor3B)activeYellow
