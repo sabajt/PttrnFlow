@@ -144,7 +144,6 @@
 		1693C662177A0C9300FEB350 /* drum2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C660177A0C9300FEB350 /* drum2.wav */; };
 		1693C665177A628300FEB350 /* drum3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C663177A628200FEB350 /* drum3.wav */; };
 		1693C666177A628300FEB350 /* drum4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C664177A628200FEB350 /* drum4.wav */; };
-		1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */; };
 		16A4277C176BF0A100BEF13F /* SequenceControlsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4277B176BF0A100BEF13F /* SequenceControlsLayer.m */; };
 		16A942B71777A2260052D5BD /* MainSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A41777A2250052D5BD /* MainSynth.m */; };
 		16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */; };
@@ -543,8 +542,6 @@
 		1693C660177A0C9300FEB350 /* drum2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drum2.wav; sourceTree = "<group>"; };
 		1693C663177A628200FEB350 /* drum3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drum3.wav; sourceTree = "<group>"; };
 		1693C664177A628200FEB350 /* drum4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drum4.wav; sourceTree = "<group>"; };
-		1693C66A177B5C7E00FEB350 /* NSArray+CompareStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CompareStrings.h"; sourceTree = "<group>"; };
-		1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CompareStrings.m"; sourceTree = "<group>"; };
 		16A4277A176BF0A100BEF13F /* SequenceControlsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceControlsLayer.h; sourceTree = "<group>"; };
 		16A4277B176BF0A100BEF13F /* SequenceControlsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceControlsLayer.m; sourceTree = "<group>"; };
 		16A942A31777A2250052D5BD /* MainSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainSynth.h; sourceTree = "<group>"; };
@@ -1139,8 +1136,6 @@
 				1608086416B43CEF00039339 /* GameConstants.m */,
 				163DBE061769325400FCB89C /* UIImage+Utils.h */,
 				163DBE071769325400FCB89C /* UIImage+Utils.m */,
-				1693C66A177B5C7E00FEB350 /* NSArray+CompareStrings.h */,
-				1693C66B177B5C7E00FEB350 /* NSArray+CompareStrings.m */,
 				338EE1B217A5F1D2005E98B1 /* NSArray+CompareNumbers.h */,
 				338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */,
 				162C290E17821E0200CE480C /* SizeUtils.h */,
@@ -1732,7 +1727,6 @@
 				16A942B71777A2260052D5BD /* MainSynth.m in Sources */,
 				334B2ADD181C2F4B00865510 /* TouchSprite.m in Sources */,
 				16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */,
-				1693C66C177B5C7E00FEB350 /* NSArray+CompareStrings.m in Sources */,
 				163091F0177DEDA9003155BB /* BackgroundLayer.m in Sources */,
 				33DD835518D60B6E00EF90C7 /* PFLSample.m in Sources */,
 				332C199118C0D2150081FE1D /* Gear.m in Sources */,

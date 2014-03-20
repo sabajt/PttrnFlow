@@ -10,6 +10,18 @@
 
 @implementation NSArray (CompareNumbers)
 
+- (BOOL)containsOnlyNumbers
+{
+    for (id obj in self) {
+        if (![obj isKindOfClass:[NSNumber class]]) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+#pragma mark - Public
+
 - (NSNumber *)maxNumber
 {
     if (![self containsOnlyNumbers]) {
@@ -26,16 +38,5 @@
     }
     return @(xMax);
 }
-
-- (BOOL)containsOnlyNumbers
-{
-    for (id obj in self) {
-        if (![obj isKindOfClass:[NSNumber class]]) {
-            return NO;
-        }
-    }
-    return YES;
-}
-
 
 @end

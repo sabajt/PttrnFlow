@@ -6,8 +6,6 @@
 //
 //
 
-#import "NSArray+CompareStrings.h"
-#import "NSArray+PFLCompareObjects.h"
 #import "PFLKeyframe.h"
 #import "PFLPuzzle.h"
 #import "PFLPuzzleSet.h"
