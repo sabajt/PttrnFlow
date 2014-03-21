@@ -63,7 +63,7 @@
 - (PFLEvent *)audioHit:(CGFloat)beatDuration
 {
     self.color = self.activeColor;
-    CCTintTo *tint = [CCTintTo actionWithDuration:beatDuration red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
+    CCTintTo *tint = [CCTintTo actionWithDuration:beatDuration * 2.0f red:self.defaultColor.r green:self.defaultColor.g blue:self.defaultColor.b];
     [self runAction:[CCEaseSineOut actionWithAction:tint]];
     
     return self.event;
