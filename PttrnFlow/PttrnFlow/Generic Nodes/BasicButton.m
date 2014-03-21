@@ -14,6 +14,9 @@
 @property (weak, nonatomic) CCSprite *offSprite;
 @property (weak, nonatomic) CCSprite *onSprite;
 @property (weak, nonatomic) id<BasicButtonDelegate> delegate;
+@property (assign) ccColor3B defaultColor;
+@property (assign) ccColor3B activeColor;
+@property (assign) BOOL useColor;
 
 @end
 
@@ -46,11 +49,29 @@
     return self;
 }
 
+- (id)initWithImage:(NSString *)image defaultColor:(ccColor3B)defaultColor activeColor:(ccColor3B)activeColor delegate:(id<BasicButtonDelegate>)delegate
+{
+    self = [super initWithSpriteFrameName:image];
+    if (self) {
+        self.delegate = delegate;
+        self.defaultColor = defaultColor;
+        self.activeColor = activeColor;
+        self.color = defaultColor;
+        self.useColor = YES;
+    }
+    return self;
+}
+
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     if ([super ccTouchBegan:touch withEvent:event]) {
-        self.offSprite.visible = NO;
-        self.onSprite.visible = YES;
+        if (self.offSprite && self.onSprite) {
+            self.offSprite.visible = NO;
+            self.onSprite.visible = YES;
+        }
+        if (self.useColor) {
+            self.color = self.activeColor;
+        }
         return YES;
     }
     return NO;
@@ -61,16 +82,33 @@
     [super ccTouchMoved:touch withEvent:event];
     
     BOOL containsTouch = [self containsTouch:touch];
-    self.offSprite.visible = !containsTouch;
-    self.onSprite.visible = containsTouch;
+    
+    if (self.offSprite && self.onSprite) {
+        self.offSprite.visible = !containsTouch;
+        self.onSprite.visible = containsTouch;
+    }
+    if (self.useColor) {
+        if (containsTouch) {
+            self.color = self.activeColor;
+        }
+        else {
+            self.color = self.defaultColor;
+        }
+    }
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [super ccTouchEnded:touch withEvent:event];
     
-    self.offSprite.visible = YES;
-    self.onSprite.visible = NO;
+    if (self.offSprite && self.onSprite) {
+        self.offSprite.visible = YES;
+        self.onSprite.visible = NO;
+    }
+    
+    if (self.useColor) {
+        self.color = self.defaultColor;
+    }
     
     if ([self containsTouch:touch]) {
         [self.delegate basicButtonPressed:self];

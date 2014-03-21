@@ -22,5 +22,6 @@
                       offFrameName:(NSString *)offFrameName
                        onFrameName:(NSString *)onFrameName
                           delegate:(id<BasicButtonDelegate>)delegate;
+- (id)initWithImage:(NSString *)image defaultColor:(ccColor3B)defaultColor activeColor:(ccColor3B)activeColor delegate:(id<BasicButtonDelegate>)delegate;
 
 @end

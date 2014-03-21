@@ -112,7 +112,7 @@ static NSInteger const kRowLength = 8;
         [self.uiBatchNode addChild:playButton];
         
         // exit button
-        BasicButton *exitButton = [[BasicButton alloc] initWithPlaceholderFrameName:@"clear_rect_uilayer.png" offFrameName:@"exit_off.png" onFrameName:@"exit_on.png" delegate:self];
+        BasicButton *exitButton = [[BasicButton alloc] initWithImage:@"exit.png" defaultColor:[ColorUtils dimPurple] activeColor:[ColorUtils activeYellow] delegate:self];
         self.exitButton = exitButton;
         exitButton.position = ccp(kUITimelineStepWidth / 2, self.contentSize.height - 25);
         [self.uiBatchNode addChild:exitButton];
