@@ -52,6 +52,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 @property (assign) CGRect puzzleBounds;
 @property (assign) CGSize screenSize;
 @property (assign) BOOL shouldDrawGrid; // debugging
+@property (copy, nonatomic) NSString *theme;
 
 @end
 
@@ -64,7 +65,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     CCScene *scene = [CCScene node];
     
     // background
-    BackgroundLayer *background = [BackgroundLayer backgroundLayer];
+    BackgroundLayer *background = [BackgroundLayer backgroundLayerWithTheme:puzzle.puzzleSet.theme];
     [scene addChild:background];
     
     // gameplay layer
@@ -86,6 +87,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         // layer initialized with default content size of screen size...
         // would be better to do figure out best practice and get screen size more explicitly
         self.screenSize = self.contentSize;
+        self.theme = puzzle.puzzleSet.theme;
         
         // Initialize Pure Data stuff
         
@@ -202,7 +204,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             if (hasBottomLeft && hasTopLeft && hasBottomRight && hasTopRight) {
                 CCSprite *padFill = [CCSprite spriteWithSpriteFrameName:@"pad_fill.png"];
                 padFill.position = [[[cell stepInDirection:kDirectionRight] stepInDirection:kDirectionUp] relativePosition];
-                padFill.color = [ColorUtils cream];
+                padFill.color = [ColorUtils audioPanelWithTheme:self.theme];
                 [self.audioObjectsBatchNode addChild:padFill z:ZOrderAudioBatchPanelFill];
                 continue;
             }
@@ -317,21 +319,21 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
                 fill2 = [CCSprite spriteWithSpriteFrameName:padBorderCornerInsideFill];
             }
             
-            fill1.color = [ColorUtils cream];
-            fill1.color = [ColorUtils cream];
+            fill1.color = [ColorUtils audioPanelWithTheme:self.theme];
+            fill1.color = [ColorUtils audioPanelWithTheme:self.theme];
             fill1.position = [[[cell stepInDirection:kDirectionRight] stepInDirection:kDirectionUp] relativePosition];
             [self.audioObjectsBatchNode addChild:fill1 z:ZOrderAudioBatchPanelBorder];
             
-            border1.color = [ColorUtils dimPurple];
+            border1.color = [ColorUtils audioPanelWithTheme:self.theme];
             border1.position = [[[cell stepInDirection:kDirectionRight] stepInDirection:kDirectionUp] relativePosition];
             [self.audioObjectsBatchNode addChild:border1 z:ZOrderAudioBatchPanelBorder];
             
             if (border2 != nil) {
-                fill2.color = [ColorUtils cream];
+                fill2.color = [ColorUtils audioPanelWithTheme:self.theme];
                 fill2.position = fill1.position;
                 [self.audioObjectsBatchNode addChild:fill2 z:ZOrderAudioBatchPanelBorder];
                 
-                border2.color = [ColorUtils dimPurple];
+                border2.color = [ColorUtils audioPanelWithTheme:self.theme];
                 border2.position = border1.position;
                 [self.audioObjectsBatchNode addChild:border2 z:ZOrderAudioBatchPanelBorder];
             }

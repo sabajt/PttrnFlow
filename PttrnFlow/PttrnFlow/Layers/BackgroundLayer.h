@@ -10,7 +10,7 @@
 
 @interface BackgroundLayer : CCLayerColor
 
-+ (BackgroundLayer *)backgroundLayer;
++ (BackgroundLayer *)backgroundLayerWithTheme:(NSString *)theme;
 - (void)tintToColor:(ccColor3B)color duration:(ccTime)duration;
 
 @end

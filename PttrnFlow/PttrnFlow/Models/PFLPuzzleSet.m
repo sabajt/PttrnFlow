@@ -17,6 +17,7 @@ static NSString *const kKeyframes = @"keyframes";
 static NSString *const kLength = @"length";
 static NSString *const kName = @"name";
 static NSString *const kPuzzles = @"puzzles";
+static NSString *const kTheme = @"theme";
 
 @interface PFLPuzzleSet ()
 
@@ -39,6 +40,7 @@ static NSString *const kPuzzles = @"puzzles";
         self.bpm = [json[kBpm] integerValue];
         self.length = [json[kLength] integerValue];
         self.name = json[kName];
+        self.theme = json[kTheme];
         
         NSArray *puzzleMetaData = json[kPuzzles];
         NSMutableArray *puzzles = [NSMutableArray array];
