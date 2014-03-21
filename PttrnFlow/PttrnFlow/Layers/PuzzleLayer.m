@@ -28,6 +28,7 @@
 #import "PFLGlyph.h"
 #import "PFLMultiSample.h"
 #import "PFLSample.h"
+#import "PFLPuzzleSet.h"
 
 typedef NS_ENUM(NSInteger, ZOrderAudioBatch)
 {
@@ -47,6 +48,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 @property (assign) CGPoint gridOrigin; // TODO: using grid origin except for drawing debug grid?
 @property (assign) Coord *maxCoord;
 @property (weak, nonatomic) Synth *pressedSynth;
+@property (weak, nonatomic) PFLPuzzle *puzzle;
 @property (assign) CGRect puzzleBounds;
 @property (assign) CGSize screenSize;
 @property (assign) BOOL shouldDrawGrid; // debugging
@@ -94,9 +96,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             CCLOG(@"Failed to open patch");
         }
         
-        // TODO: fix me with PuzzleSet
-        // TODO: fix me with PuzzleSet
-        self.beatDuration = 0.5f;
+        self.beatDuration = puzzle.puzzleSet.beatDuration;
         [MainSynth sharedMainSynth].beatDuration = self.beatDuration;
         
         // Sprite sheet batch nodes
@@ -317,6 +317,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
                 fill2 = [CCSprite spriteWithSpriteFrameName:padBorderCornerInsideFill];
             }
             
+            fill1.color = [ColorUtils cream];
             fill1.color = [ColorUtils cream];
             fill1.position = [[[cell stepInDirection:kDirectionRight] stepInDirection:kDirectionUp] relativePosition];
             [self.audioObjectsBatchNode addChild:fill1 z:ZOrderAudioBatchPanelBorder];

@@ -8,6 +8,8 @@
 
 #import "ColorUtils.h"
 
+NSString *const kPFLColorUtilsPurpleTheme = @"Purple";
+
 @implementation ColorUtils
 
 #pragma mark - conversions
@@ -20,7 +22,7 @@
     return [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
 }
 
-#pragma mark - colors
+#pragma mark - Colors
 
 + (ccColor3B)activeYellow
 {
@@ -31,6 +33,11 @@
 {
 //    return ccc3(252, 251, 247); // original
     return ccc3(232, 231, 227); // darker
+}
+
++ (ccColor3B)darkCream
+{
+    return ccc3(222, 221, 217);
 }
 
 + (ccColor3B)darkPurple
@@ -46,6 +53,98 @@
 + (ccColor3B)dimPurple
 {
     return ccc3(155, 138, 159);
+}
+
+#pragma mark - Themes
+
++ (ccColor3B)audioPanelWithTheme:(NSString *)theme
+{
+    if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
+        return [ColorUtils darkCream];
+    }
+    CCLOG(@"Warning theme '%@' not recognized", theme);
+    return ccBLACK;
+}
+
++ (ccColor3B)backgroundWithTheme:(NSString *)theme
+{
+    if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
+        return [ColorUtils darkPurple];
+    }
+    CCLOG(@"Warning theme '%@' not recognized", theme);
+    return ccBLACK;
+}
+
++ (ccColor3B)controlButtonsDefaultWithTheme:(NSString *)theme
+{
+    if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
+        return [ColorUtils dimPurple];
+    }
+    CCLOG(@"Warning theme '%@' not recognized", theme);
+    return ccBLACK;
+}
+
++ (ccColor3B)controlButtonsActiveWithTheme:(NSString *)theme
+{
+    if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
+        return [ColorUtils darkPurple];
+    }
+    CCLOG(@"Warning theme '%@' not recognized", theme);
+    return ccBLACK;
+}
+
++ (ccColor3B)controlPanelWithTheme:(NSString *)theme
+{
+    if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
+        return [ColorUtils cream];
+    }
+    CCLOG(@"Warning theme '%@' not recognized", theme);
+    return ccBLACK;
+}
+
++ (ccColor3B)glyphDetailWithTheme:(NSString *)theme
+{
+    if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
+        return [ColorUtils darkCream];
+    }
+    CCLOG(@"Warning theme '%@' not recognized", theme);
+    return ccBLACK;
+}
+
++ (ccColor3B)mobilePadWithTheme:(NSString *)theme
+{
+    if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
+        return [ColorUtils defaultPurple];
+    }
+    CCLOG(@"Warning theme '%@' not recognized", theme);
+    return ccBLACK;
+}
+
++ (ccColor3B)padHighlightWithTheme:(NSString *)theme
+{
+    if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
+        return [ColorUtils activeYellow];
+    }
+    CCLOG(@"Warning theme '%@' not recognized", theme);
+    return ccBLACK;
+}
+
++ (ccColor3B)solutionButtonHighlightWithTheme:(NSString *)theme
+{
+    if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
+        return [ColorUtils activeYellow];
+    }
+    CCLOG(@"Warning theme '%@' not recognized", theme);
+    return ccBLACK;
+}
+
++ (ccColor3B)staticPadWithTheme:(NSString *)theme
+{
+    if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
+        return [ColorUtils dimPurple];
+    }
+    CCLOG(@"Warning theme '%@' not recognized", theme);
+    return ccBLACK;
 }
 
 @end

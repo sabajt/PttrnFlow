@@ -10,12 +10,13 @@
 
 @interface PFLPuzzleSet : NSObject
 
-@property (assign) CGFloat beatDuration;
 @property (assign) NSInteger bpm;
+@property (assign) CGFloat beatDuration;
+@property (strong, nonatomic) NSArray *keyframeSets;
 @property (assign) NSInteger length;
 @property (copy, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray *puzzles;
-@property (strong, nonatomic) NSArray *keyframeSets;
+@property (copy, nonatomic) NSString *theme;
 
 + (PFLPuzzleSet *)puzzleSetFromResource:(NSString *)resource;
 - (id)initWithJson:(NSDictionary *)json;

@@ -12,10 +12,10 @@
 
 @interface PFLPuzzle : NSObject
 
-@property (copy, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray *area;
 @property (strong, nonatomic) NSArray *audio;
 @property (strong, nonatomic) NSArray *glyphs;
+@property (copy, nonatomic) NSString *name;
 @property (weak, nonatomic) PFLPuzzleSet *puzzleSet;
 @property (strong, nonatomic) NSArray *solution;
 
