@@ -22,6 +22,12 @@ static NSString *const kSolution = @"solution";
 static NSString *const kSamples = @"samples";
 static NSString *const kSynth = @"synth";
 
+@interface PFLPuzzle ()
+
+@property (strong, nonatomic) NSArray *solutionEvents;
+
+@end
+
 @implementation PFLPuzzle
 
 + (PFLPuzzle *)puzzleFromResource:(NSString *)resource puzzleSet:(PFLPuzzleSet *)puzzleSet

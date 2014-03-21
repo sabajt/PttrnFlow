@@ -12,7 +12,6 @@
 
 @property (assign) CGFloat beatDuration;
 @property (assign) NSInteger bpm;
-@property (strong, nonatomic) NSArray *combinedSolutionEvents;
 @property (assign) NSInteger length;
 @property (copy, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray *puzzles;
@@ -20,5 +19,6 @@
 
 + (PFLPuzzleSet *)puzzleSetFromResource:(NSString *)resource;
 - (id)initWithJson:(NSDictionary *)json;
+- (NSArray *)combinedSolutionEvents;
 
 @end

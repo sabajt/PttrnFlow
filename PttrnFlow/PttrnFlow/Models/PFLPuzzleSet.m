@@ -18,6 +18,12 @@ static NSString *const kLength = @"length";
 static NSString *const kName = @"name";
 static NSString *const kPuzzles = @"puzzles";
 
+@interface PFLPuzzleSet ()
+
+@property (strong, nonatomic) NSArray *combinedSolutionEvents;
+
+@end
+
 @implementation PFLPuzzleSet
 
 + (PFLPuzzleSet *)puzzleSetFromResource:(NSString *)resource;
@@ -64,7 +70,7 @@ static NSString *const kPuzzles = @"puzzles";
             for (PFLKeyframe *keyframe in keyframes) {
                 NSInteger s = keyframe.sourceIndex;
                 for (NSInteger r = 0; r < keyframe.range; r++) {
-                    NSArray *events = puzzle.solutionEvents[s];
+                    NSArray *events = [puzzle solutionEvents][s];
                     NSInteger t = keyframe.targetIndex + r;
                     combinedSolutionEvents[t] = [combinedSolutionEvents[t] arrayByAddingObjectsFromArray:events];
                     s++;

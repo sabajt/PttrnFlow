@@ -18,9 +18,9 @@
 @property (strong, nonatomic) NSArray *glyphs;
 @property (weak, nonatomic) PFLPuzzleSet *puzzleSet;
 @property (strong, nonatomic) NSArray *solution;
-@property (strong, nonatomic) NSArray *solutionEvents;
 
 + (PFLPuzzle *)puzzleFromResource:(NSString *)resource puzzleSet:(PFLPuzzleSet *)puzzleSet;
 - (id)initWithJson:(NSDictionary *)json puzzleSet:(PFLPuzzleSet *)puzzleSet;
+- (NSArray *)solutionEvents;
 
 @end
