@@ -52,8 +52,13 @@ static NSInteger const kRowLength = 8;
         [self addChild:uiBatch];
         
         // right controls panel
-        CCSprite *rightControlsPanel = [CCSprite spriteWithSpriteFrameName:@"controls_panel_right_bottom.png"];
+        CCSprite *rightControlsPanel = [CCSprite spriteWithSpriteFrameName:@"controls_panel_right_bottom_fill.png"];
+        rightControlsPanel.color = [ColorUtils cream];
         rightControlsPanel.anchorPoint = ccp(0, 0);
+        
+        CCSprite *rightControlsPanelBorder = [CCSprite spriteWithSpriteFrameName:@"controls_panel_right_bottom_edge.png"];
+        rightControlsPanelBorder.color = [ColorUtils dimPurple];
+        rightControlsPanelBorder.anchorPoint = ccp(0, 0);
         
         if (steps >= kRowLength) {
             rightControlsPanel.position = ccp(rightControlsPanel.contentSize.width - self.contentSize.width, 0);
@@ -62,22 +67,37 @@ static NSInteger const kRowLength = 8;
             CGFloat xOffset = (rightControlsPanel.contentSize.width - self.contentSize.width) + (kUITimelineStepWidth * (kRowLength - steps));
             rightControlsPanel.position = ccp(-xOffset, 0);
         }
+        rightControlsPanelBorder.position = rightControlsPanel.position;
         
         [self.uiBatchNode addChild:rightControlsPanel];
+        [self.uiBatchNode addChild:rightControlsPanelBorder];
         
         // left controls panel
-        CCSprite *leftControlsPanel = [CCSprite spriteWithSpriteFrameName:@"controls_panel_left.png"];
-
+        CCSprite *leftControlsPanel = [CCSprite spriteWithSpriteFrameName:@"controls_panel_left_fill.png"];
+        leftControlsPanel.color = [ColorUtils cream];
         leftControlsPanel.anchorPoint = ccp(0, 0);
         leftControlsPanel.position = ccp(0, -50); // will be 0 for seq > 8 len in future
+        
+        CCSprite *leftControlsPanelBorder = [CCSprite spriteWithSpriteFrameName:@"controls_panel_left_edge.png"];
+        leftControlsPanelBorder.color = [ColorUtils dimPurple];
+        leftControlsPanelBorder.anchorPoint = ccp(0, 0);
+        leftControlsPanelBorder.position = leftControlsPanel.position;
+        
         [self.uiBatchNode addChild:leftControlsPanel];
+        [self.uiBatchNode addChild:leftControlsPanelBorder];
         
         // top left controls panel corner
-        CCSprite *topLeftControlsPanel = [CCSprite spriteWithSpriteFrameName:@"controls_panel_top_left.png"];
+        CCSprite *topLeftControlsPanel = [CCSprite spriteWithSpriteFrameName:@"controls_panel_top_left_fill.png"];
+        topLeftControlsPanel.color = [ColorUtils cream];
         topLeftControlsPanel.anchorPoint = ccp(0, 1);
         topLeftControlsPanel.position = ccp(0, self.contentSize.height);
         [self.uiBatchNode addChild:topLeftControlsPanel];
         
+        CCSprite *topLeftControlsPanelBorder = [CCSprite spriteWithSpriteFrameName:@"controls_panel_top_left_edge.png"];
+        topLeftControlsPanelBorder.color = [ColorUtils dimPurple];
+        topLeftControlsPanelBorder.anchorPoint = ccp(0, 1);
+        topLeftControlsPanelBorder.position = topLeftControlsPanel.position;
+        [self.uiBatchNode addChild:topLeftControlsPanelBorder];
         
         // speaker (solution sequence) button
         ToggleButton *speakerButton = [[ToggleButton alloc] initWithImage:@"speaker.png" defaultColor:[ColorUtils dimPurple] activeColor:[ColorUtils activeYellow] delegate:self];
