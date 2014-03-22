@@ -9,13 +9,13 @@
 #import "CCSprite.h"
 #import "AudioResponder.h"
 
-@class Coord;
+@class PFLGlyph;
 
 @interface Entry : CCSprite <AudioResponder>
 
 @property (copy, nonatomic) NSString *direction;
 
-- (id)initWithCell:(Coord *)cell direction:(NSString *)direction isStatic:(BOOL)isStatic;
+- (id)initWithGlyph:(PFLGlyph *)glyph;
 
 @end
 

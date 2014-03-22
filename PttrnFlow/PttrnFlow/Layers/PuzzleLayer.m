@@ -358,7 +358,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         CGPoint cellCenter = [glyph.cell relativeMidpoint];
         
         // audio pad sprite
-        AudioPad *audioPad = [[AudioPad alloc] initWithPlaceholderFrameName:@"clear_rect_audio_batch.png" cell:glyph.cell isStatic:glyph.isStatic];
+        AudioPad *audioPad = [[AudioPad alloc] initWithGlyph:glyph];
 
         audioPad.position = cellCenter;
         [self.audioTouchDispatcher addResponder:audioPad];
@@ -370,7 +370,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             
             if ([object isKindOfClass:[PFLMultiSample class]]) {
                 PFLMultiSample *multiSample = (PFLMultiSample *)object;
-                Gear *gear = [[Gear alloc] initWithCell:glyph.cell audioID:glyph.audioID multiSample:multiSample isStatic:glyph.isStatic];
+                Gear *gear = [[Gear alloc] initWithGlyph:glyph multiSample:multiSample];
                 [self.audioTouchDispatcher addResponder:gear];
                 [self.sequenceDispatcher addResponder:gear];
                 gear.position = cellCenter;
@@ -393,7 +393,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         
         // entry point
         if (glyph.entry) {
-            Entry *entry = [[Entry alloc] initWithCell:glyph.cell direction:glyph.entry isStatic:glyph.isStatic];
+            Entry *entry = [[Entry alloc] initWithGlyph:glyph];
             [self.audioTouchDispatcher addResponder:entry];
             [self.sequenceDispatcher addResponder:entry];
             self.sequenceDispatcher.entry = entry;
@@ -404,7 +404,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     [[MainSynth sharedMainSynth] loadSamples:allSampleNames];
 }
 
-- (void)animateEmptyHitHighlight:(Coord *)coord
+- (void)animateBacklight:(Coord *)coord
 {
     CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:@"audio_box_highlight.png"];
     highlightSprite.color = [ColorUtils activeYellow];
@@ -425,6 +425,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     [super onEnter];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(handleStepUserSequence:) name:kNotificationStepUserSequence object:nil];
+    [notificationCenter addObserver:self selector:@selector(handleAudioTouchDispatcherHit:) name:kPFLAudioTouchDispatcherHitNotification object:nil];
     [self setupDebug];
 }
 
@@ -436,16 +437,18 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     [super onExit];
 }
 
-#pragma mark - SequenceDispatcherDelegate
+#pragma mark - Notifications
 
 - (void)handleStepUserSequence:(NSNotification *)notification
 {
     Coord *coord = notification.userInfo[kKeyCoord];
-    BOOL empty = [notification.userInfo[kKeyEmpty] boolValue];
-    
-    if (empty) {
-        [self animateEmptyHitHighlight:coord];
-    }
+    [self animateBacklight:coord];
+}
+
+- (void)handleAudioTouchDispatcherHit:(NSNotification *)notification
+{
+    Coord *coord = notification.userInfo[kPFLAudioTouchDispatcherCoordKey];
+    [self animateBacklight:coord];
 }
 
 #pragma mark - debug methods

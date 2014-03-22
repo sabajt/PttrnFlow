@@ -9,6 +9,9 @@
 #import "AudioResponder.h"
 #import "ScrollLayer.h"
 
+FOUNDATION_EXPORT NSString *const kPFLAudioTouchDispatcherCoordKey;
+FOUNDATION_EXPORT NSString *const kPFLAudioTouchDispatcherHitNotification;
+
 @interface AudioTouchDispatcher : CCNode <CCTargetedTouchDelegate, ScrollLayerDelegate>
 
 @property (assign) BOOL allowScrolling;

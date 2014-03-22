@@ -14,6 +14,8 @@
 #import "PFLPuzzle.h"
 #import "PFLMultiSample.h"
 #import "PFLSample.h"
+#import "PFLGlyph.h"
+#import "PFLPuzzleSet.h"
 
 @interface Gear ()
 
@@ -26,7 +28,7 @@
 
 @implementation Gear
 
-- (id)initWithCell:(Coord *)cell audioID:(NSNumber *)audioID multiSample:(PFLMultiSample *)multiSample isStatic:(BOOL)isStatic
+- (id)initWithGlyph:(PFLGlyph *)glyph multiSample:(PFLMultiSample *)multiSample
 {
     self = [super initWithSpriteFrameName:@"audio_circle.png"];
     if (self) {
@@ -35,7 +37,7 @@
         self.color = self.defaultColor;
         
         // CCNode+Grid
-        self.cell = cell;
+        self.cell = glyph.cell;
         self.cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
         
         // units (beats)
@@ -56,12 +58,7 @@
             
             // unit symbol
             CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:sample.image];
-            if (isStatic) {
-                unitSymbol.color = [ColorUtils dimPurple];
-            }
-            else {
-                unitSymbol.color = [ColorUtils defaultPurple];
-            }
+            [ColorUtils padWithTheme:glyph.puzzle.puzzleSet.theme isStatic:glyph.isStatic];
             CGFloat symbolPadding = 2.0f;
             unitSymbol.position = ccp(audioUnit.contentSize.width / 2.0f, audioUnit.contentSize.height / 2.0f + symbolPadding);
             
@@ -71,7 +68,7 @@
 
             [self.audioUnits addObject:audioUnit];
         }
-        self.multiSampleEvent = [PFLEvent multiSampleEventWithAudioID:audioID multiSample:multiSample];
+        self.multiSampleEvent = [PFLEvent multiSampleEventWithAudioID:glyph.audioID multiSample:multiSample];
     }
     return self;
 }

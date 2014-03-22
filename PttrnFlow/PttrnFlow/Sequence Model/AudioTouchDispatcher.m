@@ -14,6 +14,9 @@
 #import "AudioPad.h"
 #import "CCNode+Grid.h"
 
+NSString *const kPFLAudioTouchDispatcherCoordKey = @"coord";
+NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispatcherHitNotification";
+
 @interface AudioTouchDispatcher ()
 
 @property (strong, nonatomic) NSMutableArray *responders;
@@ -54,6 +57,8 @@
     
     // send events to pd
     [[MainSynth sharedMainSynth] receiveEvents:events];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPFLAudioTouchDispatcherHitNotification object:nil userInfo:@{kPFLAudioTouchDispatcherCoordKey : coord}];
 }
 
 // TODO: currently not being used

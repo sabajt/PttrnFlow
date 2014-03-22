@@ -11,6 +11,9 @@
 #import "CCNode+Grid.h"
 #import "ColorUtils.h"
 #import "PFLEvent.h"
+#import "PFLGlyph.h"
+#import "PFLPuzzleSet.h"
+#import "PFLPuzzle.h"
 
 @interface Entry ()
 
@@ -23,31 +26,26 @@
 
 @implementation Entry
 
-- (id)initWithCell:(Coord *)cell direction:(NSString *)direction isStatic:(BOOL)isStatic
+- (id)initWithGlyph:(PFLGlyph *)glyph
 {
     self = [super initWithSpriteFrameName:@"glyph_circle.png"];
     if (self) {
         self.defaultColor = [ColorUtils cream];
         self.activeColor = [ColorUtils activeYellow];
         self.color = self.defaultColor;
-        self.direction = direction;
-        self.rotation = [direction degrees];
+        self.direction = glyph.entry;
+        self.rotation = [self.direction degrees];
         
-        self.event = [PFLEvent directionEventWithDirection:direction];
+        self.event = [PFLEvent directionEventWithDirection:self.direction];
         
         CCSprite *detailSprite = [CCSprite spriteWithSpriteFrameName:@"entry_up.png"];
         self.detailSprite = detailSprite;
         detailSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
         [self addChild:detailSprite];
-        if (isStatic) {
-            detailSprite.color = [ColorUtils dimPurple];
-        }
-        else {
-            detailSprite.color = [ColorUtils defaultPurple];
-        }
+        [ColorUtils padWithTheme:glyph.puzzle.puzzleSet.theme isStatic:glyph.isStatic];
         
         // CCNode+Grid
-        self.cell = cell;
+        self.cell = glyph.cell;
         self.cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
     }
     return self;

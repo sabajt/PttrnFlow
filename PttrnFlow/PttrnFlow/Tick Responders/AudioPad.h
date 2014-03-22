@@ -9,12 +9,12 @@
 #import "CCSprite.h"
 #import "AudioResponder.h"
 
-@class Coord;
+@class PFLGlyph;
 
 @interface AudioPad : CCSprite <AudioResponder>
 
 @property (assign) BOOL isStatic;
 
-- (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName cell:(Coord *)cell isStatic:(BOOL)isStatic;
+- (id)initWithGlyph:(PFLGlyph *)glyph;
 
 @end
