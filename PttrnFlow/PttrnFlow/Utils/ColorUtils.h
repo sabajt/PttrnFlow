@@ -35,10 +35,9 @@ static inline ccColor4B ccc4BFromccc3B(ccColor3B c)
 + (ccColor3B)controlButtonsActiveWithTheme:(NSString *)theme;
 + (ccColor3B)controlPanelWithTheme:(NSString *)theme;
 + (ccColor3B)glyphDetailWithTheme:(NSString *)theme;
-+ (ccColor3B)mobilePadWithTheme:(NSString *)theme;
 + (ccColor3B)padHighlightWithTheme:(NSString *)theme;
++ (ccColor3B)padWithTheme:(NSString *)theme isStatic:(BOOL)isStatic;
 + (ccColor3B)solutionButtonHighlightWithTheme:(NSString *)theme;
-+ (ccColor3B)staticPadWithTheme:(NSString *)theme;
 
 @end
 

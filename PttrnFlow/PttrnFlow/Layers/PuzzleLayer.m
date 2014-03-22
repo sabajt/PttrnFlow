@@ -384,7 +384,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         
         // direction arrow
         if (glyph.arrow) {
-            Arrow *arrow = [[Arrow alloc] initWithCell:glyph.cell direction:glyph.arrow isStatic:glyph.isStatic];
+            Arrow *arrow = [[Arrow alloc] initWithGlyph:glyph];
             [self.audioTouchDispatcher addResponder:arrow];
             [self.sequenceDispatcher addResponder:arrow];
             arrow.position = cellCenter;

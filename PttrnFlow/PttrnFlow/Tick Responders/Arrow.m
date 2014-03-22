@@ -11,6 +11,9 @@
 #import "CCNode+Grid.h"
 #import "ColorUtils.h"
 #import "PFLEvent.h"
+#import "PFLGlyph.h"
+#import "PFLPuzzle.h"
+#import "PFLPuzzleSet.h"
 
 @interface Arrow ()
 
@@ -23,30 +26,25 @@
 
 @implementation Arrow
 
-- (id)initWithCell:(Coord *)cell direction:(NSString *)direction isStatic:(BOOL)isStatic
+- (id)initWithGlyph:(PFLGlyph *)glyph
 {
     self = [super initWithSpriteFrameName:@"glyph_circle.png"];
     if (self) {
         self.defaultColor = [ColorUtils cream];
         self.activeColor = [ColorUtils activeYellow];
         self.color = self.defaultColor;
-        self.rotation = [direction degrees];
+        self.rotation = [glyph.arrow degrees];
         
-        self.event = [PFLEvent directionEventWithDirection:direction];
+        self.event = [PFLEvent directionEventWithDirection:glyph.arrow];
         
         CCSprite *detailSprite = [CCSprite spriteWithSpriteFrameName:@"arrow_up.png"];
         self.detailSprite = detailSprite;
         detailSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
         [self addChild:detailSprite];
-        if (isStatic) {
-            detailSprite.color = [ColorUtils dimPurple];
-        }
-        else {
-            detailSprite.color = [ColorUtils defaultPurple];
-        }
+        detailSprite.color = [ColorUtils padWithTheme:glyph.puzzle.puzzleSet.theme isStatic:glyph.isStatic];
         
         // CCNode+Grid
-        self.cell = cell;
+        self.cell = glyph.cell;
         self.cellSize = CGSizeMake(kSizeGridUnit, kSizeGridUnit);
     }
     return self;

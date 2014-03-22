@@ -57,7 +57,7 @@ static NSString *const kSynth = @"synth";
         
         NSMutableArray *glyphs = [NSMutableArray array];
         for (NSDictionary *g in json[kGlyphs]) {
-            PFLGlyph *glyph = [[PFLGlyph alloc] initWithObject:g];
+            PFLGlyph *glyph = [[PFLGlyph alloc] initWithObject:g puzzle:self];
             [glyphs addObject:glyph];
         }
         self.glyphs = [NSArray arrayWithArray:glyphs];

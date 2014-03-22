@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Coord;
+@class Coord, PFLPuzzle;
 
 @interface PFLGlyph : NSObject
 
@@ -17,7 +17,8 @@
 @property (strong, nonatomic) Coord *cell;
 @property (copy, nonatomic) NSString *entry;
 @property (assign) BOOL isStatic;
+@property (weak, nonatomic) PFLPuzzle *puzzle;
 
-- (id)initWithObject:(NSDictionary *)object;
+- (id)initWithObject:(NSDictionary *)object puzzle:(PFLPuzzle *)puzzle;
 
 @end

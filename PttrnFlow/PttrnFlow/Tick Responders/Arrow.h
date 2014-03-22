@@ -9,10 +9,10 @@
 #import "CCSprite.h"
 #import "AudioResponder.h"
 
-@class Coord;
+@class PFLGlyph;
 
 @interface Arrow : CCSprite <AudioResponder>
 
-- (id)initWithCell:(Coord *)cell direction:(NSString *)direction isStatic:(BOOL)isStatic;
+- (id)initWithGlyph:(PFLGlyph *)glyph;
 
 @end

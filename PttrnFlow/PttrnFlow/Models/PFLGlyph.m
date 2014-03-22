@@ -17,7 +17,7 @@ static NSString *const kStatic = @"static";
 
 @implementation PFLGlyph
 
-- (id)initWithObject:(NSDictionary *)object
+- (id)initWithObject:(NSDictionary *)object puzzle:(PFLPuzzle *)puzzle
 {
     self = [super init];
     if (self) {
@@ -27,6 +27,7 @@ static NSString *const kStatic = @"static";
         self.cell = [Coord coordWithX:[cell[0] integerValue] Y:[cell[1] integerValue]];
         self.entry = object[kEntry];
         self.isStatic = [object[kStatic] boolValue];
+        self.puzzle = puzzle;
     }
     return self;
 }
