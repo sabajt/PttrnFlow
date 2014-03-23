@@ -19,7 +19,7 @@
 
 @implementation SolutionButton
 
-- (id)initWithPlaceholderImage:(NSString *)placeholderImage size:(CGSize)size index:(NSInteger)index delegate:(id<SolutionButtonDelegate>)delegate
+- (id)initWithPlaceholderImage:(NSString *)placeholderImage size:(CGSize)size index:(NSInteger)index defaultColor:(ccColor3B)defaultColor activeColor:(ccColor3B)activeColor delegate:(id<SolutionButtonDelegate>)delegate
 {
     self = [super initWithSpriteFrameName:placeholderImage];
     if (self) {
@@ -30,14 +30,14 @@
         // dot that will appear and fade out when hit
         CCSprite *hitDot = [CCSprite spriteWithSpriteFrameName:@"numButtonHighlight.png"];
         self.hitDot = hitDot;
-        hitDot.color = [ColorUtils activeYellow];
+        hitDot.color = activeColor;
         hitDot.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
         hitDot.opacity = 0;
         [self addChild:hitDot];
         
         CCSprite *numberSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"numButton%i.png", index + 1]];
         self.numberSprite = numberSprite;
-        numberSprite.color = [ColorUtils dimPurple];
+        numberSprite.color = defaultColor;
         numberSprite.position = ccp(size.width / 2.0f, size.height / 2.0f);
         [self addChild:numberSprite];
     }

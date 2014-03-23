@@ -31,9 +31,10 @@
 - (id)initWithGlyph:(PFLGlyph *)glyph multiSample:(PFLMultiSample *)multiSample
 {
     self = [super initWithSpriteFrameName:@"audio_circle.png"];
-    if (self) {
-        self.defaultColor = [ColorUtils cream];
-        self.activeColor = [ColorUtils activeYellow];
+    if (self) {;
+        NSString *theme = glyph.puzzle.puzzleSet.theme;
+        self.defaultColor = [ColorUtils glyphDetailWithTheme:theme];
+        self.activeColor = [ColorUtils glyphActiveWithTheme:theme];
         self.color = self.defaultColor;
         
         // CCNode+Grid
@@ -48,17 +49,16 @@
             CCSprite *container = [CCSprite spriteWithSpriteFrameName:@"audio_box_empty.png"];
             container.rotation = 360.0f * [sample.time floatValue];
             container.position = ccp(self.contentSize.width / 2.0f, self.contentSize.height / 2.0f);
-            container.color = ccORANGE;
             
             // audio unit
             CCSprite *audioUnit = [CCSprite spriteWithSpriteFrameName:@"audio_unit.png"];
             static CGFloat unitPadding = 4.0f;
             audioUnit.position = ccp(container.contentSize.width / 2, (container.contentSize.height - audioUnit.contentSize.height / 2) - unitPadding);
-            audioUnit.color = [ColorUtils cream];
+            audioUnit.color = [ColorUtils glyphDetailWithTheme:theme];
             
             // unit symbol
             CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:sample.image];
-            [ColorUtils padWithTheme:glyph.puzzle.puzzleSet.theme isStatic:glyph.isStatic];
+            unitSymbol.color = [ColorUtils padWithTheme:theme isStatic:glyph.isStatic];
             CGFloat symbolPadding = 2.0f;
             unitSymbol.position = ccp(audioUnit.contentSize.width / 2.0f, audioUnit.contentSize.height / 2.0f + symbolPadding);
             

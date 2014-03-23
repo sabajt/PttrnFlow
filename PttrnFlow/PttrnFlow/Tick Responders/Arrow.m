@@ -30,8 +30,9 @@
 {
     self = [super initWithSpriteFrameName:@"glyph_circle.png"];
     if (self) {
-        self.defaultColor = [ColorUtils cream];
-        self.activeColor = [ColorUtils activeYellow];
+        NSString *theme = glyph.puzzle.puzzleSet.theme;
+        self.defaultColor = [ColorUtils glyphDetailWithTheme:theme];
+        self.activeColor = [ColorUtils glyphActiveWithTheme:theme];
         self.color = self.defaultColor;
         self.rotation = [glyph.arrow degrees];
         
@@ -41,7 +42,7 @@
         self.detailSprite = detailSprite;
         detailSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
         [self addChild:detailSprite];
-        detailSprite.color = [ColorUtils padWithTheme:glyph.puzzle.puzzleSet.theme isStatic:glyph.isStatic];
+        detailSprite.color = [ColorUtils padWithTheme:theme isStatic:glyph.isStatic];
         
         // CCNode+Grid
         self.cell = glyph.cell;

@@ -47,12 +47,10 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 @property (assign) CGFloat beatDuration;
 @property (assign) CGPoint gridOrigin; // TODO: using grid origin except for drawing debug grid?
 @property (assign) Coord *maxCoord;
-@property (weak, nonatomic) Synth *pressedSynth;
 @property (weak, nonatomic) PFLPuzzle *puzzle;
 @property (assign) CGRect puzzleBounds;
 @property (assign) CGSize screenSize;
 @property (assign) BOOL shouldDrawGrid; // debugging
-@property (copy, nonatomic) NSString *theme;
 
 @end
 
@@ -87,7 +85,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         // layer initialized with default content size of screen size...
         // would be better to do figure out best practice and get screen size more explicitly
         self.screenSize = self.contentSize;
-        self.theme = puzzle.puzzleSet.theme;
+        self.puzzle = puzzle;
         
         // Initialize Pure Data stuff
         
@@ -204,7 +202,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             if (hasBottomLeft && hasTopLeft && hasBottomRight && hasTopRight) {
                 CCSprite *padFill = [CCSprite spriteWithSpriteFrameName:@"pad_fill.png"];
                 padFill.position = [[[cell stepInDirection:kDirectionRight] stepInDirection:kDirectionUp] relativePosition];
-                padFill.color = [ColorUtils audioPanelWithTheme:self.theme];
+                padFill.color = [ColorUtils audioPanelFillWithTheme:self.puzzle.puzzleSet.theme];
                 [self.audioObjectsBatchNode addChild:padFill z:ZOrderAudioBatchPanelFill];
                 continue;
             }
@@ -319,21 +317,20 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
                 fill2 = [CCSprite spriteWithSpriteFrameName:padBorderCornerInsideFill];
             }
             
-            fill1.color = [ColorUtils audioPanelWithTheme:self.theme];
-            fill1.color = [ColorUtils audioPanelWithTheme:self.theme];
+            fill1.color = [ColorUtils audioPanelFillWithTheme:self.puzzle.puzzleSet.theme];
             fill1.position = [[[cell stepInDirection:kDirectionRight] stepInDirection:kDirectionUp] relativePosition];
             [self.audioObjectsBatchNode addChild:fill1 z:ZOrderAudioBatchPanelBorder];
             
-            border1.color = [ColorUtils audioPanelWithTheme:self.theme];
+            border1.color = [ColorUtils audioPanelEdgeWithTheme:self.puzzle.puzzleSet.theme];
             border1.position = [[[cell stepInDirection:kDirectionRight] stepInDirection:kDirectionUp] relativePosition];
             [self.audioObjectsBatchNode addChild:border1 z:ZOrderAudioBatchPanelBorder];
             
             if (border2 != nil) {
-                fill2.color = [ColorUtils audioPanelWithTheme:self.theme];
+                fill2.color = [ColorUtils audioPanelFillWithTheme:self.puzzle.puzzleSet.theme];
                 fill2.position = fill1.position;
                 [self.audioObjectsBatchNode addChild:fill2 z:ZOrderAudioBatchPanelBorder];
                 
-                border2.color = [ColorUtils audioPanelWithTheme:self.theme];
+                border2.color = [ColorUtils audioPanelEdgeWithTheme:self.puzzle.puzzleSet.theme];
                 border2.position = border1.position;
                 [self.audioObjectsBatchNode addChild:border2 z:ZOrderAudioBatchPanelBorder];
             }
@@ -407,7 +404,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 - (void)animateBacklight:(Coord *)coord
 {
     CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:@"audio_box_highlight.png"];
-    highlightSprite.color = [ColorUtils activeYellow];
+    highlightSprite.color = [ColorUtils padHighlightWithTheme:self.puzzle.puzzleSet.theme];
     highlightSprite.position = [coord relativeMidpoint];
     [self.audioObjectsBatchNode addChild:highlightSprite z:ZOrderAudioBatchPadBacklight];
     

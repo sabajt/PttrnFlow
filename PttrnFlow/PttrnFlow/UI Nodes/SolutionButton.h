@@ -21,8 +21,7 @@
 @property (assign) NSInteger index;
 @property (assign) BOOL isDisplaced;
 
-- (id)initWithPlaceholderImage:(NSString *)placeholderImage size:(CGSize)size index:(NSInteger)index delegate:(id<SolutionButtonDelegate>)delegate;
-
+- (id)initWithPlaceholderImage:(NSString *)placeholderImage size:(CGSize)size index:(NSInteger)index defaultColor:(ccColor3B)defaultColor activeColor:(ccColor3B)activeColor delegate:(id<SolutionButtonDelegate>)delegate;
 - (void)press;
 - (void)animateCorrectHit:(BOOL)correct;
 - (void)reset;
