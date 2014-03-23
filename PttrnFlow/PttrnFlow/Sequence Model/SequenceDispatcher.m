@@ -13,6 +13,7 @@
 #import "NSObject+AudioResponderUtils.h"
 #import "PFLEvent.h"
 #import "PFLPuzzle.h"
+#import "PFLPuzzleSet.h"
 
 NSString *const kNotificationStepUserSequence = @"stepUserSequence";
 NSString *const kNotificationStepSolutionSequence = @"stepSolutionSequence";
@@ -40,10 +41,9 @@ NSString *const kKeyEmpty = @"empty";
 {
     self = [super init];
     if (self) {
+        self.beatDuration = puzzle.puzzleSet.beatDuration;
         self.puzzle = puzzle;
-        _responders = [NSMutableArray array];
-        // TODO: FIX ME
-        self.beatDuration = 0.5f;
+        self.responders = [NSMutableArray array];
     }
     return self;
 }
@@ -56,6 +56,27 @@ NSString *const kKeyEmpty = @"empty";
 - (void)clearResponders
 {
     [self.responders removeAllObjects];
+}
+
+- (Coord *)nextStep
+{
+    return [self nextStepInDirection:self.currentDirection currentCoord:self.currentCell];
+}
+
+- (Coord *)nextStepInDirection:(NSString *)direction currentCoord:(Coord *)currentCoord
+{
+    Coord *maxCoord = [Coord maxCoord:self.puzzle.area];
+    currentCoord = [currentCoord stepInDirection:direction];
+    if (currentCoord.x > maxCoord.x) {
+        currentCoord = [Coord coordWithX:0 Y:currentCoord.y];
+    }
+    if (currentCoord.y > maxCoord.y) {
+        currentCoord = [Coord coordWithX:currentCoord.x Y:0];
+    }
+    if ([currentCoord isCoordInGroup:self.puzzle.area]) {
+        return currentCoord;
+    }
+    return [self nextStepInDirection:direction currentCoord:currentCoord];
 }
 
 - (void)stepUserSequence:(ccTime)dt
@@ -96,7 +117,7 @@ NSString *const kKeyEmpty = @"empty";
     };
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStepUserSequence object:nil userInfo:info];
 
-    self.currentCell = [self.currentCell stepInDirection:self.currentDirection];
+    self.currentCell = [self nextStep];
     self.userSequenceIndex++;
 }
 
