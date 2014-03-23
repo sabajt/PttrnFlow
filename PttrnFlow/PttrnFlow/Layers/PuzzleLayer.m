@@ -121,10 +121,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         [self addChild:[MainSynth sharedMainSynth]]; // must add main synth so it can run actions
         self.isTouchEnabled = YES;
         self.backgroundLayer = backgroundLayer;
-        
-        NSArray *areaCells = [Coord coordsFromArrays:puzzle.area];
-        
-        self.maxCoord = [Coord maxCoord:areaCells];
+        self.maxCoord = [Coord maxCoord:puzzle.area];
         self.contentSize = CGSizeMake((self.maxCoord.x + 1) * kSizeGridUnit, (self.maxCoord.y + 1) * kSizeGridUnit);
         
         self.puzzleBounds = CGRectMake(kPuzzleBoundsMargin,
@@ -158,7 +155,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         self.audioTouchDispatcher = audioTouchDispatcher;
         self.scrollDelegate = audioTouchDispatcher;
         [audioTouchDispatcher clearResponders];
-        audioTouchDispatcher.areaCells = areaCells;
+        audioTouchDispatcher.areaCells = puzzle.area;
         [self addChild:audioTouchDispatcher];
         
         // sequence dispacher
@@ -168,7 +165,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         [self addChild:sequenceDispatcher];
         
         // create puzzle objects
-        [self createBorderWithAreaCells:areaCells];
+        [self createBorderWithAreaCells:puzzle.area];
         [self createPuzzleObjects:puzzle];
     }
     return self;
@@ -439,13 +436,17 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 - (void)handleStepUserSequence:(NSNotification *)notification
 {
     Coord *coord = notification.userInfo[kKeyCoord];
-    [self animateBacklight:coord];
+    if ([coord isCoordInGroup:self.puzzle.area]) {
+        [self animateBacklight:coord];
+    }
 }
 
 - (void)handleAudioTouchDispatcherHit:(NSNotification *)notification
 {
     Coord *coord = notification.userInfo[kPFLAudioTouchDispatcherCoordKey];
-    [self animateBacklight:coord];
+    if ([coord isCoordInGroup:self.puzzle.area]) {
+        [self animateBacklight:coord];
+    }
 }
 
 #pragma mark - debug methods
