@@ -228,6 +228,7 @@
 		33E4F6FE18788CF6005571F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33E4F6FC18788CF6005571F4 /* InfoPlist.strings */; };
 		33E4F70018788CF6005571F4 /* PttrnFlow_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E4F6FF18788CF6005571F4 /* PttrnFlow_Tests.m */; };
 		33EE317017C92C3C004CC016 /* AudioTouchDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */; };
+		33F4847F18E248CD00237C9B /* PFLTransitionSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F4847E18E248CD00237C9B /* PFLTransitionSlide.m */; };
 		33F8A31317B9F104003B33E5 /* pf-main.pd in Resources */ = {isa = PBXBuildFile; fileRef = 33F8A31117B9F104003B33E5 /* pf-main.pd */; };
 /* End PBXBuildFile section */
 
@@ -660,6 +661,8 @@
 		33E4F70118788CF6005571F4 /* PttrnFlow Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PttrnFlow Tests-Prefix.pch"; sourceTree = "<group>"; };
 		33EE316E17C92C3C004CC016 /* AudioTouchDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTouchDispatcher.h; sourceTree = "<group>"; };
 		33EE316F17C92C3C004CC016 /* AudioTouchDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AudioTouchDispatcher.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		33F4847D18E248CD00237C9B /* PFLTransitionSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLTransitionSlide.h; sourceTree = "<group>"; };
+		33F4847E18E248CD00237C9B /* PFLTransitionSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLTransitionSlide.m; sourceTree = "<group>"; };
 		33F8A31117B9F104003B33E5 /* pf-main.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-main.pd"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1221,6 +1224,8 @@
 				33A957E8188C561B006BF182 /* ToggleButton.m */,
 				33A957EA188C8236006BF182 /* BasicButton.h */,
 				33A957EB188C8236006BF182 /* BasicButton.m */,
+				33F4847D18E248CD00237C9B /* PFLTransitionSlide.h */,
+				33F4847E18E248CD00237C9B /* PFLTransitionSlide.m */,
 			);
 			path = "Generic Nodes";
 			sourceTree = "<group>";
@@ -1602,6 +1607,7 @@
 				33DD835B18D616D300EF90C7 /* PFLGlyph.m in Sources */,
 				1608070B16B437A800039339 /* CCActionProgressTimer.m in Sources */,
 				3391F54318A1A0A00096F5D3 /* NSObject+AudioResponderUtils.m in Sources */,
+				33F4847F18E248CD00237C9B /* PFLTransitionSlide.m in Sources */,
 				1608070E16B437A800039339 /* CCActionTiledGrid.m in Sources */,
 				1608071116B437A800039339 /* CCActionTween.m in Sources */,
 				1608071416B437A800039339 /* CCAnimation.m in Sources */,
