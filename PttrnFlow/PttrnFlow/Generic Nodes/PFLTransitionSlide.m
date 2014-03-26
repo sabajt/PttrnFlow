@@ -45,12 +45,12 @@ static CGFloat const kAdjustFactor = 0.5f; // see CCTransitionSlideInL for expla
     if (self.forwards) {
         CGFloat distance = (s.width + self.rightPadding) - kAdjustFactor;
         [inScene_ setPosition:ccp(distance, 0)];
-        inAct = [CCMoveBy actionWithDuration:duration_ position:ccp(distance * -1.0f, 0)];
-        outAct = [CCMoveBy actionWithDuration:duration_ position:ccp(distance * -1.0f, 0)];
+        inAct = [CCMoveBy actionWithDuration:duration_ position:ccp(-distance, 0)];
+        outAct = [CCMoveBy actionWithDuration:duration_ position:ccp(-distance, 0)];
     }
     else {
-        CGFloat distance = (-s.width - self.leftPadding) - kAdjustFactor;
-        [inScene_ setPosition:ccp(distance, 0)];
+        CGFloat distance = (s.width + self.leftPadding) - kAdjustFactor;
+        [inScene_ setPosition:ccp(-distance, 0)];
         inAct = [CCMoveBy actionWithDuration:duration_ position:ccp(distance, 0)];
         outAct = [CCMoveBy actionWithDuration:duration_ position:ccp(distance, 0)];
     }
