@@ -58,7 +58,7 @@
 {
     CCScene *scene = [PuzzleLayer sceneWithPuzzle:self.puzzleSet.puzzles[index]];
     id transitionScene = [[PFLTransitionSlide alloc] initWithDuration:1.0f scene:scene forwards:YES leftPadding:0.0f rightPadding:0.0f];
-    [[CCDirector sharedDirector] pushScene:transitionScene];
+    [[CCDirector sharedDirector] replaceScene:transitionScene];
 }
 
 @end

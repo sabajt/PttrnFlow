@@ -14,6 +14,8 @@
 #import "SequenceDispatcher.h"
 #import "PFLPuzzle.h"
 #import "PFLPuzzleSet.h"
+#import "PFLTransitionSlide.h"
+#import "SequenceMenuLayer.h"
 
 CGFloat const kUIButtonUnitSize = 50;
 CGFloat const kUITimelineStepWidth = 40;
@@ -245,8 +247,10 @@ static NSInteger const kRowLength = 8;
 
 - (void)basicButtonPressed:(BasicButton *)sender
 {
-    if ([sender isEqual:self.exitButton]) {
-        [[CCDirector sharedDirector] popScene];
+    if ([sender isEqual:self.exitButton]) {    
+        CCScene *scene = [SequenceMenuLayer scene];
+        id transitionScene = [[PFLTransitionSlide alloc] initWithDuration:1.0f scene:scene forwards:NO leftPadding:0.0f rightPadding:0.0f];
+        [[CCDirector sharedDirector] replaceScene:transitionScene];
     }
 }
 
