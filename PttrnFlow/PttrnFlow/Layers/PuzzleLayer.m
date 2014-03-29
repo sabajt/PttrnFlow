@@ -58,19 +58,21 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 
 #pragma mark - setup
 
-+ (CCScene *)sceneWithPuzzle:(PFLPuzzle *)puzzle
++ (CCScene *)sceneWithPuzzle:(PFLPuzzle *)puzzle leftPadding:(CGFloat)leftPadding rightPadding:(CGFloat)rightPadding
 {
     CCScene *scene = [CCScene node];
     
     // background
     BackgroundLayer *background = [BackgroundLayer backgroundLayerWithTheme:puzzle.puzzleSet.theme];
+    background.contentSize = CGSizeMake(background.contentSize.width + leftPadding + rightPadding, background.contentSize.height);
+    background.position = ccpSub(background.position, ccp(leftPadding, 0.0f));
     [scene addChild:background];
     
     // gameplay layer
     static CGFloat controlBarHeight = 80.0f;
     PuzzleLayer *puzzleLayer = [[PuzzleLayer alloc] initWithPuzzle:puzzle background:background topMargin:controlBarHeight];
     [scene addChild:puzzleLayer];
-        
+    
     // controls layer
     SequenceControlsLayer *uiLayer = [[SequenceControlsLayer alloc] initWithPuzzle:puzzle delegate:puzzleLayer.sequenceDispatcher];
     [scene addChild:uiLayer z:1];
@@ -82,7 +84,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 {
     self = [super init];
     if (self) {
-        // layer initialized with default content size of screen size...
+        // layer initialized with deefault content size of screen size...
         // would be better to do figure out best practice and get screen size more explicitly
         self.screenSize = self.contentSize;
         self.puzzle = puzzle;

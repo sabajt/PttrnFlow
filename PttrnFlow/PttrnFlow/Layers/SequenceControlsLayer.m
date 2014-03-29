@@ -249,7 +249,7 @@ static NSInteger const kRowLength = 8;
 {
     if ([sender isEqual:self.exitButton]) {    
         CCScene *scene = [SequenceMenuLayer scene];
-        id transitionScene = [[PFLTransitionSlide alloc] initWithDuration:1.0f scene:scene forwards:NO leftPadding:0.0f rightPadding:0.0f];
+        id transitionScene = [[PFLTransitionSlide alloc] initWithDuration:0.33f scene:scene forwards:NO leftPadding:0.0f rightPadding:0.0f];
         [[CCDirector sharedDirector] replaceScene:transitionScene];
     }
 }
