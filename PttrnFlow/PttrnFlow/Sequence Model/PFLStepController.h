@@ -22,7 +22,7 @@ FOUNDATION_EXPORT NSString *const kKeyCoord;
 FOUNDATION_EXPORT NSString *const kKeyCorrectHit;
 FOUNDATION_EXPORT NSString *const kKeyEmpty;
 
-@interface SequenceDispatcher : CCNode <PFLPuzzleControlsDelegate>
+@interface PFLStepController : CCNode <PFLPuzzleControlsDelegate>
 
 @property (weak, nonatomic) PFLEntrySprite *entry;
 

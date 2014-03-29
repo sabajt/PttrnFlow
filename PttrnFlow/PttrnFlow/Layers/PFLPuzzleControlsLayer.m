@@ -11,7 +11,7 @@
 #import "TileSprite.h"
 #import "ClippingSprite.h"
 #import "PFLGameConstants.h"
-#import "SequenceDispatcher.h"
+#import "PFLStepController.h"
 #import "PFLPuzzle.h"
 #import "PFLPuzzleSet.h"
 #import "PFLTransitionSlide.h"

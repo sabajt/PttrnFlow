@@ -10,7 +10,7 @@
 #import "PFLScrollLayer.h"
 #import "PFLPuzzleControlsLayer.h"
 
-@class PdDispatcher, SequenceDispatcher, AudioTouchDispatcher;
+@class PdDispatcher, PFLStepController, PFLAudioTouchController;
 
 @interface PFLPuzzleLayer : PFLScrollLayer
 {
@@ -18,8 +18,8 @@
     void *_patch;
 }
 
-@property (weak, nonatomic) SequenceDispatcher *sequenceDispatcher;
-@property (weak, nonatomic) AudioTouchDispatcher *audioTouchDispatcher;
+@property (weak, nonatomic) PFLStepController *sequenceDispatcher;
+@property (weak, nonatomic) PFLAudioTouchController *audioTouchDispatcher;
 
 @property (weak, nonatomic) CCSpriteBatchNode *samplesBatchNode;
 @property (weak, nonatomic) CCSpriteBatchNode *synthBatchNode;

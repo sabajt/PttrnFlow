@@ -8,7 +8,7 @@
 
 #import "PFLArrowSprite.h"
 #import "PFLAudioPadSprite.h"
-#import "AudioTouchDispatcher.h"
+#import "PFLAudioTouchController.h"
 #import "PFLPuzzleBackgroundLayer.h"
 #import "CCSprite+PFLEffects.h"
 #import "PFLColorUtils.h"
@@ -16,13 +16,13 @@
 #import "PFLGearSprite.h"
 #import "PFLEntrySprite.h"
 #import "PFLGameConstants.h"
-#import "MainSynth.h"
+#import "PFLPatchController.h"
 #import "PdDispatcher.h"
 #import "PFLGeometry.h"
 #import "PFLPuzzle.h"
 #import "PFLPuzzleLayer.h"
 #import "PFLPuzzleControlsLayer.h"
-#import "SequenceDispatcher.h"
+#import "PFLStepController.h"
 #import "SimpleAudioEngine.h"
 #import "PFLSynthSprite.h"
 #import "PFLGlyph.h"
@@ -101,7 +101,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         }
         
         self.beatDuration = puzzle.puzzleSet.beatDuration;
-        [MainSynth sharedMainSynth].beatDuration = self.beatDuration;
+        [PFLPatchController sharedMainSynth].beatDuration = self.beatDuration;
         
         // Sprite sheet batch nodes
         
@@ -122,7 +122,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         _audioObjectsBatchNode = audioObjectsBatch;
 
         // Setup
-        [self addChild:[MainSynth sharedMainSynth]]; // must add main synth so it can run actions
+        [self addChild:[PFLPatchController sharedMainSynth]]; // must add main synth so it can run actions
         self.isTouchEnabled = YES;
         self.backgroundLayer = backgroundLayer;
         self.maxCoord = [PFLCoord maxCoord:puzzle.area];
@@ -155,7 +155,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         
         // audio touch dispatcher
         CGFloat beatDuration = self.beatDuration;
-        AudioTouchDispatcher *audioTouchDispatcher = [[AudioTouchDispatcher alloc] initWithBeatDuration:beatDuration];
+        PFLAudioTouchController *audioTouchDispatcher = [[PFLAudioTouchController alloc] initWithBeatDuration:beatDuration];
         self.audioTouchDispatcher = audioTouchDispatcher;
         self.scrollDelegate = audioTouchDispatcher;
         [audioTouchDispatcher clearResponders];
@@ -163,7 +163,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         [self addChild:audioTouchDispatcher];
         
         // sequence dispacher
-        SequenceDispatcher *sequenceDispatcher = [[SequenceDispatcher alloc] initWithPuzzle:puzzle];
+        PFLStepController *sequenceDispatcher = [[PFLStepController alloc] initWithPuzzle:puzzle];
         self.sequenceDispatcher = sequenceDispatcher;
         [sequenceDispatcher clearResponders];
         [self addChild:sequenceDispatcher];
@@ -399,7 +399,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             [self.audioObjectsBatchNode addChild:entry z:ZOrderAudioBatchGlyph];
         }
     }
-    [[MainSynth sharedMainSynth] loadSamples:allSampleNames];
+    [[PFLPatchController sharedMainSynth] loadSamples:allSampleNames];
 }
 
 - (void)animateBacklight:(PFLCoord *)coord
@@ -460,7 +460,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 - (void)setupDebug
 {
     // mute PD
-    [MainSynth mute:NO];
+    [PFLPatchController mute:NO];
     
     // draw grid as defined in our tile map -- does not neccesarily coordinate with gameplay
     // warning: enabling makes many calls to draw cycle -- large maps will lag

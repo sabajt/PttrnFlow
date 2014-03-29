@@ -7,9 +7,9 @@
 //
 
 #import "AudioResponder.h"
-#import "SequenceDispatcher.h"
+#import "PFLStepController.h"
 #import "CCNode+Grid.h"
-#import "MainSynth.h"
+#import "PFLPatchController.h"
 #import "NSObject+AudioResponderUtils.h"
 #import "PFLEvent.h"
 #import "PFLPuzzle.h"
@@ -24,7 +24,7 @@ NSString *const kKeyCoord = @"coord";
 NSString *const kKeyCorrectHit = @"correctHit";
 NSString *const kKeyEmpty = @"empty";
 
-@interface SequenceDispatcher ()
+@interface PFLStepController ()
 
 @property (strong, nonatomic) PFLPuzzle *puzzle;
 @property (assign) NSInteger userSequenceIndex;
@@ -35,7 +35,7 @@ NSString *const kKeyEmpty = @"empty";
 
 @end
 
-@implementation SequenceDispatcher
+@implementation PFLStepController
 
 - (id)initWithPuzzle:(PFLPuzzle *)puzzle
 {
@@ -91,7 +91,7 @@ NSString *const kKeyEmpty = @"empty";
     NSArray *events = [self hitResponders:self.responders atCoord:self.currentCell];
     
     // send events to pd
-    [[MainSynth sharedMainSynth] receiveEvents:events];
+    [[PFLPatchController sharedMainSynth] receiveEvents:events];
     
     // change direction if needed
     for (PFLEvent *e in events) {
@@ -162,7 +162,7 @@ NSString *const kKeyEmpty = @"empty";
 
 - (void)playSolutionIndex:(NSInteger)index
 {
-    [[MainSynth sharedMainSynth] receiveEvents:self.puzzle.solutionEvents[index]];
+    [[PFLPatchController sharedMainSynth] receiveEvents:self.puzzle.solutionEvents[index]];
 }
 
 @end

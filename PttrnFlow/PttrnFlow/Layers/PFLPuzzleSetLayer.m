@@ -9,7 +9,7 @@
 #import "PFLPuzzleSetLayer.h"
 #import "PFLPuzzleLayer.h"
 #import "PFLPuzzle.h"
-#import "AudioTouchDispatcher.h"
+#import "PFLAudioTouchController.h"
 #import "PFLPuzzleSet.h"
 #import "PFLTransitionSlide.h"
 

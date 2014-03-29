@@ -8,11 +8,11 @@
 
 #import "cocos2d.h"
 
-@interface MainSynth : CCNode
+@interface PFLPatchController : CCNode
 
 @property (assign) CGFloat beatDuration;
 
-+ (MainSynth *)sharedMainSynth;
++ (PFLPatchController *)sharedMainSynth;
 + (void)mute:(BOOL)mute;
 
 - (void)loadSamples:(NSArray *)samples;

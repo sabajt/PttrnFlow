@@ -6,7 +6,7 @@
 //
 //
 
-#import "MainSynth.h"
+#import "PFLPatchController.h"
 
 #import "PdDispatcher.h"
 #import "PFLPuzzleLayer.h"
@@ -23,20 +23,20 @@ static NSString *const kAudioStop = @"audioStop";
 static NSString *const kLoadSample = @"loadSample";
 static NSString *const kStageSample = @"stageSample";
 
-@interface MainSynth ()
+@interface PFLPatchController ()
 
 @property (strong, nonatomic) NSMutableDictionary *sampleKey;
 
 @end
 
-@implementation MainSynth
+@implementation PFLPatchController
 
-+ (MainSynth *)sharedMainSynth
++ (PFLPatchController *)sharedMainSynth
 {
-    static MainSynth *sharedInstance = nil;
+    static PFLPatchController *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[MainSynth alloc] init];
+        sharedInstance = [[PFLPatchController alloc] init];
     });
     return sharedInstance;
 }

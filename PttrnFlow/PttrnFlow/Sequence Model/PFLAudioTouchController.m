@@ -6,9 +6,9 @@
 //
 //
 
-#import "AudioTouchDispatcher.h"
+#import "PFLAudioTouchController.h"
 #import "PFLEvent.h"
-#import "MainSynth.h"
+#import "PFLPatchController.h"
 #import "PFLCoord.h"
 #import "NSObject+AudioResponderUtils.h"
 #import "PFLAudioPadSprite.h"
@@ -17,14 +17,14 @@
 NSString *const kPFLAudioTouchDispatcherCoordKey = @"coord";
 NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispatcherHitNotification";
 
-@interface AudioTouchDispatcher ()
+@interface PFLAudioTouchController ()
 
 @property (strong, nonatomic) NSMutableArray *responders;
 @property (assign) CFMutableDictionaryRef trackingTouches;
 
 @end
 
-@implementation AudioTouchDispatcher
+@implementation PFLAudioTouchController
 
 - (id)initWithBeatDuration:(CGFloat)duration
 {
@@ -56,7 +56,7 @@ NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispat
     self.allowScrolling = (events.count == 0);
     
     // send events to pd
-    [[MainSynth sharedMainSynth] receiveEvents:events];
+    [[PFLPatchController sharedMainSynth] receiveEvents:events];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kPFLAudioTouchDispatcherHitNotification object:nil userInfo:@{kPFLAudioTouchDispatcherCoordKey : coord}];
 }
@@ -168,7 +168,7 @@ NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispat
     NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.trackingTouches, (__bridge void *)touch);
     NSString *channel = [touchInfo objectForKey:@"channel"];
     PFLEvent *audioStopEvent = [PFLEvent audioStopEventWithAudioID:nil];
-    [[MainSynth sharedMainSynth] receiveEvents:@[audioStopEvent]];
+    [[PFLPatchController sharedMainSynth] receiveEvents:@[audioStopEvent]];
     
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
@@ -184,7 +184,7 @@ NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispat
     NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.trackingTouches, (__bridge void *)touch);
     NSString *channel = [touchInfo objectForKey:@"channel"];
     PFLEvent *audioStopEvent = [PFLEvent audioStopEventWithAudioID:nil];
-    [[MainSynth sharedMainSynth] receiveEvents:@[audioStopEvent]];
+    [[PFLPatchController sharedMainSynth] receiveEvents:@[audioStopEvent]];
     
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];

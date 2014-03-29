@@ -10,7 +10,7 @@
 #import "CCNode+Grid.h"
 #import "PFLGearSprite.h"
 #import "PFLEvent.h"
-#import "MainSynth.h"
+#import "PFLPatchController.h"
 #import "PFLPuzzle.h"
 #import "PFLMultiSample.h"
 #import "PFLSample.h"
