@@ -1,5 +1,5 @@
 //
-//  ScrollLayer.h
+//  PFLScrollLayer.h
 //  PttrnFlow
 //
 //  Created by John Saba on 1/24/14.
@@ -16,7 +16,7 @@
 
 @end
 
-@interface ScrollLayer : CCLayer
+@interface PFLScrollLayer : CCLayer
 
 @property (weak, nonatomic) id<ScrollLayerDelegate> scrollDelegate;
 @property (assign) CGRect scrollBounds;

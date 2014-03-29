@@ -149,7 +149,7 @@
 		16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */; };
 		3302EF6E1879C92C0032AD58 /* PFGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302EF6D1879C92C0032AD58 /* PFGeometry.m */; };
 		330A580218C5A82A00DC97B7 /* puzzle6.json in Resources */ = {isa = PBXBuildFile; fileRef = 330A580018C5A82A00DC97B7 /* puzzle6.json */; };
-		3317322E1892A89D005435D9 /* ScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3317322D1892A89D005435D9 /* ScrollLayer.m */; };
+		3317322E1892A89D005435D9 /* PFLScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3317322D1892A89D005435D9 /* PFLScrollLayer.m */; };
 		332C199118C0D2150081FE1D /* Gear.m in Sources */ = {isa = PBXBuildFile; fileRef = 332C199018C0D2150081FE1D /* Gear.m */; };
 		3333501518DB84F60046D47B /* CCSprite+PFLEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 3333501418DB84F60046D47B /* CCSprite+PFLEffects.m */; };
 		3339C03118397638005771BC /* audioObjects-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02D18397638005771BC /* audioObjects-hd.plist */; };
@@ -552,8 +552,8 @@
 		3302EF6C1879C92C0032AD58 /* PFGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGeometry.h; sourceTree = "<group>"; };
 		3302EF6D1879C92C0032AD58 /* PFGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGeometry.m; sourceTree = "<group>"; };
 		330A580018C5A82A00DC97B7 /* puzzle6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle6.json; sourceTree = "<group>"; };
-		3317322C1892A89D005435D9 /* ScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollLayer.h; sourceTree = "<group>"; };
-		3317322D1892A89D005435D9 /* ScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollLayer.m; sourceTree = "<group>"; };
+		3317322C1892A89D005435D9 /* PFLScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLScrollLayer.h; sourceTree = "<group>"; };
+		3317322D1892A89D005435D9 /* PFLScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLScrollLayer.m; sourceTree = "<group>"; };
 		332C198F18C0D2150081FE1D /* Gear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gear.h; sourceTree = "<group>"; };
 		332C199018C0D2150081FE1D /* Gear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Gear.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3333501318DB84F60046D47B /* CCSprite+PFLEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCSprite+PFLEffects.h"; sourceTree = "<group>"; };
@@ -1122,8 +1122,8 @@
 				16A4277B176BF0A100BEF13F /* SequenceControlsLayer.m */,
 				163091EE177DEDA9003155BB /* BackgroundLayer.h */,
 				163091EF177DEDA9003155BB /* BackgroundLayer.m */,
-				3317322C1892A89D005435D9 /* ScrollLayer.h */,
-				3317322D1892A89D005435D9 /* ScrollLayer.m */,
+				3317322C1892A89D005435D9 /* PFLScrollLayer.h */,
+				3317322D1892A89D005435D9 /* PFLScrollLayer.m */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -1661,7 +1661,7 @@
 				33DD835218D5FBE400EF90C7 /* PFLKeyframe.m in Sources */,
 				1608079916B437A900039339 /* CCTexturePVR.m in Sources */,
 				1608079C16B437A900039339 /* CCTileMapAtlas.m in Sources */,
-				3317322E1892A89D005435D9 /* ScrollLayer.m in Sources */,
+				3317322E1892A89D005435D9 /* PFLScrollLayer.m in Sources */,
 				1608079F16B437A900039339 /* CCTMXLayer.m in Sources */,
 				160807A216B437A900039339 /* CCTMXObjectGroup.m in Sources */,
 				160807A516B437A900039339 /* CCTMXTiledMap.m in Sources */,

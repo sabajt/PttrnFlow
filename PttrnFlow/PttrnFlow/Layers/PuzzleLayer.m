@@ -85,7 +85,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 {
     self = [super init];
     if (self) {
-        // layer initialized with deefault content size of screen size...
+        // layer initialized with default content size of screen size...
         // would be better to do figure out best practice and get screen size more explicitly
         self.screenSize = self.contentSize;
         self.puzzle = puzzle;

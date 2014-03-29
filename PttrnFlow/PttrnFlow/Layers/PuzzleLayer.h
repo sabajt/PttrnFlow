@@ -7,12 +7,12 @@
 //
 
 #import "cocos2d.h"
-#import "ScrollLayer.h"
+#import "PFLScrollLayer.h"
 #import "SequenceControlsLayer.h"
 
 @class PdDispatcher, SequenceDispatcher, AudioTouchDispatcher;
 
-@interface PuzzleLayer : ScrollLayer
+@interface PuzzleLayer : PFLScrollLayer
 {
     PdDispatcher *_dispatcher;
     void *_patch;

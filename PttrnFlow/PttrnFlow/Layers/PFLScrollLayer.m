@@ -1,16 +1,16 @@
 //
-//  ScrollLayer.m
+//  PFLScrollLayer.m
 //  PttrnFlow
 //
 //  Created by John Saba on 1/24/14.
 //
 //  Adapted with changes from: http://www.sidebolt.com/simulating-uiscrollview-in-cocos2d/
 
-#import "ScrollLayer.h"
+#import "PFLScrollLayer.h"
 
 static CGFloat const kClipSpeed = 0.25f;
 
-@interface ScrollLayer ()
+@interface PFLScrollLayer ()
 
 @property (assign) CGPoint lastTouch;
 @property (assign) BOOL isTouching;
@@ -19,7 +19,7 @@ static CGFloat const kClipSpeed = 0.25f;
 
 @end
 
-@implementation ScrollLayer
+@implementation PFLScrollLayer
 
 - (id)init
 {

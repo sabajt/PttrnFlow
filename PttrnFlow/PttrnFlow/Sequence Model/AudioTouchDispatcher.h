@@ -7,7 +7,7 @@
 //
 
 #import "AudioResponder.h"
-#import "ScrollLayer.h"
+#import "PFLScrollLayer.h"
 
 FOUNDATION_EXPORT NSString *const kPFLAudioTouchDispatcherCoordKey;
 FOUNDATION_EXPORT NSString *const kPFLAudioTouchDispatcherHitNotification;
