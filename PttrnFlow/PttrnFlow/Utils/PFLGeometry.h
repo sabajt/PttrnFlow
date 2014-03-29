@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PFGeometry : NSObject
+@interface PFLGeometry : NSObject
 
 CGPoint CGMidPointMake(CGPoint p1, CGPoint p2);
 CGSize CGContainingSize(CGSize s1, CGSize s2);

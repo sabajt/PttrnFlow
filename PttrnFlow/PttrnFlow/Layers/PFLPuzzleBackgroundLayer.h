@@ -8,9 +8,9 @@
 
 #import "cocos2d.h"
 
-@interface BackgroundLayer : CCLayerColor
+@interface PFLPuzzleBackgroundLayer : CCLayerColor
 
-+ (BackgroundLayer *)backgroundLayerWithTheme:(NSString *)theme;
++ (PFLPuzzleBackgroundLayer *)backgroundLayerWithTheme:(NSString *)theme;
 - (void)tintToColor:(ccColor3B)color duration:(ccTime)duration;
 
 @end

@@ -42,7 +42,7 @@ FOUNDATION_EXPORT NSString *const kNotificationUnlockPan;
 FOUNDATION_EXPORT NSString *const kClearRectUILayer;
 FOUNDATION_EXPORT NSString *const kClearRectAudioBatch;
 
-@interface GameConstants : NSObject
+@interface PFLGameConstants : NSObject
 
 @end
 

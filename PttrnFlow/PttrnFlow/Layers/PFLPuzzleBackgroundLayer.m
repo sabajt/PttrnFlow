@@ -6,16 +6,16 @@
 //
 //
 
-#import "BackgroundLayer.h"
+#import "PFLPuzzleBackgroundLayer.h"
 #import "TileSprite.h"
-#import "ColorUtils.h"
-#import "GameConstants.h"
+#import "PFLColorUtils.h"
+#import "PFLGameConstants.h"
 
-@implementation BackgroundLayer
+@implementation PFLPuzzleBackgroundLayer
 
-+ (BackgroundLayer *)backgroundLayerWithTheme:(NSString *)theme
++ (PFLPuzzleBackgroundLayer *)backgroundLayerWithTheme:(NSString *)theme
 {
-    BackgroundLayer *layer = [BackgroundLayer layerWithColor:ccc4BFromccc3B([ColorUtils backgroundWithTheme:theme])];
+    PFLPuzzleBackgroundLayer *layer = [PFLPuzzleBackgroundLayer layerWithColor:ccc4BFromccc3B([PFLColorUtils backgroundWithTheme:theme])];
     
 //    CCSpriteBatchNode *batchNode = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyBackground stringByAppendingString:@".png"]];
 //    [layer addChild:batchNode];

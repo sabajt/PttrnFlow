@@ -7,9 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "SequenceMenuLayer.h"
+#import "PFLPuzzleSetLayer.h"
 #import "SimpleAudioEngine.h"
-#import "GameConstants.h"
+#import "PFLGameConstants.h"
 
 @implementation AppDelegate
 
@@ -86,7 +86,7 @@
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeyBackground stringByAppendingString:@".plist"]];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeyAudioObjects stringByAppendingString:@".plist"]];
 
-	[director_ pushScene: [SequenceMenuLayer scene]];
+	[director_ pushScene: [PFLPuzzleSetLayer scene]];
     
     _audioController = [[PdAudioController alloc] init];
     if ([self.audioController configureAmbientWithSampleRate:44100 numberChannels:2 mixingEnabled:YES] != PdAudioOK) {

@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class Coord;
+@class PFLCoord;
 
 @interface NSObject (AudioResponderUtils)
 
 @property (assign) CGFloat beatDuration;
 
-- (NSArray *)responders:(NSArray *)responders atCoord:(Coord *)coord;
-- (NSArray *)hitResponders:(NSArray *)responders atCoord:(Coord *)coord;
+- (NSArray *)responders:(NSArray *)responders atCoord:(PFLCoord *)coord;
+- (NSArray *)hitResponders:(NSArray *)responders atCoord:(PFLCoord *)coord;
 
 @end

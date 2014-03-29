@@ -7,7 +7,7 @@
 //
 
 #import "SequenceMenuCell.h"
-#import "ColorUtils.h"
+#import "PFLColorUtils.h"
 
 @interface SequenceMenuCell ()
 

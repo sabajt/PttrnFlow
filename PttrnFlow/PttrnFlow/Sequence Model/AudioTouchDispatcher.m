@@ -9,9 +9,9 @@
 #import "AudioTouchDispatcher.h"
 #import "PFLEvent.h"
 #import "MainSynth.h"
-#import "Coord.h"
+#import "PFLCoord.h"
 #import "NSObject+AudioResponderUtils.h"
-#import "AudioPad.h"
+#import "PFLAudioPadSprite.h"
 #import "CCNode+Grid.h"
 
 NSString *const kPFLAudioTouchDispatcherCoordKey = @"coord";
@@ -47,7 +47,7 @@ NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispat
     [self.responders removeAllObjects];
 }
 
-- (void)hitCell:(Coord *)coord channel:(NSString *)channel
+- (void)hitCell:(PFLCoord *)coord channel:(NSString *)channel
 {
     // collect events from all hit cells
     NSArray *events = [self hitResponders:self.responders atCoord:coord];
@@ -62,7 +62,7 @@ NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispat
 }
 
 // TODO: currently not being used
-- (void)releaseCell:(Coord *)cell channel:(NSString *)channel
+- (void)releaseCell:(PFLCoord *)cell channel:(NSString *)channel
 {
     for (id<AudioResponder> responder in self.responders) {
         if (([cell isEqualToCoord:[responder audioCell]]) &&
@@ -73,7 +73,7 @@ NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispat
     }
 }
 
-- (void)changeToCell:(Coord *)toCell fromCell:(Coord *)fromCell channel:(NSString *)channel
+- (void)changeToCell:(PFLCoord *)toCell fromCell:(PFLCoord *)fromCell channel:(NSString *)channel
 {
     // don't do anything if responders at to cell
     NSArray *toCellResponders = [self responders:self.responders atCoord:toCell];
@@ -82,11 +82,11 @@ NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispat
     }
     
     // move any responders to available cell if audio pad is not static
-    AudioPad *pad;
+    PFLAudioPadSprite *pad;
     NSArray *fromCellResponders = [self responders:self.responders atCoord:fromCell];
     if (fromCellResponders.count > 0) {
         NSInteger found = [fromCellResponders indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-            return [obj isKindOfClass:[AudioPad class]];
+            return [obj isKindOfClass:[PFLAudioPadSprite class]];
         }];
         if (found != NSNotFound) {
             pad = fromCellResponders[found];
@@ -120,7 +120,7 @@ NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispat
 {
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    Coord *cell = [Coord coordForRelativePosition:touchPosition];
+    PFLCoord *cell = [PFLCoord coordForRelativePosition:touchPosition];
     
     // track touch so we know which events / cell to associate
     CFIndex count = CFDictionaryGetCount(self.trackingTouches);
@@ -138,14 +138,14 @@ NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispat
 {
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    Coord *cell = [Coord coordForRelativePosition:touchPosition];
+    PFLCoord *cell = [PFLCoord coordForRelativePosition:touchPosition];
     
     // get channel and last touched cell of this specific touch
     NSMutableDictionary *touchInfo = CFDictionaryGetValue(self.trackingTouches, (__bridge void *)touch);
     NSString *channel = [touchInfo objectForKey:@"channel"];
     NSNumber *x = touchInfo[@"x"];
     NSNumber *y = [touchInfo objectForKey:@"y"];
-    Coord *lastCell = [Coord coordWithX:[x integerValue] Y:[y integerValue]];
+    PFLCoord *lastCell = [PFLCoord coordWithX:[x integerValue] Y:[y integerValue]];
     
     // if touch moved to a new cell, update info
     if (![cell isEqualToCoord:lastCell]) {
@@ -172,7 +172,7 @@ NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispat
     
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    Coord *cell = [Coord coordForRelativePosition:touchPosition];
+    PFLCoord *cell = [PFLCoord coordForRelativePosition:touchPosition];
     [self releaseCell:cell channel:channel];
     
     CFDictionaryRemoveValue(self.trackingTouches, (__bridge void *)touch);
@@ -188,7 +188,7 @@ NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispat
     
     // get grid cell of touch
     CGPoint touchPosition = [self convertTouchToNodeSpace:touch];
-    Coord *cell = [Coord coordForRelativePosition:touchPosition];
+    PFLCoord *cell = [PFLCoord coordForRelativePosition:touchPosition];
     [self releaseCell:cell channel:channel];
     
     CFDictionaryRemoveValue(self.trackingTouches, (__bridge void *)touch);

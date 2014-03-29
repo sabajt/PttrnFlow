@@ -6,7 +6,7 @@
 //
 //
 
-#import "Coord.h"
+#import "PFLCoord.h"
 #import "PFLEvent.h"
 #import "PFLGlyph.h"
 #import "PFLJsonUtils.h"
@@ -40,7 +40,7 @@ static NSString *const kSynth = @"synth";
 {
     self = [super init];
     if (self) {
-        self.area = [Coord coordsFromArrays:json[kArea]];
+        self.area = [PFLCoord coordsFromArrays:json[kArea]];
         self.name = json[kName];
         self.puzzleSet = puzzleSet;
         self.solution = json[kSolution];

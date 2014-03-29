@@ -7,7 +7,7 @@
 //
 
 #import "TileSprite.h"
-#import "GameConstants.h"
+#import "PFLGameConstants.h"
 
 @implementation TileSprite
 

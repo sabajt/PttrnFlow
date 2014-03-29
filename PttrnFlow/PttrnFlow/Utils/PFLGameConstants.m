@@ -6,7 +6,7 @@
 //
 //
 
-#import "GameConstants.h"
+#import "PFLGameConstants.h"
 
 // sprite sheets
 NSString *const kTextureKeySamplePads = @"samplePads";
@@ -39,6 +39,6 @@ NSString *const kNotificationUnlockPan = @"unlockPan";
 NSString *const kClearRectUILayer = @"clear_rect_uilayer.png";
 NSString *const kClearRectAudioBatch = @"clear_rect_audio_batch.png";
 
-@implementation GameConstants
+@implementation PFLGameConstants
 
 @end

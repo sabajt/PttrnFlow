@@ -9,7 +9,7 @@
 #import "cocos2d.h"
 #import "SequenceMenuCell.h"
 
-@interface SequenceMenuLayer : CCLayer <SequenceMenuCellDelegate>
+@interface PFLPuzzleSetLayer : CCLayer <SequenceMenuCellDelegate>
 
 @property (strong, nonatomic) NSArray *mapNames;
 

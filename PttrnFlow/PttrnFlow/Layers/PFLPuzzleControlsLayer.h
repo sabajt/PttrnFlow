@@ -13,7 +13,7 @@
 
 @class PFLPuzzle;
 
-@protocol SequenceControlDelegate <NSObject>
+@protocol PFLPuzzleControlsDelegate <NSObject>
 
 - (void)startUserSequence;
 - (void)stopUserSequence;
@@ -25,8 +25,8 @@
 
 FOUNDATION_EXPORT CGFloat const kUIButtonUnitSize;
 
-@interface SequenceControlsLayer : CCLayer <ToggleButtonDelegate, BasicButtonDelegate, SolutionButtonDelegate>
+@interface PFLPuzzleControlsLayer : CCLayer <ToggleButtonDelegate, BasicButtonDelegate, SolutionButtonDelegate>
 
-- (id)initWithPuzzle:(PFLPuzzle *)puzzle delegate:(id<SequenceControlDelegate>)delegate;
+- (id)initWithPuzzle:(PFLPuzzle *)puzzle delegate:(id<PFLPuzzleControlsDelegate>)delegate;
 
 @end

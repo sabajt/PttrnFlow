@@ -7,11 +7,11 @@
 //
 
 #import "CCNode.h"
-#import "Coord.h"
+#import "PFLCoord.h"
 
 @interface CCNode (Grid)
 
-@property (strong, nonatomic) Coord *cell;
+@property (strong, nonatomic) PFLCoord *cell;
 @property (assign) CGSize cellSize;
 
 @end

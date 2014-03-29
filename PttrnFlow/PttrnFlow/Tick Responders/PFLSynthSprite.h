@@ -9,9 +9,9 @@
 #import "CCSprite.h"
 #import "AudioResponder.h"
 
-@interface Synth : CCSprite <AudioResponder>
+@interface PFLSynthSprite : CCSprite <AudioResponder>
 
-- (id)initWithCell:(Coord *)cell
+- (id)initWithCell:(PFLCoord *)cell
            audioID:(NSNumber *)audioID
              synth:(NSString *)synth
               midi:(NSNumber *)midi

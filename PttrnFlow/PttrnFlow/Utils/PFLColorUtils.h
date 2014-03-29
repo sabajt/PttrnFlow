@@ -17,7 +17,7 @@ static inline ccColor4B ccc4BFromccc3B(ccColor3B c)
     return (ccColor4B){c.r, c.g, c.b, 255};
 }
 
-@interface ColorUtils : NSObject
+@interface PFLColorUtils : NSObject
 
 + (UIColor *)UIColorFor3B:(ccColor3B)color;
 

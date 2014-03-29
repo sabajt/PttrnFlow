@@ -6,16 +6,16 @@
 //
 //
 
-#import "Arrow.h"
+#import "PFLArrowSprite.h"
 #import "NSString+Degrees.h"
 #import "CCNode+Grid.h"
-#import "ColorUtils.h"
+#import "PFLColorUtils.h"
 #import "PFLEvent.h"
 #import "PFLGlyph.h"
 #import "PFLPuzzle.h"
 #import "PFLPuzzleSet.h"
 
-@interface Arrow ()
+@interface PFLArrowSprite ()
 
 @property (weak, nonatomic) CCSprite *detailSprite;
 @property (assign) ccColor3B defaultColor;
@@ -24,15 +24,15 @@
 
 @end
 
-@implementation Arrow
+@implementation PFLArrowSprite
 
 - (id)initWithGlyph:(PFLGlyph *)glyph
 {
     self = [super initWithSpriteFrameName:@"glyph_circle.png"];
     if (self) {
         NSString *theme = glyph.puzzle.puzzleSet.theme;
-        self.defaultColor = [ColorUtils glyphDetailWithTheme:theme];
-        self.activeColor = [ColorUtils glyphActiveWithTheme:theme];
+        self.defaultColor = [PFLColorUtils glyphDetailWithTheme:theme];
+        self.activeColor = [PFLColorUtils glyphActiveWithTheme:theme];
         self.color = self.defaultColor;
         self.rotation = [glyph.arrow degrees];
         
@@ -42,7 +42,7 @@
         self.detailSprite = detailSprite;
         detailSprite.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
         [self addChild:detailSprite];
-        detailSprite.color = [ColorUtils padWithTheme:theme isStatic:glyph.isStatic];
+        detailSprite.color = [PFLColorUtils padWithTheme:theme isStatic:glyph.isStatic];
         
         // CCNode+Grid
         self.cell = glyph.cell;
@@ -53,7 +53,7 @@
 
 #pragma mark - AudioResponder
 
-- (Coord *)audioCell
+- (PFLCoord *)audioCell
 {
     return self.cell;
 }

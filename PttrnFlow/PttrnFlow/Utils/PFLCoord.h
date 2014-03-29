@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GameConstants.h"
+#import "PFLGameConstants.h"
 
 FOUNDATION_EXPORT NSString *const kNeighborLeft;
 FOUNDATION_EXPORT NSString *const kNeighborRight;
 FOUNDATION_EXPORT NSString *const kNeighborAbove;
 FOUNDATION_EXPORT NSString *const kNeighborBelow;
 
-@interface Coord : NSObject
+@interface PFLCoord : NSObject
 
 @property (assign) NSInteger x;
 @property (assign) NSInteger y;
@@ -24,8 +24,8 @@ FOUNDATION_EXPORT NSString *const kNeighborBelow;
 
 #pragma mark - position
 
-+ (Coord *)coordForRelativePosition:(CGPoint)position;
-+ (Coord *)coordForRelativePosition:(CGPoint)position unitSize:(CGFloat)unitSize;
++ (PFLCoord *)coordForRelativePosition:(CGPoint)position;
++ (PFLCoord *)coordForRelativePosition:(CGPoint)position unitSize:(CGFloat)unitSize;
 - (CGPoint)relativePosition;
 - (CGPoint)relativePositionWithUnitSize:(CGFloat)unitSize;
 - (CGPoint)relativeMidpoint;
@@ -33,20 +33,20 @@ FOUNDATION_EXPORT NSString *const kNeighborBelow;
 
 #pragma mark - compare
 
-+ (Coord *)maxCoord:(NSArray *)coords;
-- (BOOL)isEqualToCoord:(Coord *)coord;
++ (PFLCoord *)maxCoord:(NSArray *)coords;
+- (BOOL)isEqualToCoord:(PFLCoord *)coord;
 - (BOOL)isCoordInGroup:(NSArray *)coords;
 
 #pragma mark - context
 
 + (NSArray *)findNeighborPairs:(NSArray *)coords;
 - (NSDictionary *)neighbors;
-- (BOOL)isNeighbor:(Coord *)coord;
-- (BOOL)isAbove:(Coord *)coord;
-- (BOOL)isBelow:(Coord *)coord;
-- (BOOL)isLeft:(Coord *)coord;
-- (BOOL)isRight:(Coord *)coord;
-- (Coord *)stepInDirection:(NSString *)direction;
+- (BOOL)isNeighbor:(PFLCoord *)coord;
+- (BOOL)isAbove:(PFLCoord *)coord;
+- (BOOL)isBelow:(PFLCoord *)coord;
+- (BOOL)isLeft:(PFLCoord *)coord;
+- (BOOL)isRight:(PFLCoord *)coord;
+- (PFLCoord *)stepInDirection:(NSString *)direction;
 
 #pragma mark - debug
 

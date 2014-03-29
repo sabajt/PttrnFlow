@@ -7,7 +7,7 @@
 //
 
 #import "PFLGlyph.h"
-#import "Coord.h"
+#import "PFLCoord.h"
 
 static NSString *const kAudio = @"audio";
 static NSString *const kArrow = @"arrow";
@@ -24,7 +24,7 @@ static NSString *const kStatic = @"static";
         self.audioID = object[kAudio];
         self.arrow = object[kArrow];
         NSArray *cell = object[kCell];
-        self.cell = [Coord coordWithX:[cell[0] integerValue] Y:[cell[1] integerValue]];
+        self.cell = [PFLCoord coordWithX:[cell[0] integerValue] Y:[cell[1] integerValue]];
         self.entry = object[kEntry];
         self.isStatic = [object[kStatic] boolValue];
         self.puzzle = puzzle;

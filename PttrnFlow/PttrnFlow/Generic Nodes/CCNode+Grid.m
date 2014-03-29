@@ -19,12 +19,12 @@ static char kCellSizeValue;
 @dynamic cell;
 @dynamic cellSize;
 
-- (void)setCell:(Coord *)cell
+- (void)setCell:(PFLCoord *)cell
 {
     objc_setAssociatedObject(self, &kCellValue, cell, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (Coord *)cell
+- (PFLCoord *)cell
 {
     return objc_getAssociatedObject(self, &kCellValue);
 }

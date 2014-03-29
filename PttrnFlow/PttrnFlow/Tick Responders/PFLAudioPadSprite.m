@@ -6,30 +6,30 @@
 //
 //
 
-#import "AudioPad.h"
+#import "PFLAudioPadSprite.h"
 #import "CCNode+Grid.h"
 #import "CCSprite+PFLEffects.h"
-#import "ColorUtils.h"
-#import "GameConstants.h"
+#import "PFLColorUtils.h"
+#import "PFLGameConstants.h"
 #import "PFLGlyph.h"
 #import "PFLPuzzleSet.h"
 #import "PFLPuzzle.h"
 
-@interface AudioPad ()
+@interface PFLAudioPadSprite ()
 
 @property (strong, nonatomic) CCSprite *highlightSprite;
 
 @end
 
 
-@implementation AudioPad
+@implementation PFLAudioPadSprite
 
 - (id)initWithGlyph:(PFLGlyph *)glyph
 {
     self = [super initWithSpriteFrameName:@"audio_box.png"];
     if (self) {
         self.isStatic = glyph.isStatic;
-        self.color = [ColorUtils padWithTheme:glyph.puzzle.puzzleSet.theme isStatic:glyph.isStatic];
+        self.color = [PFLColorUtils padWithTheme:glyph.puzzle.puzzleSet.theme isStatic:glyph.isStatic];
 
         // CCNode+Grid
         self.cell = glyph.cell;
@@ -52,7 +52,7 @@
     return nil;
 }
 
-- (Coord *)audioCell
+- (PFLCoord *)audioCell
 {
     return self.cell;
 }

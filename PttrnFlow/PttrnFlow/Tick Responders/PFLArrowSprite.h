@@ -11,7 +11,7 @@
 
 @class PFLGlyph;
 
-@interface Arrow : CCSprite <AudioResponder>
+@interface PFLArrowSprite : CCSprite <AudioResponder>
 
 - (id)initWithGlyph:(PFLGlyph *)glyph;
 

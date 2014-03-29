@@ -30,7 +30,7 @@ NSString *const kKeyEmpty = @"empty";
 @property (assign) NSInteger userSequenceIndex;
 @property (assign) NSInteger solutionSequenceIndex;
 @property (strong, nonatomic) NSMutableArray *responders;
-@property (strong, nonatomic) Coord *currentCell;
+@property (strong, nonatomic) PFLCoord *currentCell;
 @property (copy, nonatomic) NSString *currentDirection;
 
 @end
@@ -58,20 +58,20 @@ NSString *const kKeyEmpty = @"empty";
     [self.responders removeAllObjects];
 }
 
-- (Coord *)nextStep
+- (PFLCoord *)nextStep
 {
     return [self nextStepInDirection:self.currentDirection currentCoord:self.currentCell];
 }
 
-- (Coord *)nextStepInDirection:(NSString *)direction currentCoord:(Coord *)currentCoord
+- (PFLCoord *)nextStepInDirection:(NSString *)direction currentCoord:(PFLCoord *)currentCoord
 {
-    Coord *maxCoord = [Coord maxCoord:self.puzzle.area];
+    PFLCoord *maxCoord = [PFLCoord maxCoord:self.puzzle.area];
     currentCoord = [currentCoord stepInDirection:direction];
     if (currentCoord.x > maxCoord.x) {
-        currentCoord = [Coord coordWithX:0 Y:currentCoord.y];
+        currentCoord = [PFLCoord coordWithX:0 Y:currentCoord.y];
     }
     if (currentCoord.y > maxCoord.y) {
-        currentCoord = [Coord coordWithX:currentCoord.x Y:0];
+        currentCoord = [PFLCoord coordWithX:currentCoord.x Y:0];
     }
     if ([currentCoord isCoordInGroup:self.puzzle.area]) {
         return currentCoord;

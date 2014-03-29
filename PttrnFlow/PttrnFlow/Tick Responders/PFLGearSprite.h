@@ -11,7 +11,7 @@
 
 @class PFLGlyph, PFLMultiSample;
 
-@interface Gear : CCSprite <AudioResponder>
+@interface PFLGearSprite : CCSprite <AudioResponder>
 
 - (id)initWithGlyph:(PFLGlyph *)glyph multiSample:(PFLMultiSample *)multiSample;
 

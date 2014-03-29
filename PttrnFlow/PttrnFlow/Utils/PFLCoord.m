@@ -6,7 +6,7 @@
 //
 //
 
-#import "Coord.h"
+#import "PFLCoord.h"
 
 static CGFloat kDefaultUnitSize = 68.0;
 
@@ -15,20 +15,20 @@ NSString *const kNeighborRight = @"right";
 NSString *const kNeighborAbove = @"above";
 NSString *const kNeighborBelow = @"below";
 
-@implementation Coord
+@implementation PFLCoord
 
 + (NSArray *)coordsFromArrays:(NSArray *)arrays
 {
     NSMutableArray *coords = [NSMutableArray array];
     for (NSArray *a in arrays) {
-        [coords addObject:[Coord coordWithX:[a[0] integerValue] Y:[a[1] integerValue]]];
+        [coords addObject:[PFLCoord coordWithX:[a[0] integerValue] Y:[a[1] integerValue]]];
     }
     return [NSArray arrayWithArray:coords];
 }
 
 + (id)coordWithX:(NSInteger)x Y:(NSInteger)y
 {
-    return [[Coord alloc] initWithX:x Y:y];
+    return [[PFLCoord alloc] initWithX:x Y:y];
 }
 
 - (id)initWithX:(NSInteger)x Y:(NSInteger)y
@@ -43,14 +43,14 @@ NSString *const kNeighborBelow = @"below";
 
 #pragma mark - position
 
-+ (Coord *)coordForRelativePosition:(CGPoint)position
++ (PFLCoord *)coordForRelativePosition:(CGPoint)position
 {
-    return [Coord coordForRelativePosition:position unitSize:kDefaultUnitSize];
+    return [PFLCoord coordForRelativePosition:position unitSize:kDefaultUnitSize];
 }
 
-+ (Coord *)coordForRelativePosition:(CGPoint)position unitSize:(CGFloat)unitSize
++ (PFLCoord *)coordForRelativePosition:(CGPoint)position unitSize:(CGFloat)unitSize
 {
-    return [Coord coordWithX:floorf(position.x / unitSize) Y:floorf(position.y / unitSize)];
+    return [PFLCoord coordWithX:floorf(position.x / unitSize) Y:floorf(position.y / unitSize)];
 }
 
 - (CGPoint)relativePosition
@@ -76,26 +76,26 @@ NSString *const kNeighborBelow = @"below";
 
 #pragma mark - compare
 
-+ (Coord *)maxCoord:(NSArray *)coords
++ (PFLCoord *)maxCoord:(NSArray *)coords
 {
     NSInteger xMax = 0;
     NSInteger yMax = 0;
 
-    for (Coord *c in coords) {
+    for (PFLCoord *c in coords) {
         xMax = MAX(xMax, c.x);
         yMax = MAX(yMax, c.y);
     }
-    return [Coord coordWithX:xMax Y:yMax];
+    return [PFLCoord coordWithX:xMax Y:yMax];
 }
 
-- (BOOL)isEqualToCoord:(Coord *)coord
+- (BOOL)isEqualToCoord:(PFLCoord *)coord
 {
     return ((self.x == coord.x) && (self.y == coord.y));
 }
 
 - (BOOL)isCoordInGroup:(NSArray *)coords
 {
-    for (Coord *c in coords) {
+    for (PFLCoord *c in coords) {
         if ([c isEqualToCoord:self]) {
             return YES;
         }
@@ -107,71 +107,71 @@ NSString *const kNeighborBelow = @"below";
 
 + (NSArray *)findNeighborPairs:(NSArray *)coords
 {
-    return [Coord findNeighborPairs:coords existingPairs:[NSMutableArray array]];
+    return [PFLCoord findNeighborPairs:coords existingPairs:[NSMutableArray array]];
 }
 
 + (NSArray *)findNeighborPairs:(NSArray *)coords existingPairs:(NSMutableArray *)pairs
 {
     if (coords.count == 2) {
-        Coord *c1 = coords[0];
-        Coord *c2 = coords[1];
+        PFLCoord *c1 = coords[0];
+        PFLCoord *c2 = coords[1];
         if ([c1 isNeighbor:c2]) {
             [pairs addObject:coords];
         }
         return pairs;
     }
     
-    Coord *baseCoord = [coords firstObject];
+    PFLCoord *baseCoord = [coords firstObject];
     NSArray *truncatedCoords = [coords subarrayWithRange:NSMakeRange(1, coords.count - 1)];
-    for (Coord *c in truncatedCoords) {
+    for (PFLCoord *c in truncatedCoords) {
         if ([baseCoord isNeighbor:c]) {
             [pairs addObject:@[baseCoord, c]];
         }
     }
-    return [Coord findNeighborPairs:truncatedCoords existingPairs:pairs];
+    return [PFLCoord findNeighborPairs:truncatedCoords existingPairs:pairs];
 }
 
 - (NSDictionary *)neighbors
 {
-    return @{kNeighborLeft : [Coord coordWithX:self.x - 1 Y:self.y],
-             kNeighborRight : [Coord coordWithX:self.x + 1 Y:self.y],
-             kNeighborAbove : [Coord coordWithX:self.x Y:self.y + 1],
-             kNeighborBelow : [Coord coordWithX:self.x Y:self.y - 1]};
+    return @{kNeighborLeft : [PFLCoord coordWithX:self.x - 1 Y:self.y],
+             kNeighborRight : [PFLCoord coordWithX:self.x + 1 Y:self.y],
+             kNeighborAbove : [PFLCoord coordWithX:self.x Y:self.y + 1],
+             kNeighborBelow : [PFLCoord coordWithX:self.x Y:self.y - 1]};
 }
 
-- (BOOL)isNeighbor:(Coord *)coord
+- (BOOL)isNeighbor:(PFLCoord *)coord
 {
-    NSUInteger index = [[[self neighbors] allValues] indexOfObjectPassingTest:^BOOL(Coord *neighbor, NSUInteger idx, BOOL *stop) {
+    NSUInteger index = [[[self neighbors] allValues] indexOfObjectPassingTest:^BOOL(PFLCoord *neighbor, NSUInteger idx, BOOL *stop) {
         return [coord isEqualToCoord:neighbor];
     }];
     return index != NSNotFound;
 }
 
-- (BOOL)isAbove:(Coord *)coord
+- (BOOL)isAbove:(PFLCoord *)coord
 {
-    Coord *above = [[coord neighbors] objectForKey:kNeighborAbove];
+    PFLCoord *above = [[coord neighbors] objectForKey:kNeighborAbove];
     return [self isEqualToCoord:above];
 }
 
-- (BOOL)isBelow:(Coord *)coord
+- (BOOL)isBelow:(PFLCoord *)coord
 {
-    Coord *below = [[coord neighbors] objectForKey:kNeighborBelow];
+    PFLCoord *below = [[coord neighbors] objectForKey:kNeighborBelow];
     return [self isEqualToCoord:below];
 }
 
-- (BOOL)isLeft:(Coord *)coord
+- (BOOL)isLeft:(PFLCoord *)coord
 {
-    Coord *left = [[coord neighbors] objectForKey:kNeighborLeft];
+    PFLCoord *left = [[coord neighbors] objectForKey:kNeighborLeft];
     return [self isEqualToCoord:left];
 }
 
-- (BOOL)isRight:(Coord *)coord
+- (BOOL)isRight:(PFLCoord *)coord
 {
-    Coord *right = [[coord neighbors] objectForKey:kNeighborRight];
+    PFLCoord *right = [[coord neighbors] objectForKey:kNeighborRight];
     return [self isEqualToCoord:right];
 }
 
-- (Coord *)stepInDirection:(NSString *)direction
+- (PFLCoord *)stepInDirection:(NSString *)direction
 {
     if ([direction isEqualToString:kDirectionUp]) {
         return [self neighbors][kNeighborAbove];

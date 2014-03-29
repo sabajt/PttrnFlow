@@ -1,30 +1,30 @@
 //
-//  PuzzleLayer.m
+//  PFLPuzzleLayer.m
 //  SequencerGame
 //
 //  Created by John Saba on 1/26/13.
 //  Copyright 2013 __MyCompanyName__. All rights reserved.
 //
 
-#import "Arrow.h"
-#import "AudioPad.h"
+#import "PFLArrowSprite.h"
+#import "PFLAudioPadSprite.h"
 #import "AudioTouchDispatcher.h"
-#import "BackgroundLayer.h"
+#import "PFLPuzzleBackgroundLayer.h"
 #import "CCSprite+PFLEffects.h"
-#import "ColorUtils.h"
-#import "Coord.h"
-#import "Gear.h"
-#import "Entry.h"
-#import "GameConstants.h"
+#import "PFLColorUtils.h"
+#import "PFLCoord.h"
+#import "PFLGearSprite.h"
+#import "PFLEntrySprite.h"
+#import "PFLGameConstants.h"
 #import "MainSynth.h"
 #import "PdDispatcher.h"
-#import "PFGeometry.h"
+#import "PFLGeometry.h"
 #import "PFLPuzzle.h"
-#import "PuzzleLayer.h"
-#import "SequenceControlsLayer.h"
+#import "PFLPuzzleLayer.h"
+#import "PFLPuzzleControlsLayer.h"
 #import "SequenceDispatcher.h"
 #import "SimpleAudioEngine.h"
-#import "Synth.h"
+#import "PFLSynthSprite.h"
 #import "PFLGlyph.h"
 #import "PFLMultiSample.h"
 #import "PFLSample.h"
@@ -41,12 +41,12 @@ typedef NS_ENUM(NSInteger, ZOrderAudioBatch)
 
 static CGFloat kPuzzleBoundsMargin = 10.0f;
 
-@interface PuzzleLayer ()
+@interface PFLPuzzleLayer ()
 
-@property (weak, nonatomic) BackgroundLayer *backgroundLayer;
+@property (weak, nonatomic) PFLPuzzleBackgroundLayer *backgroundLayer;
 @property (assign) CGFloat beatDuration;
 @property (assign) CGPoint gridOrigin; // TODO: using grid origin except for drawing debug grid?
-@property (assign) Coord *maxCoord;
+@property (assign) PFLCoord *maxCoord;
 @property (strong, nonatomic) PFLPuzzle *puzzle;
 @property (strong, nonatomic) PFLPuzzleSet *puzzleSet;
 @property (assign) CGRect puzzleBounds;
@@ -55,7 +55,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 
 @end
 
-@implementation PuzzleLayer
+@implementation PFLPuzzleLayer
 
 #pragma mark - setup
 
@@ -64,24 +64,24 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     CCScene *scene = [CCScene node];
     
     // background
-    BackgroundLayer *background = [BackgroundLayer backgroundLayerWithTheme:puzzle.puzzleSet.theme];
+    PFLPuzzleBackgroundLayer *background = [PFLPuzzleBackgroundLayer backgroundLayerWithTheme:puzzle.puzzleSet.theme];
     background.contentSize = CGSizeMake(background.contentSize.width + leftPadding + rightPadding, background.contentSize.height);
     background.position = ccpSub(background.position, ccp(leftPadding, 0.0f));
     [scene addChild:background];
     
     // gameplay layer
     static CGFloat controlBarHeight = 80.0f;
-    PuzzleLayer *puzzleLayer = [[PuzzleLayer alloc] initWithPuzzle:puzzle background:background topMargin:controlBarHeight];
+    PFLPuzzleLayer *puzzleLayer = [[PFLPuzzleLayer alloc] initWithPuzzle:puzzle background:background topMargin:controlBarHeight];
     [scene addChild:puzzleLayer];
     
     // controls layer
-    SequenceControlsLayer *uiLayer = [[SequenceControlsLayer alloc] initWithPuzzle:puzzle delegate:puzzleLayer.sequenceDispatcher];
+    PFLPuzzleControlsLayer *uiLayer = [[PFLPuzzleControlsLayer alloc] initWithPuzzle:puzzle delegate:puzzleLayer.sequenceDispatcher];
     [scene addChild:uiLayer z:1];
     
     return scene;
 }
 
-- (id)initWithPuzzle:(PFLPuzzle *)puzzle background:(BackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
+- (id)initWithPuzzle:(PFLPuzzle *)puzzle background:(PFLPuzzleBackgroundLayer *)backgroundLayer topMargin:(CGFloat)topMargin;
 {
     self = [super init];
     if (self) {
@@ -125,7 +125,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         [self addChild:[MainSynth sharedMainSynth]]; // must add main synth so it can run actions
         self.isTouchEnabled = YES;
         self.backgroundLayer = backgroundLayer;
-        self.maxCoord = [Coord maxCoord:puzzle.area];
+        self.maxCoord = [PFLCoord maxCoord:puzzle.area];
         self.contentSize = CGSizeMake((self.maxCoord.x + 1) * kSizeGridUnit, (self.maxCoord.y + 1) * kSizeGridUnit);
         
         self.puzzleBounds = CGRectMake(kPuzzleBoundsMargin,
@@ -186,13 +186,13 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     for (NSInteger x = -1; x <= self.maxCoord.x; x++) {
         for (NSInteger y = -1; y <= self.maxCoord.y; y++) {
             
-            Coord *cell = [Coord coordWithX:x Y:y];
+            PFLCoord *cell = [PFLCoord coordWithX:x Y:y];
             
             // find neighbor corners
-            Coord *bottomleft = [Coord coordWithX:x Y:y];
-            Coord *topLeft = [Coord coordWithX:x Y:y + 1];
-            Coord *bottomRight = [Coord coordWithX:x + 1 Y:y];
-            Coord *topRight = [Coord coordWithX:x + 1 Y:y + 1];
+            PFLCoord *bottomleft = [PFLCoord coordWithX:x Y:y];
+            PFLCoord *topLeft = [PFLCoord coordWithX:x Y:y + 1];
+            PFLCoord *bottomRight = [PFLCoord coordWithX:x + 1 Y:y];
+            PFLCoord *topRight = [PFLCoord coordWithX:x + 1 Y:y + 1];
             
             BOOL hasBottomLeft = [bottomleft isCoordInGroup:areaCells];
             BOOL hasTopLeft = [topLeft isCoordInGroup:areaCells];
@@ -203,7 +203,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             if (hasBottomLeft && hasTopLeft && hasBottomRight && hasTopRight) {
                 CCSprite *padFill = [CCSprite spriteWithSpriteFrameName:@"pad_fill.png"];
                 padFill.position = [[[cell stepInDirection:kDirectionRight] stepInDirection:kDirectionUp] relativePosition];
-                padFill.color = [ColorUtils audioPanelFillWithTheme:self.puzzle.puzzleSet.theme];
+                padFill.color = [PFLColorUtils audioPanelFillWithTheme:self.puzzle.puzzleSet.theme];
                 [self.audioObjectsBatchNode addChild:padFill z:ZOrderAudioBatchPanelFill];
                 continue;
             }
@@ -318,20 +318,20 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
                 fill2 = [CCSprite spriteWithSpriteFrameName:padBorderCornerInsideFill];
             }
             
-            fill1.color = [ColorUtils audioPanelFillWithTheme:self.puzzle.puzzleSet.theme];
+            fill1.color = [PFLColorUtils audioPanelFillWithTheme:self.puzzle.puzzleSet.theme];
             fill1.position = [[[cell stepInDirection:kDirectionRight] stepInDirection:kDirectionUp] relativePosition];
             [self.audioObjectsBatchNode addChild:fill1 z:ZOrderAudioBatchPanelBorder];
             
-            border1.color = [ColorUtils audioPanelEdgeWithTheme:self.puzzle.puzzleSet.theme];
+            border1.color = [PFLColorUtils audioPanelEdgeWithTheme:self.puzzle.puzzleSet.theme];
             border1.position = [[[cell stepInDirection:kDirectionRight] stepInDirection:kDirectionUp] relativePosition];
             [self.audioObjectsBatchNode addChild:border1 z:ZOrderAudioBatchPanelBorder];
             
             if (border2 != nil) {
-                fill2.color = [ColorUtils audioPanelFillWithTheme:self.puzzle.puzzleSet.theme];
+                fill2.color = [PFLColorUtils audioPanelFillWithTheme:self.puzzle.puzzleSet.theme];
                 fill2.position = fill1.position;
                 [self.audioObjectsBatchNode addChild:fill2 z:ZOrderAudioBatchPanelBorder];
                 
-                border2.color = [ColorUtils audioPanelEdgeWithTheme:self.puzzle.puzzleSet.theme];
+                border2.color = [PFLColorUtils audioPanelEdgeWithTheme:self.puzzle.puzzleSet.theme];
                 border2.position = border1.position;
                 [self.audioObjectsBatchNode addChild:border2 z:ZOrderAudioBatchPanelBorder];
             }
@@ -356,7 +356,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         CGPoint cellCenter = [glyph.cell relativeMidpoint];
         
         // audio pad sprite
-        AudioPad *audioPad = [[AudioPad alloc] initWithGlyph:glyph];
+        PFLAudioPadSprite *audioPad = [[PFLAudioPadSprite alloc] initWithGlyph:glyph];
 
         audioPad.position = cellCenter;
         [self.audioTouchDispatcher addResponder:audioPad];
@@ -368,7 +368,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
             
             if ([object isKindOfClass:[PFLMultiSample class]]) {
                 PFLMultiSample *multiSample = (PFLMultiSample *)object;
-                Gear *gear = [[Gear alloc] initWithGlyph:glyph multiSample:multiSample];
+                PFLGearSprite *gear = [[PFLGearSprite alloc] initWithGlyph:glyph multiSample:multiSample];
                 [self.audioTouchDispatcher addResponder:gear];
                 [self.sequenceDispatcher addResponder:gear];
                 gear.position = cellCenter;
@@ -382,7 +382,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         
         // direction arrow
         if (glyph.arrow) {
-            Arrow *arrow = [[Arrow alloc] initWithGlyph:glyph];
+            PFLArrowSprite *arrow = [[PFLArrowSprite alloc] initWithGlyph:glyph];
             [self.audioTouchDispatcher addResponder:arrow];
             [self.sequenceDispatcher addResponder:arrow];
             arrow.position = cellCenter;
@@ -391,7 +391,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         
         // entry point
         if (glyph.entry) {
-            Entry *entry = [[Entry alloc] initWithGlyph:glyph];
+            PFLEntrySprite *entry = [[PFLEntrySprite alloc] initWithGlyph:glyph];
             [self.audioTouchDispatcher addResponder:entry];
             [self.sequenceDispatcher addResponder:entry];
             self.sequenceDispatcher.entry = entry;
@@ -402,11 +402,11 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
     [[MainSynth sharedMainSynth] loadSamples:allSampleNames];
 }
 
-- (void)animateBacklight:(Coord *)coord
+- (void)animateBacklight:(PFLCoord *)coord
 {
     CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:@"audio_box_highlight.png"];
         
-    highlightSprite.color = [ColorUtils padHighlightWithTheme:self.puzzle.puzzleSet.theme];
+    highlightSprite.color = [PFLColorUtils padHighlightWithTheme:self.puzzle.puzzleSet.theme];
     highlightSprite.position = [coord relativeMidpoint];
     [self.audioObjectsBatchNode addChild:highlightSprite z:ZOrderAudioBatchPadBacklight];
     
@@ -440,7 +440,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 
 - (void)handleStepUserSequence:(NSNotification *)notification
 {
-    Coord *coord = notification.userInfo[kKeyCoord];
+    PFLCoord *coord = notification.userInfo[kKeyCoord];
     if ([coord isCoordInGroup:self.puzzle.area]) {
         [self animateBacklight:coord];
     }
@@ -448,7 +448,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 
 - (void)handleAudioTouchDispatcherHit:(NSNotification *)notification
 {
-    Coord *coord = notification.userInfo[kPFLAudioTouchDispatcherCoordKey];
+    PFLCoord *coord = notification.userInfo[kPFLAudioTouchDispatcherCoordKey];
     if ([coord isCoordInGroup:self.puzzle.area]) {
         [self animateBacklight:coord];
     }

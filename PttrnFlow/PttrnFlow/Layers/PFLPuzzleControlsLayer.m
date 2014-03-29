@@ -6,26 +6,26 @@
 //
 //
 
-#import "SequenceControlsLayer.h"
-#import "ColorUtils.h"
+#import "PFLPuzzleControlsLayer.h"
+#import "PFLColorUtils.h"
 #import "TileSprite.h"
 #import "ClippingSprite.h"
-#import "GameConstants.h"
+#import "PFLGameConstants.h"
 #import "SequenceDispatcher.h"
 #import "PFLPuzzle.h"
 #import "PFLPuzzleSet.h"
 #import "PFLTransitionSlide.h"
-#import "SequenceMenuLayer.h"
+#import "PFLPuzzleSetLayer.h"
 
 CGFloat const kUIButtonUnitSize = 50;
 CGFloat const kUITimelineStepWidth = 40;
 
 static NSInteger const kRowLength = 8;
 
-@interface SequenceControlsLayer ()
+@interface PFLPuzzleControlsLayer ()
 
 @property (weak, nonatomic) CCSpriteBatchNode *uiBatchNode;
-@property (weak, nonatomic) id<SequenceControlDelegate> delegate;
+@property (weak, nonatomic) id<PFLPuzzleControlsDelegate> delegate;
 @property (strong, nonatomic) NSMutableArray *solutionButtons;
 @property (strong, nonatomic) NSMutableArray *solutionFlags;
 @property (weak, nonatomic) PFLPuzzle *puzzle;
@@ -40,9 +40,9 @@ static NSInteger const kRowLength = 8;
 
 @end
 
-@implementation SequenceControlsLayer
+@implementation PFLPuzzleControlsLayer
 
-- (id)initWithPuzzle:(PFLPuzzle *)puzzle delegate:(id<SequenceControlDelegate>)delegate
+- (id)initWithPuzzle:(PFLPuzzle *)puzzle delegate:(id<PFLPuzzleControlsDelegate>)delegate
 {
     self = [super init];
     if (self) {
@@ -60,11 +60,11 @@ static NSInteger const kRowLength = 8;
         
         // right controls panel
         CCSprite *rightControlsPanel = [CCSprite spriteWithSpriteFrameName:@"controls_panel_right_bottom_fill.png"];
-        rightControlsPanel.color = [ColorUtils controlPanelFillWithTheme:theme];
+        rightControlsPanel.color = [PFLColorUtils controlPanelFillWithTheme:theme];
         rightControlsPanel.anchorPoint = ccp(0, 0);
         
         CCSprite *rightControlsPanelBorder = [CCSprite spriteWithSpriteFrameName:@"controls_panel_right_bottom_edge.png"];
-        rightControlsPanelBorder.color = [ColorUtils controlPanelEdgeWithTheme:theme];
+        rightControlsPanelBorder.color = [PFLColorUtils controlPanelEdgeWithTheme:theme];
         rightControlsPanelBorder.anchorPoint = ccp(0, 0);
         
         if (steps >= kRowLength) {
@@ -81,12 +81,12 @@ static NSInteger const kRowLength = 8;
         
         // left controls panel
         CCSprite *leftControlsPanel = [CCSprite spriteWithSpriteFrameName:@"controls_panel_left_fill.png"];
-        leftControlsPanel.color = [ColorUtils controlPanelFillWithTheme:theme];
+        leftControlsPanel.color = [PFLColorUtils controlPanelFillWithTheme:theme];
         leftControlsPanel.anchorPoint = ccp(0, 0);
         leftControlsPanel.position = ccp(0, -50); // will be 0 for seq > 8 len in future
         
         CCSprite *leftControlsPanelBorder = [CCSprite spriteWithSpriteFrameName:@"controls_panel_left_edge.png"];
-        leftControlsPanelBorder.color = [ColorUtils controlPanelEdgeWithTheme:theme];
+        leftControlsPanelBorder.color = [PFLColorUtils controlPanelEdgeWithTheme:theme];
         leftControlsPanelBorder.anchorPoint = ccp(0, 0);
         leftControlsPanelBorder.position = leftControlsPanel.position;
         
@@ -95,31 +95,31 @@ static NSInteger const kRowLength = 8;
         
         // top left controls panel corner
         CCSprite *topLeftControlsPanel = [CCSprite spriteWithSpriteFrameName:@"controls_panel_top_left_fill.png"];
-        topLeftControlsPanel.color = [ColorUtils controlPanelFillWithTheme:theme];
+        topLeftControlsPanel.color = [PFLColorUtils controlPanelFillWithTheme:theme];
         topLeftControlsPanel.anchorPoint = ccp(0, 1);
         topLeftControlsPanel.position = ccp(0, self.contentSize.height);
         [self.uiBatchNode addChild:topLeftControlsPanel];
         
         CCSprite *topLeftControlsPanelBorder = [CCSprite spriteWithSpriteFrameName:@"controls_panel_top_left_edge.png"];
-        topLeftControlsPanelBorder.color = [ColorUtils controlPanelEdgeWithTheme:theme];
+        topLeftControlsPanelBorder.color = [PFLColorUtils controlPanelEdgeWithTheme:theme];
         topLeftControlsPanelBorder.anchorPoint = ccp(0, 1);
         topLeftControlsPanelBorder.position = topLeftControlsPanel.position;
         [self.uiBatchNode addChild:topLeftControlsPanelBorder];
         
         // speaker (solution sequence) button
-        ToggleButton *speakerButton = [[ToggleButton alloc] initWithImage:@"speaker.png" defaultColor:[ColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[ColorUtils controlButtonsActiveWithTheme:theme] delegate:self];
+        ToggleButton *speakerButton = [[ToggleButton alloc] initWithImage:@"speaker.png" defaultColor:[PFLColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[PFLColorUtils controlButtonsActiveWithTheme:theme] delegate:self];
         self.speakerButton = speakerButton;
         speakerButton.position = ccp(kUITimelineStepWidth / 2, 75); // FIX ME LATER
         [self.uiBatchNode addChild:speakerButton];
         
         // play (user sequence) button
-        ToggleButton *playButton = [[ToggleButton alloc] initWithImage:@"play.png" defaultColor:[ColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[ColorUtils controlButtonsActiveWithTheme:theme] delegate:self];
+        ToggleButton *playButton = [[ToggleButton alloc] initWithImage:@"play.png" defaultColor:[PFLColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[PFLColorUtils controlButtonsActiveWithTheme:theme] delegate:self];
         self.playButton = playButton;
         playButton.position = ccp(speakerButton.position.x + kUITimelineStepWidth, speakerButton.position.y);
         [self.uiBatchNode addChild:playButton];
         
         // exit button
-        BasicButton *exitButton = [[BasicButton alloc] initWithImage:@"exit.png" defaultColor:[ColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[ColorUtils controlButtonsActiveWithTheme:theme] delegate:self];
+        BasicButton *exitButton = [[BasicButton alloc] initWithImage:@"exit.png" defaultColor:[PFLColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[PFLColorUtils controlButtonsActiveWithTheme:theme] delegate:self];
         self.exitButton = exitButton;
         exitButton.position = ccp(kUITimelineStepWidth / 2, self.contentSize.height - 25);
         [self.uiBatchNode addChild:exitButton];
@@ -128,7 +128,7 @@ static NSInteger const kRowLength = 8;
         self.solutionButtons = [NSMutableArray array];
         self.solutionFlags = [NSMutableArray array];
         for (NSInteger i = 0; i < steps; i++) {
-            SolutionButton *solutionButton = [[SolutionButton alloc] initWithPlaceholderImage:@"clear_rect_uilayer.png" size:CGSizeMake(40.0f, 40.0f) index:i defaultColor:[ColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[ColorUtils solutionButtonHighlightWithTheme:theme] delegate:self];
+            SolutionButton *solutionButton = [[SolutionButton alloc] initWithPlaceholderImage:@"clear_rect_uilayer.png" size:CGSizeMake(40.0f, 40.0f) index:i defaultColor:[PFLColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[PFLColorUtils solutionButtonHighlightWithTheme:theme] delegate:self];
             [self.solutionButtons addObject:solutionButton];
             solutionButton.position = ccp((i * kUITimelineStepWidth) + (solutionButton.contentSize.width / 2), solutionButton.contentSize.height / 2);
             [self addChild:solutionButton];
@@ -191,7 +191,7 @@ static NSInteger const kRowLength = 8;
     CCSprite *flag = [CCSprite spriteWithSpriteFrameName:flagName];
     [self.solutionFlags addObject:flag];
     [self.uiBatchNode addChild:flag];
-    flag.color = [ColorUtils controlButtonsDefaultWithTheme:self.puzzle.puzzleSet.theme];
+    flag.color = [PFLColorUtils controlButtonsDefaultWithTheme:self.puzzle.puzzleSet.theme];
     flag.position = ccp(button.position.x, button.contentSize.height / 2);
     flag.opacity = 0.0f;
     CCMoveTo *flagMoveTo = [CCMoveTo actionWithDuration:1.0f position:ccp(flag.position.x, (button.contentSize.height / 2) + offset)];
@@ -248,7 +248,7 @@ static NSInteger const kRowLength = 8;
 - (void)basicButtonPressed:(BasicButton *)sender
 {
     if ([sender isEqual:self.exitButton]) {    
-        CCScene *scene = [SequenceMenuLayer scene];
+        CCScene *scene = [PFLPuzzleSetLayer scene];
         id transitionScene = [[PFLTransitionSlide alloc] initWithDuration:0.33f scene:scene forwards:NO leftPadding:0.0f rightPadding:0.0f];
         [[CCDirector sharedDirector] replaceScene:transitionScene];
     }

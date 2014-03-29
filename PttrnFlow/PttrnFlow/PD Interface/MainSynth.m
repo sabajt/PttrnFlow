@@ -9,7 +9,7 @@
 #import "MainSynth.h"
 
 #import "PdDispatcher.h"
-#import "PuzzleLayer.h"
+#import "PFLPuzzleLayer.h"
 #import "PFLEvent.h"
 
 static NSString *const kActivateNoise = @"activateNoise";

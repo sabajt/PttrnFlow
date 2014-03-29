@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Coord.h"
+#import "PFLCoord.h"
 
 @class PFLEvent;
 
 @protocol AudioResponder <NSObject>
 
 // responder must have a cell
-- (Coord *)audioCell;
+- (PFLCoord *)audioCell;
 
 // Triggered on touch down or step
 // Handle glyph actions here, like highlighting / animation

@@ -6,12 +6,12 @@
 //
 //
 
-#import "ColorUtils.h"
+#import "PFLColorUtils.h"
 
 NSString *const kPFLColorUtilsPurpleTheme = @"purple";
 NSString *const kPFLColorUtilsLightPurpleTheme = @"purple_light";
 
-@implementation ColorUtils
+@implementation PFLColorUtils
 
 #pragma mark - conversions
 
@@ -66,10 +66,10 @@ NSString *const kPFLColorUtilsLightPurpleTheme = @"purple_light";
 + (ccColor3B)audioPanelEdgeWithTheme:(NSString *)theme
 {
     if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
-        return [ColorUtils darkPurple];
+        return [PFLColorUtils darkPurple];
     }
     else if ([theme isEqualToString:kPFLColorUtilsLightPurpleTheme]) {
-        return [ColorUtils dimPurple];
+        return [PFLColorUtils dimPurple];
     }
     CCLOG(@"Warning theme '%@' not recognized", theme);
     return ccBLACK;
@@ -78,10 +78,10 @@ NSString *const kPFLColorUtilsLightPurpleTheme = @"purple_light";
 + (ccColor3B)audioPanelFillWithTheme:(NSString *)theme
 {
     if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
-        return [ColorUtils darkPurple];
+        return [PFLColorUtils darkPurple];
     }
     else if ([theme isEqualToString:kPFLColorUtilsLightPurpleTheme]) {
-        return [ColorUtils darkCream];
+        return [PFLColorUtils darkCream];
     }
     CCLOG(@"Warning theme '%@' not recognized", theme);
     return ccBLACK;
@@ -90,10 +90,10 @@ NSString *const kPFLColorUtilsLightPurpleTheme = @"purple_light";
 + (ccColor3B)backgroundWithTheme:(NSString *)theme
 {
     if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
-        return [ColorUtils darkGray];
+        return [PFLColorUtils darkGray];
     }
     else if ([theme isEqualToString:kPFLColorUtilsLightPurpleTheme]) {
-        return [ColorUtils darkCream];
+        return [PFLColorUtils darkCream];
     }
     CCLOG(@"Warning theme '%@' not recognized", theme);
     return ccBLACK;
@@ -102,10 +102,10 @@ NSString *const kPFLColorUtilsLightPurpleTheme = @"purple_light";
 + (ccColor3B)controlButtonsDefaultWithTheme:(NSString *)theme
 {
     if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
-        return [ColorUtils dimPurple];
+        return [PFLColorUtils dimPurple];
     }
     else if ([theme isEqualToString:kPFLColorUtilsLightPurpleTheme]) {
-        return [ColorUtils dimPurple];
+        return [PFLColorUtils dimPurple];
     }
     CCLOG(@"Warning theme '%@' not recognized", theme);
     return ccBLACK;
@@ -114,10 +114,10 @@ NSString *const kPFLColorUtilsLightPurpleTheme = @"purple_light";
 + (ccColor3B)controlButtonsActiveWithTheme:(NSString *)theme
 {
     if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
-        return [ColorUtils darkPurple];
+        return [PFLColorUtils darkPurple];
     }
     else if ([theme isEqualToString:kPFLColorUtilsLightPurpleTheme]) {
-        return [ColorUtils darkPurple];
+        return [PFLColorUtils darkPurple];
     }
     CCLOG(@"Warning theme '%@' not recognized", theme);
     return ccBLACK;
@@ -126,10 +126,10 @@ NSString *const kPFLColorUtilsLightPurpleTheme = @"purple_light";
 + (ccColor3B)controlPanelEdgeWithTheme:(NSString *)theme
 {
     if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
-        return [ColorUtils darkPurple];
+        return [PFLColorUtils darkPurple];
     }
     else if ([theme isEqualToString:kPFLColorUtilsLightPurpleTheme]) {
-        return [ColorUtils dimPurple];
+        return [PFLColorUtils dimPurple];
     }
     CCLOG(@"Warning theme '%@' not recognized", theme);
     return ccBLACK;
@@ -138,10 +138,10 @@ NSString *const kPFLColorUtilsLightPurpleTheme = @"purple_light";
 + (ccColor3B)controlPanelFillWithTheme:(NSString *)theme
 {
     if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
-        return [ColorUtils darkCream];
+        return [PFLColorUtils darkCream];
     }
     else if ([theme isEqualToString:kPFLColorUtilsLightPurpleTheme]) {
-        return [ColorUtils darkCream];
+        return [PFLColorUtils darkCream];
     }
     CCLOG(@"Warning theme '%@' not recognized", theme);
     return ccBLACK;
@@ -150,10 +150,10 @@ NSString *const kPFLColorUtilsLightPurpleTheme = @"purple_light";
 + (ccColor3B)glyphActiveWithTheme:(NSString *)theme
 {
     if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
-        return [ColorUtils activeYellow];
+        return [PFLColorUtils activeYellow];
     }
     else if ([theme isEqualToString:kPFLColorUtilsLightPurpleTheme]) {
-        return [ColorUtils activeYellow];
+        return [PFLColorUtils activeYellow];
     }
     CCLOG(@"Warning theme '%@' not recognized", theme);
     return ccBLACK;
@@ -162,10 +162,10 @@ NSString *const kPFLColorUtilsLightPurpleTheme = @"purple_light";
 + (ccColor3B)glyphDetailWithTheme:(NSString *)theme
 {
     if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
-        return [ColorUtils darkCream];
+        return [PFLColorUtils darkCream];
     }
     else if ([theme isEqualToString:kPFLColorUtilsLightPurpleTheme]) {
-        return [ColorUtils darkCream];
+        return [PFLColorUtils darkCream];
     }
     CCLOG(@"Warning theme '%@' not recognized", theme);
     return ccBLACK;
@@ -174,10 +174,10 @@ NSString *const kPFLColorUtilsLightPurpleTheme = @"purple_light";
 + (ccColor3B)padHighlightWithTheme:(NSString *)theme
 {
     if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
-        return [ColorUtils activeYellow];
+        return [PFLColorUtils activeYellow];
     }
     else if ([theme isEqualToString:kPFLColorUtilsLightPurpleTheme]) {
-        return [ColorUtils darkPurple];
+        return [PFLColorUtils darkPurple];
     }
     CCLOG(@"Warning theme '%@' not recognized", theme);
     return ccBLACK;
@@ -187,15 +187,15 @@ NSString *const kPFLColorUtilsLightPurpleTheme = @"purple_light";
 {
     if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
         if (isStatic) {
-            return [ColorUtils dimPurple];
+            return [PFLColorUtils dimPurple];
         }
-        return [ColorUtils defaultPurple];
+        return [PFLColorUtils defaultPurple];
     }
     else if ([theme isEqualToString:kPFLColorUtilsLightPurpleTheme]) {
         if (isStatic) {
-            return [ColorUtils dimPurple];
+            return [PFLColorUtils dimPurple];
         }
-        return [ColorUtils defaultPurple];
+        return [PFLColorUtils defaultPurple];
     }
     CCLOG(@"Warning theme '%@' not recognized", theme);
     return ccBLACK;
@@ -204,10 +204,10 @@ NSString *const kPFLColorUtilsLightPurpleTheme = @"purple_light";
 + (ccColor3B)solutionButtonHighlightWithTheme:(NSString *)theme
 {
     if ([theme isEqualToString:kPFLColorUtilsPurpleTheme]) {
-        return [ColorUtils activeYellow];
+        return [PFLColorUtils activeYellow];
     }
     else if ([theme isEqualToString:kPFLColorUtilsLightPurpleTheme]) {
-        return [ColorUtils darkPurple];
+        return [PFLColorUtils darkPurple];
     }
     CCLOG(@"Warning theme '%@' not recognized", theme);
     return ccBLACK;

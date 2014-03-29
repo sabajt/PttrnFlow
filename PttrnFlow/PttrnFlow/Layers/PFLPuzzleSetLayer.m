@@ -6,25 +6,25 @@
 //
 //
 
-#import "SequenceMenuLayer.h"
-#import "PuzzleLayer.h"
+#import "PFLPuzzleSetLayer.h"
+#import "PFLPuzzleLayer.h"
 #import "PFLPuzzle.h"
 #import "AudioTouchDispatcher.h"
 #import "PFLPuzzleSet.h"
 #import "PFLTransitionSlide.h"
 
-@interface SequenceMenuLayer ()
+@interface PFLPuzzleSetLayer ()
 
 @property (strong, nonatomic) PFLPuzzleSet *puzzleSet;
 
 @end
 
-@implementation SequenceMenuLayer
+@implementation PFLPuzzleSetLayer
 
 + (CCScene *)scene
 {
     CCScene *scene = [CCScene node];
-    SequenceMenuLayer *menuLayer = [[SequenceMenuLayer alloc] init];
+    PFLPuzzleSetLayer *menuLayer = [[PFLPuzzleSetLayer alloc] init];
     [scene addChild:menuLayer];
     return scene;
 }
@@ -56,7 +56,7 @@
 
 - (void)sequenceMenuCellTouchUpInside:(SequenceMenuCell *)cell index:(int)index
 {
-    CCScene *scene = [PuzzleLayer sceneWithPuzzle:self.puzzleSet.puzzles[index] leftPadding:0.0f rightPadding:0];
+    CCScene *scene = [PFLPuzzleLayer sceneWithPuzzle:self.puzzleSet.puzzles[index] leftPadding:0.0f rightPadding:0];
     id transitionScene = [[PFLTransitionSlide alloc] initWithDuration:0.33f scene:scene forwards:YES leftPadding:0.0f rightPadding:0.0f];
     [[CCDirector sharedDirector] replaceScene:transitionScene];
 }

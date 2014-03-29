@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class Coord, PFLPuzzle;
+@class PFLCoord, PFLPuzzle;
 
 @interface PFLGlyph : NSObject
 
 @property (strong, nonatomic) NSNumber *audioID;
 @property (copy, nonatomic) NSString *arrow;
-@property (strong, nonatomic) Coord *cell;
+@property (strong, nonatomic) PFLCoord *cell;
 @property (copy, nonatomic) NSString *entry;
 @property (assign) BOOL isStatic;
 @property (weak, nonatomic) PFLPuzzle *puzzle;

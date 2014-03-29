@@ -11,7 +11,7 @@
 
 @class PFLGlyph;
 
-@interface AudioPad : CCSprite <AudioResponder>
+@interface PFLAudioPadSprite : CCSprite <AudioResponder>
 
 @property (assign) BOOL isStatic;
 

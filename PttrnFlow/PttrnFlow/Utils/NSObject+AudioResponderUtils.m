@@ -7,7 +7,7 @@
 //
 
 #import "AudioResponder.h"
-#import "Coord.h"
+#import "PFLCoord.h"
 #import "NSObject+AudioResponderUtils.h"
 #import <objc/runtime.h>
 
@@ -25,7 +25,7 @@
     return [objc_getAssociatedObject(self, @selector(beatDuration)) floatValue];
 }
 
-- (NSArray *)responders:(NSArray *)responders atCoord:(Coord *)coord
+- (NSArray *)responders:(NSArray *)responders atCoord:(PFLCoord *)coord
 {
     NSMutableArray *results = [NSMutableArray array];
     for (id<AudioResponder> responder in responders) {
@@ -34,7 +34,7 @@
             return nil;
         }
         
-        Coord *responderCoord = [responder audioCell];
+        PFLCoord *responderCoord = [responder audioCell];
         if ([responderCoord isEqualToCoord:coord]) {
             [results addObject:responder];
         }
@@ -42,7 +42,7 @@
     return [NSArray arrayWithArray:results];
 }
 
-- (NSArray *)hitResponders:(NSArray *)responders atCoord:(Coord *)coord
+- (NSArray *)hitResponders:(NSArray *)responders atCoord:(PFLCoord *)coord
 {
     // collect events from all hit cells
     NSArray *events = [NSArray array];

@@ -1,5 +1,5 @@
 //
-//  PuzzleLayer.h
+//  PFLPuzzleLayer.h
 //  SequencerGame
 //
 //  Created by John Saba on 1/26/13.
@@ -8,11 +8,11 @@
 
 #import "cocos2d.h"
 #import "PFLScrollLayer.h"
-#import "SequenceControlsLayer.h"
+#import "PFLPuzzleControlsLayer.h"
 
 @class PdDispatcher, SequenceDispatcher, AudioTouchDispatcher;
 
-@interface PuzzleLayer : PFLScrollLayer
+@interface PFLPuzzleLayer : PFLScrollLayer
 {
     PdDispatcher *_dispatcher;
     void *_patch;

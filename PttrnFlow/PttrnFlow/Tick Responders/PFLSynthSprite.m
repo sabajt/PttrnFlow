@@ -6,12 +6,12 @@
 //
 //
 
-#import "Synth.h"
+#import "PFLSynthSprite.h"
 #import "CCNode+Grid.h"
-#import "ColorUtils.h"
+#import "PFLColorUtils.h"
 #import "PFLEvent.h"
 
-@interface Synth ()
+@interface PFLSynthSprite ()
 
 @property (assign) ccColor3B defaultColor;
 @property (assign) ccColor3B activeColor;
@@ -19,9 +19,9 @@
 
 @end
 
-@implementation Synth
+@implementation PFLSynthSprite
 
-- (id)initWithCell:(Coord *)cell
+- (id)initWithCell:(PFLCoord *)cell
            audioID:(NSNumber *)audioID
              synth:(NSString *)synth
               midi:(NSNumber *)midi
@@ -30,8 +30,8 @@
 {
     self = [super initWithSpriteFrameName:image];
     if (self) {
-        self.defaultColor = [ColorUtils cream];
-        self.activeColor = [ColorUtils activeYellow];
+        self.defaultColor = [PFLColorUtils cream];
+        self.activeColor = [PFLColorUtils activeYellow];
         self.color = self.defaultColor;
         
         self.event = [PFLEvent synthEventWithAudioID:audioID midiValue:[midi stringValue] synthType:synth];
@@ -45,7 +45,7 @@
 
 #pragma mark - AudioResponder
 
-- (Coord *)audioCell
+- (PFLCoord *)audioCell
 {
     return self.cell;
 }

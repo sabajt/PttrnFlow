@@ -7,7 +7,7 @@
 //
 
 #import "NSString+Degrees.h"
-#import "GameConstants.h"
+#import "PFLGameConstants.h"
 
 @implementation NSString (Degrees)
 

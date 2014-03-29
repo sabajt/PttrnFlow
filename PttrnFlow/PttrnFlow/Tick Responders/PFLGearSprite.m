@@ -6,9 +6,9 @@
 //
 //
 
-#import "ColorUtils.h"
+#import "PFLColorUtils.h"
 #import "CCNode+Grid.h"
-#import "Gear.h"
+#import "PFLGearSprite.h"
 #import "PFLEvent.h"
 #import "MainSynth.h"
 #import "PFLPuzzle.h"
@@ -17,7 +17,7 @@
 #import "PFLGlyph.h"
 #import "PFLPuzzleSet.h"
 
-@interface Gear ()
+@interface PFLGearSprite ()
 
 @property (assign) ccColor3B defaultColor;
 @property (assign) ccColor3B activeColor;
@@ -26,15 +26,15 @@
 
 @end
 
-@implementation Gear
+@implementation PFLGearSprite
 
 - (id)initWithGlyph:(PFLGlyph *)glyph multiSample:(PFLMultiSample *)multiSample
 {
     self = [super initWithSpriteFrameName:@"audio_circle.png"];
     if (self) {;
         NSString *theme = glyph.puzzle.puzzleSet.theme;
-        self.defaultColor = [ColorUtils glyphDetailWithTheme:theme];
-        self.activeColor = [ColorUtils glyphActiveWithTheme:theme];
+        self.defaultColor = [PFLColorUtils glyphDetailWithTheme:theme];
+        self.activeColor = [PFLColorUtils glyphActiveWithTheme:theme];
         self.color = self.defaultColor;
         
         // CCNode+Grid
@@ -54,11 +54,11 @@
             CCSprite *audioUnit = [CCSprite spriteWithSpriteFrameName:@"audio_unit.png"];
             static CGFloat unitPadding = 4.0f;
             audioUnit.position = ccp(container.contentSize.width / 2, (container.contentSize.height - audioUnit.contentSize.height / 2) - unitPadding);
-            audioUnit.color = [ColorUtils glyphDetailWithTheme:theme];
+            audioUnit.color = [PFLColorUtils glyphDetailWithTheme:theme];
             
             // unit symbol
             CCSprite *unitSymbol = [CCSprite spriteWithSpriteFrameName:sample.image];
-            unitSymbol.color = [ColorUtils padWithTheme:theme isStatic:glyph.isStatic];
+            unitSymbol.color = [PFLColorUtils padWithTheme:theme isStatic:glyph.isStatic];
             CGFloat symbolPadding = 2.0f;
             unitSymbol.position = ccp(audioUnit.contentSize.width / 2.0f, audioUnit.contentSize.height / 2.0f + symbolPadding);
             
@@ -75,7 +75,7 @@
 
 #pragma mark - AudioResponder
 
-- (Coord *)audioCell
+- (PFLCoord *)audioCell
 {
     return self.cell;
 }
