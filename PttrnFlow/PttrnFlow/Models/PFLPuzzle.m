@@ -45,7 +45,6 @@ static NSString *const kSynth = @"synth";
         self.puzzleSet = puzzleSet;
         self.solution = json[kSolution];
         
-        
         NSMutableArray *audio = [NSMutableArray array];
         for (NSDictionary *a in json[kAudio]) {
             NSArray *s = a[kSamples];

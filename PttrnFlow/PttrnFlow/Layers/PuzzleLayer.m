@@ -47,7 +47,8 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 @property (assign) CGFloat beatDuration;
 @property (assign) CGPoint gridOrigin; // TODO: using grid origin except for drawing debug grid?
 @property (assign) Coord *maxCoord;
-@property (weak, nonatomic) PFLPuzzle *puzzle;
+@property (strong, nonatomic) PFLPuzzle *puzzle;
+@property (strong, nonatomic) PFLPuzzleSet *puzzleSet;
 @property (assign) CGRect puzzleBounds;
 @property (assign) CGSize screenSize;
 @property (assign) BOOL shouldDrawGrid; // debugging
@@ -88,6 +89,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         // would be better to do figure out best practice and get screen size more explicitly
         self.screenSize = self.contentSize;
         self.puzzle = puzzle;
+        self.puzzleSet = puzzle.puzzleSet;
         
         // Initialize Pure Data stuff
         
@@ -403,6 +405,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 - (void)animateBacklight:(Coord *)coord
 {
     CCSprite *highlightSprite = [CCSprite spriteWithSpriteFrameName:@"audio_box_highlight.png"];
+        
     highlightSprite.color = [ColorUtils padHighlightWithTheme:self.puzzle.puzzleSet.theme];
     highlightSprite.position = [coord relativeMidpoint];
     [self.audioObjectsBatchNode addChild:highlightSprite z:ZOrderAudioBatchPadBacklight];
