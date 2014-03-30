@@ -189,7 +189,6 @@
 		335F5E2C18BEE90000BF14DD /* marimba-58.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E1C18BEE90000BF14DD /* marimba-58.wav */; };
 		33630CBC1804E52200A9F9EE /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 33630CBB1804E52200A9F9EE /* Default-568h.png */; };
 		338112B2183D7E870012E528 /* PFLSynthSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 338112B1183D7E870012E528 /* PFLSynthSprite.m */; };
-		338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */; };
 		3391F54318A1A0A00096F5D3 /* NSObject+PFLAudioResponderUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3391F54218A1A0A00096F5D3 /* NSObject+PFLAudioResponderUtils.m */; };
 		339ACE711884E23700F3D839 /* puzzle4.json in Resources */ = {isa = PBXBuildFile; fileRef = 339ACE6F1884E23700F3D839 /* puzzle4.json */; };
 		339ACE721884E23700F3D839 /* puzzle5.json in Resources */ = {isa = PBXBuildFile; fileRef = 339ACE701884E23700F3D839 /* puzzle5.json */; };
@@ -596,8 +595,6 @@
 		33630CBB1804E52200A9F9EE /* Default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h.png"; path = "Resources/Default-568h.png"; sourceTree = "<group>"; };
 		338112B0183D7E870012E528 /* PFLSynthSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLSynthSprite.h; sourceTree = "<group>"; };
 		338112B1183D7E870012E528 /* PFLSynthSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PFLSynthSprite.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		338EE1B217A5F1D2005E98B1 /* NSArray+CompareNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CompareNumbers.h"; sourceTree = "<group>"; };
-		338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CompareNumbers.m"; sourceTree = "<group>"; };
 		3391F54118A1A0A00096F5D3 /* NSObject+PFLAudioResponderUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PFLAudioResponderUtils.h"; sourceTree = "<group>"; };
 		3391F54218A1A0A00096F5D3 /* NSObject+PFLAudioResponderUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSObject+PFLAudioResponderUtils.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		339ACE6F1884E23700F3D839 /* puzzle4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle4.json; sourceTree = "<group>"; };
@@ -1132,8 +1129,6 @@
 				1624D1E91733822B00851B45 /* PFLColorUtils.m */,
 				1608086316B43CEF00039339 /* PFLGameConstants.h */,
 				1608086416B43CEF00039339 /* PFLGameConstants.m */,
-				338EE1B217A5F1D2005E98B1 /* NSArray+CompareNumbers.h */,
-				338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */,
 				33C3B1D11876FA91008F5FA8 /* PFLCoord.h */,
 				33C3B1D21876FA91008F5FA8 /* PFLCoord.m */,
 				3302EF6C1879C92C0032AD58 /* PFLGeometry.h */,
@@ -1711,7 +1706,6 @@
 				1608086D16B43CEF00039339 /* PFLGameConstants.m in Sources */,
 				1608088016B43FE500039339 /* PFLAppDelegate.m in Sources */,
 				1608088316B4416000039339 /* PFLPuzzleLayer.m in Sources */,
-				338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */,
 				33A957EF188D5B43006BF182 /* PFLArrowSprite.m in Sources */,
 				334B2AE3181C47B900865510 /* PFLClippingSprite.m in Sources */,
 				33DD836E18D7C3A200EF90C7 /* NSArray+PFLCompareObjects.m in Sources */,
