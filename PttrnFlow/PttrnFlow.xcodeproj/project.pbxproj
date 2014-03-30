@@ -124,7 +124,6 @@
 		1624D1EA1733822C00851B45 /* PFLColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1624D1E91733822B00851B45 /* PFLColorUtils.m */; };
 		163091F0177DEDA9003155BB /* PFLPuzzleBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091EF177DEDA9003155BB /* PFLPuzzleBackgroundLayer.m */; };
 		163DBE0117692C3100FCB89C /* PFLPuzzleSetLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 163DBE0017692C3100FCB89C /* PFLPuzzleSetLayer.m */; };
-		163DBE081769325400FCB89C /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 163DBE071769325400FCB89C /* UIImage+Utils.m */; };
 		168FA4E8173A08C7004C26AD /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 168FA4DB173A08C7004C26AD /* blank.png */; };
 		168FA4E9173A08C7004C26AD /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 168FA4DC173A08C7004C26AD /* Default-Landscape~ipad.png */; };
 		168FA4EA173A08C7004C26AD /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 168FA4DD173A08C7004C26AD /* Default.png */; };
@@ -520,8 +519,6 @@
 		163091EF177DEDA9003155BB /* PFLPuzzleBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLPuzzleBackgroundLayer.m; sourceTree = "<group>"; };
 		163DBDFF17692C3000FCB89C /* PFLPuzzleSetLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLPuzzleSetLayer.h; sourceTree = "<group>"; };
 		163DBE0017692C3100FCB89C /* PFLPuzzleSetLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLPuzzleSetLayer.m; sourceTree = "<group>"; };
-		163DBE061769325400FCB89C /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
-		163DBE071769325400FCB89C /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
 		168FA4DB173A08C7004C26AD /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blank.png; path = Resources/blank.png; sourceTree = "<group>"; };
 		168FA4DC173A08C7004C26AD /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Resources/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		168FA4DD173A08C7004C26AD /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
@@ -1135,8 +1132,6 @@
 				1624D1E91733822B00851B45 /* PFLColorUtils.m */,
 				1608086316B43CEF00039339 /* PFLGameConstants.h */,
 				1608086416B43CEF00039339 /* PFLGameConstants.m */,
-				163DBE061769325400FCB89C /* UIImage+Utils.h */,
-				163DBE071769325400FCB89C /* UIImage+Utils.m */,
 				338EE1B217A5F1D2005E98B1 /* NSArray+CompareNumbers.h */,
 				338EE1B317A5F1D2005E98B1 /* NSArray+CompareNumbers.m */,
 				33C3B1D11876FA91008F5FA8 /* PFLCoord.h */,
@@ -1722,7 +1717,6 @@
 				33DD836E18D7C3A200EF90C7 /* NSArray+PFLCompareObjects.m in Sources */,
 				1624D1EA1733822C00851B45 /* PFLColorUtils.m in Sources */,
 				163DBE0117692C3100FCB89C /* PFLPuzzleSetLayer.m in Sources */,
-				163DBE081769325400FCB89C /* UIImage+Utils.m in Sources */,
 				16A4277C176BF0A100BEF13F /* PFLPuzzleControlsLayer.m in Sources */,
 				33EE317017C92C3C004CC016 /* PFLAudioResponderTouchController.m in Sources */,
 				16A942B71777A2260052D5BD /* PFLPatchController.m in Sources */,
