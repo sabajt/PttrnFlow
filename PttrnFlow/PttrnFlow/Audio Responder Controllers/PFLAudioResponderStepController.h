@@ -1,5 +1,5 @@
 //
-//  SequenceDispatcher.h
+//  PFLAudioResponderStepController.h
 //  PttrnFlow
 //
 //  Created by John Saba on 2/3/14.

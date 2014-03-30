@@ -1,5 +1,5 @@
 //
-//  AudioTouchDispatcher.m
+//  PFLAudioResponderTouchController.m
 //  PttrnFlow
 //
 //  Created by John Saba on 8/24/13.
