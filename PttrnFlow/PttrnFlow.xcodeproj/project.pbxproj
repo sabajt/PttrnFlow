@@ -198,7 +198,7 @@
 		33A64C45183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 33A64C43183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt */; };
 		33A64C46183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png in Resources */ = {isa = PBXBuildFile; fileRef = 33A64C44183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png */; };
 		33A7C4E9189ED8C3000EBCA7 /* PFLEntrySprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A7C4E8189ED8C3000EBCA7 /* PFLEntrySprite.m */; };
-		33A7C50918A08896000EBCA7 /* PFLStepController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A7C50818A08896000EBCA7 /* PFLStepController.m */; };
+		33A7C50918A08896000EBCA7 /* PFLAudioResponderStepController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A7C50818A08896000EBCA7 /* PFLAudioResponderStepController.m */; };
 		33A957E9188C561B006BF182 /* PFLToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957E8188C561B006BF182 /* PFLToggleButton.m */; };
 		33A957EC188C8236006BF182 /* PFLBasicButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957EB188C8236006BF182 /* PFLBasicButton.m */; };
 		33A957EF188D5B43006BF182 /* PFLArrowSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957EE188D5B43006BF182 /* PFLArrowSprite.m */; };
@@ -226,7 +226,7 @@
 		33E4F6F818788CF6005571F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160806C616B437A700039339 /* UIKit.framework */; };
 		33E4F6FE18788CF6005571F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33E4F6FC18788CF6005571F4 /* InfoPlist.strings */; };
 		33E4F70018788CF6005571F4 /* PttrnFlow_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E4F6FF18788CF6005571F4 /* PttrnFlow_Tests.m */; };
-		33EE317017C92C3C004CC016 /* PFLAudioTouchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33EE316F17C92C3C004CC016 /* PFLAudioTouchController.m */; };
+		33EE317017C92C3C004CC016 /* PFLAudioResponderTouchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33EE316F17C92C3C004CC016 /* PFLAudioResponderTouchController.m */; };
 		33F4847F18E248CD00237C9B /* PFLTransitionSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F4847E18E248CD00237C9B /* PFLTransitionSlide.m */; };
 		33F8A31317B9F104003B33E5 /* pf-main.pd in Resources */ = {isa = PBXBuildFile; fileRef = 33F8A31117B9F104003B33E5 /* pf-main.pd */; };
 /* End PBXBuildFile section */
@@ -611,8 +611,8 @@
 		33A64C44183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arial-rounded-mt-bold-12fnt.png"; sourceTree = "<group>"; };
 		33A7C4E7189ED8C3000EBCA7 /* PFLEntrySprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLEntrySprite.h; sourceTree = "<group>"; };
 		33A7C4E8189ED8C3000EBCA7 /* PFLEntrySprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PFLEntrySprite.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		33A7C50718A08896000EBCA7 /* PFLStepController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLStepController.h; sourceTree = "<group>"; };
-		33A7C50818A08896000EBCA7 /* PFLStepController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PFLStepController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		33A7C50718A08896000EBCA7 /* PFLAudioResponderStepController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLAudioResponderStepController.h; sourceTree = "<group>"; };
+		33A7C50818A08896000EBCA7 /* PFLAudioResponderStepController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PFLAudioResponderStepController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		33A957E7188C561B006BF182 /* PFLToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLToggleButton.h; sourceTree = "<group>"; };
 		33A957E8188C561B006BF182 /* PFLToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLToggleButton.m; sourceTree = "<group>"; };
 		33A957EA188C8236006BF182 /* PFLBasicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLBasicButton.h; sourceTree = "<group>"; };
@@ -656,8 +656,8 @@
 		33E4F6FD18788CF6005571F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		33E4F6FF18788CF6005571F4 /* PttrnFlow_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PttrnFlow_Tests.m; sourceTree = "<group>"; };
 		33E4F70118788CF6005571F4 /* PttrnFlow Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PttrnFlow Tests-Prefix.pch"; sourceTree = "<group>"; };
-		33EE316E17C92C3C004CC016 /* PFLAudioTouchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLAudioTouchController.h; sourceTree = "<group>"; };
-		33EE316F17C92C3C004CC016 /* PFLAudioTouchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PFLAudioTouchController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		33EE316E17C92C3C004CC016 /* PFLAudioResponderTouchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLAudioResponderTouchController.h; sourceTree = "<group>"; };
+		33EE316F17C92C3C004CC016 /* PFLAudioResponderTouchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PFLAudioResponderTouchController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		33F4847D18E248CD00237C9B /* PFLTransitionSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLTransitionSlide.h; sourceTree = "<group>"; };
 		33F4847E18E248CD00237C9B /* PFLTransitionSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLTransitionSlide.m; sourceTree = "<group>"; };
 		33F8A31117B9F104003B33E5 /* pf-main.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-main.pd"; sourceTree = "<group>"; };
@@ -1237,10 +1237,10 @@
 		16A942A51777A2250052D5BD /* Sequence Model */ = {
 			isa = PBXGroup;
 			children = (
-				33EE316E17C92C3C004CC016 /* PFLAudioTouchController.h */,
-				33EE316F17C92C3C004CC016 /* PFLAudioTouchController.m */,
-				33A7C50718A08896000EBCA7 /* PFLStepController.h */,
-				33A7C50818A08896000EBCA7 /* PFLStepController.m */,
+				33EE316E17C92C3C004CC016 /* PFLAudioResponderTouchController.h */,
+				33EE316F17C92C3C004CC016 /* PFLAudioResponderTouchController.m */,
+				33A7C50718A08896000EBCA7 /* PFLAudioResponderStepController.h */,
+				33A7C50818A08896000EBCA7 /* PFLAudioResponderStepController.m */,
 			);
 			path = "Sequence Model";
 			sourceTree = "<group>";
@@ -1681,7 +1681,7 @@
 				33DD834618D4C8F800EF90C7 /* PFLPuzzle.m in Sources */,
 				160807DE16B437A900039339 /* CCArray.m in Sources */,
 				160807E116B437A900039339 /* ccCArray.m in Sources */,
-				33A7C50918A08896000EBCA7 /* PFLStepController.m in Sources */,
+				33A7C50918A08896000EBCA7 /* PFLAudioResponderStepController.m in Sources */,
 				160807E416B437AA00039339 /* CCFileUtils.m in Sources */,
 				160807E716B437AA00039339 /* CCProfiling.m in Sources */,
 				160807E916B437AA00039339 /* ccUtils.c in Sources */,
@@ -1724,7 +1724,7 @@
 				163DBE0117692C3100FCB89C /* PFLPuzzleSetLayer.m in Sources */,
 				163DBE081769325400FCB89C /* UIImage+Utils.m in Sources */,
 				16A4277C176BF0A100BEF13F /* PFLPuzzleControlsLayer.m in Sources */,
-				33EE317017C92C3C004CC016 /* PFLAudioTouchController.m in Sources */,
+				33EE317017C92C3C004CC016 /* PFLAudioResponderTouchController.m in Sources */,
 				16A942B71777A2260052D5BD /* PFLPatchController.m in Sources */,
 				334B2ADD181C2F4B00865510 /* PFLTouchSprite.m in Sources */,
 				16A942C51777ABFA0052D5BD /* PFLSequenceMenuCell.m in Sources */,

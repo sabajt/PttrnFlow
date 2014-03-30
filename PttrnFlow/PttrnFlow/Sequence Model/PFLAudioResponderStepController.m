@@ -7,7 +7,7 @@
 //
 
 #import "PFLAudioResponder.h"
-#import "PFLStepController.h"
+#import "PFLAudioResponderStepController.h"
 #import "CCNode+Grid.h"
 #import "PFLPatchController.h"
 #import "NSObject+AudioResponderUtils.h"
@@ -24,7 +24,7 @@ NSString *const kKeyCoord = @"coord";
 NSString *const kKeyCorrectHit = @"correctHit";
 NSString *const kKeyEmpty = @"empty";
 
-@interface PFLStepController ()
+@interface PFLAudioResponderStepController ()
 
 @property (strong, nonatomic) PFLPuzzle *puzzle;
 @property (assign) NSInteger userSequenceIndex;
@@ -35,7 +35,7 @@ NSString *const kKeyEmpty = @"empty";
 
 @end
 
-@implementation PFLStepController
+@implementation PFLAudioResponderStepController
 
 - (id)initWithPuzzle:(PFLPuzzle *)puzzle
 {

@@ -6,7 +6,7 @@
 //
 //
 
-#import "PFLAudioTouchController.h"
+#import "PFLAudioResponderTouchController.h"
 #import "PFLEvent.h"
 #import "PFLPatchController.h"
 #import "PFLCoord.h"
@@ -17,14 +17,14 @@
 NSString *const kPFLAudioTouchDispatcherCoordKey = @"coord";
 NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispatcherHitNotification";
 
-@interface PFLAudioTouchController ()
+@interface PFLAudioResponderTouchController ()
 
 @property (strong, nonatomic) NSMutableArray *responders;
 @property (assign) CFMutableDictionaryRef trackingTouches;
 
 @end
 
-@implementation PFLAudioTouchController
+@implementation PFLAudioResponderTouchController
 
 - (id)initWithBeatDuration:(CGFloat)duration
 {

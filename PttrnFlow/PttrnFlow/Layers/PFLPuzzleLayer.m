@@ -8,7 +8,7 @@
 
 #import "PFLArrowSprite.h"
 #import "PFLAudioPadSprite.h"
-#import "PFLAudioTouchController.h"
+#import "PFLAudioResponderTouchController.h"
 #import "PFLPuzzleBackgroundLayer.h"
 #import "CCSprite+PFLEffects.h"
 #import "PFLColorUtils.h"
@@ -22,7 +22,7 @@
 #import "PFLPuzzle.h"
 #import "PFLPuzzleLayer.h"
 #import "PFLPuzzleControlsLayer.h"
-#import "PFLStepController.h"
+#import "PFLAudioResponderStepController.h"
 #import "SimpleAudioEngine.h"
 #import "PFLSynthSprite.h"
 #import "PFLGlyph.h"
@@ -155,7 +155,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         
         // audio touch dispatcher
         CGFloat beatDuration = self.beatDuration;
-        PFLAudioTouchController *audioTouchDispatcher = [[PFLAudioTouchController alloc] initWithBeatDuration:beatDuration];
+        PFLAudioResponderTouchController *audioTouchDispatcher = [[PFLAudioResponderTouchController alloc] initWithBeatDuration:beatDuration];
         self.audioTouchDispatcher = audioTouchDispatcher;
         self.scrollDelegate = audioTouchDispatcher;
         [audioTouchDispatcher clearResponders];
@@ -163,7 +163,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         [self addChild:audioTouchDispatcher];
         
         // sequence dispacher
-        PFLStepController *sequenceDispatcher = [[PFLStepController alloc] initWithPuzzle:puzzle];
+        PFLAudioResponderStepController *sequenceDispatcher = [[PFLAudioResponderStepController alloc] initWithPuzzle:puzzle];
         self.sequenceDispatcher = sequenceDispatcher;
         [sequenceDispatcher clearResponders];
         [self addChild:sequenceDispatcher];

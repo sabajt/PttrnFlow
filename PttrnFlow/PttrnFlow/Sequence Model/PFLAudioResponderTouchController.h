@@ -12,7 +12,7 @@
 FOUNDATION_EXPORT NSString *const kPFLAudioTouchDispatcherCoordKey;
 FOUNDATION_EXPORT NSString *const kPFLAudioTouchDispatcherHitNotification;
 
-@interface PFLAudioTouchController : CCNode <CCTargetedTouchDelegate, ScrollLayerDelegate>
+@interface PFLAudioResponderTouchController : CCNode <CCTargetedTouchDelegate, ScrollLayerDelegate>
 
 @property (assign) BOOL allowScrolling;
 @property (strong, nonatomic) NSArray *areaCells;
