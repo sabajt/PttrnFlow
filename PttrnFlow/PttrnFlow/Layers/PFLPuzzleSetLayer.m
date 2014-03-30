@@ -33,6 +33,8 @@
 {
     self = [super init];
     if (self) {
+        self.allowsScrollHorizontal = NO;
+        
         self.puzzleSet = [PFLPuzzleSet puzzleSetFromResource:@"puzzleSet0"];
         
         // create and layout cells
@@ -40,7 +42,7 @@
         CGSize padding = CGSizeMake(20, 20);
         int i = 0;
         for (PFLPuzzle *puzzle in self.puzzleSet.puzzles) {
-            PFLSequenceMenuCell *cell = [[PFLSequenceMenuCell alloc] initWithIndex:i];
+            PFLPuzzleSetCell *cell = [[PFLPuzzleSetCell alloc] initWithIndex:i];
             cell.anchorPoint = ccp(0.5, 0.5);
             CGFloat yPosition = sideMargins.height + ((i * cell.contentSize.height) + (i * padding.height));
             cell.position = ccp(self.contentSize.width / 2, yPosition);
@@ -54,7 +56,7 @@
 
 #pragma mark SequenceMenuCellDelegate
 
-- (void)sequenceMenuCellTouchUpInside:(PFLSequenceMenuCell *)cell index:(int)index
+- (void)puzzleSetCellTouchUpInside:(PFLPuzzleSetCell *)cell index:(NSInteger)index
 {
     CCScene *scene = [PFLPuzzleLayer sceneWithPuzzle:self.puzzleSet.puzzles[index] leftPadding:0.0f rightPadding:0];
     id transitionScene = [[PFLTransitionSlide alloc] initWithDuration:0.33f scene:scene forwards:YES leftPadding:0.0f rightPadding:0.0f];

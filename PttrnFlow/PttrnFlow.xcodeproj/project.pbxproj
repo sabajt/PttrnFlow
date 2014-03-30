@@ -144,7 +144,7 @@
 		1693C666177A628300FEB350 /* drum4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C664177A628200FEB350 /* drum4.wav */; };
 		16A4277C176BF0A100BEF13F /* PFLPuzzleControlsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4277B176BF0A100BEF13F /* PFLPuzzleControlsLayer.m */; };
 		16A942B71777A2260052D5BD /* PFLPatchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A41777A2250052D5BD /* PFLPatchController.m */; };
-		16A942C51777ABFA0052D5BD /* PFLSequenceMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942C21777ABFA0052D5BD /* PFLSequenceMenuCell.m */; };
+		16A942C51777ABFA0052D5BD /* PFLPuzzleSetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942C21777ABFA0052D5BD /* PFLPuzzleSetCell.m */; };
 		3302EF6E1879C92C0032AD58 /* PFLGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302EF6D1879C92C0032AD58 /* PFLGeometry.m */; };
 		3309B70C18E756CE006CF167 /* NSString+PFLDegrees.m in Sources */ = {isa = PBXBuildFile; fileRef = 3309B70B18E756CE006CF167 /* NSString+PFLDegrees.m */; };
 		330A580218C5A82A00DC97B7 /* puzzle6.json in Resources */ = {isa = PBXBuildFile; fileRef = 330A580018C5A82A00DC97B7 /* puzzle6.json */; };
@@ -152,6 +152,10 @@
 		332ED02318E7F3A600F23143 /* PFLAudioResponderStepController.m in Sources */ = {isa = PBXBuildFile; fileRef = 332ED02018E7F3A600F23143 /* PFLAudioResponderStepController.m */; };
 		332ED02418E7F3A600F23143 /* PFLAudioResponderTouchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 332ED02218E7F3A600F23143 /* PFLAudioResponderTouchController.m */; };
 		332ED02718E7F44500F23143 /* CCNode+PFLGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 332ED02518E7F44500F23143 /* CCNode+PFLGrid.m */; };
+		332ED02D18E8743C00F23143 /* menus-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 332ED02918E8743C00F23143 /* menus-hd.plist */; };
+		332ED02E18E8743C00F23143 /* menus-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 332ED02A18E8743C00F23143 /* menus-hd.png */; };
+		332ED02F18E8743C00F23143 /* menus.plist in Resources */ = {isa = PBXBuildFile; fileRef = 332ED02B18E8743C00F23143 /* menus.plist */; };
+		332ED03018E8743C00F23143 /* menus.png in Resources */ = {isa = PBXBuildFile; fileRef = 332ED02C18E8743C00F23143 /* menus.png */; };
 		3333501518DB84F60046D47B /* CCSprite+PFLEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 3333501418DB84F60046D47B /* CCSprite+PFLEffects.m */; };
 		3339C03118397638005771BC /* audioObjects-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02D18397638005771BC /* audioObjects-hd.plist */; };
 		3339C03218397638005771BC /* audioObjects-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3339C02E18397638005771BC /* audioObjects-hd.png */; };
@@ -539,8 +543,8 @@
 		16A4277B176BF0A100BEF13F /* PFLPuzzleControlsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLPuzzleControlsLayer.m; sourceTree = "<group>"; };
 		16A942A31777A2250052D5BD /* PFLPatchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLPatchController.h; sourceTree = "<group>"; };
 		16A942A41777A2250052D5BD /* PFLPatchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PFLPatchController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		16A942C11777ABFA0052D5BD /* PFLSequenceMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLSequenceMenuCell.h; sourceTree = "<group>"; };
-		16A942C21777ABFA0052D5BD /* PFLSequenceMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLSequenceMenuCell.m; sourceTree = "<group>"; };
+		16A942C11777ABFA0052D5BD /* PFLPuzzleSetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLPuzzleSetCell.h; sourceTree = "<group>"; };
+		16A942C21777ABFA0052D5BD /* PFLPuzzleSetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLPuzzleSetCell.m; sourceTree = "<group>"; };
 		3302EF6C1879C92C0032AD58 /* PFLGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLGeometry.h; sourceTree = "<group>"; };
 		3302EF6D1879C92C0032AD58 /* PFLGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLGeometry.m; sourceTree = "<group>"; };
 		3309B70B18E756CE006CF167 /* NSString+PFLDegrees.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PFLDegrees.m"; sourceTree = "<group>"; };
@@ -554,6 +558,10 @@
 		332ED02218E7F3A600F23143 /* PFLAudioResponderTouchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLAudioResponderTouchController.m; sourceTree = "<group>"; };
 		332ED02518E7F44500F23143 /* CCNode+PFLGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+PFLGrid.m"; sourceTree = "<group>"; };
 		332ED02618E7F44500F23143 /* CCNode+PFLGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+PFLGrid.h"; sourceTree = "<group>"; };
+		332ED02918E8743C00F23143 /* menus-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "menus-hd.plist"; sourceTree = "<group>"; };
+		332ED02A18E8743C00F23143 /* menus-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menus-hd.png"; sourceTree = "<group>"; };
+		332ED02B18E8743C00F23143 /* menus.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = menus.plist; sourceTree = "<group>"; };
+		332ED02C18E8743C00F23143 /* menus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menus.png; sourceTree = "<group>"; };
 		3333501318DB84F60046D47B /* CCSprite+PFLEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCSprite+PFLEffects.h"; sourceTree = "<group>"; };
 		3333501418DB84F60046D47B /* CCSprite+PFLEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCSprite+PFLEffects.m"; sourceTree = "<group>"; };
 		3339C02D18397638005771BC /* audioObjects-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "audioObjects-hd.plist"; sourceTree = "<group>"; };
@@ -1218,8 +1226,8 @@
 		16A942C01777ABF90052D5BD /* UI Nodes */ = {
 			isa = PBXGroup;
 			children = (
-				16A942C11777ABFA0052D5BD /* PFLSequenceMenuCell.h */,
-				16A942C21777ABFA0052D5BD /* PFLSequenceMenuCell.m */,
+				16A942C11777ABFA0052D5BD /* PFLPuzzleSetCell.h */,
+				16A942C21777ABFA0052D5BD /* PFLPuzzleSetCell.m */,
 				339ACE7D1886C64100F3D839 /* PFLSolutionButton.h */,
 				339ACE7E1886C64100F3D839 /* PFLSolutionButton.m */,
 			);
@@ -1237,6 +1245,17 @@
 			path = "Audio Responder Controllers";
 			sourceTree = "<group>";
 		};
+		332ED02818E8743C00F23143 /* menus */ = {
+			isa = PBXGroup;
+			children = (
+				332ED02918E8743C00F23143 /* menus-hd.plist */,
+				332ED02A18E8743C00F23143 /* menus-hd.png */,
+				332ED02B18E8743C00F23143 /* menus.plist */,
+				332ED02C18E8743C00F23143 /* menus.png */,
+			);
+			path = menus;
+			sourceTree = "<group>";
+		};
 		3339C02C18397638005771BC /* audioObjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -1251,6 +1270,7 @@
 		334B2A8D181B02CA00865510 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				332ED02818E8743C00F23143 /* menus */,
 				3339C02C18397638005771BC /* audioObjects */,
 				335836A4181F486100921270 /* white_rect.png */,
 				334B2ACF181B03F000865510 /* background */,
@@ -1488,6 +1508,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				332ED03018E8743C00F23143 /* menus.png in Resources */,
 				334B2AD6181B03F000865510 /* background.plist in Resources */,
 				334B2ACD181B02CA00865510 /* uilayer.plist in Resources */,
 				335F5E2818BEE90000BF14DD /* marimba-62.wav in Resources */,
@@ -1513,9 +1534,11 @@
 				335F5E1F18BEE90000BF14DD /* marimba-54.wav in Resources */,
 				335F5E2718BEE90000BF14DD /* marimba-61.wav in Resources */,
 				168FA4F0173A08C7004C26AD /* Icon-Small.png in Resources */,
+				332ED02D18E8743C00F23143 /* menus-hd.plist in Resources */,
 				334B2ACE181B02CA00865510 /* uilayer.png in Resources */,
 				33BA5F22185E3385005A0452 /* puzzle0.json in Resources */,
 				33C3B1CA1874F591008F5FA8 /* pttrn1-01.wav in Resources */,
+				332ED02E18E8743C00F23143 /* menus-hd.png in Resources */,
 				168FA4F1173A08C7004C26AD /* Icon-Small@2x.png in Resources */,
 				334B2AD5181B03F000865510 /* background-hd.png in Resources */,
 				335F5E2418BEE90000BF14DD /* marimba-51.wav in Resources */,
@@ -1527,6 +1550,7 @@
 				168FA4F4173A08C7004C26AD /* iTunesArtwork in Resources */,
 				33630CBC1804E52200A9F9EE /* Default-568h.png in Resources */,
 				335F5E2318BEE90000BF14DD /* marimba-50.wav in Resources */,
+				332ED02F18E8743C00F23143 /* menus.plist in Resources */,
 				339ACE711884E23700F3D839 /* puzzle4.json in Resources */,
 				334B2ACB181B02CA00865510 /* uilayer-hd.plist in Resources */,
 				33A64C46183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png in Resources */,
@@ -1708,7 +1732,7 @@
 				16A4277C176BF0A100BEF13F /* PFLPuzzleControlsLayer.m in Sources */,
 				16A942B71777A2260052D5BD /* PFLPatchController.m in Sources */,
 				334B2ADD181C2F4B00865510 /* PFLTouchSprite.m in Sources */,
-				16A942C51777ABFA0052D5BD /* PFLSequenceMenuCell.m in Sources */,
+				16A942C51777ABFA0052D5BD /* PFLPuzzleSetCell.m in Sources */,
 				163091F0177DEDA9003155BB /* PFLPuzzleBackgroundLayer.m in Sources */,
 				33DD835518D60B6E00EF90C7 /* PFLSample.m in Sources */,
 			);

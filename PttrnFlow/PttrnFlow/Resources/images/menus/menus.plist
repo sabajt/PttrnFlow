@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>puzzle_set_cell.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{280,50}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{280,50}}</string>
+                <key>sourceSize</key>
+                <string>{280,50}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>menus.png</string>
+            <key>size</key>
+            <string>{64,512}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:0b67ca42ec65ac9f591a9595c68340d4:1bff9af8f84c9a4c06bfae26e6112cef:b898c12ce6086289d8c8855a9c1079db$</string>
+            <key>textureFileName</key>
+            <string>menus.png</string>
+        </dict>
+    </dict>
+</plist>

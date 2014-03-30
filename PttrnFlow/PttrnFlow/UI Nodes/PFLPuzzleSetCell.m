@@ -6,19 +6,19 @@
 //
 //
 
-#import "PFLSequenceMenuCell.h"
+#import "PFLPuzzleSetCell.h"
 #import "PFLColorUtils.h"
 
-@interface PFLSequenceMenuCell ()
+@interface PFLPuzzleSetCell ()
 
-@property (assign) int index;
+@property (assign) NSInteger index;
 
 @end
 
 
-@implementation PFLSequenceMenuCell
+@implementation PFLPuzzleSetCell
 
--(id) initWithIndex:(int)index
+-(id) initWithIndex:(NSInteger)index
 {
     self = [super init];
     if (self) {
@@ -50,7 +50,7 @@
     [super ccTouchEnded:touch withEvent:event];
     
     if ([self containsTouch:touch]) {
-        [self.menuCellDelegate sequenceMenuCellTouchUpInside:self index:self.index];
+        [self.menuCellDelegate puzzleSetCellTouchUpInside:self index:self.index];
     }
 }
 

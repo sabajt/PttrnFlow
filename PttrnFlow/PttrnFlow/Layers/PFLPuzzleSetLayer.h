@@ -6,10 +6,10 @@
 //
 //
 
-#import "cocos2d.h"
-#import "PFLSequenceMenuCell.h"
+#import "PFLScrollLayer.h"
+#import "PFLPuzzleSetCell.h"
 
-@interface PFLPuzzleSetLayer : CCLayer <SequenceMenuCellDelegate>
+@interface PFLPuzzleSetLayer : PFLScrollLayer <PFLPuzzleSetCellDelegate>
 
 @property (strong, nonatomic) NSArray *mapNames;
 
