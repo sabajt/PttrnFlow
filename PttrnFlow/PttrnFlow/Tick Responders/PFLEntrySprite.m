@@ -7,8 +7,8 @@
 //
 
 #import "PFLEntrySprite.h"
-#import "NSString+Degrees.h"
-#import "CCNode+Grid.h"
+#import "NSString+PFLDegrees.h"
+#import "CCNode+PFLGrid.h"
 #import "PFLColorUtils.h"
 #import "PFLEvent.h"
 #import "PFLGlyph.h"

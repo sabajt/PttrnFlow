@@ -7,7 +7,7 @@
 //
 
 #import "PFLAudioPadSprite.h"
-#import "CCNode+Grid.h"
+#import "CCNode+PFLGrid.h"
 #import "CCSprite+PFLEffects.h"
 #import "PFLColorUtils.h"
 #import "PFLGameConstants.h"

@@ -6,7 +6,7 @@
 //
 //
 
-#import "CCNode+Grid.h"
+#import "CCNode+PFLGrid.h"
 #import <objc/runtime.h>
 
 static char kCellValue;
@@ -14,7 +14,7 @@ static char kCellSizeValue;
 
 #pragma mark - public
 
-@implementation CCNode (Grid)
+@implementation CCNode (PFLGrid)
 
 @dynamic cell;
 @dynamic cellSize;

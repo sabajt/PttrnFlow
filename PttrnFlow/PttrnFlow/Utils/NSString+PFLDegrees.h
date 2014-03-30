@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (Degrees)
+@interface NSString (PFLDegrees)
 
 - (CGFloat)degrees;
 

@@ -7,7 +7,7 @@
 //
 
 #import "PFLColorUtils.h"
-#import "CCNode+Grid.h"
+#import "CCNode+PFLGrid.h"
 #import "PFLGearSprite.h"
 #import "PFLEvent.h"
 #import "PFLPatchController.h"

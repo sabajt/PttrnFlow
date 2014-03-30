@@ -8,9 +8,9 @@
 
 #import "PFLAudioResponder.h"
 #import "PFLAudioResponderStepController.h"
-#import "CCNode+Grid.h"
+#import "CCNode+PFLGrid.h"
 #import "PFLPatchController.h"
-#import "NSObject+AudioResponderUtils.h"
+#import "NSObject+PFLAudioResponderUtils.h"
 #import "PFLEvent.h"
 #import "PFLPuzzle.h"
 #import "PFLPuzzleSet.h"

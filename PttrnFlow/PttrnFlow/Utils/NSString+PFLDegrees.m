@@ -6,10 +6,10 @@
 //
 //
 
-#import "NSString+Degrees.h"
+#import "NSString+PFLDegrees.h"
 #import "PFLGameConstants.h"
 
-@implementation NSString (Degrees)
+@implementation NSString (PFLDegrees)
 
 - (CGFloat)degrees
 {

@@ -8,10 +8,10 @@
 
 #import "PFLAudioResponder.h"
 #import "PFLCoord.h"
-#import "NSObject+AudioResponderUtils.h"
+#import "NSObject+PFLAudioResponderUtils.h"
 #import <objc/runtime.h>
 
-@implementation NSObject (AudioResponderUtils)
+@implementation NSObject (PFLAudioResponderUtils)
 
 @dynamic beatDuration;
 

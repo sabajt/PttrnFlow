@@ -10,7 +10,7 @@
 
 @class PFLCoord;
 
-@interface NSObject (AudioResponderUtils)
+@interface NSObject (PFLAudioResponderUtils)
 
 @property (assign) CGFloat beatDuration;
 

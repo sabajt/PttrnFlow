@@ -10,9 +10,9 @@
 #import "PFLEvent.h"
 #import "PFLPatchController.h"
 #import "PFLCoord.h"
-#import "NSObject+AudioResponderUtils.h"
+#import "NSObject+PFLAudioResponderUtils.h"
 #import "PFLAudioPadSprite.h"
-#import "CCNode+Grid.h"
+#import "CCNode+PFLGrid.h"
 
 NSString *const kPFLAudioTouchDispatcherCoordKey = @"coord";
 NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispatcherHitNotification";
