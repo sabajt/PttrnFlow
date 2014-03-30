@@ -6,10 +6,10 @@
 //
 //
 
-#import "ToggleButton.h"
+#import "PFLToggleButton.h"
 #import "PFLGeometry.h"
 
-@interface ToggleButton ()
+@interface PFLToggleButton ()
 
 @property (weak, nonatomic) id<ToggleButtonDelegate> delegate;
 
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation ToggleButton
+@implementation PFLToggleButton
 
 - (id)initWithPlaceholderImage:(NSString *)placeholderImage offImage:(NSString *)offImage onImage:(NSString *)onImage delegate:(id<ToggleButtonDelegate>)delegate
 {

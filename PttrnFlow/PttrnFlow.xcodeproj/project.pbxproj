@@ -119,7 +119,7 @@
 		1608084016B437AA00039339 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 1608083F16B437AA00039339 /* vec4.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1608084516B437AA00039339 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1608084416B437AA00039339 /* main.m */; };
 		1608086D16B43CEF00039339 /* PFLGameConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1608086416B43CEF00039339 /* PFLGameConstants.m */; };
-		1608088016B43FE500039339 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1608087F16B43FE500039339 /* AppDelegate.m */; };
+		1608088016B43FE500039339 /* PFLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1608087F16B43FE500039339 /* PFLAppDelegate.m */; };
 		1608088316B4416000039339 /* PFLPuzzleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1608088216B4416000039339 /* PFLPuzzleLayer.m */; };
 		1624D1EA1733822C00851B45 /* PFLColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1624D1E91733822B00851B45 /* PFLColorUtils.m */; };
 		163091F0177DEDA9003155BB /* PFLPuzzleBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 163091EF177DEDA9003155BB /* PFLPuzzleBackgroundLayer.m */; };
@@ -145,7 +145,7 @@
 		1693C666177A628300FEB350 /* drum4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1693C664177A628200FEB350 /* drum4.wav */; };
 		16A4277C176BF0A100BEF13F /* PFLPuzzleControlsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4277B176BF0A100BEF13F /* PFLPuzzleControlsLayer.m */; };
 		16A942B71777A2260052D5BD /* PFLPatchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942A41777A2250052D5BD /* PFLPatchController.m */; };
-		16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */; };
+		16A942C51777ABFA0052D5BD /* PFLSequenceMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A942C21777ABFA0052D5BD /* PFLSequenceMenuCell.m */; };
 		3302EF6E1879C92C0032AD58 /* PFLGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302EF6D1879C92C0032AD58 /* PFLGeometry.m */; };
 		3309B70C18E756CE006CF167 /* NSString+Degrees.m in Sources */ = {isa = PBXBuildFile; fileRef = 3309B70B18E756CE006CF167 /* NSString+Degrees.m */; };
 		330A580218C5A82A00DC97B7 /* puzzle6.json in Resources */ = {isa = PBXBuildFile; fileRef = 330A580018C5A82A00DC97B7 /* puzzle6.json */; };
@@ -165,13 +165,13 @@
 		334B2AD5181B03F000865510 /* background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 334B2AD1181B03F000865510 /* background-hd.png */; };
 		334B2AD6181B03F000865510 /* background.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334B2AD2181B03F000865510 /* background.plist */; };
 		334B2AD7181B03F000865510 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 334B2AD3181B03F000865510 /* background.png */; };
-		334B2ADD181C2F4B00865510 /* TouchSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 334B2ADC181C2F4B00865510 /* TouchSprite.m */; };
-		334B2AE3181C47B900865510 /* ClippingSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 334B2AE2181C47B900865510 /* ClippingSprite.m */; };
+		334B2ADD181C2F4B00865510 /* PFLTouchSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 334B2ADC181C2F4B00865510 /* PFLTouchSprite.m */; };
+		334B2AE3181C47B900865510 /* PFLClippingSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 334B2AE2181C47B900865510 /* PFLClippingSprite.m */; };
 		3350B17F186A39A100F3BE57 /* puzzle3.json in Resources */ = {isa = PBXBuildFile; fileRef = 3350B17E186A39A100F3BE57 /* puzzle3.json */; };
 		3356075E17F8B67900ECD44B /* pf-oscSynth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 3356075C17F8B67900ECD44B /* pf-oscSynth.pd */; };
 		3356075F17F8B67900ECD44B /* pf-phasorSynth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 3356075D17F8B67900ECD44B /* pf-phasorSynth.pd */; };
 		335836A5181F486100921270 /* white_rect.png in Resources */ = {isa = PBXBuildFile; fileRef = 335836A4181F486100921270 /* white_rect.png */; };
-		335836B81826CF4700921270 /* TileSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 335836B71826CF4700921270 /* TileSprite.m */; };
+		335836B81826CF4700921270 /* PFLTileSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 335836B71826CF4700921270 /* PFLTileSprite.m */; };
 		335F5E1D18BEE90000BF14DD /* marimba-52.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E0D18BEE90000BF14DD /* marimba-52.wav */; };
 		335F5E1E18BEE90000BF14DD /* marimba-53.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E0E18BEE90000BF14DD /* marimba-53.wav */; };
 		335F5E1F18BEE90000BF14DD /* marimba-54.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E0F18BEE90000BF14DD /* marimba-54.wav */; };
@@ -194,13 +194,13 @@
 		3391F54318A1A0A00096F5D3 /* NSObject+AudioResponderUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3391F54218A1A0A00096F5D3 /* NSObject+AudioResponderUtils.m */; };
 		339ACE711884E23700F3D839 /* puzzle4.json in Resources */ = {isa = PBXBuildFile; fileRef = 339ACE6F1884E23700F3D839 /* puzzle4.json */; };
 		339ACE721884E23700F3D839 /* puzzle5.json in Resources */ = {isa = PBXBuildFile; fileRef = 339ACE701884E23700F3D839 /* puzzle5.json */; };
-		339ACE7F1886C64100F3D839 /* SolutionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 339ACE7E1886C64100F3D839 /* SolutionButton.m */; };
+		339ACE7F1886C64100F3D839 /* PFLSolutionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 339ACE7E1886C64100F3D839 /* PFLSolutionButton.m */; };
 		33A64C45183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 33A64C43183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt */; };
 		33A64C46183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png in Resources */ = {isa = PBXBuildFile; fileRef = 33A64C44183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png */; };
 		33A7C4E9189ED8C3000EBCA7 /* PFLEntrySprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A7C4E8189ED8C3000EBCA7 /* PFLEntrySprite.m */; };
 		33A7C50918A08896000EBCA7 /* PFLStepController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A7C50818A08896000EBCA7 /* PFLStepController.m */; };
-		33A957E9188C561B006BF182 /* ToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957E8188C561B006BF182 /* ToggleButton.m */; };
-		33A957EC188C8236006BF182 /* BasicButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957EB188C8236006BF182 /* BasicButton.m */; };
+		33A957E9188C561B006BF182 /* PFLToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957E8188C561B006BF182 /* PFLToggleButton.m */; };
+		33A957EC188C8236006BF182 /* PFLBasicButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957EB188C8236006BF182 /* PFLBasicButton.m */; };
 		33A957EF188D5B43006BF182 /* PFLArrowSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A957EE188D5B43006BF182 /* PFLArrowSprite.m */; };
 		33AF255717CB069700643CB2 /* PFLAudioPadSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AF255617CB069700643CB2 /* PFLAudioPadSprite.m */; };
 		33BA5F22185E3385005A0452 /* puzzle0.json in Resources */ = {isa = PBXBuildFile; fileRef = 33BA5F1F185E3385005A0452 /* puzzle0.json */; };
@@ -508,14 +508,14 @@
 		1608084416B437AA00039339 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1608086316B43CEF00039339 /* PFLGameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLGameConstants.h; sourceTree = "<group>"; };
 		1608086416B43CEF00039339 /* PFLGameConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLGameConstants.m; sourceTree = "<group>"; };
-		1608087E16B43FE500039339 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		1608087F16B43FE500039339 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1608087E16B43FE500039339 /* PFLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLAppDelegate.h; sourceTree = "<group>"; };
+		1608087F16B43FE500039339 /* PFLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLAppDelegate.m; sourceTree = "<group>"; };
 		1608088116B4415F00039339 /* PFLPuzzleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLPuzzleLayer.h; sourceTree = "<group>"; };
 		1608088216B4416000039339 /* PFLPuzzleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLPuzzleLayer.m; sourceTree = "<group>"; };
 		1624D1E81733822A00851B45 /* PFLColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLColorUtils.h; sourceTree = "<group>"; };
 		1624D1E91733822B00851B45 /* PFLColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLColorUtils.m; sourceTree = "<group>"; };
 		16284CAA173A077600B058D2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
-		162C293217871F1600CE480C /* AudioResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioResponder.h; path = "Generic Protocols/AudioResponder.h"; sourceTree = "<group>"; };
+		162C293217871F1600CE480C /* PFLAudioResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PFLAudioResponder.h; path = "Generic Protocols/PFLAudioResponder.h"; sourceTree = "<group>"; };
 		163091EE177DEDA9003155BB /* PFLPuzzleBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLPuzzleBackgroundLayer.h; sourceTree = "<group>"; };
 		163091EF177DEDA9003155BB /* PFLPuzzleBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLPuzzleBackgroundLayer.m; sourceTree = "<group>"; };
 		163DBDFF17692C3000FCB89C /* PFLPuzzleSetLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLPuzzleSetLayer.h; sourceTree = "<group>"; };
@@ -544,8 +544,8 @@
 		16A4277B176BF0A100BEF13F /* PFLPuzzleControlsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLPuzzleControlsLayer.m; sourceTree = "<group>"; };
 		16A942A31777A2250052D5BD /* PFLPatchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLPatchController.h; sourceTree = "<group>"; };
 		16A942A41777A2250052D5BD /* PFLPatchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PFLPatchController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		16A942C11777ABFA0052D5BD /* SequenceMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceMenuCell.h; sourceTree = "<group>"; };
-		16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceMenuCell.m; sourceTree = "<group>"; };
+		16A942C11777ABFA0052D5BD /* PFLSequenceMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLSequenceMenuCell.h; sourceTree = "<group>"; };
+		16A942C21777ABFA0052D5BD /* PFLSequenceMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLSequenceMenuCell.m; sourceTree = "<group>"; };
 		3302EF6C1879C92C0032AD58 /* PFLGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLGeometry.h; sourceTree = "<group>"; };
 		3302EF6D1879C92C0032AD58 /* PFLGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLGeometry.m; sourceTree = "<group>"; };
 		3309B70B18E756CE006CF167 /* NSString+Degrees.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Degrees.m"; sourceTree = "<group>"; };
@@ -570,16 +570,16 @@
 		334B2AD1181B03F000865510 /* background-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-hd.png"; sourceTree = "<group>"; };
 		334B2AD2181B03F000865510 /* background.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = background.plist; sourceTree = "<group>"; };
 		334B2AD3181B03F000865510 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		334B2ADB181C2F4B00865510 /* TouchSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchSprite.h; sourceTree = "<group>"; };
-		334B2ADC181C2F4B00865510 /* TouchSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSprite.m; sourceTree = "<group>"; };
-		334B2AE1181C47B900865510 /* ClippingSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClippingSprite.h; sourceTree = "<group>"; };
-		334B2AE2181C47B900865510 /* ClippingSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClippingSprite.m; sourceTree = "<group>"; };
+		334B2ADB181C2F4B00865510 /* PFLTouchSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLTouchSprite.h; sourceTree = "<group>"; };
+		334B2ADC181C2F4B00865510 /* PFLTouchSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLTouchSprite.m; sourceTree = "<group>"; };
+		334B2AE1181C47B900865510 /* PFLClippingSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLClippingSprite.h; sourceTree = "<group>"; };
+		334B2AE2181C47B900865510 /* PFLClippingSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLClippingSprite.m; sourceTree = "<group>"; };
 		3350B17E186A39A100F3BE57 /* puzzle3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle3.json; sourceTree = "<group>"; };
 		3356075C17F8B67900ECD44B /* pf-oscSynth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-oscSynth.pd"; sourceTree = "<group>"; };
 		3356075D17F8B67900ECD44B /* pf-phasorSynth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-phasorSynth.pd"; sourceTree = "<group>"; };
 		335836A4181F486100921270 /* white_rect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_rect.png; sourceTree = "<group>"; };
-		335836B61826CF4700921270 /* TileSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileSprite.h; sourceTree = "<group>"; };
-		335836B71826CF4700921270 /* TileSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileSprite.m; sourceTree = "<group>"; };
+		335836B61826CF4700921270 /* PFLTileSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLTileSprite.h; sourceTree = "<group>"; };
+		335836B71826CF4700921270 /* PFLTileSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLTileSprite.m; sourceTree = "<group>"; };
 		335F5E0D18BEE90000BF14DD /* marimba-52.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-52.wav"; sourceTree = "<group>"; };
 		335F5E0E18BEE90000BF14DD /* marimba-53.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-53.wav"; sourceTree = "<group>"; };
 		335F5E0F18BEE90000BF14DD /* marimba-54.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "marimba-54.wav"; sourceTree = "<group>"; };
@@ -605,18 +605,18 @@
 		3391F54218A1A0A00096F5D3 /* NSObject+AudioResponderUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSObject+AudioResponderUtils.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		339ACE6F1884E23700F3D839 /* puzzle4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle4.json; sourceTree = "<group>"; };
 		339ACE701884E23700F3D839 /* puzzle5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle5.json; sourceTree = "<group>"; };
-		339ACE7D1886C64100F3D839 /* SolutionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolutionButton.h; sourceTree = "<group>"; };
-		339ACE7E1886C64100F3D839 /* SolutionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionButton.m; sourceTree = "<group>"; };
+		339ACE7D1886C64100F3D839 /* PFLSolutionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLSolutionButton.h; sourceTree = "<group>"; };
+		339ACE7E1886C64100F3D839 /* PFLSolutionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLSolutionButton.m; sourceTree = "<group>"; };
 		33A64C43183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "arial-rounded-mt-bold-12fnt.fnt"; sourceTree = "<group>"; };
 		33A64C44183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arial-rounded-mt-bold-12fnt.png"; sourceTree = "<group>"; };
 		33A7C4E7189ED8C3000EBCA7 /* PFLEntrySprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLEntrySprite.h; sourceTree = "<group>"; };
 		33A7C4E8189ED8C3000EBCA7 /* PFLEntrySprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PFLEntrySprite.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		33A7C50718A08896000EBCA7 /* PFLStepController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLStepController.h; sourceTree = "<group>"; };
 		33A7C50818A08896000EBCA7 /* PFLStepController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PFLStepController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		33A957E7188C561B006BF182 /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleButton.h; sourceTree = "<group>"; };
-		33A957E8188C561B006BF182 /* ToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleButton.m; sourceTree = "<group>"; };
-		33A957EA188C8236006BF182 /* BasicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicButton.h; sourceTree = "<group>"; };
-		33A957EB188C8236006BF182 /* BasicButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicButton.m; sourceTree = "<group>"; };
+		33A957E7188C561B006BF182 /* PFLToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLToggleButton.h; sourceTree = "<group>"; };
+		33A957E8188C561B006BF182 /* PFLToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLToggleButton.m; sourceTree = "<group>"; };
+		33A957EA188C8236006BF182 /* PFLBasicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLBasicButton.h; sourceTree = "<group>"; };
+		33A957EB188C8236006BF182 /* PFLBasicButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLBasicButton.m; sourceTree = "<group>"; };
 		33A957ED188D5B43006BF182 /* PFLArrowSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLArrowSprite.h; sourceTree = "<group>"; };
 		33A957EE188D5B43006BF182 /* PFLArrowSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PFLArrowSprite.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		33A957F0188D624A006BF182 /* NSString+Degrees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Degrees.h"; sourceTree = "<group>"; };
@@ -743,8 +743,8 @@
 				16A942A81777A2250052D5BD /* Tick Responders */,
 				1608085D16B43CEF00039339 /* Layers */,
 				1608086016B43CEF00039339 /* Utils */,
-				1608087E16B43FE500039339 /* AppDelegate.h */,
-				1608087F16B43FE500039339 /* AppDelegate.m */,
+				1608087E16B43FE500039339 /* PFLAppDelegate.h */,
+				1608087F16B43FE500039339 /* PFLAppDelegate.m */,
 				160806CF16B437A700039339 /* Resources */,
 				160806E916B437A800039339 /* libs */,
 				1608084216B437AA00039339 /* Supporting Files */,
@@ -1190,7 +1190,7 @@
 		162C29291785BEBB00CE480C /* Generic Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				162C293217871F1600CE480C /* AudioResponder.h */,
+				162C293217871F1600CE480C /* PFLAudioResponder.h */,
 			);
 			name = "Generic Protocols";
 			sourceTree = "<group>";
@@ -1207,18 +1207,18 @@
 		16A942971777A2250052D5BD /* Generic Nodes */ = {
 			isa = PBXGroup;
 			children = (
-				334B2ADB181C2F4B00865510 /* TouchSprite.h */,
-				334B2ADC181C2F4B00865510 /* TouchSprite.m */,
-				334B2AE1181C47B900865510 /* ClippingSprite.h */,
-				334B2AE2181C47B900865510 /* ClippingSprite.m */,
-				335836B61826CF4700921270 /* TileSprite.h */,
-				335836B71826CF4700921270 /* TileSprite.m */,
+				334B2ADB181C2F4B00865510 /* PFLTouchSprite.h */,
+				334B2ADC181C2F4B00865510 /* PFLTouchSprite.m */,
+				334B2AE1181C47B900865510 /* PFLClippingSprite.h */,
+				334B2AE2181C47B900865510 /* PFLClippingSprite.m */,
+				335836B61826CF4700921270 /* PFLTileSprite.h */,
+				335836B71826CF4700921270 /* PFLTileSprite.m */,
 				33425EA91841218C002B56DB /* CCNode+Grid.h */,
 				33425EAA1841218C002B56DB /* CCNode+Grid.m */,
-				33A957E7188C561B006BF182 /* ToggleButton.h */,
-				33A957E8188C561B006BF182 /* ToggleButton.m */,
-				33A957EA188C8236006BF182 /* BasicButton.h */,
-				33A957EB188C8236006BF182 /* BasicButton.m */,
+				33A957E7188C561B006BF182 /* PFLToggleButton.h */,
+				33A957E8188C561B006BF182 /* PFLToggleButton.m */,
+				33A957EA188C8236006BF182 /* PFLBasicButton.h */,
+				33A957EB188C8236006BF182 /* PFLBasicButton.m */,
 				33F4847D18E248CD00237C9B /* PFLTransitionSlide.h */,
 				33F4847E18E248CD00237C9B /* PFLTransitionSlide.m */,
 			);
@@ -1265,10 +1265,10 @@
 		16A942C01777ABF90052D5BD /* UI Nodes */ = {
 			isa = PBXGroup;
 			children = (
-				16A942C11777ABFA0052D5BD /* SequenceMenuCell.h */,
-				16A942C21777ABFA0052D5BD /* SequenceMenuCell.m */,
-				339ACE7D1886C64100F3D839 /* SolutionButton.h */,
-				339ACE7E1886C64100F3D839 /* SolutionButton.m */,
+				16A942C11777ABFA0052D5BD /* PFLSequenceMenuCell.h */,
+				16A942C21777ABFA0052D5BD /* PFLSequenceMenuCell.m */,
+				339ACE7D1886C64100F3D839 /* PFLSolutionButton.h */,
+				339ACE7E1886C64100F3D839 /* PFLSolutionButton.m */,
 			);
 			path = "UI Nodes";
 			sourceTree = "<group>";
@@ -1653,7 +1653,7 @@
 				1608079016B437A900039339 /* CCTexture2D.m in Sources */,
 				1608079316B437A900039339 /* CCTextureAtlas.m in Sources */,
 				1608079616B437A900039339 /* CCTextureCache.m in Sources */,
-				33A957E9188C561B006BF182 /* ToggleButton.m in Sources */,
+				33A957E9188C561B006BF182 /* PFLToggleButton.m in Sources */,
 				33DD835218D5FBE400EF90C7 /* PFLKeyframe.m in Sources */,
 				1608079916B437A900039339 /* CCTexturePVR.m in Sources */,
 				1608079C16B437A900039339 /* CCTileMapAtlas.m in Sources */,
@@ -1663,7 +1663,7 @@
 				160807A516B437A900039339 /* CCTMXTiledMap.m in Sources */,
 				160807A816B437A900039339 /* CCTMXXMLParser.m in Sources */,
 				160807AB16B437A900039339 /* CCTransition.m in Sources */,
-				339ACE7F1886C64100F3D839 /* SolutionButton.m in Sources */,
+				339ACE7F1886C64100F3D839 /* PFLSolutionButton.m in Sources */,
 				160807AE16B437A900039339 /* CCTransitionPageTurn.m in Sources */,
 				160807B116B437A900039339 /* CCTransitionProgress.m in Sources */,
 				160807B516B437A900039339 /* cocos2d.m in Sources */,
@@ -1676,7 +1676,7 @@
 				160807D116B437A900039339 /* CCEventDispatcher.m in Sources */,
 				160807D416B437A900039339 /* CCGLView.m in Sources */,
 				160807D716B437A900039339 /* CCWindow.m in Sources */,
-				335836B81826CF4700921270 /* TileSprite.m in Sources */,
+				335836B81826CF4700921270 /* PFLTileSprite.m in Sources */,
 				160807DA16B437A900039339 /* base64.c in Sources */,
 				33DD834618D4C8F800EF90C7 /* PFLPuzzle.m in Sources */,
 				160807DE16B437A900039339 /* CCArray.m in Sources */,
@@ -1687,7 +1687,7 @@
 				160807E916B437AA00039339 /* ccUtils.c in Sources */,
 				160807ED16B437AA00039339 /* CCVertex.m in Sources */,
 				160807F016B437AA00039339 /* CGPointExtension.m in Sources */,
-				33A957EC188C8236006BF182 /* BasicButton.m in Sources */,
+				33A957EC188C8236006BF182 /* PFLBasicButton.m in Sources */,
 				160807F316B437AA00039339 /* NSThread+performBlock.m in Sources */,
 				160807F716B437AA00039339 /* TGAlib.m in Sources */,
 				160807FA16B437AA00039339 /* TransformUtils.m in Sources */,
@@ -1714,11 +1714,11 @@
 				1608084016B437AA00039339 /* vec4.c in Sources */,
 				1608084516B437AA00039339 /* main.m in Sources */,
 				1608086D16B43CEF00039339 /* PFLGameConstants.m in Sources */,
-				1608088016B43FE500039339 /* AppDelegate.m in Sources */,
+				1608088016B43FE500039339 /* PFLAppDelegate.m in Sources */,
 				1608088316B4416000039339 /* PFLPuzzleLayer.m in Sources */,
 				338EE1B417A5F1D2005E98B1 /* NSArray+CompareNumbers.m in Sources */,
 				33A957EF188D5B43006BF182 /* PFLArrowSprite.m in Sources */,
-				334B2AE3181C47B900865510 /* ClippingSprite.m in Sources */,
+				334B2AE3181C47B900865510 /* PFLClippingSprite.m in Sources */,
 				33DD836E18D7C3A200EF90C7 /* NSArray+PFLCompareObjects.m in Sources */,
 				1624D1EA1733822C00851B45 /* PFLColorUtils.m in Sources */,
 				163DBE0117692C3100FCB89C /* PFLPuzzleSetLayer.m in Sources */,
@@ -1726,8 +1726,8 @@
 				16A4277C176BF0A100BEF13F /* PFLPuzzleControlsLayer.m in Sources */,
 				33EE317017C92C3C004CC016 /* PFLAudioTouchController.m in Sources */,
 				16A942B71777A2260052D5BD /* PFLPatchController.m in Sources */,
-				334B2ADD181C2F4B00865510 /* TouchSprite.m in Sources */,
-				16A942C51777ABFA0052D5BD /* SequenceMenuCell.m in Sources */,
+				334B2ADD181C2F4B00865510 /* PFLTouchSprite.m in Sources */,
+				16A942C51777ABFA0052D5BD /* PFLSequenceMenuCell.m in Sources */,
 				163091F0177DEDA9003155BB /* PFLPuzzleBackgroundLayer.m in Sources */,
 				33DD835518D60B6E00EF90C7 /* PFLSample.m in Sources */,
 				332C199118C0D2150081FE1D /* PFLGearSprite.m in Sources */,

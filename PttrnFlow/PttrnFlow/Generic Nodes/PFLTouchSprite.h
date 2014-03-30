@@ -9,7 +9,7 @@
 #import "cocos2d.h"
 
 
-@interface TouchSprite : CCSprite <CCTargetedTouchDelegate>
+@interface PFLTouchSprite : CCSprite <CCTargetedTouchDelegate>
 
 @property (assign) BOOL handleTouches;
 @property (assign) BOOL swallowsTouches;

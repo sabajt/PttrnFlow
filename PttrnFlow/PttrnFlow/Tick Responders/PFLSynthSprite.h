@@ -7,9 +7,9 @@
 //
 
 #import "CCSprite.h"
-#import "AudioResponder.h"
+#import "PFLAudioResponder.h"
 
-@interface PFLSynthSprite : CCSprite <AudioResponder>
+@interface PFLSynthSprite : CCSprite <PFLAudioResponder>
 
 - (id)initWithCell:(PFLCoord *)cell
            audioID:(NSNumber *)audioID

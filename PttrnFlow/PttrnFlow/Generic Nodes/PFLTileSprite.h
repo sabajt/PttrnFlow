@@ -8,7 +8,7 @@
 
 #import "CCSprite.h"
 
-@interface TileSprite : CCSprite
+@interface PFLTileSprite : CCSprite
 
 - (id)initWithImage:(NSString *)image repeats:(CGPoint)repeats skip:(NSInteger)skip;
 - (id)initWithImage:(NSString *)image repeats:(CGPoint)repeats color1:(ccColor3B)color1 color2:(ccColor3B)color2;

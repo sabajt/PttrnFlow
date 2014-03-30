@@ -8,7 +8,7 @@
 
 #import "CCNode.h"
 #import "PFLPuzzleControlsLayer.h"
-#import "AudioResponder.h"
+#import "PFLAudioResponder.h"
 #import "PFLEntrySprite.h"
 
 @class PFLPuzzle;
@@ -27,7 +27,7 @@ FOUNDATION_EXPORT NSString *const kKeyEmpty;
 @property (weak, nonatomic) PFLEntrySprite *entry;
 
 - (id)initWithPuzzle:(PFLPuzzle *)puzzle;
-- (void)addResponder:(id<AudioResponder>)responder;
+- (void)addResponder:(id<PFLAudioResponder>)responder;
 - (void)clearResponders;
 
 @end

@@ -2,9 +2,9 @@
 //  ClippingSprite.m
 //
 
-#import "ClippingSprite.h"
+#import "PFLClippingSprite.h"
 
-@implementation ClippingSprite
+@implementation PFLClippingSprite
 
 + (id)clippingSpriteWithRect:(CGRect)rect
 {

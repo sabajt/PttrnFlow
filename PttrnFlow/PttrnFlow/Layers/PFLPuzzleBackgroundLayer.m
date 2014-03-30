@@ -7,7 +7,7 @@
 //
 
 #import "PFLPuzzleBackgroundLayer.h"
-#import "TileSprite.h"
+#import "PFLTileSprite.h"
 #import "PFLColorUtils.h"
 #import "PFLGameConstants.h"
 

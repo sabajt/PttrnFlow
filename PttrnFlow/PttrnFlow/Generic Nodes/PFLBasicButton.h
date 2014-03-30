@@ -6,17 +6,17 @@
 //
 //
 
-#import "TouchSprite.h"
+#import "PFLTouchSprite.h"
 
-@class BasicButton;
+@class PFLBasicButton;
 
 @protocol BasicButtonDelegate <NSObject>
 
-- (void)basicButtonPressed:(BasicButton *)sender;
+- (void)basicButtonPressed:(PFLBasicButton *)sender;
 
 @end
 
-@interface BasicButton : TouchSprite
+@interface PFLBasicButton : PFLTouchSprite
 
 - (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName
                       offFrameName:(NSString *)offFrameName

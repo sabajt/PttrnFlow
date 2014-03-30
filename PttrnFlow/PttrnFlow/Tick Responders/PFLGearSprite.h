@@ -7,11 +7,11 @@
 //
 
 #import "CCSprite.h"
-#import "AudioResponder.h"
+#import "PFLAudioResponder.h"
 
 @class PFLGlyph, PFLMultiSample;
 
-@interface PFLGearSprite : CCSprite <AudioResponder>
+@interface PFLGearSprite : CCSprite <PFLAudioResponder>
 
 - (id)initWithGlyph:(PFLGlyph *)glyph multiSample:(PFLMultiSample *)multiSample;
 

@@ -6,20 +6,20 @@
 //
 //
 
-#import "SolutionButton.h"
+#import "PFLSolutionButton.h"
 #import "PFLColorUtils.h"
 
-@interface SolutionButton ()
+@interface PFLSolutionButton ()
 
-@property (weak, nonatomic) id<SolutionButtonDelegate> delegate;
+@property (weak, nonatomic) id<PFLSolutionButtonDelegate> delegate;
 @property (weak, nonatomic) CCSprite *numberSprite;
 @property (weak, nonatomic) CCSprite *hitDot;
 
 @end
 
-@implementation SolutionButton
+@implementation PFLSolutionButton
 
-- (id)initWithPlaceholderImage:(NSString *)placeholderImage size:(CGSize)size index:(NSInteger)index defaultColor:(ccColor3B)defaultColor activeColor:(ccColor3B)activeColor delegate:(id<SolutionButtonDelegate>)delegate
+- (id)initWithPlaceholderImage:(NSString *)placeholderImage size:(CGSize)size index:(NSInteger)index defaultColor:(ccColor3B)defaultColor activeColor:(ccColor3B)activeColor delegate:(id<PFLSolutionButtonDelegate>)delegate
 {
     self = [super initWithSpriteFrameName:placeholderImage];
     if (self) {

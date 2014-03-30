@@ -7,11 +7,11 @@
 //
 
 #import "CCSprite.h"
-#import "AudioResponder.h"
+#import "PFLAudioResponder.h"
 
 @class PFLGlyph;
 
-@interface PFLEntrySprite : CCSprite <AudioResponder>
+@interface PFLEntrySprite : CCSprite <PFLAudioResponder>
 
 @property (copy, nonatomic) NSString *direction;
 

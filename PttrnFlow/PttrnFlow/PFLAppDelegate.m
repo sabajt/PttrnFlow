@@ -6,12 +6,12 @@
 //  Copyright __MyCompanyName__ 2013. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "PFLAppDelegate.h"
 #import "PFLPuzzleSetLayer.h"
 #import "SimpleAudioEngine.h"
 #import "PFLGameConstants.h"
 
-@implementation AppDelegate
+@implementation PFLAppDelegate
 
 @synthesize window=window_, navController=navController_, director=director_;
 

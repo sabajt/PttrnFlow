@@ -6,10 +6,10 @@
 //
 //
 
-#import "BasicButton.h"
+#import "PFLBasicButton.h"
 #import "PFLGeometry.h"
 
-@interface BasicButton ()
+@interface PFLBasicButton ()
 
 @property (weak, nonatomic) CCSprite *offSprite;
 @property (weak, nonatomic) CCSprite *onSprite;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation BasicButton
+@implementation PFLBasicButton
 
 - (id)initWithPlaceholderFrameName:(NSString *)placeholderFrameName
                       offFrameName:(NSString *)offFrameName

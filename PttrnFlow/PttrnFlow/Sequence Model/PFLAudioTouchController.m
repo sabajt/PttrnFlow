@@ -37,7 +37,7 @@ NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispat
     return self;
 }
 
-- (void)addResponder:(id<AudioResponder>)responder
+- (void)addResponder:(id<PFLAudioResponder>)responder
 {
     [self.responders addObject:responder];
 }
@@ -64,7 +64,7 @@ NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispat
 // TODO: currently not being used
 - (void)releaseCell:(PFLCoord *)cell channel:(NSString *)channel
 {
-    for (id<AudioResponder> responder in self.responders) {
+    for (id<PFLAudioResponder> responder in self.responders) {
         if (([cell isEqualToCoord:[responder audioCell]]) &&
             [responder respondsToSelector:@selector(audioRelease:)])
         {
@@ -93,7 +93,7 @@ NSString *const kPFLAudioTouchDispatcherHitNotification = @"kPFLAudioTouchDispat
         }
     }
     if (pad && !pad.isStatic && [toCell isCoordInGroup:self.areaCells]) {
-        for (CCNode<AudioResponder> *node in fromCellResponders) {
+        for (CCNode<PFLAudioResponder> *node in fromCellResponders) {
             node.position = [toCell relativeMidpoint];
             node.cell = toCell;
         }

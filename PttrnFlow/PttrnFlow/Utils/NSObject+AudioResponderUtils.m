@@ -6,7 +6,7 @@
 //
 //
 
-#import "AudioResponder.h"
+#import "PFLAudioResponder.h"
 #import "PFLCoord.h"
 #import "NSObject+AudioResponderUtils.h"
 #import <objc/runtime.h>
@@ -28,8 +28,8 @@
 - (NSArray *)responders:(NSArray *)responders atCoord:(PFLCoord *)coord
 {
     NSMutableArray *results = [NSMutableArray array];
-    for (id<AudioResponder> responder in responders) {
-        if (![responder conformsToProtocol:@protocol(AudioResponder)]) {
+    for (id<PFLAudioResponder> responder in responders) {
+        if (![responder conformsToProtocol:@protocol(PFLAudioResponder)]) {
             CCLOG(@"warning: %@ does not conform to AudioResponder, aborting.", responder);
             return nil;
         }
@@ -47,8 +47,8 @@
     // collect events from all hit cells
     NSArray *events = [NSArray array];
     NSArray *hitResponders = [self responders:responders atCoord:coord];
-    for (id<AudioResponder> responder in hitResponders) {
-        if (![responder conformsToProtocol:@protocol(AudioResponder)]) {
+    for (id<PFLAudioResponder> responder in hitResponders) {
+        if (![responder conformsToProtocol:@protocol(PFLAudioResponder)]) {
             CCLOG(@"warning: %@ does not conform to AudioResponder, aborting.", responder);
             return nil;
         }

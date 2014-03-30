@@ -6,10 +6,10 @@
 //
 //
 
-#import "TileSprite.h"
+#import "PFLTileSprite.h"
 #import "PFLGameConstants.h"
 
-@implementation TileSprite
+@implementation PFLTileSprite
 
 - (id)initWithImage:(NSString *)image repeats:(CGPoint)repeats skip:(NSInteger)skip
 {

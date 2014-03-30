@@ -6,7 +6,7 @@
 //
 //
 
-#import "AudioResponder.h"
+#import "PFLAudioResponder.h"
 #import "PFLStepController.h"
 #import "CCNode+Grid.h"
 #import "PFLPatchController.h"
@@ -48,7 +48,7 @@ NSString *const kKeyEmpty = @"empty";
     return self;
 }
 
-- (void)addResponder:(id<AudioResponder>)responder
+- (void)addResponder:(id<PFLAudioResponder>)responder
 {
     [self.responders addObject:responder];
 }

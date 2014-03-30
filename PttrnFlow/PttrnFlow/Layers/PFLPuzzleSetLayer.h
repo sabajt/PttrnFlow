@@ -7,7 +7,7 @@
 //
 
 #import "cocos2d.h"
-#import "SequenceMenuCell.h"
+#import "PFLSequenceMenuCell.h"
 
 @interface PFLPuzzleSetLayer : CCLayer <SequenceMenuCellDelegate>
 

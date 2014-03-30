@@ -6,17 +6,17 @@
 //
 //
 
-#import "TouchSprite.h"
+#import "PFLTouchSprite.h"
 
-@class ToggleButton;
+@class PFLToggleButton;
 
 @protocol ToggleButtonDelegate <NSObject>
 
-- (void)toggleButtonPressed:(ToggleButton *)sender;
+- (void)toggleButtonPressed:(PFLToggleButton *)sender;
 
 @end
 
-@interface ToggleButton : TouchSprite
+@interface PFLToggleButton : PFLTouchSprite
 
 @property (assign) BOOL isOn;
 

@@ -6,17 +6,17 @@
 //
 //
 
-#import "SequenceMenuCell.h"
+#import "PFLSequenceMenuCell.h"
 #import "PFLColorUtils.h"
 
-@interface SequenceMenuCell ()
+@interface PFLSequenceMenuCell ()
 
 @property (assign) int index;
 
 @end
 
 
-@implementation SequenceMenuCell
+@implementation PFLSequenceMenuCell
 
 -(id) initWithIndex:(int)index
 {

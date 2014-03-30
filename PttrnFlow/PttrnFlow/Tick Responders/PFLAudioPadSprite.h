@@ -7,11 +7,11 @@
 //
 
 #import "CCSprite.h"
-#import "AudioResponder.h"
+#import "PFLAudioResponder.h"
 
 @class PFLGlyph;
 
-@interface PFLAudioPadSprite : CCSprite <AudioResponder>
+@interface PFLAudioPadSprite : CCSprite <PFLAudioResponder>
 
 @property (assign) BOOL isStatic;
 

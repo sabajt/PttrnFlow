@@ -6,9 +6,9 @@
 //
 //
 
-#import "TouchSprite.h"
+#import "PFLTouchSprite.h"
 
-@implementation TouchSprite
+@implementation PFLTouchSprite
 
 // override CCSprite's designated initializer for setup
 -(id) initWithTexture:(CCTexture2D*)texture rect:(CGRect)rect rotated:(BOOL)rotated

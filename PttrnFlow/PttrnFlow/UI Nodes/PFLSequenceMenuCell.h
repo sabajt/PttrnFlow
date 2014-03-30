@@ -6,18 +6,18 @@
 //
 //
 
-#import "TouchSprite.h"
+#import "PFLTouchSprite.h"
 
-@class SequenceMenuCell;
+@class PFLSequenceMenuCell;
 
 @protocol SequenceMenuCellDelegate <NSObject>
 
-- (void)sequenceMenuCellTouchUpInside:(SequenceMenuCell *)cell index:(int)index;
+- (void)sequenceMenuCellTouchUpInside:(PFLSequenceMenuCell *)cell index:(int)index;
 
 @end
 
 
-@interface SequenceMenuCell : TouchSprite
+@interface PFLSequenceMenuCell : PFLTouchSprite
 
 @property (weak, nonatomic) id<SequenceMenuCellDelegate> menuCellDelegate;
 

@@ -8,8 +8,8 @@
 
 #import "PFLPuzzleControlsLayer.h"
 #import "PFLColorUtils.h"
-#import "TileSprite.h"
-#import "ClippingSprite.h"
+#import "PFLTileSprite.h"
+#import "PFLClippingSprite.h"
 #import "PFLGameConstants.h"
 #import "PFLStepController.h"
 #import "PFLPuzzle.h"
@@ -34,9 +34,9 @@ static NSInteger const kRowLength = 8;
 @property (assign) NSInteger steps;
 
 // buttons
-@property (weak, nonatomic) ToggleButton *speakerButton;
-@property (weak, nonatomic) ToggleButton *playButton;
-@property (weak, nonatomic) BasicButton *exitButton;
+@property (weak, nonatomic) PFLToggleButton *speakerButton;
+@property (weak, nonatomic) PFLToggleButton *playButton;
+@property (weak, nonatomic) PFLBasicButton *exitButton;
 
 @end
 
@@ -107,19 +107,19 @@ static NSInteger const kRowLength = 8;
         [self.uiBatchNode addChild:topLeftControlsPanelBorder];
         
         // speaker (solution sequence) button
-        ToggleButton *speakerButton = [[ToggleButton alloc] initWithImage:@"speaker.png" defaultColor:[PFLColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[PFLColorUtils controlButtonsActiveWithTheme:theme] delegate:self];
+        PFLToggleButton *speakerButton = [[PFLToggleButton alloc] initWithImage:@"speaker.png" defaultColor:[PFLColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[PFLColorUtils controlButtonsActiveWithTheme:theme] delegate:self];
         self.speakerButton = speakerButton;
         speakerButton.position = ccp(kUITimelineStepWidth / 2, 75); // FIX ME LATER
         [self.uiBatchNode addChild:speakerButton];
         
         // play (user sequence) button
-        ToggleButton *playButton = [[ToggleButton alloc] initWithImage:@"play.png" defaultColor:[PFLColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[PFLColorUtils controlButtonsActiveWithTheme:theme] delegate:self];
+        PFLToggleButton *playButton = [[PFLToggleButton alloc] initWithImage:@"play.png" defaultColor:[PFLColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[PFLColorUtils controlButtonsActiveWithTheme:theme] delegate:self];
         self.playButton = playButton;
         playButton.position = ccp(speakerButton.position.x + kUITimelineStepWidth, speakerButton.position.y);
         [self.uiBatchNode addChild:playButton];
         
         // exit button
-        BasicButton *exitButton = [[BasicButton alloc] initWithImage:@"exit.png" defaultColor:[PFLColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[PFLColorUtils controlButtonsActiveWithTheme:theme] delegate:self];
+        PFLBasicButton *exitButton = [[PFLBasicButton alloc] initWithImage:@"exit.png" defaultColor:[PFLColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[PFLColorUtils controlButtonsActiveWithTheme:theme] delegate:self];
         self.exitButton = exitButton;
         exitButton.position = ccp(kUITimelineStepWidth / 2, self.contentSize.height - 25);
         [self.uiBatchNode addChild:exitButton];
@@ -128,7 +128,7 @@ static NSInteger const kRowLength = 8;
         self.solutionButtons = [NSMutableArray array];
         self.solutionFlags = [NSMutableArray array];
         for (NSInteger i = 0; i < steps; i++) {
-            SolutionButton *solutionButton = [[SolutionButton alloc] initWithPlaceholderImage:@"clear_rect_uilayer.png" size:CGSizeMake(40.0f, 40.0f) index:i defaultColor:[PFLColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[PFLColorUtils solutionButtonHighlightWithTheme:theme] delegate:self];
+            PFLSolutionButton *solutionButton = [[PFLSolutionButton alloc] initWithPlaceholderImage:@"clear_rect_uilayer.png" size:CGSizeMake(40.0f, 40.0f) index:i defaultColor:[PFLColorUtils controlButtonsDefaultWithTheme:theme] activeColor:[PFLColorUtils solutionButtonHighlightWithTheme:theme] delegate:self];
             [self.solutionButtons addObject:solutionButton];
             solutionButton.position = ccp((i * kUITimelineStepWidth) + (solutionButton.contentSize.width / 2), solutionButton.contentSize.height / 2);
             [self addChild:solutionButton];
@@ -140,7 +140,7 @@ static NSInteger const kRowLength = 8;
 // TODO: if this becomes a custom animation (crossfade?) will probably need to use with a completion callback
 - (void)resetSolutionButtons
 {
-    for (SolutionButton *button in self.solutionButtons) {
+    for (PFLSolutionButton *button in self.solutionButtons) {
         if (button.isDisplaced) {
             [button reset];
         }
@@ -177,7 +177,7 @@ static NSInteger const kRowLength = 8;
     NSInteger index = [notification.userInfo[kKeyIndex] integerValue];
     BOOL correct = [notification.userInfo[kKeyCorrectHit] boolValue];
     
-    SolutionButton *button = self.solutionButtons[index];
+    PFLSolutionButton *button = self.solutionButtons[index];
     [button animateCorrectHit:correct];
     
     CGFloat  offset = 6.0f;
@@ -204,7 +204,7 @@ static NSInteger const kRowLength = 8;
 // SequenceDispatcher needs us to press the solution button
 - (void)handleStepSolutionSequence:(NSNotification *)notification
 {
-    SolutionButton *button = self.solutionButtons[[notification.userInfo[kKeyIndex] integerValue]];
+    PFLSolutionButton *button = self.solutionButtons[[notification.userInfo[kKeyIndex] integerValue]];
     [button press];
 }
 
@@ -222,7 +222,7 @@ static NSInteger const kRowLength = 8;
 
 #pragma mark - ToggleButtonDelegate
 
-- (void)toggleButtonPressed:(ToggleButton *)sender
+- (void)toggleButtonPressed:(PFLToggleButton *)sender
 {
     if ([sender isEqual:self.speakerButton]) {
         if (self.speakerButton.isOn) {
@@ -245,7 +245,7 @@ static NSInteger const kRowLength = 8;
 
 #pragma mark - BasicButtonDelegate
 
-- (void)basicButtonPressed:(BasicButton *)sender
+- (void)basicButtonPressed:(PFLBasicButton *)sender
 {
     if ([sender isEqual:self.exitButton]) {    
         CCScene *scene = [PFLPuzzleSetLayer scene];
@@ -256,7 +256,7 @@ static NSInteger const kRowLength = 8;
 
 #pragma mark - SolutionButtonDelegate
 
-- (void)solutionButtonPressed:(SolutionButton *)button
+- (void)solutionButtonPressed:(PFLSolutionButton *)button
 {
     [self.delegate playSolutionIndex:button.index];
 }

@@ -1,5 +1,5 @@
 //
-//  AudioResponder.h
+//  PFLAudioResponder.h
 //  PttrnFlow
 //
 //  Created by John Saba on 6/21/13.
@@ -11,7 +11,7 @@
 
 @class PFLEvent;
 
-@protocol AudioResponder <NSObject>
+@protocol PFLAudioResponder <NSObject>
 
 // responder must have a cell
 - (PFLCoord *)audioCell;

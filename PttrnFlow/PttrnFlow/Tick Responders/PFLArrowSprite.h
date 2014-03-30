@@ -7,11 +7,11 @@
 //
 
 #import "CCSprite.h"
-#import "AudioResponder.h"
+#import "PFLAudioResponder.h"
 
 @class PFLGlyph;
 
-@interface PFLArrowSprite : CCSprite <AudioResponder>
+@interface PFLArrowSprite : CCSprite <PFLAudioResponder>
 
 - (id)initWithGlyph:(PFLGlyph *)glyph;
 

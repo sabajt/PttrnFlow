@@ -6,7 +6,7 @@
 //
 //
 
-#import "AudioResponder.h"
+#import "PFLAudioResponder.h"
 #import "PFLScrollLayer.h"
 
 FOUNDATION_EXPORT NSString *const kPFLAudioTouchDispatcherCoordKey;
@@ -18,7 +18,7 @@ FOUNDATION_EXPORT NSString *const kPFLAudioTouchDispatcherHitNotification;
 @property (strong, nonatomic) NSArray *areaCells;
 
 - (id)initWithBeatDuration:(CGFloat)duration;
-- (void)addResponder:(id<AudioResponder>)responder;
+- (void)addResponder:(id<PFLAudioResponder>)responder;
 - (void)clearResponders;
 
 @end

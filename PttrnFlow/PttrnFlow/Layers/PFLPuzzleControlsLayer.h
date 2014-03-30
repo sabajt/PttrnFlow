@@ -7,9 +7,9 @@
 //
 
 #import "cocos2d.h"
-#import "ToggleButton.h"
-#import "BasicButton.h"
-#import "SolutionButton.h"
+#import "PFLToggleButton.h"
+#import "PFLBasicButton.h"
+#import "PFLSolutionButton.h"
 
 @class PFLPuzzle;
 
@@ -25,7 +25,7 @@
 
 FOUNDATION_EXPORT CGFloat const kUIButtonUnitSize;
 
-@interface PFLPuzzleControlsLayer : CCLayer <ToggleButtonDelegate, BasicButtonDelegate, SolutionButtonDelegate>
+@interface PFLPuzzleControlsLayer : CCLayer <ToggleButtonDelegate, BasicButtonDelegate, PFLSolutionButtonDelegate>
 
 - (id)initWithPuzzle:(PFLPuzzle *)puzzle delegate:(id<PFLPuzzleControlsDelegate>)delegate;
 

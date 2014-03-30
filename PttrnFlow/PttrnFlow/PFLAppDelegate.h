@@ -10,8 +10,7 @@
 #import "cocos2d.h"
 #import "PdAudioController.h"
 
-
-@interface AppDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate>
+@interface PFLAppDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate>
 {
 	UIWindow *window_;
 	UINavigationController *navController_;
