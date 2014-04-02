@@ -61,6 +61,11 @@ NSString *const kPFLColorUtilsLightPurpleTheme = @"purple_light";
     return ccc3(155, 138, 159);
 }
 
++ (ccColor3B)lightPurple
+{
+    return ccc3(227, 222, 238);
+}
+
 #pragma mark - Themes
 
 + (ccColor3B)audioPanelEdgeWithTheme:(NSString *)theme
@@ -93,7 +98,7 @@ NSString *const kPFLColorUtilsLightPurpleTheme = @"purple_light";
         return [PFLColorUtils darkGray];
     }
     else if ([theme isEqualToString:kPFLColorUtilsLightPurpleTheme]) {
-        return [PFLColorUtils darkCream];
+        return [PFLColorUtils lightPurple];
     }
     CCLOG(@"Warning theme '%@' not recognized", theme);
     return ccBLACK;
