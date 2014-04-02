@@ -27,7 +27,7 @@
         _index = index;
         
         CCLabelTTF *label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", index + 1] fontName:@"Helvetica" fontSize:40];
-        label.color = ccWHITE;
+        label.color = ccBLACK;
         label.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
         [self addChild:label];
     }

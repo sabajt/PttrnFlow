@@ -174,6 +174,10 @@
 		3350B17F186A39A100F3BE57 /* puzzle3.json in Resources */ = {isa = PBXBuildFile; fileRef = 3350B17E186A39A100F3BE57 /* puzzle3.json */; };
 		3356075E17F8B67900ECD44B /* pf-oscSynth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 3356075C17F8B67900ECD44B /* pf-oscSynth.pd */; };
 		3356075F17F8B67900ECD44B /* pf-phasorSynth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 3356075D17F8B67900ECD44B /* pf-phasorSynth.pd */; };
+		3357C3BA18EC4FBE0000D695 /* puzzletransitionlayer-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3357C3B618EC4FBE0000D695 /* puzzletransitionlayer-hd.plist */; };
+		3357C3BB18EC4FBE0000D695 /* puzzletransitionlayer-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3357C3B718EC4FBE0000D695 /* puzzletransitionlayer-hd.png */; };
+		3357C3BC18EC4FBE0000D695 /* puzzletransitionlayer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3357C3B818EC4FBE0000D695 /* puzzletransitionlayer.plist */; };
+		3357C3BD18EC4FBE0000D695 /* puzzletransitionlayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3357C3B918EC4FBE0000D695 /* puzzletransitionlayer.png */; };
 		335836A5181F486100921270 /* white_rect.png in Resources */ = {isa = PBXBuildFile; fileRef = 335836A4181F486100921270 /* white_rect.png */; };
 		335836B81826CF4700921270 /* PFLTileSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 335836B71826CF4700921270 /* PFLTileSprite.m */; };
 		335F5E1D18BEE90000BF14DD /* marimba-52.wav in Resources */ = {isa = PBXBuildFile; fileRef = 335F5E0D18BEE90000BF14DD /* marimba-52.wav */; };
@@ -583,6 +587,10 @@
 		3350B17E186A39A100F3BE57 /* puzzle3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle3.json; sourceTree = "<group>"; };
 		3356075C17F8B67900ECD44B /* pf-oscSynth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-oscSynth.pd"; sourceTree = "<group>"; };
 		3356075D17F8B67900ECD44B /* pf-phasorSynth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-phasorSynth.pd"; sourceTree = "<group>"; };
+		3357C3B618EC4FBE0000D695 /* puzzletransitionlayer-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "puzzletransitionlayer-hd.plist"; sourceTree = "<group>"; };
+		3357C3B718EC4FBE0000D695 /* puzzletransitionlayer-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "puzzletransitionlayer-hd.png"; sourceTree = "<group>"; };
+		3357C3B818EC4FBE0000D695 /* puzzletransitionlayer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = puzzletransitionlayer.plist; sourceTree = "<group>"; };
+		3357C3B918EC4FBE0000D695 /* puzzletransitionlayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzletransitionlayer.png; sourceTree = "<group>"; };
 		335836A4181F486100921270 /* white_rect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_rect.png; sourceTree = "<group>"; };
 		335836B61826CF4700921270 /* PFLTileSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLTileSprite.h; sourceTree = "<group>"; };
 		335836B71826CF4700921270 /* PFLTileSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLTileSprite.m; sourceTree = "<group>"; };
@@ -1270,6 +1278,7 @@
 		334B2A8D181B02CA00865510 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3357C3B518EC4FBE0000D695 /* puzzleTransitionLayer */,
 				332ED02818E8743C00F23143 /* menus */,
 				3339C02C18397638005771BC /* audioObjects */,
 				335836A4181F486100921270 /* white_rect.png */,
@@ -1300,6 +1309,17 @@
 				334B2AD3181B03F000865510 /* background.png */,
 			);
 			path = background;
+			sourceTree = "<group>";
+		};
+		3357C3B518EC4FBE0000D695 /* puzzleTransitionLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3357C3B618EC4FBE0000D695 /* puzzletransitionlayer-hd.plist */,
+				3357C3B718EC4FBE0000D695 /* puzzletransitionlayer-hd.png */,
+				3357C3B818EC4FBE0000D695 /* puzzletransitionlayer.plist */,
+				3357C3B918EC4FBE0000D695 /* puzzletransitionlayer.png */,
+			);
+			path = puzzleTransitionLayer;
 			sourceTree = "<group>";
 		};
 		3369D7DC18E7F24500FB72D0 /* Audio Responders */ = {
@@ -1553,6 +1573,7 @@
 				332ED02F18E8743C00F23143 /* menus.plist in Resources */,
 				339ACE711884E23700F3D839 /* puzzle4.json in Resources */,
 				334B2ACB181B02CA00865510 /* uilayer-hd.plist in Resources */,
+				3357C3BA18EC4FBE0000D695 /* puzzletransitionlayer-hd.plist in Resources */,
 				33A64C46183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png in Resources */,
 				3339C03118397638005771BC /* audioObjects-hd.plist in Resources */,
 				334B2AD4181B03F000865510 /* background-hd.plist in Resources */,
@@ -1563,10 +1584,12 @@
 				335F5E2018BEE90000BF14DD /* marimba-55.wav in Resources */,
 				33C3B1C61874E9E7008F5FA8 /* pf-sample.pd in Resources */,
 				3356075F17F8B67900ECD44B /* pf-phasorSynth.pd in Resources */,
+				3357C3BB18EC4FBE0000D695 /* puzzletransitionlayer-hd.png in Resources */,
 				1693C661177A0C9300FEB350 /* drum1.wav in Resources */,
 				1693C662177A0C9300FEB350 /* drum2.wav in Resources */,
 				335F5E2618BEE90000BF14DD /* marimba-60.wav in Resources */,
 				33C3B1CB1874F591008F5FA8 /* pttrn1-02.wav in Resources */,
+				3357C3BD18EC4FBE0000D695 /* puzzletransitionlayer.png in Resources */,
 				335F5E1E18BEE90000BF14DD /* marimba-53.wav in Resources */,
 				335F5E2918BEE90000BF14DD /* marimba-63.wav in Resources */,
 				3339C03318397638005771BC /* audioObjects.plist in Resources */,
@@ -1577,6 +1600,7 @@
 				33DD833E18D4C16F00EF90C7 /* puzzleSet0.json in Resources */,
 				33BA5F24185E3385005A0452 /* puzzle2.json in Resources */,
 				33F8A31317B9F104003B33E5 /* pf-main.pd in Resources */,
+				3357C3BC18EC4FBE0000D695 /* puzzletransitionlayer.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

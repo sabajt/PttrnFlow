@@ -9,10 +9,12 @@
 #import "PFLScrollLayer.h"
 #import "PFLPuzzleSetCell.h"
 
+@class PFLPuzzleSet;
+
 @interface PFLPuzzleSetLayer : PFLScrollLayer <PFLPuzzleSetCellDelegate>
 
 @property (strong, nonatomic) NSArray *mapNames;
 
-+ (CCScene *)scene;
++ (CCScene *)sceneWithPuzzleSet:(PFLPuzzleSet *)puzzle leftPadding:(CGFloat)leftPadding rightPadding:(CGFloat)rightPadding;
 
 @end

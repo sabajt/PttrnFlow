@@ -13,6 +13,7 @@ static CGFloat const kAdjustFactor = 0.5f; // see CCTransitionSlideInL for expla
 
 @interface PFLTransitionSlide ()
 
+@property BOOL above;
 @property BOOL forwards;
 @property CGFloat leftPadding;
 @property CGFloat rightPadding;
@@ -21,11 +22,12 @@ static CGFloat const kAdjustFactor = 0.5f; // see CCTransitionSlideInL for expla
 
 @implementation PFLTransitionSlide
 
-- (id)initWithDuration:(ccTime)t scene:(CCScene *)s forwards:(BOOL)forwards leftPadding:(CGFloat)leftPadding rightPadding:(CGFloat)rightPadding
+- (id)initWithDuration:(ccTime)t scene:(CCScene *)s above:(BOOL)above forwards:(BOOL)forwards leftPadding:(CGFloat)leftPadding rightPadding:(CGFloat)rightPadding
 {
     NSAssert([s isKindOfClass:[CCScene class]], @"PFLTransitionSlide only supports CCScenes");
     self = [super initWithDuration:t scene:s];
     if (self) {
+        self.above = above;
         self.forwards = forwards;
         self.leftPadding = leftPadding;
         self.rightPadding = rightPadding;
@@ -60,6 +62,8 @@ static CGFloat const kAdjustFactor = 0.5f; // see CCTransitionSlideInL for expla
 					[CCEaseSineOut actionWithAction:outAct],
 					[CCCallFunc actionWithTarget:self selector:@selector(finish)],
 					nil];
+    
+    inSceneOnTop_ = self.above;
     
 	[inScene_ runAction: inAction];
 	[outScene_ runAction: outAction];

@@ -12,6 +12,7 @@
 #import "PFLAudioResponderTouchController.h"
 #import "PFLPuzzleSet.h"
 #import "PFLTransitionSlide.h"
+#import "PFLPuzzleBackgroundLayer.h"
 
 @interface PFLPuzzleSetLayer ()
 
@@ -21,21 +22,27 @@
 
 @implementation PFLPuzzleSetLayer
 
-+ (CCScene *)scene
++ (CCScene *)sceneWithPuzzleSet:(PFLPuzzleSet *)puzzleSet leftPadding:(CGFloat)leftPadding rightPadding:(CGFloat)rightPadding
 {
     CCScene *scene = [CCScene node];
-    PFLPuzzleSetLayer *menuLayer = [[PFLPuzzleSetLayer alloc] init];
+    
+    // background
+    PFLPuzzleBackgroundLayer *background = [PFLPuzzleBackgroundLayer backgroundLayerWithTheme:puzzleSet.theme];
+    background.contentSize = CGSizeMake(background.contentSize.width + leftPadding + rightPadding, background.contentSize.height);
+    background.position = ccpSub(background.position, ccp(leftPadding, 0.0f));
+    [scene addChild:background];
+    
+    PFLPuzzleSetLayer *menuLayer = [[PFLPuzzleSetLayer alloc] initWithPuzzleSet:puzzleSet];
     [scene addChild:menuLayer];
     return scene;
 }
 
-- (id)init
+- (id)initWithPuzzleSet:(PFLPuzzleSet *)puzzleSet
 {
     self = [super init];
     if (self) {
+        self.puzzleSet = puzzleSet;
         self.allowsScrollHorizontal = NO;
-        
-        self.puzzleSet = [PFLPuzzleSet puzzleSetFromResource:@"puzzleSet0"];
         
         // create and layout cells
         CGSize sideMargins = CGSizeMake(50, 50);
@@ -59,7 +66,7 @@
 - (void)puzzleSetCellTouchUpInside:(PFLPuzzleSetCell *)cell index:(NSInteger)index
 {
     CCScene *scene = [PFLPuzzleLayer sceneWithPuzzle:self.puzzleSet.puzzles[index] leftPadding:0.0f rightPadding:0];
-    id transitionScene = [[PFLTransitionSlide alloc] initWithDuration:0.33f scene:scene forwards:YES leftPadding:0.0f rightPadding:0.0f];
+    id transitionScene = [[PFLTransitionSlide alloc] initWithDuration:0.33f scene:scene above:NO forwards:YES leftPadding:0.0f rightPadding:0.0f];
     [[CCDirector sharedDirector] replaceScene:transitionScene];
 }
 

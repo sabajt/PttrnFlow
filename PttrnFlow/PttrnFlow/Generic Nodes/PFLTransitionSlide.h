@@ -10,6 +10,6 @@
 
 @interface PFLTransitionSlide : CCTransitionScene;
 
-- (id)initWithDuration:(ccTime)t scene:(CCScene *)s forwards:(BOOL)forwards leftPadding:(CGFloat)leftPadding rightPadding:(CGFloat)rightPadding;
+- (id)initWithDuration:(ccTime)t scene:(CCScene *)s above:(BOOL)above forwards:(BOOL)forwards leftPadding:(CGFloat)leftPadding rightPadding:(CGFloat)rightPadding;
 
 @end

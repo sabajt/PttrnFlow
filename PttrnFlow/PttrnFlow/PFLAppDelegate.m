@@ -10,6 +10,7 @@
 #import "PFLPuzzleSetLayer.h"
 #import "SimpleAudioEngine.h"
 #import "PFLGameConstants.h"
+#import "PFLPuzzleSet.h"
 
 @implementation PFLAppDelegate
 
@@ -85,8 +86,10 @@
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeyUILayer stringByAppendingString:@".plist"]];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeyBackground stringByAppendingString:@".plist"]];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[kTextureKeyAudioObjects stringByAppendingString:@".plist"]];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"puzzletransitionlayer.plist"];
 
-	[director_ pushScene: [PFLPuzzleSetLayer scene]];
+    PFLPuzzleSet *puzzleSet = [PFLPuzzleSet puzzleSetFromResource:@"puzzleSet0"];
+	[director_ pushScene: [PFLPuzzleSetLayer sceneWithPuzzleSet:puzzleSet leftPadding:0 rightPadding:0]];
     
     _audioController = [[PdAudioController alloc] init];
     if ([self.audioController configureAmbientWithSampleRate:44100 numberChannels:2 mixingEnabled:YES] != PdAudioOK) {
