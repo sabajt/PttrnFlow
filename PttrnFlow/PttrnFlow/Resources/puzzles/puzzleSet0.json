@@ -6,7 +6,7 @@
 	"puzzles" : 
 	[	
 		{
-			"file" : "puzzle2",
+			"file" : "puzzle0",
 			"keyframes" :
 			[
 				{ "source_index" : 0, "target_index" : 0, "range" : 4 },

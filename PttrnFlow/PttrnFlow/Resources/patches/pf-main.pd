@@ -1,4 +1,4 @@
-#N canvas 394 37 1052 614 10;
+#N canvas 65 272 1052 614 10;
 #X obj 1078 69 r trigger;
 #X obj 306 329 *~;
 #X obj 306 352 *~ 0.1;
@@ -90,8 +90,7 @@
 #X msg 192 637 symbol _1;
 #X msg 147 686 \; loadSample\$2 list \$1 \$2;
 #X msg 318 667 \; stageSample_1 1;
-#X msg 192 608 symbol drum2.wav;
-#X text 319 609 <- define sample to be loaded;
+#X text 341 609 <- define sample to be loaded;
 #X text 319 637 <- define table to store sample in;
 #X text 427 672 <- bang to test staging a sample;
 #X text 184 562 < - bang to test loading and storing a sample;
@@ -115,6 +114,7 @@
 #X obj 417 809 pf-sample 18;
 #X obj 417 829 pf-sample 19;
 #X obj 417 849 pf-sample 20;
+#X msg 192 608 symbol pfl-piano-1.aif;
 #X connect 0 0 16 0;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
@@ -170,9 +170,9 @@
 #X connect 66 0 43 0;
 #X connect 67 0 43 0;
 #X connect 68 0 43 0;
-#X connect 70 0 77 0;
+#X connect 70 0 101 0;
 #X connect 70 1 74 0;
 #X connect 71 0 70 0;
 #X connect 73 0 75 0;
 #X connect 74 0 73 1;
-#X connect 77 0 73 0;
+#X connect 101 0 73 0;

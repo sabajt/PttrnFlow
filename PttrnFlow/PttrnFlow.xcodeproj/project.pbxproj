@@ -172,6 +172,14 @@
 		334B2ADD181C2F4B00865510 /* PFLTouchSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 334B2ADC181C2F4B00865510 /* PFLTouchSprite.m */; };
 		334B2AE3181C47B900865510 /* PFLClippingSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 334B2AE2181C47B900865510 /* PFLClippingSprite.m */; };
 		3350B17F186A39A100F3BE57 /* puzzle3.json in Resources */ = {isa = PBXBuildFile; fileRef = 3350B17E186A39A100F3BE57 /* puzzle3.json */; };
+		3355731418ED22CC00DA70BE /* pfl-piano-1.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3355730C18ED22CC00DA70BE /* pfl-piano-1.aif */; };
+		3355731518ED22CC00DA70BE /* pfl-piano-2.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3355730D18ED22CC00DA70BE /* pfl-piano-2.aif */; };
+		3355731618ED22CC00DA70BE /* pfl-piano-3.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3355730E18ED22CC00DA70BE /* pfl-piano-3.aif */; };
+		3355731718ED22CC00DA70BE /* pfl-piano-4.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3355730F18ED22CC00DA70BE /* pfl-piano-4.aif */; };
+		3355731818ED22CC00DA70BE /* pfl-piano-5.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3355731018ED22CC00DA70BE /* pfl-piano-5.aif */; };
+		3355731918ED22CC00DA70BE /* pfl-piano-6.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3355731118ED22CC00DA70BE /* pfl-piano-6.aif */; };
+		3355731A18ED22CC00DA70BE /* pfl-piano-7.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3355731218ED22CC00DA70BE /* pfl-piano-7.aif */; };
+		3355731B18ED22CC00DA70BE /* pfl-piano-8.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3355731318ED22CC00DA70BE /* pfl-piano-8.aif */; };
 		3356075E17F8B67900ECD44B /* pf-oscSynth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 3356075C17F8B67900ECD44B /* pf-oscSynth.pd */; };
 		3356075F17F8B67900ECD44B /* pf-phasorSynth.pd in Resources */ = {isa = PBXBuildFile; fileRef = 3356075D17F8B67900ECD44B /* pf-phasorSynth.pd */; };
 		3357C3BA18EC4FBE0000D695 /* puzzletransitionlayer-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3357C3B618EC4FBE0000D695 /* puzzletransitionlayer-hd.plist */; };
@@ -585,6 +593,14 @@
 		334B2AE1181C47B900865510 /* PFLClippingSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLClippingSprite.h; sourceTree = "<group>"; };
 		334B2AE2181C47B900865510 /* PFLClippingSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLClippingSprite.m; sourceTree = "<group>"; };
 		3350B17E186A39A100F3BE57 /* puzzle3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = puzzle3.json; sourceTree = "<group>"; };
+		3355730C18ED22CC00DA70BE /* pfl-piano-1.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pfl-piano-1.aif"; sourceTree = "<group>"; };
+		3355730D18ED22CC00DA70BE /* pfl-piano-2.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pfl-piano-2.aif"; sourceTree = "<group>"; };
+		3355730E18ED22CC00DA70BE /* pfl-piano-3.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pfl-piano-3.aif"; sourceTree = "<group>"; };
+		3355730F18ED22CC00DA70BE /* pfl-piano-4.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pfl-piano-4.aif"; sourceTree = "<group>"; };
+		3355731018ED22CC00DA70BE /* pfl-piano-5.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pfl-piano-5.aif"; sourceTree = "<group>"; };
+		3355731118ED22CC00DA70BE /* pfl-piano-6.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pfl-piano-6.aif"; sourceTree = "<group>"; };
+		3355731218ED22CC00DA70BE /* pfl-piano-7.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pfl-piano-7.aif"; sourceTree = "<group>"; };
+		3355731318ED22CC00DA70BE /* pfl-piano-8.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pfl-piano-8.aif"; sourceTree = "<group>"; };
 		3356075C17F8B67900ECD44B /* pf-oscSynth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-oscSynth.pd"; sourceTree = "<group>"; };
 		3356075D17F8B67900ECD44B /* pf-phasorSynth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-phasorSynth.pd"; sourceTree = "<group>"; };
 		3357C3B618EC4FBE0000D695 /* puzzletransitionlayer-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "puzzletransitionlayer-hd.plist"; sourceTree = "<group>"; };
@@ -1163,6 +1179,14 @@
 		16284C94173A072B00B058D2 /* patches */ = {
 			isa = PBXGroup;
 			children = (
+				3355730C18ED22CC00DA70BE /* pfl-piano-1.aif */,
+				3355730D18ED22CC00DA70BE /* pfl-piano-2.aif */,
+				3355730E18ED22CC00DA70BE /* pfl-piano-3.aif */,
+				3355730F18ED22CC00DA70BE /* pfl-piano-4.aif */,
+				3355731018ED22CC00DA70BE /* pfl-piano-5.aif */,
+				3355731118ED22CC00DA70BE /* pfl-piano-6.aif */,
+				3355731218ED22CC00DA70BE /* pfl-piano-7.aif */,
+				3355731318ED22CC00DA70BE /* pfl-piano-8.aif */,
 				335F5E0D18BEE90000BF14DD /* marimba-52.wav */,
 				335F5E0E18BEE90000BF14DD /* marimba-53.wav */,
 				335F5E0F18BEE90000BF14DD /* marimba-54.wav */,
@@ -1538,10 +1562,14 @@
 				335F5E2118BEE90000BF14DD /* marimba-48.wav in Resources */,
 				168FA4E8173A08C7004C26AD /* blank.png in Resources */,
 				33A64C45183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.fnt in Resources */,
+				3355731718ED22CC00DA70BE /* pfl-piano-4.aif in Resources */,
+				3355731818ED22CC00DA70BE /* pfl-piano-5.aif in Resources */,
 				335F5E1D18BEE90000BF14DD /* marimba-52.wav in Resources */,
 				168FA4E9173A08C7004C26AD /* Default-Landscape~ipad.png in Resources */,
 				168FA4EA173A08C7004C26AD /* Default.png in Resources */,
 				168FA4EB173A08C7004C26AD /* fps_images-hd.png in Resources */,
+				3355731518ED22CC00DA70BE /* pfl-piano-2.aif in Resources */,
+				3355731918ED22CC00DA70BE /* pfl-piano-6.aif in Resources */,
 				334B2AD7181B03F000865510 /* background.png in Resources */,
 				168FA4EC173A08C7004C26AD /* fps_images-ipadhd.png in Resources */,
 				335F5E2C18BEE90000BF14DD /* marimba-58.wav in Resources */,
@@ -1550,11 +1578,13 @@
 				168FA4EE173A08C7004C26AD /* Icon-72.png in Resources */,
 				335F5E2518BEE90000BF14DD /* marimba-59.wav in Resources */,
 				330A580218C5A82A00DC97B7 /* puzzle6.json in Resources */,
+				3355731618ED22CC00DA70BE /* pfl-piano-3.aif in Resources */,
 				168FA4EF173A08C7004C26AD /* Icon-Small-50.png in Resources */,
 				335F5E1F18BEE90000BF14DD /* marimba-54.wav in Resources */,
 				335F5E2718BEE90000BF14DD /* marimba-61.wav in Resources */,
 				168FA4F0173A08C7004C26AD /* Icon-Small.png in Resources */,
 				332ED02D18E8743C00F23143 /* menus-hd.plist in Resources */,
+				3355731B18ED22CC00DA70BE /* pfl-piano-8.aif in Resources */,
 				334B2ACE181B02CA00865510 /* uilayer.png in Resources */,
 				33BA5F22185E3385005A0452 /* puzzle0.json in Resources */,
 				33C3B1CA1874F591008F5FA8 /* pttrn1-01.wav in Resources */,
@@ -1562,6 +1592,7 @@
 				168FA4F1173A08C7004C26AD /* Icon-Small@2x.png in Resources */,
 				334B2AD5181B03F000865510 /* background-hd.png in Resources */,
 				335F5E2418BEE90000BF14DD /* marimba-51.wav in Resources */,
+				3355731A18ED22CC00DA70BE /* pfl-piano-7.aif in Resources */,
 				33DD833F18D4C16F00EF90C7 /* puzzleSet1.json in Resources */,
 				168FA4F2173A08C7004C26AD /* Icon.png in Resources */,
 				3339C03418397638005771BC /* audioObjects.png in Resources */,
@@ -1585,6 +1616,7 @@
 				33C3B1C61874E9E7008F5FA8 /* pf-sample.pd in Resources */,
 				3356075F17F8B67900ECD44B /* pf-phasorSynth.pd in Resources */,
 				3357C3BB18EC4FBE0000D695 /* puzzletransitionlayer-hd.png in Resources */,
+				3355731418ED22CC00DA70BE /* pfl-piano-1.aif in Resources */,
 				1693C661177A0C9300FEB350 /* drum1.wav in Resources */,
 				1693C662177A0C9300FEB350 /* drum2.wav in Resources */,
 				335F5E2618BEE90000BF14DD /* marimba-60.wav in Resources */,
