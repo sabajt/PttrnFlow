@@ -104,19 +104,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         [PFLPatchController sharedMainSynth].beatDuration = self.beatDuration;
         
         // Sprite sheet batch nodes
-        
-        CCSpriteBatchNode *samplesBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeySamplePads stringByAppendingString:@".png"]];
-        [self addChild:samplesBatch];
-        _samplesBatchNode = samplesBatch;
-        
-        CCSpriteBatchNode *synthBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeySynthPads stringByAppendingString:@".png"]];
-        [self addChild:synthBatch];
-        _synthBatchNode = synthBatch;
-        
-        CCSpriteBatchNode *othersBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyOther stringByAppendingString:@".png"]];
-        [self addChild:othersBatch];
-        _othersBatchNode = othersBatch;
-        
         CCSpriteBatchNode *audioObjectsBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyAudioObjects stringByAppendingString:@".png"]];
         [self addChild:audioObjectsBatch];
         _audioObjectsBatchNode = audioObjectsBatch;
@@ -170,7 +157,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         
         // create puzzle objects
         [self createBorderWithAreaCells:puzzle.area];
-        [self createPuzzleObjects:puzzle];
+        [self createPuzzleObjects:puzzle];        
     }
     return self;
 }

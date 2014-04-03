@@ -27,7 +27,7 @@ CGFloat const kSizeGridUnit = 68.0;
 CGFloat const kStatusBarHeight = 20.0;
 
 // duration
-ccTime const kTransitionDuration = 0.25;
+ccTime const kTransitionDuration = 0.33;
 
 // notifications
 NSString *const kNotificationRemoveTickReponder = @"removeAudioResponder";

@@ -21,9 +21,6 @@
 @property (weak, nonatomic) PFLAudioResponderStepController *sequenceDispatcher;
 @property (weak, nonatomic) PFLAudioResponderTouchController *audioTouchDispatcher;
 
-@property (weak, nonatomic) CCSpriteBatchNode *samplesBatchNode;
-@property (weak, nonatomic) CCSpriteBatchNode *synthBatchNode;
-@property (weak, nonatomic) CCSpriteBatchNode *othersBatchNode;
 @property (weak, nonatomic) CCSpriteBatchNode *audioObjectsBatchNode;
 
 + (CCScene *)sceneWithPuzzle:(PFLPuzzle *)puzzle leftPadding:(CGFloat)leftPadding rightPadding:(CGFloat)rightPadding;

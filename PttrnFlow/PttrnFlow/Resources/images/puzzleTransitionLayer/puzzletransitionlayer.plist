@@ -7,13 +7,13 @@
             <key>puzzle_left_transition_padding_568_a_edge.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,572},{40,448}}</string>
+                <string>{{84,2},{40,422}}</string>
                 <key>offset</key>
-                <string>{20,-20}</string>
+                <string>{20,25}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{40,80},{40,448}}</string>
+                <string>{{40,48},{40,422}}</string>
                 <key>sourceSize</key>
                 <string>{80,568}</string>
             </dict>
@@ -40,7 +40,7 @@
             <key>size</key>
             <string>{128,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3c3e81c96abe9d013d07a793cdf0fb60:9390c79cd51903c3bf7d67c81e3a06d1:eb7bf5c42e27851a7f4d402419f4a579$</string>
+            <string>$TexturePacker:SmartUpdate:7c198dc29a8a72e6ecc3255d0431a289:8df76dc57a3a314a85dee539e3e66d05:eb7bf5c42e27851a7f4d402419f4a579$</string>
             <key>textureFileName</key>
             <string>puzzletransitionlayer.png</string>
         </dict>

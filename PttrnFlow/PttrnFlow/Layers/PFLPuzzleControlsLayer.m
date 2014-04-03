@@ -25,6 +25,8 @@ static NSInteger const kRowLength = 8;
 @interface PFLPuzzleControlsLayer ()
 
 @property (weak, nonatomic) CCSpriteBatchNode *uiBatchNode;
+@property (weak, nonatomic) CCSpriteBatchNode *transitionBatchNode;
+
 @property (weak, nonatomic) id<PFLPuzzleControlsDelegate> delegate;
 @property (strong, nonatomic) NSMutableArray *solutionButtons;
 @property (strong, nonatomic) NSMutableArray *solutionFlags;
@@ -57,6 +59,11 @@ static NSInteger const kRowLength = 8;
         CCSpriteBatchNode *uiBatch = [CCSpriteBatchNode batchNodeWithFile:[kTextureKeyUILayer stringByAppendingString:@".png"]];
         self.uiBatchNode = uiBatch;
         [self addChild:uiBatch];
+        
+        CCSpriteBatchNode *transitionBatch = [CCSpriteBatchNode batchNodeWithFile:@"puzzletransitionlayer.png"];
+        self.transitionBatchNode = transitionBatch;
+        [self addChild:transitionBatch];
+        [self createTransitionPadding];
         
         // right controls panel
         CCSprite *rightControlsPanel = [CCSprite spriteWithSpriteFrameName:@"controls_panel_right_bottom_fill.png"];
@@ -135,6 +142,23 @@ static NSInteger const kRowLength = 8;
         }
     }
     return self;
+}
+
+- (void)createTransitionPadding
+{
+    CCSprite *fill = [CCSprite spriteWithSpriteFrameName:@"puzzle_left_transition_padding_568_a_fill.png"];
+    fill.color = [PFLColorUtils controlPanelFillWithTheme:self.puzzle.puzzleSet.theme];
+    fill.anchorPoint = ccp(1, 0);
+    fill.position = ccp(0, 0);
+    //    fill.position = ccp(-fill.contentSize.width, 0.0f);
+    [self.transitionBatchNode addChild:fill];
+    
+    CCSprite *edge = [CCSprite spriteWithSpriteFrameName:@"puzzle_left_transition_padding_568_a_edge.png"];
+    edge.color = [PFLColorUtils controlPanelEdgeWithTheme:self.puzzle.puzzleSet.theme];
+    edge.anchorPoint = ccp(1, 0);
+    edge.position = ccp(0, 0);
+    //    edge.position = ccp(-edge.contentSize.width, 0.0f);
+    [self.transitionBatchNode addChild:edge];
 }
 
 // TODO: if this becomes a custom animation (crossfade?) will probably need to use with a completion callback
@@ -249,7 +273,7 @@ static NSInteger const kRowLength = 8;
 {
     if ([sender isEqual:self.exitButton]) {
         CCScene *scene = [PFLPuzzleSetLayer sceneWithPuzzleSet:self.puzzle.puzzleSet leftPadding:0 rightPadding:0];
-        id transitionScene = [[PFLTransitionSlide alloc] initWithDuration:0.33f scene:scene above:YES forwards:NO leftPadding:0.0f rightPadding:0.0f];
+        id transitionScene = [[PFLTransitionSlide alloc] initWithDuration:kTransitionDuration scene:scene above:YES forwards:NO leftPadding:80.0f rightPadding:0.0f];
         [[CCDirector sharedDirector] replaceScene:transitionScene];
     }
 }
