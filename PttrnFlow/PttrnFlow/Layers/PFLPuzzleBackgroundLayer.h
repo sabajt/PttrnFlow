@@ -11,6 +11,7 @@
 @interface PFLPuzzleBackgroundLayer : CCLayerColor
 
 + (PFLPuzzleBackgroundLayer *)backgroundLayerWithTheme:(NSString *)theme;
++ (PFLPuzzleBackgroundLayer *)backgroundLayerWithColor:(ccColor3B)color;
 - (void)tintToColor:(ccColor3B)color duration:(ccTime)duration;
 
 @end

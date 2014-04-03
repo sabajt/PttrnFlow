@@ -31,6 +31,12 @@
     return layer;
 }
 
++ (PFLPuzzleBackgroundLayer *)backgroundLayerWithColor:(ccColor3B)color
+{
+    PFLPuzzleBackgroundLayer *layer = [PFLPuzzleBackgroundLayer layerWithColor:ccc4BFromccc3B(color)];
+    return layer;
+}
+
 - (void)tintToColor:(ccColor3B)color duration:(ccTime)duration
 {
     CCTintTo *tint = [CCTintTo actionWithDuration:duration red:color.r green:color.g blue:color.b];

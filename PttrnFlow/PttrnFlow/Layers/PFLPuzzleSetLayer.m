@@ -13,6 +13,7 @@
 #import "PFLPuzzleSet.h"
 #import "PFLTransitionSlide.h"
 #import "PFLPuzzleBackgroundLayer.h"
+#import "PFLColorUtils.h"
 
 @interface PFLPuzzleSetLayer ()
 
@@ -27,7 +28,7 @@
     CCScene *scene = [CCScene node];
     
     // background
-    PFLPuzzleBackgroundLayer *background = [PFLPuzzleBackgroundLayer backgroundLayerWithTheme:puzzleSet.theme];
+    PFLPuzzleBackgroundLayer *background = [PFLPuzzleBackgroundLayer backgroundLayerWithColor:[PFLColorUtils controlPanelFillWithTheme:puzzleSet.theme]];
     background.contentSize = CGSizeMake(background.contentSize.width + leftPadding + rightPadding, background.contentSize.height);
     background.position = ccpSub(background.position, ccp(leftPadding, 0.0f));
     [scene addChild:background];
