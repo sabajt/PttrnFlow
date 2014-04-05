@@ -13,10 +13,6 @@
 @class PdDispatcher, PFLAudioResponderStepController, PFLAudioResponderTouchController;
 
 @interface PFLPuzzleLayer : PFLScrollLayer
-{
-    PdDispatcher *_dispatcher;
-    void *_patch;
-}
 
 @property (weak, nonatomic) PFLAudioResponderStepController *sequenceDispatcher;
 @property (weak, nonatomic) PFLAudioResponderTouchController *audioTouchDispatcher;

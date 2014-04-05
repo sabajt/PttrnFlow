@@ -90,16 +90,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
         self.screenSize = self.contentSize;
         self.puzzle = puzzle;
         self.puzzleSet = puzzle.puzzleSet;
-        
-        // Initialize Pure Data stuff
-        
-        _dispatcher = [[PdDispatcher alloc] init];
-        [PdBase setDelegate:_dispatcher];
-        _patch = [PdBase openFile:@"pf-main.pd" path:[[NSBundle mainBundle] resourcePath]];
-        if (!_patch) {
-            CCLOG(@"Failed to open patch");
-        }
-        
+      
         self.beatDuration = puzzle.puzzleSet.beatDuration;
         [PFLPatchController sharedMainSynth].beatDuration = self.beatDuration;
         
@@ -403,8 +394,6 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 }
 
 #pragma mark - scene management
-// TODO: opening and closing pd patch not matched with onEnter / onExit would cause pd patch to not be opened if
-// TODO: leaving scene but keeping sequence layer around then coming back to seq layer
 
 - (void)onEnter
 {
@@ -416,9 +405,7 @@ static CGFloat kPuzzleBoundsMargin = 10.0f;
 }
 
 - (void)onExit
-{    
-    [PdBase closeFile:_patch];
-    [PdBase setDelegate:nil];
+{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super onExit];
 }

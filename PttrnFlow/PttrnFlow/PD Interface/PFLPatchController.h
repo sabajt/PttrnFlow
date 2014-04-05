@@ -7,8 +7,9 @@
 //
 
 #import "cocos2d.h"
+#import "AVAudioPlayer+Utils.h"
 
-@interface PFLPatchController : CCNode
+@interface PFLPatchController : CCNode <AVAudioPlayerDelegate>
 
 @property (assign) CGFloat beatDuration;
 

@@ -22,7 +22,6 @@
 @property (readonly) UINavigationController *navController;
 @property (unsafe_unretained, readonly) CCDirectorIOS *director;
 
-@property (strong, nonatomic, readonly) PdAudioController *audioController;
 @property (assign) BOOL isRetinaEnabled;
 
 @end

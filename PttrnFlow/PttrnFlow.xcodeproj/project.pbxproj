@@ -255,6 +255,7 @@
 		33F0357418EE5B8D004DC8FD /* tech-tonal3.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0356618EE5B8D004DC8FD /* tech-tonal3.aif */; };
 		33F0357518EE5B8D004DC8FD /* tech-tonal4.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0356718EE5B8D004DC8FD /* tech-tonal4.aif */; };
 		33F0357618EE5B8D004DC8FD /* tech-tonal5.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0356818EE5B8D004DC8FD /* tech-tonal5.aif */; };
+		33F0359A18F05A81004DC8FD /* AVAudioPlayer+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F0359918F05A81004DC8FD /* AVAudioPlayer+Utils.m */; };
 		33F4847F18E248CD00237C9B /* PFLTransitionSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F4847E18E248CD00237C9B /* PFLTransitionSlide.m */; };
 		33F8A31317B9F104003B33E5 /* pf-main.pd in Resources */ = {isa = PBXBuildFile; fileRef = 33F8A31117B9F104003B33E5 /* pf-main.pd */; };
 /* End PBXBuildFile section */
@@ -712,6 +713,8 @@
 		33F0356618EE5B8D004DC8FD /* tech-tonal3.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-tonal3.aif"; sourceTree = "<group>"; };
 		33F0356718EE5B8D004DC8FD /* tech-tonal4.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-tonal4.aif"; sourceTree = "<group>"; };
 		33F0356818EE5B8D004DC8FD /* tech-tonal5.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-tonal5.aif"; sourceTree = "<group>"; };
+		33F0359818F05A81004DC8FD /* AVAudioPlayer+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVAudioPlayer+Utils.h"; sourceTree = "<group>"; };
+		33F0359918F05A81004DC8FD /* AVAudioPlayer+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVAudioPlayer+Utils.m"; sourceTree = "<group>"; };
 		33F4847D18E248CD00237C9B /* PFLTransitionSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLTransitionSlide.h; sourceTree = "<group>"; };
 		33F4847E18E248CD00237C9B /* PFLTransitionSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLTransitionSlide.m; sourceTree = "<group>"; };
 		33F8A31117B9F104003B33E5 /* pf-main.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-main.pd"; sourceTree = "<group>"; };
@@ -1293,6 +1296,8 @@
 			children = (
 				16A942A31777A2250052D5BD /* PFLPatchController.h */,
 				16A942A41777A2250052D5BD /* PFLPatchController.m */,
+				33F0359818F05A81004DC8FD /* AVAudioPlayer+Utils.h */,
+				33F0359918F05A81004DC8FD /* AVAudioPlayer+Utils.m */,
 			);
 			path = "PD Interface";
 			sourceTree = "<group>";
@@ -1804,6 +1809,7 @@
 				160807E416B437AA00039339 /* CCFileUtils.m in Sources */,
 				160807E716B437AA00039339 /* CCProfiling.m in Sources */,
 				160807E916B437AA00039339 /* ccUtils.c in Sources */,
+				33F0359A18F05A81004DC8FD /* AVAudioPlayer+Utils.m in Sources */,
 				160807ED16B437AA00039339 /* CCVertex.m in Sources */,
 				332ED02318E7F3A600F23143 /* PFLAudioResponderStepController.m in Sources */,
 				160807F016B437AA00039339 /* CGPointExtension.m in Sources */,

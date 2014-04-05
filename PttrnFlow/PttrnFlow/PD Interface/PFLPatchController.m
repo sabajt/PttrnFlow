@@ -7,21 +7,9 @@
 //
 
 #import "PFLPatchController.h"
-
 #import "PdDispatcher.h"
 #import "PFLPuzzleLayer.h"
 #import "PFLEvent.h"
-
-static NSString *const kActivateNoise = @"activateNoise";
-static NSString *const kClear = @"clear";
-static NSString *const kTrigger = @"trigger";
-static NSString *const kMidiValue = @"midinote";
-static NSString *const kMute = @"mute";
-static NSString *const kSynthEvent = @"synthEvent";
-static NSString *const kAudioStop = @"audioStop";
-
-static NSString *const kLoadSample = @"loadSample";
-static NSString *const kStageSample = @"stageSample";
 
 @interface PFLPatchController ()
 
@@ -43,11 +31,7 @@ static NSString *const kStageSample = @"stageSample";
 
 + (void)mute:(BOOL)mute
 {
-    float muteVal = 1.0;
-    if (mute) {
-        muteVal = 0.0;
-    }
-    [PdBase sendFloat:muteVal toReceiver:kMute];
+    CCLOG(@"mute needs implementation");
 }
 
 #pragma mark - SoundEventReveiver
@@ -55,13 +39,13 @@ static NSString *const kStageSample = @"stageSample";
 - (void)loadSamples:(NSArray *)samples
 {
     self.sampleKey = [NSMutableDictionary dictionary];
-    NSInteger i = 1;
     for (NSString *sampleName in samples) {
-        NSString *sampleSuffix = [NSString stringWithFormat:@"_%i", i];
-        [self.sampleKey setObject:sampleSuffix forKey:sampleName];
-        NSString *receiver = [kLoadSample stringByAppendingString:sampleSuffix];
-        [PdBase sendList:@[sampleName, sampleSuffix] toReceiver:receiver];
-        i++;
+        NSArray *comp = [sampleName componentsSeparatedByString:@"."];
+        NSURL *url = [[NSBundle mainBundle] URLForResource:comp[0] withExtension:comp[1]];
+        AVAudioPlayer *audioPlayer = [AVAudioPlayer audioPlayerForURL:url];
+        audioPlayer.delegate = self;
+        [audioPlayer prepareToPlay];
+        [self.sampleKey setObject:audioPlayer forKey:sampleName];
     }
 }
 
@@ -71,25 +55,19 @@ static NSString *const kStageSample = @"stageSample";
         CCLOG(@"no events sent to synth");
         return;
     }
-    
-    // clearing blocks input for various pd components / channels unless we recieve an event for it below
-    [PdBase sendBangToReceiver:kClear];
-    
-    // send events (setup information) in
+  
     for (PFLEvent *event in events) {
         
         if (event.eventType == PFLEventTypeSynth) {
             NSNumber *midiValue = @([event.midiValue integerValue]);
-        
             // TODO: synth type needs to be an enum on event or basic model
             NSNumber *synthType = @0;
-            [PdBase sendList:@[synthType, midiValue, @0] toReceiver:kSynthEvent];
         }
         
         if (event.eventType == PFLEventTypeSample) {
-            NSString *sampleSuffix = self.sampleKey[event.file];
-            NSString *receiver = [kStageSample stringByAppendingString:sampleSuffix];
-            [PdBase sendBangToReceiver:receiver];
+            AVAudioPlayer *audioPlayer = self.sampleKey[event.file];
+            audioPlayer.currentTime = 0.0;
+            [audioPlayer play];
         }
         
         if(event.eventType == PFLEventTypeMultiSample) {
@@ -104,18 +82,12 @@ static NSString *const kStageSample = @"stageSample";
             };
         }
         
-        if (event.eventType == PFLEventTypeAudioStop) {
-            // TODO: was there a reason this is not 0.0f?
-            [PdBase sendFloat:[@0 floatValue] toReceiver:kAudioStop];
+        if (event.eventType == PFLEventTypeAudioStop) {;
         }
         
         if (event.eventType == PFLEventTypeExit) {
-            // TODO: was there a reason this is not 0.0f?
-            [PdBase sendFloat:[@0 floatValue] toReceiver:kAudioStop];
         }
     }
-    
-    [PdBase sendBangToReceiver:kTrigger];
 }
 
 @end

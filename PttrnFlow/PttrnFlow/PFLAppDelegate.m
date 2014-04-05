@@ -88,12 +88,6 @@
     PFLPuzzleSet *puzzleSet = [PFLPuzzleSet puzzleSetFromResource:@"puzzleSet0"];
 	[director_ pushScene: [PFLPuzzleSetLayer sceneWithPuzzleSet:puzzleSet leftPadding:0 rightPadding:0]];
     
-    _audioController = [[PdAudioController alloc] init];
-    if ([self.audioController configureAmbientWithSampleRate:44100 numberChannels:2 mixingEnabled:YES] != PdAudioOK) {
-        NSLog(@"failed to initialize audio components");
-    }
-    // ********************
-    
 	// Create a Navigation Controller with the Director
 	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
 	navController_.navigationBarHidden = YES;
@@ -123,7 +117,6 @@
 	if( [navController_ visibleViewController] == director_ ) {
 		[director_ pause];
     }
-    self.audioController.active = NO;
 }
 
 // call got rejected
@@ -132,7 +125,6 @@
 	if( [navController_ visibleViewController] == director_ ) {
 		[director_ resume];
     }
-    self.audioController.active = YES;
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
