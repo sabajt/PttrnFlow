@@ -14,7 +14,7 @@
 			]
 		},
 		{
-			"file" : "puzzle3",
+			"file" : "puzzle1",
 			"keyframes" :
 			[
 				{ "source_index" : 0, "target_index" : 0, "range" : 2 },
@@ -22,7 +22,7 @@
 			]
 		},
 		{
-			"file" : "puzzle4",
+			"file" : "puzzle2",
 			"keyframes" :
 			[
 				{ "source_index" : 0, "target_index" : 0, "range" : 1 },

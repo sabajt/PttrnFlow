@@ -1,131 +1,101 @@
 {
+     "name" : "Kewl Melody",
      "bpm" : 120,
      "area" :
      [
           [0, 0],
-          [0, 1],
-          [0, 2],
-          [0, 3],
           [1, 0],
-          [1, 2],
-          [1, 3],
           [2, 0],
+          [4, 0],
+          [0, 1],
+          [1, 1],
+          [3, 1],
           [2, 1],
-          [2, 3],
-          [3, 0],
-          [3, 3],
           [4, 1],
-          [4, 2],
-          [4, 3],
-          [4, 4],
-          [5, 4]
+          [3, 2],
+          [4, 2]
      ],
      "audio" :
      [
           {
-               "drums" : 
+               "samples" :
                [
                     {
-                         "file" : "kick-01.wav",
-                         "image" : "drums_circle.png",
+                         "file" : "tech-chuk1.aif",
+                         "image" : "tone_low_1.png",
                          "time" : 0.0
                     },
                     {
-                         "file" : "kick-01.wav",
-                         "image" : "drums_circle.png",
+                         "file" : "tech-ride1.aif",
+                         "image" : "tone_low_5.png",
                          "time" : 0.5
                     }
                ]
           },
           {
-               "drums" : 
+               "samples" :
                [
                     {
-                         "file" : "kick-01.wav",
-                         "image" : "drums_circle.png",
+                         "file" : "tech-hhclosed1.aif",
+                         "image" : "tone_low_3.png",
                          "time" : 0.0
                     },
                     {
-                         "file" : "snare-01.wav",
-                         "image" : "drums_diamond.png",
+                         "file" : "tech-hhclosed2.aif",
+                         "image" : "tone_low_8.png",
+                         "time" : 0.25
+                    },
+                    {
+                         "file" : "tech-hhclosed3.aif",
+                         "image" : "tone_low_8.png",
                          "time" : 0.5
+                    },
+                    {
+                         "file" : "tech-hhclosed4.aif",
+                         "image" : "tone_low_8.png",
+                         "time" : 0.75
                     }
                ]
           },
           {
-               "drums" : 
+               "samples" :
                [
                     {
-                         "file" : "snare-01.wav",
-                         "image" : "drums_diamond.png",
+                         "file" : "tech-crash1.aif",
+                         "image" : "tone_low_7.png",
                          "time" : 0.0
                     }
                ]
           },
           {
-               "drums" : 
+               "samples" :
                [
                     {
-                         "file" : "kick-01.wav",
-                         "image" : "drums_circle.png",
+                         "file" : "tech-tonal1.aif",
+                         "image" : "tone_low_2.png",
                          "time" : 0.0
                     },
                     {
-                         "file" : "kick-01.wav",
-                         "image" : "drums_circle.png",
+                         "file" : "tech-tonal2.aif",
+                         "image" : "tone_low_5.png",
                          "time" : 0.33
                     },
                     {
-                         "file" : "snare-01.wav",
-                         "image" : "drums_diamond.png",
+                         "file" : "tech-tonal3.aif",
+                         "image" : "tone_low_6.png",
                          "time" : 0.66
                     }
                ]
           },
           {
-               "tone" :
-               {
-                    "synth" : "osc",
-                    "midi" : 48,
-                    "image" : "tone_primary_1_5.png",
-                    "decorator" : "marimba-decorator.png"
-               }
-          },
+               "samples" :
+               [
                     {
-               "tone" :
-               {
-                    "synth" : "osc",
-                    "midi" : 51,
-                    "image" : "tone_primary_2_5.png",
-                    "decorator" : "marimba-decorator.png"
-               }
-          },
-          {
-               "tone" :
-               {
-                    "synth" : "osc",
-                    "midi" : 53,
-                    "image" : "tone_primary_3_5.png",
-                    "decorator" : "marimba-decorator.png"
-               }
-          },
-          {
-               "tone" :
-               {
-                    "synth" : "osc",
-                    "midi" : 56,
-                    "image" : "tone_primary_4_5.png",
-                    "decorator" : "marimba-decorator.png"
-               }
-          },
-          {
-               "tone" :
-               {
-                    "synth" : "osc",
-                    "midi" : 60,
-                    "image" : "tone_primary_full.png",
-                    "decorator" : "marimba-decorator.png"
-               }
+                         "file" : "tech-clap1.aif",
+                         "image" : "tone_low_7.png",
+                         "time" : 0.0
+                    }
+               ]
           },
      ],
      "glyphs" :
@@ -134,49 +104,45 @@
                "static" : 0,
                "cell" : [0, 0],
                "entry" : "right",
-               "audio" : 4
+               "audio" : 0
           },
           {
                "static" : 0,
-               "cell" : [1, 0],
+               "cell" : [0, 1],
                "arrow" : "up",
-               "audio" : 5
+               "audio" : 1
           },
-          {
-               "static" : 1,
-               "cell" : [2, 1],
-               "audio" : 6
-          },
-          {
-               "static" : 1,
-               "cell" : [3, 0],
-               "audio" : 7
+                    {
+               "static" : 0,
+               "cell" : [3, 1],
+               "arrow" : "down",
+               "audio" : 2
           },
           {
                "static" : 0,
-               "cell" : [1, 3],
-               "audio" : 8
+               "cell" : [4, 1],
+               "arrow" : "left",
+               "audio" : 3
           },
           {
                "static" : 0,
-               "cell" : [2, 3],
+               "cell" : [3, 2],
                "audio" : 4
           }
      ],
      "solution" :
      [
           [
-               7
+               0
           ],
           [
-               1,
-               6
+               1,2
+          ],
+          [
+               3
           ],
           [
                4
-          ],
-          [
-               5
           ]
      ]
 }

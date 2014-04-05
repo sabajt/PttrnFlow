@@ -1,4 +1,4 @@
-#N canvas 65 272 1052 614 10;
+#N canvas 85 22 1052 614 10;
 #X obj 1078 69 r trigger;
 #X obj 306 329 *~;
 #X obj 306 352 *~ 0.1;
@@ -114,7 +114,7 @@
 #X obj 417 809 pf-sample 18;
 #X obj 417 829 pf-sample 19;
 #X obj 417 849 pf-sample 20;
-#X msg 192 608 symbol pfl-piano-1.aif;
+#X msg 192 608 symbol tech-crash1.mp3;
 #X connect 0 0 16 0;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;

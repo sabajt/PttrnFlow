@@ -241,6 +241,20 @@
 		33E4F6F818788CF6005571F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160806C616B437A700039339 /* UIKit.framework */; };
 		33E4F6FE18788CF6005571F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33E4F6FC18788CF6005571F4 /* InfoPlist.strings */; };
 		33E4F70018788CF6005571F4 /* PttrnFlow_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E4F6FF18788CF6005571F4 /* PttrnFlow_Tests.m */; };
+		33F0356918EE5B8D004DC8FD /* tech-chuk1.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0355B18EE5B8D004DC8FD /* tech-chuk1.aif */; };
+		33F0356A18EE5B8D004DC8FD /* tech-clap1.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0355C18EE5B8D004DC8FD /* tech-clap1.aif */; };
+		33F0356B18EE5B8D004DC8FD /* tech-clok1.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0355D18EE5B8D004DC8FD /* tech-clok1.aif */; };
+		33F0356C18EE5B8D004DC8FD /* tech-crash1.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0355E18EE5B8D004DC8FD /* tech-crash1.aif */; };
+		33F0356D18EE5B8D004DC8FD /* tech-hhclosed1.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0355F18EE5B8D004DC8FD /* tech-hhclosed1.aif */; };
+		33F0356E18EE5B8D004DC8FD /* tech-hhclosed2.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0356018EE5B8D004DC8FD /* tech-hhclosed2.aif */; };
+		33F0356F18EE5B8D004DC8FD /* tech-hhclosed3.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0356118EE5B8D004DC8FD /* tech-hhclosed3.aif */; };
+		33F0357018EE5B8D004DC8FD /* tech-hhclosed4.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0356218EE5B8D004DC8FD /* tech-hhclosed4.aif */; };
+		33F0357118EE5B8D004DC8FD /* tech-ride1.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0356318EE5B8D004DC8FD /* tech-ride1.aif */; };
+		33F0357218EE5B8D004DC8FD /* tech-tonal1.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0356418EE5B8D004DC8FD /* tech-tonal1.aif */; };
+		33F0357318EE5B8D004DC8FD /* tech-tonal2.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0356518EE5B8D004DC8FD /* tech-tonal2.aif */; };
+		33F0357418EE5B8D004DC8FD /* tech-tonal3.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0356618EE5B8D004DC8FD /* tech-tonal3.aif */; };
+		33F0357518EE5B8D004DC8FD /* tech-tonal4.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0356718EE5B8D004DC8FD /* tech-tonal4.aif */; };
+		33F0357618EE5B8D004DC8FD /* tech-tonal5.aif in Resources */ = {isa = PBXBuildFile; fileRef = 33F0356818EE5B8D004DC8FD /* tech-tonal5.aif */; };
 		33F4847F18E248CD00237C9B /* PFLTransitionSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F4847E18E248CD00237C9B /* PFLTransitionSlide.m */; };
 		33F8A31317B9F104003B33E5 /* pf-main.pd in Resources */ = {isa = PBXBuildFile; fileRef = 33F8A31117B9F104003B33E5 /* pf-main.pd */; };
 /* End PBXBuildFile section */
@@ -684,6 +698,20 @@
 		33E4F6FD18788CF6005571F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		33E4F6FF18788CF6005571F4 /* PttrnFlow_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PttrnFlow_Tests.m; sourceTree = "<group>"; };
 		33E4F70118788CF6005571F4 /* PttrnFlow Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PttrnFlow Tests-Prefix.pch"; sourceTree = "<group>"; };
+		33F0355B18EE5B8D004DC8FD /* tech-chuk1.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-chuk1.aif"; sourceTree = "<group>"; };
+		33F0355C18EE5B8D004DC8FD /* tech-clap1.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-clap1.aif"; sourceTree = "<group>"; };
+		33F0355D18EE5B8D004DC8FD /* tech-clok1.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-clok1.aif"; sourceTree = "<group>"; };
+		33F0355E18EE5B8D004DC8FD /* tech-crash1.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-crash1.aif"; sourceTree = "<group>"; };
+		33F0355F18EE5B8D004DC8FD /* tech-hhclosed1.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-hhclosed1.aif"; sourceTree = "<group>"; };
+		33F0356018EE5B8D004DC8FD /* tech-hhclosed2.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-hhclosed2.aif"; sourceTree = "<group>"; };
+		33F0356118EE5B8D004DC8FD /* tech-hhclosed3.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-hhclosed3.aif"; sourceTree = "<group>"; };
+		33F0356218EE5B8D004DC8FD /* tech-hhclosed4.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-hhclosed4.aif"; sourceTree = "<group>"; };
+		33F0356318EE5B8D004DC8FD /* tech-ride1.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-ride1.aif"; sourceTree = "<group>"; };
+		33F0356418EE5B8D004DC8FD /* tech-tonal1.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-tonal1.aif"; sourceTree = "<group>"; };
+		33F0356518EE5B8D004DC8FD /* tech-tonal2.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-tonal2.aif"; sourceTree = "<group>"; };
+		33F0356618EE5B8D004DC8FD /* tech-tonal3.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-tonal3.aif"; sourceTree = "<group>"; };
+		33F0356718EE5B8D004DC8FD /* tech-tonal4.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-tonal4.aif"; sourceTree = "<group>"; };
+		33F0356818EE5B8D004DC8FD /* tech-tonal5.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tech-tonal5.aif"; sourceTree = "<group>"; };
 		33F4847D18E248CD00237C9B /* PFLTransitionSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLTransitionSlide.h; sourceTree = "<group>"; };
 		33F4847E18E248CD00237C9B /* PFLTransitionSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLTransitionSlide.m; sourceTree = "<group>"; };
 		33F8A31117B9F104003B33E5 /* pf-main.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pf-main.pd"; sourceTree = "<group>"; };
@@ -1179,6 +1207,20 @@
 		16284C94173A072B00B058D2 /* patches */ = {
 			isa = PBXGroup;
 			children = (
+				33F0355B18EE5B8D004DC8FD /* tech-chuk1.aif */,
+				33F0355C18EE5B8D004DC8FD /* tech-clap1.aif */,
+				33F0355D18EE5B8D004DC8FD /* tech-clok1.aif */,
+				33F0355E18EE5B8D004DC8FD /* tech-crash1.aif */,
+				33F0355F18EE5B8D004DC8FD /* tech-hhclosed1.aif */,
+				33F0356018EE5B8D004DC8FD /* tech-hhclosed2.aif */,
+				33F0356118EE5B8D004DC8FD /* tech-hhclosed3.aif */,
+				33F0356218EE5B8D004DC8FD /* tech-hhclosed4.aif */,
+				33F0356318EE5B8D004DC8FD /* tech-ride1.aif */,
+				33F0356418EE5B8D004DC8FD /* tech-tonal1.aif */,
+				33F0356518EE5B8D004DC8FD /* tech-tonal2.aif */,
+				33F0356618EE5B8D004DC8FD /* tech-tonal3.aif */,
+				33F0356718EE5B8D004DC8FD /* tech-tonal4.aif */,
+				33F0356818EE5B8D004DC8FD /* tech-tonal5.aif */,
 				3355730C18ED22CC00DA70BE /* pfl-piano-1.aif */,
 				3355730D18ED22CC00DA70BE /* pfl-piano-2.aif */,
 				3355730E18ED22CC00DA70BE /* pfl-piano-3.aif */,
@@ -1558,6 +1600,7 @@
 				335F5E2818BEE90000BF14DD /* marimba-62.wav in Resources */,
 				335F5E2B18BEE90000BF14DD /* marimba-57.wav in Resources */,
 				1608082616B437AA00039339 /* ChangeLog in Resources */,
+				33F0357018EE5B8D004DC8FD /* tech-hhclosed4.aif in Resources */,
 				335836A5181F486100921270 /* white_rect.png in Resources */,
 				335F5E2118BEE90000BF14DD /* marimba-48.wav in Resources */,
 				168FA4E8173A08C7004C26AD /* blank.png in Resources */,
@@ -1567,18 +1610,24 @@
 				335F5E1D18BEE90000BF14DD /* marimba-52.wav in Resources */,
 				168FA4E9173A08C7004C26AD /* Default-Landscape~ipad.png in Resources */,
 				168FA4EA173A08C7004C26AD /* Default.png in Resources */,
+				33F0356A18EE5B8D004DC8FD /* tech-clap1.aif in Resources */,
 				168FA4EB173A08C7004C26AD /* fps_images-hd.png in Resources */,
+				33F0357318EE5B8D004DC8FD /* tech-tonal2.aif in Resources */,
 				3355731518ED22CC00DA70BE /* pfl-piano-2.aif in Resources */,
 				3355731918ED22CC00DA70BE /* pfl-piano-6.aif in Resources */,
 				334B2AD7181B03F000865510 /* background.png in Resources */,
 				168FA4EC173A08C7004C26AD /* fps_images-ipadhd.png in Resources */,
+				33F0357618EE5B8D004DC8FD /* tech-tonal5.aif in Resources */,
 				335F5E2C18BEE90000BF14DD /* marimba-58.wav in Resources */,
 				335F5E2218BEE90000BF14DD /* marimba-49.wav in Resources */,
 				168FA4ED173A08C7004C26AD /* fps_images.png in Resources */,
 				168FA4EE173A08C7004C26AD /* Icon-72.png in Resources */,
 				335F5E2518BEE90000BF14DD /* marimba-59.wav in Resources */,
 				330A580218C5A82A00DC97B7 /* puzzle6.json in Resources */,
+				33F0356E18EE5B8D004DC8FD /* tech-hhclosed2.aif in Resources */,
+				33F0357518EE5B8D004DC8FD /* tech-tonal4.aif in Resources */,
 				3355731618ED22CC00DA70BE /* pfl-piano-3.aif in Resources */,
+				33F0357418EE5B8D004DC8FD /* tech-tonal3.aif in Resources */,
 				168FA4EF173A08C7004C26AD /* Icon-Small-50.png in Resources */,
 				335F5E1F18BEE90000BF14DD /* marimba-54.wav in Resources */,
 				335F5E2718BEE90000BF14DD /* marimba-61.wav in Resources */,
@@ -1601,6 +1650,8 @@
 				168FA4F4173A08C7004C26AD /* iTunesArtwork in Resources */,
 				33630CBC1804E52200A9F9EE /* Default-568h.png in Resources */,
 				335F5E2318BEE90000BF14DD /* marimba-50.wav in Resources */,
+				33F0356918EE5B8D004DC8FD /* tech-chuk1.aif in Resources */,
+				33F0357218EE5B8D004DC8FD /* tech-tonal1.aif in Resources */,
 				332ED02F18E8743C00F23143 /* menus.plist in Resources */,
 				339ACE711884E23700F3D839 /* puzzle4.json in Resources */,
 				334B2ACB181B02CA00865510 /* uilayer-hd.plist in Resources */,
@@ -1608,7 +1659,9 @@
 				33A64C46183D8A8300A51EF2 /* arial-rounded-mt-bold-12fnt.png in Resources */,
 				3339C03118397638005771BC /* audioObjects-hd.plist in Resources */,
 				334B2AD4181B03F000865510 /* background-hd.plist in Resources */,
+				33F0357118EE5B8D004DC8FD /* tech-ride1.aif in Resources */,
 				33BA5F23185E3385005A0452 /* puzzle1.json in Resources */,
+				33F0356B18EE5B8D004DC8FD /* tech-clok1.aif in Resources */,
 				3356075E17F8B67900ECD44B /* pf-oscSynth.pd in Resources */,
 				339ACE721884E23700F3D839 /* puzzle5.json in Resources */,
 				334B2ACC181B02CA00865510 /* uilayer-hd.png in Resources */,
@@ -1618,8 +1671,10 @@
 				3357C3BB18EC4FBE0000D695 /* puzzletransitionlayer-hd.png in Resources */,
 				3355731418ED22CC00DA70BE /* pfl-piano-1.aif in Resources */,
 				1693C661177A0C9300FEB350 /* drum1.wav in Resources */,
+				33F0356C18EE5B8D004DC8FD /* tech-crash1.aif in Resources */,
 				1693C662177A0C9300FEB350 /* drum2.wav in Resources */,
 				335F5E2618BEE90000BF14DD /* marimba-60.wav in Resources */,
+				33F0356D18EE5B8D004DC8FD /* tech-hhclosed1.aif in Resources */,
 				33C3B1CB1874F591008F5FA8 /* pttrn1-02.wav in Resources */,
 				3357C3BD18EC4FBE0000D695 /* puzzletransitionlayer.png in Resources */,
 				335F5E1E18BEE90000BF14DD /* marimba-53.wav in Resources */,
@@ -1632,6 +1687,7 @@
 				33DD833E18D4C16F00EF90C7 /* puzzleSet0.json in Resources */,
 				33BA5F24185E3385005A0452 /* puzzle2.json in Resources */,
 				33F8A31317B9F104003B33E5 /* pf-main.pd in Resources */,
+				33F0356F18EE5B8D004DC8FD /* tech-hhclosed3.aif in Resources */,
 				3357C3BC18EC4FBE0000D695 /* puzzletransitionlayer.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1884,6 +1940,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE = "E49FED0C-8403-4CD7-A6E2-7072850F91F5";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1894,6 +1951,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Saba (U364Y3TNPD)";
@@ -1904,6 +1962,7 @@
 				HEADER_SEARCH_PATHS = "\"PttrnFlow/libs/kazmath/include\"";
 				INFOPLIST_FILE = PttrnFlow/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
@@ -1912,6 +1971,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../libpd/**";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1920,6 +1980,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JOHN SABA (586EB56567)";
@@ -1929,6 +1990,7 @@
 				HEADER_SEARCH_PATHS = "\"PttrnFlow/libs/kazmath/include\"";
 				INFOPLIST_FILE = PttrnFlow/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
@@ -1938,6 +2000,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../libpd/**";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
